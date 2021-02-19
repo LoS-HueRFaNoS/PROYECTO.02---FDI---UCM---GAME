@@ -1,0 +1,3 @@
+include: $(ProjectDir)..\libs\include;
+lib: $(ProjectDir)..\libs\x64\Debug;
+dep. adicionales: ComponentsDebug.lib;
