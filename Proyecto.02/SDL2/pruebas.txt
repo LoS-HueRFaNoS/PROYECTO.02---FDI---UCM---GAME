@@ -1,8 +1,0 @@
-if (SDL_Init(SDL_INIT_EVERYTHING) == 0) std::cout << "SDL: Ha funcionado!\n";
-if (IMG_Init(IMG_INIT_JPG) > 0) std::cout << "IMG: Ha funcionado!\n";
-if (TTF_OpenFont("ttf_fonts/FreeMono.ttf", 14) == 0) std::cout << "TTF: Ha funcionado!\n";
-if (Mix_OpenAudio(22050, MIX_DEFAULT_FORMAT, 2, 4096) != -1) std::cout << "MIX: Ha funcionado!\n";
-#include "SDL_image.h"
-#include "SDL_ttf.h"
-#include "SDL_mixer.h"
-#include "SDLError.h"

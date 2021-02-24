@@ -11,8 +11,6 @@
 
 int main(int argc, char* argv[])
 {
-    string e = "Unable to initialize ";
-    string end = ";\n";
     if (SDL_Init(SDL_INIT_EVERYTHING) == 0) std::cout << "SDL: Ha funcionado!\n";
     else SDLerror(string(SDL_GetError()).c_str(), "SDL");
     if (IMG_Init(IMG_INIT_JPG) > 0) std::cout << "IMG: Ha funcionado!\n";

@@ -1,5 +1,0 @@
-include: $(ProjectDir)..\SDL2\SDL2_mixer\include;$(ProjectDir)..\SDL2\SDL2_ttf\include;$(ProjectDir)..\SDL2\SDL2_image\include;$(ProjectDir)..\SDL2\SDL2\include;
-lib: $(ProjectDir)..\SDL2\SDL2_mixer\lib\x64;$(ProjectDir)..\SDL2\SDL2_ttf\lib\x64;$(ProjectDir)..\SDL2\SDL2_image\lib\x64;$(ProjectDir)..\SDL2\SDL2\lib\x64;
-dep. adicionales: SDL2.lib;SDL2main.lib;SDL2_image.lib;SDL2_ttf.lib;SDL2_mixer.lib;
-environment: PATH=%PATH%;$(ProyectDir)..\SDL2\lib\x64
-linker/system/subsystem: Console (/SUBSYSTEM:CONSOLE)
