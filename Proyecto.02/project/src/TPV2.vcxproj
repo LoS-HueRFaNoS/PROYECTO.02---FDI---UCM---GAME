@@ -19,65 +19,104 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\AudioManager.cpp" />
-    <ClCompile Include="src\Collisions.cpp" />
-    <ClCompile Include="src\Component.cpp" />
-    <ClCompile Include="src\Entity.cpp" />
-    <ClCompile Include="src\Font.cpp" />
-    <ClCompile Include="src\FontsManager.cpp" />
-    <ClCompile Include="src\Game.cpp" />
-    <ClCompile Include="src\InputHandler.cpp" />
-    <ClCompile Include="src\jute.cpp" />
-    <ClCompile Include="src\main.cpp" />
-    <ClCompile Include="src\Manager.cpp" />
-    <ClCompile Include="src\ObjectPool.cpp" />
-    <ClCompile Include="src\RandomNumberGenerator.cpp" />
-    <ClCompile Include="src\Rectangle.cpp" />
-    <ClCompile Include="src\Resources.cpp" />
-    <ClCompile Include="src\SDLAudioManager.cpp" />
-    <ClCompile Include="src\SDLFontsManager.cpp" />
-    <ClCompile Include="src\SDLGame.cpp" />
-    <ClCompile Include="src\SDLTexturesManager.cpp" />
-    <ClCompile Include="src\sdl_macros.cpp" />
-    <ClCompile Include="src\SRandBasedGenerator.cpp" />
-    <ClCompile Include="src\Texture.cpp" />
-    <ClCompile Include="src\TexturesManager.cpp" />
-    <ClCompile Include="src\Transform.cpp" />
-    <ClCompile Include="src\Vector2D.cpp" />
+    <ClInclude Include="Asteroid.h" />
+    <ClInclude Include="AsteroidPool.h" />
+    <ClInclude Include="Asteroids.h" />
+    <ClInclude Include="AsteroidsMotion.h" />
+    <ClInclude Include="AsteroidsViewer.h" />
+    <ClInclude Include="AudioManager.h" />
+    <ClInclude Include="Bullet.h" />
+    <ClInclude Include="BulletsMotion.h" />
+    <ClInclude Include="BulletsPool.h" />
+    <ClInclude Include="BulletsViewer.h" />
+    <ClInclude Include="checkML.h" />
+    <ClInclude Include="Collisions.h" />
+    <ClInclude Include="Component.h" />
+    <ClInclude Include="ecs.h" />
+    <ClInclude Include="Entity.h" />
+    <ClInclude Include="FighterCtrl.h" />
+    <ClInclude Include="FighterMotion.h" />
+    <ClInclude Include="FighterViewer.h" />
+    <ClInclude Include="Font.h" />
+    <ClInclude Include="FontsManager.h" />
+    <ClInclude Include="GameCtrl.h" />
+    <ClInclude Include="GameLogic.h" />
+    <ClInclude Include="Gun.h" />
+    <ClInclude Include="Health.h" />
+    <ClInclude Include="InputHandler.h" />
+    <ClInclude Include="jute.h" />
+    <ClInclude Include="Manager.h" />
+    <ClInclude Include="ObjectPool.h" />
+    <ClInclude Include="RandomNumberGenerator.h" />
+    <ClInclude Include="Rectangle.h" />
+    <ClInclude Include="Resources.h" />
+    <ClInclude Include="ScoreManager.h" />
+    <ClInclude Include="ScoreViewer.h" />
+    <ClInclude Include="SDLAudioManager.h" />
+    <ClInclude Include="SDLFontsManager.h" />
+    <ClInclude Include="SDLGame.h" />
+    <ClInclude Include="SDLTexturesManager.h" />
+    <ClInclude Include="SDL_macros.h" />
+    <ClInclude Include="SRandBasedGenerator.h" />
+    <ClInclude Include="Texture.h" />
+    <ClInclude Include="TexturesManager.h" />
+    <ClInclude Include="Transform.h" />
+    <ClInclude Include="Vector2D.h" />
+    <ClInclude Include="VelocityVectorViewer.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\AudioManager.h" />
-    <ClInclude Include="src\checkML.h" />
-    <ClInclude Include="src\Collisions.h" />
-    <ClInclude Include="src\Component.h" />
-    <ClInclude Include="src\ecs.h" />
-    <ClInclude Include="src\Entity.h" />
-    <ClInclude Include="src\Font.h" />
-    <ClInclude Include="src\FontsManager.h" />
-    <ClInclude Include="src\Game.h" />
-    <ClInclude Include="src\InputHandler.h" />
-    <ClInclude Include="src\jute.h" />
-    <ClInclude Include="src\Manager.h" />
-    <ClInclude Include="src\ObjectPool.h" />
-    <ClInclude Include="src\RandomNumberGenerator.h" />
-    <ClInclude Include="src\Rectangle.h" />
-    <ClInclude Include="src\Resources.h" />
-    <ClInclude Include="src\SDLAudioManager.h" />
-    <ClInclude Include="src\SDLFontsManager.h" />
-    <ClInclude Include="src\SDLGame.h" />
-    <ClInclude Include="src\SDLTexturesManager.h" />
-    <ClInclude Include="src\SDL_macros.h" />
-    <ClInclude Include="src\SRandBasedGenerator.h" />
-    <ClInclude Include="src\Texture.h" />
-    <ClInclude Include="src\TexturesManager.h" />
-    <ClInclude Include="src\Transform.h" />
-    <ClInclude Include="src\Vector2D.h" />
+    <ClCompile Include="Asteroid.cpp" />
+    <ClCompile Include="AsteroidPool.cpp" />
+    <ClCompile Include="Asteroids.cpp" />
+    <ClCompile Include="AsteroidsMotion.cpp" />
+    <ClCompile Include="AsteroidsViewer.cpp" />
+    <ClCompile Include="AudioManager.cpp" />
+    <ClCompile Include="Bullet.cpp" />
+    <ClCompile Include="BulletsMotion.cpp" />
+    <ClCompile Include="BulletsPool.cpp" />
+    <ClCompile Include="BulletsViewer.cpp" />
+    <ClCompile Include="Collisions.cpp" />
+    <ClCompile Include="Component.cpp" />
+    <ClCompile Include="Entity.cpp" />
+    <ClCompile Include="FighterCtrl.cpp" />
+    <ClCompile Include="FighterMotion.cpp" />
+    <ClCompile Include="FighterViewer.cpp" />
+    <ClCompile Include="Font.cpp" />
+    <ClCompile Include="FontsManager.cpp" />
+    <ClCompile Include="GameCtrl.cpp" />
+    <ClCompile Include="GameLogic.cpp" />
+    <ClCompile Include="Gun.cpp" />
+    <ClCompile Include="Health.cpp" />
+    <ClCompile Include="InputHandler.cpp" />
+    <ClCompile Include="jute.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="Manager.cpp" />
+    <ClCompile Include="ObjectPool.cpp" />
+    <ClCompile Include="RandomNumberGenerator.cpp" />
+    <ClCompile Include="Rectangle.cpp" />
+    <ClCompile Include="Resources.cpp" />
+    <ClCompile Include="ScoreManager.cpp" />
+    <ClCompile Include="ScoreViewer.cpp" />
+    <ClCompile Include="SDLAudioManager.cpp" />
+    <ClCompile Include="SDLFontsManager.cpp" />
+    <ClCompile Include="SDLGame.cpp" />
+    <ClCompile Include="SDLTexturesManager.cpp" />
+    <ClCompile Include="sdl_macros.cpp" />
+    <ClCompile Include="SRandBasedGenerator.cpp" />
+    <ClCompile Include="Texture.cpp" />
+    <ClCompile Include="TexturesManager.cpp" />
+    <ClCompile Include="Transform.cpp" />
+    <ClCompile Include="Vector2D.cpp" />
+    <ClCompile Include="VelocityVectorViewer.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="README.md" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
+    <ProjectGuid>{AB972A8F-25F8-4C47-A8F2-6BF10D3F83D8}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{2452b365-2d97-4dcb-956c-eec5f7fcd8b3}</ProjectGuid>
-    <RootNamespace>project</RootNamespace>
+    <RootNamespace>TPV2</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -114,41 +153,37 @@
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    <Import Project="..\SDL2\sdl-libs.props" />
-    <Import Project="..\libs\errores.cpp\errors.props" />
+    <Import Project="..\SDLProject.props" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    <Import Project="..\SDL2\sdl-libs.props" />
-    <Import Project="..\libs\errores.cpp\errors.props" />
+    <Import Project="..\SDLProject.props" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    <Import Project="..\SDL2\sdl-libs.props" />
-    <Import Project="..\libs\errores.cpp\errors.props" />
+    <Import Project="..\SDLProject.props" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    <Import Project="..\SDL2\sdl-libs.props" />
-    <Import Project="..\libs\errores.cpp\errors.props" />
+    <Import Project="..\SDLProject.props" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <LinkIncremental>true</LinkIncremental>
-    <PublicModuleDirectories>$(ProjectDir)\src;</PublicModuleDirectories>
-  </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <PublicModuleDirectories>$(ProjectDir)\src;</PublicModuleDirectories>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -159,8 +194,24 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
   </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
@@ -175,20 +226,10 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
   </ItemDefinitionGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <ClCompile>
-      <WarningLevel>Level3</WarningLevel>
-      <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <ConformanceMode>true</ConformanceMode>
-    </ClCompile>
-    <Link>
-      <SubSystem>Console</SubSystem>
-      <GenerateDebugInformation>true</GenerateDebugInformation>
-    </Link>
-  </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>

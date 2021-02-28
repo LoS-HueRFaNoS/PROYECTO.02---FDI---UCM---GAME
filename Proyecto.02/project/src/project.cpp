@@ -7,6 +7,7 @@
 #include "SDL_mixer.h"
 #include "SDLerror.h"
 
+
 #pragma region METODOS_PROJECT
 
 int main(int argc, char* argv[])
