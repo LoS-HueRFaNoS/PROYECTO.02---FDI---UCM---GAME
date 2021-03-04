@@ -5,6 +5,8 @@ VisualStudioVersion = 16.0.31005.135
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "project", "project\project.vcxproj", "{2452B365-2D97-4DCB-956C-EEC5F7FCD8B3}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "acedpolAPP", "acedpolAPP\acedpolAPP.vcxproj", "{F85B6359-E09D-4BE9-A977-E9C371FC565C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -21,6 +23,14 @@ Global
 		{2452B365-2D97-4DCB-956C-EEC5F7FCD8B3}.Release|x64.Build.0 = Release|x64
 		{2452B365-2D97-4DCB-956C-EEC5F7FCD8B3}.Release|x86.ActiveCfg = Release|Win32
 		{2452B365-2D97-4DCB-956C-EEC5F7FCD8B3}.Release|x86.Build.0 = Release|Win32
+		{F85B6359-E09D-4BE9-A977-E9C371FC565C}.Debug|x64.ActiveCfg = Debug|x64
+		{F85B6359-E09D-4BE9-A977-E9C371FC565C}.Debug|x64.Build.0 = Debug|x64
+		{F85B6359-E09D-4BE9-A977-E9C371FC565C}.Debug|x86.ActiveCfg = Debug|Win32
+		{F85B6359-E09D-4BE9-A977-E9C371FC565C}.Debug|x86.Build.0 = Debug|Win32
+		{F85B6359-E09D-4BE9-A977-E9C371FC565C}.Release|x64.ActiveCfg = Release|x64
+		{F85B6359-E09D-4BE9-A977-E9C371FC565C}.Release|x64.Build.0 = Release|x64
+		{F85B6359-E09D-4BE9-A977-E9C371FC565C}.Release|x86.ActiveCfg = Release|Win32
+		{F85B6359-E09D-4BE9-A977-E9C371FC565C}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

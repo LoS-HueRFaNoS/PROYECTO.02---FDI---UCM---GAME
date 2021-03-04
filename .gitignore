@@ -1,43 +1,16 @@
 
-################################## C++
-# Prerequisites
-*.d
-
-# Compiled Object files
-*.slo
-*.lo
-*.o
-*.obj
-
-# Precompiled Headers
-*.gch
-*.pch
-
-# Compiled Dynamic libraries
-*.so
-*.dylib
-# *.dll
-
-# Fortran module files
-*.mod
-*.smod
-
-# Compiled Static libraries
-*.lai
-*.la
-*.a
-# *.lib
-
-# Executables
-*.exe
-*.out
-*.app
-
-################################## Proyecto
+### Proyecto.02 (main)
 Proyecto.02/.vs/
 Proyecto.02/x64/
 Proyecto.02/project/x64/
-Proyecto.02/Debug/
-Proyecto.02/project/Debug/
-Proyecto.02/Release/
-Proyecto.02/project/Release/
+Proyecto.02/acedpolAPP/x64/
+
+### Proyecto.02 (bibliotecas)
+Proyecto.02 - [ BIBLIOTECAS ]/.vs/
+Proyecto.02 - [ BIBLIOTECAS ]/x64/
+Proyecto.02 - [ BIBLIOTECAS ]/scrypt_resources/ACE D. POL__logic.pacman/x64/
+Proyecto.02 - [ BIBLIOTECAS ]/scrypt_resources/acedpolAPP/x64/
+Proyecto.02 - [ BIBLIOTECAS ]/scrypt_resources/components/x64/
+Proyecto.02 - [ BIBLIOTECAS ]/scrypt_resources/errores/x64/
+Proyecto.02 - [ BIBLIOTECAS ]/scrypt_resources/game.resources/x64/
+Proyecto.02 - [ BIBLIOTECAS ]/scrypt_resources/gestores/x64/
