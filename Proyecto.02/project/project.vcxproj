@@ -19,6 +19,8 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Casilla.cpp" />
+    <ClCompile Include="Laberinto.cpp" />
     <ClCompile Include="src\AudioManager.cpp" />
     <ClCompile Include="src\Character.cpp" />
     <ClCompile Include="src\Collisions.cpp" />
@@ -47,6 +49,9 @@
     <ClCompile Include="src\Vector2D.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Casilla.h" />
+    <ClInclude Include="CasillaRender.h" />
+    <ClInclude Include="Laberinto.h" />
     <ClInclude Include="src\AudioManager.h" />
     <ClInclude Include="src\Character.h" />
     <ClInclude Include="src\checkML.h" />
