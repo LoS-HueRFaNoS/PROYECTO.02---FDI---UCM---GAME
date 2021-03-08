@@ -1,8 +1,11 @@
 #pragma once
 #include <vector>
-#include "src/Entity.h"
+#include "Entity.h"
 using namespace std;
+
 enum MapCell { Norte, Este, Sur, Oeste };
+
+
 class Casilla //: public Entity
 {
 private:

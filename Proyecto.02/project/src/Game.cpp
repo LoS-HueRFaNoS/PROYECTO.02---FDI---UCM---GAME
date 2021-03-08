@@ -25,7 +25,10 @@ void Game::initGame() {
 	game_ = SDLGame::init("VAMOS A LLORAR CON SDL", _WINDOW_WIDTH_, _WINDOW_HEIGHT_);
 
 	entityManager_ = new EntityManager(game_);
+
 	//laberinto = new Laberinto();
+	//laberinto->initFromFile();
+
 	/*Entity* Fighter = entityManager_->addEntity();
 	Transform* FighterTR = Fighter->addComponent<Transform>();
 	Fighter->addComponent<FighterCtrl>();

@@ -4,7 +4,8 @@
 
 #include "Manager.h"
 #include "SDLGame.h"
-#include "../Laberinto.h"
+#include "checkML.h"
+#include "Laberinto.h"
 class Game {
 
 public:

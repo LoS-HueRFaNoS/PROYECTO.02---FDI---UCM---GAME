@@ -125,10 +125,11 @@
     </ClCompile>
     <ClCompile Include="src\RPGLogic.cpp">
       <Filter>Archivos de origen\Templates/Resources</Filter>
-    <ClCompile Include="Laberinto.cpp">
+    </ClCompile>
+    <ClCompile Include="src\Casilla.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
-    <ClCompile Include="Casilla.cpp">
+    <ClCompile Include="src\Laberinto.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
   </ItemGroup>
@@ -220,15 +221,15 @@
     <ClInclude Include="src\Hero.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
+    <ClInclude Include="src\Casilla.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Laberinto.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Text Include="NewFile.txt" />
-    <ClInclude Include="Laberinto.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="Casilla.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
     <ClInclude Include="CasillaRender.h">
       <Filter>Archivos de encabezado\Components</Filter>
     </ClInclude>

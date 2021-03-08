@@ -8,8 +8,22 @@
 using namespace std;
 Laberinto::Laberinto()
 {
-	cin >> numLaberinto;
-	string text = "Laberinto" + numLaberinto + ".txt"; // Archivo a cargar
+
+}
+
+
+Laberinto::~Laberinto()
+{
+
+}
+
+
+
+void Laberinto::initFromFile()
+{
+	string text;
+	cin >> text;
+	text += ".txt";
 	ifstream input; // Flujo de entrada
 	input.open(text); // Se abre el archivo
 	if (!input.is_open()) // Da error si no se puede abrir el archivo
@@ -28,8 +42,8 @@ Laberinto::Laberinto()
 			for (int j = 0; j < w; ++j) // Por cada columna  = X
 			{
 				input >> norte >> este >> sur >> oeste; // Se recoge el siguiente dato
-				
-				auto a = new Casilla(i,j,norte,este,sur,oeste);
+
+				auto a = new Casilla(i, j, norte, este, sur, oeste);
 				laberinto[j][i] = a;
 			}
 		}
@@ -37,8 +51,7 @@ Laberinto::Laberinto()
 	}
 }
 
-
-Laberinto::~Laberinto()
+void Laberinto::createRandomMaze(int s)
 {
-	
+	laberinto = vector<vector<Casilla*>>(s, vector<Casilla*>(s, new Casilla()));
 }

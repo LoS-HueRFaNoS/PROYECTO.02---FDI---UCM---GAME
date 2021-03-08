@@ -23,7 +23,7 @@ public:
 		DEX,
 		CON,
 		INT,
-		NULL
+		NULLMOD
 	};
 };
 

@@ -19,9 +19,8 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Casilla.cpp" />
-    <ClCompile Include="Laberinto.cpp" />
     <ClCompile Include="src\AudioManager.cpp" />
+    <ClCompile Include="src\Casilla.cpp" />
     <ClCompile Include="src\Character.cpp" />
     <ClCompile Include="src\Collisions.cpp" />
     <ClCompile Include="src\Component.cpp" />
@@ -31,6 +30,7 @@
     <ClCompile Include="src\Game.cpp" />
     <ClCompile Include="src\InputHandler.cpp" />
     <ClCompile Include="src\jute.cpp" />
+    <ClCompile Include="src\Laberinto.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\Manager.cpp" />
     <ClCompile Include="src\ObjectPool.cpp" />
@@ -50,10 +50,9 @@
     <ClCompile Include="src\Vector2D.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Casilla.h" />
     <ClInclude Include="CasillaRender.h" />
-    <ClInclude Include="Laberinto.h" />
     <ClInclude Include="src\AudioManager.h" />
+    <ClInclude Include="src\Casilla.h" />
     <ClInclude Include="src\Character.h" />
     <ClInclude Include="src\checkML.h" />
     <ClInclude Include="src\Collisions.h" />
@@ -66,6 +65,7 @@
     <ClInclude Include="src\Hero.h" />
     <ClInclude Include="src\InputHandler.h" />
     <ClInclude Include="src\jute.h" />
+    <ClInclude Include="src\Laberinto.h" />
     <ClInclude Include="src\Manager.h" />
     <ClInclude Include="src\ObjectPool.h" />
     <ClInclude Include="src\RandomNumberGenerator.h" />
