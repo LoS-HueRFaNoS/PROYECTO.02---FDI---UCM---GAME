@@ -132,6 +132,9 @@
     <ClCompile Include="src\Laberinto.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
+    <ClCompile Include="src\JSON.cpp">
+      <Filter>Archivos de origen\Templates/Resources</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\ecs.h">
