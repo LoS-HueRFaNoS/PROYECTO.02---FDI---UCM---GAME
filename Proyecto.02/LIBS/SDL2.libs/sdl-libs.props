@@ -3,9 +3,12 @@
   <ImportGroup Label="PropertySheets" />
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup>
-    <TargetName>$(ProjectName)$(Configuration)</TargetName>
-    <IncludePath>$(SolutionDir)SDL2\SDL2\include;$(SolutionDir)SDL2\SDL2_image\include;$(SolutionDir)SDL2\SDL2_ttf\include;$(SolutionDir)SDL2\SDL2_mixer\include;$(IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)SDL2\SDL2\lib\x64;$(SolutionDir)SDL2\SDL2_image\lib\x64;$(SolutionDir)SDL2\SDL2_ttf\lib\x64;$(SolutionDir)SDL2\SDL2_mixer\lib\x64;$(LibraryPath)</LibraryPath>
+    <TargetName>$(ProjectName)</TargetName>
+    <IncludePath>$(SolutionDir)LIBS\SDL2.libs\SDL2\include;$(SolutionDir)LIBS\SDL2.libs\SDL2_image\include;$(SolutionDir)LIBS\SDL2.libs\SDL2_ttf\include;$(SolutionDir)LIBS\SDL2.libs\SDL2_mixer\include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)LIBS\SDL2.libs\SDL2\lib\x64;$(SolutionDir)LIBS\SDL2.libs\SDL2_image\lib\x64;$(SolutionDir)LIBS\SDL2.libs\SDL2_ttf\lib\x64;$(SolutionDir)LIBS\SDL2.libs\SDL2_mixer\lib\x64;$(LibraryPath)</LibraryPath>
+    <PublicModuleDirectories>$(ProjectDir)\src;</PublicModuleDirectories>
+    <IntDir>$(SolutionDir)Temp\$(Configuration)</IntDir>
+    <OutDir>$(SolutionDir)bin\$(Configuration)</OutDir>
   </PropertyGroup>
   <ItemDefinitionGroup>
     <Link>
