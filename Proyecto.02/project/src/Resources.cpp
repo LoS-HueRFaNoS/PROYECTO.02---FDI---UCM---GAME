@@ -13,13 +13,6 @@ vector<Resources::ImageInfo> Resources::images_ {
 		{ Asteroid, "resources/images/asteroid.png" }, //
 		{ Heart, "resources/images/heart.png" }, //
 		{ WhiteRect, "resources/images/whiterect.png" }, //
-		{ Pasillo1, "resources/images/pasillos/Pasillo1.png"}, //
-		{ Pasillo2, "resources/images/pasillos/Pasillo2.png"}, //
-		{ Pasillo3, "resources/images/pasillos/Pasillo3.png"}, //
-		{ Pasillo4, "resources/images/pasillos/Pasillo4.png"}, //
-		{ Pasillo5, "resources/images/pasillos/Pasillo5.png"}, //
-		{ Pasillo6, "resources/images/pasillos/Pasillo6.png"}, //
-		{ Pasillo7, "resources/images/pasillos/Pasillo7.png"}, //
 };
 
 vector<Resources::TextMsgInfo> Resources::messages_ {

@@ -9,7 +9,6 @@ enum CmpId : CmpIdType {
 	Transform = 0,
 	Rectangle,
 	Character,
-	CasillaRender,
 	//
 	// don't touch the rest of this enum, it is to identify the max
 	// number of components

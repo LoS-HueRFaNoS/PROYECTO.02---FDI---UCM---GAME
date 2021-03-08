@@ -15,13 +15,6 @@ public:
 		Asteroid,
 		Heart,
 		WhiteRect,
-		Pasillo1,
-		Pasillo2,
-		Pasillo3,
-		Pasillo4,
-		Pasillo5,
-		Pasillo6,
-		Pasillo7,
 
 		// text
 		HelloWorld,

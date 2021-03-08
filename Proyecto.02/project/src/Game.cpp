@@ -7,6 +7,7 @@
 #include "Transform.h"
 #include "SDLGame.h"
 #include "SDL_macros.h"
+
 using namespace std;
 
 Game::Game() :
@@ -25,7 +26,8 @@ void Game::initGame() {
 	game_ = SDLGame::init("VAMOS A LLORAR CON SDL", _WINDOW_WIDTH_, _WINDOW_HEIGHT_);
 
 	entityManager_ = new EntityManager(game_);
-	//laberinto = new Laberinto();
+	
+
 	/*Entity* Fighter = entityManager_->addEntity();
 	Transform* FighterTR = Fighter->addComponent<Transform>();
 	Fighter->addComponent<FighterCtrl>();
@@ -44,7 +46,6 @@ void Game::initGame() {
 
 void Game::closeGame() {
 	delete entityManager_;
-	delete laberinto;
 }
 
 void Game::start() {
