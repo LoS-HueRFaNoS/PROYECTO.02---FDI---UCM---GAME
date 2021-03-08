@@ -70,5 +70,6 @@ public:
 	static vector<TextMsgInfo> messages_; // initialized in .cpp
 	static vector<MusicInfo> musics_; // initialized in .cpp
 	static vector<SoundInfo> sounds_; // initialized in .cpp
+	//static vector<ClassTemplates> classTemplates_;
 
 };

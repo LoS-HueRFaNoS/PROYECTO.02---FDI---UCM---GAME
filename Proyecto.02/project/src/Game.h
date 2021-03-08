@@ -4,6 +4,7 @@
 
 #include "Manager.h"
 #include "SDLGame.h"
+#include "Hero.h"
 
 class Game {
 

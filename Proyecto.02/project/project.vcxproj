@@ -35,6 +35,7 @@
     <ClCompile Include="src\RandomNumberGenerator.cpp" />
     <ClCompile Include="src\Rectangle.cpp" />
     <ClCompile Include="src\Resources.cpp" />
+    <ClCompile Include="src\RPGLogic.cpp" />
     <ClCompile Include="src\SDLAudioManager.cpp" />
     <ClCompile Include="src\SDLFontsManager.cpp" />
     <ClCompile Include="src\SDLGame.cpp" />
@@ -57,6 +58,7 @@
     <ClInclude Include="src\Font.h" />
     <ClInclude Include="src\FontsManager.h" />
     <ClInclude Include="src\Game.h" />
+    <ClInclude Include="src\Hero.h" />
     <ClInclude Include="src\InputHandler.h" />
     <ClInclude Include="src\jute.h" />
     <ClInclude Include="src\Manager.h" />
@@ -64,6 +66,7 @@
     <ClInclude Include="src\RandomNumberGenerator.h" />
     <ClInclude Include="src\Rectangle.h" />
     <ClInclude Include="src\Resources.h" />
+    <ClInclude Include="src\RPGLogic.h" />
     <ClInclude Include="src\SDLAudioManager.h" />
     <ClInclude Include="src\SDLFontsManager.h" />
     <ClInclude Include="src\SDLGame.h" />
@@ -74,6 +77,9 @@
     <ClInclude Include="src\TexturesManager.h" />
     <ClInclude Include="src\Transform.h" />
     <ClInclude Include="src\Vector2D.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="NewFile.txt" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

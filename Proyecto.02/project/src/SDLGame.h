@@ -6,6 +6,7 @@
 #include "AudioManager.h"
 #include "FontsManager.h"
 #include "RandomNumberGenerator.h"
+#include "RPGLogic.h"
 
 #include <string>
 #include <memory>
@@ -68,11 +69,16 @@ public:
 		return InputHandler::instance();
 	}
 
+	int  throwDice(int dice) {
+		return random_->nextInt(1, dice + 1);
+	}
+
 	inline void toggleFullScreen() {
 		int flags = SDL_GetWindowFlags(window_);
 		if (flags & SDL_WINDOW_FULLSCREEN) {
 			SDL_SetWindowFullscreen(window_, 0);
-		} else {
+		}
+		else {
 			SDL_SetWindowFullscreen(window_, SDL_WINDOW_FULLSCREEN);
 		}
 
@@ -91,13 +97,13 @@ private:
 
 protected:
 
-	FontsManager *fonts_;
-	TexturesManager *textures_;
-	AudioManager *audio_;
-	RandomNumberGenerator *random_;
+	FontsManager* fonts_;
+	TexturesManager* textures_;
+	AudioManager* audio_;
+	RandomNumberGenerator* random_;
 
-	SDL_Window *window_; // the window
-	SDL_Renderer *renderer_;  // the renderer
+	SDL_Window* window_; // the window
+	SDL_Renderer* renderer_;  // the renderer
 
 	string windowTitle_; // window title
 	int width_; // window width
