@@ -10,6 +10,8 @@ enum CmpId : CmpIdType {
 	Rectangle,
 	Character,
 	CasillaRender,
+	Laberinto,
+	PlayerMotion,
 	//
 	// don't touch the rest of this enum, it is to identify the max
 	// number of components

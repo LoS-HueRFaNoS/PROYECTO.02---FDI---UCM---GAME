@@ -69,6 +69,7 @@
     <ClInclude Include="src\Laberinto.h" />
     <ClInclude Include="src\Manager.h" />
     <ClInclude Include="src\ObjectPool.h" />
+    <ClInclude Include="src\PlayerMotion.h" />
     <ClInclude Include="src\RandomNumberGenerator.h" />
     <ClInclude Include="src\Rectangle.h" />
     <ClInclude Include="src\Resources.h" />

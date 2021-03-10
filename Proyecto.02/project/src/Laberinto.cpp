@@ -1,12 +1,16 @@
 #include "Laberinto.h"
-#include <sstream>
 #include <string>
 #include <iostream>
 #include <fstream>
 
 
 using namespace std;
-Laberinto::Laberinto()
+
+Laberinto::Laberinto(int h_, int w_) :Component(ecs::Laberinto),h(h_),w(w_)
+{
+
+}
+Laberinto::Laberinto() : Component(ecs::Laberinto), h(), w()
 {
 
 }

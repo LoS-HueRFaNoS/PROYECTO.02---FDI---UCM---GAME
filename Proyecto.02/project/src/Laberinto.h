@@ -2,17 +2,19 @@
 #include "Casilla.h"
 #include <string>
 #include <vector>
+#include "Component.h"
 
 
 
-class Laberinto
+class Laberinto : public Component
 {
 private:
 	int h, w;
 	vector<vector<Casilla*>> laberinto;
 public:
+	Laberinto(int h,int w);
 	Laberinto();
-	~Laberinto();
+	virtual ~Laberinto();
 	void initFromFile();
 	void createRandomMaze(int s);
 };
