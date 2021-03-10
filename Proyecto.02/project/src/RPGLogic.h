@@ -26,7 +26,7 @@ public:
 		NULLMOD
 	};
 
-	enum classType {
+	enum characterTemplate {
 		WARRIOR,
 		WIZARD,
 		RANGER,
