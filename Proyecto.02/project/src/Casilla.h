@@ -3,16 +3,13 @@
 #include "Entity.h"
 using namespace std;
 
-const static enum MapCell { Norte, Este, Sur, Oeste };
+enum MapCell { Norte, Este, Sur, Oeste };
 
 
 class Casilla //: public Entity
 {
 private:
-	int x, y; //           <-   |   ->
-	int look;
-	int camino;
-	bool vista;
+	int x, y;
 	vector<bool> direcciones;
 public:
 	Casilla();

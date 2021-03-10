@@ -5,7 +5,7 @@
 
 class Transform: public Component {
 public:
-	Transform(Vector2D pos,  double width, double height);
+	Transform(Vector2D pos, Vector2D vel, double width, double height, double rotation);
 	Transform();
 	virtual ~Transform();
 
@@ -26,15 +26,30 @@ public:
 		position_.setY(y);
 	}
 
-	void setSentido(int sentid)
-	{
-		sentido_ = sentid;
+	// rotation
+	double getRot() const {
+		return rotation_;
 	}
-	int getSentido()
-	{
-		return sentido_;
+	void setRot(double angle) {
+		rotation_ = angle;
 	}
 
+	// velocity
+	const Vector2D& getVel() const {
+		return velocity_;
+	}
+	void setVel(const Vector2D &vel) {
+		velocity_.set(vel);
+	}
+	void setVel(double x, double y) {
+		velocity_.set(x, y);
+	}
+	void setVelX(double x) {
+		velocity_.setX(x);
+	}
+	void setVelY(double y) {
+		velocity_.setY(y);
+	}
 
 	// width && height
 	double getW() const {
@@ -58,9 +73,9 @@ public:
 
 private:
 	Vector2D position_;
+	Vector2D velocity_;
 	double width_;
 	double height_;
-	MapCell sentido_;
-	
+	double rotation_;
 };
 
