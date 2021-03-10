@@ -5,7 +5,7 @@ using json = nlohmann::json;
 
 json hero = {
 
-	{"Warrior", {
+	{"warrior", {
 
 	//Stats
 	{"strength Min", 15},
@@ -42,7 +42,7 @@ json hero = {
 	//que puede usar
 }},
 
-	{"Wizard", {
+	{ "wizard", {
 
 	//Stats
 	{"strength Min", 1},
@@ -79,7 +79,7 @@ json hero = {
 		//que puede usar
 }},
 
-    {"Ranger", {
+    {"ranger", {
 
 	//Stats
 	{"strength Min", 10},
@@ -114,79 +114,5 @@ json hero = {
 
 		//Listado de armas y armaduras 
 		//que puede usar
-}},
-
-	{"Bard", {
-
-		//Stats
-		{"strength Min", 1},
-		{"strength Max", 6},
-
-		{"constitution Min", 5},
-		{"constitution Max", 11},
-
-		{"dexterity Min", 10},
-		{"dexterity Max", 16},
-
-		{"intelligence Min", 15},
-		{"intelligence Max", 21},
-
-		//Puntos de salud
-		{"hitPoints", 8},
-		//Puntos de mana
-		{"manaPoints", 10},
-
-		//Debilidades
-		/*{"weaknesses",
-			{"blunt", 0},
-			{"piercing", 0},
-			{"slash", 0},
-			{"fire", 0},
-			{"water", 0},
-			{"ice", 0},
-			{"earth", 0},
-			{"wind", 0},
-			{"light", 0},
-			{"dark", 0}},*/
-
-			//Listado de armas y armaduras 
-			//que puede usar
-	}}, 
-
-	{"Cleric", {
-
-		//Stats
-		{"strength Min", 5},
-		{"strength Max", 11},
-
-		{"constitution Min", 15},
-		{"constitution Max", 21},
-
-		{"dexterity Min", 1},
-		{"dexterity Max", 6},
-
-		{"intelligence Min", 10},
-		{"intelligence Max", 16},
-
-		//Puntos de salud
-		{"hitPoints", 8},
-		//Puntos de mana
-		{"manaPoints", 10},
-
-		//Debilidades
-		/*{"weaknesses",
-			{"blunt", 0},
-			{"piercing", 0},
-			{"slash", 0},
-			{"fire", 0},
-			{"water", 0},
-			{"ice", 0},
-			{"earth", 0},
-			{"wind", 0},
-			{"light", 0},
-			{"dark", 0}},*/
-
-			//Listado de armas y armaduras 
-			//que puede usar
-	} },
+}}
 };
