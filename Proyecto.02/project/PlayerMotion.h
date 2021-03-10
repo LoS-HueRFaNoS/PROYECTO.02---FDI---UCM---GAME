@@ -12,6 +12,11 @@ public:
 	{
 
 	}
+	PlayerMotion() :Component(ecs::PlayerMotion), //
+		tr_(nullptr), avance(SDLK_UP), giraIzq(SDLK_LEFT), giraDer(SDLK_DOWN) //
+	{
+
+	}
 	virtual ~PlayerMotion() {
 		tr_ = GETCMP2_(ecs::Transform, Transform);
 	}

@@ -35,12 +35,12 @@ void Game::initGame() {
 	jugador->addComponent<Transform>();
 	jugador->addComponent<PlayerMotion>();
 	Entity* gameManager = entityManager_->addEntity();
-
-	//gameManager->addComponent<ScoreManager>();
-	gameManager->addComponent<GameLogic>(FighterTR, GETCMP2(Game, AsteroidPool), GETCMP2(Bullets, BulletsPool), GETCMP2(Fighter, Health));
-	//gameManager->addComponent<ScoreViewer>();
-	gameManager->addComponent<GameCtrl>(GETCMP2(Fighter, Health), GETCMP2(Game, AsteroidPool));
 	//gameManager->addComponent<GameCtrl>(mazeArray);
+	//gameManager->addComponent<GameLogic>(FighterTR, GETCMP2(Game, AsteroidPool), GETCMP2(Bullets, BulletsPool), GETCMP2(Fighter, Health));
+	//gameManager->addComponent<ScoreManager>();
+	
+	//gameManager->addComponent<ScoreViewer>();
+
 
 	//laberinto = new Laberinto();
 	//laberinto->initFromFile();

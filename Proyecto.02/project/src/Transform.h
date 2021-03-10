@@ -60,7 +60,7 @@ private:
 	Vector2D position_;
 	double width_;
 	double height_;
-	MapCell sentido_;
+	int sentido_;
 	
 };
 

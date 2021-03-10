@@ -12,9 +12,9 @@ private:
 	int h, w;
 	vector<vector<Casilla*>> laberinto;
 public:
-	Laberinto(SDL_Rect clip) : Component(ecs::CasillaRender){
-	}
-	virtual ~Laberinto() {};
+	Laberinto(int h,int w);
+	Laberinto();
+	virtual ~Laberinto();
 	void initFromFile();
 	void createRandomMaze(int s);
 };
