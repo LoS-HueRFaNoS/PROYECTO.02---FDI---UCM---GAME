@@ -2,6 +2,7 @@
 #define _CHARACTER_
 #include "Component.h"
 #include "RPGLogic.h"
+#include "json/json.h"
 
 class Character : public Component
 {

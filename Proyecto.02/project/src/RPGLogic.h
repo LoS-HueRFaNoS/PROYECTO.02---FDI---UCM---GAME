@@ -25,6 +25,14 @@ public:
 		INT,
 		NULLMOD
 	};
+
+	enum classType {
+		WARRIOR,
+		WIZARD,
+		RANGER,
+		BARD,
+		CLERIC
+	};
 };
 
 
