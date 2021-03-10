@@ -13,9 +13,6 @@ public:
 	CasillaRender(SDL_Rect clip) : Component(ecs::CasillaRender),
 		clip_(clip),
 		tr_(nullptr){}
-	CasillaRender() : Component(ecs::CasillaRender),
-		clip_({ 0,0,0,0 }),
-		tr_(nullptr) {}
 	virtual ~CasillaRender() {};
 	void draw()
 	{
