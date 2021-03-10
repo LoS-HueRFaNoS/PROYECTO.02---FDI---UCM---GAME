@@ -230,11 +230,15 @@
     <ClInclude Include="src\Laberinto.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
+    <ClInclude Include="src\CasillaRender.h">
+      <Filter>Archivos de encabezado\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerMotion.h">
+      <Filter>Archivos de encabezado\Components</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Text Include="NewFile.txt" />
-    <ClInclude Include="CasillaRender.h">
-      <Filter>Archivos de encabezado\Components</Filter>
-    </ClInclude>
+    <Text Include="Laberinto1.txt" />
   </ItemGroup>
 </Project>

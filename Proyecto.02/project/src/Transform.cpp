@@ -2,20 +2,17 @@
 
 Transform::Transform() :
 		Component(ecs::Transform), position_(), //
-		velocity_(), //
 		width_(), //
-		height_(), //
-		rotation_() //
+		height_() //
 {
 }
 
-Transform::Transform(Vector2D pos, Vector2D vel, double width,
-		double height, double rotation) :
+Transform::Transform(Vector2D pos, double width,
+		double height) :
 		Component(ecs::Transform), position_(pos), //
-		velocity_(vel), //
 		width_(width), //
-		height_(height), //
-		rotation_(0.0) //
+		height_(height),//
+	sentido_()
 {
 }
 

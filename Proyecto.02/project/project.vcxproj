@@ -51,9 +51,10 @@
     <ClCompile Include="src\Vector2D.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="CasillaRender.h" />
+    <ClInclude Include="PlayerMotion.h" />
     <ClInclude Include="src\AudioManager.h" />
     <ClInclude Include="src\Casilla.h" />
+    <ClInclude Include="src\CasillaRender.h" />
     <ClInclude Include="src\Character.h" />
     <ClInclude Include="src\checkML.h" />
     <ClInclude Include="src\Collisions.h" />
@@ -85,6 +86,7 @@
     <ClInclude Include="src\Vector2D.h" />
   </ItemGroup>
   <ItemGroup>
+    <Text Include="Laberinto1.txt" />
     <Text Include="NewFile.txt" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

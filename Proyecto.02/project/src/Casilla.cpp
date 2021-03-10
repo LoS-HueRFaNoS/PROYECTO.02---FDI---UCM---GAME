@@ -19,6 +19,11 @@ Casilla::Casilla(int x_,int y_, bool _N, bool _E, bool _S, bool _O)
 	direcciones[Este] = _E;
 	direcciones[Sur] = _S;
 	direcciones[Oeste] = _O;
+	camino = 0;
+	for (auto i : direcciones)
+	{
+		if (i) camino++;
+	}
 }
 
 Casilla::~Casilla()

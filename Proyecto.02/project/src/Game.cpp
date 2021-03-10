@@ -7,6 +7,9 @@
 #include "Transform.h"
 #include "SDLGame.h"
 #include "SDL_macros.h"
+#include "Entity.h"
+#include "../PlayerMotion.h"
+#include "CasillaRender.h"
 using namespace std;
 
 Game::Game() :
@@ -25,6 +28,19 @@ void Game::initGame() {
 	game_ = SDLGame::init("VAMOS A LLORAR CON SDL", _WINDOW_WIDTH_, _WINDOW_HEIGHT_);
 
 	entityManager_ = new EntityManager(game_);
+	Entity* maze = entityManager_->addEntity();
+	Laberinto* mazeArray = maze->addComponent<Laberinto>();  ///Laberinto tiene que ser un componente
+	maze->addComponent<CasillaRender>();
+	Entity* jugador = entityManager_->addEntity();
+	jugador->addComponent<Transform>();
+	jugador->addComponent<PlayerMotion>();
+	Entity* gameManager = entityManager_->addEntity();
+
+	//gameManager->addComponent<ScoreManager>();
+	gameManager->addComponent<GameLogic>(FighterTR, GETCMP2(Game, AsteroidPool), GETCMP2(Bullets, BulletsPool), GETCMP2(Fighter, Health));
+	//gameManager->addComponent<ScoreViewer>();
+	gameManager->addComponent<GameCtrl>(GETCMP2(Fighter, Health), GETCMP2(Game, AsteroidPool));
+	//gameManager->addComponent<GameCtrl>(mazeArray);
 
 	//laberinto = new Laberinto();
 	//laberinto->initFromFile();
