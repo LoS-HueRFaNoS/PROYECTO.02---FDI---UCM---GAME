@@ -235,7 +235,6 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <Text Include="NewFile.txt" />
     <ClInclude Include="CasillaRender.h">
       <Filter>Archivos de encabezado\Components</Filter>
     </ClInclude>
