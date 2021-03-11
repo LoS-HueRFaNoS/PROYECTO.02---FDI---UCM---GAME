@@ -5,6 +5,7 @@
 #include "Rectangle.h"
 #include "ecs.h"
 #include "Transform.h"
+#include "Image.h"
 #include "SDLGame.h"
 #include "SDL_macros.h"
 using namespace std;
@@ -25,6 +26,10 @@ void Game::initGame() {
 	game_ = SDLGame::init("VAMOS A LLORAR CON SDL", _WINDOW_WIDTH_, _WINDOW_HEIGHT_);
 
 	entityManager_ = new EntityManager(game_);
+
+	Entity* button = entityManager_->addEntity();
+	Transform* buttonTR = button->addComponent<Transform>();
+	Image* buttonIMG = button->addComponent<Image>(game_->getTextureMngr()->getTexture(...));
 
 	//laberinto = new Laberinto();
 	//laberinto->initFromFile();
