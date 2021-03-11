@@ -233,6 +233,9 @@
     <ClInclude Include="src\PlayerMotion.h">
       <Filter>Archivos de encabezado\Components</Filter>
     </ClInclude>
+    <ClInclude Include="src\usings.h">
+      <Filter>Archivos de encabezado\Tools/Utilities</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CasillaRender.h">
