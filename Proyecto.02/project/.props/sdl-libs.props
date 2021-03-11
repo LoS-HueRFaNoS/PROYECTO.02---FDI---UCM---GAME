@@ -7,8 +7,8 @@
     <IncludePath>$(SolutionDir)LIBS\SDL2.libs\SDL2\include;$(SolutionDir)LIBS\SDL2.libs\SDL2_image\include;$(SolutionDir)LIBS\SDL2.libs\SDL2_ttf\include;$(SolutionDir)LIBS\SDL2.libs\SDL2_mixer\include;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)LIBS\SDL2.libs\SDL2\lib\x64;$(SolutionDir)LIBS\SDL2.libs\SDL2_image\lib\x64;$(SolutionDir)LIBS\SDL2.libs\SDL2_ttf\lib\x64;$(SolutionDir)LIBS\SDL2.libs\SDL2_mixer\lib\x64;$(LibraryPath)</LibraryPath>
     <PublicModuleDirectories>$(ProjectDir)\src;</PublicModuleDirectories>
-    <IntDir>$(SolutionDir)Temp\$(Configuration)</IntDir>
-    <OutDir>$(SolutionDir)bin\$(Configuration)</OutDir>
+    <IntDir>$(SolutionDir)Temp\$(Configuration)\</IntDir>
+    <OutDir>$(SolutionDir)bin\$(Configuration)\</OutDir>
   </PropertyGroup>
   <ItemDefinitionGroup>
     <Link>
