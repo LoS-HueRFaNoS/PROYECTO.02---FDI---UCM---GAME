@@ -1,0 +1,73 @@
+{
+  "Heroes": [
+    {
+      "Name": "Warrior",
+      "Stats": [
+        {
+          "Key": "Strength",
+          "Max": 21,
+          "Min": 15
+        },
+        {
+          "Key": "Constitution",
+          "Max": 21,
+          "Min": 15
+        },
+        {
+          "Key": "Dexterity",
+          "Max": 10,
+          "Min": 5
+        },
+        {
+          "Key": "Intelligence",
+          "Max": 10,
+          "Min": 5
+        }
+      ],
+      "HitPoints": 10,
+      "ManaPoints": 0,
+      "Weaknesses": [
+        {
+          "Key": "Blunt",
+          "Value": 0.0
+        },
+        {
+          "Key": "Pierce",
+          "Value": 0.0
+        },
+        {
+          "Key": "Slash",
+          "Value": 0.0
+        },
+        {
+          "Key": "Fire",
+          "Value": 0.0
+        },
+        {
+          "Key": "Water",
+          "Value": 0.0
+        },
+        {
+          "Key": "Ice",
+          "Value": 0.0
+        },
+        {
+          "Key": "Earth",
+          "Value": 0.0
+        },
+        {
+          "Key": "Wind",
+          "Value": 0.0
+        },
+        {
+          "Key": "Light",
+          "Value": 0.0
+        },
+        {
+          "Key": "Dark",
+          "Value": 0.0
+        }
+      ]
+    }
+  ]
+}

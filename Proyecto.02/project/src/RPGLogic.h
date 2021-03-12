@@ -1,29 +1,32 @@
-#ifndef _RPG_LOGIC
-#define _RPG_LOGIC
+#pragma once
 
-class RpgLogic {
-public:
+namespace rpgLogic {
 	enum damageType {
-	// Daños físicos
-	BLUNT,
-	PIERCE,
-	SLASH,
-	// Daños Elementales
-	FIRE,
-	WATER,
-	ICE,
-	EARTH,
-	WIND,
-	LIGHT,
-	DARK
+		// Daños físicos
+		BLUNT,
+		PIERCE,
+		SLASH,
+		// Daños Elementales
+		FIRE,
+		WATER,
+		ICE,
+		EARTH,
+		WIND,
+		LIGHT,
+		DARK,
+		// Escribir encima de estecomentario
+		_LastTypeId_
 	};
 
-	enum modStat{
+
+	enum modStat {
 		STR,
 		DEX,
 		CON,
 		INT,
-		NULLMOD
+		NULLMOD,
+		// Escribir encima de estecomentario
+		_LastModId_
 	};
 
 	enum characterTemplate {
@@ -31,9 +34,17 @@ public:
 		WIZARD,
 		RANGER,
 		BARD,
-		CLERIC
+		CLERIC,
+		// Escribir encima de estecomentario
+		_LastTemplateId_
 	};
-};
 
-
-#endif // !
+	enum mainStat {
+		STRENGTH,
+		CONSTITUTION,
+		DEXTERITY,
+		INTELLIGENCE,
+		// Escribir encima de estecomentario
+		_LastStatId_
+	};
+}
