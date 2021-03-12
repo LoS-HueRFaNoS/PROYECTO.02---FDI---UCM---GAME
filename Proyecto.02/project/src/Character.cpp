@@ -9,31 +9,52 @@ void Character::loadFromJson(characterTemplate t)
 	ifstream in("pruebas.json");
 
 
-	// Guardamos todo lo que se puede leer del archivo en un string
-	string str = "";
-	string tmp;
-	while (getline(in, tmp)) str += tmp;
+	if (in.is_open()) {
+		// Guardamos todo lo que se puede leer del archivo en un string
+		string str = "";
+		string tmp;
+		while (getline(in, tmp)) str += tmp;
+
+		in.close();
+
+		// El parser lo transforma de string a un Jvalue del que podremos sacar la información
+		jute::jValue v = jute::parser::parse(str);
+
+		// Buscamos las stats en el json dentro de nuestro heroe "t" y asignamos un valor aleatorio entre los valores dados
+		for (int i = 0; i < _LastStatId_; i++) {
+			int min = v["Heroes"][t]["Stats"][i]["Min"].as_int();
+			int max = v["Heroes"][t]["Stats"][i]["Max"].as_int();
+			_stats[i].value = game_->getRandGen()->nextInt(min, max + 1);
+		}
+
+		// Igual con la vida y el mana
+		hitPoints = v["Heroes"][t]["HitPoints"].as_int();
+		manaPoints = v["Heroes"][t]["ManaPoints"].as_int();
+
+		int ac = v["Heroes"][t]["ArmorClass"].as_int();
+
+		if (ac != -1)
+			armorClass = ac;
+
+		// Guardamos las debilidades en un vector para luego inicializarlas
+		vector<float> weak = vector<float>();
+		for (int i = 0; i < _LastTypeId_; i++) {
+			weak.push_back((float)v["Heroes"][t]["Weaknesses"][i]["Value"].as_double());
+		}
+		weaknesses = Weaknesses(weak);
 
 
-	// El parser lo transforma de string a un Jvalue del que podremos sacar la información
-	jute::jValue v = jute::parser::parse(str);
+		if (v["Heroes"][t]["Equipement"]["Check"].as_bool()) {
+			int r1 = v["Heroes"][t]["Equipement"]["ListWeapons"].size();
+			int r2 = v["Heroes"][t]["Equipement"]["ListArmors"].size();
 
-	// Buscamos las stats en el json dentro de nuestro heroe "t" y asignamos un valor aleatorio entre los valores dados
-	for (int i = 0; i < _LastStatId_; i++) {
-		int min = v["Heroes"][t]["Stats"][i]["Min"].as_int();
-		int max = v["Heroes"][t]["Stats"][i]["Max"].as_int();
-		_stats[i].value = game_->getRandGen()->nextInt(min, max + 1);
+			int idRWeapons = v["Heroes"][t]["Equipement"]["ListWeapons"][game_->getRandGen()->nextInt(0, r1)].as_int();
+			int idRArmor = v["Heroes"][t]["Equipement"]["ListArmors"][game_->getRandGen()->nextInt(0, r2)].as_int();
+
+			// JSON DE ARMAS Y ARMADURAS 
+		}
 	}
-
-	// Igual con la vida y el mana
-	hitPoints = v["Heroes"][t]["HitPoints"].as_int();
-	manaPoints = v["Heroes"][t]["HitPoints"].as_int();
-
-	// Guardamos las debilidades en un vector para luego inicializarlas
-	vector<float> weak = vector<float>();
-	for (int i = 0; i < _LastTypeId_; i++) {
-		weak.push_back((float)v["Heroes"][t]["Weaknesses"][i]["Value"].as_double());
-	}
-	weaknesses = Weaknesses(weak);
+	
+	// HACER THROW EN EL ELSE
 
 }

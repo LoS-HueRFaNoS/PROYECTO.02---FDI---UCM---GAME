@@ -26,18 +26,6 @@ public:
 	};
 
 	struct Weaknesses {
-		// Daños físicos
-		float _blunt;
-		float _piercing;
-		float _slash;
-		// Daños elementales
-		float _fire;
-		float _water;
-		float _ice;
-		float _earth;
-		float _wind;
-		float _light;
-		float _dark;
 
 		vector<float> _weaknesses;
 

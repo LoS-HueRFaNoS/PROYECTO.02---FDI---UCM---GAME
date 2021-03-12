@@ -25,7 +25,8 @@
         }
       ],
       "HitPoints": 10,
-      "ManaPoints": 0,
+      "ManaPoints": 555,
+      "ArmorClass": -1,
       "Weaknesses": [
         {
           "Key": "Blunt",
@@ -67,7 +68,16 @@
           "Key": "Dark",
           "Value": 0.0
         }
-      ]
+      ],
+      "Equipement": {
+        "Check": true,
+        "ListWeapons": [
+          0
+        ],
+        "ListArmors": [
+          0
+        ]
+      }
     }
   ]
 }
