@@ -29,7 +29,6 @@
     <ClCompile Include="src\FontsManager.cpp" />
     <ClCompile Include="src\Game.cpp" />
     <ClCompile Include="src\InputHandler.cpp" />
-    <ClCompile Include="src\JSON.cpp" />
     <ClCompile Include="src\jute.cpp" />
     <ClCompile Include="src\Laberinto.cpp" />
     <ClCompile Include="src\main.cpp" />
