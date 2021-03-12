@@ -21,8 +21,8 @@ namespace rpgLogic {
 
 	enum modStat {
 		STR,
-		DEX,
 		CON,
+		DEX,
 		INT,
 		NULLMOD,
 		// Escribir encima de estecomentario
@@ -35,6 +35,10 @@ namespace rpgLogic {
 		RANGER,
 		BARD,
 		CLERIC,
+		PALADIN,
+		BARBARIAN,
+		ROGUE, 
+		DRUID,
 		// Escribir encima de estecomentario
 		_LastTemplateId_
 	};

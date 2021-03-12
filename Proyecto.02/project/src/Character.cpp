@@ -31,11 +31,6 @@ void Character::loadFromJson(characterTemplate t)
 		hitPoints = v["Heroes"][t]["HitPoints"].as_int();
 		manaPoints = v["Heroes"][t]["ManaPoints"].as_int();
 
-		int ac = v["Heroes"][t]["ArmorClass"].as_int();
-
-		if (ac != -1)
-			armorClass = ac;
-
 		// Guardamos las debilidades en un vector para luego inicializarlas
 		vector<float> weak = vector<float>();
 		for (int i = 0; i < _LastTypeId_; i++) {
@@ -43,18 +38,20 @@ void Character::loadFromJson(characterTemplate t)
 		}
 		weaknesses = Weaknesses(weak);
 
+		int idRArmor;
 
 		if (v["Heroes"][t]["Equipement"]["Check"].as_bool()) {
 			int r1 = v["Heroes"][t]["Equipement"]["ListWeapons"].size();
 			int r2 = v["Heroes"][t]["Equipement"]["ListArmors"].size();
 
 			int idRWeapons = v["Heroes"][t]["Equipement"]["ListWeapons"][game_->getRandGen()->nextInt(0, r1)].as_int();
-			int idRArmor = v["Heroes"][t]["Equipement"]["ListArmors"][game_->getRandGen()->nextInt(0, r2)].as_int();
+			idRArmor = v["Heroes"][t]["Equipement"]["ListArmors"][game_->getRandGen()->nextInt(0, r2)].as_int();
 
 			// JSON DE ARMAS Y ARMADURAS 
 		}
-	}
-	
-	// HACER THROW EN EL ELSE
 
+		// HACER THROW EN EL ELSE
+
+		//armorClass = idRArmor + _stats[1].value;
+	}
 }

@@ -1,32 +1,36 @@
 {
   "Heroes": [
+
+    //Warrior
     {
       "Name": "Warrior",
+
       "Stats": [
         {
           "Key": "Strength",
-          "Max": 21,
+          "Max": 20,
           "Min": 15
         },
         {
           "Key": "Constitution",
-          "Max": 21,
-          "Min": 15
+          "Max": 10,
+          "Min": 5
         },
         {
           "Key": "Dexterity",
-          "Max": 10,
-          "Min": 5
+          "Max": 15,
+          "Min": 10
         },
         {
           "Key": "Intelligence",
-          "Max": 10,
-          "Min": 5
+          "Max": 5,
+          "Min": 1
         }
       ],
+
       "HitPoints": 10,
-      "ManaPoints": 555,
-      "ArmorClass": -1,
+      "ManaPoints": 8,
+
       "Weaknesses": [
         {
           "Key": "Blunt",
@@ -69,6 +73,679 @@
           "Value": 0.0
         }
       ],
+
+      "Equipement": {
+        "Check": true,
+        "ListWeapons": [
+          0
+        ],
+        "ListArmors": [
+          0
+        ]
+      }
+    },
+
+    //Wizard
+    {
+      "Name": "Wizard",
+
+      "Stats": [
+        {
+          "Key": "Strength",
+          "Max": 5,
+          "Min": 1
+        },
+        {
+          "Key": "Constitution",
+          "Max": 15,
+          "Min": 10
+        },
+        {
+          "Key": "Dexterity",
+          "Max": 10,
+          "Min": 5
+        },
+        {
+          "Key": "Intelligence",
+          "Max": 20,
+          "Min": 15
+        }
+      ],
+
+      "HitPoints": 6,
+      "ManaPoints": 12,
+
+      "Weaknesses": [
+        {
+          "Key": "Blunt",
+          "Value": 0.0
+        },
+        {
+          "Key": "Pierce",
+          "Value": 0.0
+        },
+        {
+          "Key": "Slash",
+          "Value": 0.0
+        },
+        {
+          "Key": "Fire",
+          "Value": 0.0
+        },
+        {
+          "Key": "Water",
+          "Value": 0.0
+        },
+        {
+          "Key": "Ice",
+          "Value": 0.0
+        },
+        {
+          "Key": "Earth",
+          "Value": 0.0
+        },
+        {
+          "Key": "Wind",
+          "Value": 0.0
+        },
+        {
+          "Key": "Light",
+          "Value": 0.0
+        },
+        {
+          "Key": "Dark",
+          "Value": 0.0
+        }
+      ],
+
+      "Equipement": {
+        "Check": true,
+        "ListWeapons": [
+          0
+        ],
+        "ListArmors": [
+          0
+        ]
+      }
+    },
+
+    //Ranger
+    {
+      "Name": "Ranger",
+
+      "Stats": [
+        {
+          "Key": "Strength",
+          "Max": 15,
+          "Min": 10
+        },
+        {
+          "Key": "Constitution",
+          "Max": 5,
+          "Min": 1
+        },
+        {
+          "Key": "Dexterity",
+          "Max": 20,
+          "Min": 15
+        },
+        {
+          "Key": "Intelligence",
+          "Max": 10,
+          "Min": 5
+        }
+      ],
+
+      "HitPoints": 8,
+      "ManaPoints": 10,
+
+      "Weaknesses": [
+        {
+          "Key": "Blunt",
+          "Value": 0.0
+        },
+        {
+          "Key": "Pierce",
+          "Value": 0.0
+        },
+        {
+          "Key": "Slash",
+          "Value": 0.0
+        },
+        {
+          "Key": "Fire",
+          "Value": 0.0
+        },
+        {
+          "Key": "Water",
+          "Value": 0.0
+        },
+        {
+          "Key": "Ice",
+          "Value": 0.0
+        },
+        {
+          "Key": "Earth",
+          "Value": 0.0
+        },
+        {
+          "Key": "Wind",
+          "Value": 0.0
+        },
+        {
+          "Key": "Light",
+          "Value": 0.0
+        },
+        {
+          "Key": "Dark",
+          "Value": 0.0
+        }
+      ],
+
+      "Equipement": {
+        "Check": true,
+        "ListWeapons": [
+          0
+        ],
+        "ListArmors": [
+          0
+        ]
+      }
+    },
+
+    //Bard
+    {
+      "Name": "Bard",
+
+      "Stats": [
+        {
+          "Key": "Strength",
+          "Max": 5,
+          "Min": 1
+        },
+        {
+          "Key": "Constitution",
+          "Max": 10,
+          "Min": 5
+        },
+        {
+          "Key": "Dexterity",
+          "Max": 15,
+          "Min": 10
+        },
+        {
+          "Key": "Intelligence",
+          "Max": 20,
+          "Min": 15
+        }
+      ],
+
+      "HitPoints": 8,
+      "ManaPoints": 10,
+
+      "Weaknesses": [
+        {
+          "Key": "Blunt",
+          "Value": 0.0
+        },
+        {
+          "Key": "Pierce",
+          "Value": 0.0
+        },
+        {
+          "Key": "Slash",
+          "Value": 0.0
+        },
+        {
+          "Key": "Fire",
+          "Value": 0.0
+        },
+        {
+          "Key": "Water",
+          "Value": 0.0
+        },
+        {
+          "Key": "Ice",
+          "Value": 0.0
+        },
+        {
+          "Key": "Earth",
+          "Value": 0.0
+        },
+        {
+          "Key": "Wind",
+          "Value": 0.0
+        },
+        {
+          "Key": "Light",
+          "Value": 0.0
+        },
+        {
+          "Key": "Dark",
+          "Value": 0.0
+        }
+      ],
+
+      "Equipement": {
+        "Check": true,
+        "ListWeapons": [
+          0
+        ],
+        "ListArmors": [
+          0
+        ]
+      }
+    },
+
+    //Cleric
+    {
+      "Name": "Cleric",
+
+      "Stats": [
+        {
+          "Key": "Strength",
+          "Max": 10,
+          "Min": 5
+        },
+        {
+          "Key": "Constitution",
+          "Max": 20,
+          "Min": 15
+        },
+        {
+          "Key": "Dexterity",
+          "Max": 5,
+          "Min": 1
+        },
+        {
+          "Key": "Intelligence",
+          "Max": 15,
+          "Min": 10
+        }
+      ],
+
+      "HitPoints": 8,
+      "ManaPoints": 10,
+
+      "Weaknesses": [
+        {
+          "Key": "Blunt",
+          "Value": 0.0
+        },
+        {
+          "Key": "Pierce",
+          "Value": 0.0
+        },
+        {
+          "Key": "Slash",
+          "Value": 0.0
+        },
+        {
+          "Key": "Fire",
+          "Value": 0.0
+        },
+        {
+          "Key": "Water",
+          "Value": 0.0
+        },
+        {
+          "Key": "Ice",
+          "Value": 0.0
+        },
+        {
+          "Key": "Earth",
+          "Value": 0.0
+        },
+        {
+          "Key": "Wind",
+          "Value": 0.0
+        },
+        {
+          "Key": "Light",
+          "Value": 0.0
+        },
+        {
+          "Key": "Dark",
+          "Value": 0.0
+        }
+      ],
+
+      "Equipement": {
+        "Check": true,
+        "ListWeapons": [
+          0
+        ],
+        "ListArmors": [
+          0
+        ]
+      }
+    },
+
+    //Paladin
+    {
+      "Name": "Paladin",
+
+      "Stats": [
+        {
+          "Key": "Strength",
+          "Max": 15,
+          "Min": 10
+        },
+        {
+          "Key": "Constitution",
+          "Max": 20,
+          "Min": 15
+        },
+        {
+          "Key": "Dexterity",
+          "Max": 5,
+          "Min": 1
+        },
+        {
+          "Key": "Intelligence",
+          "Max": 10,
+          "Min": 5
+        }
+      ],
+
+      "HitPoints": 10,
+      "ManaPoints": 8,
+
+      "Weaknesses": [
+        {
+          "Key": "Blunt",
+          "Value": 0.0
+        },
+        {
+          "Key": "Pierce",
+          "Value": 0.0
+        },
+        {
+          "Key": "Slash",
+          "Value": 0.0
+        },
+        {
+          "Key": "Fire",
+          "Value": 0.0
+        },
+        {
+          "Key": "Water",
+          "Value": 0.0
+        },
+        {
+          "Key": "Ice",
+          "Value": 0.0
+        },
+        {
+          "Key": "Earth",
+          "Value": 0.0
+        },
+        {
+          "Key": "Wind",
+          "Value": 0.0
+        },
+        {
+          "Key": "Light",
+          "Value": 0.0
+        },
+        {
+          "Key": "Dark",
+          "Value": 0.0
+        }
+      ],
+
+      "Equipement": {
+        "Check": true,
+        "ListWeapons": [
+          0
+        ],
+        "ListArmors": [
+          0
+        ]
+      }
+    },
+
+    //Barbarian
+    {
+      "Name": "Barbarian",
+
+      "Stats": [
+        {
+          "Key": "Strength",
+          "Max": 20,
+          "Min": 15
+        },
+        {
+          "Key": "Constitution",
+          "Max": 15,
+          "Min": 10
+        },
+        {
+          "Key": "Dexterity",
+          "Max": 10,
+          "Min": 5
+        },
+        {
+          "Key": "Intelligence",
+          "Max": 5,
+          "Min": 1
+        }
+      ],
+
+      "HitPoints": 12,
+      "ManaPoints": 6,
+
+      "Weaknesses": [
+        {
+          "Key": "Blunt",
+          "Value": 0.0
+        },
+        {
+          "Key": "Pierce",
+          "Value": 0.0
+        },
+        {
+          "Key": "Slash",
+          "Value": 0.0
+        },
+        {
+          "Key": "Fire",
+          "Value": 0.0
+        },
+        {
+          "Key": "Water",
+          "Value": 0.0
+        },
+        {
+          "Key": "Ice",
+          "Value": 0.0
+        },
+        {
+          "Key": "Earth",
+          "Value": 0.0
+        },
+        {
+          "Key": "Wind",
+          "Value": 0.0
+        },
+        {
+          "Key": "Light",
+          "Value": 0.0
+        },
+        {
+          "Key": "Dark",
+          "Value": 0.0
+        }
+      ],
+
+      "Equipement": {
+        "Check": true,
+        "ListWeapons": [
+          0
+        ],
+        "ListArmors": [
+          0
+        ]
+      }
+    },
+
+    //Rogue
+    {
+      "Name": "Rogue",
+
+      "Stats": [
+        {
+          "Key": "Strength",
+          "Max": 10,
+          "Min": 5
+        },
+        {
+          "Key": "Constitution",
+          "Max": 5,
+          "Min": 1
+        },
+        {
+          "Key": "Dexterity",
+          "Max": 20,
+          "Min": 15
+        },
+        {
+          "Key": "Intelligence",
+          "Max": 15,
+          "Min": 10
+        }
+      ],
+
+      "HitPoints": 8,
+      "ManaPoints": 10,
+
+      "Weaknesses": [
+        {
+          "Key": "Blunt",
+          "Value": 0.0
+        },
+        {
+          "Key": "Pierce",
+          "Value": 0.0
+        },
+        {
+          "Key": "Slash",
+          "Value": 0.0
+        },
+        {
+          "Key": "Fire",
+          "Value": 0.0
+        },
+        {
+          "Key": "Water",
+          "Value": 0.0
+        },
+        {
+          "Key": "Ice",
+          "Value": 0.0
+        },
+        {
+          "Key": "Earth",
+          "Value": 0.0
+        },
+        {
+          "Key": "Wind",
+          "Value": 0.0
+        },
+        {
+          "Key": "Light",
+          "Value": 0.0
+        },
+        {
+          "Key": "Dark",
+          "Value": 0.0
+        }
+      ],
+
+      "Equipement": {
+        "Check": true,
+        "ListWeapons": [
+          0
+        ],
+        "ListArmors": [
+          0
+        ]
+      }
+    },
+
+    //Druid
+    {
+      "Name": "Druid",
+
+      "Stats": [
+        {
+          "Key": "Strength",
+          "Max": 5,
+          "Min": 1
+        },
+        {
+          "Key": "Constitution",
+          "Max": 15,
+          "Min": 10
+        },
+        {
+          "Key": "Dexterity",
+          "Max": 10,
+          "Min": 5
+        },
+        {
+          "Key": "Intelligence",
+          "Max": 20,
+          "Min": 15
+        }
+      ],
+
+      "HitPoints": 8,
+      "ManaPoints": 10,
+
+      "Weaknesses": [
+        {
+          "Key": "Blunt",
+          "Value": 0.0
+        },
+        {
+          "Key": "Pierce",
+          "Value": 0.0
+        },
+        {
+          "Key": "Slash",
+          "Value": 0.0
+        },
+        {
+          "Key": "Fire",
+          "Value": 0.0
+        },
+        {
+          "Key": "Water",
+          "Value": 0.0
+        },
+        {
+          "Key": "Ice",
+          "Value": 0.0
+        },
+        {
+          "Key": "Earth",
+          "Value": 0.0
+        },
+        {
+          "Key": "Wind",
+          "Value": 0.0
+        },
+        {
+          "Key": "Light",
+          "Value": 0.0
+        },
+        {
+          "Key": "Dark",
+          "Value": 0.0
+        }
+      ],
+
       "Equipement": {
         "Check": true,
         "ListWeapons": [
