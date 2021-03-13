@@ -48,6 +48,7 @@
     <ClCompile Include="src\TexturesManager.cpp" />
     <ClCompile Include="src\Transform.cpp" />
     <ClCompile Include="src\Vector2D.cpp" />
+    <ClCompile Include="TheElementalMaze.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CasillaRender.h" />
@@ -67,8 +68,10 @@
     <ClInclude Include="src\jute.h" />
     <ClInclude Include="src\Laberinto.h" />
     <ClInclude Include="src\Manager.h" />
+    <ClInclude Include="src\MazePos.h" />
     <ClInclude Include="src\ObjectPool.h" />
     <ClInclude Include="src\PlayerMotion.h" />
+    <ClInclude Include="src\PlayerViewer.h" />
     <ClInclude Include="src\RandomNumberGenerator.h" />
     <ClInclude Include="src\Rectangle.h" />
     <ClInclude Include="src\Resources.h" />
@@ -84,6 +87,7 @@
     <ClInclude Include="src\Transform.h" />
     <ClInclude Include="src\usings.h" />
     <ClInclude Include="src\Vector2D.h" />
+    <ClInclude Include="TheElementalMaze.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="pruebas.json" />

@@ -10,6 +10,7 @@ Casilla::Casilla()
 	direcciones[Sur] = 0;
 	direcciones[Oeste] = 0;
 }
+
 Casilla::Casilla(int x_,int y_, bool _N, bool _E, bool _S, bool _O)
 {
 	x = x_;
@@ -31,7 +32,7 @@ Casilla::~Casilla()
 
 }
 
-vector<bool>* Casilla::checkCell()
+vector<bool> Casilla::checkCell()
 {
-	return &direcciones;
+	return direcciones;
 }

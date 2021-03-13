@@ -7,6 +7,9 @@
 #include "Transform.h"
 #include "SDLGame.h"
 #include "SDL_macros.h"
+#include "MazePos.h"
+#include "PlayerMotion.h"
+#include "PlayerViewer.h"
 using namespace std;
 
 Game::Game() :
@@ -23,18 +26,25 @@ Game::~Game() {
 void Game::initGame() {
 
 	game_ = SDLGame::init("VAMOS A LLORAR CON SDL", _WINDOW_WIDTH_, _WINDOW_HEIGHT_);
-
 	entityManager_ = new EntityManager(game_);
+	
+	Entity* laberinto = entityManager_->addEntity();
+	Laberinto* lab = laberinto->addComponent<Laberinto>(entityManager_) ;
+	lab -> initFromFile();
 
-	//laberinto = new Laberinto();
-	//laberinto->initFromFile();
-
+	Entity* player = entityManager_->addEntity();
+	player->addComponent<MazePos>(Vector2D(0,0));
+	player->addComponent<PlayerMotion>(SDLK_UP,SDLK_LEFT,SDLK_RIGHT,lab);
+	player->addComponent<PlayerViewer>(lab);
+	
 	/*Entity* Fighter = entityManager_->addEntity();
 	Transform* FighterTR = Fighter->addComponent<Transform>();
-	Fighter->addComponent<FighterCtrl>();
-	Fighter->addComponent<FighterViewer>();
-	Fighter->addComponent<FighterMotion>();
-	Fighter->addComponent<Gun>(GETCMP2(Bullets, BulletsPool));
+	Fighter->addComponent<FighterCtrl>();  <-- Rotacion y avance 
+	Fighter->addComponent<FighterViewer>(); <-- Dibujar el combate o el avance
+	Fighter->addComponent<FighterMotion>(); <-- Transform del jugador
+	Fighter <--Pregunta al laberinto, de vuelve el vector de direccion de la casilla actual
+	Mi dir es N =0 , vector[N-1] , vector[N] y vector [N+1] . Incluir dentro del FighterViewer
+	Fighter->addComponent<Gun>(GETCMP2(Bullets, BulletsPool)); 
 	Fighter->addComponent<Health>();
 	FighterTR->setPos(game_->getWindowWidth() / 2 - 6, game_->getWindowHeight() / 2 - 6);
 
@@ -47,7 +57,6 @@ void Game::initGame() {
 
 void Game::closeGame() {
 	delete entityManager_;
-	delete laberinto;
 }
 
 void Game::start() {
