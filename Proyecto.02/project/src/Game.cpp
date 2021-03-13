@@ -9,9 +9,7 @@
 #include "SDLGame.h"
 #include "SDL_macros.h"
 using namespace std;
-#include "SDLTexturesManager.h"
-#include "Resources.h"
-#include "ButtonCtrl.h"
+
 Game::Game() :
 	game_(nullptr), //
 	entityManager_(nullptr), //
@@ -30,9 +28,8 @@ void Game::initGame() {
 	entityManager_ = new EntityManager(game_);
 
 	Entity* button = entityManager_->addEntity();
-	Transform* buttonTR = button->addComponent<Transform>(Vector2D(100, 100), Vector2D(), 50, 50, 0);
-	Image* buttonIMG = button->addComponent<Image>(game_->getTextureMngr()->getTexture(1));
-	button->addComponent<ButtonCtrl>();
+	Transform* buttonTR = button->addComponent<Transform>();
+	Image* buttonIMG = button->addComponent<Image>(game_->getTextureMngr()->getTexture(...));
 
 	//laberinto = new Laberinto();
 	//laberinto->initFromFile();
@@ -55,7 +52,7 @@ void Game::initGame() {
 
 void Game::closeGame() {
 	delete entityManager_;
-	//delete laberinto;
+	delete laberinto;
 }
 
 void Game::start() {

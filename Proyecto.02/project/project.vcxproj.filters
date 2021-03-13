@@ -126,11 +126,14 @@
     <ClCompile Include="src\RPGLogic.cpp">
       <Filter>Archivos de origen\Templates/Resources</Filter>
     </ClCompile>
+    <ClCompile Include="src\Casilla.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Laberinto.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
     <ClCompile Include="src\JSON.cpp">
       <Filter>Archivos de origen\Templates/Resources</Filter>
-    </ClCompile>
-    <ClCompile Include="src\ButtonCtrl.cpp">
-      <Filter>Archivos de origen</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -218,14 +221,21 @@
     <ClInclude Include="src\RPGLogic.h">
       <Filter>Archivos de encabezado\Templates/Resources</Filter>
     </ClInclude>
+    <ClInclude Include="src\Hero.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Casilla.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Laberinto.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
     <ClInclude Include="src\PlayerMotion.h">
       <Filter>Archivos de encabezado\Components</Filter>
     </ClInclude>
-    <ClInclude Include="src\ButtonCtrl.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
+    <Text Include="NewFile.txt" />
     <ClInclude Include="CasillaRender.h">
       <Filter>Archivos de encabezado\Components</Filter>
     </ClInclude>

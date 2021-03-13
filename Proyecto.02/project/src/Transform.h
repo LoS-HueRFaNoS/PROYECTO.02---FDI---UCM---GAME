@@ -9,9 +9,6 @@ public:
 	Transform();
 	virtual ~Transform();
 
-	virtual void update() override {
-		position_ = position_ + velocity_;
-	}
 	// position
 	const Vector2D& getPos() const {
 		return position_;

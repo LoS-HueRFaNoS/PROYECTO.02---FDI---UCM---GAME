@@ -35,7 +35,7 @@ bool SDLFontsManager::init() {
 }
 
 Font* SDLFontsManager::getFont(std::size_t tag) {
-	return fonts_[int(tag)];
+	return fonts_[tag];
 }
 
 bool SDLFontsManager::loadFont(std::size_t tag, const string& fileName, int size) {
@@ -44,10 +44,10 @@ bool SDLFontsManager::loadFont(std::size_t tag, const string& fileName, int size
 
 	Font *font = new Font();
 	if (font->load(fileName, size)) {
-		Font *curr = fonts_[int(tag)];
+		Font *curr = fonts_[tag];
 		if (curr != nullptr)
 			delete curr;
-		fonts_[int(tag)] = font;
+		fonts_[tag] = font;
 		return true;
 	} else {
 		delete font;
