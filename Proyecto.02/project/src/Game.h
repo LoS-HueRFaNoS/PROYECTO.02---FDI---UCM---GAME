@@ -5,7 +5,7 @@
 #include "Manager.h"
 #include "SDLGame.h"
 #include "checkML.h"
-#include "Laberinto.h"
+
 class Game {
 
 public:
@@ -22,7 +22,6 @@ private:
 	void handleInput();
 	void update();
 	void render();
-	Laberinto* laberinto;
 	SDLGame* game_;
 	EntityManager* entityManager_;
 	bool exit_;

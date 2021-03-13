@@ -8,7 +8,7 @@
 using namespace std;
 
 SRandBasedGenerator::SRandBasedGenerator() :
-		seed_(std::time(0)) {
+		seed_(int(std::time(0))) {
 }
 
 SRandBasedGenerator::SRandBasedGenerator(unsigned seed) :
