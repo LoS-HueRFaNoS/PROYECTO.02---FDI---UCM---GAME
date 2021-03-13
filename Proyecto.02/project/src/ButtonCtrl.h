@@ -28,16 +28,16 @@ class ButtonCtrl : public Component
             assert(tr_ != nullptr);
             if (ih_->keyDownEvent()) {
                 if (ih_->isKeyDown(SDL_SCANCODE_UP)) {
-                    tr_->setVelY(-speed_);
+                    tr_->setVelY(-speed_); //
                 }
                 else if (ih_->isKeyDown(SDL_SCANCODE_DOWN)) {
-                    tr_->setVelY(speed_);
+                    tr_->setVelY(speed_); //
                 }
                 else if (ih_->isKeyDown(SDL_SCANCODE_LEFT)) {
-                    tr_->setVelX(-speed_);
+                    tr_->setVelX(-speed_); //
                 }
                 else if (ih_->isKeyDown(SDL_SCANCODE_RIGHT)) {
-                    tr_->setVelX(speed_);
+                    tr_->setVelX(speed_); //
                 }
                 else if (ih_->isKeyDown(SDL_SCANCODE_SPACE)) {
                     tr_->setVelY(0.0f);
