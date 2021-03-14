@@ -53,6 +53,7 @@
     <ClInclude Include="CasillaRender.h" />
     <ClInclude Include="src\AudioManager.h" />
     <ClInclude Include="src\ButtonCtrl.h" />
+    <ClInclude Include="src\callbacks.h" />
     <ClInclude Include="src\Character.h" />
     <ClInclude Include="src\checkML.h" />
     <ClInclude Include="src\Collisions.h" />

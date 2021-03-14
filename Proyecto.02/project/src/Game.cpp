@@ -31,7 +31,7 @@ void Game::initGame() {
 
 	Entity* button = entityManager_->addEntity();
 	Transform* buttonTR = button->addComponent<Transform>(Vector2D(100, 100), Vector2D(), 50, 50, 0);
-	Image* buttonIMG = button->addComponent<Image>(game_->getTextureMngr()->getTexture(1));
+	Image* buttonIMG = button->addComponent<Image>(game_->getTextureMngr()->getTexture(Resources::Asteroid));
 	button->addComponent<ButtonCtrl>();
 
 	//laberinto = new Laberinto();

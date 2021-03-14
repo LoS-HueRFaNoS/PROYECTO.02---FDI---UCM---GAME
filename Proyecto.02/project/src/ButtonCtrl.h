@@ -10,7 +10,7 @@ class ButtonCtrl : public Component
 {
     public:
         ButtonCtrl() :
-            Component(ecs::ButtonCtrl), tr_(nullptr), speed_(10.0) { init(); }
+            Component(ecs::ButtonCtrl), tr_(nullptr), speed_(10.0) {};
         virtual ~ButtonCtrl() {
         }
 
@@ -19,13 +19,10 @@ class ButtonCtrl : public Component
             speed = speed;
         }
 
-        void init() override {
-            ih_ = InputHandler::instance();
-        }
+        void init() override;
 
         void update() override {
-            tr_ = entity_->getComponent<Transform>(ecs::Transform);
-            assert(tr_ != nullptr);
+            game_->getWindowHeight();
             if (ih_->keyDownEvent()) {
                 if (ih_->isKeyDown(SDL_SCANCODE_UP)) {
                     tr_->setVelY(-speed_); //
