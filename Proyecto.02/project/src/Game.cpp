@@ -5,10 +5,13 @@
 #include "Rectangle.h"
 #include "ecs.h"
 #include "Transform.h"
+#include "Image.h"
 #include "SDLGame.h"
 #include "SDL_macros.h"
 using namespace std;
-
+#include "SDLTexturesManager.h"
+#include "Resources.h"
+#include "ButtonCtrl.h"
 Game::Game() :
 	game_(nullptr), //
 	entityManager_(nullptr), //
@@ -25,6 +28,11 @@ void Game::initGame() {
 	game_ = SDLGame::init("VAMOS A LLORAR CON SDL", _WINDOW_WIDTH_, _WINDOW_HEIGHT_);
 
 	entityManager_ = new EntityManager(game_);
+
+	Entity* button = entityManager_->addEntity();
+	Transform* buttonTR = button->addComponent<Transform>(Vector2D(100, 100), Vector2D(), 50, 50, 0);
+	Image* buttonIMG = button->addComponent<Image>(game_->getTextureMngr()->getTexture(Resources::Asteroid));
+	button->addComponent<ButtonCtrl>();
 
 	//laberinto = new Laberinto();
 	//laberinto->initFromFile();
@@ -47,7 +55,7 @@ void Game::initGame() {
 
 void Game::closeGame() {
 	delete entityManager_;
-	delete laberinto;
+	//delete laberinto;
 }
 
 void Game::start() {

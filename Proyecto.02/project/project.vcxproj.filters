@@ -132,6 +132,9 @@
     <ClCompile Include="src\Laberinto.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
+    <ClCompile Include="src\ButtonCtrl.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\ecs.h">
@@ -218,13 +221,13 @@
     <ClInclude Include="src\RPGLogic.h">
       <Filter>Archivos de encabezado\Templates/Resources</Filter>
     </ClInclude>
-    <ClInclude Include="src\Hero.h">
+    <ClInclude Include="src\PlayerMotion.h">
+      <Filter>Archivos de encabezado\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ButtonCtrl.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
-    <ClInclude Include="src\Casilla.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Laberinto.h">
+    <ClInclude Include="src\callbacks.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
     <ClInclude Include="src\PlayerMotion.h">
