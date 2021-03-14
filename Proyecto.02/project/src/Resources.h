@@ -43,6 +43,12 @@ public:
 		ARIAL16, ARIAL24,
 	};
 
+	enum JsonId : std::size_t {
+		Characters,
+		Weapons,
+		Armors
+	};
+
 	struct FontInfo {
 		FontId id;
 		string fileName;
@@ -72,11 +78,17 @@ public:
 
 	};
 
+	struct JsonInfo {
+		JsonId id;
+		string filename;
+	};
+
 	static vector<FontInfo> fonts_; // initialized in .cpp
 	static vector<ImageInfo> images_; // initialized in .cpp
 	static vector<TextMsgInfo> messages_; // initialized in .cpp
 	static vector<MusicInfo> musics_; // initialized in .cpp
 	static vector<SoundInfo> sounds_; // initialized in .cpp
+	static vector<JsonInfo> jsons_; // initialized in .cpp
 	//static vector<ClassTemplates> classTemplates_;
 
 };

@@ -41,3 +41,11 @@ vector<Resources::SoundInfo> Resources::sounds_ {
 		{ GunShot, "resources/sound/GunShot.wav" } //
 };
 
+
+vector<Resources::JsonInfo> Resources::jsons_{
+//
+		{ Characters, "resources/jsons/characters.json" }, //
+		{ Weapons, "resources/jsons/characters.json" }, //
+		{ Armors, "resources/jsons/characters.json" } //
+};
+

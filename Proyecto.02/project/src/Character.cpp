@@ -6,7 +6,8 @@
 void Character::loadFromJson(characterTemplate t)
 {
 	// Cargamos el archivo de tipo json ( la ruta empieza a buscar desde la carpeta del vcxproj)
-	ifstream in("pruebas.json");
+	string file = Resources::jsons_[Resources::Characters].filename;
+	ifstream in(file);
 
 
 	if (in.is_open()) {
@@ -38,20 +39,22 @@ void Character::loadFromJson(characterTemplate t)
 		}
 		weaknesses = Weaknesses(weak);
 
-		int idRArmor;
-
 		if (v["Heroes"][t]["Equipement"]["Check"].as_bool()) {
 			int r1 = v["Heroes"][t]["Equipement"]["ListWeapons"].size();
 			int r2 = v["Heroes"][t]["Equipement"]["ListArmors"].size();
 
 			int idRWeapons = v["Heroes"][t]["Equipement"]["ListWeapons"][game_->getRandGen()->nextInt(0, r1)].as_int();
-			idRArmor = v["Heroes"][t]["Equipement"]["ListArmors"][game_->getRandGen()->nextInt(0, r2)].as_int();
+			int idRArmor = v["Heroes"][t]["Equipement"]["ListArmors"][game_->getRandGen()->nextInt(0, r2)].as_int();
 
 			// JSON DE ARMAS Y ARMADURAS 
+
+			//armorClass = idRArmor + _stats[1].value;
 		}
-
+		else {
+			// armorClass = valorEnemigo
+		}		
+	}
+	else {
 		// HACER THROW EN EL ELSE
-
-		//armorClass = idRArmor + _stats[1].value;
 	}
 }

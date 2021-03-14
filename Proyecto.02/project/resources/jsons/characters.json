@@ -1,7 +1,5 @@
 {
   "Heroes": [
-
-    //Warrior
     {
       "Name": "Warrior",
 
@@ -84,8 +82,6 @@
         ]
       }
     },
-
-    //Wizard
     {
       "Name": "Wizard",
 
@@ -168,8 +164,6 @@
         ]
       }
     },
-
-    //Ranger
     {
       "Name": "Ranger",
 
@@ -252,8 +246,6 @@
         ]
       }
     },
-
-    //Bard
     {
       "Name": "Bard",
 
@@ -336,8 +328,6 @@
         ]
       }
     },
-
-    //Cleric
     {
       "Name": "Cleric",
 
@@ -420,8 +410,6 @@
         ]
       }
     },
-
-    //Paladin
     {
       "Name": "Paladin",
 
@@ -504,8 +492,6 @@
         ]
       }
     },
-
-    //Barbarian
     {
       "Name": "Barbarian",
 
@@ -588,8 +574,6 @@
         ]
       }
     },
-
-    //Rogue
     {
       "Name": "Rogue",
 
@@ -672,8 +656,6 @@
         ]
       }
     },
-
-    //Druid
     {
       "Name": "Druid",
 

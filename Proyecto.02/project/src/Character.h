@@ -9,12 +9,12 @@ class Character : public Component
 {
 public:
 
-	struct Ataque {
-		int daño;
-		int dados;
-		damageType type;
-		modStat mod;
-	};
+	//struct Ataque {
+	//	int daño;
+	//	int dados;
+	//	damageType type;
+	//	modStat mod;
+	//};
 
 	struct  Stat
 	{

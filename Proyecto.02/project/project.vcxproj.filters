@@ -126,12 +126,6 @@
     <ClCompile Include="src\RPGLogic.cpp">
       <Filter>Archivos de origen\Templates/Resources</Filter>
     </ClCompile>
-    <ClCompile Include="src\Casilla.cpp">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Laberinto.cpp">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
     <ClCompile Include="src\ButtonCtrl.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
@@ -244,6 +238,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="pruebas.json">
+      <Filter>Archivos de recursos</Filter>
+    </None>
+    <None Include="resources\jsons\characters.json">
       <Filter>Archivos de recursos</Filter>
     </None>
   </ItemGroup>
