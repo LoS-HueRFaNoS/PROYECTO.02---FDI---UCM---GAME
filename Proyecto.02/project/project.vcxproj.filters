@@ -243,5 +243,14 @@
     <None Include="resources\jsons\characters.json">
       <Filter>Archivos de recursos</Filter>
     </None>
+    <None Include="resources\jsons\pruebasArmaduras.json">
+      <Filter>Archivos de recursos</Filter>
+    </None>
+    <None Include="resources\jsons\pruebasArmas.json">
+      <Filter>Archivos de recursos</Filter>
+    </None>
+    <None Include="resources\jsons\enemigos.json">
+      <Filter>Archivos de recursos</Filter>
+    </None>
   </ItemGroup>
 </Project>

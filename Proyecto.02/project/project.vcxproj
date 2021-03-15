@@ -86,6 +86,9 @@
   <ItemGroup>
     <None Include="pruebas.json" />
     <None Include="resources\jsons\characters.json" />
+    <None Include="resources\jsons\enemigos.json" />
+    <None Include="resources\jsons\pruebasArmaduras.json" />
+    <None Include="resources\jsons\pruebasArmas.json" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

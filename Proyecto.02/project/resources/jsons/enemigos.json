@@ -1,0 +1,76 @@
+{
+  "Heroes": [
+
+    {
+      "Name": "Zombie",
+
+      "Stats": [
+        {
+          "Key": "Strength",
+          "Num": 13
+        },
+        {
+          "Key": "Constitution",
+          "Num": 16
+        },
+        {
+          "Key": "Dexterity",
+          "Num": 6
+        },
+        {
+          "Key": "Intelligence",
+          "Num": 3
+        }
+      ],
+
+      "HitPoints": 22,
+      "ManaPoints": 10,
+
+      "Weaknesses": [
+        {
+          "Key": "Blunt",
+          "Value": 0.0
+        },
+        {
+          "Key": "Pierce",
+          "Value": 0.0
+        },
+        {
+          "Key": "Slash",
+          "Value": 0.0
+        },
+        {
+          "Key": "Fire",
+          "Value": 0.0
+        },
+        {
+          "Key": "Water",
+          "Value": 0.0
+        },
+        {
+          "Key": "Ice",
+          "Value": 0.0
+        },
+        {
+          "Key": "Earth",
+          "Value": 0.0
+        },
+        {
+          "Key": "Wind",
+          "Value": 0.0
+        },
+        {
+          "Key": "Light",
+          "Value": 0.0
+        },
+        {
+          "Key": "Dark",
+          "Value": 0.0
+        }
+      ],
+
+      "Experience": 10
+    }
+
+  ]
+}
