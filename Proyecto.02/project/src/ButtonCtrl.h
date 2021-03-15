@@ -49,3 +49,16 @@ class ButtonCtrl : public Component
         float speed_;
     };
 
+
+
+//Interfaz* i = new interfaz();
+//i.deletePanel(nombrePanel)
+////constructor
+//switch (nombrePANEL)
+//{
+//case combate:
+//	break;
+//	case
+//	default:
+//		break;
+//}

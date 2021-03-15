@@ -29,6 +29,7 @@
     <ClCompile Include="src\FontsManager.cpp" />
     <ClCompile Include="src\Game.cpp" />
     <ClCompile Include="src\InputHandler.cpp" />
+    <ClCompile Include="src\Interfaz.cpp" />
     <ClCompile Include="src\JSON.cpp" />
     <ClCompile Include="src\jute.cpp" />
     <ClCompile Include="src\main.cpp" />
@@ -64,6 +65,7 @@
     <ClInclude Include="src\FontsManager.h" />
     <ClInclude Include="src\Game.h" />
     <ClInclude Include="src\InputHandler.h" />
+    <ClInclude Include="src\Interfaz.h" />
     <ClInclude Include="src\jute.h" />
     <ClInclude Include="src\Manager.h" />
     <ClInclude Include="src\ObjectPool.h" />
