@@ -1,8 +1,24 @@
+<!-- Enlaces -->
 [Web]: https://los-huerfanos.github.io/PROYECTO.02---FDI---UCM---GAME/
 [Repositorio]: https://github.com/LoS-HueRFaNoS/PROYECTO.02---FDI---UCM---GAME
 [Pivotal]: https://www.pivotaltracker.com/n/projects/2490864
 [Twitter]: https://twitter.com/HuerfanosUCM
+<!-- Imágenes -->
 [IMG-Interfaz]: Proyecto.02/project/resources/images/interfaz/plantilla%20base%20interfaz.png "Esquema del HUD"
+[bardo]: Proyecto.02/project/resources/sprites/iconos%20personajes/bardo.png "IMG - Bardo"
+[brujo]: Proyecto.02/project/resources/sprites/iconos%20personajes/brujo.png "IMG - Brujo"
+[clerigo]: Proyecto.02/project/resources/sprites/iconos%20personajes/clerigo.png "IMG - Clerigo"
+[guerrero]: Proyecto.02/project/resources/sprites/iconos%20personajes/guerrero.png "IMG - Guerrero"
+[paladin]: Proyecto.02/project/resources/sprites/iconos%20personajes/paladin.png "IMG - Paladin"
+[barbaro]: Proyecto.02/project/resources/sprites/iconos%20personajes/barbaro.png "IMG - Barbaro"
+[explorador]: Proyecto.02/project/resources/sprites/iconos%20personajes/explorador.png "IMG - Explorador"
+[picaro]: Proyecto.02/project/resources/sprites/iconos%20personajes/picaro.PNG "IMG - Picaro"
+[druida]: Proyecto.02/project/resources/sprites/iconos%20personajes/druida.png "IMG - Druida"
+[bestia]: Proyecto.02/project/resources/sprites/iconos%20personajes/bestia.png "IMG - Bestia"
+[lich]: Proyecto.02/project/resources/sprites/iconos%20personajes/lich.PNG "IMG - Lich"
+[necro]: Proyecto.02/project/resources/sprites/iconos%20personajes/necrofago.png "IMG - Necrofago"
+[protagonista]: Proyecto.02/project/resources/sprites/iconos%20personajes/heroe-mago.png "IMG - Mago (protagonista)"
+
 
 # The elemental Maze #
 
@@ -91,7 +107,7 @@ Contiene los siguientes botones: _ataque básico, ataque mágico elemental (usa 
 
 El juego se controla principalmente mediante el ***uso del ratón***, pulsando los distintos botones ofrecidos por la interfaz.
 
-<p align="left"><b> ATAJOS DE TECLADO --> </b></p>
+<p align="left"><b> <-- ATAJOS DE TECLADO --> </b></p>
 
 | Cursores | WASD | Función |
 | -- | -- | -- |
@@ -107,30 +123,93 @@ El juego se controla principalmente mediante el ***uso del ratón***, pulsando l
 
   - #### 4.1.1. Movimiento ####
 
-* Para pasar de nivel, el jugador ha de recorrer el laberinto hasta encontrar una casilla en la que halla la salida.
-* El jugador cuenta con un minimapa que le permite saber qué zonas del nivel ha visitado y cuáles son los caminos que no ha explorado.
-* Al final de cada nivel, el jugador puede salir de la mazmorra con todos los héroes que hayan sobrevivido y así mantener todas las cosas que ha conseguido o arriesgarse y seguir avanzando para intentar superar el siguiente nivel.
+1. Para pasar de nivel, el jugador ha de recorrer el laberinto hasta encontrar una casilla final en la que se encuentra la salida.
+
+2. El jugador cuenta con un minimapa que le permite saber qué zonas del nivel ha visitado y cuáles son los caminos que no ha explorado.
+3. Al final de cada nivel, el jugador puede salir de la mazmorra con todos los héroes que hayan sobrevivido y así mantener todas las cosas que ha conseguido o arriesgarse y seguir avanzando para intentar superar el siguiente nivel.
 
   - #### 4.1.2. Combate ####
 
-* ***TODO - RELLENAR ESTO***
+* Cuando un enemigo o jugador realiza un ataque, realiza una tirada de fuerza o inteligencia dependiendo de si el ataque es físico o mágico. Por otro lado, el contrincante realiza una tirada de destreza: Si el número de la tirada de destreza supera al número obtenido en el ataque, el personaje no recibe daño; si es al contrario, el atacante realiza otra tirada para calcular el daño según los índices que tenga el arma o el hechizo usado.
+
+* Al coincidir con un enemigo en la misma casilla, comenzará un combate por turnos. Al comenzar el combate, se reparten los turnos según el número obtenido, por tanto, se hace una tirada por cada personaje en la batalla. Cuanto más alto sea el valor de la tirada, antes hará una acción ese personaje.
+* Las acciones que el jugador puede realizar durante un turno del combate son: _atacar, protegerse, utilizar un objeto, lanzar un hechizo y/o habilidad o huir_ (Si queremos abandonar el combate) 
+* El jugador debe seleccionar uno de los movimientos que tenga disponibles con cada uno de sus héroes. En el caso de que sea un ataque, se hará una tirada de 1d20 (+ MOD) que se comparará con la AC del objetivo así como su tirada de DEX, en el caso de superar ambas el ataque impactará. Para determinar el daño del ataque se tirará los dados requeridos por el mismo (ejemplo: Bola de Fuego 8d6 contra salvación), en el caso de que el ataque requiera una tirada de salvación por parte del objetivo se tirará 1d20 (+MOD) para calcular el daño/estado final. 
+* En el caso de ser una habilidad defensiva/curativa dependerá de la descripción de la misma.
+* Cuando se hace una tirada de ataque, al tirar el 1d20 por impacto se deben tener en cuenta dos casos especiales: 
+    * **Crítico (roll 20)**: en el caso de sacar un 20 en una tirada de ataque se impactará al objetivo sin importar su AC, DEX o modificadores. También se volverá a tirar los dados de daño el doble de veces (ejemplo: si ataco con una daga con daño 1d4 y sale crítico atacará con 2d4 en su lugar).
+    * **Pifia (roll 1)**: en el caso de sacar un 1 en la tirada, se fallará el ataque sin importar modificadores.
+* Los hechizos consumen maná, al contrario que los ataques normales. Si un personaje no tiene maná suficiente para lanzar un hechizo, simplemente no podrá ejecutar esa acción.
+* Al seleccionar la opción de huir, habrá una tirada de dados. Si el número es más alto que un valor determinado según el combate, huiremos con éxito y aparecemos en una casilla segura. Si el número que salga es menor, perderemos el turno.
+* Cuando los puntos de vida del enemigo lleguen a cero, este morirá, acabará el combate y el jugador ganará dinero y experiencia.
+* Si algún integrante del grupo pierde todos sus puntos de vida, el jugador perderá dicho personaje y todo el progreso alcanzado con el mismo.
+* Si el grupo es derrotado, el jugador conserva el dinero recogido pero pierde a todos sus héroes y por tanto sus progresos.
 
   - #### 4.1.3. Gestión ####
 
-* Al comenzar la partida, se muestra un menú en el que el jugador elige a un conjunto de héroes.
+* Al comenzar la partida, se muestra un menú en el que el jugador elige a un conjunto de héroes. Aquí comienza la estrategia del jugador.
+
 * Todo el grupo se mueve en conjunto por el mapa. Cada integrante posee sus propios movimientos de combate, estadísticas y objetos.
-* Las estadísticas de los personajes se dividen en cuatro grupos: fuerza, utilizada para medir el daño que realizan los ataques físicos y su eficacia; destreza, usada para calcular la capacidad para evadir ataques del personaje; constitución, que determina la resistencia ante los ataques del enemigo y sus puntos extras de salud; e inteligencia, usada para medir el daño que realizan los ataques mágicos y su eficacia, además de indicar los puntos extra de maná.
+* Las estadísticas de los personajes se dividen en cuatro grupos: 
+    * **fuerza**, utilizada para medir el daño que realizan los ataques físicos y su eficacia; 
+    
+    * **destreza**, usada para calcular la capacidad para evadir ataques del personaje; 
+    * **constitución**, determina la resistencia ante los ataques del enemigo y sus puntos extras de salud; 
+    * **inteligencia**, usada para medir el daño que realizan los ataques mágicos y su eficacia, además de indicar los puntos extra de maná.
 
 - ### 4.2. Dinámica ###
 
-***TODO - RELLENAR ESTO***
+El jugador conforma un grupo de héroes equipados con armas, armaduras, habilidades y objetos disponibles antes de cada aventura. 
+
+Tendrá que elegir el camino a seguir e intentar llegar a la salida del laberinto de cada nivel. Durante la aventura, encontrará enemigos y deberá decidir si desea huir y buscar otro camino o intentar vencerlos para continuar por la ruta actual. Cuando pierde en la batalla, perderá el equipo de aventureros y tendrá que crear uno nuevo con otros héroes. 
+
+Hay que tener en cuenta también la tabla de tipos elementales, para poder realizar ataques más efectivos.
+
+#### Objetivo
+El jugador tiene como objetivo completar la mazmorra y derrotar al Lich. 
+En caso de que lo consiga, el jugador habrá ganado la partida.
+
+#### Dificultad
+La dificultad es igual para todos los jugadores, no se puede elegir, pero el jugador tiene a su disposición objetos y diferentes personajes que le permiten elegir entre si correr un mayor riesgo por mayor daño y menos salud, como llevar varios magos en el grupo de héroes, o por el contrario jugar de forma más segura, llevando un equipo más equilibrado. También la gestión del dinero y objetos del jugador hará que el juego se le haga más fácil o difícil de pasar. También depende de las decisiones que realicemos dentro del combate, como ir más a hacer daño de “golpe” o ir más poco a poco.
+
+#### Recompensas y castigos
+El jugador es recompensado con la puntuación y los logros que se obtienen al usar determinados objetos, personajes u opciones, y la dificultad, que disminuirá si usamos objetos o personajes “correctos”. El castigo en respuesta a las malas elecciones y acciones del jugador será la muerte de los héroes, y si se queda sin ningún héroe, con la muerte, donde el jugador deberá empezar desde el principio cada vez que muera.
 
 - ### 4.3. Estética ###
 
-***TODO - RELLENAR ESTO***
+La ambientación del juego va a ser con temática _Dark Fantasy_, representando así un mundo maligno y con ambiente oscuro, con criaturas fantásticas y oscuras, que provoca que los héroes, de buen corazón, intenten acabar con el Lich, para acabar así con la oscuridad, en busca de una renovación del pueblo, por lo tanto haciendo el viaje del héroe (héroes en este caso) y salvando al pueblo, a cambio de una recompensa económica.
+
+Las sensaciones que el jugador puede experimentar dentro de una partida es _el miedo_, cuando nos referimos a que son especies peligrosas y que estaremos en combate; _la incertidumbre_, al aparecer en una mazmorra desconocida donde el jugador debe pensar cuidadosamente cómo va a afrontar los problemas que están por venir, al tener que adaptar su comportamiento al estilo de juego dependiendo de los objetos equipados, los héroes contratados y las acciones que haga tanto el jugador como los enemigos; _la satisfacción_ al completar alguna sala y poder conseguir logros, objetos nuevos e incluso nuevos héroes o _la decepción_ de ser vencido dentro del juego teniendo que volver a empezar la partida.
+La sensación de decepción puede llevar a la desesperación del jugador, aunque también se busca que ésta impulse las ganas por aprender del jugador.
+
+El arte del juego será 2D, con una gama de colores oscura y fantástica, con tonos más apagados, para dar sensación de estar en un ambiente tétrico y oscuro.
+
+El juego está dirigido a personas hispanohablantes a partir de los 12 años, ya que es un juego en castellano RPG, con estrategia, pelea y administración de recursos, por lo que una edad menor no podría comprender mucho del juego.
 
 ## 5. Contenido ##
 
-***TODO - CONTINUAR***
+- ### 5.1.  Historia ###
+***The elemental Maze*** narra las desdichas del Gran Archimago durante sus numerosos intentos por acabar con un poderoso Lich que aterroriza los pueblos cercanos a la Torre de Magia, intentando eliminar a la amenaza con numerosos mercenarios contratados en la taberna y procurando obtener la mayor cantidad de beneficios en el proceso, ya sea invirtiendo la mínima cantidad de monedas en los supuestos héroes o saqueando los laberínticos pasillos infestados de monstruos de la cambiante mazmorra donde reside la temible criatura.
+- ### 5.2.  Niveles ###
+Cada nivel es un laberinto pequeño donde el jugador irá encontrando enemigos y objetos que podrá utilizar durante su recorrido por la mazmorra, mientras que busca la salida de la susodicha zona. Habrá salas especiales en las que nos encontraremos con enemigos más fuertes o con un cofre del tesoro, que al abrirlo nos permite obtener objetos para mejorar nuestros personajes.
+- ### 5.3.  Héroes ###
+| ICONO | NOMBRE | DESCRIPCIÓN |
+| -- | -- | -- |
+| ![img - bardo][bardo] | **BARDO** | Los bardos son unidades débiles en el combate, pero cuentan con una gran capacidad para evadir ataques enemigos y están especializados en los hechizos para mejorar las características de sus aliados o empeorar las de sus enemigos. |
+| ![img - brujo][brujo] | **BRUJO** | Los brujos son unidades débiles en el combate físico, ya sea para atacar o evadir las arremetidas del enemigo, pero lo compensan con un gran arsenal de hechizos de ataque. |
+| ![img - clerigo][clerigo] | **CLÉRIGO** | Los clérigos son unidades especializadas en los hechizos de curación y protección, aunque tienen bastantes dificultades para esquivar los ataques de los enemigos. |
+| ![img - guerrero][guerrero] | **GUERRERO** | Los guerreros son unidades especializadas en el combate físico dada su fuerza y resistencia, pero que no cuentan con muchos hechizos y/o habilidades. |
+| ![img - paladin][paladin] | **PALADÍN** | Los paladines son unidades lentas pero muy resistentes, especializándose en el combate físico y en los hechizos y/o habilidades de protección. |
+| ![img - barbaro][barbaro] | **BÁRBARO** | Los bárbaros son unidades especializadas en el combate físico, aunque cuentan con un limitado número de hechizos y/o habilidades, los cuales suelen estar enfocados en aumentar su poder de ataque. |
+| ![img - explorador][explorador] | **EXPLORADOR** | Los exploradores son unidades veloces pero con poca resistencia, que suelen estar especializadas en ataques débiles que afectan a varios enemigos en un solo turno. |
+| ![img - picaro][picaro] | **PÍCARO** | Los pícaros son unidades veloces pero débiles en el combate físico, que poseen numerosos hechizos y/o habilidades especializadas en generar estados alterados en los enemigos. |
+| ![img - druida][druida] | **DRUIDA** | Los druidas son unidades cambiantes, que comienzan los combates como unidades débiles en el combate físico pero con un gran arsenal de hechizos ofensivos. Tras finalizar varios turnos, si el jugador prefiere un estilo de juego más agresivo, podrá cambiar a la forma de ***bestia***. |
+| ![img - bestia][bestia] | **BESTIA** | En esta forma, el druida, tendrá mucha fuerza y resistencia a cambio de anular su capacidad para lanzar hechizos. |
+| ![img - protagonista][protagonista] | **GRAN ARCHIMAGO** | Cuenta con numerosos mercenarios contratados en la taberna y procura obtener la mayor cantidad de beneficios en el proceso, ya sea invirtiendo la mínima cantidad de monedas en los supuestos héroes o saqueando los laberínticos pasillos infestados de monstruos de la cambiante mazmorra donde reside la temible criatura. |
+| ![img - lich][lich] | **LICH** | El todopoderoso Lich lanza hechizos sobre su propia guarida para transformarla y así cambiar la ruta para llegar hasta sus aposentos. Debido a su hechizo logra que la ruta sea cada vez distinta, por tanto nuestros héroes quedan totalmente desorientados y así trata que nadie interrumpa en sus maléficos planes. |
+| ![img - necro][necro] | **NECROFAGO** | Los necrofagos son unidades débiles en el combate, pero cuentan con una gran capacidad para recuperarse comiendo los restos de aquellos héroes a los que logran matar. |
+
+
+
 
 ###### DEVELOPED BY: LOS "HUÉRFANOS"
