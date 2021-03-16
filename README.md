@@ -5,6 +5,7 @@
 [Twitter]: https://twitter.com/HuerfanosUCM
 <!-- Imágenes -->
 [IMG-Interfaz]: Proyecto.02/project/resources/images/interfaz/plantilla%20base%20interfaz.png "Esquema del HUD"
+<!-- Personajes -->
 [bardo]: Proyecto.02/project/resources/sprites/iconos%20personajes/bardo.png "IMG - Bardo"
 [brujo]: Proyecto.02/project/resources/sprites/iconos%20personajes/brujo.png "IMG - Brujo"
 [clerigo]: Proyecto.02/project/resources/sprites/iconos%20personajes/clerigo.png "IMG - Clerigo"
@@ -15,10 +16,29 @@
 [picaro]: Proyecto.02/project/resources/sprites/iconos%20personajes/picaro.PNG "IMG - Picaro"
 [druida]: Proyecto.02/project/resources/sprites/iconos%20personajes/druida.png "IMG - Druida"
 [bestia]: Proyecto.02/project/resources/sprites/iconos%20personajes/bestia.png "IMG - Bestia"
+[protagonista]: Proyecto.02/project/resources/sprites/iconos%20personajes/heroe-mago.png "IMG - Mago (protagonista)"
+<!-- Enemigos -->
 [lich]: Proyecto.02/project/resources/sprites/iconos%20personajes/lich.PNG "IMG - Lich"
 [necro]: Proyecto.02/project/resources/sprites/iconos%20personajes/necrofago.png "IMG - Necrofago"
-[protagonista]: Proyecto.02/project/resources/sprites/iconos%20personajes/heroe-mago.png "IMG - Mago (protagonista)"
-
+<!-- Objetos -->
+<!-- Armas -->
+[alabarda]: Proyecto.02/project/resources/sprites/iconos%20armas/alabarda.png "IMG - Alabarda"
+[arco_largo]: Proyecto.02/project/resources/sprites/iconos%20armas/arco_largo.png "IMG - Arco Largo"
+[arco_ligero]: Proyecto.02/project/resources/sprites/iconos%20armas/arco_ligero.png "IMG - Arco Ligero"
+[ballesta_ligera]: Proyecto.02/project/resources/sprites/iconos%20armas/ballesta_ligera.png "IMG - Ballesta Ligera"
+[ballesta_pesada]: Proyecto.02/project/resources/sprites/iconos%20armas/ballesta_pesada.png "IMG - Ballesta Pesada"
+[baston]: Proyecto.02/project/resources/sprites/iconos%20armas/baston.png "IMG - Baston"
+[clava]: Proyecto.02/project/resources/sprites/iconos%20armas/clava.png "IMG - Clava"
+[daga]: Proyecto.02/project/resources/sprites/iconos%20armas/daga.png "IMG - Daga"
+[espada_corta]: Proyecto.02/project/resources/sprites/iconos%20armas/espada_corta.png "IMG - Espada Corta"
+[espada_larga]: Proyecto.02/project/resources/sprites/iconos%20armas/espada_larga.png "IMG - Espada Larga"
+[hacha]: Proyecto.02/project/resources/sprites/iconos%20armas/hacha.png "IMG - Hacha"
+[hacha_arrojadiza]: Proyecto.02/project/resources/sprites/iconos%20armas/hacha_arrojadiza.png "IMG - Hacha Arrojadiza"
+[lanza]: Proyecto.02/project/resources/sprites/iconos%20armas/alabarda.png "IMG - Lanza"
+[lucero]: Proyecto.02/project/resources/sprites/iconos%20armas/lucero.png "IMG - Lucero del Alba"
+[martillo]: Proyecto.02/project/resources/sprites/iconos%20armas/martillo.png "IMG - Martillo"
+[maza]: Proyecto.02/project/resources/sprites/iconos%20armas/maza.png "IMG - Maza"
+[puños]: Proyecto.02/project/resources/sprites/iconos%20armas/puños.png "IMG - Puños"
 
 # The elemental Maze #
 
@@ -206,9 +226,30 @@ Cada nivel es un laberinto pequeño donde el jugador irá encontrando enemigos y
 | ![img - druida][druida] | **DRUIDA** | Los druidas son unidades cambiantes, que comienzan los combates como unidades débiles en el combate físico pero con un gran arsenal de hechizos ofensivos. Tras finalizar varios turnos, si el jugador prefiere un estilo de juego más agresivo, podrá cambiar a la forma de ***bestia***. |
 | ![img - bestia][bestia] | **BESTIA** | En esta forma, el druida, tendrá mucha fuerza y resistencia a cambio de anular su capacidad para lanzar hechizos. |
 | ![img - protagonista][protagonista] | **GRAN ARCHIMAGO** | Cuenta con numerosos mercenarios contratados en la taberna y procura obtener la mayor cantidad de beneficios en el proceso, ya sea invirtiendo la mínima cantidad de monedas en los supuestos héroes o saqueando los laberínticos pasillos infestados de monstruos de la cambiante mazmorra donde reside la temible criatura. |
+- ### 5.3.  Enemigos ###
+| ICONO | NOMBRE | DESCRIPCIÓN |
+| -- | -- | -- |
 | ![img - lich][lich] | **LICH** | El todopoderoso Lich lanza hechizos sobre su propia guarida para transformarla y así cambiar la ruta para llegar hasta sus aposentos. Debido a su hechizo logra que la ruta sea cada vez distinta, por tanto nuestros héroes quedan totalmente desorientados y así trata que nadie interrumpa en sus maléficos planes. |
 | ![img - necro][necro] | **NECROFAGO** | Los necrofagos son unidades débiles en el combate, pero cuentan con una gran capacidad para recuperarse comiendo los restos de aquellos héroes a los que logran matar. |
-
+- ### 5.3.  Objetos ###
+| ICONO | NOMBRE | DESCRIPCIÓN |
+| -- | -- | -- |
+| ![img - maza][maza] | **MAZA** | Un arma **simple y ligera** que puede hacer hasta **6** puntos de daño **contundente**. |
+| ![img - baston][baston] | **BASTÓN** | Un arma **simple y adaptable** que puede hacer hasta **6 u 8** puntos de daño **contundente**, dependiendo de si el jugador realiza un ataque fuerte o uno rápido. |
+| ![img - daga][daga] | **DAGA** | Un arma **simple y ligera** que puede hacer hasta **6** puntos de daño **perforante**. |
+| ![img - lanza][lanza] | **LANZA** | Un arma **simple y adaptable** que puede hacer hasta hasta **6 u 8** puntos de daño **perforante**, dependiendo de si el jugador realiza un ataque fuerte o uno rápido. Tiene además un ataque que puede ocasionar hasta **12** puntos de daño, pero necesita cargar durante un turno. |
+| ![img - hacha][hacha] | **HACHA PEQUEÑA** | Un arma **simple y ligera** que puede hacer hasta **6** puntos de daño **cortante**. |
+| ![img - clava][clava] | **CLAVA** | Un arma **simple y adaptable** que puede hacer hasta **6 u 8** puntos de daño **cortante**, dependiendo de si el jugador realiza un ataque fuerte o uno rápido. |
+| ![img - arco_ligero][arco_ligero] | **ARCO LIGERO** | Un arma **simple y de área** que puede hacer hasta **4** puntos de daño. |
+| ![img - ballesta_ligera][ballesta_ligera] | **BALLESTA LIGERA** | Un arma **simple y de área** que puede hacer hasta **8** puntos de daño, aunque necesita cargar antes de realizar cada disparo. |
+| ![img - puños][puños] | **PUÑOS** | Un arma **marcial y ligera** que puede hacer hasta **8** puntos de daño **contundente**. |
+| ![img - martillo][martillo] | **MARTILLO DE GUERRA** | Un arma **marcial y adaptable** que puede hacer hasta **10 u 12** puntos de daño **contundente**, dependiendo de si el jugador realiza un ataque fuerte o uno rápido. |
+| ![img - espada_corta][espada_corta] | **ESPADA CORTA** | Un arma **marcial y ligera** que puede hacer hasta **8** puntos de daño **cortante**. |
+| ![img - espada_larga][espada_larga] | **ESPADA LARGA** | Un arma **marcial y adaptable** que puede hacer hasta **10 u 12** puntos de daño **cortante**, dependiendo de si el jugador realiza un ataque fuerte o uno rápido. |
+| ![img - lucero][lucero] | **LUCERO DEL ALBA** | Un arma **marcial y ligera** que puede hacer hasta **8** puntos de daño **perforante**. |
+| ![img - alabarda][alabarda] | **ALABARDA** | Un arma **marcial y adaptable** que puede hacer hasta **10 u 12** puntos de daño **perforante**, dependiendo de si el jugador realiza un ataque fuerte o uno rápido. |
+| ![img - arco_largo][arco_largo] | **ARCO LARGO** | Un arma **marcial y de área** que puede hacer hasta **6** puntos de daño. |
+| ![img - ballesta_pesada][ballesta_pesada] | **BALLESTA PESADA** | Un arma **marcial y de área** que puede hacer hasta **10** puntos de daño, aunque necesita cargar antes de realizar cada disparo. |
 
 
 
