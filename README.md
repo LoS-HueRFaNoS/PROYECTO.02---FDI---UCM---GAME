@@ -39,6 +39,11 @@
 [martillo]: Proyecto.02/project/resources/sprites/iconos%20armas/martillo.png "IMG - Martillo"
 [maza]: Proyecto.02/project/resources/sprites/iconos%20armas/maza.png "IMG - Maza"
 [puños]: Proyecto.02/project/resources/sprites/iconos%20armas/puños.png "IMG - Puños"
+<!-- Arquitecturas UML -->
+[interfaz_uml]: Proyecto.02/project/resources/images/UML/interfaz_uml.png "Esquema UML del Interfaz"
+[mapa_uml]: Proyecto.02/project/resources/images/UML/mapa_uml.png "Esquema UML del Mapa"
+[personajes_uml]: Proyecto.02/project/resources/images/UML/personajes_uml.png "Esquema UML del Sistema de Personajes"
+[combate_uml]: Proyecto.02/project/resources/images/UML/combate_uml.png "Esquema UML del Sistema de Combate"
 
 # The elemental Maze #
 
@@ -226,12 +231,15 @@ Cada nivel es un laberinto pequeño donde el jugador irá encontrando enemigos y
 | ![img - druida][druida] | **DRUIDA** | Los druidas son unidades cambiantes, que comienzan los combates como unidades débiles en el combate físico pero con un gran arsenal de hechizos ofensivos. Tras finalizar varios turnos, si el jugador prefiere un estilo de juego más agresivo, podrá cambiar a la forma de ***bestia***. |
 | ![img - bestia][bestia] | **BESTIA** | En esta forma, el druida, tendrá mucha fuerza y resistencia a cambio de anular su capacidad para lanzar hechizos. |
 | ![img - protagonista][protagonista] | **GRAN ARCHIMAGO** | Cuenta con numerosos mercenarios contratados en la taberna y procura obtener la mayor cantidad de beneficios en el proceso, ya sea invirtiendo la mínima cantidad de monedas en los supuestos héroes o saqueando los laberínticos pasillos infestados de monstruos de la cambiante mazmorra donde reside la temible criatura. |
-- ### 5.3.  Enemigos ###
+- ### 5.4.  Enemigos ###
 | ICONO | NOMBRE | DESCRIPCIÓN |
 | -- | -- | -- |
 | ![img - lich][lich] | **LICH** | El todopoderoso Lich lanza hechizos sobre su propia guarida para transformarla y así cambiar la ruta para llegar hasta sus aposentos. Debido a su hechizo logra que la ruta sea cada vez distinta, por tanto nuestros héroes quedan totalmente desorientados y así trata que nadie interrumpa en sus maléficos planes. |
 | ![img - necro][necro] | **NECROFAGO** | Los necrofagos son unidades débiles en el combate, pero cuentan con una gran capacidad para recuperarse comiendo los restos de aquellos héroes a los que logran matar. |
-- ### 5.3.  Objetos ###
+- ### 5.5.  Objetos ###
+| ICONO | NOMBRE | DESCRIPCIÓN |
+| -- | -- | -- |
+- ### 5.6.  Equipo ###
 | ICONO | NOMBRE | DESCRIPCIÓN |
 | -- | -- | -- |
 | ![img - maza][maza] | **MAZA** | Un arma **simple y ligera** que puede hacer hasta **6** puntos de daño **contundente**. |
@@ -250,7 +258,64 @@ Cada nivel es un laberinto pequeño donde el jugador irá encontrando enemigos y
 | ![img - alabarda][alabarda] | **ALABARDA** | Un arma **marcial y adaptable** que puede hacer hasta **10 u 12** puntos de daño **perforante**, dependiendo de si el jugador realiza un ataque fuerte o uno rápido. |
 | ![img - arco_largo][arco_largo] | **ARCO LARGO** | Un arma **marcial y de área** que puede hacer hasta **6** puntos de daño. |
 | ![img - ballesta_pesada][ballesta_pesada] | **BALLESTA PESADA** | Un arma **marcial y de área** que puede hacer hasta **10** puntos de daño, aunque necesita cargar antes de realizar cada disparo. |
+- ### 5.7.  Armaduras ###
+| ICONO | NOMBRE | DESCRIPCIÓN |
+| -- | -- | -- |
+- ### 5.8.  Habilidades ###
+| ICONO | NOMBRE | DESCRIPCIÓN |
+| -- | -- | -- |
+- ### 5.9.  Tipos elementales ###
+Los tipos elementales serán seis: _fuego, agua, tierra, aire, luz y oscuridad_.
 
+Las armas que sean de un tipo elemental determinado realizarán una pequeña cantidad extra de daño, siendo esta cantidad dependiente de las debilidades que posea el enemigo. Es decir, si el enemigo es débil a ese elemento, los puntos de daño realizados se duplicarán. Si, por el contrario, el enemigo es resistente a ese elemento, no se realizará ningún punto extra de daño.
+
+Respecto a las armaduras, el tipo elemental realizará la misma función que en las armas pero a la inversa. Por ejemplo, si una armadura recibe un ataque de un elemento al cual es resistente, no recibirá puntos de daño. Pero si, por el contrario, recibe un ataque de un elemento al cual es débil, el daño recibido se duplicará.
+
+En ambos casos, tanto en armas como en armaduras, el tipo elemental estará representado con el fondo, siendo cada color una representación un elemento concreto.
+
+| ICONO | NOMBRE | DESCRIPCIÓN |
+| -- | -- | -- |
+
+## 6. Arquitectura UML ##
+
+<p align="center"><b> INTERFAZ </b></p>
+![UML - Interfaz][interfaz_uml]
+<p align="center"><b> MAPA Y LABERINTO </b></p>
+![UML - mapa][mapa_uml]
+<p align="center"><b> SISTEMA DE PERSONAJES </b></p>
+![UML - personajes][personajes_uml]
+<p align="center"><b> SISTEMA DE COMBATE </b></p>
+![UML - combate][combate_uml]
+
+## 7. Plataforma de gestión ##
+
+La plataforma de gestión que estamos utilizado durante el desarrollo del juego es ***Pivotal Tracker***. La cual es una herramienta de gestión de proyectos ágiles desarrollada por expertos en desarrollo de software ágil. Fácil de usar, esta herramienta posibilita la colaboración en tiempo real en torno a un registro compartido priorizado.
+
+En esta plataforma hemos organizado las historias de usuario de cada uno de los integrantes, su puntuación, los diferentes hitos, etc.
+
+## 8. Plataformas de comunicación ##
+
+La plataforma de comunicación que estamos utilizado durante el desarrollo del juego es ***Discord***. La cual es una plataforma social destinada a permitir crear grupos de chat para diferentes juegos y finalidades. Se puede pensar en ella como una aplicación similar a _Skype_ o _TeamSpeak_, aunque incluye las funciones de otras herramientas más profesionales. Además tiene bastantes funcionalidades, permitiendo la comunicación por chat de texto, de voz o incluso realizar videoconferencias, todo ello con una aplicación totalmente gratuita. Dentro de estas funcionalidades está la posibilidad de crear y gestionar tu propio servidor de trabajo, totalmente personalizado, seccionando las áreas de trabajo y permitiendo crear un sistema de roles para garantizar un uso adecuado del servidor.
+
+En esta plataforma hemos debatido todos los problemas del proyecto, realizado las reuniones diarias y comentado aspectos fundamentales del proyecto e ideas relevantes a este.
+
+## 9. Referencias ##
+
+* **Estéticas**: 
+    * Dark Souls (Videojuego)
+    * Chronoweaver (Videojuego)
+    * 7 Mages (Videojuego)
+
+* **Mecánicas**:
+    * Dungeons and Dragons (Juego de rol)
+    * Might & Magic (Videojuego)
+    * Eye of the Beholder (Videojuego)
+
+* **Dinámicas**:
+    * Crimson Keep (Videojuego)
+    * Darkest Dungeon (Videojuego)
+    * Wizards of Legends (Videojuego)
+    * Elemental Dungeon (Videojuego)
 
 
 ###### DEVELOPED BY: LOS "HUÉRFANOS"
