@@ -9,7 +9,7 @@
 | [Pagina web][Web] | [Repositorio][Repositorio] | [Gestión][Pivotal] | [Twitter][Twitter] |
 | -- | -- | -- | -- |
 
-###### Documento de diseño de videojuego - Versión 16/03/2021 (hito 1.0)
+> ###### Documento de diseño de videojuego - Versión 16/03/2021 (hito 1.0)
 
 ## 1. Resumen ##
 
@@ -44,8 +44,10 @@ Tras alcanzar la salida en varias ocasiones, encuentra la sala del jefe final.
 El único modo de juego disponible es el modo de un solo jugador, en el que éste podrá jugar las veces que quiera, completando el juego de formas distintas.
 
 Existen los siguientes menús dentro del juego:
+
 * **Menú principal**: Es el menú que aparece al iniciar el juego.
 En este menú encontramos los siguientes botones: _comenzar partida, configuración, mostrar ayuda_.
+
 * **Menú de configuración**: En este menú se pueden modificar las siguientes opciones: _establecer volumen y establecer velocidad de animación_.
 Es accesible en cualquier momento.
 * **Ayuda**: Pantalla con breves instrucciones para comenzar una partida básica y con recordatorios acerca del objetivo que debe alcanzar el jugador.
@@ -63,6 +65,7 @@ Dentro del juego, el HUD se divide en distintas partes o funcionalidades:
 Está situada en la parte superior izquierda y ocupa más de la mitad de la pantalla.
   * **Vida de los enemigos**: Barras rojas situadas cada una sobre un enemigo durante un combate.
   Su nivel de relleno representa la vida restante del adversario sobre el que se ubica.
+  
 * **Minimapa**: Muestra la parte del nivel cercana al jugador, incluyendo la sala en la que está y los caminos colindantes a ella.
 Alguno de estos caminos puede contener algún símbolo que indique si hay algún tesoro o hay enemigos en ese punto.
 Está situado en la parte superior derecha de la pantalla.
@@ -86,9 +89,17 @@ Contiene los siguientes botones: _ataque básico, ataque mágico elemental (usa 
 
 <p align="center"><b> Esquema del HUD </b></p>
 
-El juego se controla principalmente mediante el uso del ratón, pulsando los distintos botones ofrecidos por la interfaz.
+El juego se controla principalmente mediante el ***uso del ratón***, pulsando los distintos botones ofrecidos por la interfaz.
 
-***TODO - ATAJOS TECLADO***
+<p align="left"><b> ATAJOS DE TECLADO --> </b></p>
+
+| Cursores | WASD | Función |
+| -- | -- | -- |
+| **Flecha derecha**   | **Tecla 'D'** | _rotar 90° a la derecha_ |
+| **Flecha izquierda** | **Tecla 'A'** | _rotar 90° a la izquierda_ |
+| **Flecha arriba**    | **Tecla 'W'** | _avanzar a la siguiente posición_ |
+| **Espacio** | **Tecla 'E'** | _interactuar con el entorno_ |
+
 
 ## 4. Jugabilidad ##
 
