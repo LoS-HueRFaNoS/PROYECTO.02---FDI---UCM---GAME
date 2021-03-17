@@ -27,6 +27,10 @@
 [lich]: Proyecto.02/project/resources/sprites/iconos%20personajes/lich.PNG "IMG - Lich"
 [necro]: Proyecto.02/project/resources/sprites/iconos%20personajes/necrofago.png "IMG - Necrofago"
 <!-- Objetos -->
+[health]: Proyecto.02/project/resources/sprites/iconos%20objetos/life_potion.png "IMG - Poción de Salud"
+[mana]: Proyecto.02/project/resources/sprites/iconos%20objetos/mana_potion.png "IMG - Poción de Maná"
+[nigro]: Proyecto.02/project/resources/sprites/iconos%20objetos/nigro_potion.png "IMG - Poción Nigromántica"
+[rune]: Proyecto.02/project/resources/sprites/iconos%20objetos/rune.png "IMG - Runa (moneda de cambio)"
 <!-- Armas -->
 [alabarda]: Proyecto.02/project/resources/sprites/iconos%20armas/alabarda.png "IMG - Alabarda"
 [arco_largo]: Proyecto.02/project/resources/sprites/iconos%20armas/arco_largo.png "IMG - Arco Largo"
@@ -129,12 +133,11 @@ También hay un botón que sirve para _interactuar con el entorno_: abrir un cof
 Está situado en la esquina inferior izquierda.
 * **Combate**: Esta parte sólo aparecerá cuando el jugador esté en combate y reemplaza la sección **“Movimiento e interacción”**.
 Contiene los siguientes botones: _ataque básico, ataque mágico elemental (usa maná), defensa, huir y mostrar turnos_ (este último, es un interruptor que despliega un panel vertical, en él figura la cara del siguiente personaje que va a atacar).
-  * **Pantalla de turnos**: Si se hace click en este último botón del apartado **“Combate”**, se despliega un panel vertical sustituyendo al botón, en el que se visualiza el orden de ataque de todos los personajes y enemigos.
-  Si ya estaba desplegado el panel, esta zona de la interfaz vuelve a su estado original.
+  * **Pantalla de turnos**: Si se hace click en este último botón del apartado **“Combate”**, se despliega un panel vertical sustituyendo al botón, en el que se visualiza el orden de ataque de todos los personajes y enemigos. Si ya estaba desplegado el panel, esta zona de la interfaz vuelve a su estado original.
   
-![Esta imagen muestra el esquema del HUD][IMG-Interfaz]
+  <p align="center"><b> ESQUEMA DEL HUD </b></p>
 
-<p align="center"><b> Esquema del HUD </b></p>
+![Esta imagen muestra el esquema del HUD][IMG-Interfaz]
 
 El juego se controla principalmente mediante el ***uso del ratón***, pulsando los distintos botones ofrecidos por la interfaz.
 
@@ -222,8 +225,10 @@ El juego está dirigido a personas hispanohablantes a partir de los 12 años, ya
 
 - ### 5.1.  Historia ###
 ***The elemental Maze*** narra las desdichas del Gran Archimago durante sus numerosos intentos por acabar con un poderoso Lich que aterroriza los pueblos cercanos a la Torre de Magia, intentando eliminar a la amenaza con numerosos mercenarios contratados en la taberna y procurando obtener la mayor cantidad de beneficios en el proceso, ya sea invirtiendo la mínima cantidad de monedas en los supuestos héroes o saqueando los laberínticos pasillos infestados de monstruos de la cambiante mazmorra donde reside la temible criatura.
+
 - ### 5.2.  Niveles ###
 Cada nivel es un laberinto pequeño donde el jugador irá encontrando enemigos y objetos que podrá utilizar durante su recorrido por la mazmorra, mientras que busca la salida de la susodicha zona. Habrá salas especiales en las que nos encontraremos con enemigos más fuertes o con un cofre del tesoro, que al abrirlo nos permite obtener objetos para mejorar nuestros personajes.
+
 - ### 5.3.  Héroes ###
 | ICONO | NOMBRE | DESCRIPCIÓN |
 | -- | -- | -- |
@@ -238,14 +243,21 @@ Cada nivel es un laberinto pequeño donde el jugador irá encontrando enemigos y
 | ![img - druida][druida] | **DRUIDA** | Los druidas son unidades cambiantes, que comienzan los combates como unidades débiles en el combate físico pero con un gran arsenal de hechizos ofensivos. Tras finalizar varios turnos, si el jugador prefiere un estilo de juego más agresivo, podrá cambiar a la forma de ***bestia***. |
 | ![img - bestia][bestia] | **BESTIA** | En esta forma, el druida, tendrá mucha fuerza y resistencia a cambio de anular su capacidad para lanzar hechizos. |
 | ![img - protagonista][protagonista] | **GRAN ARCHIMAGO** | Cuenta con numerosos mercenarios contratados en la taberna y procura obtener la mayor cantidad de beneficios en el proceso, ya sea invirtiendo la mínima cantidad de monedas en los supuestos héroes o saqueando los laberínticos pasillos infestados de monstruos de la cambiante mazmorra donde reside la temible criatura. |
+
 - ### 5.4.  Enemigos ###
 | ICONO | NOMBRE | DESCRIPCIÓN |
 | -- | -- | -- |
 | ![img - lich][lich] | **LICH** | El todopoderoso Lich lanza hechizos sobre su propia guarida para transformarla y así cambiar la ruta para llegar hasta sus aposentos. Debido a su hechizo logra que la ruta sea cada vez distinta, por tanto nuestros héroes quedan totalmente desorientados y así trata que nadie interrumpa en sus maléficos planes. |
 | ![img - necro][necro] | **NECROFAGO** | Los necrofagos son unidades débiles en el combate, pero cuentan con una gran capacidad para recuperarse comiendo los restos de aquellos héroes a los que logran matar. |
+
 - ### 5.5.  Objetos ###
 | ICONO | NOMBRE | DESCRIPCIÓN |
 | -- | -- | -- |
+| ![img - health][health] | **POCIÓN DE SALUD** | Permite al jugador recuperar el 50% de los puntos de salud de un personaje. |
+| ![img - mana][mana] | **POCIÓN DE MANÁ** | Permite al jugador recuperar el 50% de los puntos de maná de un personaje. |
+| ![img - nigro][nigro] | **POCIÓN NIGROMÁNTICA** | Permite al jugador resucitar a un personaje que haya muerto durante la partida, restaurando el 25% de los puntos de salud y maná. |
+| ![img - rune][rune] | **RUNA** | Moneda utilizada en el juego. Sirve para contratar a los héroes que posteriormente podrán ser utilizados en la mazmorra y comprar objetos, como por ejemplo, pociones. |
+
 - ### 5.6.  Equipo ###
 | ICONO | NOMBRE | DESCRIPCIÓN |
 | -- | -- | -- |
@@ -265,12 +277,14 @@ Cada nivel es un laberinto pequeño donde el jugador irá encontrando enemigos y
 | ![img - alabarda][alabarda] | **ALABARDA** | Un arma **marcial y adaptable** que puede hacer hasta **10 u 12** puntos de daño **perforante**, dependiendo de si el jugador realiza un ataque fuerte o uno rápido. |
 | ![img - arco_largo][arco_largo] | **ARCO LARGO** | Un arma **marcial y de área** que puede hacer hasta **6** puntos de daño. |
 | ![img - ballesta_pesada][ballesta_pesada] | **BALLESTA PESADA** | Un arma **marcial y de área** que puede hacer hasta **10** puntos de daño, aunque necesita cargar antes de realizar cada disparo. |
+
 <!-- - ### 5.7.  Armaduras ###
 | ICONO | NOMBRE | DESCRIPCIÓN |
 | -- | -- | -- | 
 - ### 5.8.  Habilidades ###
 | ICONO | NOMBRE | DESCRIPCIÓN |
 | -- | -- | -- | -->
+
 - ### 5.7.  Tipos elementales ###
 Los tipos elementales serán seis: _fuego, agua, tierra, aire, luz y oscuridad_.
 
