@@ -4,7 +4,7 @@
 
 #include "ecs.h"
 #include "SDLGame.h"
-
+const static enum Look { Norte, Este, Sur, Oeste };
 class Entity;
 
 

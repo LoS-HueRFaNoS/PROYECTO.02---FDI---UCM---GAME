@@ -3,10 +3,10 @@
 #include "Entity.h"
 using namespace std;
 
-const static enum MapCell { Norte, Este, Sur, Oeste };
 
 
-class Casilla //: public Entity
+
+class Casilla
 {
 private:
 	int x, y; //           <-   |   ->
@@ -19,6 +19,6 @@ public:
 	Casilla(int x_,int y_, bool _N, bool _E, bool _S, bool _O);
 	~Casilla();
 
-	vector<bool>* checkCell();
+	vector<bool> checkCell();
 };
 

@@ -14,6 +14,8 @@ enum CmpId : CmpIdType {
 	PlayerMotion,
 	Image,
 	ButtonCtrl,
+	MazePos,
+	PlayerViewer,
 	//
 	// don't touch the rest of this enum, it is to identify the max
 	// number of components

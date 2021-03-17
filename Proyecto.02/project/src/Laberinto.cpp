@@ -6,11 +6,11 @@
 
 using namespace std;
 
-Laberinto::Laberinto(int h_, int w_) :Component(ecs::Laberinto),h(h_),w(w_)
+Laberinto::Laberinto(EntityManager* entityManager_,int h_, int w_) :Component(ecs::Laberinto),entityManager(entityManager_),h(h_),w(w_)
 {
 
 }
-Laberinto::Laberinto() : Component(ecs::Laberinto), h(), w()
+Laberinto::Laberinto(EntityManager* entityManager_) : Component(ecs::Laberinto),entityManager(entityManager_), h(), w()
 {
 
 }
@@ -25,11 +25,8 @@ Laberinto::~Laberinto()
 
 void Laberinto::initFromFile()
 {
-	string text;
-	cin >> text;
-	text += ".txt";
 	ifstream input; // Flujo de entrada
-	input.open(text); // Se abre el archivo
+	input.open("./Laberinto1.txt"); // Se abre el archivo
 	if (!input.is_open()) // Da error si no se puede abrir el archivo
 	{
 		throw std::string("Fichero no encontrado");
@@ -55,7 +52,28 @@ void Laberinto::initFromFile()
 	}
 }
 
+Vector2D Laberinto::getEntrada()
+{
+	return Vector2D(0, 0);
+}
+
 void Laberinto::createRandomMaze(int s)
 {
 	laberinto = vector<vector<Casilla*>>(s, vector<Casilla*>(s, new Casilla()));
+}
+Casilla* Laberinto::getCasillaInfo(int x, int y)
+{
+	return laberinto[x][y];
+
+}
+
+void Laberinto::draw()
+{
+	//for (int i = 0; i < h; ++i) // Por cada fila  = Y
+	//{
+	//	for (int j = 0; j < w; ++j) // Por cada columna  = X
+	//	{
+	//		laberinto[j][i].
+	//	}
+	//}
 }
