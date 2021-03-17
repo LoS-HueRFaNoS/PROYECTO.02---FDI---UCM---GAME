@@ -289,12 +289,19 @@ En ambos casos, tanto en armas como en armaduras, el tipo elemental estará repr
 ## 6. Arquitectura UML ##
 
 <p align="center"><b> INTERFAZ </b></p>
+
 ![UML - Interfaz][interfaz_uml]
+
 <p align="center"><b> MAPA Y LABERINTO </b></p>
+
 ![UML - mapa][mapa_uml]
+
 <p align="center"><b> SISTEMA DE PERSONAJES </b></p>
+
 ![UML - personajes][personajes_uml]
+
 <p align="center"><b> SISTEMA DE COMBATE </b></p>
+
 ![UML - combate][combate_uml]
 
 ## 7. Plataforma de gestión ##
