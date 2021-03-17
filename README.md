@@ -5,6 +5,12 @@
 [Twitter]: https://twitter.com/HuerfanosUCM
 <!-- Imágenes -->
 [IMG-Interfaz]: Proyecto.02/project/resources/images/interfaz/plantilla%20base%20interfaz.png "Esquema del HUD"
+[fuego]: Proyecto.02/project/resources/sprites/iconos%20elementos/Fuego.jpg "IMG - Fuego"
+[agua]: Proyecto.02/project/resources/sprites/iconos%20elementos/Agua.jpg "IMG - Agua"
+[viento]: Proyecto.02/project/resources/sprites/iconos%20elementos/Viento.jpg "IMG - Viento"
+[luz]: Proyecto.02/project/resources/sprites/iconos%20elementos/luz.jpg "IMG - Luz"
+[oscuridad]: Proyecto.02/project/resources/sprites/iconos%20elementos/oscuridad.jpg "IMG - Oscuridad"
+[Tierra]: Proyecto.02/project/resources/sprites/iconos%20elementos/Tierra.jpg "IMG - Tierra"
 <!-- Personajes -->
 [bardo]: Proyecto.02/project/resources/sprites/iconos%20personajes/bardo.png "IMG - Bardo"
 [brujo]: Proyecto.02/project/resources/sprites/iconos%20personajes/brujo.png "IMG - Brujo"
@@ -132,7 +138,7 @@ Contiene los siguientes botones: _ataque básico, ataque mágico elemental (usa 
 
 El juego se controla principalmente mediante el ***uso del ratón***, pulsando los distintos botones ofrecidos por la interfaz.
 
-<p align="left"><b> <-- ATAJOS DE TECLADO --> </b></p>
+<p align="left"><b> <!-- ATAJOS DE TECLADO --> </b></p>
 
 | Cursores | WASD | Función |
 | -- | -- | -- |
@@ -274,8 +280,11 @@ Respecto a las armaduras, el tipo elemental realizará la misma función que en 
 
 En ambos casos, tanto en armas como en armaduras, el tipo elemental estará representado con el fondo, siendo cada color una representación un elemento concreto.
 
-| ICONO | NOMBRE | DESCRIPCIÓN |
+| ICONO | NOMBRE | ICONO | NOMBRE |
 | -- | -- | -- |
+| ![img - fuego][fuego] | **FUEGO** | ![img - agua][agua] | **AGUA** |
+| ![img - viento][viento] | **VIENTO** | ![img - tierra][tierra] | **TIERRA** |
+| ![img - luz][luz] | **LUZ** | ![img - oscuridad][oscuridad] | **OSCURIDAD** |
 
 ## 6. Arquitectura UML ##
 
