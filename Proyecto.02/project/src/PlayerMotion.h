@@ -62,7 +62,21 @@ public:
 					}
 					break;
 				}
-				cout << pos->getPos() <<"	" <<pos->getLook() <<endl;
+				switch (pos->getLook())
+				{
+				case Norte:
+					cout << "Estas en la casilla " << pos->getPos() << ".	\n";
+					break;
+				case Este:
+					cout << "Estas en la casilla " << pos->getPos() << ".	\n";
+					break;
+				case Sur:
+					cout << "Estas en la casilla " << pos->getPos() << ".	\n";
+					break;
+				case Oeste:
+					cout << "Estas en la casilla " << pos->getPos() << ".	\n";
+					break;
+				}
 				
 			}
 		}
@@ -73,6 +87,21 @@ public:
 			else
 				sent--;
 			pos->setLook(sent);
+			switch (pos->getLook())
+			{
+			case Norte:
+				cout <<"Estas mirando hacia el norte" << endl;
+				break;
+			case Este:
+				cout <<"Estas mirando hacia el este" << endl;
+				break;
+			case Sur:
+				cout <<"Estas mirando hacia el sur" << endl;
+				break;
+			case Oeste:
+				cout <<"Estas mirando hacia el oeste" << endl;
+				break;
+			}
 		}
 		else if (ih->isKeyDown(giraDer)) {
 			int sent = pos->getLook();
@@ -81,7 +110,24 @@ public:
 			else
 				sent++;
 			pos->setLook(sent);
+			switch (pos->getLook())
+			{
+			case Norte:
+				cout <<"Estas mirando hacia el norte" << endl;
+				break;
+			case Este:
+				cout <<"Estas mirando hacia el este" << endl;
+				break;
+			case Sur:
+				cout <<"Estas mirando hacia el sur" << endl;
+				break;
+			case Oeste:
+				cout <<"Estas mirando hacia el oeste" << endl;
+				break;
+			}
 		}
+		
+
 	}
 private:
 	MazePos* pos;
