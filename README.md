@@ -148,10 +148,11 @@ El juego se controla principalmente mediante el ***uso del ratón***, pulsando l
 
   - #### 4.1.1. Movimiento ####
 
-1. Para pasar de nivel, el jugador ha de recorrer el laberinto hasta encontrar una casilla final en la que se encuentra la salida.
+* Para pasar de nivel, el jugador ha de recorrer el laberinto hasta encontrar una casilla final en la que se encuentra la salida.
 
-2. El jugador cuenta con un minimapa que le permite saber qué zonas del nivel ha visitado y cuáles son los caminos que no ha explorado.
-3. Al final de cada nivel, el jugador puede salir de la mazmorra con todos los héroes que hayan sobrevivido y así mantener todas las cosas que ha conseguido o arriesgarse y seguir avanzando para intentar superar el siguiente nivel.
+* El jugador cuenta con un minimapa que le permite saber qué zonas del nivel ha visitado y cuáles son los caminos que no ha explorado.
+* 
+* Al final de cada nivel, el jugador puede salir de la mazmorra con todos los héroes que hayan sobrevivido y así mantener todas las cosas que ha conseguido o arriesgarse y seguir avanzando para intentar superar el siguiente nivel.
 
   - #### 4.1.2. Combate ####
 
@@ -190,14 +191,14 @@ Tendrá que elegir el camino a seguir e intentar llegar a la salida del laberint
 
 Hay que tener en cuenta también la tabla de tipos elementales, para poder realizar ataques más efectivos.
 
-#### Objetivo
+- #### Objetivo ####
 El jugador tiene como objetivo completar la mazmorra y derrotar al Lich. 
 En caso de que lo consiga, el jugador habrá ganado la partida.
 
-#### Dificultad
+- #### Dificultad ####
 La dificultad es igual para todos los jugadores, no se puede elegir, pero el jugador tiene a su disposición objetos y diferentes personajes que le permiten elegir entre si correr un mayor riesgo por mayor daño y menos salud, como llevar varios magos en el grupo de héroes, o por el contrario jugar de forma más segura, llevando un equipo más equilibrado. También la gestión del dinero y objetos del jugador hará que el juego se le haga más fácil o difícil de pasar. También depende de las decisiones que realicemos dentro del combate, como ir más a hacer daño de “golpe” o ir más poco a poco.
 
-#### Recompensas y castigos
+- #### Recompensas y castigos ####
 El jugador es recompensado con la puntuación y los logros que se obtienen al usar determinados objetos, personajes u opciones, y la dificultad, que disminuirá si usamos objetos o personajes “correctos”. El castigo en respuesta a las malas elecciones y acciones del jugador será la muerte de los héroes, y si se queda sin ningún héroe, con la muerte, donde el jugador deberá empezar desde el principio cada vez que muera.
 
 - ### 4.3. Estética ###
@@ -258,13 +259,13 @@ Cada nivel es un laberinto pequeño donde el jugador irá encontrando enemigos y
 | ![img - alabarda][alabarda] | **ALABARDA** | Un arma **marcial y adaptable** que puede hacer hasta **10 u 12** puntos de daño **perforante**, dependiendo de si el jugador realiza un ataque fuerte o uno rápido. |
 | ![img - arco_largo][arco_largo] | **ARCO LARGO** | Un arma **marcial y de área** que puede hacer hasta **6** puntos de daño. |
 | ![img - ballesta_pesada][ballesta_pesada] | **BALLESTA PESADA** | Un arma **marcial y de área** que puede hacer hasta **10** puntos de daño, aunque necesita cargar antes de realizar cada disparo. |
-- ### 5.7.  Armaduras ###
+<!-- - ### 5.7.  Armaduras ###
 | ICONO | NOMBRE | DESCRIPCIÓN |
-| -- | -- | -- |
+| -- | -- | -- | 
 - ### 5.8.  Habilidades ###
 | ICONO | NOMBRE | DESCRIPCIÓN |
-| -- | -- | -- |
-- ### 5.9.  Tipos elementales ###
+| -- | -- | -- | -->
+- ### 5.7.  Tipos elementales ###
 Los tipos elementales serán seis: _fuego, agua, tierra, aire, luz y oscuridad_.
 
 Las armas que sean de un tipo elemental determinado realizarán una pequeña cantidad extra de daño, siendo esta cantidad dependiente de las debilidades que posea el enemigo. Es decir, si el enemigo es débil a ese elemento, los puntos de daño realizados se duplicarán. Si, por el contrario, el enemigo es resistente a ese elemento, no se realizará ningún punto extra de daño.
