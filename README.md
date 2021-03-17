@@ -281,7 +281,7 @@ Respecto a las armaduras, el tipo elemental realizará la misma función que en 
 En ambos casos, tanto en armas como en armaduras, el tipo elemental estará representado con el fondo, siendo cada color una representación un elemento concreto.
 
 | ICONO | NOMBRE | ICONO | NOMBRE |
-| -- | -- | -- |
+| -- | -- | -- | -- |
 | ![img - fuego][fuego] | **FUEGO** | ![img - agua][agua] | **AGUA** |
 | ![img - viento][viento] | **VIENTO** | ![img - tierra][tierra] | **TIERRA** |
 | ![img - luz][luz] | **LUZ** | ![img - oscuridad][oscuridad] | **OSCURIDAD** |
