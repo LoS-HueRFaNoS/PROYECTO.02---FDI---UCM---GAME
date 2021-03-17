@@ -8,10 +8,13 @@
 #include "Image.h"
 #include "SDLGame.h"
 #include "SDL_macros.h"
+
+// Nuestro includes
+#include "Character.h"
+//
+
 using namespace std;
-#include "SDLTexturesManager.h"
-#include "Resources.h"
-#include "ButtonCtrl.h"
+
 Game::Game() :
 	game_(nullptr), //
 	entityManager_(nullptr), //
@@ -29,28 +32,11 @@ void Game::initGame() {
 
 	entityManager_ = new EntityManager(game_);
 
-	Entity* button = entityManager_->addEntity();
-	Transform* buttonTR = button->addComponent<Transform>(Vector2D(100, 100), Vector2D(), 50, 50, 0);
-	Image* buttonIMG = button->addComponent<Image>(game_->getTextureMngr()->getTexture(Resources::Asteroid));
-	button->addComponent<ButtonCtrl>();
-
-	//laberinto = new Laberinto();
-	//laberinto->initFromFile();
-
-	/*Entity* Fighter = entityManager_->addEntity();
-	Transform* FighterTR = Fighter->addComponent<Transform>();
-	Fighter->addComponent<FighterCtrl>();
-	Fighter->addComponent<FighterViewer>();
-	Fighter->addComponent<FighterMotion>();
-	Fighter->addComponent<Gun>(GETCMP2(Bullets, BulletsPool));
-	Fighter->addComponent<Health>();
-	FighterTR->setPos(game_->getWindowWidth() / 2 - 6, game_->getWindowHeight() / 2 - 6);
-
-	Entity* gameManager = entityManager_->addEntity();
-	gameManager->addComponent<ScoreManager>();
-	gameManager->addComponent<GameLogic>(FighterTR, GETCMP2(Game, AsteroidPool), GETCMP2(Bullets, BulletsPool), GETCMP2(Fighter, Health));
-	gameManager->addComponent<ScoreViewer>();
-	gameManager->addComponent<GameCtrl>(GETCMP2(Fighter, Health), GETCMP2(Game, AsteroidPool));*/
+	// Nuetro código
+	Entity* e = entityManager_->addEntity();
+	CharacterSheet* c = e->addComponent<CharacterSheet>();
+	c->loadFromJson(ZOMBIE);
+	//
 }
 
 void Game::closeGame() {

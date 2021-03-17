@@ -21,7 +21,7 @@
   <ItemGroup>
     <ClCompile Include="src\AudioManager.cpp" />
     <ClCompile Include="src\ButtonCtrl.cpp" />
-    <ClCompile Include="src\Character.cpp" />
+    <ClCompile Include="src\CharacterSheet.cpp" />
     <ClCompile Include="src\Collisions.cpp" />
     <ClCompile Include="src\Component.cpp" />
     <ClCompile Include="src\Entity.cpp" />
@@ -54,6 +54,7 @@
     <ClInclude Include="src\ButtonCtrl.h" />
     <ClInclude Include="src\callbacks.h" />
     <ClInclude Include="src\Character.h" />
+    <ClInclude Include="src\CharacterSheet.h" />
     <ClInclude Include="src\checkML.h" />
     <ClInclude Include="src\Collisions.h" />
     <ClInclude Include="src\Component.h" />
@@ -84,9 +85,8 @@
     <ClInclude Include="src\Vector2D.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="pruebas.json" />
-    <None Include="resources\jsons\characters.json" />
-    <None Include="resources\jsons\enemigos.json" />
+    <None Include="resources\jsons\heroes.json" />
+    <None Include="resources\jsons\enemies.json" />
     <None Include="resources\jsons\pruebasArmaduras.json" />
     <None Include="resources\jsons\pruebasArmas.json" />
   </ItemGroup>

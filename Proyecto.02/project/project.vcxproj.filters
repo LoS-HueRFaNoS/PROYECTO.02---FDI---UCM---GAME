@@ -120,14 +120,14 @@
     <ClCompile Include="src\Texture.cpp">
       <Filter>Archivos de origen\Tools/Utilities</Filter>
     </ClCompile>
-    <ClCompile Include="src\Character.cpp">
-      <Filter>Archivos de origen\Components</Filter>
-    </ClCompile>
     <ClCompile Include="src\RPGLogic.cpp">
       <Filter>Archivos de origen\Templates/Resources</Filter>
     </ClCompile>
     <ClCompile Include="src\ButtonCtrl.cpp">
       <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="src\CharacterSheet.cpp">
+      <Filter>Archivos de origen\Components</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -209,9 +209,6 @@
     <ClInclude Include="src\Texture.h">
       <Filter>Archivos de encabezado\Tools/Utilities</Filter>
     </ClInclude>
-    <ClInclude Include="src\Character.h">
-      <Filter>Archivos de encabezado\Components</Filter>
-    </ClInclude>
     <ClInclude Include="src\RPGLogic.h">
       <Filter>Archivos de encabezado\Templates/Resources</Filter>
     </ClInclude>
@@ -230,6 +227,12 @@
     <ClInclude Include="src\usings.h">
       <Filter>Archivos de encabezado\Tools/Utilities</Filter>
     </ClInclude>
+    <ClInclude Include="src\CharacterSheet.h">
+      <Filter>Archivos de encabezado\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Character.h">
+      <Filter>Archivos de encabezado\Templates/Resources</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CasillaRender.h">
@@ -237,19 +240,16 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="pruebas.json">
-      <Filter>Archivos de recursos</Filter>
-    </None>
-    <None Include="resources\jsons\characters.json">
-      <Filter>Archivos de recursos</Filter>
-    </None>
     <None Include="resources\jsons\pruebasArmaduras.json">
       <Filter>Archivos de recursos</Filter>
     </None>
     <None Include="resources\jsons\pruebasArmas.json">
       <Filter>Archivos de recursos</Filter>
     </None>
-    <None Include="resources\jsons\enemigos.json">
+    <None Include="resources\jsons\heroes.json">
+      <Filter>Archivos de recursos</Filter>
+    </None>
+    <None Include="resources\jsons\enemies.json">
       <Filter>Archivos de recursos</Filter>
     </None>
   </ItemGroup>

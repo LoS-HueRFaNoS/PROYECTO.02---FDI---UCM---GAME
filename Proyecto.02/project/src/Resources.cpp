@@ -44,7 +44,8 @@ vector<Resources::SoundInfo> Resources::sounds_ {
 
 vector<Resources::JsonInfo> Resources::jsons_{
 //
-		{ Characters, "resources/jsons/characters.json" }, //
+		{ Heroes, "resources/jsons/heroes.json" }, //
+		{ Enemies, "resources/jsons/enemies.json" }, //
 		{ Weapons, "resources/jsons/characters.json" }, //
 		{ Armors, "resources/jsons/characters.json" } //
 };

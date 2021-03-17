@@ -44,7 +44,8 @@ public:
 	};
 
 	enum JsonId : std::size_t {
-		Characters,
+		Heroes,
+		Enemies,
 		Weapons,
 		Armors
 	};

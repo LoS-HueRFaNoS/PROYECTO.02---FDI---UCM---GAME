@@ -8,7 +8,7 @@ using CmpIdType = std::size_t;
 enum CmpId : CmpIdType {
 	Transform = 0,
 	Rectangle,
-	Character,
+	CharacterSheet,
 	CasillaRender,
 	Laberinto,
 	PlayerMotion,

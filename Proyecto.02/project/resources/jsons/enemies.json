@@ -1,5 +1,5 @@
 {
-  "Heroes": [
+  "Characters": [
 
     {
       "Name": "Zombie",
@@ -7,19 +7,23 @@
       "Stats": [
         {
           "Key": "Strength",
-          "Num": 13
+          "Max": 13,
+          "Min": 13
         },
         {
           "Key": "Constitution",
-          "Num": 16
+          "Max": 16,
+          "Min": 16
         },
         {
           "Key": "Dexterity",
-          "Num": 6
+          "Max": 6,
+          "Min": 6
         },
         {
           "Key": "Intelligence",
-          "Num": 3
+          "Max": 3,
+          "Min": 3
         }
       ],
 
@@ -69,7 +73,15 @@
         }
       ],
 
-      "Experience": 10
+      "Equipement": {
+        "Check": true,
+        "ListWeapons": [
+          0
+        ],
+        "ListArmors": [
+          0
+        ]
+      }
     }
 
   ]

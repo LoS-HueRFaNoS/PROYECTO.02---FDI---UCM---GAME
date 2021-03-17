@@ -37,10 +37,16 @@ namespace rpgLogic {
 		CLERIC,
 		PALADIN,
 		BARBARIAN,
-		ROGUE, 
+		ROGUE,
 		DRUID,
 		// Escribir encima de estecomentario
-		_LastTemplateId_
+		_LastCharacterTemplateId_
+	};
+
+	enum enemyTemplate {
+		ZOMBIE,
+		// Escribir encima de estecomentario
+		_LastEnemyTemplateId_
 	};
 
 	enum mainStat {
@@ -52,3 +58,18 @@ namespace rpgLogic {
 		_LastStatId_
 	};
 }
+
+
+class Hability {
+private:
+	int _mana;
+	int _cd;
+	int _nextCast;
+
+	bool canCast() { return !_nextCast; }
+public:
+	void pastTurn() { if (_nextCast > 0) _nextCast--; }
+	int getCD() { return _cd; }
+	int nextCast() { return _nextCast; }
+	virtual void castHability() = 0;
+};
