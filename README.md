@@ -164,12 +164,10 @@ El juego se controla principalmente mediante el ***uso del ratón***, pulsando l
 * Al final de cada nivel, el jugador puede salir de la mazmorra con todos los héroes que hayan sobrevivido y así mantener todas las cosas que ha conseguido o arriesgarse y seguir avanzando para intentar superar el siguiente nivel.
 
   - #### 4.1.2. Combate ####
-
-* Cuando un enemigo o jugador realiza un ataque, realiza una tirada de fuerza o inteligencia dependiendo de si el ataque es físico o mágico. Por otro lado, el contrincante realiza una tirada de destreza: Si el número de la tirada de destreza supera al número obtenido en el ataque, el personaje no recibe daño; si es al contrario, el atacante realiza otra tirada para calcular el daño según los índices que tenga el arma o el hechizo usado.
-
+ 
 * Al coincidir con un enemigo en la misma casilla, comenzará un combate por turnos. Al comenzar el combate, se reparten los turnos según el número obtenido, por tanto, se hace una tirada por cada personaje en la batalla. Cuanto más alto sea el valor de la tirada, antes hará una acción ese personaje.
 * Las acciones que el jugador puede realizar durante un turno del combate son: _atacar, protegerse, utilizar un objeto, lanzar un hechizo y/o habilidad o huir_ (Si queremos abandonar el combate) 
-* El jugador debe seleccionar uno de los movimientos que tenga disponibles con cada uno de sus héroes. En el caso de que sea un ataque, se hará una tirada de 1d20 (+ MOD) que se comparará con la AC del objetivo así como su tirada de DEX, en el caso de superar ambas el ataque impactará. Para determinar el daño del ataque se tirará los dados requeridos por el mismo (ejemplo: Bola de Fuego 8d6 contra salvación), en el caso de que el ataque requiera una tirada de salvación por parte del objetivo se tirará 1d20 (+MOD) para calcular el daño/estado final. 
+* En el caso de que sea un ataque, se hará una tirada de 1d20 (+ MOD) que se comparará con la tirada de DEX (+ MOD), en el caso de superar el ataque impactará. Para determinar el daño del ataque se tirará los dados requeridos por el mismo (ejemplo: Bola de Fuego 8d6 contra salvación), en el caso de que el ataque requiera una tirada de salvación por parte del objetivo se tirará 1d20 (+MOD) para calcular el daño/estado final. 
 * En el caso de ser una habilidad defensiva/curativa dependerá de la descripción de la misma.
 * Cuando se hace una tirada de ataque, al tirar el 1d20 por impacto se deben tener en cuenta dos casos especiales: 
     * **Crítico (roll 20)**: en el caso de sacar un 20 en una tirada de ataque se impactará al objetivo sin importar su AC, DEX o modificadores. También se volverá a tirar los dados de daño el doble de veces (ejemplo: si ataco con una daga con daño 1d4 y sale crítico atacará con 2d4 en su lugar).
