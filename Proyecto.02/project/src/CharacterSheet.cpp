@@ -45,10 +45,9 @@ void CharacterSheet::loadFromJson(string file, int t)
 
 			// JSON DE ARMAS Y ARMADURAS 
 
-			//armorClass = idRArmor + _stats[1].value;
 		}
 		else {
-			// armorClass = valorEnemigo
+
 		}
 	}
 	else {
@@ -66,4 +65,17 @@ void CharacterSheet::loadFromJson(enemyTemplate t)
 {
 	string file = Resources::jsons_[Resources::Enemies].filename;
 	loadFromJson(file, t);
+}
+
+bool CharacterSheet::recieveDamage(int damage, rpgLogic::damageType type)
+{
+	float res = weaknesses.getWeakness(type);
+
+	damage -= damage * res;
+
+	cout << name << " recibe " << damage << "de daño - HabilityResources.cpp linea 13" << endl;
+
+	hitPoints -= damage;
+
+	return hitPoints <= 0;
 }

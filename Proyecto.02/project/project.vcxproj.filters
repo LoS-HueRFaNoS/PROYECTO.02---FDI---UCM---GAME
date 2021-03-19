@@ -129,6 +129,12 @@
     <ClCompile Include="src\CharacterSheet.cpp">
       <Filter>Archivos de origen\Components</Filter>
     </ClCompile>
+    <ClCompile Include="src\HabilityResources.cpp">
+      <Filter>Archivos de origen\Templates/Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Character.cpp">
+      <Filter>Archivos de origen\Templates/Resources</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\ecs.h">
@@ -231,6 +237,9 @@
       <Filter>Archivos de encabezado\Components</Filter>
     </ClInclude>
     <ClInclude Include="src\Character.h">
+      <Filter>Archivos de encabezado\Templates/Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="src\HabilityResources.h">
       <Filter>Archivos de encabezado\Templates/Resources</Filter>
     </ClInclude>
   </ItemGroup>

@@ -21,6 +21,7 @@
   <ItemGroup>
     <ClCompile Include="src\AudioManager.cpp" />
     <ClCompile Include="src\ButtonCtrl.cpp" />
+    <ClCompile Include="src\Character.cpp" />
     <ClCompile Include="src\CharacterSheet.cpp" />
     <ClCompile Include="src\Collisions.cpp" />
     <ClCompile Include="src\Component.cpp" />
@@ -28,6 +29,7 @@
     <ClCompile Include="src\Font.cpp" />
     <ClCompile Include="src\FontsManager.cpp" />
     <ClCompile Include="src\Game.cpp" />
+    <ClCompile Include="src\HabilityResources.cpp" />
     <ClCompile Include="src\InputHandler.cpp" />
     <ClCompile Include="src\jute.cpp" />
     <ClCompile Include="src\main.cpp" />
@@ -63,6 +65,7 @@
     <ClInclude Include="src\Font.h" />
     <ClInclude Include="src\FontsManager.h" />
     <ClInclude Include="src\Game.h" />
+    <ClInclude Include="src\HabilityResources.h" />
     <ClInclude Include="src\InputHandler.h" />
     <ClInclude Include="src\jute.h" />
     <ClInclude Include="src\Manager.h" />

@@ -19,14 +19,13 @@ namespace rpgLogic {
 	};
 
 
-	enum modStat {
+	enum mainStat {
 		STR,
 		CON,
 		DEX,
 		INT,
-		NULLMOD,
 		// Escribir encima de estecomentario
-		_LastModId_
+		_LastStatId_
 	};
 
 	enum characterTemplate {
@@ -49,27 +48,6 @@ namespace rpgLogic {
 		_LastEnemyTemplateId_
 	};
 
-	enum mainStat {
-		STRENGTH,
-		CONSTITUTION,
-		DEXTERITY,
-		INTELLIGENCE,
-		// Escribir encima de estecomentario
-		_LastStatId_
-	};
+	int throwDice(int n, int dice);
 }
 
-
-class Hability {
-private:
-	int _mana;
-	int _cd;
-	int _nextCast;
-
-	bool canCast() { return !_nextCast; }
-public:
-	void pastTurn() { if (_nextCast > 0) _nextCast--; }
-	int getCD() { return _cd; }
-	int nextCast() { return _nextCast; }
-	virtual void castHability() = 0;
-};

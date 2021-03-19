@@ -55,12 +55,9 @@ private:
 	int hitPoints = 10;
 	//Mana
 	int manaPoints = 10;
-	//Clase de armadura
-	int armorClass = 10;
 
 	//Debilidades
 	Weaknesses weaknesses;
-
 
 	void loadFromJson(string json, int t);
 
@@ -83,5 +80,9 @@ public:
 	void changeStat(mainStat st, int change) {
 		_stats[st].value += change;
 	}
+
+	bool recieveDamage(int damage, rpgLogic::damageType type);
+	
+
 };
 #endif
