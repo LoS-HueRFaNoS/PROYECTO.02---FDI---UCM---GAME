@@ -1,16 +1,17 @@
 #pragma once
 #include <string>
 #include <list>
-#include "Game.h"
+#include "SDLGame.h"
 #include "Panel.h"
+
 using namespace std;
 
-enum idPanel {Fight, Movement, Minimap, Heroes, Info, Inventory, HeroesStats, BigMap, Turns, Settings, Chat};
 class Interfaz {
 private:
-	//list<Panel*> allPanels;
+	list<Panel*> allPanels;
 	int contador;
-	Game* game_;
+	SDLGame* game_;
+	EntityManager* mngr_;
 
 	void createFight(){};
 	void createMovement();
@@ -25,7 +26,7 @@ private:
 	void createChat(){};
 
 public:
-	Interfaz(Game* juego);
+	Interfaz(SDLGame* juego, EntityManager* manager);
 	~Interfaz();
 
 	void createPanel(idPanel panelID);

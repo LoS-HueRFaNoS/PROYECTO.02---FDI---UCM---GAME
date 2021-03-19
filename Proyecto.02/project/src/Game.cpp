@@ -16,6 +16,7 @@ using namespace std;
 #include "Resources.h"
 #include "ButtonCtrl.h"
 #include "Button.h"
+#include "Interfaz.h"
 Game::Game() :
 	game_(nullptr), //
 	entityManager_(nullptr), //
@@ -32,7 +33,8 @@ void Game::initGame() {
 	game_ = SDLGame::init("VAMOS A LLORAR CON SDL", _WINDOW_WIDTH_, _WINDOW_HEIGHT_);
 
 	entityManager_ = new EntityManager(game_);
-	Button b = Button(game_, entityManager_, Vector2D(100, 100), 50, 50, Resources::Asteroid);
+	//Button b = Button(game_, entityManager_, Vector2D(100, 100), 50, 50, Resources::Asteroid);
+	Interfaz F = Interfaz(game_, entityManager_);
 	
 	/*Entity* laberinto = entityManager_->addEntity();
 	Laberinto* lab = laberinto->addComponent<Laberinto>(entityManager_) ;

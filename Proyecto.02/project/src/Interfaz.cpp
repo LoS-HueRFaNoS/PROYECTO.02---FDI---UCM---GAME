@@ -1,18 +1,24 @@
 #include "Interfaz.h"
+#include "Button.h"
 
 void Interfaz::createMovement()
 {
-	/*Panel* p = new Panel();
+	Panel* p = new Panel(Movement);
 	allPanels.push_back(p);
-	p->addButton(new Button(Vector2D(0,0), ANCHO, ALTO, IMAGEN, CALLBACK));
-	p->addButton(new Button(Vector2D(0, 0), ANCHO, ALTO, IMAGEN, CALLBACK));
-	p->addButton(new Button(Vector2D(0, 0), ANCHO, ALTO, IMAGEN, CALLBACK));
-	p->addButton(new Button(Vector2D(0, 0), ANCHO, ALTO, IMAGEN, CALLBACK));*/
+	p->addButton(new Button(game_, mngr_, Vector2D(100, 100), 50, 50, Resources::Asteroid));
+	p->addButton(new Button(game_, mngr_, Vector2D(150, 100), 50, 50, Resources::Asteroid));
+	p->addButton(new Button(game_, mngr_, Vector2D(200, 100), 50, 50, Resources::Asteroid));
+	p->addButton(new Button(game_, mngr_, Vector2D(250, 100), 50, 50, Resources::Asteroid));
 }
 
-Interfaz::Interfaz(Game* juego)
+Interfaz::Interfaz(SDLGame* juego, EntityManager* manager)
 {
 	game_ = juego;
+	mngr_ = manager;
+	createPanel(Movement);
+	createPanel(Minimap);
+	createPanel(Heroes);
+	createPanel(Info);
 }
 
 Interfaz::~Interfaz()
@@ -57,7 +63,6 @@ void Interfaz::createPanel(idPanel panelID)
 		break;
 	}
 }
-
 
 void Interfaz::destroyPanel(idPanel panelID)
 {
