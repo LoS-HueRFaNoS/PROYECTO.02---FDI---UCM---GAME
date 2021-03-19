@@ -8,6 +8,9 @@
 #include "Image.h"
 #include "SDLGame.h"
 #include "SDL_macros.h"
+#include "MazePos.h"
+#include "PlayerMotion.h"
+#include "PlayerViewer.h"
 using namespace std;
 #include "SDLTexturesManager.h"
 #include "Resources.h"
@@ -33,9 +36,15 @@ void Game::initGame() {
 	Transform* buttonTR = button->addComponent<Transform>(Vector2D(100, 100), Vector2D(), 50, 50, 0);
 	Image* buttonIMG = button->addComponent<Image>(game_->getTextureMngr()->getTexture(Resources::Asteroid));
 	button->addComponent<ButtonCtrl>();
+	Entity* laberinto = entityManager_->addEntity();
+	Laberinto* lab = laberinto->addComponent<Laberinto>(entityManager_) ;
+	lab -> initFromFile();
 
-	//laberinto = new Laberinto();
-	//laberinto->initFromFile();
+	Entity* player = entityManager_->addEntity();
+	player->addComponent<MazePos>(Vector2D(0,0));
+	player->addComponent<PlayerMotion>(SDLK_UP,SDLK_LEFT,SDLK_RIGHT,lab);
+	player->addComponent<PlayerViewer>(lab);
+
 
 	/*Entity* Fighter = entityManager_->addEntity();
 	Transform* FighterTR = Fighter->addComponent<Transform>();

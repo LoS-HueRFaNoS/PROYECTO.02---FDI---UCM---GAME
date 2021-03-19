@@ -5,7 +5,6 @@
 #include "Manager.h"
 #include "SDLGame.h"
 #include "checkML.h"
-
 class Game {
 
 public:

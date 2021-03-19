@@ -15,13 +15,12 @@ public:
 		Asteroid,
 		Heart,
 		WhiteRect,
-		Pasillo1,
-		Pasillo2,
-		Pasillo3,
-		Pasillo4,
-		Pasillo5,
-		Pasillo6,
-		Pasillo7,
+		camino_izq,
+		camino_der,
+		camino_del,
+		muro_izq,
+		muro_der,
+		muro_del,
 
 		// text
 		HelloWorld,
@@ -41,6 +40,12 @@ public:
 
 	enum FontId : std::size_t {
 		ARIAL16, ARIAL24,
+	};
+
+	enum JsonId : std::size_t {
+		Characters,
+		Weapons,
+		Armors
 	};
 
 	struct FontInfo {
@@ -72,11 +77,17 @@ public:
 
 	};
 
+	struct JsonInfo {
+		JsonId id;
+		string filename;
+	};
+
 	static vector<FontInfo> fonts_; // initialized in .cpp
 	static vector<ImageInfo> images_; // initialized in .cpp
 	static vector<TextMsgInfo> messages_; // initialized in .cpp
 	static vector<MusicInfo> musics_; // initialized in .cpp
 	static vector<SoundInfo> sounds_; // initialized in .cpp
+	static vector<JsonInfo> jsons_; // initialized in .cpp
 	//static vector<ClassTemplates> classTemplates_;
 
 };

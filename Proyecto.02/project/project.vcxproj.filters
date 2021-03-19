@@ -126,13 +126,13 @@
     <ClCompile Include="src\RPGLogic.cpp">
       <Filter>Archivos de origen\Templates/Resources</Filter>
     </ClCompile>
-    <ClCompile Include="src\JSON.cpp">
-      <Filter>Archivos de origen\Templates/Resources</Filter>
-    </ClCompile>
     <ClCompile Include="src\ButtonCtrl.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
     <ClCompile Include="src\Interfaz.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="TheElementalMaze.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
   </ItemGroup>
@@ -233,10 +233,40 @@
     <ClInclude Include="src\Interfaz.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
+    <ClInclude Include="src\PlayerMotion.h">
+      <Filter>Archivos de encabezado\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="src\usings.h">
+      <Filter>Archivos de encabezado\Tools/Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="src\MazePos.h">
+      <Filter>Archivos de encabezado\Components</Filter>
+    </ClInclude>
     <ClInclude Include="CasillaRender.h">
       <Filter>Archivos de encabezado\Components</Filter>
     </ClInclude>
+    <ClInclude Include="src\PlayerViewer.h">
+      <Filter>Archivos de encabezado\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="TheElementalMaze.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="pruebas.json">
+      <Filter>Archivos de recursos</Filter>
+    </None>
+    <None Include="resources\jsons\characters.json">
+      <Filter>Archivos de recursos</Filter>
+    </None>
+    <None Include="resources\jsons\pruebasArmaduras.json">
+      <Filter>Archivos de recursos</Filter>
+    </None>
+    <None Include="resources\jsons\pruebasArmas.json">
+      <Filter>Archivos de recursos</Filter>
+    </None>
+    <None Include="resources\jsons\enemigos.json">
+      <Filter>Archivos de recursos</Filter>
+    </None>
   </ItemGroup>
 </Project>

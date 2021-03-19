@@ -6,9 +6,10 @@
 #include <assert.h>
 
 using namespace std;
+typedef unsigned int uint;
 
 SRandBasedGenerator::SRandBasedGenerator() :
-		seed_(int(std::time(0))) {
+		seed_(uint(std::time(0))) {
 }
 
 SRandBasedGenerator::SRandBasedGenerator(unsigned seed) :
