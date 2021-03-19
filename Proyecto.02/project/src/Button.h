@@ -1,19 +1,11 @@
 #pragma once
+#include "Entity.h"
+#include "Resources.h"
+typedef unsigned int uint;
 
-#include "Component.h"
-#include "checkML.h"
-
-class Game;
-using CallBackOnClick = void(Game* app);
-
-class Button : public Component
+class Button : public Entity
 {
-private:
-	CallBackOnClick* cbOnClick = nullptr;
 public:
-	Button() : Component(ecs::Button) {};
+	Button(SDLGame* g, EntityManager* mngr, Vector2D pos, uint ancho, uint alto, Resources::TextureId imagen);
 	virtual ~Button() {};
-protected:
-
 };
-
