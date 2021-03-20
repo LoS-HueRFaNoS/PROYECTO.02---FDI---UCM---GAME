@@ -12,23 +12,19 @@ private:
 
 	vector<Hability*> _habilities;
 
-	vector<AlteredState*> _states;
-
 	void init() {}
 public:
 
-	Character(SDLGame* game, EntityManager* mngr) :_sheet(CharacterSheet()), _habilities(vector<Hability*>()), _states(vector<AlteredState*>()), Entity(game, mngr) {
+	Character(SDLGame* game, EntityManager* mngr) :_sheet(CharacterSheet()), _habilities(vector<Hability*>()), Entity(game, mngr) {
 		init();
 	}
-
-	bool checkHit(int hit);
 
 	void recieveDamage(int damage, rpgLogic::damageType type);
 
 	bool savingThrow(int save, rpgLogic::mainStat stat);
 
 	void castHability(int hability, Character* objective) {
-		_habilities[hability]->castHability(this, objective);
+		_habilities[hability]->throwHability(objective);
 	}
 
 	int getMod(rpgLogic::mainStat stat) {
