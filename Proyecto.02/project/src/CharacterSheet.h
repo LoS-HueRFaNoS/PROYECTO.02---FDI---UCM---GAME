@@ -2,6 +2,7 @@
 #define _CHARACTER_SHEET_
 #include "Component.h"
 #include "RPGLogic.h"
+#include "checkML.h"
 
 using namespace rpgLogic;
 
@@ -45,23 +46,22 @@ public:
 
 private:
 
-	//Nombre (Clase del heroe o tipo de criatura) 
+	//Nombre del personaje ( o enemigo)
 	string name = "DefaultClass";
 
 	//Caracteristicas 
 	vector<Stat> _stats;
 
 	//Salud
-	int hitPoints = 10;
+	int _hitPoints = 10;
 	//Mana
-	int manaPoints = 10;
+	int _manaPoints = 10;
+
+public:
+
 
 	//Debilidades
 	Weaknesses weaknesses;
-
-	void loadFromJson(string json, int t);
-
-public:
 
 	CharacterSheet() :Component(ecs::CharacterSheet),
 		weaknesses(), _stats(vector<Stat>(4, { 10 }))
@@ -70,11 +70,32 @@ public:
 
 	~CharacterSheet(){}
 
-	void loadFromJson(characterTemplate t);
-	void loadFromJson(enemyTemplate t);
-
 	Stat getStat(mainStat st) {
 		return _stats[st];
+	}
+
+	void setStat(mainStat st, int set) {
+		_stats[st].value = set;
+	}
+
+	void setStat(int st, int set) {
+		_stats[st].value = set;
+	}
+
+	int hitPoints() {
+		return _hitPoints;
+	}
+
+	void setHitPoints(int set) {
+		_hitPoints = set;
+	}
+
+	int manaPoints() {
+		return _hitPoints;
+	}
+
+	void setManaPoints(int set) {
+		_manaPoints = set;
 	}
 
 	void changeStat(mainStat st, int change) {
@@ -82,7 +103,5 @@ public:
 	}
 
 	bool recieveDamage(int damage, rpgLogic::damageType type);
-	
-
 };
 #endif

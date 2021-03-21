@@ -33,15 +33,22 @@ void Game::initGame() {
 	entityManager_ = new EntityManager(game_);
 
 	// Nuetro código
-	Entity* e = entityManager_->addEntity();
-	CharacterSheet* c = e->addComponent<CharacterSheet>();
-	c->loadFromJson(ZOMBIE);
+	Hero* h1 = new Hero(game_, entityManager_);
+	Enemy* e1 = new Enemy(game_, entityManager_);
+
+	h1->loadFromTemplate(rpgLogic::WIZARD);
+	e1->loadFromTemplate(rpgLogic::ZOMBIE);
+
+	h1->addHability<Fireball>();
+
+	h1->castHability(0, e1);
+
 	//
 }
 
 void Game::closeGame() {
 	delete entityManager_;
-	//delete laberinto;
+
 }
 
 void Game::start() {

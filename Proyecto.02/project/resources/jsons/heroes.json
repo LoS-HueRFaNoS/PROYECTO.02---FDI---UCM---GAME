@@ -73,7 +73,6 @@
       ],
 
       "Equipement": {
-        "Check": true,
         "ListWeapons": [
           0
         ],

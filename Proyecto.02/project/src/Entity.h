@@ -49,7 +49,7 @@ public:
 			c->draw();
 		}
 	}
-private:
+protected:
 	SDLGame *game_;
 	EntityManager* mngr_;
 

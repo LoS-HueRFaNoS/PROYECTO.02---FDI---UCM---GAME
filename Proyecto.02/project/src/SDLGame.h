@@ -7,6 +7,7 @@
 #include "FontsManager.h"
 #include "RandomNumberGenerator.h"
 #include "RPGLogic.h"
+#include "checkML.h"
 
 #include <string>
 #include <memory>

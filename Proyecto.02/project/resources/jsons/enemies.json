@@ -7,23 +7,19 @@
       "Stats": [
         {
           "Key": "Strength",
-          "Max": 13,
-          "Min": 13
+          "Value": 13
         },
         {
           "Key": "Constitution",
-          "Max": 16,
-          "Min": 16
+          "Value": 16
         },
         {
           "Key": "Dexterity",
-          "Max": 6,
-          "Min": 6
+          "Value": 6
         },
         {
           "Key": "Intelligence",
-          "Max": 3,
-          "Min": 3
+          "Value": 3
         }
       ],
 
@@ -71,17 +67,7 @@
           "Key": "Dark",
           "Value": 0.0
         }
-      ],
-
-      "Equipement": {
-        "Check": true,
-        "ListWeapons": [
-          0
-        ],
-        "ListArmors": [
-          0
-        ]
-      }
+      ]
     }
 
   ]

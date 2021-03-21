@@ -4,7 +4,7 @@
 
 // ---------------- EJEMPLO CON UNA BOLA DE FUEGO -----------------------
 
-void Fireball::throwHability(Character* obj)
+void Fireball::throwHability(Character* obj) const 
 {
 	int damage = throwDice(8, 6);
 

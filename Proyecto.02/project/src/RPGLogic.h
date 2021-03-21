@@ -48,10 +48,10 @@ namespace rpgLogic {
 		_LastEnemyTemplateId_
 	};
 
-	enum SpellId {
+	/*enum SpellId {
 		Fireball,
 		_LastSpellId_
-	};
+	};*/
 
 	int throwDice(int n, int dice);
 }

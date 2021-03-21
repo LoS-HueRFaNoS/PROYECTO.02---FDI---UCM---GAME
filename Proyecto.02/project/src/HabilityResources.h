@@ -52,35 +52,28 @@ enum ObjectiveType
 
 class Hability {
 protected:
+	int level;
 	int _mana;
-	int _cd;
-	int _nextCast;
+
 	damageType _type;
 	mainStat _mod;
 	ObjectiveType _obj;
 
+
 	Character* _caster;
 
-	bool canCast() { return !_nextCast; }
-
 public:
-	Hability() :_caster(nullptr), _mana(0), _cd(0), _nextCast(0), _type(_LastTypeId_), _obj(CASTER), _mod(_LastStatId_) {}
+	Hability() :_caster(nullptr), _mana(0), _type(_LastTypeId_), _obj(CASTER), _mod(_LastStatId_) {}
 
-	Hability(Character* caster, int mana, int cd, damageType type, ObjectiveType obj, mainStat mod) :_caster(caster), _mana(mana), _cd(cd), _nextCast(0), _type(type), _obj(obj), _mod(mod) {}
+	Hability(Character* caster, int mana, damageType type, ObjectiveType obj, mainStat mod) :_caster(caster), _mana(mana), _type(type), _obj(obj), _mod(mod) {}
 
 	~Hability() {}
-
-	void passTurn() { if (_nextCast > 0) _nextCast--; }
-
-	int getCD() { return _cd; }
-
-	int nextCast() { return _nextCast; }
 
 	int getMana() { return _mana; }
 
 	Character* getCaster() { return _caster; }
 
-	virtual void throwHability(Character* obj) = 0;
+	virtual void throwHability(Character* obj)const = 0;
 };
 
 
@@ -88,9 +81,9 @@ public:
 
 class Fireball : public Hability {
 public:
-	Fireball(Character* caster) :Hability(caster, 5, 5, FIRE, ENEMYTEAM, INT) {	}
+	Fireball(Character* caster) :Hability(caster, 5, FIRE, ENEMYTEAM, INT) {	}
 
-	virtual void throwHability(Character* obj);
+	void throwHability(Character* obj)const override;
 };
 
 // ----------------------------------------------------------------------
