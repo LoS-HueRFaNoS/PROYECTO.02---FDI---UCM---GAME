@@ -24,10 +24,22 @@ Game::~Game() {
 }
 
 void Game::initGame() {
-
-	
+	game_ = SDLGame::init("VAMOS A LLORAR CON SDL", _WINDOW_WIDTH_, _WINDOW_HEIGHT_);
+	entityManager_ = new EntityManager(game_);
+	createLaberinto();
 }
 
+void Game::createLaberinto()
+{
+	Entity* laberinto = entityManager_->addEntity();
+	Laberinto* lab = laberinto->addComponent<Laberinto>(entityManager_,10,10);
+	Vector2D entrada = Vector2D(0,rand()% lab->mazeHeigh());
+	lab->createRandomMaze(entrada);	
+	Entity* player = entityManager_->addEntity();
+	player->addComponent<MazePos>(entrada);
+	player->addComponent<PlayerMotion>(SDLK_UP, SDLK_LEFT, SDLK_RIGHT, lab);
+	player->addComponent<PlayerViewer>(lab);
+}
 void Game::closeGame() {
 	delete entityManager_;
 }

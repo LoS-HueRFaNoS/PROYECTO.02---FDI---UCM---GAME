@@ -6,12 +6,16 @@
 
 using namespace std;
 
+
+
 Laberinto::Laberinto(EntityManager* entityManager_,int h_, int w_) :Component(ecs::Laberinto),entityManager(entityManager_),h(h_),w(w_)
 {
+	salida = Vector2D(w, 0);
 
 }
-Laberinto::Laberinto(EntityManager* entityManager_) : Component(ecs::Laberinto),entityManager(entityManager_), h(), w()
+Laberinto::Laberinto(EntityManager* entityManager_) : Component(ecs::Laberinto),entityManager(entityManager_), h(5), w(5)
 {
+	salida = Vector2D(w,0);
 
 }
 
@@ -44,7 +48,7 @@ void Laberinto::initFromFile()
 			{
 				input >> norte >> este >> sur >> oeste; // Se recoge el siguiente dato
 
-				auto a = new Casilla(i, j, norte, este, sur, oeste);
+				auto a = new Casilla( norte, este, sur, oeste);
 				laberinto[j][i] = a;
 			}
 		}
@@ -52,14 +56,109 @@ void Laberinto::initFromFile()
 	}
 }
 
-Vector2D Laberinto::getEntrada()
+Vector2D Laberinto::getSalida()
 {
-	return Vector2D(0, 0);
+	return salida;
 }
 
-void Laberinto::createRandomMaze(int s)
+void Laberinto::createRandomMaze(Vector2D entrada)
 {
-	laberinto = vector<vector<Casilla*>>(s, vector<Casilla*>(s, new Casilla()));
+	int x, y;
+	x = (w/2)+ rand() % (w / 2);
+	y = (h/2)+ rand() % (h / 2);
+	salida = Vector2D(x,y);
+	laberinto.resize(h);
+	for (int i = 0; i < h; ++i)
+		laberinto[i].resize(w);
+	maze1D.resize(w * h);
+	x = entrada.getX();
+	y = entrada.getY();
+
+	maze1D[y * w + x] = true;
+	m_stack.push_back(Vector2D(x, y));
+	laberinto[x][y] = new Casilla();
+	cellsCreated = 1;
+
+	// Create a set of unvisted neighbours
+	vector<Look> neighbours;
+	while (cellsCreated < w*h)
+	{
+		x = m_stack.back().getX();
+		y = m_stack.back().getY();
+		// North neighbour
+		if (y> 0 && !maze1D[(y-1)*w+x])
+			neighbours.push_back(Norte);
+		// East neighbour
+		if (x < w -1 && !maze1D[y * w + (x+1)])
+			neighbours.push_back(Este);
+		// South neighbour
+		if (y< h-1 && !maze1D[(y+1) * w + x])
+			neighbours.push_back(Sur);
+		// West neighbour
+		if (x > 0 && !maze1D[y * w + (x-1)])
+			neighbours.push_back(Oeste);
+
+		// Are there any neighbours available?
+		if (!neighbours.empty())
+		{
+			// Choose one available neighbour at random
+			int next_cell_dir = neighbours[rand() % neighbours.size()];
+
+			// Create a path between the neighbour and the current cell
+			switch (next_cell_dir)
+			{
+			case 0: // North
+				laberinto[x][y]->setDirs(Norte);
+				y--;
+				laberinto[x][y] = new Casilla();
+				laberinto[x][y]->setDirs(Sur);
+
+				
+				break;
+
+			case 1: // East
+				laberinto[x][y]->setDirs(Este);
+				x++;				
+				laberinto[x][y] = new Casilla();
+				laberinto[x][y]->setDirs(Oeste);
+
+				break;
+
+			case 2: // South
+				laberinto[x][y]->setDirs(Sur);
+				y++;
+				laberinto[x][y] = new Casilla();
+				laberinto[x][y]->setDirs(Norte);
+				break;
+
+			case 3: // West
+				laberinto[x][y]->setDirs(Oeste);
+				x--;
+				laberinto[x][y] = new Casilla();
+				laberinto[x][y]->setDirs(Este);
+				break;
+
+			}
+			maze1D[y * w + x] = true;
+			m_stack.push_back(Vector2D(x, y));
+			cellsCreated++;
+
+			if (x == salida.getX() && y == salida.getY())
+			{
+				shortestWay = new vector<Vector2D>( m_stack);
+				laberinto[x][y]->setSalida();
+			}
+		}
+		else
+		{
+			// No available neighbours so backtrack!
+			m_stack.pop_back();
+		}
+		neighbours.clear();
+	} 
+
+
+
 }
 Casilla* Laberinto::getCasillaInfo(int x, int y)
 {
