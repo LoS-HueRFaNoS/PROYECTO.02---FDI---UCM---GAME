@@ -16,6 +16,7 @@ void Character::loadFromTemplate(enemyTemplate t)
 	string file = Resources::jsons_[Resources::Enemies].filename;
 	loadFromJson(file, t);
 }
+
 void Character::recieveDamage(int damage, rpgLogic::damageType type)
 {
 	if (_sheet->recieveDamage(damage, type)) {

@@ -2,433 +2,246 @@
     "Armas": [
 
         {
-            "Simple":
-            [
-
-                {
-                    "Name": "Desarmado",
-
-                    "Hands": 0,
-
-                    "Ndice": 0,
-                    "Damage": 1,
-
-                    "Type": 0,
-
-                    "Weight": 0
-
-
-                },
-                {
-                    "Name": "Baston",
-
-
-                    "Key": 2,
-
-                    "Ndice": 1,
-                    "Damage": 8,
-
-                    "Type": 0,
-
-                    "Weight": 2
-
-
-                },
-
-                {
-                    "Name": "Daga",
-
-
-                    "Hands": 1,
-
-                    "Ndice": 1,
-                    "Number": 4,
-
-                    "Type": 1,
-
-                    "Weight": 1
-
-                },
-
-                {
-                    "Name": "Clava",
-
-                    "Hands": 2,
-
-                    "Ndice": 1,
-                    "Number": 8,
-
-                    "Type": 0,
-
-                    "Weight": 2
-
-                },
-
-                {
-                    "Name": "Hacha pequena",
-
-
-                    "Hands": 1,
-
-                    "Ndice": 1,
-                    "Number": 6,
-
-                    "Type": 2,
-
-                    "Weight": 1
-
-                },
-
-                {
-                    "Name": "Hoz",
-
-
-                    "Hands": 1,
-
-
-
-                    "Ndice": 1,
-                    "Number": 4,
-
-                    "Type": 2,
-
-
-
-                    "Weight": 1
-
-                },
-
-                {
-                    "Name": "Lanza",
-
-                    "Hands": 2,
-
-
-
-                    "Ndice": 1,
-                    "Number": 12,
-
-                    "Type": 1,
-
-
-                    "Weight": 2
-
-                },
-
-                {
-                    "Name": "Martillo Pequeno",
-
-                    "Hands": 2,
-
-
-
-                    "Ndice": 1,
-                    "Number": 4,
-
-                    "Type": 0,
-
-
-                    "Weight": 1
-
-                },
-                {
-                    "Name": "Maza",
-
-                    "Hands": 2,
-
-
-
-                    "Ndice": 1,
-                    "Number": 6,
-
-                    "Type": 0,
-
-
-                    "Weight": 1
-
-                },
-                {
-                    "Name": "Arco pequeno",
-
-                    "Hands": 2,
-
-
-
-                    "Ndice": 1,
-                    "Number": 6,
-
-                    "Type": 1,
-
-
-                    "Weight": 1
-
-                },
-
-                {
-                    "Name": "Ballesta Ligera",
-                    "Hands": 2,
-
-
-
-                    "Ndice": 1,
-                    "Number": 8,
-
-                    "Type": 2,
-
-
-                    "Weight": 1
-
-                }
-
-
-
-            ],
+          "Simple": [
+
+            {
+              "Name": "Desarmado",
+              "Hands": 0,
+              "Ndice": 0,
+              "Damage": 1,
+              "Type": 0,
+              "Weight": 0
+            },
+
+            {
+              "Name": "Baston",
+              "Hands": 2,
+              "Ndice": 1,
+              "Damage": 8,
+              "Type": 0,
+              "Weight": 2
+            },
+
+            {
+              "Name": "Daga",
+              "Hands": 1,
+              "Ndice": 1,
+              "Damage": 4,
+              "Type": 1,
+              "Weight": 1
+            },
+
+            {
+              "Name": "Clava",
+              "Hands": 2,
+              "Ndice": 1,
+              "Damage": 8,
+              "Type": 0,
+              "Weight": 2
+            },
+
+            {
+              "Name": "Hacha pequena",
+              "Hands": 1,
+              "Ndice": 1,
+              "Damage": 6,
+              "Type": 2,
+              "Weight": 1
+            },
+
+            {
+              "Name": "Hoz",
+              "Hands": 1,
+              "Ndice": 1,
+              "Damage": 4,
+              "Type": 2,
+              "Weight": 1
+            },
+
+            {
+              "Name": "Lanza",
+              "Hands": 2,
+              "Ndice": 1,
+              "Damage": 12,
+              "Type": 1,
+              "Weight": 2
+            },
+
+            {
+              "Name": "Martillo Pequeno",
+              "Hands": 2,
+              "Ndice": 1,
+              "Damage": 4,
+              "Type": 0,
+              "Weight": 1
+            },
+
+            {
+              "Name": "Maza",
+              "Hands": 2,
+              "Ndice": 1,
+              "Damage": 6,
+              "Type": 0,
+              "Weight": 1
+            },
+
+            {
+              "Name": "Arco pequeno",
+              "Hands": 2,
+              "Ndice": 1,
+              "Damage": 6,
+              "Type": 1,
+              "Weight": 1
+            },
+
+            {
+              "Name": "Ballesta Ligera",
+              "Hands": 2,
+              "Ndice": 1,
+              "Damage": 8,
+              "Type": 2,
+              "Weight": 1
+            }
+          ],
 
             "Marcial": [
 
-                {
-                    "Name": "Alabarda",
+              {
+                "Name": "Alabarda",
+                "Hands": 2,
+                "Ndice": 1,
+                "Damage": 10,
+                "Type": 2,
+                "Weight": 2
+              },
 
-                    "Hands": 2,
-
-                    "Ndice": 1,
-                    "Damage": 10,
-
-                    "Type": 2,
-
-                    "Weight": 2
-
-
-                },
                 {
                     "Name": "Atarraga",
-
-
                     "Hands": 2,
-
                     "Ndice": 2,
                     "Damage": 6,
-
                     "Type": 0,
-
                     "Weight": 2
-
-
                 },
 
                 {
                     "Name": "Espada Corta",
-
-
                     "Hands": 1,
-
                     "Ndice": 1,
-                    "Number": 6,
-
+                    "Damage": 6,
                     "Type": 2,
-
                     "Weight": 1
-
                 },
 
                 {
                     "Name": "Espada Larga",
-
                     "Hands": 1,
-
                     "Ndice": 1,
-                    "Number": 8,
-
+                    "Damage": 8,
                     "Type": 2,
-
                     "Weight": 2
-
                 },
 
                 {
                     "Name": "Espadon",
-
-
                     "Hands": 2,
-
                     "Ndice": 2,
-                    "Number": 6,
-
+                    "Damage": 6,
                     "Type": 2,
-
                     "Weight": 2
-
                 },
 
                 {
                     "Name": "Espada Ropera",
-
-
                     "Hands": 1,
-
-
-
                     "Ndice": 1,
-                    "Number": 8,
-
+                    "Damage": 8,
                     "Type": 1,
-
-
-
                     "Weight": 1
-
                 },
 
                 {
                     "Name": "Hacha de batalla",
-
                     "Hands": 2,
-
-
-
                     "Ndice": 1,
-                    "Number": 12,
-
+                    "Damage": 12,
                     "Type": 2,
-
-
                     "Weight": 2
-
                 },
 
+              {
+                "Name": "Guja",
+                "Hands": 2,
+                "Ndice": 1,
+                "Damage": 10,
+                "Type": 2,
+                "Weight": 1
+              },
+
+              {
+                "Name": "Latigo",
+                "Hands": 1,
+                "Ndice": 1,
+                "Damage": 4,
+                "Type": 2,
+                "Weight": 1
+              },
+
                 {
-                    "Name": "Guja",
-
-                    "Hands": 2,
-
-
-
-                    "Ndice": 1,
-                    "Number": 10,
-
-                    "Type": 2,
-
-
-                    "Weight": 1
-
-                },
-                {
-                    "Name": "Latigo",
-
+                    "Name": "Lucero del Alba",
                     "Hands": 1,
-
-
-
                     "Ndice": 1,
-                    "Number": 4,
-
-                    "Type": 2,
-
-
-                    "Weight": 1
-
-                },
-                {
-                    "Name": "Lucer del Alba",
-
-                    "Hands": 1,
-
-
-
-                    "Ndice": 1,
-                    "Number": 8,
-
+                    "Damage": 8,
                     "Type": 1,
-
-
                     "Weight": 1
-
                 },
 
-                {
-                    "Name": "Martillo de guerra",
-                    "Hands": 2,
+              {
+                "Name": "Martillo de guerra",
+                "Hands": 2,
+                "Ndice": 1,
+                "Damage": 10,
+                "Type": 0,
+                "Weight": 2
+              },
 
+              {
+                "Name": "Pica",
+                "Hands": 2,
+                "Ndice": 1,
+                "Damage": 10,
+                "Type": 1,
+                "Weight": 2
+              }
 
-
-                    "Ndice": 1,
-                    "Number": 10,
-
-                    "Type": 0,
-
-
-                    "Weight": 2
-
-                },
-                {
-                    "Name": "Pica",
-                    "Hands": 2,
-
-
-
-                    "Ndice": 1,
-                    "Number": 10,
-
-                    "Type": 1,
-
-
-                    "Weight": 2
-
-                }
                 {
                     "Name": "Tridente",
                     "Hands": 1,
-
-
-
                     "Ndice": 1,
-                    "Number": 6,
-
+                    "Damage": 6,
                     "Type": 1,
-
-
                     "Weight": 2
-
                 },
 
                 {
                     "Name": "Arco Largo",
                     "Hands": 2,
-
-
-
                     "Ndice": 1,
-                    "Number": 8,
-
+                    "Damage": 8,
                     "Type": 1,
-
-
                     "Weight": 2
-
                 },
 
                 {
                     "Name": "Ballesta Pesada",
                     "Hands": 2,
-
-
-
                     "Ndice": 1,
-                    "Number":10,
-
+                    "Damage":10,
                     "Type": 1,
-
-
                     "Weight": 2
-
                 }
-
-
-
             ]
-
         }
-
     ]
 }
     
