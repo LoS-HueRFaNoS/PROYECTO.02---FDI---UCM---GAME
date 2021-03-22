@@ -1,6 +1,12 @@
 #pragma once
 
 namespace rpgLogic {
+
+	enum characterType {
+		HERO,
+		ENEMY
+	};
+
 	enum damageType {
 		// Daños físicos
 		BLUNT,

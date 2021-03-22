@@ -57,6 +57,8 @@ void Hero::loadFromJson(string json, int t)
 			_sheet->setStat(i, game_->getRandGen()->nextInt(min, max + 1));
 		}
 
+		_sheet->name = v["Characters"][t]["Name"].as_string();
+
 		// Igual con la vida y el mana
 		_sheet->setHitPoints(v["Characters"][t]["HitPoints"].as_int());
 		_sheet->setManaPoints(v["Characters"][t]["ManaPoints"].as_int());
@@ -101,6 +103,8 @@ void Enemy::loadFromJson(string json, int t)
 		for (int i = 0; i < _LastStatId_; i++) {
 			_sheet->setStat(i, v["Characters"][t]["Stats"][i]["Value"].as_int());
 		}
+
+		_sheet->name = v["Characters"][t]["Name"].as_string();
 
 		// Igual con la vida y el mana
 		_sheet->setHitPoints(v["Characters"][t]["HitPoints"].as_int());

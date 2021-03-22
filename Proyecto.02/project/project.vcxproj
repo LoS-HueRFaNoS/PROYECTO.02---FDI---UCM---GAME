@@ -58,6 +58,7 @@
     <ClInclude Include="src\CharacterSheet.h" />
     <ClInclude Include="src\checkML.h" />
     <ClInclude Include="src\Collisions.h" />
+    <ClInclude Include="src\CombatManager.h" />
     <ClInclude Include="src\Component.h" />
     <ClInclude Include="src\ecs.h" />
     <ClInclude Include="src\Entity.h" />

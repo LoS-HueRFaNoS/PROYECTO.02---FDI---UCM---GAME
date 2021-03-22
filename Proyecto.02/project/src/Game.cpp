@@ -10,7 +10,7 @@
 #include "SDL_macros.h"
 
 // Nuestro includes
-#include "Character.h"
+#include "CombatManager.h"
 //
 
 using namespace std;

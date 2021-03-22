@@ -242,6 +242,9 @@
     <ClInclude Include="src\HabilityResources.h">
       <Filter>Archivos de encabezado\Templates/Resources</Filter>
     </ClInclude>
+    <ClInclude Include="src\CombatManager.h">
+      <Filter>Archivos de encabezado\Components</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="resources\jsons\pruebasArmaduras.json">

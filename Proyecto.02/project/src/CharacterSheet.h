@@ -46,9 +46,6 @@ public:
 
 private:
 
-	//Nombre del personaje ( o enemigo)
-	string name = "DefaultClass";
-
 	//Caracteristicas 
 	vector<Stat> _stats;
 
@@ -62,6 +59,9 @@ public:
 
 	//Debilidades
 	Weaknesses weaknesses;
+
+	//Nombre del personaje ( o enemigo)
+	string name = "DefaultClass";
 
 	CharacterSheet() :Component(ecs::CharacterSheet),
 		weaknesses(), _stats(vector<Stat>(4, { 10 }))
