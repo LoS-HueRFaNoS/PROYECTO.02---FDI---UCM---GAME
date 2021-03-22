@@ -9,7 +9,7 @@
 
 using Objective = std::vector<Character*>;
 
-class CombatManager : Component {
+class CombatManager : public Component {
 private:
 
 	vector<Hero*> _heroes;
@@ -19,7 +19,50 @@ private:
 
 	Character* currentTurn;
 
+	struct Initiative {
+		characterType type;
+		int pos;
+		int roll;
+		Initiative(characterType t, int p, int r) {
+			type = t;
+			pos = p;
+			roll = r;
+		}
+
+	};
+
+	struct initiative_roll
+	{
+		inline bool operator() (const Initiative& in1, const Initiative& in2)
+		{
+			return (in1.roll > in2.roll);
+		}
+	};
+
+	void calculateTurns() {
+		vector<Initiative> ini;
+		for (int i = 0; i < _heroes.size(); i++)
+			ini.push_back(Initiative(_heroes[i]->getType(), i, throwDice(1, _heroes[i]->getStat(DEX)) + _heroes[i]->getMod(DEX)));
+		for (int i = 0; i < _enemies.size(); i++)
+			ini.push_back(Initiative(_enemies[i]->getType(), i, throwDice(1, _enemies[i]->getStat(DEX)) + _enemies[i]->getMod(DEX)));
+
+		sort(ini.begin(), ini.end(), initiative_roll());
+
+		for (Initiative i : ini) {
+			if (i.type)
+				_turnQueue.push(_enemies[i.pos]);
+			else
+				_turnQueue.push(_heroes[i.pos]);
+		}
+
+	}
+
 public:
+
+	CombatManager() : currentTurn(nullptr), _heroes(vector<Hero*>()), _enemies(vector<Enemy*>()), Component(ecs::CombatManager)
+	{}
+
+	~CombatManager() {}
 
 	Character* nextTurn() {
 		if (!_turnQueue.empty()) return _turnQueue.front();
@@ -32,9 +75,15 @@ public:
 			_heroes.push_back(dynamic_cast<Hero*>(c));
 	}
 
+	void startCombat() {
+		currentTurn = nullptr;
+		calculateTurns();
+		passTurn();
+	}
 
 	void passTurn() {
-		_turnQueue.push(currentTurn);
+		if (currentTurn)
+			_turnQueue.push(currentTurn);
 
 		currentTurn = _turnQueue.front();
 
