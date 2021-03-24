@@ -39,6 +39,15 @@ void Game::createLaberinto()
 	player->addComponent<MazePos>(entrada);
 	player->addComponent<PlayerMotion>(SDLK_UP, SDLK_LEFT, SDLK_RIGHT, lab);
 	player->addComponent<PlayerViewer>(lab);
+	//Necesitamos cambiar el ecs.h a systemas
+	//-Necesitamos un sistema de enemigos que son enemyPool que se encarga de su construccion
+	//-En su metodo de construir tiene que pasar los parametros a laberinto para que tenga el puntero
+	//-del enemigo correspondiente.
+	//-addEnemy(10) -> random x, random y ->lab->checkCell(x,y).getEnemyV().pushback(this);
+	//-Estos enemigos puede ser un enum del tipo de enemigo
+	//using.h ->enum de enemigo --> 5
+	//getRandGen()->nextInt(0,  11) 
+	//laberinto ->createRandomMaze(entrada){  if (r <5) vec.pushback }
 }
 void Game::closeGame() {
 	delete entityManager_;

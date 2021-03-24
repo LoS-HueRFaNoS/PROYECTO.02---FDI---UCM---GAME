@@ -64,8 +64,9 @@ Vector2D Laberinto::getSalida()
 void Laberinto::createRandomMaze(Vector2D entrada)
 {
 	int x, y;
-	x = (w/2)+ rand() % (w / 2);
-	y = (h/2)+ rand() % (h / 2);
+	
+	x = game_->getRandGen()->nextInt( (w/2), w );
+	y = game_->getRandGen()->nextInt( (h/2), h);
 	salida = Vector2D(x,y);
 	laberinto.resize(h);
 	for (int i = 0; i < h; ++i)
@@ -156,9 +157,6 @@ void Laberinto::createRandomMaze(Vector2D entrada)
 		}
 		neighbours.clear();
 	} 
-
-
-
 }
 Casilla* Laberinto::getCasillaInfo(int x, int y)
 {
