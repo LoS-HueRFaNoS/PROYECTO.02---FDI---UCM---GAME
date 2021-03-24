@@ -34,6 +34,8 @@ void Game::initGame() {
 
 	// Nuetro código
 
+	cout << "Loading Characters please wait..." << endl;
+
 	Entity* manager = entityManager_->addEntity();
 	CombatManager* cm = manager->addComponent<CombatManager>();
 
@@ -54,7 +56,7 @@ void Game::initGame() {
 	e2->loadFromTemplate(rpgLogic::ZOMBIE);
 	e3->loadFromTemplate(rpgLogic::ZOMBIE);
 
-	h1->addHability<Fireball>();
+	h3->addHability<Fireball>();
 
 	cm->addCharacter(h1);
 	cm->addCharacter(h2);
@@ -66,6 +68,7 @@ void Game::initGame() {
 
 	cm->startCombat();
 
+	cout << "Characters Loaded" << endl;
 	//
 }
 

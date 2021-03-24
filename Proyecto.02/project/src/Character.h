@@ -4,6 +4,11 @@
 #include "Entity.h"
 #include "HabilityResources.h"
 
+
+#pragma region CHARACTER
+
+class CombatManager;
+
 class Character : public Entity
 {
 protected:
@@ -19,6 +24,8 @@ protected:
 	}
 
 	virtual void loadFromJson(string json, int t) {}
+
+	virtual void manageTurn(CombatManager* cm) = 0;
 
 public:
 
@@ -45,10 +52,14 @@ public:
 		return _sheet->getStat(stat).value;
 	}
 
-	void startTurn();
+	void startTurn(CombatManager* cm);
 
 	characterType getType() {
 		return _type;
+	}
+
+	string name() {
+		return _sheet->name;
 	}
 
 	template<typename T>
@@ -58,27 +69,55 @@ public:
 		return c;
 	}
 
-	
+	vector<Hability*> getHabilities() {
+		return _habilities;
+	}
 };
 
+#pragma endregion
+
+
+#pragma region HERO
 
 class Hero : public Character {
 private:
+
 	virtual void loadFromJson(string json, int t);
+
+	virtual void manageTurn(CombatManager* cm);
+
+#pragma region CombatePorConsola
+
+	void consoleTurn(CombatManager* cm);
+
+#pragma endregion
+
 public:
 	Hero(SDLGame* game, EntityManager* mngr) :Character(game, mngr, HERO) {
 		init();
 	}
 };
 
+#pragma endregion
+
+
+#pragma region ENEMY
+
 class Enemy : public Character {
 private:
+
 	virtual void loadFromJson(string json, int t);
+
+	virtual void manageTurn(CombatManager* cm);
+
 public:
 	Enemy(SDLGame* game, EntityManager* mngr) : Character(game, mngr, ENEMY) {
 		init();
 	}
 };
+
+
+#pragma endregion
 
 #endif
 

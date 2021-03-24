@@ -1,7 +1,6 @@
 #ifndef _COMBAT_MANAGER_
 #define _COMBAT_MANAGER_
 #include "Component.h"
-#include "RPGLogic.h"
 #include "Character.h"
 #include "checkML.h"
 
@@ -15,9 +14,11 @@ private:
 	vector<Hero*> _heroes;
 	vector<Enemy*> _enemies;
 
-	queue<Character*> _turnQueue;
+	vector<Character*> _turnQueue;
 
 	Character* currentTurn;
+
+	int _turn = 0;
 
 	struct Initiative {
 		characterType type;
@@ -39,33 +40,31 @@ private:
 		}
 	};
 
-	void calculateTurns() {
-		vector<Initiative> ini;
-		for (int i = 0; i < _heroes.size(); i++)
-			ini.push_back(Initiative(_heroes[i]->getType(), i, throwDice(1, _heroes[i]->getStat(DEX)) + _heroes[i]->getMod(DEX)));
-		for (int i = 0; i < _enemies.size(); i++)
-			ini.push_back(Initiative(_enemies[i]->getType(), i, throwDice(1, _enemies[i]->getStat(DEX)) + _enemies[i]->getMod(DEX)));
-
-		sort(ini.begin(), ini.end(), initiative_roll());
-
-		for (Initiative i : ini) {
-			if (i.type)
-				_turnQueue.push(_enemies[i.pos]);
-			else
-				_turnQueue.push(_heroes[i.pos]);
-		}
-
-	}
+	void calculateTurns();
 
 public:
+
+#pragma region CombatePorConsola
+
+	void consoleCombat();
+
+	void mostrarHabilidades();
+
+	void mostratEstadoEquipos();
+
+	void mostrarCola();
+
+#pragma endregion
 
 	CombatManager() : currentTurn(nullptr), _heroes(vector<Hero*>()), _enemies(vector<Enemy*>()), Component(ecs::CombatManager)
 	{}
 
 	~CombatManager() {}
 
+	void update()override;
+
 	Character* nextTurn() {
-		if (!_turnQueue.empty()) return _turnQueue.front();
+		if (!_turnQueue.empty()) return _turnQueue[_turn];
 	}
 
 	void addCharacter(Character* c) {
@@ -75,21 +74,9 @@ public:
 			_heroes.push_back(dynamic_cast<Hero*>(c));
 	}
 
-	void startCombat() {
-		currentTurn = nullptr;
-		calculateTurns();
-		passTurn();
-	}
+	void startCombat();
 
-	void passTurn() {
-		if (currentTurn)
-			_turnQueue.push(currentTurn);
-
-		currentTurn = _turnQueue.front();
-
-		_turnQueue.pop();
-	}
-
+	void passTurn();
 
 
 	//for (Character* c : obj)

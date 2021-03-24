@@ -1,9 +1,19 @@
-#include "Character.h"
 #include <fstream>
 #include <iostream>
+#include "CombatManager.h"
 #include "jute.h"
 using namespace rpgLogic;
 
+
+#pragma region CHARACTER
+
+void Character::startTurn(CombatManager* cm)
+{
+
+	// Manejar estados y cambios que ocurren al pasar de turnos
+	cout << name() << " TURN" << endl;
+	manageTurn(cm);
+}
 
 void Character::loadFromTemplate(characterTemplate t)
 {
@@ -30,10 +40,10 @@ bool Character::savingThrow(int save, rpgLogic::mainStat stat)
 	return save < (throwDice(1, 20) + _sheet->getStat(stat).getMod());
 }
 
-void Character::startTurn()
-{
+#pragma endregion
 
-}
+
+#pragma region HERO
 
 void Hero::loadFromJson(string json, int t)
 {
@@ -84,6 +94,29 @@ void Hero::loadFromJson(string json, int t)
 	}
 }
 
+void Hero::manageTurn(CombatManager* cm)
+{
+	consoleTurn(cm);
+}
+
+#pragma region CombatePorConsola
+
+void Hero::consoleTurn(CombatManager* cm)
+{
+	cout << "\nSpells: " << endl;
+
+	for (int i = 0; i < _habilities.size(); i++)
+		cout << i << ". Hability X: Description ....." << endl;
+}
+
+#pragma endregion
+
+#pragma endregion
+
+
+
+#pragma region ENEMY
+
 void Enemy::loadFromJson(string json, int t)
 {
 	ifstream in(json);
@@ -122,3 +155,10 @@ void Enemy::loadFromJson(string json, int t)
 	}
 
 }
+
+void Enemy::manageTurn(CombatManager* cm)
+{
+	cout << "AQUI EL ENEMIGO HACE COSAS" << endl;
+}
+
+#pragma endregion

@@ -24,6 +24,7 @@
     <ClCompile Include="src\Character.cpp" />
     <ClCompile Include="src\CharacterSheet.cpp" />
     <ClCompile Include="src\Collisions.cpp" />
+    <ClCompile Include="src\CombatManager.cpp" />
     <ClCompile Include="src\Component.cpp" />
     <ClCompile Include="src\Entity.cpp" />
     <ClCompile Include="src\Font.cpp" />
