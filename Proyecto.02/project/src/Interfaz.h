@@ -13,7 +13,7 @@ private:
 	Game* g_;
 	EntityManager* mngr_;
 
-	Button* createButton(Panel* p, CallBackOnClick* cb);
+	Button* createButton(Panel* p, CallBackOnClick* cb, Vector2D pos, uint width, uint height, Resources::TextureId image);
 	void createFight(){};
 	void createMovement();
 	void createMinimap(){};
