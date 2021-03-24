@@ -1,7 +1,7 @@
 #pragma once
 #include <string>
 #include <list>
-#include "SDLGame.h"
+#include "Game.h"
 #include "Panel.h"
 
 using namespace std;
@@ -10,7 +10,7 @@ class Interfaz {
 private:
 	list<Panel*> allPanels;
 	int contador;
-	SDLGame* game_;
+	Game* g_;
 	EntityManager* mngr_;
 
 	void createFight(){};
@@ -26,7 +26,7 @@ private:
 	void createChat(){};
 
 public:
-	Interfaz(SDLGame* juego, EntityManager* manager);
+	Interfaz(Game* juego, EntityManager* manager);
 	~Interfaz();
 
 	void createPanel(idPanel panelID);

@@ -1,19 +1,24 @@
 #include "Interfaz.h"
 #include "Button.h"
+#include "callbacks.h"
+#include "SDLGame.h"
 
 void Interfaz::createMovement()
 {
+	SDLGame* game_ = g_->getSDLGame();
 	Panel* p = new Panel(Movement);
 	allPanels.push_back(p);
-	p->addButton(new Button(game_, mngr_, Vector2D(100, 100), 50, 50, Resources::Asteroid));
-	p->addButton(new Button(game_, mngr_, Vector2D(150, 100), 50, 50, Resources::Asteroid));
-	p->addButton(new Button(game_, mngr_, Vector2D(200, 100), 50, 50, Resources::Asteroid));
-	p->addButton(new Button(game_, mngr_, Vector2D(250, 100), 50, 50, Resources::Asteroid));
+	p->addButton(new Button(game_, g_, mngr_, Vector2D(100, 100), 50, 50, Resources::Asteroid));
+	p->addButton(new Button(game_, g_, mngr_, Vector2D(150, 100), 50, 50, Resources::Asteroid));
+	p->addButton(new Button(game_, g_, mngr_, Vector2D(200, 100), 50, 50, Resources::Asteroid));
+	Button* b = new Button(game_, g_, mngr_, Vector2D(250, 100), 50, 50, Resources::WhiteRect);
+	p->addButton(b);
+	b->setCB(callbacksOnClick::pruebaGame);
 }
 
-Interfaz::Interfaz(SDLGame* juego, EntityManager* manager)
+Interfaz::Interfaz(Game* juego, EntityManager* manager)
 {
-	game_ = juego;
+	g_ = juego;
 	mngr_ = manager;
 	createPanel(Movement);
 	createPanel(Minimap);

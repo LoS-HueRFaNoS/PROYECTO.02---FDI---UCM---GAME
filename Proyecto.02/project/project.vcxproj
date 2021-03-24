@@ -22,6 +22,7 @@
     <ClCompile Include="src\AudioManager.cpp" />
     <ClCompile Include="src\Button.cpp" />
     <ClCompile Include="src\ButtonCtrl.cpp" />
+    <ClCompile Include="src\callbacks.cpp" />
     <ClCompile Include="src\Casilla.cpp" />
     <ClCompile Include="src\Character.cpp" />
     <ClCompile Include="src\Collisions.cpp" />

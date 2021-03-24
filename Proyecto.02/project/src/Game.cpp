@@ -34,7 +34,7 @@ void Game::initGame() {
 
 	entityManager_ = new EntityManager(game_);
 	//Button b = Button(game_, entityManager_, Vector2D(100, 100), 50, 50, Resources::Asteroid);
-	Interfaz F = Interfaz(game_, entityManager_);
+	Interfaz F = Interfaz(this, entityManager_);
 	
 	/*Entity* laberinto = entityManager_->addEntity();
 	Laberinto* lab = laberinto->addComponent<Laberinto>(entityManager_) ;

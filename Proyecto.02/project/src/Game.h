@@ -14,6 +14,7 @@ public:
 	// from SDLGame
 	void start();
 	void stop();
+	SDLGame* getSDLGame() { return game_; };
 
 private:
 	void initGame();
@@ -27,5 +28,4 @@ private:
 
 	const static int _WINDOW_WIDTH_ = 1200;
 	const static int _WINDOW_HEIGHT_ = 900;
-
 };

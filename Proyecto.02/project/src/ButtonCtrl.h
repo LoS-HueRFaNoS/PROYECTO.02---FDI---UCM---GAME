@@ -5,27 +5,33 @@
 #include "InputHandler.h"
 #include "Entity.h"
 #include "Transform.h"
+#include "Game.h"
+#include "Button.h"
 
 class ButtonCtrl : public Component
 {
     public:
-        ButtonCtrl() :
-            Component(ecs::ButtonCtrl), tr_(nullptr), speed_(10.0) {};
+        ButtonCtrl(Game* g) :
+            Component(ecs::ButtonCtrl), ih_(nullptr), tr_(nullptr), speed_(10.0), g_(g) {};
         virtual ~ButtonCtrl() {
         }
-
 
         inline void setSpeed(float speed) {
             speed = speed;
         }
 
-        void init() override;
+        void init() override {
+            tr_ = GETCMP1_(Transform);
+            assert(tr_ != nullptr);
+            ih_ = InputHandler::instance();
+        }
 
         void update() override {
             game_->getWindowHeight();
             if (ih_->keyDownEvent()) {
                 if (ih_->isKeyDown(SDL_SCANCODE_UP)) {
-                    tr_->setVelY(-speed_); //
+                    //tr_->setVelY(-speed_); //
+                    static_cast<Button*>(entity_)->click(g_);
                 }
                 else if (ih_->isKeyDown(SDL_SCANCODE_DOWN)) {
                     tr_->setVelY(speed_); //
@@ -45,6 +51,7 @@ class ButtonCtrl : public Component
 
     private:
         InputHandler* ih_;
+        Game* g_;
         Transform* tr_;
         float speed_;
     };

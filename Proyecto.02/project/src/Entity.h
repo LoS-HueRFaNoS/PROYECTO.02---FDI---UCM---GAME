@@ -56,4 +56,3 @@ private:
 	std::vector<unique_ptr<Component>> components_;
 	std::array<Component*,ecs::maxComponents> componentsArray_ = {};
 };
-
