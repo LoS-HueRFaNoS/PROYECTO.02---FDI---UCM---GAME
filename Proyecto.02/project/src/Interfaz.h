@@ -13,6 +13,7 @@ private:
 	Game* g_;
 	EntityManager* mngr_;
 
+	Button* createButton(Panel* p, CallBackOnClick* cb);
 	void createFight(){};
 	void createMovement();
 	void createMinimap(){};
