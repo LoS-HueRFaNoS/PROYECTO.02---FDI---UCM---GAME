@@ -2,13 +2,12 @@
 #include <iostream>
 
 class Game;
-//class Interfaz;
-//using CallBackOnClick2 = void(Interfaz* app);
+using CallBackOnClick = void(Game*);
 
 // MENU
 using namespace std;
 
-class callbacksOnClick {
+class callbacks {
 public:
 	static void pruebaGame(Game* app);
 };

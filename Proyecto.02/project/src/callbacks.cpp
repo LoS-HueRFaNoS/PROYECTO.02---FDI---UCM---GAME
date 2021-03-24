@@ -1,6 +1,6 @@
 #include "callbacks.h"
 
-void callbacksOnClick::pruebaGame(Game* app)
+void callbacks::pruebaGame(Game* app)
 {
 	std::cout << "has pulsado este boton" << std::endl;
 }

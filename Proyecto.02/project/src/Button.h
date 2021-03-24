@@ -6,9 +6,6 @@
 #include <cassert>
 typedef unsigned int uint;
 
-class Game;
-using CallBackOnClick = void(Game*);
-
 class Button : public Entity
 {
 private:
