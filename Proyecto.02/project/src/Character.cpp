@@ -68,13 +68,17 @@ void Hero::loadFromJson(string json, int t)
 		for (int i = 0; i < _LastTypeId_; i++) {
 			weak.push_back((float)v["Characters"][t]["Weaknesses"][i]["Value"].as_double());
 		}
+
 		_sheet->weaknesses = CharacterSheet::Weaknesses(weak);
 
+		//Si r1 es 2, puede armas simples y marciales
 		int r1 = v["Characters"][t]["Equipement"]["ListWeapons"].size();
-		int r2 = v["Characters"][t]["Equipement"]["ListArmors"].size();
+		//Escoge un arma aleatoria simple
+		int idRWeapons = v[game_->getRandGen()->nextInt(0, _LastWeaponId_)].as_int();
 
-		int idRWeapons = v["Characters"][t]["Equipement"]["ListWeapons"][game_->getRandGen()->nextInt(0, r1)].as_int();
-		int idRArmor = v["Characters"][t]["Equipement"]["ListArmors"][game_->getRandGen()->nextInt(0, r2)].as_int();
+
+		//int r2 = v["Characters"][t]["Equipement"]["ListArmors"].size();
+		//int idRArmor = v["Characters"][t]["Equipement"]["ListArmors"][game_->getRandGen()->nextInt(0, r2)].as_int();
 
 		// JSON DE ARMAS Y ARMADURAS 
 
@@ -115,10 +119,12 @@ void Enemy::loadFromJson(string json, int t)
 		for (int i = 0; i < _LastTypeId_; i++) {
 			weak.push_back((float)v["Characters"][t]["Weaknesses"][i]["Value"].as_double());
 		}
+
 		_sheet->weaknesses = CharacterSheet::Weaknesses(weak);
 	}
+
 	else {
 		// HACER THROW EN EL ELSE
 	}
-
 }
+

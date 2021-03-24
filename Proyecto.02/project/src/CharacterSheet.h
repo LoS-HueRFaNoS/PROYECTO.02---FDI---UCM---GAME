@@ -56,7 +56,6 @@ private:
 
 public:
 
-
 	//Debilidades
 	Weaknesses weaknesses;
 

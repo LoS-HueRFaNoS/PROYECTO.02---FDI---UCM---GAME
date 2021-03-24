@@ -1,128 +1,393 @@
 {
-    "Armaduras": [
+  "Armaduras": [
 
+    {
+      "Name": "Acolchada",
+      "Weaknesses": [
         {
-            "Ligeras":
-            [
+          "Key": "Blunt",
+          "Value": 0.0
+        },
+        {
+          "Key": "Pierce",
+          "Value": 0.0
+        },
+        {
+          "Key": "Slash",
+          "Value": 0.0
+        },
+        {
+          "Key": "Fire",
+          "Value": 0.0
+        },
+        {
+          "Key": "Water",
+          "Value": 0.0
+        },
+        {
+          "Key": "Ice",
+          "Value": 0.0
+        },
+        {
+          "Key": "Earth",
+          "Value": 0.0
+        },
+        {
+          "Key": "Wind",
+          "Value": 0.0
+        },
+        {
+          "Key": "Light",
+          "Value": 0.0
+        },
+        {
+          "Key": "Dark",
+          "Value": 0.0
+        }
+      ],
+      "TypeNeeded": 0,
+      "MinNeed": 0
+    },
 
-                {
-                    "Name": "Acolchada",
+    {
+      "Name": "Cuero tachonado",
+      "Weaknesses": [
+        {
+          "Key": "Blunt",
+          "Value": 0.0
+        },
+        {
+          "Key": "Pierce",
+          "Value": 0.0
+        },
+        {
+          "Key": "Slash",
+          "Value": 0.0
+        },
+        {
+          "Key": "Fire",
+          "Value": 0.0
+        },
+        {
+          "Key": "Water",
+          "Value": 0.0
+        },
+        {
+          "Key": "Ice",
+          "Value": 0.0
+        },
+        {
+          "Key": "Earth",
+          "Value": 0.0
+        },
+        {
+          "Key": "Wind",
+          "Value": 0.0
+        },
+        {
+          "Key": "Light",
+          "Value": 0.0
+        },
+        {
+          "Key": "Dark",
+          "Value": 0.0
+        }
+      ],
+      "TypeNeeded": 0,
+      "MinNeed": 0
+    },
 
-                    "TypeUp": 1, //constitucion
-                    "Up": 11,
-                    "TypeDown": 2, //destreza
-                    "Down": 1
+    {
+      "Name": "Cota de escamas",
+      "Weaknesses": [
+        {
+          "Key": "Blunt",
+          "Value": 0.0
+        },
+        {
+          "Key": "Pierce",
+          "Value": 0.0
+        },
+        {
+          "Key": "Slash",
+          "Value": 0.0
+        },
+        {
+          "Key": "Fire",
+          "Value": 0.0
+        },
+        {
+          "Key": "Water",
+          "Value": 0.0
+        },
+        {
+          "Key": "Ice",
+          "Value": 0.0
+        },
+        {
+          "Key": "Earth",
+          "Value": 0.0
+        },
+        {
+          "Key": "Wind",
+          "Value": 0.0
+        },
+        {
+          "Key": "Light",
+          "Value": 0.0
+        },
+        {
+          "Key": "Dark",
+          "Value": 0.0
+        }
+      ],
+      "TypeNeeded": 0,
+      "MinNeed": 0
+    },
 
-                },
-                {
-                    "Name": "Cuero tachonado",
+    {
+      "Name": "Coraza",
+      "Weaknesses": [
+        {
+          "Key": "Blunt",
+          "Value": 0.0
+        },
+        {
+          "Key": "Pierce",
+          "Value": 0.0
+        },
+        {
+          "Key": "Slash",
+          "Value": 0.0
+        },
+        {
+          "Key": "Fire",
+          "Value": 0.0
+        },
+        {
+          "Key": "Water",
+          "Value": 0.0
+        },
+        {
+          "Key": "Ice",
+          "Value": 0.0
+        },
+        {
+          "Key": "Earth",
+          "Value": 0.0
+        },
+        {
+          "Key": "Wind",
+          "Value": 0.0
+        },
+        {
+          "Key": "Light",
+          "Value": 0.0
+        },
+        {
+          "Key": "Dark",
+          "Value": 0.0
+        }
+      ],
+      "TypeNeeded": 0,
+      "MinNeed": 0
+    },
 
-                    "TypeUp": 1,
-                    "Up": 12,
-                    "TypeDown": 0,
-                    "Down": 0
+    {
+      "Name": "Semiplacas",
+      "Weaknesses": [
+        {
+          "Key": "Blunt",
+          "Value": 0.0
+        },
+        {
+          "Key": "Pierce",
+          "Value": 0.0
+        },
+        {
+          "Key": "Slash",
+          "Value": 0.0
+        },
+        {
+          "Key": "Fire",
+          "Value": 0.0
+        },
+        {
+          "Key": "Water",
+          "Value": 0.0
+        },
+        {
+          "Key": "Ice",
+          "Value": 0.0
+        },
+        {
+          "Key": "Earth",
+          "Value": 0.0
+        },
+        {
+          "Key": "Wind",
+          "Value": 0.0
+        },
+        {
+          "Key": "Light",
+          "Value": 0.0
+        },
+        {
+          "Key": "Dark",
+          "Value": 0.0
+        }
+      ],
+      "TypeNeeded": 0,
+      "MinNeed": 0
+    },
 
-                }
-              
-            ],
+    {
+      "Name": "Cota de mallas",
+      "Weaknesses": [
+        {
+          "Key": "Blunt",
+          "Value": 0.0
+        },
+        {
+          "Key": "Pierce",
+          "Value": 0.0
+        },
+        {
+          "Key": "Slash",
+          "Value": 0.0
+        },
+        {
+          "Key": "Fire",
+          "Value": 0.0
+        },
+        {
+          "Key": "Water",
+          "Value": 0.0
+        },
+        {
+          "Key": "Ice",
+          "Value": 0.0
+        },
+        {
+          "Key": "Earth",
+          "Value": 0.0
+        },
+        {
+          "Key": "Wind",
+          "Value": 0.0
+        },
+        {
+          "Key": "Light",
+          "Value": 0.0
+        },
+        {
+          "Key": "Dark",
+          "Value": 0.0
+        }
+      ],
+      "TypeNeeded": 0,
+      "MinNeed": 14
+    },
 
-            "Medias": [
+    {
+      "Name": "Bandas",
+      "Weaknesses": [
+        {
+          "Key": "Blunt",
+          "Value": 0.0
+        },
+        {
+          "Key": "Pierce",
+          "Value": 0.0
+        },
+        {
+          "Key": "Slash",
+          "Value": 0.0
+        },
+        {
+          "Key": "Fire",
+          "Value": 0.0
+        },
+        {
+          "Key": "Water",
+          "Value": 0.0
+        },
+        {
+          "Key": "Ice",
+          "Value": 0.0
+        },
+        {
+          "Key": "Earth",
+          "Value": 0.0
+        },
+        {
+          "Key": "Wind",
+          "Value": 0.0
+        },
+        {
+          "Key": "Light",
+          "Value": 0.0
+        },
+        {
+          "Key": "Dark",
+          "Value": 0.0
+        }
+      ],
+      "TypeNeeded": 0,
+      "MinNeed": 15
+    },
 
-
-                {
-                    "Name": "Cota de mallas",
-
-                    "Typeup": 1,
-                    "Up": 13,
-                    "TypeDown": 0,
-                    "Down": 0
-
-                },
-                {
-                    "Name": "Cota de escamas",
-
-                    "Typeup": 1,
-                    "Up": 13,
-                    "TypeDown": 2,
-                    "Down": 2
-
-                },
-                {
-                    "Name": "Coraza",
-
-                    "Typeup": 1,
-                    "Up": 14,
-                    "TypeDown": 0,
-                    "Down": 0
-
-                },
-                {
-                    "Name": "Semiplacas",
-
-                    "Typeup": 1,
-                    "Up": 14,
-                    "TypeDown": 2,
-                    "Down": 2
-
-                }
-
-            ],
-
-            "Pesadas": [
-
-                {
-                    "Name": "Cota de mallas",
-
-                    "Typeup": 1,
-                    "Up": 18,
-                    "TypeDown": 2,
-                    "Down": 2,
-                    "TypeNeeded": 0, //fuerza necesaria
-                    "MinNeed": 14
-
-                },
-                {
-                    "Name": "Bandas",
-
-                    "Typeup": 1,
-                    "Up": 19,
-                    "TypeDown": 2,
-                    "Down": 3,
-                    "TypeNeeded": 0,
-                    "MinNeed": 15
-
-
-
-                },
-                {
-                    "Name": "Placas",
-
-                    "Typeup": 1,
-                    "Up": 18,
-                    "TypeDown": 2,
-                    "Down": 3,
-                    "TypeNeeded": 0,
-                    "MinNeed": 15
-
-                }
-
-
-
-            ],
-
-            "Escudo": [
-
-                {
-                    "AddArmor": 2,
-                    "Weight": 1
-                }
-            ] 
-
+    {
+      "Name": "Placas",
+      "Weaknesses": [
+        {
+          "Key": "Blunt",
+          "Value": 0.0
+        },
+        {
+          "Key": "Pierce",
+          "Value": 0.0
+        },
+        {
+          "Key": "Slash",
+          "Value": 0.0
+        },
+        {
+          "Key": "Fire",
+          "Value": 0.0
+        },
+        {
+          "Key": "Water",
+          "Value": 0.0
+        },
+        {
+          "Key": "Ice",
+          "Value": 0.0
+        },
+        {
+          "Key": "Earth",
+          "Value": 0.0
+        },
+        {
+          "Key": "Wind",
+          "Value": 0.0
+        },
+        {
+          "Key": "Light",
+          "Value": 0.0
+        },
+        {
+          "Key": "Dark",
+          "Value": 0.0
         }
 
-    ]
+
+
+
+      ],
+      "TypeNeeded": 0,
+      "MinNeed": 15
+    }
+
+  ]
 }
-    
-
-
-    

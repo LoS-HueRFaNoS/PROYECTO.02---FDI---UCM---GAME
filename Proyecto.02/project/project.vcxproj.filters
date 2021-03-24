@@ -135,6 +135,9 @@
     <ClCompile Include="src\Character.cpp">
       <Filter>Archivos de origen\Templates/Resources</Filter>
     </ClCompile>
+    <ClCompile Include="src\Equipament.cpp">
+      <Filter>Archivos de origen\Templates/Resources</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\ecs.h">
@@ -244,6 +247,9 @@
     </ClInclude>
     <ClInclude Include="src\CombatManager.h">
       <Filter>Archivos de encabezado\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Equipament.h">
+      <Filter>Archivos de encabezado\Templates/Resources</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

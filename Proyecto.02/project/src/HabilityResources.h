@@ -2,40 +2,9 @@
 
 #include <vector>
 #include "RPGLogic.h"
+#include <string>
 
 using namespace rpgLogic;
-
-
-// MOVER AL MANAGER DE COMBATE
-/*	using Objective = std::vector<Character*>;
-	for (Character* c : obj)
-{
-	if (c->checkHit(throwDice(1, 20) + caster->getMod(_mod)))
-		throwHability(caster, obj);
-	else
-		cout << "Fallo - HabilityResources.cpp linea 13" << endl;
-}
-
-bool checkHit(int hit)
-{
-		return hit > (throwDice(1, _sheet.getStat(DEX).value) + _sheet.getStat(DEX).getMod());
-}
-
-void castHability(Character* caster, Character* obj)
-{
-	if (canCast()) {
-		_nextCast = _cd;
-		if (obj->checkHit(throwDice(1, 20) + caster->getMod(_mod)))
-			throwHability(caster, obj);
-		else
-			cout << "Fallo - HabilityResources.cpp linea 13" << endl;
-	}
-	else
-		cout << "Aun no puede castear quedan " << _nextCast << " turnos - HabilityResources.cpp linea 13" << endl;
-}
-
-*/
-
 
 class Character;
 
@@ -44,7 +13,7 @@ class Character;
 enum ObjectiveType
 {
 	SINGLEALLY,
-	SIGLEENEMY,
+	SINGLEENEMY,
 	ALLYTEAM,
 	ENEMYTEAM,
 	CASTER
@@ -54,6 +23,8 @@ class Hability {
 protected:
 	int level;
 	int _mana;
+	/*string name;
+	string description;*/
 
 	damageType _type;
 	mainStat _mod;
@@ -76,6 +47,12 @@ public:
 	virtual void throwHability(Character* obj)const = 0;
 };
 
+class LightAttack : public Hability {
+public:
+	LightAttack(Character* caster) :Hability(caster, 0, SLASH, SINGLEENEMY, STR) { }
+
+	void throwHability(Character* obj)const override;
+};
 
 // ---------------- EJEMPLO CON UNA BOLA DE FUEGO -----------------------
 
