@@ -20,7 +20,6 @@ namespace rpgLogic {
 		WIND,
 		LIGHT,
 		DARK,
-		// Escribir encima de estecomentario
 		_LastTypeId_
 	};
 
@@ -30,7 +29,6 @@ namespace rpgLogic {
 		CON,
 		DEX,
 		INT,
-		// Escribir encima de estecomentario
 		_LastStatId_
 	};
 
@@ -44,8 +42,52 @@ namespace rpgLogic {
 		BARBARIAN,
 		ROGUE,
 		DRUID,
-		// Escribir encima de estecomentario
 		_LastCharacterTemplateId_
+	};
+
+	enum weaponsId
+	{
+		DESARMADO,
+		BASTON,
+		DAGA,
+		CLAVA,
+		HACHAPEQUENA,
+		HOZ,
+		LANZA,
+		MARTILLOPEQUENO,
+		MAZA,
+		ARCOPEQUENO,
+		BALLESTALIGERA,
+		//Armas Marciales
+		ALABARDA,
+		ATARRAGA,
+		ESPADACORTA,
+		ESPADALARGA,
+		ESPADON,
+		ESPADAROPERA,
+		HACHADEBATALLA,
+		GUJA,
+		LATIGO,
+		LUCERODELALBA,
+		MARTILLODEGUERRA,
+		PICA,
+		TRIDENTE,
+		ARCOLARGO,
+		BALLESTAPESADA,
+		_LastWeaponId_
+	};
+
+	enum armorId
+	{
+		ACOLCHADA,
+		CUEROTACHONADO,
+		COTADEESCAMAS,
+		CORAZA,
+		SEMIPLACAS,
+		COTADEMALLA,
+		BANDAS,
+		PLACAS,
+		_LastArmorId_
 	};
 
 	enum enemyTemplate {
