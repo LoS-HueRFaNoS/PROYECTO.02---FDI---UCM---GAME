@@ -15,7 +15,6 @@ public:
 	static void pruebaGame3(Game* app);
 };
 
-
 //const enum action { gogame, gomenu, gopause, goback, pausetomenu, shutdown, saveoption, savecurrent, loadoption, gostageclear, goloselife, gogameover, gogameclear };
 //
 //void game::chain()	// siempre empieza en el menu

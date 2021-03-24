@@ -23,6 +23,25 @@ void Interfaz::createMovement()
 	p->addButton(createButton(p, callbacks::pruebaGame3, Vector2D(250, 100), 50, 50, Resources::Guerrero));
 }
 
+void Interfaz::createHeroes()
+{
+	// posición del panel respecto a la ventana
+	SDLGame* game_ = g_->getSDLGame();
+	double width = game_->getWindowWidth();
+	width = width * 3 / 4;
+	double height = game_->getWindowHeight();
+	height = height * 1 / 4;
+	Vector2D pPos = Vector2D(width, height);
+	// construcción del panel de heroes
+	Panel* p = new Panel(Movement);
+	allPanels.push_back(p);
+	uint tamL = 100;
+	p->addButton(createButton(p, callbacks::pruebaGame0, Vector2D(pPos.getX(), pPos.getY()), tamL, tamL, Resources::Bardo));
+	p->addButton(createButton(p, callbacks::pruebaGame1, Vector2D(pPos.getX(), pPos.getY() + 100), tamL, tamL, Resources::Brujo));
+	p->addButton(createButton(p, callbacks::pruebaGame2, Vector2D(pPos.getX(), pPos.getY() + 200), tamL, tamL, Resources::Clerigo));
+	p->addButton(createButton(p, callbacks::pruebaGame3, Vector2D(pPos.getX(), pPos.getY() + 300), tamL, tamL, Resources::Guerrero));
+}
+
 Interfaz::Interfaz(Game* juego, EntityManager* manager)
 {
 	g_ = juego;

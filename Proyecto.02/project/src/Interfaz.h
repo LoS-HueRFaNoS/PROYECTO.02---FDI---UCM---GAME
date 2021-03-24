@@ -17,7 +17,7 @@ private:
 	void createFight(){};
 	void createMovement();
 	void createMinimap(){};
-	void createHeroes(){};
+	void createHeroes();
 	void createInfo(){};
 	void createInventory(){};
 	void createHeroesStats(){};
