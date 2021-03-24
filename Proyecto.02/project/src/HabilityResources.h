@@ -19,6 +19,13 @@ enum ObjectiveType
 	CASTER
 };
 
+enum HabilityType {
+	ATTACK,
+	DEBUFF,
+	HEAL,
+	BUFF
+};
+
 class Hability {
 protected:
 	int level = 0;
@@ -26,10 +33,11 @@ protected:
 	std::string _name = "DefaultName";
 	std::string _description = "DefaultDescription";
 
-	damageType _type = damageType(0);
+	damageType _damageType = damageType(0);
 	mainStat _mod = _LastStatId_;
 	ObjectiveType _obj = CASTER;
 
+	HabilityType _habilityType  = ATTACK;
 
 	Character* _caster;
 
@@ -45,7 +53,7 @@ public:
 
 	Character* getCaster() { return _caster; }
 
-	virtual void throwHability(Character* obj)const = 0;
+	virtual void throwHability(Character* obj, bool critical)const = 0;
 
 	std::string name() { return _name; }
 
@@ -53,7 +61,9 @@ public:
 
 	mainStat getMod() { return _mod; }
 
-	ObjectiveType getType() { return _obj; }
+	ObjectiveType getObjectiveType() { return _obj; }
+
+	HabilityType getHabilityType() { return _habilityType; }
 };
 
 class LightAttack : public Hability {
@@ -64,32 +74,125 @@ public:
 		_name = "Light Attack";
 		_description = "Golpe to guapo con el arma, a terminar";
 
+		_habilityType = ATTACK;
 		_mod = STR;
 		_obj = SINGLEENEMY;
 	}
 
-	void throwHability(Character* obj)const override;
+	void throwHability(Character* obj, bool critical)const override;
 };
-
-// ---------------- EJEMPLO CON UNA BOLA DE FUEGO -----------------------
 
 class Fireball : public Hability {
 public:
 	Fireball(Character* caster) :Hability(caster) {	
 
 		level = 4;
-		_mana = 10;
+		_mana = 0;
 		_name = "Fireball";
-		_description = "Bola de fuego to guapa, a hace 8d6";
+		_description = "Bola de fuego to guapa, a hace 8d6 a todos los enemigos frente a salvacion DEX";
 
-		_type = FIRE;
+		_damageType = FIRE;
+		_habilityType = ATTACK;
 		_mod = INT;
 		_obj = ENEMYTEAM;
 	}
 
-	void throwHability(Character* obj)const override;
+	void throwHability(Character* obj, bool critical)const override;
 };
 
-// ----------------------------------------------------------------------
 
+class SingleTargetAttackExample : public Hability {
+public:
+	SingleTargetAttackExample(Character* caster) :Hability(caster) {
+
+		level = 0;
+		_mana = 0;
+		_name = "SingleTargetAttackExample";
+		_description = "Esto es un ejemplo, hace 1d5 de daño";
+
+		_damageType = ICE;
+		_habilityType = ATTACK;
+		_mod = INT;
+		_obj = SINGLEENEMY;
+	}
+
+	void throwHability(Character* obj, bool critical)const override;
+};
+
+
+
+class SingleTargetHealxample : public Hability {
+public:
+	SingleTargetHealxample(Character* caster) :Hability(caster) {
+
+		level = 0;
+		_mana = 0;
+		_name = "SingleTargetHealxample";
+		_description = "Esto es un ejemplo, cura 2d5 de vida a un aliado";
+
+		_damageType = LIGHT;
+		_habilityType = HEAL;
+		_mod = INT;
+		_obj = SINGLEALLY;
+	}
+
+	void throwHability(Character* obj, bool critical)const override;
+};
+
+
+class AllyTeamHealExample : public Hability {
+public:
+	AllyTeamHealExample(Character* caster) :Hability(caster) {
+
+		level = 0;
+		_mana = 0;
+		_name = "AllyTeamHealExample";
+		_description = "Esto es un ejemplo, cura a todo tu equipo 1d5";
+
+		_damageType = LIGHT;
+		_habilityType = HEAL;
+		_mod = INT;
+		_obj = ALLYTEAM;
+	}
+
+	void throwHability(Character* obj, bool critical)const override;
+};
+
+
+class SelfHealExample : public Hability {
+public:
+	SelfHealExample(Character* caster) :Hability(caster) {
+
+		level = 0;
+		_mana = 0;
+		_name = "SelfHealExample";
+		_description = "Esto es un ejemplo, te cura 1d8";
+
+		_damageType = LIGHT;
+		_habilityType = HEAL;
+		_mod = INT;
+		_obj = CASTER;
+	}
+
+	void throwHability(Character* obj, bool critical)const override;
+};
+
+
+class AllyTeamAttackExample : public Hability {
+public:
+	AllyTeamAttackExample(Character* caster) :Hability(caster) {
+
+		level = 0;
+		_mana = 0;
+		_name = "AllyTeamAttackExample";
+		_description = "Esto es un ejemplo, se te va la cabeza y haces 2d4 de daño a tu equipo";
+
+		_damageType = DARK;
+		_habilityType = ATTACK;
+		_mod = INT;
+		_obj = ALLYTEAM;
+	}
+
+	void throwHability(Character* obj, bool critical)const override;
+};
 #pragma endregion

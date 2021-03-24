@@ -16,3 +16,13 @@ bool CharacterSheet::recieveDamage(int damage, rpgLogic::damageType type)
 
 	return !_hitPoints;
 }
+
+void CharacterSheet::recieveHealing(int healing)
+{
+	_hitPoints += healing;
+
+	cout << name << " heals for " << healing << " points" << endl;
+
+	if (_hitPoints > _maxHitPoints)
+		_hitPoints = _maxHitPoints;
+}

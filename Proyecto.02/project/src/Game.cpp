@@ -40,31 +40,42 @@ void Game::initGame() {
 	CombatManager* cm = manager->addComponent<CombatManager>();
 
 
-	Hero* h1 = new Hero(game_, entityManager_);
-	Hero* h2 = new Hero(game_, entityManager_);
-	Hero* h3 = new Hero(game_, entityManager_);
-	Hero* h4 = new Hero(game_, entityManager_);
+	Hero* wizard = new Hero(game_, entityManager_);
+	Hero* warrior = new Hero(game_, entityManager_);
+	Hero* rogue = new Hero(game_, entityManager_);
+	Hero* cleric = new Hero(game_, entityManager_);
 	Enemy* e1 = new Enemy(game_, entityManager_);
 	Enemy* e2 = new Enemy(game_, entityManager_);
 	Enemy* e3 = new Enemy(game_, entityManager_);
 
-	h1->loadFromTemplate(rpgLogic::WIZARD);
-	h2->loadFromTemplate(rpgLogic::WARRIOR);
-	h3->loadFromTemplate(rpgLogic::ROGUE);
-	h4->loadFromTemplate(rpgLogic::CLERIC);
+	wizard->loadFromTemplate(rpgLogic::WIZARD);
+	warrior->loadFromTemplate(rpgLogic::WARRIOR);
+	rogue->loadFromTemplate(rpgLogic::ROGUE);
+	cleric->loadFromTemplate(rpgLogic::CLERIC);
 	e1->loadFromTemplate(rpgLogic::ZOMBIE);
 	e2->loadFromTemplate(rpgLogic::ZOMBIE);
 	e3->loadFromTemplate(rpgLogic::ZOMBIE);
 
-	h1->addHability<Fireball>();
-	h2->addHability<Fireball>();
-	h3->addHability<Fireball>();
-	h4->addHability<Fireball>();
+	wizard->addHability<Fireball>();
+	wizard->addHability<SingleTargetAttackExample>();
+	wizard->addHability<SelfHealExample>();
+	wizard->addHability<AllyTeamAttackExample>();
 
-	cm->addCharacter(h1);
-	cm->addCharacter(h2);
-	cm->addCharacter(h3);
-	cm->addCharacter(h4);
+	warrior->addHability<SingleTargetAttackExample>();
+	warrior->addHability<AllyTeamAttackExample>();
+
+	rogue->addHability<SingleTargetAttackExample>();
+	rogue->addHability<AllyTeamAttackExample>();
+
+	cleric->addHability<SingleTargetHealxample>();
+	cleric->addHability<SelfHealExample>();
+	cleric->addHability<AllyTeamHealExample>();
+	cleric->addHability<AllyTeamAttackExample>();
+
+	cm->addCharacter(wizard);
+	cm->addCharacter(warrior);
+	cm->addCharacter(rogue);
+	cm->addCharacter(cleric);
 	cm->addCharacter(e1);
 	cm->addCharacter(e2);
 	cm->addCharacter(e3);

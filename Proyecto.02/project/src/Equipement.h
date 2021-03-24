@@ -1,9 +1,11 @@
-#include "Entity.h"
+#ifndef _EQUIPEMENT_
+#define _EQUIPEMENT_
+#include "Component.h"
 #include "HabilityResources.h"
-#pragma once
 
 class Equipement : public Component
 {
+public:
 	struct Weapon
 	{
 		string name = "Default";
@@ -24,6 +26,11 @@ protected:
 
 public:
 
+	Equipement() : Component(ecs::Equipement)
+	{}
+
+	~Equipement(){}
+
 	void loadWeaponTemplate(weaponsId t);
 	void loadArmorTemplate(weaponsId t);
 
@@ -32,3 +39,4 @@ public:
 	}
 };
 
+#endif // !

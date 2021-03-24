@@ -2,7 +2,7 @@
 #define _CHARACTER_
 #include "CharacterSheet.h"
 #include "Entity.h"
-#include "HabilityResources.h"
+#include "Equipement.h"
 
 
 #pragma region CHARACTER
@@ -19,7 +19,7 @@ protected:
 
 	vector<Hability*> _habilities;
 
-	void init() {
+	virtual void init() {
 		_sheet = addComponent<CharacterSheet>();
 	}
 
@@ -38,17 +38,15 @@ public:
 
 	void recieveDamage(int damage, damageType type);
 
+	void recieveHealing(int healing);
+
 	bool savingThrow(int save, mainStat stat);
 
-	int throw20PlusMod(mainStat mod);
+	int throw20PlusMod(mainStat mod, bool crit);
 
 	int throwStat(mainStat stat);
 
 	bool checkHit(int hit);
-
-	void castHability(int hability, Character* objective) {
-		_habilities[hability]->throwHability(objective);
-	}
 
 	int getMod(rpgLogic::mainStat stat) {
 		return _sheet->getStat(stat).getMod();
@@ -78,6 +76,10 @@ public:
 	vector<Hability*> getHabilities() {
 		return _habilities;
 	}
+
+	bool isDead() {
+		return !_sheet->hitPoints();
+	}
 };
 
 #pragma endregion
@@ -88,9 +90,16 @@ public:
 class Hero : public Character {
 private:
 
+	Equipement* _equipement;
+
 	virtual void loadFromJson(string json, int t);
 
 	virtual void manageTurn(CombatManager* cm);
+
+	virtual void init() {
+		_equipement = addComponent<Equipement>();
+		Character::init();
+	}
 
 #pragma region CombatePorConsola
 
@@ -112,6 +121,8 @@ public:
 class Enemy : public Character {
 private:
 
+	int exp = 0;
+
 	virtual void loadFromJson(string json, int t);
 
 	virtual void manageTurn(CombatManager* cm);
@@ -120,6 +131,8 @@ public:
 	Enemy(SDLGame* game, EntityManager* mngr) : Character(game, mngr, ENEMY) {
 		init();
 	}
+
+	int getExp() { return exp; }
 };
 
 

@@ -20,6 +20,8 @@ private:
 
 	int _turn = 0;
 
+	int _exp = 0;
+
 	struct Initiative {
 		characterType type;
 		int pos;
@@ -45,6 +47,8 @@ private:
 	void throwHability(Character* objective, Hability* hability);
 	
 	void castToTeam(characterType team, Hability* hability);
+
+	void castToSingleTarget(characterType team,  Hability* hability);
 
 public:
 

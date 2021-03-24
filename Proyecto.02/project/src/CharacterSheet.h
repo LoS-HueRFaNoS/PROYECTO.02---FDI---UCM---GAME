@@ -51,8 +51,10 @@ private:
 
 	//Salud
 	int _hitPoints = 10;
+	int _maxHitPoints = 10;
 	//Mana
 	int _manaPoints = 10;
+	int _maxManaPoints = 10;
 
 public:
 
@@ -81,16 +83,32 @@ public:
 		_stats[st].value = set;
 	}
 
+	int maxHitPoints() {
+		return _maxHitPoints;
+	}
+
+	int maxManaPoints() {
+		return _maxManaPoints;
+	}
+
 	int hitPoints() {
 		return _hitPoints;
 	}
 
-	void setHitPoints(int set) {
-		_hitPoints = set;
-	}
-
 	int manaPoints() {
 		return _manaPoints;
+	}
+
+	void setMaxHitPoints(int set) {
+		_maxHitPoints = set;
+	}
+
+	void setMaxManaPoints(int set) {
+		_maxManaPoints = set;
+	}
+
+	void setHitPoints(int set) {
+		_hitPoints = set;
 	}
 
 	void setManaPoints(int set) {
@@ -102,5 +120,7 @@ public:
 	}
 
 	bool recieveDamage(int damage, rpgLogic::damageType type);
+
+	void recieveHealing(int healing);
 };
 #endif

@@ -34,23 +34,33 @@ void Character::recieveDamage(int damage, rpgLogic::damageType type)
 	}
 }
 
+void Character::recieveHealing(int healing)
+{
+	_sheet->recieveHealing(healing);
+}
+
 bool Character::savingThrow(int save, rpgLogic::mainStat stat)
 {
 	cout << "Saving throw (" << save << "): " << endl;
-	return save < throw20PlusMod(stat);
+	return save < throw20PlusMod(stat, false);
 }
 
-int Character::throw20PlusMod(mainStat mod)
+int Character::throw20PlusMod(mainStat mod, bool crit)
 {
-	int throwS = (rpgLogic::throwDice(1, 20, false) + _sheet->getStat(mod).getMod());
-	cout << name() << " throws a " << throwS << endl;
-	return throwS;
+	int dice = rpgLogic::throwDice(1, 20, false);
+	int throwS = dice + _sheet->getStat(mod).getMod();
+	cout << name() << " throws a " << throwS << " (" << dice << " " << _sheet->getStat(mod).getMod() << " MOD)" << endl;
+	if ((dice != 20 && dice != 1) || !crit)
+		return throwS;
+	else
+		return dice == 20 ? 100 : -100;
 }
 
 int Character::throwStat(mainStat stat)
 {
-	int throwS = (rpgLogic::throwDice(1, _sheet->getStat(stat).value, false) + _sheet->getStat(stat).getMod());
-	cout << name() << " throws a " << throwS << endl;
+	int dice = rpgLogic::throwDice(1, _sheet->getStat(stat).value, false);
+	int throwS = dice + _sheet->getStat(stat).getMod();
+	cout << name() << " throws a " << throwS << " (" << dice << " " << _sheet->getStat(stat).getMod() << " MOD)" << endl;
 	return throwS;
 }
 
@@ -89,8 +99,12 @@ void Hero::loadFromJson(string json, int t)
 		_sheet->name = v["Characters"][t]["Name"].as_string();
 
 		// Igual con la vida y el mana
-		_sheet->setHitPoints(v["Characters"][t]["HitPoints"].as_int());
-		_sheet->setManaPoints(v["Characters"][t]["ManaPoints"].as_int());
+		int hp = v["Characters"][t]["HitPoints"].as_int();
+		int mp = v["Characters"][t]["ManaPoints"].as_int();
+		_sheet->setHitPoints(hp);
+		_sheet->setMaxHitPoints(hp);
+		_sheet->setManaPoints(mp);
+		_sheet->setManaPoints(mp);
 
 		// Guardamos las debilidades en un vector para luego inicializarlas
 		vector<float> weak = vector<float>();
@@ -131,13 +145,13 @@ void Hero::consoleTurn(CombatManager* cm)
 	cout << "\nSpells: " << endl;
 
 	for (int i = 0; i < _habilities.size(); i++)
-		cout << i << ". " << setw(15) << _habilities[i]->name() << _habilities[i]->getMana() << setw(15) << " MP" << _habilities[i]->description() << endl;
+		cout << i << ". " << setw(30) << _habilities[i]->name() << _habilities[i]->getMana() << setw(15) << " MP" << _habilities[i]->description() << endl;
 
 	int spell;
-	cout << "Choose a spell to cast (-1 para saltar el turno): ";
+	cout << "Choose a spell to cast (-1 to skip turn): ";
 	cin >> spell;
 
-	if (spell != 0) {
+	if (spell >= _habilities.size() || spell == -1) {
 		if (spell != -1)
 			cout << "Tu lo que eres es un listo, pierdes el turno por tonto" << endl;
 		return;
@@ -150,7 +164,7 @@ void Hero::consoleTurn(CombatManager* cm)
 	{
 		cm->castHability(_habilities[spell]);
 
-		_sheet->setManaPoints(_sheet->manaPoints() - _habilities[spell]->getMana());
+		//_sheet->setManaPoints(_sheet->manaPoints() - _habilities[spell]->getMana());
 	}
 
 }
@@ -186,8 +200,12 @@ void Enemy::loadFromJson(string json, int t)
 		_sheet->name = v["Characters"][t]["Name"].as_string();
 
 		// Igual con la vida y el mana
-		_sheet->setHitPoints(v["Characters"][t]["HitPoints"].as_int());
-		_sheet->setManaPoints(v["Characters"][t]["ManaPoints"].as_int());
+		int hp = v["Characters"][t]["HitPoints"].as_int();
+		int mp = v["Characters"][t]["ManaPoints"].as_int();
+		_sheet->setHitPoints(hp);
+		_sheet->setMaxHitPoints(hp);
+		_sheet->setManaPoints(mp);
+		_sheet->setManaPoints(mp);
 
 		// Guardamos las debilidades en un vector para luego inicializarlas
 		vector<float> weak = vector<float>();
