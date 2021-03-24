@@ -30,14 +30,33 @@ void Character::loadFromTemplate(enemyTemplate t)
 void Character::recieveDamage(int damage, rpgLogic::damageType type)
 {
 	if (_sheet->recieveDamage(damage, type)) {
-		cout << "Se ha muerto - Character.cpp linea 12" << endl;
+		cout << name() << " has fainted" << endl;
 	}
-
 }
 
 bool Character::savingThrow(int save, rpgLogic::mainStat stat)
 {
-	return save < (throwDice(1, 20) + _sheet->getStat(stat).getMod());
+	cout << "Saving throw (" << save << "): " << endl;
+	return save < throw20PlusMod(stat);
+}
+
+int Character::throw20PlusMod(mainStat mod)
+{
+	int throwS = (rpgLogic::throwDice(1, 20, false) + _sheet->getStat(mod).getMod());
+	cout << name() << " throws a " << throwS << endl;
+	return throwS;
+}
+
+int Character::throwStat(mainStat stat)
+{
+	int throwS = (rpgLogic::throwDice(1, _sheet->getStat(stat).value, false) + _sheet->getStat(stat).getMod());
+	cout << name() << " throws a " << throwS << endl;
+	return throwS;
+}
+
+bool Character::checkHit(int hit)
+{
+	return hit > throwStat(DEX);
 }
 
 #pragma endregion
@@ -84,7 +103,7 @@ void Hero::loadFromJson(string json, int t)
 		//Si r1 es 2, puede armas simples y marciales
 		int r1 = v["Characters"][t]["Equipement"]["ListWeapons"].size();
 		//Escoge un arma aleatoria simple
-		int idRWeapons = v[game_->getRandGen()->nextInt(0, _LastWeaponId_)].as_int();
+		// int idRWeapons = v["Characters"][t]["Equipement"]["ListWeapons"][game_->getRandGen()->nextInt(0, r1)].as_int();
 
 
 		//int r2 = v["Characters"][t]["Equipement"]["ListArmors"].size();
@@ -105,12 +124,35 @@ void Hero::manageTurn(CombatManager* cm)
 
 #pragma region CombatePorConsola
 
+#include <iomanip>
+
 void Hero::consoleTurn(CombatManager* cm)
 {
 	cout << "\nSpells: " << endl;
 
 	for (int i = 0; i < _habilities.size(); i++)
-		cout << i << ". Hability X: Description ....." << endl;
+		cout << i << ". " << setw(15) << _habilities[i]->name() << _habilities[i]->getMana() << setw(15) << " MP" << _habilities[i]->description() << endl;
+
+	int spell;
+	cout << "Choose a spell to cast (-1 para saltar el turno): ";
+	cin >> spell;
+
+	if (spell != 0) {
+		if (spell != -1)
+			cout << "Tu lo que eres es un listo, pierdes el turno por tonto" << endl;
+		return;
+	}
+
+	if (_habilities[spell]->getMana() > _sheet->manaPoints()) {
+		cout << "PIERDES EL TURNO PORQUE NO SABES CONTAR" << endl;
+	}
+	else
+	{
+		cm->castHability(_habilities[spell]);
+
+		_sheet->setManaPoints(_sheet->manaPoints() - _habilities[spell]->getMana());
+	}
+
 }
 
 #pragma endregion

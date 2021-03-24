@@ -36,9 +36,15 @@ public:
 	void loadFromTemplate(characterTemplate t);
 	void loadFromTemplate(enemyTemplate t);
 
-	void recieveDamage(int damage, rpgLogic::damageType type);
+	void recieveDamage(int damage, damageType type);
 
-	bool savingThrow(int save, rpgLogic::mainStat stat);
+	bool savingThrow(int save, mainStat stat);
+
+	int throw20PlusMod(mainStat mod);
+
+	int throwStat(mainStat stat);
+
+	bool checkHit(int hit);
 
 	void castHability(int hability, Character* objective) {
 		_habilities[hability]->throwHability(objective);

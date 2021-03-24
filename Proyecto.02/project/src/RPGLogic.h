@@ -101,6 +101,6 @@ namespace rpgLogic {
 		_LastSpellId_
 	};*/
 
-	int throwDice(int n, int dice);
+	int throwDice(int n, int dice, bool text);
 }
 

@@ -27,7 +27,7 @@
     <ClCompile Include="src\CombatManager.cpp" />
     <ClCompile Include="src\Component.cpp" />
     <ClCompile Include="src\Entity.cpp" />
-    <ClCompile Include="src\Equipament.cpp" />
+    <ClCompile Include="src\Equipement.cpp" />
     <ClCompile Include="src\Font.cpp" />
     <ClCompile Include="src\FontsManager.cpp" />
     <ClCompile Include="src\Game.cpp" />
@@ -64,7 +64,7 @@
     <ClInclude Include="src\Component.h" />
     <ClInclude Include="src\ecs.h" />
     <ClInclude Include="src\Entity.h" />
-    <ClInclude Include="src\Equipament.h" />
+    <ClInclude Include="src\Equipement.h" />
     <ClInclude Include="src\Font.h" />
     <ClInclude Include="src\FontsManager.h" />
     <ClInclude Include="src\Game.h" />

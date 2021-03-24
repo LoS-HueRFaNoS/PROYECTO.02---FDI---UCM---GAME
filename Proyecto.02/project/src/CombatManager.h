@@ -16,7 +16,7 @@ private:
 
 	vector<Character*> _turnQueue;
 
-	Character* currentTurn;
+	Character* currentCharacter;
 
 	int _turn = 0;
 
@@ -42,13 +42,15 @@ private:
 
 	void calculateTurns();
 
+	void throwHability(Character* objective, Hability* hability);
+	
+	void castToTeam(characterType team, Hability* hability);
+
 public:
 
 #pragma region CombatePorConsola
 
 	void consoleCombat();
-
-	void mostrarHabilidades();
 
 	void mostratEstadoEquipos();
 
@@ -56,7 +58,7 @@ public:
 
 #pragma endregion
 
-	CombatManager() : currentTurn(nullptr), _heroes(vector<Hero*>()), _enemies(vector<Enemy*>()), Component(ecs::CombatManager)
+	CombatManager() : currentCharacter(nullptr), _heroes(vector<Hero*>()), _enemies(vector<Enemy*>()), Component(ecs::CombatManager)
 	{}
 
 	~CombatManager() {}
@@ -78,32 +80,7 @@ public:
 
 	void passTurn();
 
-
-	//for (Character* c : obj)
-	//{
-	//	if (c->checkHit(throwDice(1, 20) + caster->getMod(_mod)))
-	//		throwHability(caster, obj);
-	//	else
-	//		cout << "Fallo - HabilityResources.cpp linea 13" << endl;
-	//}
-
-	//bool checkHit(int hit)
-	//{
-	//	return hit > (throwDice(1, _sheet.getStat(DEX).value) + _sheet.getStat(DEX).getMod());
-	//}
-
-	//void castHability(Character* caster, Character* obj)
-	//{
-	//	if (canCast()) {
-	//		_nextCast = _cd;
-	//		if (obj->checkHit(throwDice(1, 20) + caster->getMod(_mod)))
-	//			throwHability(caster, obj);
-	//		else
-	//			cout << "Fallo - HabilityResources.cpp linea 13" << endl;
-	//	}
-	//	else
-	//		cout << "Aun no puede castear quedan " << _nextCast << " turnos - HabilityResources.cpp linea 13" << endl;
-	//}
+	void castHability(Hability* hability);
 
 };
 

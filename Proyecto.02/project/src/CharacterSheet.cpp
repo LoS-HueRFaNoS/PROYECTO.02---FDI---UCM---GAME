@@ -7,9 +7,12 @@ bool CharacterSheet::recieveDamage(int damage, rpgLogic::damageType type)
 
 	damage -= damage * res;
 
-	cout << name << " recibe " << damage << "de danyo - HabilityResources.cpp linea 13" << endl;
+	cout << name << " recieves " << damage << " damage" << endl;
 
 	_hitPoints -= damage;
 
-	return _hitPoints <= 0;
+	if (_hitPoints < 0)
+		_hitPoints = 0;
+
+	return !_hitPoints;
 }

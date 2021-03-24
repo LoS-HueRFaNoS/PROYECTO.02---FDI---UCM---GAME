@@ -56,7 +56,10 @@ void Game::initGame() {
 	e2->loadFromTemplate(rpgLogic::ZOMBIE);
 	e3->loadFromTemplate(rpgLogic::ZOMBIE);
 
+	h1->addHability<Fireball>();
+	h2->addHability<Fireball>();
 	h3->addHability<Fireball>();
+	h4->addHability<Fireball>();
 
 	cm->addCharacter(h1);
 	cm->addCharacter(h2);

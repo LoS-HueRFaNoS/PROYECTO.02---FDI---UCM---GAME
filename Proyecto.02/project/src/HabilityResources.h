@@ -21,22 +21,23 @@ enum ObjectiveType
 
 class Hability {
 protected:
-	int level;
-	int _mana;
-	/*string name;
-	string description;*/
+	int level = 0;
+	int _mana = 0;
+	std::string _name = "DefaultName";
+	std::string _description = "DefaultDescription";
 
-	damageType _type;
-	mainStat _mod;
-	ObjectiveType _obj;
+	damageType _type = damageType(0);
+	mainStat _mod = _LastStatId_;
+	ObjectiveType _obj = CASTER;
 
 
 	Character* _caster;
 
 public:
-	Hability() :_caster(nullptr), _mana(0), _type(_LastTypeId_), _obj(CASTER), _mod(_LastStatId_) {}
 
-	Hability(Character* caster, int mana, damageType type, ObjectiveType obj, mainStat mod) :_caster(caster), _mana(mana), _type(type), _obj(obj), _mod(mod) {}
+	Hability() :_caster(nullptr) {}
+
+	Hability(Character* caster) :_caster(caster) {}
 
 	~Hability() {}
 
@@ -45,11 +46,27 @@ public:
 	Character* getCaster() { return _caster; }
 
 	virtual void throwHability(Character* obj)const = 0;
+
+	std::string name() { return _name; }
+
+	std::string description() { return _description; }
+
+	mainStat getMod() { return _mod; }
+
+	ObjectiveType getType() { return _obj; }
 };
 
 class LightAttack : public Hability {
 public:
-	LightAttack(Character* caster) :Hability(caster, 0, SLASH, SINGLEENEMY, STR) { }
+	LightAttack(Character* caster) :Hability(caster) {
+		level = 0;
+		_mana = 0;
+		_name = "Light Attack";
+		_description = "Golpe to guapo con el arma, a terminar";
+
+		_mod = STR;
+		_obj = SINGLEENEMY;
+	}
 
 	void throwHability(Character* obj)const override;
 };
@@ -58,7 +75,17 @@ public:
 
 class Fireball : public Hability {
 public:
-	Fireball(Character* caster) :Hability(caster, 5, FIRE, ENEMYTEAM, INT) {	}
+	Fireball(Character* caster) :Hability(caster) {	
+
+		level = 4;
+		_mana = 10;
+		_name = "Fireball";
+		_description = "Bola de fuego to guapa, a hace 8d6";
+
+		_type = FIRE;
+		_mod = INT;
+		_obj = ENEMYTEAM;
+	}
 
 	void throwHability(Character* obj)const override;
 };

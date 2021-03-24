@@ -2,7 +2,7 @@
 #include "HabilityResources.h"
 #pragma once
 
-class Equipament : public Component
+class Equipement : public Component
 {
 	struct Weapon
 	{

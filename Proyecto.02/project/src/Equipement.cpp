@@ -1,11 +1,11 @@
 #include <fstream>
 #include <iostream>
-#include "Equipament.h"
+#include "Equipement.h"
 #include "jute.h"
 
 using namespace rpgLogic;
 
-void Equipament::loadWeaponTemplate(weaponsId t)
+void Equipement::loadWeaponTemplate(weaponsId t)
 {
 	string file = Resources::jsons_[Resources::Weapons].filename;
 	loadFromJson(file, t);

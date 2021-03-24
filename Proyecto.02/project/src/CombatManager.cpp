@@ -18,18 +18,14 @@ void CombatManager::consoleCombat()
 
 	cin.get();
 
-	_turnQueue[_turn]->startTurn(this);
+	currentCharacter->startTurn(this);
 
 	cout << "---------- PRESS ENTER TO END TURN ----------" << endl;
 
+	cin.clear();    // Restore input stream to working state
+	cin.ignore(100, '\n');    // Get rid of any garbage that user might have entered
 	cin.get();
 	passTurn();
-}
-
-void CombatManager::mostrarHabilidades()
-{
-	for (Hability* h : currentTurn->getHabilities())
-		cout << typeid(h).name();
 }
 
 void CombatManager::mostratEstadoEquipos()
@@ -74,22 +70,76 @@ void CombatManager::mostrarCola()
 void CombatManager::startCombat()
 {
 	_turn = 0;
-	currentTurn = nullptr;
+	currentCharacter = nullptr;
 	calculateTurns();
+	currentCharacter = _turnQueue[0];
 }
 
 void CombatManager::passTurn()
 {
 	_turn = ++_turn % _turnQueue.size();
+	currentCharacter = _turnQueue[_turn];
 }
+
+void CombatManager::castHability(Hability* hability)
+{
+	ObjectiveType t = hability->getType();
+	cout << "\n";
+
+	switch (t)
+	{
+	case SINGLEALLY:
+
+		break;
+	case SINGLEENEMY:
+
+		break;
+	case ALLYTEAM:
+		castToTeam(currentCharacter->getType(), hability);
+		break;
+	case ENEMYTEAM:
+		castToTeam((characterType)((int)currentCharacter->getType() ^ 1), hability);
+		break;
+	case CASTER:
+
+		break;
+	default:
+		break;
+	}
+}
+
+
+void CombatManager::castToTeam(characterType team, Hability* hability)
+{
+	if (team)
+		for (Enemy* e : _enemies)
+			throwHability(e, hability);
+	else
+		for (Hero* h : _heroes)
+			throwHability(h, hability);
+}
+
+void CombatManager::throwHability(Character* objective, Hability* hability)
+{
+	cout << "Attack on " << objective->name() << endl;
+	if (objective->checkHit(currentCharacter->throw20PlusMod(hability->getMod()))) {
+		cout << hability->name() << " hits" << endl;;
+		hability->throwHability(objective);
+	}
+	else {
+		cout << "No Hit" << endl;
+	}
+	cout << "\n\n";
+}
+
 
 void CombatManager::calculateTurns()
 {
 	vector<Initiative> ini;
 	for (int i = 0; i < _heroes.size(); i++)
-		ini.push_back(Initiative(_heroes[i]->getType(), i, throwDice(1, _heroes[i]->getStat(DEX)) + _heroes[i]->getMod(DEX)));
+		ini.push_back(Initiative(_heroes[i]->getType(), i, throwDice(1, _heroes[i]->getStat(DEX), false) + _heroes[i]->getMod(DEX)));
 	for (int i = 0; i < _enemies.size(); i++)
-		ini.push_back(Initiative(_enemies[i]->getType(), i, throwDice(1, _enemies[i]->getStat(DEX)) + _enemies[i]->getMod(DEX)));
+		ini.push_back(Initiative(_enemies[i]->getType(), i, throwDice(1, _enemies[i]->getStat(DEX), false) + _enemies[i]->getMod(DEX)));
 
 	sort(ini.begin(), ini.end(), initiative_roll());
 

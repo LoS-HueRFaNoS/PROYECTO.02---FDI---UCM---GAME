@@ -90,7 +90,7 @@ public:
 	}
 
 	int manaPoints() {
-		return _hitPoints;
+		return _manaPoints;
 	}
 
 	void setManaPoints(int set) {
