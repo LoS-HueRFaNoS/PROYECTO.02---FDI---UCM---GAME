@@ -9,7 +9,10 @@ using namespace std;
 
 class callbacks {
 public:
-	static void pruebaGame(Game* app);
+	static void pruebaGame0(Game* app);
+	static void pruebaGame1(Game* app);
+	static void pruebaGame2(Game* app);
+	static void pruebaGame3(Game* app);
 };
 
 

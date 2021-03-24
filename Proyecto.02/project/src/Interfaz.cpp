@@ -17,10 +17,10 @@ void Interfaz::createMovement()
 {
 	Panel* p = new Panel(Movement);
 	allPanels.push_back(p);
-	p->addButton(createButton(p, callbacks::pruebaGame, Vector2D(100, 100), 50, 50, Resources::Asteroid));
-	p->addButton(createButton(p, callbacks::pruebaGame, Vector2D(150, 100), 50, 50, Resources::Asteroid));
-	p->addButton(createButton(p, callbacks::pruebaGame, Vector2D(200, 100), 50, 50, Resources::Asteroid));
-	p->addButton(createButton(p, callbacks::pruebaGame, Vector2D(250, 100), 50, 50, Resources::Asteroid));
+	p->addButton(createButton(p, callbacks::pruebaGame0, Vector2D(100, 100), 50, 50, Resources::Bardo));
+	p->addButton(createButton(p, callbacks::pruebaGame1, Vector2D(150, 100), 50, 50, Resources::Brujo));
+	p->addButton(createButton(p, callbacks::pruebaGame2, Vector2D(200, 100), 50, 50, Resources::Clerigo));
+	p->addButton(createButton(p, callbacks::pruebaGame3, Vector2D(250, 100), 50, 50, Resources::Guerrero));
 }
 
 Interfaz::Interfaz(Game* juego, EntityManager* manager)

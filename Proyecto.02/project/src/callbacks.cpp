@@ -1,8 +1,20 @@
 #include "callbacks.h"
 
-void callbacks::pruebaGame(Game* app)
+void callbacks::pruebaGame0(Game* app)
 {
-	std::cout << "has pulsado este boton" << std::endl;
+	std::cout << "has pulsado este boton (0)" << std::endl;
+}
+void callbacks::pruebaGame1(Game* app)
+{
+	std::cout << "has pulsado este boton (1)" << std::endl;
+}
+void callbacks::pruebaGame2(Game* app)
+{
+	std::cout << "has pulsado este boton (2)" << std::endl;
+}
+void callbacks::pruebaGame3(Game* app)
+{
+	std::cout << "has pulsado este boton (3)" << std::endl;
 }
 
 //void callbacks::start(Game* app) // previo app->setLevel(lvl);

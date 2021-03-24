@@ -26,6 +26,17 @@ vector<Resources::ImageInfo> Resources::images_ {
 		//{ Pasillo5, "resources/images/pasillos/Pasillo5.png"}, //
 		//{ Pasillo6, "resources/images/pasillos/Pasillo6.png"}, //
 		//{ Pasillo7, "resources/images/pasillos/Pasillo7.png"}, //
+		{ Bardo, "resources/sprites/iconos personajes/bardo.png" },
+		{ Brujo, "resources/sprites/iconos personajes/brujo.png" },
+		{ Clerigo, "resources/sprites/iconos personajes/clerigo.png" },
+		{ Guerrero, "resources/sprites/iconos personajes/guerrero.png" },
+		{ Paladin, "resources/sprites/iconos personajes/paladin.png" },
+		{ Barbaro, "resources/sprites/iconos personajes/barbaro.png" },
+		{ Explorador, "resources/sprites/iconos personajes/explorador.png" },
+		{ Picaro, "resources/sprites/iconos personajes/picaro.png" },
+		{ Druida, "resources/sprites/iconos personajes/druida.png" },
+		{ Bestia, "resources/sprites/iconos personajes/bestia.png" },
+		{ GranArchimago, "resources/sprites/iconos personajes/heroe-mago.png" }
 };
 
 vector<Resources::TextMsgInfo> Resources::messages_ {
