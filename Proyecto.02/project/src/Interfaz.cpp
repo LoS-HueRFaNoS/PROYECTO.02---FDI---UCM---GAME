@@ -17,10 +17,10 @@ void Interfaz::createMovement()
 {
 	Panel* p = new Panel(Movement);
 	allPanels.push_back(p);
-	p->addButton(createButton(p, callbacks::pruebaGame0, Vector2D(100, 100), 50, 50, Resources::Bardo));
-	p->addButton(createButton(p, callbacks::pruebaGame1, Vector2D(150, 100), 50, 50, Resources::Brujo));
-	p->addButton(createButton(p, callbacks::pruebaGame2, Vector2D(200, 100), 50, 50, Resources::Clerigo));
-	p->addButton(createButton(p, callbacks::pruebaGame3, Vector2D(250, 100), 50, 50, Resources::Guerrero));
+	p->addButton(createButton(p, callbacks::avanzar, Vector2D(150, 780), 85, 96, Resources::Avanzar));
+	p->addButton(createButton(p, callbacks::rotarDer, Vector2D(250, 800), 82, 72, Resources::RotarD));
+	p->addButton(createButton(p, callbacks::rotarIzq, Vector2D(50, 800), 82, 72, Resources::RotarI));
+	p->addButton(createButton(p, callbacks::interactuar, Vector2D(350, 810), 100, 55, Resources::Interactuar));
 }
 
 void Interfaz::createHeroes()

@@ -13,6 +13,11 @@ public:
 	static void pruebaGame1(Game* app);
 	static void pruebaGame2(Game* app);
 	static void pruebaGame3(Game* app);
+
+	static void avanzar(Game* app);
+	static void rotarDer(Game* app);
+	static void rotarIzq(Game* app);
+	static void interactuar(Game* app);
 };
 
 //const enum action { gogame, gomenu, gopause, goback, pausetomenu, shutdown, saveoption, savecurrent, loadoption, gostageclear, goloselife, gogameover, gogameclear };

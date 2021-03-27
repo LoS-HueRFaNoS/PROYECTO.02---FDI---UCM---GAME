@@ -39,7 +39,13 @@ public:
 		Picaro,
 		Druida,
 		Bestia,
-		GranArchimago
+		GranArchimago,
+
+		// movement
+		Avanzar,
+		RotarD,
+		RotarI,
+		Interactuar
 	};
 
 	enum AudioId : std::size_t {

@@ -36,7 +36,12 @@ vector<Resources::ImageInfo> Resources::images_ {
 		{ Picaro, "resources/sprites/iconos personajes/picaro.png" },
 		{ Druida, "resources/sprites/iconos personajes/druida.png" },
 		{ Bestia, "resources/sprites/iconos personajes/bestia.png" },
-		{ GranArchimago, "resources/sprites/iconos personajes/heroe-mago.png" }
+		{ GranArchimago, "resources/sprites/iconos personajes/heroe-mago.png" },
+
+	{Avanzar, "resources/sprites/iconos movimiento/movimientoAvanzar.png"},
+	{RotarD, "resources/sprites/iconos movimiento/movimientoRotarDerecha.png"},
+	{RotarI, "resources/sprites/iconos movimiento/movimientoRotarIzquierda.png"},
+	{Interactuar,  "resources/sprites/iconos movimiento/movimientoInteractuar.png"},
 };
 
 vector<Resources::TextMsgInfo> Resources::messages_ {
