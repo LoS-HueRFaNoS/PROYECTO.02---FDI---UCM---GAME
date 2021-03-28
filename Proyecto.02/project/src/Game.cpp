@@ -35,69 +35,72 @@ void Game::initGame() {
 	game_ = SDLGame::init("VAMOS A LLORAR CON SDL", _WINDOW_WIDTH_, _WINDOW_HEIGHT_);
 
 	entityManager_ = new EntityManager(game_);
-	Interfaz F = Interfaz(this, entityManager_);
 
+	//// 1. Personajes
+
+	//cout << "Loading Characters please wait..." << endl;
+
+	//Entity* manager = entityManager_->addEntity();
+	//CombatManager* cm = manager->addComponent<CombatManager>();
+
+
+	//Hero* wizard = new Hero(game_, entityManager_);
+	//Hero* warrior = new Hero(game_, entityManager_);
+	//Hero* rogue = new Hero(game_, entityManager_);
+	//Hero* cleric = new Hero(game_, entityManager_);
+	//Enemy* e1 = new Enemy(game_, entityManager_);
+	//Enemy* e2 = new Enemy(game_, entityManager_);
+	//Enemy* e3 = new Enemy(game_, entityManager_);
+
+	//wizard->loadFromTemplate(rpgLogic::WIZARD);
+	//warrior->loadFromTemplate(rpgLogic::WARRIOR);
+	//rogue->loadFromTemplate(rpgLogic::ROGUE);
+	//cleric->loadFromTemplate(rpgLogic::CLERIC);
+	//e1->loadFromTemplate(rpgLogic::ZOMBIE);
+	//e2->loadFromTemplate(rpgLogic::ZOMBIE);
+	//e3->loadFromTemplate(rpgLogic::ZOMBIE);
+
+	//wizard->addHability<Fireball>();
+	//wizard->addHability<SingleTargetAttackExample>();
+	//wizard->addHability<SelfHealExample>();
+	//wizard->addHability<AllyTeamAttackExample>();
+
+	//warrior->addHability<SingleTargetAttackExample>();
+	//warrior->addHability<AllyTeamAttackExample>();
+
+	//rogue->addHability<SingleTargetAttackExample>();
+	//rogue->addHability<AllyTeamAttackExample>();
+
+	//cleric->addHability<SingleTargetHealxample>();
+	//cleric->addHability<SelfHealExample>();
+	//cleric->addHability<AllyTeamHealExample>();
+	//cleric->addHability<AllyTeamAttackExample>();
+
+	//cm->addCharacter(wizard);
+	//cm->addCharacter(warrior);
+	//cm->addCharacter(rogue);
+	//cm->addCharacter(cleric);
+	//cm->addCharacter(e1);
+	//cm->addCharacter(e2);
+	//cm->addCharacter(e3);
+
+	//cm->startCombat();
+
+	//cout << "Characters Loaded" << endl;
+	//
+
+	// 2. Mapa / Laberinto
 	Entity* laberinto = entityManager_->addEntity();
-	Laberinto* lab = laberinto->addComponent<Laberinto>(entityManager_) ;
-	lab -> initFromFile();
+	Laberinto* lab = laberinto->addComponent<Laberinto>(entityManager_);
+	lab->initFromFile();
 
 	Entity* player = entityManager_->addEntity();
-	player->addComponent<MazePos>(Vector2D(0,0));
-	player->addComponent<PlayerMotion>(SDLK_UP,SDLK_LEFT,SDLK_RIGHT,lab);
+	player->addComponent<MazePos>(Vector2D(0, 0));
+	player->addComponent<PlayerMotion>(SDLK_UP, SDLK_LEFT, SDLK_RIGHT, lab);
 	player->addComponent<PlayerViewer>(lab);
 
-	// Nuetro c�digo
-
-	cout << "Loading Characters please wait..." << endl;
-
-	Entity* manager = entityManager_->addEntity();
-	CombatManager* cm = manager->addComponent<CombatManager>();
-
-
-	Hero* wizard = new Hero(game_, entityManager_);
-	Hero* warrior = new Hero(game_, entityManager_);
-	Hero* rogue = new Hero(game_, entityManager_);
-	Hero* cleric = new Hero(game_, entityManager_);
-	Enemy* e1 = new Enemy(game_, entityManager_);
-	Enemy* e2 = new Enemy(game_, entityManager_);
-	Enemy* e3 = new Enemy(game_, entityManager_);
-
-	wizard->loadFromTemplate(rpgLogic::WIZARD);
-	warrior->loadFromTemplate(rpgLogic::WARRIOR);
-	rogue->loadFromTemplate(rpgLogic::ROGUE);
-	cleric->loadFromTemplate(rpgLogic::CLERIC);
-	e1->loadFromTemplate(rpgLogic::ZOMBIE);
-	e2->loadFromTemplate(rpgLogic::ZOMBIE);
-	e3->loadFromTemplate(rpgLogic::ZOMBIE);
-
-	wizard->addHability<Fireball>();
-	wizard->addHability<SingleTargetAttackExample>();
-	wizard->addHability<SelfHealExample>();
-	wizard->addHability<AllyTeamAttackExample>();
-
-	warrior->addHability<SingleTargetAttackExample>();
-	warrior->addHability<AllyTeamAttackExample>();
-
-	rogue->addHability<SingleTargetAttackExample>();
-	rogue->addHability<AllyTeamAttackExample>();
-
-	cleric->addHability<SingleTargetHealxample>();
-	cleric->addHability<SelfHealExample>();
-	cleric->addHability<AllyTeamHealExample>();
-	cleric->addHability<AllyTeamAttackExample>();
-
-	cm->addCharacter(wizard);
-	cm->addCharacter(warrior);
-	cm->addCharacter(rogue);
-	cm->addCharacter(cleric);
-	cm->addCharacter(e1);
-	cm->addCharacter(e2);
-	cm->addCharacter(e3);
-
-	cm->startCombat();
-
-	cout << "Characters Loaded" << endl;
-	//
+	// 3. Interfaz
+	Interfaz F = Interfaz(this, entityManager_);
 }
 
 void Game::closeGame() {
