@@ -14,6 +14,8 @@ enum CmpId : CmpIdType {
 	PlayerMotion,
 	Image,
 	ButtonCtrl,
+	MouseCtrl,
+	Sprite,
 	MazePos,
 	PlayerViewer,
 	//
