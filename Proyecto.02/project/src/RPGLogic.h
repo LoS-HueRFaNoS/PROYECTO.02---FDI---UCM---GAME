@@ -1,6 +1,12 @@
 #pragma once
 
 namespace rpgLogic {
+
+	enum characterType {
+		HERO,
+		ENEMY
+	};
+
 	enum damageType {
 		// Daños físicos
 		BLUNT,
@@ -14,19 +20,16 @@ namespace rpgLogic {
 		WIND,
 		LIGHT,
 		DARK,
-		// Escribir encima de estecomentario
 		_LastTypeId_
 	};
 
 
-	enum modStat {
+	enum mainStat {
 		STR,
 		CON,
 		DEX,
 		INT,
-		NULLMOD,
-		// Escribir encima de estecomentario
-		_LastModId_
+		_LastStatId_
 	};
 
 	enum characterTemplate {
@@ -37,18 +40,67 @@ namespace rpgLogic {
 		CLERIC,
 		PALADIN,
 		BARBARIAN,
-		ROGUE, 
+		ROGUE,
 		DRUID,
-		// Escribir encima de estecomentario
-		_LastTemplateId_
+		_LastCharacterTemplateId_
 	};
 
-	enum mainStat {
-		STRENGTH,
-		CONSTITUTION,
-		DEXTERITY,
-		INTELLIGENCE,
-		// Escribir encima de estecomentario
-		_LastStatId_
+	enum weaponsId
+	{
+		DESARMADO,
+		BASTON,
+		DAGA,
+		CLAVA,
+		HACHAPEQUENA,
+		HOZ,
+		LANZA,
+		MARTILLOPEQUENO,
+		MAZA,
+		ARCOPEQUENO,
+		BALLESTALIGERA,
+		//Armas Marciales
+		ALABARDA,
+		ATARRAGA,
+		ESPADACORTA,
+		ESPADALARGA,
+		ESPADON,
+		ESPADAROPERA,
+		HACHADEBATALLA,
+		GUJA,
+		LATIGO,
+		LUCERODELALBA,
+		MARTILLODEGUERRA,
+		PICA,
+		TRIDENTE,
+		ARCOLARGO,
+		BALLESTAPESADA,
+		_LastWeaponId_
 	};
+
+	enum armorId
+	{
+		ACOLCHADA,
+		CUEROTACHONADO,
+		COTADEESCAMAS,
+		CORAZA,
+		SEMIPLACAS,
+		COTADEMALLA,
+		BANDAS,
+		PLACAS,
+		_LastArmorId_
+	};
+
+	enum enemyTemplate {
+		ZOMBIE,
+		// Escribir encima de estecomentario
+		_LastEnemyTemplateId_
+	};
+
+	/*enum SpellId {
+		Fireball,
+		_LastSpellId_
+	};*/
+
+	int throwDice(int n, int dice, bool text);
 }
+

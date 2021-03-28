@@ -1,5 +1,5 @@
 {
-  "Heroes": [
+  "Characters": [
 
     {
       "Name": "Zombie",
@@ -7,19 +7,19 @@
       "Stats": [
         {
           "Key": "Strength",
-          "Num": 13
+          "Value": 13
         },
         {
           "Key": "Constitution",
-          "Num": 16
+          "Value": 16
         },
         {
           "Key": "Dexterity",
-          "Num": 6
+          "Value": 6
         },
         {
           "Key": "Intelligence",
-          "Num": 3
+          "Value": 3
         }
       ],
 
@@ -67,9 +67,7 @@
           "Key": "Dark",
           "Value": 0.0
         }
-      ],
-
-      "Experience": 10
+      ]
     }
 
   ]

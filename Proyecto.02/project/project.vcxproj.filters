@@ -120,9 +120,6 @@
     <ClCompile Include="src\Texture.cpp">
       <Filter>Archivos de origen\Tools/Utilities</Filter>
     </ClCompile>
-    <ClCompile Include="src\Character.cpp">
-      <Filter>Archivos de origen\Components</Filter>
-    </ClCompile>
     <ClCompile Include="src\RPGLogic.cpp">
       <Filter>Archivos de origen\Templates/Resources</Filter>
     </ClCompile>
@@ -131,6 +128,20 @@
     </ClCompile>
     <ClCompile Include="TheElementalMaze.cpp">
       <Filter>Archivos de origen</Filter>
+    <ClCompile Include="src\CharacterSheet.cpp">
+      <Filter>Archivos de origen\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="src\HabilityResources.cpp">
+      <Filter>Archivos de origen\Templates/Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Character.cpp">
+      <Filter>Archivos de origen\Templates/Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="src\CombatManager.cpp">
+      <Filter>Archivos de origen\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Equipement.cpp">
+      <Filter>Archivos de origen\Components</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -212,9 +223,6 @@
     <ClInclude Include="src\Texture.h">
       <Filter>Archivos de encabezado\Tools/Utilities</Filter>
     </ClInclude>
-    <ClInclude Include="src\Character.h">
-      <Filter>Archivos de encabezado\Components</Filter>
-    </ClInclude>
     <ClInclude Include="src\RPGLogic.h">
       <Filter>Archivos de encabezado\Templates/Resources</Filter>
     </ClInclude>
@@ -237,6 +245,19 @@
       <Filter>Archivos de encabezado\Components</Filter>
     </ClInclude>
     <ClInclude Include="CasillaRender.h">
+    <ClInclude Include="src\CharacterSheet.h">
+      <Filter>Archivos de encabezado\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Character.h">
+      <Filter>Archivos de encabezado\Templates/Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="src\HabilityResources.h">
+      <Filter>Archivos de encabezado\Templates/Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="src\CombatManager.h">
+      <Filter>Archivos de encabezado\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Equipement.h">
       <Filter>Archivos de encabezado\Components</Filter>
     </ClInclude>
     <ClInclude Include="src\PlayerViewer.h">
@@ -247,19 +268,16 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="pruebas.json">
-      <Filter>Archivos de recursos</Filter>
-    </None>
-    <None Include="resources\jsons\characters.json">
-      <Filter>Archivos de recursos</Filter>
-    </None>
     <None Include="resources\jsons\pruebasArmaduras.json">
       <Filter>Archivos de recursos</Filter>
     </None>
     <None Include="resources\jsons\pruebasArmas.json">
       <Filter>Archivos de recursos</Filter>
     </None>
-    <None Include="resources\jsons\enemigos.json">
+    <None Include="resources\jsons\heroes.json">
+      <Filter>Archivos de recursos</Filter>
+    </None>
+    <None Include="resources\jsons\enemies.json">
       <Filter>Archivos de recursos</Filter>
     </None>
   </ItemGroup>

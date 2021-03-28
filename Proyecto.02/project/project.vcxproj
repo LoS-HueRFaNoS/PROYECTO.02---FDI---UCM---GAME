@@ -22,12 +22,16 @@
     <ClCompile Include="src\AudioManager.cpp" />
     <ClCompile Include="src\ButtonCtrl.cpp" />
     <ClCompile Include="src\Character.cpp" />
+    <ClCompile Include="src\CharacterSheet.cpp" />
     <ClCompile Include="src\Collisions.cpp" />
+    <ClCompile Include="src\CombatManager.cpp" />
     <ClCompile Include="src\Component.cpp" />
     <ClCompile Include="src\Entity.cpp" />
+    <ClCompile Include="src\Equipement.cpp" />
     <ClCompile Include="src\Font.cpp" />
     <ClCompile Include="src\FontsManager.cpp" />
     <ClCompile Include="src\Game.cpp" />
+    <ClCompile Include="src\HabilityResources.cpp" />
     <ClCompile Include="src\InputHandler.cpp" />
     <ClCompile Include="src\jute.cpp" />
     <ClCompile Include="src\main.cpp" />
@@ -50,19 +54,22 @@
     <ClCompile Include="TheElementalMaze.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="CasillaRender.h" />
     <ClInclude Include="src\AudioManager.h" />
     <ClInclude Include="src\ButtonCtrl.h" />
     <ClInclude Include="src\callbacks.h" />
     <ClInclude Include="src\Character.h" />
+    <ClInclude Include="src\CharacterSheet.h" />
     <ClInclude Include="src\checkML.h" />
     <ClInclude Include="src\Collisions.h" />
+    <ClInclude Include="src\CombatManager.h" />
     <ClInclude Include="src\Component.h" />
     <ClInclude Include="src\ecs.h" />
     <ClInclude Include="src\Entity.h" />
+    <ClInclude Include="src\Equipement.h" />
     <ClInclude Include="src\Font.h" />
     <ClInclude Include="src\FontsManager.h" />
     <ClInclude Include="src\Game.h" />
+    <ClInclude Include="src\HabilityResources.h" />
     <ClInclude Include="src\InputHandler.h" />
     <ClInclude Include="src\jute.h" />
     <ClInclude Include="src\Manager.h" />
@@ -88,9 +95,8 @@
     <ClInclude Include="TheElementalMaze.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="pruebas.json" />
-    <None Include="resources\jsons\characters.json" />
-    <None Include="resources\jsons\enemigos.json" />
+    <None Include="resources\jsons\heroes.json" />
+    <None Include="resources\jsons\enemies.json" />
     <None Include="resources\jsons\pruebasArmaduras.json" />
     <None Include="resources\jsons\pruebasArmas.json" />
   </ItemGroup>

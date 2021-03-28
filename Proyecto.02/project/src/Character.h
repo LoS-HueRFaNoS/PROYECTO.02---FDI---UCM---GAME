@@ -1,88 +1,142 @@
 #ifndef _CHARACTER_
 #define _CHARACTER_
-#include "Component.h"
-#include "RPGLogic.h"
+#include "CharacterSheet.h"
+#include "Entity.h"
+#include "Equipement.h"
 
-using namespace rpgLogic;
 
-class Character : public Component
+#pragma region CHARACTER
+
+class CombatManager;
+
+class Character : public Entity
 {
-public:
+protected:
 
-	//struct Ataque {
-	//	int daño;
-	//	int dados;
-	//	damageType type;
-	//	modStat mod;
-	//};
+	characterType _type;
 
-	struct  Stat
-	{
-		int value;
+	CharacterSheet* _sheet;
 
-		int getMod() {
-			return (value - 10) / 2;
-		}
-	};
+	vector<Hability*> _habilities;
 
-	struct Weaknesses {
+	virtual void init() {
+		_sheet = addComponent<CharacterSheet>();
+	}
 
-		vector<float> _weaknesses;
+	virtual void loadFromJson(string json, int t) {}
 
-		Weaknesses() {
-			_weaknesses = vector<float>(_LastTypeId_, 0);
-		}
-
-		Weaknesses(vector<float> in) {
-			_weaknesses = in;
-		}
-
-		void setWeakness(damageType type, float set) {
-			_weaknesses[type] = set;
-		}
-
-		void changeWeakness(damageType type, float change) {
-			_weaknesses[type] += change;
-		}
-
-		float getWeakness(damageType type) {	// Devolver la resistencia en función de tipo o parametro
-			return _weaknesses[type];
-		}
-	};
-
-private:
-
-	//Nombre (Clase del heroe o tipo de criatura) 
-	string name = "DefaultClass";
-
-	//Caracteristicas 
-	vector<Stat> _stats;
-
-	//Salud
-	int hitPoints = 10;
-	//Mana
-	int manaPoints = 10;
-	//Clase de armadura
-	int armorClass = 10;
-
-	//Debilidades
-	Weaknesses weaknesses;
+	virtual void manageTurn(CombatManager* cm) = 0;
 
 public:
 
-	Character() :Component(ecs::Character),
-		weaknesses(), _stats(vector<Stat>(4, { 10 }))
-	{
+	Character(SDLGame* game, EntityManager* mngr, characterType type) : _type(type), _habilities(vector<Hability*>()), Entity(game, mngr) {
+		init();
 	}
 
-	void loadFromJson(characterTemplate t);
+	void loadFromTemplate(characterTemplate t);
+	void loadFromTemplate(enemyTemplate t);
 
-	Stat getStat(mainStat st) {
-		return _stats[st];
+	void recieveDamage(int damage, damageType type);
+
+	void recieveHealing(int healing);
+
+	bool savingThrow(int save, mainStat stat);
+
+	int throw20PlusMod(mainStat mod, bool crit);
+
+	int throwStat(mainStat stat);
+
+	bool checkHit(int hit);
+
+	int getMod(rpgLogic::mainStat stat) {
+		return _sheet->getStat(stat).getMod();
 	}
 
-	void changeStat(mainStat st, int change){
-		_stats[st].value += change;
+	int getStat(rpgLogic::mainStat stat) {
+		return _sheet->getStat(stat).value;
+	}
+
+	void startTurn(CombatManager* cm);
+
+	characterType getType() {
+		return _type;
+	}
+
+	string name() {
+		return _sheet->name;
+	}
+
+	template<typename T>
+	T* addHability() {
+		T* c(new T(this));
+		_habilities.push_back(static_cast<Hability*>(c));
+		return c;
+	}
+
+	vector<Hability*> getHabilities() {
+		return _habilities;
+	}
+
+	bool isDead() {
+		return !_sheet->hitPoints();
 	}
 };
+
+#pragma endregion
+
+
+#pragma region HERO
+
+class Hero : public Character {
+private:
+
+	Equipement* _equipement;
+
+	virtual void loadFromJson(string json, int t);
+
+	virtual void manageTurn(CombatManager* cm);
+
+	virtual void init() {
+		_equipement = addComponent<Equipement>();
+		Character::init();
+	}
+
+#pragma region CombatePorConsola
+
+	void consoleTurn(CombatManager* cm);
+
+#pragma endregion
+
+public:
+	Hero(SDLGame* game, EntityManager* mngr) :Character(game, mngr, HERO) {
+		init();
+	}
+};
+
+#pragma endregion
+
+
+#pragma region ENEMY
+
+class Enemy : public Character {
+private:
+
+	int exp = 0;
+
+	virtual void loadFromJson(string json, int t);
+
+	virtual void manageTurn(CombatManager* cm);
+
+public:
+	Enemy(SDLGame* game, EntityManager* mngr) : Character(game, mngr, ENEMY) {
+		init();
+	}
+
+	int getExp() { return exp; }
+};
+
+
+#pragma endregion
+
 #endif
+
