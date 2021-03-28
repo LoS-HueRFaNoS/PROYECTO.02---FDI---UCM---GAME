@@ -8,7 +8,7 @@ using CmpIdType = std::size_t;
 enum CmpId : CmpIdType {
 	Transform = 0,
 	Rectangle,
-	Character,
+	CharacterSheet,
 	CasillaRender,
 	Laberinto,
 	PlayerMotion,
@@ -18,6 +18,8 @@ enum CmpId : CmpIdType {
 	Sprite,
 	MazePos,
 	PlayerViewer,
+	CombatManager,
+	Equipement,
 	//
 	// don't touch the rest of this enum, it is to identify the max
 	// number of components

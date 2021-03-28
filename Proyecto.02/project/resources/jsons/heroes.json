@@ -1,5 +1,5 @@
 {
-  "Heroes": [
+  "Characters": [
     {
       "Name": "Warrior",
 
@@ -73,7 +73,6 @@
       ],
 
       "Equipement": {
-        "Check": true,
         "ListWeapons": [
           0
         ],
@@ -157,7 +156,6 @@
       "Equipement": {
         "Check": true,
         "ListWeapons": [
-          0
         ],
         "ListArmors": [
           0
