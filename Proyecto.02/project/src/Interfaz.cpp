@@ -42,6 +42,17 @@ void Interfaz::createHeroes()
 	p->addButton(createButton(p, callbacks::pruebaGame3, Vector2D(pPos.getX(), pPos.getY() + 300), tamL, tamL, Resources::Guerrero));
 }
 
+void Interfaz::createInfo()
+{
+	Panel* p = new Panel(Info);
+	allPanels.push_back(p);
+	p->addButton(createButton(p, callbacks::inventario, Vector2D(700, 750), 120, 120, Resources::Inventario));
+	p->addButton(createButton(p, callbacks::pocionVida, Vector2D(800, 750), 50, 50, Resources::PocionVida));
+	p->addButton(createButton(p, callbacks::pocionMana, Vector2D(800, 825), 50, 50, Resources::PocionMana));
+	p->addButton(createButton(p, callbacks::chat, Vector2D(880, 750), 50, 50, Resources::Chat));
+	p->addButton(createButton(p, callbacks::configuracion, Vector2D(880, 825), 50, 50, Resources::Configuracion));
+}
+
 Interfaz::Interfaz(Game* juego, EntityManager* manager)
 {
 	g_ = juego;

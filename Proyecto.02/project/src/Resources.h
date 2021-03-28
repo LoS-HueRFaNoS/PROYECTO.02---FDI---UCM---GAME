@@ -45,7 +45,14 @@ public:
 		Avanzar,
 		RotarD,
 		RotarI,
-		Interactuar
+		Interactuar,
+
+		//Info
+		Inventario,
+		PocionVida,
+		PocionMana,
+		Chat,
+		Configuracion
 	};
 
 	enum AudioId : std::size_t {

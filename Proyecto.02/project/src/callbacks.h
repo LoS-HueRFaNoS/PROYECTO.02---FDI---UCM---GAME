@@ -18,6 +18,12 @@ public:
 	static void rotarDer(Game* app);
 	static void rotarIzq(Game* app);
 	static void interactuar(Game* app);
+
+	static void inventario(Game* app);
+	static void pocionVida(Game* app);
+	static void pocionMana(Game* app);
+	static void chat(Game* app);
+	static void configuracion(Game* app);
 };
 
 //const enum action { gogame, gomenu, gopause, goback, pausetomenu, shutdown, saveoption, savecurrent, loadoption, gostageclear, goloselife, gogameover, gogameclear };

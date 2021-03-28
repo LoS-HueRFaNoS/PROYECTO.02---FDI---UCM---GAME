@@ -42,6 +42,13 @@ vector<Resources::ImageInfo> Resources::images_ {
 	{RotarD, "resources/sprites/iconos movimiento/movimientoRotarDerecha.png"},
 	{RotarI, "resources/sprites/iconos movimiento/movimientoRotarIzquierda.png"},
 	{Interactuar,  "resources/sprites/iconos movimiento/movimientoInteractuar.png"},
+
+	{Inventario,  "resources/sprites/iconos info/infoInventario.png"},
+	{PocionVida,  "resources/sprites/iconos info/infoPocionVida.png"},
+	{PocionMana,  "resources/sprites/iconos info/infoPocionMana.png"},
+	{Chat,  "resources/sprites/iconos info/infoChat.png"},
+	{Configuracion,  "resources/sprites/iconos info/infoConfiguracionAyuda.png"},
+	
 };
 
 vector<Resources::TextMsgInfo> Resources::messages_ {

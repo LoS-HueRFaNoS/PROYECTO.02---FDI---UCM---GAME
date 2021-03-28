@@ -34,6 +34,30 @@ void callbacks::interactuar(Game* app)
 	std::cout << "has interactuado" << std::endl;
 }
 
+void callbacks::inventario(Game* app)
+{
+	std::cout << "has abierto el inventario" << std::endl;
+}
+
+void callbacks::pocionVida(Game* app)
+{
+	std::cout << "has usado la poción de vida" << std::endl;
+}
+
+void callbacks::pocionMana(Game* app)
+{
+	std::cout << "has usado la poción de maná" << std::endl;
+}
+
+void callbacks::chat(Game* app)
+{
+	std::cout << "has usado el botón de chat" << std::endl;
+}
+
+void callbacks::configuracion(Game* app)
+{
+	std::cout << "has usado el botón de configuración y ayuda" << std::endl;
+}
 //void callbacks::start(Game* app) // previo app->setLevel(lvl);
 //{
 //	/*app->getMachine()->setAction(goGame);
