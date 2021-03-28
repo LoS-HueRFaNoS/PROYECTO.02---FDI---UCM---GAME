@@ -3,49 +3,45 @@
 #include <SDL.h>
 #include <cassert>
 #include "InputHandler.h"
-#include "Entity.h"
+#include "Game.h"
+#include "Button.h"
 #include "Transform.h"
 
 class ButtonCtrl : public Component
 {
-    public:
-        ButtonCtrl() :
-            Component(ecs::ButtonCtrl), tr_(nullptr), speed_(10.0) {};
-        virtual ~ButtonCtrl() {
+public:
+    ButtonCtrl(Game* g) :
+        Component(ecs::ButtonCtrl), ih_(nullptr), g_(g) {};
+    virtual ~ButtonCtrl() {
+    }
+
+    void init() override {
+        ih_ = InputHandler::instance();
+        //Vector2D pos = tr_->getPos();
+        //buttonRect_ = new SDL_Rect{ (int)pos.getX(), (int)pos.getY(), (int)tr_->getW(), (int)tr_->getH() };
+    }
+
+    void update() override {
+        if (ih_->keyDownEvent()) {
+            if (ih_->isKeyDown(SDL_SCANCODE_UP)) {
+                static_cast<Button*>(entity_)->click(g_);
+            }
         }
-
-
-        inline void setSpeed(float speed) {
-            speed = speed;
-        }
-
-        void init() override;
-
-        void update() override {
-            game_->getWindowHeight();
-            if (ih_->keyDownEvent()) {
-                if (ih_->isKeyDown(SDL_SCANCODE_UP)) {
-                    tr_->setVelY(-speed_); //
-                }
-                else if (ih_->isKeyDown(SDL_SCANCODE_DOWN)) {
-                    tr_->setVelY(speed_); //
-                }
-                else if (ih_->isKeyDown(SDL_SCANCODE_LEFT)) {
-                    tr_->setVelX(-speed_); //
-                }
-                else if (ih_->isKeyDown(SDL_SCANCODE_RIGHT)) {
-                    tr_->setVelX(speed_); //
-                }
-                else if (ih_->isKeyDown(SDL_SCANCODE_SPACE)) {
-                    tr_->setVelY(0.0f);
-                    tr_->setVelX(0.0f);
+        if (ih_->mouseButtonEvent()) {
+            uint e = ih_->getMouseButtonState(InputHandler::LEFT);
+            Vector2D pos_ = ih_->getMousePos();
+            SDL_Point p_ = { (int)pos_.getX(), (int)pos_.getY() };
+            Transform* tr_ = entity_->getComponent<Transform>(ecs::Transform);
+            SDL_Rect rect_ = { tr_->getPos().getX(), tr_->getPos().getY(), tr_->getW(), tr_->getH() };
+            if (!e) {
+                if (SDL_PointInRect(&p_, &rect_)) {
+                    static_cast<Button*>(entity_)->click(g_);
                 }
             }
         }
+    }
 
-    private:
-        InputHandler* ih_;
-        Transform* tr_;
-        float speed_;
-    };
-
+private:
+    InputHandler* ih_;
+    Game* g_;
+};

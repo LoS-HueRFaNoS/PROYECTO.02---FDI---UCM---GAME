@@ -26,7 +26,42 @@ public:
 		HelloWorld,
 		PressAnyKey,
 		GameOverWon,
-		GameOverLost
+		GameOverLost,
+
+		// heroes
+		Bardo,
+		Brujo,
+		Clerigo,
+		Guerrero,
+		Paladin,
+		Barbaro,
+		Explorador,
+		Picaro,
+		Druida,
+		Bestia,
+		GranArchimago,
+
+		// UI
+		Mouse,
+
+		// movement
+		Avanzar,
+		RotarD,
+		RotarI,
+		Interactuar,
+
+		//Info
+		Inventario,
+		PocionVida,
+		PocionMana,
+		Chat,
+		Configuracion, 
+
+		//Combate
+		AtaqueNormal,
+		AtaqueMagico, 
+		Defensa,
+		Huida
 	};
 
 	enum AudioId : std::size_t {

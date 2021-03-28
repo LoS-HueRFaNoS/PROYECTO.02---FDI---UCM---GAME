@@ -1,19 +1,25 @@
 #pragma once
+#include "Entity.h"
+#include "Resources.h"
+#include "callbacks.h"
+#include <cassert>
+typedef unsigned int uint;
 
-#include "Component.h"
-#include "checkML.h"
-
-class Game;
-using CallBackOnClick = void(Game* app);
-
-class Button : public Component
+class Button : public Entity
 {
 private:
-	CallBackOnClick* cbOnClick = nullptr;
+	CallBackOnClick* cb = nullptr;
 public:
-	Button() : Component(ecs::Button) {};
+	Button(SDLGame* game, EntityManager* mngr) : Entity(game, mngr), cb(nullptr) {};
+	void init(SDLGame* game, Game* g, Vector2D pos, uint ancho, uint alto, Resources::TextureId imagen);
 	virtual ~Button() {};
-protected:
-
+	void click(Game* i)
+	{
+		assert(cb != nullptr);
+		cb(i);
+		int n = 0;
+	};
+	//void setCB(void c) { cb = static_cast<CallBackOnClick2*>(c); };
+	//void setCB(void callback(Game* app)) { cb = callback; };
+	void setCB(CallBackOnClick* callback) { cb = callback; };
 };
-

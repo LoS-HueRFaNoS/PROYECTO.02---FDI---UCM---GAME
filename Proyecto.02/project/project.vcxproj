@@ -20,19 +20,27 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\AudioManager.cpp" />
+    <ClCompile Include="src\Button.cpp" />
     <ClCompile Include="src\ButtonCtrl.cpp" />
+    <ClCompile Include="src\callbacks.cpp" />
+    <ClCompile Include="src\Casilla.cpp" />
     <ClCompile Include="src\Character.cpp" />
     <ClCompile Include="src\Collisions.cpp" />
     <ClCompile Include="src\Component.cpp" />
+    <ClCompile Include="src\Cursor.cpp" />
     <ClCompile Include="src\Entity.cpp" />
     <ClCompile Include="src\Font.cpp" />
     <ClCompile Include="src\FontsManager.cpp" />
     <ClCompile Include="src\Game.cpp" />
     <ClCompile Include="src\InputHandler.cpp" />
+    <ClCompile Include="src\Interfaz.cpp" />
     <ClCompile Include="src\jute.cpp" />
+    <ClCompile Include="src\Laberinto.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\Manager.cpp" />
+    <ClCompile Include="src\MouseCtrl.cpp" />
     <ClCompile Include="src\ObjectPool.cpp" />
+    <ClCompile Include="src\Panel.cpp" />
     <ClCompile Include="src\RandomNumberGenerator.cpp" />
     <ClCompile Include="src\Rectangle.cpp" />
     <ClCompile Include="src\Resources.cpp" />
@@ -42,6 +50,7 @@
     <ClCompile Include="src\SDLGame.cpp" />
     <ClCompile Include="src\SDLTexturesManager.cpp" />
     <ClCompile Include="src\sdl_macros.cpp" />
+    <ClCompile Include="src\Sprite.cpp" />
     <ClCompile Include="src\SRandBasedGenerator.cpp" />
     <ClCompile Include="src\Texture.cpp" />
     <ClCompile Include="src\TexturesManager.cpp" />
@@ -52,22 +61,30 @@
   <ItemGroup>
     <ClInclude Include="CasillaRender.h" />
     <ClInclude Include="src\AudioManager.h" />
+    <ClInclude Include="src\Button.h" />
     <ClInclude Include="src\ButtonCtrl.h" />
     <ClInclude Include="src\callbacks.h" />
+    <ClInclude Include="src\Casilla.h" />
     <ClInclude Include="src\Character.h" />
     <ClInclude Include="src\checkML.h" />
     <ClInclude Include="src\Collisions.h" />
     <ClInclude Include="src\Component.h" />
+    <ClInclude Include="src\Cursor.h" />
     <ClInclude Include="src\ecs.h" />
     <ClInclude Include="src\Entity.h" />
     <ClInclude Include="src\Font.h" />
     <ClInclude Include="src\FontsManager.h" />
     <ClInclude Include="src\Game.h" />
+    <ClInclude Include="src\Image.h" />
     <ClInclude Include="src\InputHandler.h" />
+    <ClInclude Include="src\Interfaz.h" />
     <ClInclude Include="src\jute.h" />
+    <ClInclude Include="src\Laberinto.h" />
     <ClInclude Include="src\Manager.h" />
     <ClInclude Include="src\MazePos.h" />
+    <ClInclude Include="src\MouseCtrl.h" />
     <ClInclude Include="src\ObjectPool.h" />
+    <ClInclude Include="src\Panel.h" />
     <ClInclude Include="src\PlayerMotion.h" />
     <ClInclude Include="src\PlayerViewer.h" />
     <ClInclude Include="src\RandomNumberGenerator.h" />
@@ -79,6 +96,7 @@
     <ClInclude Include="src\SDLGame.h" />
     <ClInclude Include="src\SDLTexturesManager.h" />
     <ClInclude Include="src\SDL_macros.h" />
+    <ClInclude Include="src\Sprite.h" />
     <ClInclude Include="src\SRandBasedGenerator.h" />
     <ClInclude Include="src\Texture.h" />
     <ClInclude Include="src\TexturesManager.h" />

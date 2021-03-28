@@ -10,6 +10,7 @@ void start() {
 }
 
 int main(int ac, char **av) {
+	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
 	try {
 		start();
 	} catch (std::string &e) { // catch errors thrown as strings

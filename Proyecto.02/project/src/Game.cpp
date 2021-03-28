@@ -15,6 +15,8 @@ using namespace std;
 #include "SDLTexturesManager.h"
 #include "Resources.h"
 #include "ButtonCtrl.h"
+#include "Button.h"
+#include "Interfaz.h"
 Game::Game() :
 	game_(nullptr), //
 	entityManager_(nullptr), //
@@ -31,20 +33,17 @@ void Game::initGame() {
 	game_ = SDLGame::init("VAMOS A LLORAR CON SDL", _WINDOW_WIDTH_, _WINDOW_HEIGHT_);
 
 	entityManager_ = new EntityManager(game_);
-
-	Entity* button = entityManager_->addEntity();
-	Transform* buttonTR = button->addComponent<Transform>(Vector2D(100, 100), Vector2D(), 50, 50, 0);
-	Image* buttonIMG = button->addComponent<Image>(game_->getTextureMngr()->getTexture(Resources::Asteroid));
-	button->addComponent<ButtonCtrl>();
-	Entity* laberinto = entityManager_->addEntity();
+	//Button b = Button(game_, entityManager_, Vector2D(100, 100), 50, 50, Resources::Asteroid);
+	Interfaz F = Interfaz(this, entityManager_);
+	
+	/*Entity* laberinto = entityManager_->addEntity();
 	Laberinto* lab = laberinto->addComponent<Laberinto>(entityManager_) ;
 	lab -> initFromFile();
 
 	Entity* player = entityManager_->addEntity();
 	player->addComponent<MazePos>(Vector2D(0,0));
 	player->addComponent<PlayerMotion>(SDLK_UP,SDLK_LEFT,SDLK_RIGHT,lab);
-	player->addComponent<PlayerViewer>(lab);
-
+	player->addComponent<PlayerViewer>(lab);*/
 
 	/*Entity* Fighter = entityManager_->addEntity();
 	Transform* FighterTR = Fighter->addComponent<Transform>();

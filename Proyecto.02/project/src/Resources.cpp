@@ -26,6 +26,35 @@ vector<Resources::ImageInfo> Resources::images_ {
 		//{ Pasillo5, "resources/images/pasillos/Pasillo5.png"}, //
 		//{ Pasillo6, "resources/images/pasillos/Pasillo6.png"}, //
 		//{ Pasillo7, "resources/images/pasillos/Pasillo7.png"}, //
+		{ Bardo, "resources/sprites/iconos personajes/bardo.png" },
+		{ Brujo, "resources/sprites/iconos personajes/brujo.png" },
+		{ Clerigo, "resources/sprites/iconos personajes/clerigo.png" },
+		{ Guerrero, "resources/sprites/iconos personajes/guerrero.png" },
+		{ Paladin, "resources/sprites/iconos personajes/paladin.png" },
+		{ Barbaro, "resources/sprites/iconos personajes/barbaro.png" },
+		{ Explorador, "resources/sprites/iconos personajes/explorador.png" },
+		{ Picaro, "resources/sprites/iconos personajes/picaro.png" },
+		{ Druida, "resources/sprites/iconos personajes/druida.png" },
+		{ Bestia, "resources/sprites/iconos personajes/bestia.png" },
+		{ GranArchimago, "resources/sprites/iconos personajes/heroe-mago.png" },
+		
+	{ Mouse, "resources/images/interfaz/cursor+sombras.png" },
+	{Avanzar, "resources/sprites/iconos movimiento/movimientoAvanzar.png"},
+	{RotarD, "resources/sprites/iconos movimiento/movimientoRotarDerecha.png"},
+	{RotarI, "resources/sprites/iconos movimiento/movimientoRotarIzquierda.png"},
+	{Interactuar,  "resources/sprites/iconos movimiento/movimientoInteractuar.png"},
+
+	{Inventario,  "resources/sprites/iconos info/infoInventario.png"},
+	{PocionVida,  "resources/sprites/iconos info/infoPocionVida.png"},
+	{PocionMana,  "resources/sprites/iconos info/infoPocionMana.png"},
+	{Chat,  "resources/sprites/iconos info/infoChat.png"},
+	{Configuracion,  "resources/sprites/iconos info/infoConfiguracionAyuda.png"},
+
+	{AtaqueNormal,  "resources/sprites/iconos combate/ataque.png"},
+	{AtaqueMagico,  "resources/sprites/iconos combate/magic.png"},
+	{Defensa,  "resources/sprites/iconos combate/defensa.png"},
+	{Huida,  "resources/sprites/iconos combate/huir.png"}
+	
 };
 
 vector<Resources::TextMsgInfo> Resources::messages_ {
