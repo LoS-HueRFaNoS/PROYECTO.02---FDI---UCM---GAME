@@ -41,6 +41,9 @@ public:
 		Bestia,
 		GranArchimago,
 
+		// UI
+		Mouse,
+
 		// movement
 		Avanzar,
 		RotarD,

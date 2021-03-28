@@ -37,7 +37,8 @@ vector<Resources::ImageInfo> Resources::images_ {
 		{ Druida, "resources/sprites/iconos personajes/druida.png" },
 		{ Bestia, "resources/sprites/iconos personajes/bestia.png" },
 		{ GranArchimago, "resources/sprites/iconos personajes/heroe-mago.png" },
-
+		
+	{ Mouse, "resources/images/interfaz/cursor+sombras.png" },
 	{Avanzar, "resources/sprites/iconos movimiento/movimientoAvanzar.png"},
 	{RotarD, "resources/sprites/iconos movimiento/movimientoRotarDerecha.png"},
 	{RotarI, "resources/sprites/iconos movimiento/movimientoRotarIzquierda.png"},

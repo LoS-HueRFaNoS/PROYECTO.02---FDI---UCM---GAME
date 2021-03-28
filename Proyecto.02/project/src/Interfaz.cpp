@@ -3,11 +3,19 @@
 #include "SDLGame.h"
 #include "callbacks.h"
 
+Cursor* Interfaz::createCursor(Vector2D pos, uint width, uint height, Resources::TextureId image)
+{
+	SDLGame* game_ = g_->getSDLGame();
+	Cursor* c = static_cast<Cursor*>(mngr_->addEntity());
+	c->init(game_, g_, pos, width, height, image);
+	return c;
+}
+
 Button* Interfaz::createButton(Panel* p, CallBackOnClick* cb, Vector2D pos, uint width, uint height, Resources::TextureId image)
 {
 	SDLGame* game_ = g_->getSDLGame();
 	Button* b = static_cast<Button*>(mngr_->addEntity());
-	b->init(game_, g_, mngr_, pos, width, height, image);
+	b->init(game_, g_, pos, width, height, image);
 	b->setCB(cb);
 	p->addButton(b);
 	return b;
@@ -25,14 +33,14 @@ void Interfaz::createMovement()
 
 void Interfaz::createHeroes()
 {
-	// posición del panel respecto a la ventana
+	// posicion del panel respecto a la ventana
 	SDLGame* game_ = g_->getSDLGame();
 	double width = game_->getWindowWidth();
 	width = width * 3 / 4;
 	double height = game_->getWindowHeight();
 	height = height * 1 / 4;
 	Vector2D pPos = Vector2D(width, height);
-	// construcción del panel de heroes
+	// construccion del panel de heroes
 	Panel* p = new Panel(Movement);
 	allPanels.push_back(p);
 	uint tamL = 100;
@@ -61,6 +69,7 @@ Interfaz::Interfaz(Game* juego, EntityManager* manager)
 	createPanel(Minimap);
 	createPanel(Heroes);
 	createPanel(Info);
+	c_ = createCursor(Vector2D(200, 200), 50, 50, Resources::Mouse);
 }
 
 Interfaz::~Interfaz()

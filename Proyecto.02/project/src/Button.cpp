@@ -4,7 +4,7 @@
 #include "ButtonCtrl.h"
 #include "Game.h"
 
-void Button::init(SDLGame* game, Game* g, EntityManager* mngr, Vector2D pos, uint ancho, uint alto, Resources::TextureId imagen)
+void Button::init(SDLGame* game, Game* g, Vector2D pos, uint ancho, uint alto, Resources::TextureId imagen)
 {
 	addComponent<Transform>(pos, Vector2D(), ancho, alto, 0);
 	addComponent<Image>(game->getTextureMngr()->getTexture(imagen));
