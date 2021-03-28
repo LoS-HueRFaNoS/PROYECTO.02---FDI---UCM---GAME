@@ -17,6 +17,23 @@ void callbacks::pruebaGame3(Game* app)
 	std::cout << "has pulsado este boton (3)" << std::endl;
 }
 
+void callbacks::avanzar(Game* app)
+{
+	std::cout << "has avanzado" << std::endl;
+}
+void callbacks::rotarDer(Game* app)
+{
+	std::cout << "has rotado a derechas" << std::endl;
+}
+void callbacks::rotarIzq(Game* app)
+{
+	std::cout << "has rotado a izquierdas" << std::endl;
+}
+void callbacks::interactuar(Game* app)
+{
+	std::cout << "has interactuado" << std::endl;
+}
+
 //void callbacks::start(Game* app) // previo app->setLevel(lvl);
 //{
 //	/*app->getMachine()->setAction(goGame);

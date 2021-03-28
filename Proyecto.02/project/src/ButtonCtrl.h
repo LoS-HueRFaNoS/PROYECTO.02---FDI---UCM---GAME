@@ -17,10 +17,11 @@ public:
 
     void init() override {
         ih_ = InputHandler::instance();
+        //Vector2D pos = tr_->getPos();
+        //buttonRect_ = new SDL_Rect{ (int)pos.getX(), (int)pos.getY(), (int)tr_->getW(), (int)tr_->getH() };
     }
 
     void update() override {
-        game_->getWindowHeight();
         if (ih_->keyDownEvent()) {
             if (ih_->isKeyDown(SDL_SCANCODE_UP)) {
                 static_cast<Button*>(entity_)->click(g_);
@@ -29,7 +30,7 @@ public:
         if (ih_->mouseButtonEvent()) {
             uint e = ih_->getMouseButtonState(InputHandler::LEFT);
             Vector2D pos_ = ih_->getMousePos();
-            SDL_Point p_ = { pos_.getX(), pos_.getY() };
+            SDL_Point p_ = { (int)pos_.getX(), (int)pos_.getY() };
             Transform* tr_ = entity_->getComponent<Transform>(ecs::Transform);
             SDL_Rect rect_ = { tr_->getPos().getX(), tr_->getPos().getY(), tr_->getW(), tr_->getH() };
             if (!e) {

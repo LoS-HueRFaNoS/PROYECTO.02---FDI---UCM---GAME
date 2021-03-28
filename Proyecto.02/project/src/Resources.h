@@ -42,7 +42,13 @@ public:
 		GranArchimago,
 
 		// UI
-		Mouse
+		Mouse,
+
+		// movement
+		Avanzar,
+		RotarD,
+		RotarI,
+		Interactuar
 	};
 
 	enum AudioId : std::size_t {
