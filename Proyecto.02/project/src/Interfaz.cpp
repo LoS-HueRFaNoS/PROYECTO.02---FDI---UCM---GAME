@@ -21,6 +21,15 @@ Button* Interfaz::createButton(Panel* p, CallBackOnClick* cb, Vector2D pos, uint
 	return b;
 }
 
+void Interfaz::createFight()
+{
+	Panel* p = new Panel(Fight);
+	allPanels.push_back(p);
+	p->addButton(createButton(p, callbacks::ataqueNormal, Vector2D(150, 680), 85, 96, Resources::AtaqueNormal));
+	p->addButton(createButton(p, callbacks::ataqueMagico, Vector2D(250, 700), 82, 72, Resources::AtaqueMagico));
+	p->addButton(createButton(p, callbacks::defensa, Vector2D(50, 700), 82, 72, Resources::Defensa));
+	p->addButton(createButton(p, callbacks::huida, Vector2D(350, 710), 100, 55, Resources::Huida));
+}
 void Interfaz::createMovement()
 {
 	Panel* p = new Panel(Movement);
@@ -30,6 +39,7 @@ void Interfaz::createMovement()
 	p->addButton(createButton(p, callbacks::rotarIzq, Vector2D(50, 800), 82, 72, Resources::RotarI));
 	p->addButton(createButton(p, callbacks::interactuar, Vector2D(350, 810), 100, 55, Resources::Interactuar));
 }
+
 
 void Interfaz::createHeroes()
 {
@@ -66,6 +76,7 @@ Interfaz::Interfaz(Game* juego, EntityManager* manager)
 	g_ = juego;
 	mngr_ = manager;
 	createPanel(Movement);
+	createPanel(Fight);
 	createPanel(Minimap);
 	createPanel(Heroes);
 	createPanel(Info);

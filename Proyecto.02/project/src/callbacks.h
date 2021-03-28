@@ -24,6 +24,11 @@ public:
 	static void pocionMana(Game* app);
 	static void chat(Game* app);
 	static void configuracion(Game* app);
+
+	static void ataqueNormal(Game* app);
+	static void ataqueMagico(Game* app);
+	static void defensa(Game* app);
+	static void huida(Game* app);
 };
 
 //const enum action { gogame, gomenu, gopause, goback, pausetomenu, shutdown, saveoption, savecurrent, loadoption, gostageclear, goloselife, gogameover, gogameclear };

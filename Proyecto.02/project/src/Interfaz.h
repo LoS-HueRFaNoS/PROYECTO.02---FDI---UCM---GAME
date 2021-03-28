@@ -17,7 +17,7 @@ private:
 
 	Cursor* createCursor(Vector2D pos, uint width, uint height, Resources::TextureId image);
 	Button* createButton(Panel* p, CallBackOnClick* cb, Vector2D pos, uint width, uint height, Resources::TextureId image);
-	void createFight(){};
+	void createFight();
 	void createMovement();
 	void createMinimap(){};
 	void createHeroes();

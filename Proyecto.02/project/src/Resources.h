@@ -55,7 +55,13 @@ public:
 		PocionVida,
 		PocionMana,
 		Chat,
-		Configuracion
+		Configuracion, 
+
+		//Combate
+		AtaqueNormal,
+		AtaqueMagico, 
+		Defensa,
+		Huida
 	};
 
 	enum AudioId : std::size_t {

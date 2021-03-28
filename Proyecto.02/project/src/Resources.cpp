@@ -49,6 +49,11 @@ vector<Resources::ImageInfo> Resources::images_ {
 	{PocionMana,  "resources/sprites/iconos info/infoPocionMana.png"},
 	{Chat,  "resources/sprites/iconos info/infoChat.png"},
 	{Configuracion,  "resources/sprites/iconos info/infoConfiguracionAyuda.png"},
+
+	{AtaqueNormal,  "resources/sprites/iconos combate/ataque.png"},
+	{AtaqueMagico,  "resources/sprites/iconos combate/magic.png"},
+	{Defensa,  "resources/sprites/iconos combate/defensa.png"},
+	{Huida,  "resources/sprites/iconos combate/huir.png"}
 	
 };
 

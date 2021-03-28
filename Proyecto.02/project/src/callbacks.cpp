@@ -58,6 +58,26 @@ void callbacks::configuracion(Game* app)
 {
 	std::cout << "has usado el botón de configuración y ayuda" << std::endl;
 }
+
+void callbacks::ataqueNormal(Game* app)
+{
+	std::cout << "ataque cuerpo a cuerpo" << std::endl;
+}
+
+void callbacks::ataqueMagico(Game* app)
+{
+	std::cout << "ataque magico" << std::endl;
+}
+
+void callbacks::defensa(Game* app)
+{
+	std::cout << "te has defendido" << std::endl;
+}
+
+void callbacks::huida(Game* app)
+{
+	std::cout << "escapaste" << std::endl;
+}
 //void callbacks::start(Game* app) // previo app->setLevel(lvl);
 //{
 //	/*app->getMachine()->setAction(goGame);
