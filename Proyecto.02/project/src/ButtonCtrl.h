@@ -3,69 +3,44 @@
 #include <SDL.h>
 #include <cassert>
 #include "InputHandler.h"
-#include "Entity.h"
-#include "Transform.h"
 #include "Game.h"
 #include "Button.h"
+#include "Transform.h"
 
 class ButtonCtrl : public Component
 {
-    public:
-        ButtonCtrl(Game* g) :
-            Component(ecs::ButtonCtrl), ih_(nullptr), tr_(nullptr), speed_(10.0), g_(g) {};
-        virtual ~ButtonCtrl() {
-        }
+public:
+    ButtonCtrl(Game* g) :
+        Component(ecs::ButtonCtrl), ih_(nullptr), g_(g) {};
+    virtual ~ButtonCtrl() {
+    }
 
-        inline void setSpeed(float speed) {
-            speed = speed;
-        }
+    void init() override {
+        ih_ = InputHandler::instance();
+    }
 
-        void init() override {
-            tr_ = GETCMP1_(Transform);
-            assert(tr_ != nullptr);
-            ih_ = InputHandler::instance();
+    void update() override {
+        game_->getWindowHeight();
+        if (ih_->keyDownEvent()) {
+            if (ih_->isKeyDown(SDL_SCANCODE_UP)) {
+                static_cast<Button*>(entity_)->click(g_);
+            }
         }
-
-        void update() override {
-            game_->getWindowHeight();
-            if (ih_->keyDownEvent()) {
-                if (ih_->isKeyDown(SDL_SCANCODE_UP)) {
-                    //tr_->setVelY(-speed_); //
+        if (ih_->mouseButtonEvent()) {
+            uint e = ih_->getMouseButtonState(InputHandler::LEFT);
+            Vector2D pos_ = ih_->getMousePos();
+            SDL_Point p_ = { pos_.getX(), pos_.getY() };
+            Transform* tr_ = entity_->getComponent<Transform>(ecs::Transform);
+            SDL_Rect rect_ = { tr_->getPos().getX(), tr_->getPos().getY(), tr_->getW(), tr_->getH() };
+            if (!e) {
+                if (SDL_PointInRect(&p_, &rect_)) {
                     static_cast<Button*>(entity_)->click(g_);
-                }
-                else if (ih_->isKeyDown(SDL_SCANCODE_DOWN)) {
-                    tr_->setVelY(speed_); //
-                }
-                else if (ih_->isKeyDown(SDL_SCANCODE_LEFT)) {
-                    tr_->setVelX(-speed_); //
-                }
-                else if (ih_->isKeyDown(SDL_SCANCODE_RIGHT)) {
-                    tr_->setVelX(speed_); //
-                }
-                else if (ih_->isKeyDown(SDL_SCANCODE_SPACE)) {
-                    tr_->setVelY(0.0f);
-                    tr_->setVelX(0.0f);
                 }
             }
         }
+    }
 
-    private:
-        InputHandler* ih_;
-        Game* g_;
-        Transform* tr_;
-        float speed_;
-    };
-
-
-
-//Interfaz* i = new interfaz();
-//i.deletePanel(nombrePanel)
-////constructor
-//switch (nombrePANEL)
-//{
-//case combate:
-//	break;
-//	case
-//	default:
-//		break;
-//}
+private:
+    InputHandler* ih_;
+    Game* g_;
+};

@@ -2,7 +2,6 @@
 #include "Entity.h"
 #include "Resources.h"
 #include "callbacks.h"
-//#include <SDL.h>
 #include <cassert>
 typedef unsigned int uint;
 
@@ -12,7 +11,7 @@ private:
 	CallBackOnClick* cb = nullptr;
 public:
 	Button(SDLGame* game, EntityManager* mngr) : Entity(game, mngr), cb(nullptr) {};
-	void init(SDLGame* game, Game* g, EntityManager* mngr, Vector2D pos, uint ancho, uint alto, Resources::TextureId imagen);
+	void init(SDLGame* game, Game* g, Vector2D pos, uint ancho, uint alto, Resources::TextureId imagen);
 	virtual ~Button() {};
 	void click(Game* i)
 	{

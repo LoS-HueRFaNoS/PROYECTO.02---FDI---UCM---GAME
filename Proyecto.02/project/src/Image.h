@@ -31,4 +31,3 @@ private:
 	Transform *tr_;
 	Texture *tex_;
 };
-
