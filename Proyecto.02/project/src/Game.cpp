@@ -35,14 +35,14 @@ void Game::initGame() {
 
 	entityManager_ = new EntityManager(game_);
 
-	Entity* laberinto = entityManager_->addEntity();
+	/*Entity* laberinto = entityManager_->addEntity();
 	Laberinto* lab = laberinto->addComponent<Laberinto>(entityManager_) ;
 	lab -> initFromFile();
 
 	Entity* player = entityManager_->addEntity();
 	player->addComponent<MazePos>(Vector2D(0,0));
 	player->addComponent<PlayerMotion>(SDLK_UP,SDLK_LEFT,SDLK_RIGHT,lab);
-	player->addComponent<PlayerViewer>(lab);
+	player->addComponent<PlayerViewer>(lab);*/
 
 	// Nuetro c�digo
 

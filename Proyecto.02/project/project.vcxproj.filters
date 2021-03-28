@@ -128,6 +128,7 @@
     </ClCompile>
     <ClCompile Include="TheElementalMaze.cpp">
       <Filter>Archivos de origen</Filter>
+    </ClCompile>
     <ClCompile Include="src\CharacterSheet.cpp">
       <Filter>Archivos de origen\Components</Filter>
     </ClCompile>
@@ -245,6 +246,8 @@
       <Filter>Archivos de encabezado\Components</Filter>
     </ClInclude>
     <ClInclude Include="CasillaRender.h">
+      <Filter>Archivos de encabezado\Components</Filter>
+    </ClInclude>
     <ClInclude Include="src\CharacterSheet.h">
       <Filter>Archivos de encabezado\Components</Filter>
     </ClInclude>

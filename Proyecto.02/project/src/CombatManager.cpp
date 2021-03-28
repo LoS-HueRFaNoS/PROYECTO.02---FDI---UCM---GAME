@@ -16,16 +16,17 @@ void CombatManager::consoleCombat()
 	mostrarCola();
 
 	cout << "---------- PRESS ENTER TO START TURN ----------" << endl;
-
+	cin.ignore(INT_MAX, '\n');
 	cin.get();
+	cin.sync();
 
 	currentCharacter->startTurn(this);
 
 	cout << "---------- PRESS ENTER TO END TURN ----------" << endl;
-
-	cin.clear();    // Restore input stream to working state
-	cin.ignore(100, '\n');    // Get rid of any garbage that user might have entered
+	cin.ignore(INT_MAX, '\n');
 	cin.get();
+	cin.sync();
+
 	passTurn();
 }
 
@@ -35,7 +36,7 @@ void CombatManager::mostratEstadoEquipos()
 	for (Hero* h : _heroes) {
 		CharacterSheet* s = h->getComponent<CharacterSheet>(ecs::CharacterSheet);
 		cout << std::setfill(' ') << std::left << setw(12) << s->name << setw(15) << "HP " + to_string(s->hitPoints()) + "/" + to_string(s->maxHitPoints()) <<
-			setw(15) << "MP " + to_string(s->manaPoints()) + "/" + to_string(s->maxManaPoints()) <<
+			setw(15) << "MP " + to_string(s->manaPoints()) + "/" + to_string(s->maxManaPoints()) << std::right <<
 			" STR " << std::setfill('0') << setw(2) << s->getStat(rpgLogic::STR).value << "  CON " << std::setfill('0') << setw(2) <<
 			s->getStat(rpgLogic::CON).value << "  DEX " << std::setfill('0') << setw(2) << s->getStat(rpgLogic::DEX).value << "  INT " <<
 			std::setfill('0') << setw(2) << s->getStat(rpgLogic::INT).value << endl;
@@ -49,7 +50,7 @@ void CombatManager::mostratEstadoEquipos()
 			cout << std::setfill(' ') << std::left << setw(10) << s->name << std::right << setw(8) << "DEAD" << endl;
 		else {
 			cout << std::setfill(' ') << std::left << setw(12) << s->name << setw(15) << "HP " + to_string(s->hitPoints()) + "/" + to_string(s->maxHitPoints()) <<
-				setw(15) << "MP " + to_string(s->manaPoints()) + "/" + to_string(s->maxManaPoints()) <<
+				setw(15) << "MP " + to_string(s->manaPoints()) + "/" + to_string(s->maxManaPoints()) << std::right <<
 				" STR " << std::setfill('0') << setw(2) << s->getStat(rpgLogic::STR).value << "  CON " << std::setfill('0') << setw(2) <<
 				s->getStat(rpgLogic::CON).value << "  DEX " << std::setfill('0') << setw(2) << s->getStat(rpgLogic::DEX).value << "  INT " <<
 				std::setfill('0') << setw(2) << s->getStat(rpgLogic::INT).value << endl;
@@ -161,11 +162,16 @@ void CombatManager::castToSingleTarget(characterType team, Hability* hability)
 	while (true) {
 
 		cin >> target;
-		if (target < maxTarget && target >= 0)
+		if (!cin.good() || !(target < maxTarget && target >= 0)) {
+			cin.clear();
+			cin.ignore(INT_MAX, '\n');
+			cout << "Use a valid index please: ";
+		}
+		else if (target < maxTarget && target >= 0)
 			break;
-		else
-			cout << "Wrong target, te explico como contar o que ?" << endl;
+		cin.sync();
 	}
+	cin.sync();
 
 	throwHability(team ? dynamic_cast<Character*>(_enemies[target]) : dynamic_cast<Character*>(_heroes[target]), hability);
 }

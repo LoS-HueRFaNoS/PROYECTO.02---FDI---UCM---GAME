@@ -104,7 +104,7 @@ void Hero::loadFromJson(string json, int t)
 		_sheet->setHitPoints(hp);
 		_sheet->setMaxHitPoints(hp);
 		_sheet->setManaPoints(mp);
-		_sheet->setManaPoints(mp);
+		_sheet->setMaxManaPoints(mp);
 
 		// Guardamos las debilidades en un vector para luego inicializarlas
 		vector<float> weak = vector<float>();
@@ -148,25 +148,36 @@ void Hero::consoleTurn(CombatManager* cm)
 		cout << i << ". " << setw(30) << _habilities[i]->name() << _habilities[i]->getMana() << setw(15) << " MP" << _habilities[i]->description() << endl;
 
 	int spell;
+
 	cout << "Choose a spell to cast (-1 to skip turn): ";
-	cin >> spell;
 
-	if (spell >= _habilities.size() || spell == -1) {
-		if (spell != -1)
-			cout << "Tu lo que eres es un listo, pierdes el turno por tonto" << endl;
-		return;
+	while (true) {
+
+		cin >> spell;
+
+		if (!cin.good() || spell >= _habilities.size()) {
+			cin.clear();
+			cin.ignore(INT_MAX, '\n');
+			cout << "Use a valid index please: ";
+		}
+		else if (_habilities[spell]->getMana() > _sheet->manaPoints()) {
+			cin.clear();
+			cin.ignore(INT_MAX, '\n');
+			cout << "Not enough mana, try again: ";
+		}
+		else if (spell == -1)
+			break;
+		else
+		{
+			cin.clear();
+			cin.ignore(INT_MAX, '\n');
+			cm->castHability(_habilities[spell]);
+			//_sheet->setManaPoints(_sheet->manaPoints() - _habilities[spell]->getMana());
+			break;
+		}
+		cin.sync();
 	}
-
-	if (_habilities[spell]->getMana() > _sheet->manaPoints()) {
-		cout << "PIERDES EL TURNO PORQUE NO SABES CONTAR" << endl;
-	}
-	else
-	{
-		cm->castHability(_habilities[spell]);
-
-		//_sheet->setManaPoints(_sheet->manaPoints() - _habilities[spell]->getMana());
-	}
-
+	cin.sync();
 }
 
 #pragma endregion
@@ -205,7 +216,7 @@ void Enemy::loadFromJson(string json, int t)
 		_sheet->setHitPoints(hp);
 		_sheet->setMaxHitPoints(hp);
 		_sheet->setManaPoints(mp);
-		_sheet->setManaPoints(mp);
+		_sheet->setMaxManaPoints(mp);
 
 		// Guardamos las debilidades en un vector para luego inicializarlas
 		vector<float> weak = vector<float>();
