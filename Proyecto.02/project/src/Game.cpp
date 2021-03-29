@@ -35,24 +35,12 @@ void Game::initGame() {
 	game_ = SDLGame::init("VAMOS A LLORAR CON SDL", _WINDOW_WIDTH_, _WINDOW_HEIGHT_);
 
 	entityManager_ = new EntityManager(game_);
-	Interfaz F = Interfaz(this, entityManager_);
 
-	Entity* laberinto = entityManager_->addEntity();
-	Laberinto* lab = laberinto->addComponent<Laberinto>(entityManager_) ;
-	lab -> initFromFile();
-
-	Entity* player = entityManager_->addEntity();
-	player->addComponent<MazePos>(Vector2D(0,0));
-	player->addComponent<PlayerMotion>(SDLK_UP,SDLK_LEFT,SDLK_RIGHT,lab);
-	player->addComponent<PlayerViewer>(lab);
-
-	// Nuetro c�digo
-
-	cout << "Loading Characters please wait..." << endl;
+	// 1. Personajes
+	/*cout << "Loading Characters please wait..." << endl;
 
 	Entity* manager = entityManager_->addEntity();
 	CombatManager* cm = manager->addComponent<CombatManager>();
-
 
 	Hero* wizard = new Hero(game_, entityManager_);
 	Hero* warrior = new Hero(game_, entityManager_);
@@ -97,7 +85,20 @@ void Game::initGame() {
 	cm->startCombat();
 
 	cout << "Characters Loaded" << endl;
-	//
+	*/
+
+	// 2. Mapa / Laberinto
+	Entity* laberinto = entityManager_->addEntity();
+	Laberinto* lab = laberinto->addComponent<Laberinto>(entityManager_);
+	lab->initFromFile();
+
+	Entity* player = entityManager_->addEntity();
+	player->addComponent<MazePos>(Vector2D(0, 0));
+	player->addComponent<PlayerMotion>(SDLK_UP, SDLK_LEFT, SDLK_RIGHT, lab);
+	player->addComponent<PlayerViewer>(lab);
+
+	// 3. Interfaz
+	Interfaz F = Interfaz(this, entityManager_);
 }
 
 void Game::closeGame() {
