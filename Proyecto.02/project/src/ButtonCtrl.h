@@ -32,7 +32,7 @@ public:
             Vector2D pos_ = ih_->getMousePos();
             SDL_Point p_ = { (int)pos_.getX(), (int)pos_.getY() };
             Transform* tr_ = entity_->getComponent<Transform>(ecs::Transform);
-            SDL_Rect rect_ = { tr_->getPos().getX(), tr_->getPos().getY(), tr_->getW(), tr_->getH() };
+            SDL_Rect rect_ = { int(tr_->getPos().getX()), int(tr_->getPos().getY()), int(tr_->getW()), int(tr_->getH()) };
             if (!e) {
                 if (SDL_PointInRect(&p_, &rect_)) {
                     static_cast<Button*>(entity_)->click(g_);

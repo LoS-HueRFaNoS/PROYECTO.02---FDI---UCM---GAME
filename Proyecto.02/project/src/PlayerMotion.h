@@ -27,8 +27,8 @@ public:
 	}
 	void update() override
 	{
-		int x = pos->getPos().getX();
-		int y = pos->getPos().getY();
+		int x = int(pos->getPos().getX());
+		int y = int(pos->getPos().getY());
 		casillaActual = lab->getCasillaInfo(x,y)->checkCell();
 
 		InputHandler* ih = InputHandler::instance();
