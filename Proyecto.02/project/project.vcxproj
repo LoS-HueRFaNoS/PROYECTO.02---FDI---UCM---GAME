@@ -22,6 +22,7 @@
     <ClCompile Include="src\AudioManager.cpp" />
     <ClCompile Include="src\ButtonCtrl.cpp" />
     <ClCompile Include="src\Character.cpp" />
+    <ClCompile Include="src\CharacterManager.cpp" />
     <ClCompile Include="src\CharacterSheet.cpp" />
     <ClCompile Include="src\Collisions.cpp" />
     <ClCompile Include="src\CombatManager.cpp" />
@@ -58,6 +59,7 @@
     <ClInclude Include="src\ButtonCtrl.h" />
     <ClInclude Include="src\callbacks.h" />
     <ClInclude Include="src\Character.h" />
+    <ClInclude Include="src\CharacterManager.h" />
     <ClInclude Include="src\CharacterSheet.h" />
     <ClInclude Include="src\checkML.h" />
     <ClInclude Include="src\Collisions.h" />

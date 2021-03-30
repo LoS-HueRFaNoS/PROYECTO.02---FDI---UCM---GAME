@@ -32,7 +32,7 @@ namespace rpgLogic {
 		_LastStatId_
 	};
 
-	enum characterTemplate {
+	enum heroTemplate {
 		WARRIOR,
 		WIZARD,
 		RANGER,
@@ -42,7 +42,7 @@ namespace rpgLogic {
 		BARBARIAN,
 		ROGUE,
 		DRUID,
-		_LastCharacterTemplateId_
+		_LastheroTemplateId_
 	};
 
 	enum weaponsId

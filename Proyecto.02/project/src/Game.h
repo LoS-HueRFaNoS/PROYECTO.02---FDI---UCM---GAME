@@ -2,7 +2,7 @@
 
 #include <vector>
 
-#include "Manager.h"
+#include "CharacterManager.h"
 #include "SDLGame.h"
 #include "checkML.h"
 class Game {
@@ -23,6 +23,7 @@ private:
 	void render();
 	SDLGame* game_;
 	EntityManager* entityManager_;
+	CharacterManager* characterManager_;
 	bool exit_;
 
 	const static int _WINDOW_WIDTH_ = 1200;

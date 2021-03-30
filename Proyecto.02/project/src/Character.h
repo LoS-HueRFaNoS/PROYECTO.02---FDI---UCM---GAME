@@ -3,7 +3,7 @@
 #include "CharacterSheet.h"
 #include "Entity.h"
 #include "Equipement.h"
-
+#include "jute.h"
 
 #pragma region CHARACTER
 
@@ -23,7 +23,7 @@ protected:
 		_sheet = addComponent<CharacterSheet>();
 	}
 
-	virtual void loadFromJson(string json, int t) {}
+	virtual void loadFromJson(jute::jValue v, int t) = 0;
 
 	virtual void manageTurn(CombatManager* cm) = 0;
 
@@ -33,8 +33,8 @@ public:
 		init();
 	}
 
-	void loadFromTemplate(characterTemplate t);
-	void loadFromTemplate(enemyTemplate t);
+	void loadFromTemplate(jute::jValue v, heroTemplate t);
+	void loadFromTemplate(jute::jValue v, enemyTemplate t);
 
 	void recieveDamage(int damage, damageType type);
 
@@ -92,7 +92,7 @@ private:
 
 	Equipement* _equipement;
 
-	virtual void loadFromJson(string json, int t);
+	virtual void loadFromJson(jute::jValue v, int t);
 
 	virtual void manageTurn(CombatManager* cm);
 
@@ -123,7 +123,7 @@ private:
 
 	int exp = 0;
 
-	virtual void loadFromJson(string json, int t);
+	virtual void loadFromJson(jute::jValue v, int t);
 
 	virtual void manageTurn(CombatManager* cm);
 

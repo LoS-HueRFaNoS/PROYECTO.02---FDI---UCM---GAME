@@ -21,6 +21,7 @@ using namespace std;
 Game::Game() :
 	game_(nullptr), //
 	entityManager_(nullptr), //
+	characterManager_(nullptr), //
 	exit_(false) {
 	initGame();
 }
@@ -46,27 +47,22 @@ void Game::initGame() {
 
 	// Nuetro c�digo
 
+	characterManager_ = new CharacterManager(game_);
+
 	cout << "Loading Characters please wait..." << endl;
 
 	Entity* manager = entityManager_->addEntity();
+
 	CombatManager* cm = manager->addComponent<CombatManager>();
 
+	Hero* wizard = characterManager_->addHeroFromTemplate(WIZARD);
+	Hero* warrior = characterManager_->addHeroFromTemplate(WARRIOR);
+	Hero* rogue = characterManager_->addHeroFromTemplate(ROGUE);
+	Hero* cleric = characterManager_->addHeroFromTemplate(CLERIC);;
+	Enemy* e1 = characterManager_->addEnemyFromTemplate(ZOMBIE);
+	Enemy* e2 = characterManager_->addEnemyFromTemplate(ZOMBIE);
+	Enemy* e3 = characterManager_->addRandomEnemy();
 
-	Hero* wizard = new Hero(game_, entityManager_);
-	Hero* warrior = new Hero(game_, entityManager_);
-	Hero* rogue = new Hero(game_, entityManager_);
-	Hero* cleric = new Hero(game_, entityManager_);
-	Enemy* e1 = new Enemy(game_, entityManager_);
-	Enemy* e2 = new Enemy(game_, entityManager_);
-	Enemy* e3 = new Enemy(game_, entityManager_);
-
-	wizard->loadFromTemplate(rpgLogic::WIZARD);
-	warrior->loadFromTemplate(rpgLogic::WARRIOR);
-	rogue->loadFromTemplate(rpgLogic::ROGUE);
-	cleric->loadFromTemplate(rpgLogic::CLERIC);
-	e1->loadFromTemplate(rpgLogic::ZOMBIE);
-	e2->loadFromTemplate(rpgLogic::ZOMBIE);
-	e3->loadFromTemplate(rpgLogic::ZOMBIE);
 
 	wizard->addHability<Fireball>();
 	wizard->addHability<SingleTargetAttackExample>();
@@ -100,7 +96,7 @@ void Game::initGame() {
 
 void Game::closeGame() {
 	delete entityManager_;
-
+	delete characterManager_;
 }
 
 void Game::start() {
@@ -150,6 +146,7 @@ void Game::handleInput() {
 
 void Game::update() {
 	entityManager_->update();
+	characterManager_->update();
 }
 
 void Game::render() {
@@ -157,6 +154,7 @@ void Game::render() {
 	SDL_RenderClear(game_->getRenderer());
 
 	entityManager_->draw();
+	characterManager_->draw();
 
 	SDL_RenderPresent(game_->getRenderer());
 }
