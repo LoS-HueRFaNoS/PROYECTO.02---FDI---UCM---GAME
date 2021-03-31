@@ -62,13 +62,18 @@ void Interfaz::createHeroes()
 
 void Interfaz::createInfo()
 {
+	SDLGame* game_ = g_->getSDLGame();
+	double width = game_->getWindowWidth();
+	double height = game_->getWindowHeight();
+	uint tamBoton = width / 16;
+
 	Panel* p = new Panel(Info);
 	allPanels.push_back(p);
-	p->addButton(createButton(p, callbacks::inventario, Vector2D(700, 750), 120, 120, Resources::Inventario));
-	p->addButton(createButton(p, callbacks::pocionVida, Vector2D(800, 750), 50, 50, Resources::PocionVida));
-	p->addButton(createButton(p, callbacks::pocionMana, Vector2D(800, 825), 50, 50, Resources::PocionMana));
-	p->addButton(createButton(p, callbacks::chat, Vector2D(880, 750), 50, 50, Resources::Chat));
-	p->addButton(createButton(p, callbacks::configuracion, Vector2D(880, 825), 50, 50, Resources::Configuracion));
+	p->addButton(createButton(p, callbacks::inventario, Vector2D(width * 4 / 7, height * 3 / 4), tamBoton*2, tamBoton*2, Resources::Inventario));
+	p->addButton(createButton(p, callbacks::pocionVida, Vector2D(width * 5 / 7, height * 3 / 4), tamBoton* 0.8, tamBoton * 0.8, Resources::PocionVida));
+	p->addButton(createButton(p, callbacks::pocionMana, Vector2D(width * 5 / 7, height * 5 / 6), tamBoton * 0.8, tamBoton * 0.8, Resources::PocionMana));
+	p->addButton(createButton(p, callbacks::chat, Vector2D(width * 6 / 7, height * 3 / 4), tamBoton, tamBoton, Resources::Chat));
+	p->addButton(createButton(p, callbacks::configuracion, Vector2D( width * 6 / 7, height * 5 / 6), tamBoton, tamBoton, Resources::Configuracion));
 }
 
 Interfaz::Interfaz(Game* juego, EntityManager* manager)
