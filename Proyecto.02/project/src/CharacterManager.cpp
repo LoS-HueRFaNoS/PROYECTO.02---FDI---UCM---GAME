@@ -37,7 +37,7 @@ Hero* CharacterManager::addHeroFromTemplate(rpgLogic::heroTemplate t)
 Hero* CharacterManager::addRandomHero()
 {
 	Hero* h = new Hero(game_, this);
-	h->loadFromTemplate(heroJson, (heroTemplate)game_->getRandGen()->nextInt(0, _LastheroTemplateId_));
+	h->loadFromTemplate(heroJson, getRandomHero());
 	newCharacter(h);
 	return h;
 }
@@ -53,7 +53,7 @@ Enemy* CharacterManager::addEnemyFromTemplate(rpgLogic::enemyTemplate t)
 Enemy* CharacterManager::addRandomEnemy()
 {
 	Enemy* e = new Enemy(game_, this);
-	e->loadFromTemplate(enemyJson, (enemyTemplate)game_->getRandGen()->nextInt(0, _LastEnemyTemplateId_));
+	e->loadFromTemplate(enemyJson, getRandomEnemy());
 	newCharacter(e);
 	return e;
 }

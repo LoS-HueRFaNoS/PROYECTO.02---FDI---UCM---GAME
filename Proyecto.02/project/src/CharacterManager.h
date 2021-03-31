@@ -10,8 +10,6 @@ public:
 		init();
 	}
 
-
-
 	Hero* addHeroFromTemplate(rpgLogic::heroTemplate t);
 	Hero* addRandomHero();
 

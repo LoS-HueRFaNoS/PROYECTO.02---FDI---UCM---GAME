@@ -47,9 +47,9 @@ void Game::initGame() {
 
 	// Nuetro c�digo
 
-	characterManager_ = new CharacterManager(game_);
-
 	cout << "Loading Characters please wait..." << endl;
+
+	characterManager_ = new CharacterManager(game_);
 
 	Entity* manager = entityManager_->addEntity();
 
@@ -59,8 +59,8 @@ void Game::initGame() {
 	Hero* warrior = characterManager_->addHeroFromTemplate(WARRIOR);
 	Hero* rogue = characterManager_->addHeroFromTemplate(ROGUE);
 	Hero* cleric = characterManager_->addHeroFromTemplate(CLERIC);;
-	Enemy* e1 = characterManager_->addEnemyFromTemplate(ZOMBIE);
-	Enemy* e2 = characterManager_->addEnemyFromTemplate(ZOMBIE);
+	Enemy* e1 = characterManager_->addRandomEnemy();
+	Enemy* e2 = characterManager_->addRandomEnemy();
 	Enemy* e3 = characterManager_->addRandomEnemy();
 
 

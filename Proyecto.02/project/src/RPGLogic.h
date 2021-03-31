@@ -114,5 +114,9 @@ namespace rpgLogic {
 	};*/
 
 	int throwDice(int n, int dice, bool text);
+
+	enemyTemplate getRandomEnemy();
+
+	heroTemplate getRandomHero();
 }
 
