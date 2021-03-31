@@ -68,6 +68,834 @@
           "Value": 0.0
         }
       ]
+    },
+
+    {
+      "Name": "Troll",
+
+      "Stats": [
+        {
+          "Key": "Strength",
+          "Value": 20
+        },
+        {
+          "Key": "Constitution",
+          "Value": 14
+        },
+        {
+          "Key": "Dexterity",
+          "Value": 7
+        },
+        {
+          "Key": "Intelligence",
+          "Value": 3
+        }
+      ],
+
+      "HitPoints": 40,
+      "ManaPoints": 10,
+
+      "Weaknesses": [
+        {
+          "Key": "Blunt",
+          "Value": 0.0
+        },
+        {
+          "Key": "Pierce",
+          "Value": 0.0
+        },
+        {
+          "Key": "Slash",
+          "Value": 0.0
+        },
+        {
+          "Key": "Fire",
+          "Value": 0.0
+        },
+        {
+          "Key": "Water",
+          "Value": 0.0
+        },
+        {
+          "Key": "Ice",
+          "Value": 0.0
+        },
+        {
+          "Key": "Earth",
+          "Value": 0.0
+        },
+        {
+          "Key": "Wind",
+          "Value": 0.0
+        },
+        {
+          "Key": "Light",
+          "Value": 0.0
+        },
+        {
+          "Key": "Dark",
+          "Value": 0.0
+        }
+      ]
+    },
+
+    {
+      "Name": "Skeleton",
+
+      "Stats": [
+        {
+          "Key": "Strength",
+          "Value": 10
+        },
+        {
+          "Key": "Constitution",
+          "Value": 14
+        },
+        {
+          "Key": "Dexterity",
+          "Value": 15
+        },
+        {
+          "Key": "Intelligence",
+          "Value": 6
+        }
+      ],
+
+      "HitPoints": 13,
+      "ManaPoints": 12,
+
+      "Weaknesses": [
+        {
+          "Key": "Blunt",
+          "Value": 0.0
+        },
+        {
+          "Key": "Pierce",
+          "Value": 0.0
+        },
+        {
+          "Key": "Slash",
+          "Value": 0.0
+        },
+        {
+          "Key": "Fire",
+          "Value": 0.0
+        },
+        {
+          "Key": "Water",
+          "Value": 0.0
+        },
+        {
+          "Key": "Ice",
+          "Value": 0.0
+        },
+        {
+          "Key": "Earth",
+          "Value": 0.0
+        },
+        {
+          "Key": "Wind",
+          "Value": 0.0
+        },
+        {
+          "Key": "Light",
+          "Value": 0.0
+        },
+        {
+          "Key": "Dark",
+          "Value": 0.0
+        }
+      ]
+    },
+
+    {
+      "Name": "Hellhound",
+
+      "Stats": [
+        {
+          "Key": "Strength",
+          "Value": 17
+        },
+        {
+          "Key": "Constitution",
+          "Value": 14
+        },
+        {
+          "Key": "Dexterity",
+          "Value": 12
+        },
+        {
+          "Key": "Intelligence",
+          "Value": 6
+        }
+      ],
+
+      "HitPoints": 45,
+      "ManaPoints": 12,
+
+      "Weaknesses": [
+        {
+          "Key": "Blunt",
+          "Value": 0.0
+        },
+        {
+          "Key": "Pierce",
+          "Value": 0.0
+        },
+        {
+          "Key": "Slash",
+          "Value": 0.0
+        },
+        {
+          "Key": "Fire",
+          "Value": -1.0
+        },
+        {
+          "Key": "Water",
+          "Value": 0.5
+        },
+        {
+          "Key": "Ice",
+          "Value": 0.0
+        },
+        {
+          "Key": "Earth",
+          "Value": 0.0
+        },
+        {
+          "Key": "Wind",
+          "Value": 0.0
+        },
+        {
+          "Key": "Light",
+          "Value": 0.0
+        },
+        {
+          "Key": "Dark",
+          "Value": 0.0
+        }
+      ]
+    },
+
+    {
+      "Name": "Specter",
+
+      "Stats": [
+        {
+          "Key": "Strength",
+          "Value": 1
+        },
+        {
+          "Key": "Constitution",
+          "Value": 14
+        },
+        {
+          "Key": "Dexterity",
+          "Value": 11
+        },
+        {
+          "Key": "Intelligence",
+          "Value": 10
+        }
+      ],
+
+      "HitPoints": 22,
+      "ManaPoints": 20,
+
+      "Weaknesses": [
+        {
+          "Key": "Blunt",
+          "Value": -0.5
+        },
+        {
+          "Key": "Pierce",
+          "Value": -0.5
+        },
+        {
+          "Key": "Slash",
+          "Value": -0.5
+        },
+        {
+          "Key": "Fire",
+          "Value": -0.5
+        },
+        {
+          "Key": "Water",
+          "Value": 0.0
+        },
+        {
+          "Key": "Ice",
+          "Value": -0.5
+        },
+        {
+          "Key": "Earth",
+          "Value": -0.5
+        },
+        {
+          "Key": "Wind",
+          "Value": 0.0
+        },
+        {
+          "Key": "Light",
+          "Value": 0.0
+        },
+        {
+          "Key": "Dark",
+          "Value": -1.0
+        }
+      ]
+    },
+
+    {
+      "Name": "Goblin",
+
+      "Stats": [
+        {
+          "Key": "Strength",
+          "Value": 8
+        },
+        {
+          "Key": "Constitution",
+          "Value": 14
+        },
+        {
+          "Key": "Dexterity",
+          "Value": 10
+        },
+        {
+          "Key": "Intelligence",
+          "Value": 10
+        }
+      ],
+
+      "HitPoints": 7,
+      "ManaPoints": 20,
+
+      "Weaknesses": [
+        {
+          "Key": "Blunt",
+          "Value": 0.0
+        },
+        {
+          "Key": "Pierce",
+          "Value": 0.0
+        },
+        {
+          "Key": "Slash",
+          "Value": 0.0
+        },
+        {
+          "Key": "Fire",
+          "Value": 0.0
+        },
+        {
+          "Key": "Water",
+          "Value": 0.0
+        },
+        {
+          "Key": "Ice",
+          "Value": 0.0
+        },
+        {
+          "Key": "Earth",
+          "Value": 0.0
+        },
+        {
+          "Key": "Wind",
+          "Value": 0.0
+        },
+        {
+          "Key": "Light",
+          "Value": 0.0
+        },
+        {
+          "Key": "Dark",
+          "Value": 0.0
+        }
+      ]
+    },
+
+    {
+      "Name": "Death Knight",
+
+      "Stats": [
+        {
+          "Key": "Strength",
+          "Value": 20
+        },
+        {
+          "Key": "Constitution",
+          "Value": 20
+        },
+        {
+          "Key": "Dexterity",
+          "Value": 11
+        },
+        {
+          "Key": "Intelligence",
+          "Value": 12
+        }
+      ],
+
+      "HitPoints": 90,
+      "ManaPoints": 24,
+
+      "Weaknesses": [
+        {
+          "Key": "Blunt",
+          "Value": 0.0
+        },
+        {
+          "Key": "Pierce",
+          "Value": -0.5
+        },
+        {
+          "Key": "Slash",
+          "Value": -0.5
+        },
+        {
+          "Key": "Fire",
+          "Value": 0.0
+        },
+        {
+          "Key": "Water",
+          "Value": 0.0
+        },
+        {
+          "Key": "Ice",
+          "Value": 0.0
+        },
+        {
+          "Key": "Earth",
+          "Value": 0.0
+        },
+        {
+          "Key": "Wind",
+          "Value": 0.0
+        },
+        {
+          "Key": "Light",
+          "Value": 0.5
+        },
+        {
+          "Key": "Dark",
+          "Value": -1.0
+        }
+      ]
+    },
+
+    {
+      "Name": "Mimic",
+
+      "Stats": [
+        {
+          "Key": "Strength",
+          "Value": 17
+        },
+        {
+          "Key": "Constitution",
+          "Value": 15
+        },
+        {
+          "Key": "Dexterity",
+          "Value": 12
+        },
+        {
+          "Key": "Intelligence",
+          "Value": 5
+        }
+      ],
+
+      "HitPoints": 58,
+      "ManaPoints": 10,
+
+      "Weaknesses": [
+        {
+          "Key": "Blunt",
+          "Value": 0.0
+        },
+        {
+          "Key": "Pierce",
+          "Value": 0.0
+        },
+        {
+          "Key": "Slash",
+          "Value": 0.0
+        },
+        {
+          "Key": "Fire",
+          "Value": 0.0
+        },
+        {
+          "Key": "Water",
+          "Value": 0.0
+        },
+        {
+          "Key": "Ice",
+          "Value": 0.0
+        },
+        {
+          "Key": "Earth",
+          "Value": 0.0
+        },
+        {
+          "Key": "Wind",
+          "Value": 0.0
+        },
+        {
+          "Key": "Light",
+          "Value": 0.0
+        },
+        {
+          "Key": "Dark",
+          "Value": 0.0
+        }
+      ]
+    },
+
+    {
+      "Name": "Pixie",
+
+      "Stats": [
+        {
+          "Key": "Strength",
+          "Value": 2
+        },
+        {
+          "Key": "Constitution",
+          "Value": 8
+        },
+        {
+          "Key": "Dexterity",
+          "Value": 20
+        },
+        {
+          "Key": "Intelligence",
+          "Value": 10
+        }
+      ],
+
+      "HitPoints": 5,
+      "ManaPoints": 20,
+
+      "Weaknesses": [
+        {
+          "Key": "Blunt",
+          "Value": 0.0
+        },
+        {
+          "Key": "Pierce",
+          "Value": 0.0
+        },
+        {
+          "Key": "Slash",
+          "Value": 0.0
+        },
+        {
+          "Key": "Fire",
+          "Value": -1.0
+        },
+        {
+          "Key": "Water",
+          "Value": -1.0
+        },
+        {
+          "Key": "Ice",
+          "Value": 0.0
+        },
+        {
+          "Key": "Earth",
+          "Value": -1.0
+        },
+        {
+          "Key": "Wind",
+          "Value": -1.0
+        },
+        {
+          "Key": "Light",
+          "Value": 0.0
+        },
+        {
+          "Key": "Dark",
+          "Value": 0.0
+        }
+      ]
+    },
+
+    {
+      "Name": "Ghoul",
+
+      "Stats": [
+        {
+          "Key": "Strength",
+          "Value": 16
+        },
+        {
+          "Key": "Constitution",
+          "Value": 10
+        },
+        {
+          "Key": "Dexterity",
+          "Value": 17
+        },
+        {
+          "Key": "Intelligence",
+          "Value": 11
+        }
+      ],
+
+      "HitPoints": 36,
+      "ManaPoints": 22,
+
+      "Weaknesses": [
+        {
+          "Key": "Blunt",
+          "Value": 0.0
+        },
+        {
+          "Key": "Pierce",
+          "Value": 0.0
+        },
+        {
+          "Key": "Slash",
+          "Value": 0.0
+        },
+        {
+          "Key": "Fire",
+          "Value": 0.5
+        },
+        {
+          "Key": "Water",
+          "Value": 0.0
+        },
+        {
+          "Key": "Ice",
+          "Value": 0.5
+        },
+        {
+          "Key": "Earth",
+          "Value": 0.0
+        },
+        {
+          "Key": "Wind",
+          "Value": 0.0
+        },
+        {
+          "Key": "Light",
+          "Value": 0.5
+        },
+        {
+          "Key": "Dark",
+          "Value": -1.0
+        }
+      ]
+    },
+
+    {
+      "Name": "Dracolich",
+
+      "Stats": [
+        {
+          "Key": "Strength",
+          "Value": 20
+        },
+        {
+          "Key": "Constitution",
+          "Value": 20
+        },
+        {
+          "Key": "Dexterity",
+          "Value": 10
+        },
+        {
+          "Key": "Intelligence",
+          "Value": 16
+        }
+      ],
+
+      "HitPoints": 112,
+      "ManaPoints": 32,
+
+      "Weaknesses": [
+        {
+          "Key": "Blunt",
+          "Value": 0.0
+        },
+        {
+          "Key": "Pierce",
+          "Value": -0.5
+        },
+        {
+          "Key": "Slash",
+          "Value": -0.5
+        },
+        {
+          "Key": "Fire",
+          "Value": 0.0
+        },
+        {
+          "Key": "Water",
+          "Value": 0.0
+        },
+        {
+          "Key": "Ice",
+          "Value": 0.0
+        },
+        {
+          "Key": "Earth",
+          "Value": 0.0
+        },
+        {
+          "Key": "Wind",
+          "Value": 0.0
+        },
+        {
+          "Key": "Light",
+          "Value": 1.0
+        },
+        {
+          "Key": "Dark",
+          "Value": -1.0
+        }
+      ]
+    },
+
+    {
+      "Name": "Giant worm",
+
+      "Stats": [
+        {
+          "Key": "Strength",
+          "Value": 20
+        },
+        {
+          "Key": "Constitution",
+          "Value": 15
+        },
+        {
+          "Key": "Dexterity",
+          "Value": 7
+        },
+        {
+          "Key": "Intelligence",
+          "Value": 1
+        }
+      ],
+
+      "HitPoints": 60,
+      "ManaPoints": 10,
+
+      "Weaknesses": [
+        {
+          "Key": "Blunt",
+          "Value": 0.0
+        },
+        {
+          "Key": "Pierce",
+          "Value": 0.0
+        },
+        {
+          "Key": "Slash",
+          "Value": 0.0
+        },
+        {
+          "Key": "Fire",
+          "Value": 0.0
+        },
+        {
+          "Key": "Water",
+          "Value": 0.0
+        },
+        {
+          "Key": "Ice",
+          "Value": 0.0
+        },
+        {
+          "Key": "Earth",
+          "Value": 0.0
+        },
+        {
+          "Key": "Wind",
+          "Value": 0.0
+        },
+        {
+          "Key": "Light",
+          "Value": 0.0
+        },
+        {
+          "Key": "Dark",
+          "Value": 0.0
+        }
+      ]
+    },
+
+    {
+      "Name": "Banshee",
+
+      "Stats": [
+        {
+          "Key": "Strength",
+          "Value": 1
+        },
+        {
+          "Key": "Constitution",
+          "Value": 10
+        },
+        {
+          "Key": "Dexterity",
+          "Value": 14
+        },
+        {
+          "Key": "Intelligence",
+          "Value": 12
+        }
+      ],
+
+      "HitPoints": 58,
+      "ManaPoints": 24,
+
+      "Weaknesses": [
+        {
+          "Key": "Blunt",
+          "Value": -0.5
+        },
+        {
+          "Key": "Pierce",
+          "Value": -0.5
+        },
+        {
+          "Key": "Slash",
+          "Value": -0.5
+        },
+        {
+          "Key": "Fire",
+          "Value": -0.5
+        },
+        {
+          "Key": "Water",
+          "Value": 0.0
+        },
+        {
+          "Key": "Ice",
+          "Value": -1.0
+        },
+        {
+          "Key": "Earth",
+          "Value": -0.5
+        },
+        {
+          "Key": "Wind",
+          "Value": 0.5
+        },
+        {
+          "Key": "Light",
+          "Value": 0.5
+        },
+        {
+          "Key": "Dark",
+          "Value": -1.0
+        }
+      ]
     }
 
   ]

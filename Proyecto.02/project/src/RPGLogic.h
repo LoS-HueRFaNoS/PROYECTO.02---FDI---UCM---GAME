@@ -92,6 +92,18 @@ namespace rpgLogic {
 
 	enum enemyTemplate {
 		ZOMBIE,
+		TROLL,
+		SKELETON, 
+		HELLHOUND,
+		SPECTER,
+		GOBLIN,
+		DEATHKNIGHT, //Miniboss
+		MIMIC,
+		PIXIE,
+		GHOUL,
+		DRACOLICH, //Miniboss
+		GIANTWORM,
+		BANSHEE,
 		// Escribir encima de estecomentario
 		_LastEnemyTemplateId_
 	};
