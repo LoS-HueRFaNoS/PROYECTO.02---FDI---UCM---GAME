@@ -32,6 +32,7 @@ Game::~Game() {
 
 void Game::initGame() {
 
+
 	game_ = SDLGame::init("VAMOS A LLORAR CON SDL", _WINDOW_WIDTH_, _WINDOW_HEIGHT_);
 
 	entityManager_ = new EntityManager(game_);
@@ -87,20 +88,45 @@ void Game::initGame() {
 	cout << "Characters Loaded" << endl;
 	*/
 
-	// 2. Mapa / Laberinto
+	// 2. Mapa / Laberinto 
 	Entity* laberinto = entityManager_->addEntity();
-	Laberinto* lab = laberinto->addComponent<Laberinto>(entityManager_);
-	lab->initFromFile();
-
+	Laberinto* lab = laberinto->addComponent<Laberinto>(entityManager_,10,10);
+	Vector2D entrada = Vector2D(0,rand()% lab->mazeHeigh());
+	lab->createRandomMaze(entrada);	
 	Entity* player = entityManager_->addEntity();
-	player->addComponent<MazePos>(Vector2D(0, 0));
+	player->addComponent<MazePos>(entrada);
 	player->addComponent<PlayerMotion>(SDLK_UP, SDLK_LEFT, SDLK_RIGHT, lab);
 	player->addComponent<PlayerViewer>(lab);
 
 	// 3. Interfaz
 	Interfaz F = Interfaz(this, entityManager_);
+
+	game_ = SDLGame::init("VAMOS A LLORAR CON SDL", _WINDOW_WIDTH_, _WINDOW_HEIGHT_);
+	entityManager_ = new EntityManager(game_);
+	createLaberinto();
+
 }
 
+// void Game::createLaberinto()
+// {
+// 	Entity* laberinto = entityManager_->addEntity();
+// 	Laberinto* lab = laberinto->addComponent<Laberinto>(entityManager_,10,10);
+// 	Vector2D entrada = Vector2D(0,rand()% lab->mazeHeigh());
+// 	lab->createRandomMaze(entrada);	
+// 	Entity* player = entityManager_->addEntity();
+// 	player->addComponent<MazePos>(entrada);
+// 	player->addComponent<PlayerMotion>(SDLK_UP, SDLK_LEFT, SDLK_RIGHT, lab);
+// 	player->addComponent<PlayerViewer>(lab);
+// 	//Necesitamos cambiar el ecs.h a systemas
+// 	//-Necesitamos un sistema de enemigos que son enemyPool que se encarga de su construccion
+// 	//-En su metodo de construir tiene que pasar los parametros a laberinto para que tenga el puntero
+// 	//-del enemigo correspondiente.
+// 	//-addEnemy(10) -> random x, random y ->lab->checkCell(x,y).getEnemyV().pushback(this);
+// 	//-Estos enemigos puede ser un enum del tipo de enemigo
+// 	//using.h ->enum de enemigo --> 5
+// 	//getRandGen()->nextInt(0,  11) 
+// 	//laberinto ->createRandomMaze(entrada){  if (r <5) vec.pushback }
+// }
 void Game::closeGame() {
 	delete entityManager_;
 
