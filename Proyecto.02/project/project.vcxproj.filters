@@ -171,6 +171,9 @@
     <ClCompile Include="src\Sprite.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
+    <ClCompile Include="PlayerMotion.cpp">
+      <Filter>Archivos de origen\Components</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\ecs.h">
@@ -274,8 +277,6 @@
     </ClInclude>
     <ClInclude Include="src\MazePos.h">
       <Filter>Archivos de encabezado\Components</Filter>
-    </ClInclude>
-    <ClInclude Include="CasillaRender.h">
     </ClInclude>
     <ClInclude Include="src\CharacterSheet.h">
       <Filter>Archivos de encabezado\Components</Filter>

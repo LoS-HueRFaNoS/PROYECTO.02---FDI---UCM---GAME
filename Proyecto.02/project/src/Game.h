@@ -18,7 +18,7 @@ public:
 
 private:
 	void initGame();
-	void createLaberinto();
+	//void createLaberinto();
 	void closeGame();
 	void handleInput();
 	void update();

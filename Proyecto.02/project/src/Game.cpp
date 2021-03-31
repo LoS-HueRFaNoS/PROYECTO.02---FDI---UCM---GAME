@@ -101,9 +101,7 @@ void Game::initGame() {
 	// 3. Interfaz
 	Interfaz F = Interfaz(this, entityManager_);
 
-	game_ = SDLGame::init("VAMOS A LLORAR CON SDL", _WINDOW_WIDTH_, _WINDOW_HEIGHT_);
-	entityManager_ = new EntityManager(game_);
-	createLaberinto();
+
 
 }
 
