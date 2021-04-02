@@ -109,3 +109,13 @@ void Flash::throwHability(Character* obj, bool critical) const
 	obj->recieveDamage(damage, _damageType);
 }
 
+void Freeze::throwHability(Character* obj, bool critical) const //hay que mirar que hacer con el debuff y ajustar el ataque
+{
+	int damage = throwDice(1 + critical, 8, true);
+
+	damage = obj->savingThrow(10 + _caster->getMod(_mod), DEX) ? damage / 2 : damage;
+
+	obj->recieveDamage(damage, _damageType);
+	obj->recieveBuff(-3, DEX);
+}
+

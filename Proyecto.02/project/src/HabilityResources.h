@@ -324,4 +324,22 @@ public:
 	void throwHability(Character* obj, bool critical)const override;
 };
 
+class Freeze : public Hability {
+public:
+	Freeze(Character* caster) :Hability(caster) {
+
+		level = 4;
+		_mana = 0;
+		_name = "Freeze";
+		_description = "Winter is coming FOR THEM, a hace 1d8 a un enemigo frente a salvacion DEX (y reduce DEX)";
+
+		_damageType = ICE;
+		_habilityType = ATTACK;
+		_mod = INT;
+		_obj = SINGLEENEMY;
+	}
+
+	void throwHability(Character* obj, bool critical)const override;
+};
+
 #pragma endregion
