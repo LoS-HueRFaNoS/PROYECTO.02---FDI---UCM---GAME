@@ -37,6 +37,11 @@ void Character::recieveHealing(int healing)
 	_sheet->recieveHealing(healing);
 }
 
+void Character::recieveBuff(int buff,mainStat stat)
+{
+	_sheet->changeStat(stat,buff);
+}
+
 bool Character::savingThrow(int save, rpgLogic::mainStat stat)
 {
 	cout << "Saving throw (" << save << "): " << endl;

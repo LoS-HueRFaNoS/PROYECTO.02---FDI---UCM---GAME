@@ -122,5 +122,7 @@ public:
 	bool recieveDamage(int damage, rpgLogic::damageType type);
 
 	void recieveHealing(int healing);
+
+	//void recieveBuff(int buff,mainStat st);
 };
 #endif

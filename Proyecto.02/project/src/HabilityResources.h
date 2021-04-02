@@ -195,4 +195,133 @@ public:
 
 	void throwHability(Character* obj, bool critical)const override;
 };
+
+//-----------------------------------------------------------------------------
+
+class WindBurst : public Hability {
+public:
+	WindBurst(Character* caster) :Hability(caster) {
+
+		level = 4;
+		_mana = 0;
+		_name = "WindBurst";
+		_description = "Sal a que te de el aire, hace 8d6 a todos los enemigos frente a salvacion DEX (reduce DEX)";
+
+		_damageType = WIND;
+		_habilityType = ATTACK;
+		_mod = INT;
+		_obj = ENEMYTEAM;
+	}
+
+	void throwHability(Character* obj, bool critical)const override;
+};
+
+class WindSlash : public Hability {
+public:
+	WindSlash(Character* caster) :Hability(caster) {
+
+		level = 4;
+		_mana = 0;
+		_name = "Wind Slash";
+		_description = "Menuda brisa, a hace 1d8 a un enemigo frente a salvacion DEX";
+
+		_damageType = WIND;
+		_habilityType = ATTACK;
+		_mod = INT;
+		_obj = SINGLEENEMY;
+	}
+
+	void throwHability(Character* obj, bool critical)const override;
+};
+
+class RockPillar : public Hability {
+public:
+	RockPillar(Character* caster) :Hability(caster) {
+
+		level = 4;
+		_mana = 0;
+		_name = "Rock Pillar";
+		_description = "Mejorando la estructura, a hace 1d8 a un enemigo frente a salvacion DEX (reduce CON)";
+
+		_damageType = WIND;
+		_habilityType = ATTACK;
+		_mod = INT;
+		_obj = SINGLEENEMY;
+	}
+
+	void throwHability(Character* obj, bool critical)const override;
+};
+
+class ToxicShadow : public Hability {
+public:
+	ToxicShadow(Character* caster) :Hability(caster) {
+
+		level = 4;
+		_mana = 0;
+		_name = "Toxic Shadow";
+		_description = "Sientes cosquillas, a hace 1d8 a un enemigo frente a salvacion DEX (puede causar envenenamiento)";
+
+		_damageType = WIND;
+		_habilityType = ATTACK;
+		_mod = INT;
+		_obj = SINGLEENEMY;
+	}
+
+	void throwHability(Character* obj, bool critical)const override;
+};
+
+class Tsunami : public Hability {
+public:
+	Tsunami(Character* caster) :Hability(caster) {
+
+		level = 4;
+		_mana = 0;
+		_name = "Tsunami";
+		_description = "Avisaron de bandera roja, a hace 8d6 a todos los enemigos frente a salvacion DEX (y reduce STR)";
+
+		_damageType = WATER;
+		_habilityType = ATTACK;
+		_mod = INT;
+		_obj = ENEMYTEAM;
+	}
+
+	void throwHability(Character* obj, bool critical)const override;
+};
+
+class DivineProtection : public Hability {
+public:
+	DivineProtection(Character* caster) :Hability(caster) {
+
+		level = 4;
+		_mana = 0;
+		_name = "Divine protection";
+		_description = "Reduce el daño recibido en el proximo ataque";
+
+		_damageType = LIGHT;
+		_habilityType = BUFF;
+		_mod = INT;
+		_obj = CASTER;
+	}
+
+	void throwHability(Character* obj, bool critical)const override;
+};
+
+class Flash : public Hability {
+public:
+	Flash(Character* caster) :Hability(caster) {
+
+		level = 4;
+		_mana = 0;
+		_name = "Flash";
+		_description = "Sonrie, a hace 1d8 a un enemigo frente a salvacion DEX(reduce DEX)";
+
+		_damageType = LIGHT;
+		_habilityType = ATTACK;
+		_mod = INT;
+		_obj = SINGLEENEMY;
+	}
+
+	void throwHability(Character* obj, bool critical)const override;
+};
+
 #pragma endregion

@@ -45,3 +45,67 @@ void AllyTeamAttackExample::throwHability(Character* obj, bool critical) const
 
 	obj->recieveDamage(damage, _damageType);
 }
+
+
+void WindBurst::throwHability(Character* obj, bool critical) const
+{
+	int damage = throwDice(8 + 8 * critical, 6, true);
+
+	damage = obj->savingThrow(10 + _caster->getMod(_mod), DEX) ? damage / 2 : damage;
+
+	obj->recieveDamage(damage, _damageType);
+}
+
+void RockPillar::throwHability(Character* obj, bool critical) const
+{
+	int damage = throwDice(8 + 8 * critical, 6, true);
+
+	damage = obj->savingThrow(10 + _caster->getMod(_mod), DEX) ? damage / 2 : damage;
+
+	obj->recieveDamage(damage, _damageType);
+}
+
+void ToxicShadow::throwHability(Character* obj, bool critical) const
+{
+	int damage = throwDice(8 + 8 * critical, 6, true);
+
+	damage = obj->savingThrow(10 + _caster->getMod(_mod), DEX) ? damage / 2 : damage;
+
+	obj->recieveDamage(damage, _damageType);
+}
+
+void WindSlash::throwHability(Character* obj, bool critical) const
+{
+	int damage = throwDice(8 + 8 * critical, 6, true);
+
+	damage = obj->savingThrow(10 + _caster->getMod(_mod), DEX) ? damage / 2 : damage;
+
+	obj->recieveDamage(damage, _damageType);
+}
+
+void Tsunami::throwHability(Character* obj, bool critical) const
+{
+	int damage = throwDice(8 + 8 * critical, 6, true);
+
+	damage = obj->savingThrow(10 + _caster->getMod(_mod), DEX) ? damage / 2 : damage;
+
+	obj->recieveDamage(damage, _damageType);
+}
+
+void DivineProtection::throwHability(Character* obj, bool critical) const
+{
+	mainStat buffedStat = CON;
+	int buff = throwDice(1 + critical, 8, true);
+
+	obj->recieveBuff(buff,CON);
+}
+
+void Flash::throwHability(Character* obj, bool critical) const
+{
+	int damage = throwDice(8 + 8 * critical, 6, true);
+
+	damage = obj->savingThrow(10 + _caster->getMod(_mod), DEX) ? damage / 2 : damage;
+
+	obj->recieveDamage(damage, _damageType);
+}
+

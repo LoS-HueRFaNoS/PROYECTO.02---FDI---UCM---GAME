@@ -39,6 +39,9 @@ public:
 	void recieveDamage(int damage, damageType type);
 
 	void recieveHealing(int healing);
+	
+	void recieveBuff(int buff,mainStat stat);
+
 
 	bool savingThrow(int save, mainStat stat);
 
