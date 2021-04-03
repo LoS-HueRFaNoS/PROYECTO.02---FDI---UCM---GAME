@@ -1,0 +1,3 @@
+﻿  Interfaz.cpp
+C:\Users\MASTER\Desktop\PROYECTO.02---FDI---UCM---GAME\Proyecto.02\project\src\Component.h(7,51): warning C4091: 'static ': se ha omitido a la izquierda de 'const Look' cuando no hay ninguna variable declarada
+  project.vcxproj -> C:\Users\MASTER\Desktop\PROYECTO.02---FDI---UCM---GAME\Proyecto.02\bin\Debug\project.exe

@@ -1,0 +1,174 @@
+h1 {
+  text-align: center;
+  font-family: Courier;
+}
+a {
+  text-align: right;
+  color:white;
+}
+p{
+	font-family: 'Monaco', monospace;
+	color:whitesmoke;
+	font-size: 32px;
+	display: inline-block;
+	padding-inline: 20px;
+
+}
+ul{
+	font-family: 'Monaco', monospace;
+	color:whitesmoke;
+	font-size: 32px;
+	display: inline-block;
+	padding-inline: 110px;
+}
+
+h3 {
+	font-family: 'Monaco', monospace;
+	font-size: 32px;
+ 	text-align: center;
+  	color:whitesmoke;
+}
+body {
+	background-image: url("../html_imgs/fondo.png");
+	background-size: 100%;
+	background-repeat: no-repeat;
+	background-position: 100% 30%;
+	background-attachment: scroll;
+}
+* {
+	margin:0px;
+	padding:0px;
+}
+
+#banner{
+	margin: auto;
+	width: 100%;
+	text-align: center;
+}
+#descargar{
+	background-color: rgba(0,0,0,0.5);
+	margin: 90px 1.5em 0 auto;
+	height: 300px;
+	width: 350px;
+
+	text-align: center;
+}
+			
+#header {
+	margin: auto;
+	width: 100%;
+	text-align: center;
+}
+
+#content{
+	background-color: rgba(0,0,0,0.5);
+	margin: auto;
+	width: 80%;
+	text-align: center;
+	display: table;
+}
+			
+ul, ol {
+	list-style:none;
+}
+			
+.nav > li {
+	display: inline-block;
+}	
+.nav li ul {
+	display:none;
+	position:absolute;
+	min-width:50px;
+}
+			
+.nav li:hover > ul {
+	display:block;
+}
+			
+.nav li ul li {
+	position:relative;
+}
+			
+.nav li ul li ul {
+	right:-140px;
+	top:0px;
+}
+
+ul#rrss{
+	padding-bottom: 20px;
+}
+#menu0{
+	width: 300px;
+	height: 90px;
+	background-image: url("../html_imgs/juego.png");
+}
+#menu0:hover{
+	background-image: url("../html_imgs/juegoh.png");
+}
+#menu1{
+	width: 300px;
+	height: 90px;
+	background-image: url("../html_imgs/historia.png");
+}
+#menu10{
+	width: 300px;
+	height: 90px;
+	background-image: url("../html_imgs/narrativa.png");
+}
+#menu10:hover{
+	background-image: url("../html_imgs/narrativah.png");
+}
+#menu11{
+	width: 300px;
+	height: 90px;
+	background-image: url("../html_imgs/personajes.png");
+}
+#menu11:hover{
+	background-image: url("../html_imgs/personajesh.png");
+}
+#menu12{
+	width: 300px;
+	height: 90px;
+	background-image: url("../html_imgs/esptie.png");
+}
+#menu12:hover{
+	background-image: url("../html_imgs/esptieh.png");
+}
+#menu2{
+	width: 300px;
+	height: 90px;
+	background-image: url("../html_imgs/acerca.png");
+}
+#menu20{
+	width: 300px;
+	height: 90px;
+	background-image: url("../html_imgs/ajuego.png");
+}
+#menu20:hover{
+	background-image: url("../html_imgs/ajuegoh.png");
+}
+#menu21{
+	width: 300px;
+	height: 90px;
+	background-image: url("../html_imgs/jodas.png");
+}
+#menu21:hover{
+	background-image: url("../html_imgs/jodash.png");
+}
+#menu22{
+	width: 300px;
+	height: 90px;
+	background-image: url("../html_imgs/trabajo.png");
+}
+#menu22:hover{
+	background-image: url("../html_imgs/trabajoh.png");
+}
+#menu3{
+	width: 300px;
+	height: 90px;
+	background-image: url("../html_imgs/redes.png");
+}
+#menu3:hover{
+	background-image: url("../html_imgs/redesh.png");
+}
+
