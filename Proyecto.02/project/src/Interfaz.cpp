@@ -71,12 +71,20 @@ void Interfaz::createFight(PlayerMotion* plmot)
 }
 void Interfaz::createMovement(PlayerMotion* plmot)
 {
+	// posicion del panel respecto a la ventana
+	SDLGame* game_ = g_->getSDLGame();
+	double width = game_->getWindowWidth();
+	width = width * 0.03;
+	double height = game_->getWindowHeight();
+	height = height * 0.875;
+	Vector2D pPos = Vector2D(width, height);
+	// construccion del panel
 	Panel* p = new Panel(Movement);
 	allPanels.push_back(p);
-	createButtonMovement(p, MovType::forward, plmot, Vector2D(150, 780), 85, 96, Resources::Avanzar);
-	createButtonMovement(p, MovType::rotR, plmot, Vector2D(250, 800), 82, 72, Resources::RotarD);
-	createButtonMovement(p, MovType::rotL, plmot, Vector2D(50, 800), 82, 72, Resources::RotarI);
-	createButtonMovement(p, MovType::touch, plmot, Vector2D(350, 810), 100, 55, Resources::Interactuar);
+	createButtonMovement(p, MovType::forward, plmot, Vector2D(pPos.getX() + 100, pPos.getY()), 85, 96, Resources::Avanzar);
+	createButtonMovement(p, MovType::rotR, plmot, Vector2D(pPos.getX() + 200, pPos.getY()), 82, 72, Resources::RotarD);
+	createButtonMovement(p, MovType::rotL, plmot, Vector2D(pPos.getX(), pPos.getY()), 82, 72, Resources::RotarI);
+	createButtonMovement(p, MovType::touch, plmot, Vector2D(pPos.getX() + 300, pPos.getY()), 100, 55, Resources::Interactuar);
 }
 
 
