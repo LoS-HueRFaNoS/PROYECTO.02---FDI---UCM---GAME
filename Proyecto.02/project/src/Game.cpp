@@ -56,13 +56,20 @@ void Game::initGame() {
 	CombatManager* cm = manager->addComponent<CombatManager>();
 
 	Hero* wizard = characterManager_->addHeroFromTemplate(WIZARD);
+	wizard->getWeapon();
+	wizard->getArmor();
 	Hero* warrior = characterManager_->addHeroFromTemplate(WARRIOR);
+	warrior->getWeapon();
+	warrior->getArmor();
 	Hero* rogue = characterManager_->addHeroFromTemplate(ROGUE);
+	rogue->getWeapon();
+	rogue->getArmor();
 	Hero* cleric = characterManager_->addHeroFromTemplate(CLERIC);;
+	cleric->getWeapon();
+	cleric->getArmor();
 	Enemy* e1 = characterManager_->addRandomEnemy();
 	Enemy* e2 = characterManager_->addRandomEnemy();
 	Enemy* e3 = characterManager_->addRandomEnemy();
-
 
 	wizard->addHability<Fireball>();
 	wizard->addHability<SingleTargetAttackExample>();
