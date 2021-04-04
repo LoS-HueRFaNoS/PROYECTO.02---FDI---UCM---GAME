@@ -27,4 +27,14 @@ namespace rpgLogic {
 		return (heroTemplate)SDLGame::instance()->getRandGen()->nextInt(0,_LastheroTemplateId_);
 	}
 
+	weaponsId getRandomWeapon()
+	{
+		return (weaponsId)SDLGame::instance()->getRandGen()->nextInt(0, _LastWeaponId_);
+	}
+
+	armorId getRandomArmor()
+	{
+		return (armorId)SDLGame::instance()->getRandGen()->nextInt(0, _LastArmorId_);
+	}
+
 }

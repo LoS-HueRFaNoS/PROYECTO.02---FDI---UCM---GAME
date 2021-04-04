@@ -118,5 +118,9 @@ namespace rpgLogic {
 	enemyTemplate getRandomEnemy();
 
 	heroTemplate getRandomHero();
+
+	weaponsId getRandomWeapon();
+
+	armorId getRandomArmor();
 }
 
