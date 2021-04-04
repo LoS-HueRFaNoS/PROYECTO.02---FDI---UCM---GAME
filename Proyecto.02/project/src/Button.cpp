@@ -8,5 +8,5 @@ void Button::init(SDLGame* game, Game* g, Vector2D pos, uint ancho, uint alto, R
 {
 	addComponent<Transform>(pos, Vector2D(), ancho, alto, 0);
 	addComponent<Image>(game->getTextureMngr()->getTexture(imagen));
-	addComponent<ButtonCtrl>(g);
+	addComponent<ButtonCtrl>(g, this);
 }

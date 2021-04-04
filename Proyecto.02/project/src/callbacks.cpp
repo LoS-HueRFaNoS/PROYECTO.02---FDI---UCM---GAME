@@ -1,34 +1,20 @@
 #include "callbacks.h"
+#include "MazePos.h"
+#include "Entity.h"
 
-void callbacks::pruebaGame0(Game* app)
-{
-	std::cout << "has pulsado este boton (0)" << std::endl;
+void callbacks::pruebaGame0(Game* app) {
+	std::cout << "pruebaGame0" << std::endl;
 }
-void callbacks::pruebaGame1(Game* app)
-{
-	std::cout << "has pulsado este boton (1)" << std::endl;
+void callbacks::pruebaGame1(Game* app) {
+	std::cout << "pruebaGame1" << std::endl;
 }
-void callbacks::pruebaGame2(Game* app)
-{
-	std::cout << "has pulsado este boton (2)" << std::endl;
+void callbacks::pruebaGame2(Game* app) {
+	std::cout << "pruebaGame2" << std::endl;
 }
-void callbacks::pruebaGame3(Game* app)
-{
-	std::cout << "has pulsado este boton (3)" << std::endl;
+void callbacks::pruebaGame3(Game* app) {
+	std::cout << "pruebaGame3" << std::endl;
 }
 
-void callbacks::avanzar(Game* app)
-{
-	std::cout << "has avanzado" << std::endl;
-}
-void callbacks::rotarDer(Game* app)
-{
-	std::cout << "has rotado a derechas" << std::endl;
-}
-void callbacks::rotarIzq(Game* app)
-{
-	std::cout << "has rotado a izquierdas" << std::endl;
-}
 void callbacks::interactuar(Game* app)
 {
 	std::cout << "has interactuado" << std::endl;

@@ -37,6 +37,5 @@ constexpr std::size_t maxComponents = _LastCmptId_;
 // entity e provided as a parameter
 #define GETCMP2(e,type) GETCMP3(e,ecs::type,type)
 #define GETCMP3(e,id,type) e->getComponent<type>(id)
-
 }
 

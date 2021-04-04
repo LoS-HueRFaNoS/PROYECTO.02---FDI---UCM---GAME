@@ -96,16 +96,17 @@ void Game::initGame() {
 
 	Entity* player = entityManager_->addEntity();
 	player->addComponent<MazePos>(Vector2D(0, 0));
-	player->addComponent<PlayerMotion>(SDLK_UP, SDLK_LEFT, SDLK_RIGHT, lab);
+	PlayerMotion* plmot = player->addComponent<PlayerMotion>(SDLK_UP, SDLK_LEFT, SDLK_RIGHT, lab);
 	player->addComponent<PlayerViewer>(lab);
 
 	// 3. Interfaz
-	Interfaz F = Interfaz(this, entityManager_);
+
+	Interfaz F = Interfaz(this, entityManager_, plmot);
 }
 
 void Game::closeGame() {
 	delete entityManager_;
-
+	delete game_;
 }
 
 void Game::start() {

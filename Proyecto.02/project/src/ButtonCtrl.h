@@ -10,8 +10,8 @@
 class ButtonCtrl : public Component
 {
 public:
-    ButtonCtrl(Game* g) :
-        Component(ecs::ButtonCtrl), ih_(nullptr), g_(g) {};
+    ButtonCtrl(Game* g, Button* b) :
+        Component(ecs::ButtonCtrl), ih_(nullptr), g_(g), button_(b) {};
     virtual ~ButtonCtrl() {
     }
 
@@ -22,11 +22,6 @@ public:
     }
 
     void update() override {
-        if (ih_->keyDownEvent()) {
-            if (ih_->isKeyDown(SDL_SCANCODE_UP)) {
-                static_cast<Button*>(entity_)->click(g_);
-            }
-        }
         if (ih_->mouseButtonEvent()) {
             uint e = ih_->getMouseButtonState(InputHandler::LEFT);
             Vector2D pos_ = ih_->getMousePos();
@@ -35,7 +30,12 @@ public:
             SDL_Rect rect_ = { tr_->getPos().getX(), tr_->getPos().getY(), tr_->getW(), tr_->getH() };
             if (!e) {
                 if (SDL_PointInRect(&p_, &rect_)) {
-                    static_cast<Button*>(entity_)->click(g_);
+                    //cout << "buttonCTRL_Test" << endl;
+
+                    button_->click(g_);
+
+                    /*Button* p = dynamic_cast<Button*>(entity_);
+                    if (p) p->click(g_);*/
                 }
             }
         }
@@ -44,4 +44,6 @@ public:
 private:
     InputHandler* ih_;
     Game* g_;
+
+    Button* button_;
 };

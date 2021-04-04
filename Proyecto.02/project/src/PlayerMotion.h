@@ -4,6 +4,7 @@
 #include "Entity.h"
 #include "InputHandler.h"
 #include "Laberinto.h"
+#include "MazePos.h"
 
 class PlayerMotion : public Component
 {
@@ -126,9 +127,11 @@ public:
 				break;
 			}
 		}
-		
-
 	}
+	void rotarDerecha(){ cout << "rotas a dchas." << endl; }
+	void rotarIzquierda(){ cout << "rotas a izdas." << endl; }
+	void avanzar(){ cout << "avanzas" << endl; }
+
 private:
 	MazePos* pos;
 	SDL_KeyCode avance, giraIzq, giraDer;

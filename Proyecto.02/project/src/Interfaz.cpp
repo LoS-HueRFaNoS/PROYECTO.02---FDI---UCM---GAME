@@ -3,6 +3,22 @@
 #include "SDLGame.h"
 #include "callbacks.h"
 
+Interfaz::Interfaz(Game* juego, EntityManager* manager, PlayerMotion* plmot)
+{
+	g_ = juego;
+	mngr_ = manager;
+	createPanel(Movement, plmot);
+	createPanel(Fight, plmot);
+	createPanel(Minimap, plmot);
+	createPanel(Heroes, plmot);
+	createPanel(Info, plmot);
+	c_ = createCursor(Vector2D(200, 200), 50, 50, Resources::Mouse);
+}
+
+Interfaz::~Interfaz()
+{
+}
+
 Cursor* Interfaz::createCursor(Vector2D pos, uint width, uint height, Resources::TextureId image)
 {
 	SDLGame* game_ = g_->getSDLGame();
@@ -11,37 +27,60 @@ Cursor* Interfaz::createCursor(Vector2D pos, uint width, uint height, Resources:
 	return c;
 }
 
-Button* Interfaz::createButton(Panel* p, CallBackOnClick* cb, Vector2D pos, uint width, uint height, Resources::TextureId image)
-{
+void Interfaz::createButtonFight(Panel* p, AtkType type, PlayerMotion* plmot, Vector2D pos, uint width, uint height, Resources::TextureId image) {
+	ButtonCombate* b = mngr_->addButtonCombateEntity();
+	b->setPlayerMotion(plmot);
+	b->setAtkType(type);
 	SDLGame* game_ = g_->getSDLGame();
-	Button* b = static_cast<Button*>(mngr_->addEntity());
 	b->init(game_, g_, pos, width, height, image);
-	b->setCB(cb);
 	p->addButton(b);
-	return b;
+}
+void Interfaz::createButtonMovement(Panel* p, MovType type, PlayerMotion* plmot, Vector2D pos, uint width, uint height, Resources::TextureId image) {
+	ButtonMovimiento* b = mngr_->addButtonMovimientoEntity();
+	b->setPlayerMotion(plmot);
+	b->setMovType(type);
+	SDLGame* game_ = g_->getSDLGame();
+	b->init(game_, g_, pos, width, height, image);
+	p->addButton(b);
+}
+void Interfaz::createButtonHeroes(Panel* p, HeroNum type, PlayerMotion* plmot, Vector2D pos, uint width, uint height, Resources::TextureId image) {
+	ButtonHeroes* b = mngr_->addButtonHeroesEntity();
+	b->setPlayerMotion(plmot);
+	b->setHero(type);
+	SDLGame* game_ = g_->getSDLGame();
+	b->init(game_, g_, pos, width, height, image);
+	p->addButton(b);
+}
+void Interfaz::createButtonInfo(Panel* p, Inf type, PlayerMotion* plmot, Vector2D pos, uint width, uint height, Resources::TextureId image) {
+	ButtonInfo* b = mngr_->addButtonInfoEntity();
+	b->setPlayerMotion(plmot);
+	b->setInf(type);
+	SDLGame* game_ = g_->getSDLGame();
+	b->init(game_, g_, pos, width, height, image);
+	p->addButton(b);
 }
 
-void Interfaz::createFight()
+void Interfaz::createFight(PlayerMotion* plmot)
 {
 	Panel* p = new Panel(Fight);
 	allPanels.push_back(p);
-	p->addButton(createButton(p, callbacks::ataqueNormal, Vector2D(150, 680), 85, 96, Resources::AtaqueNormal));
-	p->addButton(createButton(p, callbacks::ataqueMagico, Vector2D(250, 700), 82, 72, Resources::AtaqueMagico));
-	p->addButton(createButton(p, callbacks::defensa, Vector2D(50, 700), 82, 72, Resources::Defensa));
-	p->addButton(createButton(p, callbacks::huida, Vector2D(350, 710), 100, 55, Resources::Huida));
+	createButtonFight(p, AtkType::normal, plmot, Vector2D(150, 680), 85, 96, Resources::AtaqueNormal);
+	createButtonFight(p, AtkType::magic, plmot, Vector2D(250, 700), 82, 72, Resources::AtaqueMagico);
+	createButtonFight(p, AtkType::defend, plmot, Vector2D(50, 700), 82, 72, Resources::Defensa);
+	createButtonFight(p, AtkType::escape, plmot, Vector2D(350, 710), 100, 55, Resources::Huida);
 }
-void Interfaz::createMovement()
+void Interfaz::createMovement(PlayerMotion* plmot)
 {
 	Panel* p = new Panel(Movement);
 	allPanels.push_back(p);
-	p->addButton(createButton(p, callbacks::avanzar, Vector2D(150, 780), 85, 96, Resources::Avanzar));
-	p->addButton(createButton(p, callbacks::rotarDer, Vector2D(250, 800), 82, 72, Resources::RotarD));
-	p->addButton(createButton(p, callbacks::rotarIzq, Vector2D(50, 800), 82, 72, Resources::RotarI));
-	p->addButton(createButton(p, callbacks::interactuar, Vector2D(350, 810), 100, 55, Resources::Interactuar));
+	createButtonMovement(p, MovType::forward, plmot, Vector2D(150, 780), 85, 96, Resources::Avanzar);
+	createButtonMovement(p, MovType::rotR, plmot, Vector2D(250, 800), 82, 72, Resources::RotarD);
+	createButtonMovement(p, MovType::rotL, plmot, Vector2D(50, 800), 82, 72, Resources::RotarI);
+	createButtonMovement(p, MovType::touch, plmot, Vector2D(350, 810), 100, 55, Resources::Interactuar);
 }
 
 
-void Interfaz::createHeroes()
+void Interfaz::createHeroes(PlayerMotion* plmot)
 {
 	// posicion del panel respecto a la ventana
 	SDLGame* game_ = g_->getSDLGame();
@@ -54,13 +93,13 @@ void Interfaz::createHeroes()
 	Panel* p = new Panel(Movement);
 	allPanels.push_back(p);
 	uint tamL = 100;
-	p->addButton(createButton(p, callbacks::pruebaGame0, Vector2D(pPos.getX(), pPos.getY()), tamL, tamL, Resources::Bardo));
-	p->addButton(createButton(p, callbacks::pruebaGame1, Vector2D(pPos.getX(), pPos.getY() + 100), tamL, tamL, Resources::Brujo));
-	p->addButton(createButton(p, callbacks::pruebaGame2, Vector2D(pPos.getX(), pPos.getY() + 200), tamL, tamL, Resources::Clerigo));
-	p->addButton(createButton(p, callbacks::pruebaGame3, Vector2D(pPos.getX(), pPos.getY() + 300), tamL, tamL, Resources::Guerrero));
+	createButtonHeroes(p, HeroNum::hero1, plmot, Vector2D(pPos.getX(), pPos.getY()), tamL, tamL, Resources::Bardo);
+	createButtonHeroes(p, HeroNum::hero2, plmot, Vector2D(pPos.getX(), pPos.getY() + 100), tamL, tamL, Resources::Brujo);
+	createButtonHeroes(p, HeroNum::hero3, plmot, Vector2D(pPos.getX(), pPos.getY() + 200), tamL, tamL, Resources::Clerigo);
+	createButtonHeroes(p, HeroNum::hero4, plmot, Vector2D(pPos.getX(), pPos.getY() + 300), tamL, tamL, Resources::Guerrero);
 }
 
-void Interfaz::createInfo()
+void Interfaz::createInfo(PlayerMotion* plmot)
 {
 	SDLGame* game_ = g_->getSDLGame();
 	double width = game_->getWindowWidth();
@@ -69,46 +108,31 @@ void Interfaz::createInfo()
 
 	Panel* p = new Panel(Info);
 	allPanels.push_back(p);
-	p->addButton(createButton(p, callbacks::inventario, Vector2D(width * 4 / 7, height * 3 / 4), tamBoton*2, tamBoton*2, Resources::Inventario));
-	p->addButton(createButton(p, callbacks::pocionVida, Vector2D(width * 5 / 7, height * 3 / 4), tamBoton* 0.8, tamBoton * 0.8, Resources::PocionVida));
-	p->addButton(createButton(p, callbacks::pocionMana, Vector2D(width * 5 / 7, height * 5 / 6), tamBoton * 0.8, tamBoton * 0.8, Resources::PocionMana));
-	p->addButton(createButton(p, callbacks::chat, Vector2D(width * 6 / 7, height * 3 / 4), tamBoton, tamBoton, Resources::Chat));
-	p->addButton(createButton(p, callbacks::configuracion, Vector2D( width * 6 / 7, height * 5 / 6), tamBoton, tamBoton, Resources::Configuracion));
+	createButtonInfo(p, Inf::inventory, plmot, Vector2D(width * 4 / 7, height * 3 / 4), tamBoton*2, tamBoton*2, Resources::Inventario);
+	createButtonInfo(p, Inf::potionHealth, plmot, Vector2D(width * 5 / 7, height * 3 / 4), tamBoton* 0.8, tamBoton * 0.8, Resources::PocionVida);
+	createButtonInfo(p, Inf::potionMana, plmot, Vector2D(width * 5 / 7, height * 5 / 6), tamBoton * 0.8, tamBoton * 0.8, Resources::PocionMana);
+	createButtonInfo(p, Inf::chat, plmot, Vector2D(width * 6 / 7, height * 3 / 4), tamBoton, tamBoton, Resources::Chat);
+	createButtonInfo(p, Inf::config, plmot, Vector2D( width * 6 / 7, height * 5 / 6), tamBoton, tamBoton, Resources::Configuracion);
 }
 
-Interfaz::Interfaz(Game* juego, EntityManager* manager)
-{
-	g_ = juego;
-	mngr_ = manager;
-	createPanel(Movement);
-	createPanel(Fight);
-	createPanel(Minimap);
-	createPanel(Heroes);
-	createPanel(Info);
-	c_ = createCursor(Vector2D(200, 200), 50, 50, Resources::Mouse);
-}
 
-Interfaz::~Interfaz()
-{
-}
-
-void Interfaz::createPanel(idPanel panelID)
+void Interfaz::createPanel(idPanel panelID, PlayerMotion* plmot)
 {
 	switch (panelID) {
 	case Fight:
-		createFight();
+		createFight(plmot);
 		break;
 	case Movement:
-		createMovement();
+		createMovement(plmot);
 		break;
 	case Minimap:
 		createMinimap();
 		break;
 	case Heroes:
-		createHeroes();
+		createHeroes(plmot);
 		break;
 	case Info:
-		createInfo();
+		createInfo(plmot);
 		break;
 	case Inventory:
 		createInventory();
@@ -126,7 +150,7 @@ void Interfaz::createPanel(idPanel panelID)
 		createSettings();
 		break;
 	case Chat:
-		createChat(); 
+		createChat();
 		break;
 	}
 }
