@@ -1,6 +1,7 @@
 #include <fstream>
 #include <iostream>
 #include "CombatManager.h"
+//#include "Equipement.h"
 
 using namespace rpgLogic;
 
@@ -41,7 +42,6 @@ void Character::recieveBuff(int buff,mainStat stat)
 {
 	_sheet->changeStat(stat,buff);
 }
-
 bool Character::savingThrow(int save, rpgLogic::mainStat stat)
 {
 	cout << "Saving throw (" << save << "): " << endl;
@@ -79,7 +79,6 @@ bool Character::checkHit(int hit)
 
 void Hero::loadFromJson(jute::jValue v, int t) {
 
-
 	// Buscamos las stats en el json dentro de nuestro heroe "t" y asignamos un valor aleatorio entre los valores dados
 	for (int i = 0; i < _LastStatId_; i++) {
 		int min = v["Characters"][t]["Stats"][i]["Min"].as_int();
@@ -105,10 +104,10 @@ void Hero::loadFromJson(jute::jValue v, int t) {
 
 	_sheet->weaknesses = CharacterSheet::Weaknesses(weak);
 
-	//Si r1 es 2, puede armas simples y marciales
-	int r1 = v["Characters"][t]["Equipement"]["ListWeapons"].size();
+	//_equipement -> loadWeaponTemplate("pruebasArmas.json", getRandomWeapon());
+
 	//Escoge un arma aleatoria simple
-	// int idRWeapons = v["Characters"][t]["Equipement"]["ListWeapons"][game_->getRandGen()->nextInt(0, r1)].as_int();
+	//int idRWeapons = v["Characters"][t]["Equipement"]["ListWeapons"].as_int();
 
 
 	//int r2 = v["Characters"][t]["Equipement"]["ListArmors"].size();

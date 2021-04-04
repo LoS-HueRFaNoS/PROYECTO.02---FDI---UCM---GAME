@@ -2,7 +2,8 @@
 #define _CHARACTER_
 #include "CharacterSheet.h"
 #include "Entity.h"
-#include "Equipement.h"
+#include "Item.h"
+//#include "Equipement.h"
 #include "jute.h"
 
 #pragma region CHARACTER
@@ -80,9 +81,12 @@ public:
 		return _habilities;
 	}
 
+
 	bool isDead() {
 		return !_sheet->hitPoints();
 	}
+
+	
 };
 
 #pragma endregion
@@ -91,18 +95,18 @@ public:
 #pragma region HERO
 
 class Hero : public Character {
-private:
 
-	Equipement* _equipement;
+private:
 
 	virtual void loadFromJson(jute::jValue v, int t);
 
 	virtual void manageTurn(CombatManager* cm);
 
 	virtual void init() {
-		_equipement = addComponent<Equipement>();
+		//_equipement = addComponent<Equipement>();
 		Character::init();
 	}
+
 
 #pragma region CombatePorConsola
 
@@ -114,6 +118,30 @@ public:
 	Hero(SDLGame* game, EntityManager* mngr) :Character(game, mngr, HERO) {
 		init();
 	}
+
+	Weapon* _weapon;
+	Weapon* getWeapon()
+	{
+		_weapon = new Weapon();
+		_weapon->loadWeaponTemplate(getRandomWeapon());
+		return _weapon;
+	}
+
+	Armor* _armor;
+	Armor* getArmor()
+	{
+		_armor = new Armor();
+		_armor->loadArmorTemplate(getRandomArmor());
+		return _armor;
+	}
+
+	//Equipement* _equipement;
+
+	//Equipement* getWeapon() {
+	//	_equipement->loadWeaponTemplate("pruebasArmas.json", getRandomWeapon());
+	//	return _equipement;
+	//}
+
 };
 
 #pragma endregion
