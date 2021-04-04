@@ -34,6 +34,7 @@
     <ClCompile Include="src\Game.cpp" />
     <ClCompile Include="src\HabilityResources.cpp" />
     <ClCompile Include="src\InputHandler.cpp" />
+    <ClCompile Include="src\Item.cpp" />
     <ClCompile Include="src\jute.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\Manager.cpp" />
@@ -73,6 +74,7 @@
     <ClInclude Include="src\Game.h" />
     <ClInclude Include="src\HabilityResources.h" />
     <ClInclude Include="src\InputHandler.h" />
+    <ClInclude Include="src\Item.h" />
     <ClInclude Include="src\jute.h" />
     <ClInclude Include="src\Manager.h" />
     <ClInclude Include="src\MazePos.h" />
