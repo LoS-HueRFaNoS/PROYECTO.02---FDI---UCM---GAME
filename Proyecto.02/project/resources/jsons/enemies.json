@@ -248,11 +248,11 @@
         },
         {
           "Key": "Fire",
-          "Value": -1.0
+          "Value": 1.0
         },
         {
           "Key": "Water",
-          "Value": 0.5
+          "Value": -0.5
         },
         {
           "Key": "Ice",
@@ -305,19 +305,19 @@
       "Weaknesses": [
         {
           "Key": "Blunt",
-          "Value": -0.5
+          "Value": 0.5
         },
         {
           "Key": "Pierce",
-          "Value": -0.5
+          "Value": 0.5
         },
         {
           "Key": "Slash",
-          "Value": -0.5
+          "Value": 0.5
         },
         {
           "Key": "Fire",
-          "Value": -0.5
+          "Value": 0.5
         },
         {
           "Key": "Water",
@@ -325,11 +325,11 @@
         },
         {
           "Key": "Ice",
-          "Value": -0.5
+          "Value": 0.5
         },
         {
           "Key": "Earth",
-          "Value": -0.5
+          "Value": 0.5
         },
         {
           "Key": "Wind",
@@ -341,7 +341,7 @@
         },
         {
           "Key": "Dark",
-          "Value": -1.0
+          "Value": 1.0
         }
       ]
     },
@@ -447,11 +447,11 @@
         },
         {
           "Key": "Pierce",
-          "Value": -0.5
+          "Value": 0.5
         },
         {
           "Key": "Slash",
-          "Value": -0.5
+          "Value": 0.5
         },
         {
           "Key": "Fire",
@@ -475,11 +475,11 @@
         },
         {
           "Key": "Light",
-          "Value": 0.5
+          "Value": -0.5
         },
         {
           "Key": "Dark",
-          "Value": -1.0
+          "Value": 1.0
         }
       ]
     },
@@ -593,11 +593,11 @@
         },
         {
           "Key": "Fire",
-          "Value": -1.0
+          "Value": 1.0
         },
         {
           "Key": "Water",
-          "Value": -1.0
+          "Value": 1.0
         },
         {
           "Key": "Ice",
@@ -605,11 +605,11 @@
         },
         {
           "Key": "Earth",
-          "Value": -1.0
+          "Value": 1.0
         },
         {
           "Key": "Wind",
-          "Value": -1.0
+          "Value": 1.0
         },
         {
           "Key": "Light",
@@ -662,7 +662,7 @@
         },
         {
           "Key": "Fire",
-          "Value": 0.5
+          "Value": -0.5
         },
         {
           "Key": "Water",
@@ -670,7 +670,7 @@
         },
         {
           "Key": "Ice",
-          "Value": 0.5
+          "Value": -0.5
         },
         {
           "Key": "Earth",
@@ -682,11 +682,11 @@
         },
         {
           "Key": "Light",
-          "Value": 0.5
+          "Value": -0.5
         },
         {
           "Key": "Dark",
-          "Value": -1.0
+          "Value": 1.0
         }
       ]
     },
@@ -723,11 +723,11 @@
         },
         {
           "Key": "Pierce",
-          "Value": -0.5
+          "Value": 0.5
         },
         {
           "Key": "Slash",
-          "Value": -0.5
+          "Value": 0.5
         },
         {
           "Key": "Fire",
@@ -751,11 +751,11 @@
         },
         {
           "Key": "Light",
-          "Value": 1.0
+          "Value": -1.0
         },
         {
           "Key": "Dark",
-          "Value": -1.0
+          "Value": 1.0
         }
       ]
     },
@@ -857,19 +857,19 @@
       "Weaknesses": [
         {
           "Key": "Blunt",
-          "Value": -0.5
+          "Value": 0.5
         },
         {
           "Key": "Pierce",
-          "Value": -0.5
+          "Value": 0.5
         },
         {
           "Key": "Slash",
-          "Value": -0.5
+          "Value": 0.5
         },
         {
           "Key": "Fire",
-          "Value": -0.5
+          "Value": 0.5
         },
         {
           "Key": "Water",
@@ -877,23 +877,23 @@
         },
         {
           "Key": "Ice",
-          "Value": -1.0
+          "Value": 1.0
         },
         {
           "Key": "Earth",
-          "Value": -0.5
+          "Value": 0.5
         },
         {
           "Key": "Wind",
-          "Value": 0.5
+          "Value": -0.5
         },
         {
           "Key": "Light",
-          "Value": 0.5
+          "Value": -0.5
         },
         {
           "Key": "Dark",
-          "Value": -1.0
+          "Value": 1.0
         }
       ]
     }
