@@ -26,6 +26,10 @@ public:
 		//Faltaria el destructor
 	}
 
+	void toggleButtons() {
+		for (Entity* var : buttonList) var->toggleEnabled();
+	}
+
 	idPanel GetID() { return id; };
 };
 

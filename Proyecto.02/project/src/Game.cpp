@@ -100,7 +100,6 @@ void Game::initGame() {
 	player->addComponent<PlayerViewer>(lab);
 
 	// 3. Interfaz
-
 	Interfaz F = Interfaz(this, entityManager_, plmot);
 }
 

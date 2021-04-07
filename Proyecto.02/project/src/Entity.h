@@ -39,19 +39,28 @@ public:
 	}
 
 	void update() {
+		if (!enabled) return;
 		for (auto &c : components_) {
 			c->update();
 		}
 	}
 
 	void draw() {
+		if (!enabled) return;
 		for (auto &c : components_) {
 			c->draw();
 		}
 	}
+
+	void toggleEnabled() {
+		enabled = !enabled;
+	}
+
 protected:
 	SDLGame *game_;
 	EntityManager* mngr_;
+
+	bool enabled;
 
 	std::vector<unique_ptr<Component>> components_;
 	std::array<Component*,ecs::maxComponents> componentsArray_ = {};

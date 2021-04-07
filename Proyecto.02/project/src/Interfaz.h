@@ -9,10 +9,10 @@ using namespace std;
 
 class Interfaz {
 private:
-	list<Panel*> allPanels; //TODO: cambiar por muchos atributos xd
+	vector<Panel*> allPanels; //TODO: cambiar por muchos atributos xd
 	int contador;
 	Game* g_;
-	EntityManager* mngr_;
+	EntityManager* mngr_; 
 	Cursor* c_;
 
 	Cursor* createCursor(Vector2D pos, uint width, uint height, Resources::TextureId image);
@@ -36,6 +36,10 @@ private:
 public:
 	Interfaz(Game* juego, EntityManager* manager, PlayerMotion* plmot);
 	~Interfaz();
+
+	void togglePanel(idPanel panID) {
+		allPanels[panID]->toggleButtons();
+	}
 
 	void createPanel(idPanel panelID, PlayerMotion* plmot);
 	void destroyPanel(idPanel panelID);
