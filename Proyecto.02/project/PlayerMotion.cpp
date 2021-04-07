@@ -1,6 +1,7 @@
 #include "src/PlayerMotion.h"
 #include "src/InputHandler.h"
 
+
 PlayerMotion::PlayerMotion(SDL_KeyCode avanzar, SDL_KeyCode izq, SDL_KeyCode der, Laberinto* lab_):Component(ecs::PlayerMotion), //
 	pos(nullptr), avance(avanzar), giraIzq(izq), giraDer(der), lab(lab_) //
 {
@@ -16,6 +17,8 @@ pos(nullptr), avance(SDLK_UP), giraIzq(SDLK_LEFT), giraDer(SDLK_DOWN), lab(nullp
 void PlayerMotion::init()
 {
 	pos = GETCMP1_(MazePos);
+	debugear();
+
 }
 
 void PlayerMotion::update()
@@ -122,21 +125,27 @@ void PlayerMotion::avanzar()
 			}
 			break;
 		}
-		switch (pos->getLook())
-		{
-		case Norte:
-			cout << "Estas en la casilla " << pos->getPos() << ".	\n";
-			break;
-		case Este:
-			cout << "Estas en la casilla " << pos->getPos() << ".	\n";
-			break;
-		case Sur:
-			cout << "Estas en la casilla " << pos->getPos() << ".	\n";
-			break;
-		case Oeste:
-			cout << "Estas en la casilla " << pos->getPos() << ".	\n";
-			break;
-		}
+		/*cout << "Estas en la casilla " << pos->getPos() << ".	\n";
 
+		vector<Enemy*> enemigo = lab->getCasillaInfo(pos->getPos().getX(), pos->getPos().getY())->getEnemy();
+
+		for (int i = 0; i < enemigo.size(); i++)
+		{
+			cout <<"Encuentras con el enemigo "<< enemigo[i]->name() << endl;
+		}*/
+		debugear();
+		
+	}
+}
+
+void PlayerMotion::debugear()
+{
+	cout << "Estas en la casilla " << pos->getPos() << ".	\n";
+
+	vector<Enemy*> enemigo = lab->getCasillaInfo(pos->getPos().getX(), pos->getPos().getY())->getEnemy();
+
+	for (int i = 0; i < enemigo.size(); i++)
+	{
+		cout << "Encuentras con el enemigo " << enemigo[i]->name() << endl;
 	}
 }

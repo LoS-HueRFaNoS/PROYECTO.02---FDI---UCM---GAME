@@ -4,6 +4,7 @@
 #include <vector>
 #include "Component.h"
 #include "Vector2D.h"
+#include "Character.h"
 
 
 
@@ -32,4 +33,6 @@ public:
 	Casilla* getCasillaInfo(int x, int y);
 	vector<Vector2D>* getShortWay() { return shortestWay; }
 	virtual void draw();
+
+	void generaObjeto(int object, int type, Casilla* casilla, int maxObject, int cant);
 };

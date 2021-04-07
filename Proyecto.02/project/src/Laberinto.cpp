@@ -2,7 +2,7 @@
 #include <string>
 #include <iostream>
 #include <fstream>
-
+#include "RPGLogic.h"
 
 using namespace std;
 
@@ -149,6 +149,21 @@ void Laberinto::createRandomMaze(Vector2D entrada)
 				shortestWay = new vector<Vector2D>( m_stack);
 				laberinto[x][y]->setSalida();
 			}
+
+			int enemyType = game_->getRandGen()->nextInt(0, enemyTemplate::_LastEnemyTemplateId_ *3);
+			if (enemyType < enemyTemplate::_LastEnemyTemplateId_)
+			{
+				cout << "En la casilla [" << x << " , " << y << " ]" << endl;
+				generaObjeto(0, enemyType, laberinto[x][y], 3,0);
+				
+			}
+
+			/*int chestType = game_->getRandGen()->nextInt(0,  weaponsId::_LastWeaponId_ *3);
+			if (chestType < weaponsId::_LastWeaponId_)
+			{
+				generaObjeto(1, chestType, laberinto[x][y]);
+			}*/
+
 		}
 		else
 		{
@@ -173,4 +188,28 @@ void Laberinto::draw()
 	//		laberinto[j][i].
 	//	}
 	//}
+}
+
+void Laberinto::generaObjeto(int object, int type, Casilla* casilla, int maxObject, int cant)
+{
+	if (object == 0) {
+
+		Enemy* enemy = new Enemy(game_, entityManager);
+		enemy->loadFromTemplate(static_cast<enemyTemplate>(type));
+		casilla->addEnemy(enemy);
+		cout << "generado " << (cant+1) << " enemigo"<<endl;
+	}
+	else if (object ==1)
+	{
+
+		/*Chest * cofre = new Chest(game_, entityManager);
+		Chest->loadFromTemplate(static_cast<weaponsId>(type));
+		casilla->addChest(cofre);*/
+	}
+	cant++;
+	type = game_->getRandGen()->nextInt(0, enemyTemplate::_LastEnemyTemplateId_ * 3);
+	if (cant <= maxObject && type < enemyTemplate::_LastEnemyTemplateId_)
+	{
+		generaObjeto(object, type, casilla, maxObject, cant);
+	}
 }
