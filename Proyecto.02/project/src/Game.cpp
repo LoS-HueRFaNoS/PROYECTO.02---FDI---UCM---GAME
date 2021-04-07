@@ -51,22 +51,23 @@ void Game::initGame() {
 
 	characterManager_ = new CharacterManager(game_);
 
+	itemManager_ = new ItemManager();
+
 	Entity* manager = entityManager_->addEntity();
 
 	CombatManager* cm = manager->addComponent<CombatManager>();
 
 	Hero* wizard = characterManager_->addHeroFromTemplate(WIZARD);
-	wizard->getWeapon();
-	wizard->getArmor();
+	wizard->giveWeapon(itemManager_->giveRandomWeapon());
 	Hero* warrior = characterManager_->addHeroFromTemplate(WARRIOR);
-	warrior->getWeapon();
-	warrior->getArmor();
+	//warrior->getWeapon();
+	//warrior->getArmor();
 	Hero* rogue = characterManager_->addHeroFromTemplate(ROGUE);
-	rogue->getWeapon();
-	rogue->getArmor();
+	//rogue->getWeapon();
+	//rogue->getArmor();
 	Hero* cleric = characterManager_->addHeroFromTemplate(CLERIC);;
-	cleric->getWeapon();
-	cleric->getArmor();
+	//cleric->getWeapon();
+	//cleric->getArmor();
 	Enemy* e1 = characterManager_->addRandomEnemy();
 	Enemy* e2 = characterManager_->addRandomEnemy();
 	Enemy* e3 = characterManager_->addRandomEnemy();
@@ -165,4 +166,3 @@ void Game::render() {
 
 	SDL_RenderPresent(game_->getRenderer());
 }
-

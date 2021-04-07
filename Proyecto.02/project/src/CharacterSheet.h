@@ -8,42 +8,6 @@ using namespace rpgLogic;
 
 class CharacterSheet : public Component
 {
-public:
-
-	struct  Stat
-	{
-		int value;
-
-		int getMod() {
-			return (value - 10) / 2;
-		}
-	};
-
-	struct Weaknesses {
-
-		vector<float> _weaknesses;
-
-		Weaknesses() {
-			_weaknesses = vector<float>(_LastTypeId_, 0);
-		}
-
-		Weaknesses(vector<float> in) {
-			_weaknesses = in;
-		}
-
-		void setWeakness(damageType type, float set) {
-			_weaknesses[type] = set;
-		}
-
-		void changeWeakness(damageType type, float change) {
-			_weaknesses[type] += change;
-		}
-
-		float getWeakness(damageType type) {	// Devolver la resistencia en función de tipo o parametro
-			return _weaknesses[type];
-		}
-	};
-
 private:
 
 	//Caracteristicas 

@@ -1,5 +1,9 @@
 #pragma once
 
+#include <vector>
+#include <string>
+#include "jute.h"
+
 namespace rpgLogic {
 
 	enum characterType {
@@ -45,7 +49,7 @@ namespace rpgLogic {
 		_LastheroTemplateId_
 	};
 
-	enum weaponsId
+	enum weaponId
 	{
 		DESARMADO,
 		BASTON,
@@ -93,7 +97,7 @@ namespace rpgLogic {
 	enum enemyTemplate {
 		ZOMBIE,
 		TROLL,
-		SKELETON, 
+		SKELETON,
 		HELLHOUND,
 		SPECTER,
 		GOBLIN,
@@ -108,6 +112,42 @@ namespace rpgLogic {
 		_LastEnemyTemplateId_
 	};
 
+
+	struct  Stat
+	{
+		int value;
+
+		int getMod() {
+			return (value - 10) / 2;
+		}
+	};
+
+
+	struct Weaknesses {
+
+		std::vector<float> _weaknesses;
+
+		Weaknesses() {
+			_weaknesses = std::vector<float>(_LastTypeId_, 0);
+		}
+
+		Weaknesses(std::vector<float> in) {
+			_weaknesses = in;
+		}
+
+		void setWeakness(damageType type, float set) {
+			_weaknesses[type] = set;
+		}
+
+		void changeWeakness(damageType type, float change) {
+			_weaknesses[type] += change;
+		}
+
+		float getWeakness(damageType type) {	// Devolver la resistencia en función de tipo o parametro
+			return _weaknesses[type];
+		}
+	};
+
 	/*enum SpellId {
 		Fireball,
 		_LastSpellId_
@@ -119,8 +159,8 @@ namespace rpgLogic {
 
 	heroTemplate getRandomHero();
 
-	weaponsId getRandomWeapon();
+	weaponId getRandomWeapon();
 
 	armorId getRandomArmor();
-}
 
+}

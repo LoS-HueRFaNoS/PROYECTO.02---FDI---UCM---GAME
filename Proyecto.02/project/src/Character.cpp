@@ -13,6 +13,20 @@ void Character::startTurn(CombatManager* cm)
 
 	// Manejar estados y cambios que ocurren al pasar de turnos
 	cout << name() << " TURN" << endl;
+
+	for (std::vector<Condition*>::iterator it = _conditions.begin(); it != _conditions.end();) {
+		if (!(*it)->onTurnStarted()) {
+			Condition* temp = (*it);
+			removeCondition((*it)->id());
+			it = _conditions.erase(it);
+			delete temp;
+		}
+		else {
+			it++;
+		}
+	}
+
+
 	manageTurn(cm);
 }
 
@@ -102,7 +116,7 @@ void Hero::loadFromJson(jute::jValue v, int t) {
 		weak.push_back((float)v["Characters"][t]["Weaknesses"][i]["Value"].as_double());
 	}
 
-	_sheet->weaknesses = CharacterSheet::Weaknesses(weak);
+	_sheet->weaknesses = Weaknesses(weak);
 
 	//_equipement -> loadWeaponTemplate("pruebasArmas.json", getRandomWeapon());
 
@@ -140,7 +154,8 @@ void Hero::consoleTurn(CombatManager* cm)
 	while (true) {
 
 		cin >> spell;
-
+		if(spell == -1)
+			break;
 		if (!cin.good() || spell >= _habilities.size()) {
 			cin.clear();
 			cin.ignore(INT_MAX, '\n');
@@ -150,9 +165,7 @@ void Hero::consoleTurn(CombatManager* cm)
 			cin.clear();
 			cin.ignore(INT_MAX, '\n');
 			cout << "Not enough mana, try again: ";
-		}
-		else if (spell == -1)
-			break;
+		}			
 		else
 		{
 			cin.clear();
@@ -198,7 +211,7 @@ void Enemy::loadFromJson(jute::jValue v, int t)
 		weak.push_back((float)v["Characters"][t]["Weaknesses"][i]["Value"].as_double());
 	}
 
-	_sheet->weaknesses = CharacterSheet::Weaknesses(weak);
+	_sheet->weaknesses = Weaknesses(weak);
 
 }
 

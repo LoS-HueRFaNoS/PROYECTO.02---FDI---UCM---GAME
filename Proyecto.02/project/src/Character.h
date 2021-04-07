@@ -4,7 +4,6 @@
 #include "Entity.h"
 #include "Item.h"
 //#include "Equipement.h"
-#include "jute.h"
 
 #pragma region CHARACTER
 
@@ -19,6 +18,12 @@ protected:
 	CharacterSheet* _sheet;
 
 	vector<Hability*> _habilities;
+
+	std::array<Hability*, _lasHabilityId_> _habilitiesArray = {};
+
+	vector<Condition*> _conditions;
+
+	std::array<Condition*, _lastConditionId_> _conditonsArray = {};
 
 	virtual void init() {
 		_sheet = addComponent<CharacterSheet>();
@@ -40,8 +45,8 @@ public:
 	void recieveDamage(int damage, damageType type);
 
 	void recieveHealing(int healing);
-	
-	void recieveBuff(int buff,mainStat stat);
+
+	void recieveBuff(int buff, mainStat stat);
 
 
 	bool savingThrow(int save, mainStat stat);
@@ -71,10 +76,38 @@ public:
 	}
 
 	template<typename T>
-	T* addHability() {
-		T* c(new T(this));
-		_habilities.push_back(static_cast<Hability*>(c));
-		return c;
+	void addHability() {
+		if (!hasHability(T::id())) {
+			T* c(new T(this));
+			_habilities.push_back(static_cast<Hability*>(c));
+			_habilitiesArray[T::id()] = c;
+		}
+	}
+
+	template<typename T>
+	void addCondition(Character* caster) {
+		if (!hasCondition(T::id())) {
+			T* c(new T(caster, this));
+			_conditions.push_back(c);
+			_conditonsArray[T::id()] = c;
+			c->init();
+		}
+		else {
+			_conditonsArray[T::id()]->resetTurns();
+			_conditonsArray[T::id()]->addStack();
+		}
+	}
+
+	bool hasCondition(Conditions_Id id) {
+		return _conditonsArray[id] != nullptr;
+	}
+
+	bool hasHability(Hability_Id id) {
+		return _habilitiesArray[id] != nullptr;
+	}
+
+	void removeCondition(Conditions_Id id) {
+		_conditonsArray[id] = nullptr;
 	}
 
 	vector<Hability*> getHabilities() {
@@ -86,7 +119,7 @@ public:
 		return !_sheet->hitPoints();
 	}
 
-	
+
 };
 
 #pragma endregion
@@ -97,6 +130,12 @@ public:
 class Hero : public Character {
 
 private:
+
+	Weapon* _weapon;
+
+	Armor* _armor;
+
+	bool _marcial;
 
 	virtual void loadFromJson(jute::jValue v, int t);
 
@@ -119,29 +158,13 @@ public:
 		init();
 	}
 
-	Weapon* _weapon;
-	Weapon* getWeapon()
-	{
-		_weapon = new Weapon();
-		_weapon->loadWeaponTemplate(getRandomWeapon());
-		return _weapon;
-	}
+	Weapon* getWeapon() { return _weapon; }
 
-	Armor* _armor;
-	Armor* getArmor()
-	{
-		_armor = new Armor();
-		_armor->loadArmorTemplate(getRandomArmor());
-		return _armor;
-	}
+	void giveWeapon(Weapon* w) { _weapon = w; }
 
-	//Equipement* _equipement;
+	Armor* getArmor() { return _armor; }
 
-	//Equipement* getWeapon() {
-	//	_equipement->loadWeaponTemplate("pruebasArmas.json", getRandomWeapon());
-	//	return _equipement;
-	//}
-
+	void giveArmor(Armor* a) { _armor = a; }
 };
 
 #pragma endregion
@@ -153,6 +176,8 @@ class Enemy : public Character {
 private:
 
 	int exp = 0;
+
+	int coins = 0;
 
 	virtual void loadFromJson(jute::jValue v, int t);
 

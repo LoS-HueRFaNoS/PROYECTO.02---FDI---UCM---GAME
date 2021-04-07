@@ -10,6 +10,25 @@ class Character;
 
 #pragma region HABILITY
 
+enum Hability_Id {
+	LIGHTATTACK,
+	FIREBALL,
+	SINGLETARGETATTACKEXAMPLE,
+	SINGLETARGETHEALXAMPLE,
+	ALLYTEAMHEALEXAMPLE,
+	SELFHEALEXAMPLE,
+	ALLYTEAMATTACKEXAMPLE,
+	WINDBURST,
+	WINDSLASH,
+	ROCKPILLAR,
+	TOXICSHADOW,
+	TSUNAMI,
+	DIVINEPROTECTION,
+	FLASH,
+	FREEZE,
+	_lasHabilityId_
+};
+
 enum ObjectiveType
 {
 	SINGLEALLY,
@@ -37,11 +56,15 @@ protected:
 	mainStat _mod = _LastStatId_;
 	ObjectiveType _obj = CASTER;
 
-	HabilityType _habilityType  = ATTACK;
+	HabilityType _habilityType = ATTACK;
 
 	Character* _caster;
 
 public:
+
+	static Hability_Id id() {
+		return _lasHabilityId_;;
+	}
 
 	Hability() :_caster(nullptr) {}
 
@@ -84,7 +107,7 @@ public:
 
 class Fireball : public Hability {
 public:
-	Fireball(Character* caster) :Hability(caster) {	
+	Fireball(Character* caster) :Hability(caster) {
 
 		level = 4;
 		_mana = 0;
@@ -96,6 +119,8 @@ public:
 		_mod = INT;
 		_obj = ENEMYTEAM;
 	}
+
+	static Hability_Id id() { return FIREBALL; }
 
 	void throwHability(Character* obj, bool critical)const override;
 };
@@ -115,6 +140,8 @@ public:
 		_mod = INT;
 		_obj = SINGLEENEMY;
 	}
+
+	static Hability_Id id() { return SINGLETARGETATTACKEXAMPLE; }
 
 	void throwHability(Character* obj, bool critical)const override;
 };
@@ -136,6 +163,8 @@ public:
 		_obj = SINGLEALLY;
 	}
 
+	static Hability_Id id() { return SINGLETARGETHEALXAMPLE; }
+
 	void throwHability(Character* obj, bool critical)const override;
 };
 
@@ -154,6 +183,8 @@ public:
 		_mod = INT;
 		_obj = ALLYTEAM;
 	}
+
+	static Hability_Id id() { return ALLYTEAMHEALEXAMPLE; }
 
 	void throwHability(Character* obj, bool critical)const override;
 };
@@ -174,6 +205,8 @@ public:
 		_obj = CASTER;
 	}
 
+	static Hability_Id id() { return SELFHEALEXAMPLE; }
+
 	void throwHability(Character* obj, bool critical)const override;
 };
 
@@ -192,6 +225,8 @@ public:
 		_mod = INT;
 		_obj = ALLYTEAM;
 	}
+
+	static Hability_Id id() { return ALLYTEAMATTACKEXAMPLE; }
 
 	void throwHability(Character* obj, bool critical)const override;
 };
@@ -213,6 +248,8 @@ public:
 		_obj = ENEMYTEAM;
 	}
 
+	static Hability_Id id() { return WINDBURST; }
+
 	void throwHability(Character* obj, bool critical)const override;
 };
 
@@ -230,6 +267,8 @@ public:
 		_mod = INT;
 		_obj = SINGLEENEMY;
 	}
+
+	static Hability_Id id() { return WINDSLASH; }
 
 	void throwHability(Character* obj, bool critical)const override;
 };
@@ -249,6 +288,8 @@ public:
 		_obj = SINGLEENEMY;
 	}
 
+	static Hability_Id id() { return ROCKPILLAR; }
+
 	void throwHability(Character* obj, bool critical)const override;
 };
 
@@ -266,6 +307,8 @@ public:
 		_mod = INT;
 		_obj = SINGLEENEMY;
 	}
+
+	static Hability_Id id() { return TOXICSHADOW; }
 
 	void throwHability(Character* obj, bool critical)const override;
 };
@@ -285,6 +328,8 @@ public:
 		_obj = ENEMYTEAM;
 	}
 
+	static Hability_Id id() { return TSUNAMI; }
+
 	void throwHability(Character* obj, bool critical)const override;
 };
 
@@ -302,6 +347,8 @@ public:
 		_mod = INT;
 		_obj = CASTER;
 	}
+
+	static Hability_Id id() { return DIVINEPROTECTION; }
 
 	void throwHability(Character* obj, bool critical)const override;
 };
@@ -321,6 +368,8 @@ public:
 		_obj = SINGLEENEMY;
 	}
 
+	static Hability_Id id() { return FLASH; }
+
 	void throwHability(Character* obj, bool critical)const override;
 };
 
@@ -339,7 +388,67 @@ public:
 		_obj = SINGLEENEMY;
 	}
 
+	static Hability_Id id() { return FREEZE; }
+
 	void throwHability(Character* obj, bool critical)const override;
+};
+
+#pragma endregion
+
+#pragma region CONDITION
+
+enum Conditions_Id {
+	EJEMPLODAÑOPORTURNO,
+	_lastConditionId_
+};
+
+class Condition {
+protected:
+	std::string _name = "DefaultName";
+	std::string _description = "DefaultDescription";
+
+	int _turnsLeft = 0;
+	int _turns = 0;
+	int _stack = 1;
+
+	Character* _objective;
+	Character* _caster;
+
+public:
+
+	Condition() :_caster(nullptr), _objective(nullptr) {}
+
+	Condition(Character* caster, Character* objective) :_caster(caster), _objective(objective) {
+	}
+
+	virtual void init() = 0;
+
+	virtual bool onTurnStarted() = 0;
+
+	int getTurnsLeft() { return _turnsLeft; }
+
+	void resetTurns() { _turnsLeft = _turns; }
+
+	void addStack() { _stack++; }
+
+	static Conditions_Id id() { return _lastConditionId_; }
+};
+
+
+class EjemploDañoPorTurno : public Condition {
+public:
+	EjemploDañoPorTurno(Character* caster, Character* objective) :Condition(caster, objective) {
+		_name = "Ejemplo de daño cada turno";
+		_description = "Hace 1 de daño cada turno, durante 3 turnos";
+		_turns = 3;
+		resetTurns();
+	}
+
+	virtual void init();
+
+	virtual bool onTurnStarted();
+
+	static Conditions_Id id() { return EJEMPLODAÑOPORTURNO; }
 };
 
 #pragma endregion

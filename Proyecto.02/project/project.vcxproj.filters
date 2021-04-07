@@ -138,17 +138,17 @@
     <ClCompile Include="src\Character.cpp">
       <Filter>Archivos de origen\Templates/Resources</Filter>
     </ClCompile>
-    <ClCompile Include="src\Equipement.cpp">
-      <Filter>Archivos de origen\Components</Filter>
-    </ClCompile>
     <ClCompile Include="src\CombatManager.cpp">
       <Filter>Archivos de origen\Managers</Filter>
     </ClCompile>
     <ClCompile Include="src\CharacterManager.cpp">
       <Filter>Archivos de origen\Managers</Filter>
     </ClCompile>
+    <ClCompile Include="src\ItemManager.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
     <ClCompile Include="src\Item.cpp">
-      <Filter>Archivos de origen\Components</Filter>
+      <Filter>Archivos de origen\Templates/Resources</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -260,9 +260,6 @@
     <ClInclude Include="src\HabilityResources.h">
       <Filter>Archivos de encabezado\Templates/Resources</Filter>
     </ClInclude>
-    <ClInclude Include="src\Equipement.h">
-      <Filter>Archivos de encabezado\Components</Filter>
-    </ClInclude>
     <ClInclude Include="src\PlayerViewer.h">
       <Filter>Archivos de encabezado\Components</Filter>
     </ClInclude>
@@ -275,8 +272,11 @@
     <ClInclude Include="src\CharacterManager.h">
       <Filter>Archivos de encabezado\Managers</Filter>
     </ClInclude>
+    <ClInclude Include="src\ItemManager.h">
+      <Filter>Archivos de encabezado\Managers</Filter>
+    </ClInclude>
     <ClInclude Include="src\Item.h">
-      <Filter>Archivos de encabezado\Components</Filter>
+      <Filter>Archivos de encabezado\Templates/Resources</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

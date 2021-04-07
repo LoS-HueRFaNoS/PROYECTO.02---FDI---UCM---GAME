@@ -11,9 +11,9 @@ void CombatManager::consoleCombat()
 {
 	system("CLS");
 
-	mostratEstadoEquipos();
+	showTeams();
 
-	mostrarCola();
+	showQ();
 
 	cout << "---------- PRESS ENTER TO START TURN ----------" << endl;
 	cin.ignore(INT_MAX, '\n');
@@ -30,7 +30,7 @@ void CombatManager::consoleCombat()
 	passTurn();
 }
 
-void CombatManager::mostratEstadoEquipos()
+void CombatManager::showTeams()
 {
 	cout << "---------- HEROES ----------" << endl;
 	for (Hero* h : _heroes) {
@@ -59,7 +59,7 @@ void CombatManager::mostratEstadoEquipos()
 
 }
 
-void CombatManager::mostrarCola()
+void CombatManager::showQ()
 {
 	cout << std::left << std::setfill(' ') << "\n---------- TURN QUEUE ----------" << endl;
 
@@ -79,6 +79,7 @@ void CombatManager::startCombat()
 {
 	_turn = 0;
 	_exp = 0;
+	_combatEnd = false;
 	currentCharacter = nullptr;
 	calculateTurns();
 	currentCharacter = _turnQueue[0];
@@ -86,17 +87,46 @@ void CombatManager::startCombat()
 
 void CombatManager::passTurn()
 {
-	for (std::vector<Character*>::iterator it = _turnQueue.begin(); it != _turnQueue.end();) {
-		if ((*it)->isDead() && (*it)->getType()) {
-			_exp += dynamic_cast<Enemy*>(*it)->getExp();
-			it = _turnQueue.erase(it);
+	if (!checkEnd()) {
+		for (std::vector<Character*>::iterator it = _turnQueue.begin(); it != _turnQueue.end();) {
+			if ((*it)->isDead() && (*it)->getType()) {
+				_exp += dynamic_cast<Enemy*>(*it)->getExp();
+				it = _turnQueue.erase(it);
+			}
+			else {
+				it++;
+			}
 		}
-		else {
-			it++;
-		}
+		_turn = ++_turn % _turnQueue.size();
+		currentCharacter = _turnQueue[_turn];
 	}
-	_turn = ++_turn % _turnQueue.size();
-	currentCharacter = _turnQueue[_turn];
+	else
+		endCombat();
+}
+
+bool CombatManager::checkEnd()
+{
+	bool end = true;
+	for (Hero* h : _heroes)
+		end *= h->isDead();
+	if (end) {
+		_win = false;
+		return true;
+	}
+	end = true;
+	for (Enemy* e : _enemies)
+		end *= e->isDead();
+	return end;
+}
+
+void CombatManager::endCombat()
+{
+	_combatEnd = true;
+	if (_win) {
+		cout << "GANASTE, ERES BUENISIMO NO ?" << endl << _exp << " DE EXPERIENCIA GANADA" << endl;
+	}
+	else
+		cout << "PERDISTE, ASI ES LA VIDA" << endl;
 }
 
 void CombatManager::castHability(Hability* hability)
@@ -129,12 +159,15 @@ void CombatManager::castHability(Hability* hability)
 
 void CombatManager::castToTeam(characterType team, Hability* hability)
 {
-	if (team)
+	if (team) {
 		for (Enemy* e : _enemies)
-			throwHability(e, hability);
-	else
+			if (!e->isDead())throwHability(e, hability);
+	}
+	else {
 		for (Hero* h : _heroes)
-			throwHability(h, hability);
+			if (!h->isDead())throwHability(h, hability);
+	}
+
 }
 
 void CombatManager::castToSingleTarget(characterType team, Hability* hability)
@@ -216,5 +249,6 @@ void CombatManager::calculateTurns()
 
 void CombatManager::update()
 {
-	consoleCombat();
+	if (!_combatEnd)
+		consoleCombat();
 }

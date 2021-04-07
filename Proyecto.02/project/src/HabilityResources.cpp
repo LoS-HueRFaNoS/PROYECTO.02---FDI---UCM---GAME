@@ -2,6 +2,8 @@
 #include "Character.h"
 
 
+#pragma region HABILITY
+
 void Fireball::throwHability(Character* obj, bool critical) const
 {
 	int damage = throwDice(8 + 8 * critical, 6, true);
@@ -16,6 +18,8 @@ void SingleTargetAttackExample::throwHability(Character* obj, bool critical) con
 	int damage = throwDice(1 + critical, 5, true);
 
 	obj->recieveDamage(damage, _damageType);
+
+	obj->addCondition<EjemploDañoPorTurno>(_caster);
 }
 
 void SingleTargetHealxample::throwHability(Character* obj, bool critical) const
@@ -97,7 +101,7 @@ void DivineProtection::throwHability(Character* obj, bool critical) const
 	mainStat buffedStat = CON;
 	int buff = throwDice(1 + critical, 8, true);
 
-	obj->recieveBuff(buff,CON);
+	obj->recieveBuff(buff, CON);
 }
 
 void Flash::throwHability(Character* obj, bool critical) const
@@ -119,3 +123,26 @@ void Freeze::throwHability(Character* obj, bool critical) const //hay que mirar 
 	obj->recieveBuff(-3, DEX);
 }
 
+#pragma endregion
+
+#pragma region CONDITION
+
+void EjemploDañoPorTurno::init()
+{
+	cout << _objective->name() << " tiene sangrado!!!" << endl;
+	_objective->recieveDamage(throwDice(1, 3, true), PIERCE);
+}
+
+bool EjemploDañoPorTurno::onTurnStarted()
+{
+	cout << "Sangrado: ";
+	_objective->recieveDamage(throwDice(_stack, 3, true), PIERCE);
+	if (!--_turnsLeft) {
+		cout << "SE ACABO EL DAÑO" << endl;
+		return false;
+	}
+	cout << "TURNOS RESTANTES: " << _turnsLeft << endl;
+	return true;
+}
+
+#pragma endregion

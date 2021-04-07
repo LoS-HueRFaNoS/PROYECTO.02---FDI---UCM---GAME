@@ -41,18 +41,13 @@ public:
 
 class Weapon : public Item
 {
-protected:
+private:
 
-	string _name;
-	string _description;
 	damageType _damageType;
 	bool marcial;
 	int damage;
 	int diceNumber;
 	int hands;
-
-	virtual void loadFromJson(string file, int t);
-
 public: 
 
 	Weapon() {
@@ -63,20 +58,16 @@ public:
 		buyValue = rand() % 100;
 	}
 
-	void loadWeaponTemplate(weaponsId t);
+	void loadWeaponTemplate(jute::jValue v, weaponId t);
 };
 
 class Armor : public Item
 {
-protected:
+private:
 
-	string _name;
-	string _description;
 	mainStat _statNeeded;
 	int minStatNeeded;
-	vector<float> _resistances = vector<float>(_LastTypeId_, 0);
-
-	virtual void loadFromJson(string file, int t);
+	Weaknesses _weaknesses;
 
 public:
 
@@ -87,7 +78,9 @@ public:
 		buyValue = rand() % 100;
 	}
 
-	void loadArmorTemplate(armorId t);
+	Weaknesses getWeaknesses() { return _weaknesses; }
+
+	void loadArmorTemplate(jute::jValue v, armorId t);
 };
 
 class HealthPotion : public Item

@@ -1,80 +1,43 @@
 #include <fstream>
 #include <iostream>
 #include "Item.h"
-#include "jute.h"
+
 
 using namespace rpgLogic;
 
-void Weapon::loadWeaponTemplate(weaponsId t)
+void Weapon::loadWeaponTemplate(jute::jValue v, weaponId t)
 {
-	loadFromJson(Resources::jsons_[Resources::Weapons].filename, t);
+	_name = v["Armas"][t]["Name"].as_string();
+	_description = "Arma interesante";
+
+	int _damType = v["Armas"][t]["Type"].as_int();
+	_damageType = damageType(_damType);
+
+	marcial = v["Armas"][t]["Marcial"].as_bool();
+
+	damage = v["Armas"][t]["Damage"].as_int();
+
+	diceNumber = v["Armas"][t]["Ndice"].as_int();
+
+	hands = v["Armas"][t]["Damage"].as_int();
 }
 
-void Armor::loadArmorTemplate(armorId t)
+void Armor::loadArmorTemplate(jute::jValue v, armorId t)
 {
-	loadFromJson(Resources::jsons_[Resources::Armors].filename, t);
-}
 
-void Weapon::loadFromJson(string json, int t)
-{
-	ifstream in(json);
+	_name = v["Armaduras"][t]["Name"].as_string();
+	_description = "Armadura interesante";
 
-	if (in.is_open()) {
-		// Guardamos todo lo que se puede leer del archivo en un string
-		string str = "";
-		string tmp;
-		while (getline(in, tmp)) str += tmp;
-
-		in.close();
-
-		// El parser lo transforma de string a un Jvalue del que podremos sacar la información
-		jute::jValue v = jute::parser::parse(str);
-
-		_name = v["Armas"][t]["Name"].as_string();
-		_description = "Arma interesante";
-		
-		int _damType = v["Armas"][t]["Type"].as_int();
-		_damageType = damageType(_damType);
-
-		marcial = v["Armas"][t]["Marcial"].as_bool();
-
-		damage = v["Armas"][t]["Damage"].as_int();
-
-		diceNumber = v["Armas"][t]["Ndice"].as_int();
-
-		hands = v["Armas"][t]["Damage"].as_int();
+	// Guardamos las debilidades en un vector para luego inicializarlas
+	vector<float> weak = vector<float>();
+	for (int i = 0; i < _LastTypeId_; i++) {
+		weak.push_back((float)v["Armaduras"][t]["Weaknesses"][i]["Value"].as_double());
 	}
 
-	else {
-		// HACER THROW EN EL ELSE
-	}
-}
+	_weaknesses = Weaknesses(weak);
 
-void Armor::loadFromJson(string json, int t)
-{
-	ifstream in(json);
+	int statNeed = v["Armaduras"][t]["TypeNeeded"].as_int();
+	_statNeeded = mainStat(statNeed);
 
-	if (in.is_open()) {
-		// Guardamos todo lo que se puede leer del archivo en un string
-		string str = "";
-		string tmp;
-		while (getline(in, tmp)) str += tmp;
-
-		in.close();
-
-		// El parser lo transforma de string a un Jvalue del que podremos sacar la información
-		jute::jValue v = jute::parser::parse(str);
-
-		_name = v["Armaduras"][t]["Name"].as_string();
-		_description = "Armadura interesante";
-
-		for (int i = 0; i < _LastTypeId_; i++) {
-			_resistances.push_back((float)v["Armaduras"][t]["Weaknesses"][i]["Value"].as_double());
-		}
-
-		int statNeed = v["Armaduras"][t]["TypeNeeded"].as_int();
-		_statNeeded = mainStat(statNeed);
-
-		minStatNeeded = v["Armaduras"][t]["MinNeed"].as_int();
-	}
+	minStatNeeded = v["Armaduras"][t]["MinNeed"].as_int();
 }
