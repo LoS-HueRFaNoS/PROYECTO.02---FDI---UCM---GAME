@@ -38,7 +38,7 @@
     <ClCompile Include="src\Game.cpp" />
     <ClCompile Include="src\HabilityResources.cpp" />
     <ClCompile Include="src\InputHandler.cpp" />
-    <ClCompile Include="src\Interfaz.cpp" />
+    <ClCompile Include="src\InterfazManager.cpp" />
     <ClCompile Include="src\Item.cpp" />
     <ClCompile Include="src\ItemManager.cpp" />
     <ClCompile Include="src\jute.cpp" />
@@ -80,6 +80,7 @@
     <ClInclude Include="src\Component.h" />
     <ClInclude Include="src\Cursor.h" />
     <ClInclude Include="src\ecs.h" />
+    <ClInclude Include="src\ecs_interfaz.h" />
     <ClInclude Include="src\Entity.h" />
     <ClInclude Include="src\Font.h" />
     <ClInclude Include="src\FontsManager.h" />
@@ -87,7 +88,7 @@
     <ClInclude Include="src\Image.h" />
     <ClInclude Include="src\HabilityResources.h" />
     <ClInclude Include="src\InputHandler.h" />
-    <ClInclude Include="src\Interfaz.h" />
+    <ClInclude Include="src\InterfazManager.h" />
     <ClInclude Include="src\Item.h" />
     <ClInclude Include="src\ItemManager.h" />
     <ClInclude Include="src\jute.h" />

@@ -3,23 +3,209 @@
 #include "Resources.h"
 #include "callbacks.h"
 #include <cassert>
+
 typedef unsigned int uint;
 
+enum class MovType { rotR, rotL, forward, touch };
+enum class AtkType { normal, magic, defend, escape };
+enum class HeroNum { hero1, hero2, hero3, hero4 };
+enum class Inf { inventory, potionHealth, potionMana, chat, config };
+
+//class InterfazManager;
 class Button : public Entity
 {
 private:
-	CallBackOnClick* cb = nullptr;
+	//InterfazManager* im_;
+	//CallBackOnClick* cb_;
 public:
-	Button(SDLGame* game, EntityManager* mngr) : Entity(game, mngr), cb(nullptr) {};
-	void init(SDLGame* game, Game* g, Vector2D pos, uint ancho, uint alto, Resources::TextureId imagen);
+	Button(SDLGame* game, EntityManager* mngr) : 
+		Entity(game, mngr)
+		//im_(nullptr),
+		//cb_(nullptr)
+	{};
 	virtual ~Button() {};
-	void click(Game* i)
-	{
-		assert(cb != nullptr);
-		cb(i);
-		int n = 0;
-	};
-	//void setCB(void c) { cb = static_cast<CallBackOnClick2*>(c); };
-	//void setCB(void callback(Game* app)) { cb = callback; };
-	void setCB(CallBackOnClick* callback) { cb = callback; };
+	void init(InterfazManager* im, CallBackOnClick* cb, Vector2D pos, uint ancho, uint alto, Resources::TextureId imagen);
+	/*virtual void click(InterfazManager* im) { 
+		cb_(im); 
+	};*/
 };
+
+template<typename T>
+class ButtonType : public Entity
+{
+private:
+	//InterfazManager* im_;
+	//CallBackOnClick* cb_;
+	T* addon;
+public:
+	ButtonType(SDLGame* game, EntityManager* mngr) :
+		Entity(game, mngr),
+		addon(nullptr)
+		//im_(nullptr),
+		//cb_(nullptr)
+	{};
+	virtual ~ButtonType() {};
+	void init(T* add, InterfazManager* im, CallBackOnClick* cb, Vector2D pos, uint ancho, uint alto, Resources::TextureId imagen);
+	/*virtual void click(InterfazManager* im) {
+		cb_(im);
+	};*/
+};
+
+//class ButtonMovimiento : public Button {
+//public:
+//	void setPlayerMotion(PlayerMotion* plmot) { playermotion_ = plmot; };
+//	void setMovType(MovType movType) { movementType_ = movType; };
+//private:
+//	MovType movementType_;
+//	PlayerMotion* playermotion_;
+//public:
+//	ButtonMovimiento(SDLGame* game, EntityManager* mngr) : Button(game, mngr) {};
+//	virtual void click(Game* i) override
+//	{
+//		switch (movementType_)
+//		{
+//		case MovType::rotR:
+//			playermotion_->rotarDerecha();
+//			break;
+//		case MovType::rotL:
+//			playermotion_->rotarIzquierda();
+//			break;
+//		case MovType::forward:
+//			playermotion_->avanzar();
+//			break;
+//		case MovType::touch:
+//			callbacks::interactuar(i);
+//			break;
+//		default:
+//			break;
+//		}
+//	}
+//};
+
+//class ButtonMovimiento : public Button {
+//public:
+//	void setPlayerMotion(PlayerMotion* plmot) { playermotion_ = plmot; };
+//	void setMovType(MovType movType) { movementType_ = movType; };
+//private:
+//	MovType movementType_;
+//	PlayerMotion* playermotion_;
+//public:
+//	ButtonMovimiento(SDLGame* game, EntityManager* mngr) : Button(game, mngr) {};
+//	virtual void click(Game* i) override
+//	{
+//		switch (movementType_)
+//		{
+//		case MovType::rotR:
+//			playermotion_->rotarDerecha();
+//			break;
+//		case MovType::rotL:
+//			playermotion_->rotarIzquierda();
+//			break;
+//		case MovType::forward:
+//			playermotion_->avanzar();
+//			break;
+//		case MovType::touch:
+//			callbacks::interactuar(i);
+//			break;
+//		default:
+//			break;
+//		}
+//	}
+//};
+//
+//class ButtonCombate : public Button {
+//public:
+//	void setPlayerMotion(PlayerMotion* plmot) { playermotion_ = plmot; };
+//	void setAtkType(AtkType atkType) { attackType_ = atkType; };
+//private:
+//	AtkType attackType_;
+//	PlayerMotion* playermotion_;
+//public:
+//	ButtonCombate(SDLGame* game, EntityManager* mngr) : Button(game, mngr) {};
+//	virtual void click(Game* i) override
+//	{
+//		switch (attackType_)
+//		{
+//		case AtkType::normal:
+//			callbacks::ataqueNormal(i);
+//			break;
+//		case AtkType::magic:
+//			callbacks::ataqueMagico(i);
+//			break;
+//		case AtkType::defend:
+//			callbacks::defensa(i);
+//			break;
+//		case AtkType::escape:
+//			callbacks::huida(i);
+//			break;
+//		default:
+//			break;
+//		}
+//	}
+//};
+//
+//
+//class ButtonHeroes : public Button {
+//public:
+//	void setPlayerMotion(PlayerMotion* plmot) { playermotion_ = plmot; };
+//	void setHero(HeroNum hero) { hero_ = hero; };
+//private:
+//	HeroNum hero_;
+//	PlayerMotion* playermotion_;
+//public:
+//	ButtonHeroes(SDLGame* game, EntityManager* mngr) : Button(game, mngr) {};
+//	virtual void click(Game* i) override
+//	{
+//		switch (hero_)
+//		{
+//		case HeroNum::hero1:
+//			callbacks::pruebaGame0(i);
+//			break;
+//		case HeroNum::hero2:
+//			callbacks::pruebaGame1(i);
+//			break;
+//		case HeroNum::hero3:
+//			callbacks::pruebaGame2(i);
+//			break;
+//		case HeroNum::hero4:
+//			callbacks::pruebaGame3(i);
+//			break;
+//		default:
+//			break;
+//		}
+//	}
+//};
+//
+//class ButtonInfo : public Button {
+//public:
+//	void setPlayerMotion(PlayerMotion* plmot) { playermotion_ = plmot; };
+//	void setInf(Inf inf) { inf_ = inf; };
+//private:
+//	Inf inf_;
+//	PlayerMotion* playermotion_;
+//public:
+//	ButtonInfo(SDLGame* game, EntityManager* mngr) : Button(game, mngr) {};
+//	virtual void click(Game* i) override
+//	{
+//		switch (inf_)
+//		{
+//		case Inf::inventory:
+//			callbacks::inventario(i);
+//			break;
+//		case Inf::potionHealth:
+//			callbacks::pocionVida(i);
+//			break;
+//		case Inf::potionMana:
+//			callbacks::pocionMana(i);
+//			break;
+//		case Inf::chat:
+//			callbacks::chat(i);
+//			break;
+//		case Inf::config:
+//			callbacks::configuracion(i);
+//			break;
+//		default:
+//			break;
+//		}
+//	}
+//};

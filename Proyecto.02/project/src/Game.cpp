@@ -9,12 +9,13 @@
 #include "SDLGame.h"
 #include "SDL_macros.h"
 #include "MazePos.h"
-#include "PlayerMotion.h"
-#include "PlayerViewer.h"
-#include "Interfaz.h"
 
 // Nuestro includes
 #include "CombatManager.h"
+#include "InterfazManager.h"
+#include "PlayerMotion.h"
+#include "PlayerViewer.h"
+#include "../TheElementalMaze.h"
 //
 
 using namespace std;
@@ -33,118 +34,70 @@ Game::~Game() {
 
 void Game::initGame() {
 
-
 	game_ = SDLGame::init("VAMOS A LLORAR CON SDL", _WINDOW_WIDTH_, _WINDOW_HEIGHT_);
 
 	entityManager_ = new EntityManager(game_);
 
-	// 1. Personajes
-	/*cout << "Loading Characters please wait..." << endl;
-	/*Entity* laberinto = entityManager_->addEntity();
-	Laberinto* lab = laberinto->addComponent<Laberinto>(entityManager_) ;
-	lab -> initFromFile();
+	TheElementalMaze* TEM = static_cast<TheElementalMaze*>(entityManager_->addEntity());
+	TEM->init(game_, entityManager_);
 
-	Entity* player = entityManager_->addEntity();
-	player->addComponent<MazePos>(Vector2D(0,0));
-	player->addComponent<PlayerMotion>(SDLK_UP,SDLK_LEFT,SDLK_RIGHT,lab);
-	player->addComponent<PlayerViewer>(lab);*/
-
-	// Nuetro c�digo
-
-	cout << "Loading Characters please wait..." << endl;
-
-	characterManager_ = new CharacterManager(game_);
-
-	itemManager_ = new ItemManager();
-
-	Entity* manager = entityManager_->addEntity();
-
-	CombatManager* cm = manager->addComponent<CombatManager>();
-
-	Hero* wizard = characterManager_->addHeroFromTemplate(WIZARD);
-	wizard->giveWeapon(itemManager_->giveRandomWeapon());
-	Hero* warrior = characterManager_->addHeroFromTemplate(WARRIOR);
+	//Hero* wizard = new Hero(game_, entityManager_);
+	//Hero* warrior = new Hero(game_, entityManager_);
 	//warrior->getWeapon();
 	//warrior->getArmor();
-	Hero* rogue = characterManager_->addHeroFromTemplate(ROGUE);
+	//Hero* rogue = new Hero(game_, entityManager_);
 	//rogue->getWeapon();
 	//rogue->getArmor();
-	Hero* cleric = characterManager_->addHeroFromTemplate(CLERIC);;
+	//Hero* cleric = new Hero(game_, entityManager_);
 	//cleric->getWeapon();
 	//cleric->getArmor();
-	Enemy* e1 = characterManager_->addRandomEnemy();
-	Enemy* e2 = characterManager_->addRandomEnemy();
-	Enemy* e3 = characterManager_->addRandomEnemy();
+	//Enemy* e1 = new Enemy(game_, entityManager_);
+	//Enemy* e2 = new Enemy(game_, entityManager_);
+	//Enemy* e3 = new Enemy(game_, entityManager_);
 
-	wizard->addHability<Fireball>();
-	wizard->addHability<SingleTargetAttackExample>();
-	wizard->addHability<SelfHealExample>();
-	wizard->addHability<AllyTeamAttackExample>();
+	//wizard->loadFromTemplate(rpgLogic::WIZARD);
+	//warrior->loadFromTemplate(rpgLogic::WARRIOR);
+	//rogue->loadFromTemplate(rpgLogic::ROGUE);
+	//cleric->loadFromTemplate(rpgLogic::CLERIC);
+	//e1->loadFromTemplate(rpgLogic::ZOMBIE);
+	//e2->loadFromTemplate(rpgLogic::ZOMBIE);
+	//e3->loadFromTemplate(rpgLogic::ZOMBIE);
 
-	warrior->addHability<SingleTargetAttackExample>();
-	warrior->addHability<AllyTeamAttackExample>();
+	//wizard->addHability<Fireball>();
+	//wizard->addHability<SingleTargetAttackExample>();
+	//wizard->addHability<SelfHealExample>();
+	//wizard->addHability<AllyTeamAttackExample>();
 
-	rogue->addHability<SingleTargetAttackExample>();
-	rogue->addHability<AllyTeamAttackExample>();
+	//warrior->addHability<SingleTargetAttackExample>();
+	//warrior->addHability<AllyTeamAttackExample>();
 
-	cleric->addHability<SingleTargetHealxample>();
-	cleric->addHability<SelfHealExample>();
-	cleric->addHability<AllyTeamHealExample>();
-	cleric->addHability<AllyTeamAttackExample>();
+	//rogue->addHability<SingleTargetAttackExample>();
+	//rogue->addHability<AllyTeamAttackExample>();
 
-	cm->addCharacter(wizard);
-	cm->addCharacter(warrior);
-	cm->addCharacter(rogue);
-	cm->addCharacter(cleric);
-	cm->addCharacter(e1);
-	cm->addCharacter(e2);
-	cm->addCharacter(e3);
+	//cleric->addHability<SingleTargetHealxample>();
+	//cleric->addHability<SelfHealExample>();
+	//cleric->addHability<AllyTeamHealExample>();
+	//cleric->addHability<AllyTeamAttackExample>();
 
-	cm->startCombat();
+	//cm->addCharacter(wizard);
+	//cm->addCharacter(warrior);
+	//cm->addCharacter(rogue);
+	//cm->addCharacter(cleric);
+	//cm->addCharacter(e1);
+	//cm->addCharacter(e2);
+	//cm->addCharacter(e3);
 
-	cout << "Characters Loaded" << endl;
-	*/
+	//cm->startCombat();
 
-	// 2. Mapa / Laberinto 
-	Entity* laberinto = entityManager_->addEntity();
-	Laberinto* lab = laberinto->addComponent<Laberinto>(entityManager_,10,10);
-	Vector2D entrada = Vector2D(0,rand()% lab->mazeHeigh());
-	lab->createRandomMaze(entrada);	
-	Entity* player = entityManager_->addEntity();
-	player->addComponent<MazePos>(entrada);
-	player->addComponent<PlayerMotion>(SDLK_UP, SDLK_LEFT, SDLK_RIGHT, lab);
-	player->addComponent<PlayerViewer>(lab);
-
-	// 3. Interfaz
-	Interfaz F = Interfaz(this, entityManager_);
-
-
+	//cout << "Characters Loaded" << endl;
+	//
 
 }
 
-// void Game::createLaberinto()
-// {
-// 	Entity* laberinto = entityManager_->addEntity();
-// 	Laberinto* lab = laberinto->addComponent<Laberinto>(entityManager_,10,10);
-// 	Vector2D entrada = Vector2D(0,rand()% lab->mazeHeigh());
-// 	lab->createRandomMaze(entrada);	
-// 	Entity* player = entityManager_->addEntity();
-// 	player->addComponent<MazePos>(entrada);
-// 	player->addComponent<PlayerMotion>(SDLK_UP, SDLK_LEFT, SDLK_RIGHT, lab);
-// 	player->addComponent<PlayerViewer>(lab);
-// 	//Necesitamos cambiar el ecs.h a systemas
-// 	//-Necesitamos un sistema de enemigos que son enemyPool que se encarga de su construccion
-// 	//-En su metodo de construir tiene que pasar los parametros a laberinto para que tenga el puntero
-// 	//-del enemigo correspondiente.
-// 	//-addEnemy(10) -> random x, random y ->lab->checkCell(x,y).getEnemyV().pushback(this);
-// 	//-Estos enemigos puede ser un enum del tipo de enemigo
-// 	//using.h ->enum de enemigo --> 5
-// 	//getRandGen()->nextInt(0,  11) 
-// 	//laberinto ->createRandomMaze(entrada){  if (r <5) vec.pushback }
-// }
 void Game::closeGame() {
 	delete entityManager_;
-	delete characterManager_;
+	delete TEM;
+	delete game_;
 }
 
 void Game::start() {

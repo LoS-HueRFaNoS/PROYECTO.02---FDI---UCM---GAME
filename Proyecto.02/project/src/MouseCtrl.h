@@ -11,8 +11,8 @@
 class MouseCtrl : public Component
 {
 public:
-    MouseCtrl(Game* g) :
-        Component(ecs::MouseCtrl), ih_(nullptr), g_(g), st(0) {};
+    MouseCtrl() :
+        Component(ecs::MouseCtrl), ih_(nullptr), st(0) {};
     virtual ~MouseCtrl() {
     }
 
@@ -48,16 +48,11 @@ public:
             if (!e && s->get()) {
                 s->avanza(); ++st;
             }
-            /*if (!e) {
-                if (!s->get()) s->reset();
-                else s->avanza();
-            }*/
         }           
     }
 
 private:
     InputHandler* ih_;
-    Game* g_;
     Transform* tr_;
     uint st;
 };

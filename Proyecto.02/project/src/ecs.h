@@ -1,5 +1,9 @@
 #pragma once
+
 #include <ctime>
+
+class Entity;
+class Component;
 
 namespace ecs {
 
@@ -19,6 +23,8 @@ enum CmpId : CmpIdType {
 	MazePos,
 	PlayerViewer,
 	CombatManager,
+	InterfazManager,
+	Equipement,
 	//
 	// don't touch the rest of this enum, it is to identify the max
 	// number of components

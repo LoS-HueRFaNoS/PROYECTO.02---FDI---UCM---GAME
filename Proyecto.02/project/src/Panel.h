@@ -1,7 +1,9 @@
 #pragma once
 #include "Button.h"
+#include "ecs_interfaz.h"
 #include <list>
-enum idPanel { Fight, Movement, Minimap, Heroes, Info, Inventory, HeroesStats, BigMap, Turns, Settings, Chat };
+
+using namespace interfaz;
 
 class Panel
 {
@@ -13,17 +15,19 @@ public:
 	Panel(idPanel idPan) : id(idPan) {};
 
 	~Panel(){
-		//Hay que hacer que se destruya así pero por EntityManager
-
-		/*for(Entity* b : buttonList){
-			delete b; b = nullptr;
-		}*/
+		for (auto it = buttonList.begin(); it != buttonList.end(); ++it)
+		{
+			delete (*it);
+		}
 		buttonList.clear();
 	}
 
 	void addButton(Button* b) {
 		buttonList.push_back(b);
-		//Faltaria el destructor
+	}
+
+	void toggleButtons() {
+		for (Entity* var : buttonList) var->toggleEnabled();
 	}
 
 	idPanel GetID() { return id; };
