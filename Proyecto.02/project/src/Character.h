@@ -2,8 +2,8 @@
 #define _CHARACTER_
 #include "CharacterSheet.h"
 #include "Entity.h"
-#include "Equipement.h"
-
+#include "Item.h"
+//#include "Equipement.h"
 
 #pragma region CHARACTER
 
@@ -19,11 +19,17 @@ protected:
 
 	vector<Hability*> _habilities;
 
+	std::array<Hability*, _lasHabilityId_> _habilitiesArray = {};
+
+	vector<Condition*> _conditions;
+
+	std::array<Condition*, _lastConditionId_> _conditonsArray = {};
+
 	virtual void init() {
 		_sheet = addComponent<CharacterSheet>();
 	}
 
-	virtual void loadFromJson(string json, int t) {}
+	virtual void loadFromJson(jute::jValue v, int t) = 0;
 
 	virtual void manageTurn(CombatManager* cm) = 0;
 
@@ -33,12 +39,15 @@ public:
 		init();
 	}
 
-	void loadFromTemplate(characterTemplate t);
-	void loadFromTemplate(enemyTemplate t);
+	void loadFromTemplate(jute::jValue v, heroTemplate t);
+	void loadFromTemplate(jute::jValue v, enemyTemplate t);
 
 	void recieveDamage(int damage, damageType type);
 
 	void recieveHealing(int healing);
+
+	void recieveBuff(int buff, mainStat stat);
+
 
 	bool savingThrow(int save, mainStat stat);
 
@@ -67,19 +76,50 @@ public:
 	}
 
 	template<typename T>
-	T* addHability() {
-		T* c(new T(this));
-		_habilities.push_back(static_cast<Hability*>(c));
-		return c;
+	void addHability() {
+		if (!hasHability(T::id())) {
+			T* c(new T(this));
+			_habilities.push_back(static_cast<Hability*>(c));
+			_habilitiesArray[T::id()] = c;
+		}
+	}
+
+	template<typename T>
+	void addCondition(Character* caster) {
+		if (!hasCondition(T::id())) {
+			T* c(new T(caster, this));
+			_conditions.push_back(c);
+			_conditonsArray[T::id()] = c;
+			c->init();
+		}
+		else {
+			_conditonsArray[T::id()]->resetTurns();
+			_conditonsArray[T::id()]->addStack();
+		}
+	}
+
+	bool hasCondition(Conditions_Id id) {
+		return _conditonsArray[id] != nullptr;
+	}
+
+	bool hasHability(Hability_Id id) {
+		return _habilitiesArray[id] != nullptr;
+	}
+
+	void removeCondition(Conditions_Id id) {
+		_conditonsArray[id] = nullptr;
 	}
 
 	vector<Hability*> getHabilities() {
 		return _habilities;
 	}
 
+
 	bool isDead() {
 		return !_sheet->hitPoints();
 	}
+
+
 };
 
 #pragma endregion
@@ -88,18 +128,24 @@ public:
 #pragma region HERO
 
 class Hero : public Character {
+
 private:
 
-	Equipement* _equipement;
+	Weapon* _weapon;
 
-	virtual void loadFromJson(string json, int t);
+	Armor* _armor;
+
+	bool _marcial;
+
+	virtual void loadFromJson(jute::jValue v, int t);
 
 	virtual void manageTurn(CombatManager* cm);
 
 	virtual void init() {
-		_equipement = addComponent<Equipement>();
+		//_equipement = addComponent<Equipement>();
 		Character::init();
 	}
+
 
 #pragma region CombatePorConsola
 
@@ -111,6 +157,14 @@ public:
 	Hero(SDLGame* game, EntityManager* mngr) :Character(game, mngr, HERO) {
 		init();
 	}
+
+	Weapon* getWeapon() { return _weapon; }
+
+	void giveWeapon(Weapon* w) { _weapon = w; }
+
+	Armor* getArmor() { return _armor; }
+
+	void giveArmor(Armor* a) { _armor = a; }
 };
 
 #pragma endregion
@@ -123,7 +177,9 @@ private:
 
 	int exp = 0;
 
-	virtual void loadFromJson(string json, int t);
+	int coins = 0;
+
+	virtual void loadFromJson(jute::jValue v, int t);
 
 	virtual void manageTurn(CombatManager* cm);
 

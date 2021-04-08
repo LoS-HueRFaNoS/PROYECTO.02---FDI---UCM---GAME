@@ -22,6 +22,7 @@ using namespace std;
 Game::Game() :
 	game_(nullptr), //
 	entityManager_(nullptr), //
+	characterManager_(nullptr), //
 	exit_(false) {
 	initGame();
 }
@@ -39,25 +40,41 @@ void Game::initGame() {
 
 	// 1. Personajes
 	/*cout << "Loading Characters please wait..." << endl;
+	/*Entity* laberinto = entityManager_->addEntity();
+	Laberinto* lab = laberinto->addComponent<Laberinto>(entityManager_) ;
+	lab -> initFromFile();
+
+	Entity* player = entityManager_->addEntity();
+	player->addComponent<MazePos>(Vector2D(0,0));
+	player->addComponent<PlayerMotion>(SDLK_UP,SDLK_LEFT,SDLK_RIGHT,lab);
+	player->addComponent<PlayerViewer>(lab);*/
+
+	// Nuetro c�digo
+
+	cout << "Loading Characters please wait..." << endl;
+
+	characterManager_ = new CharacterManager(game_);
+
+	itemManager_ = new ItemManager();
 
 	Entity* manager = entityManager_->addEntity();
+
 	CombatManager* cm = manager->addComponent<CombatManager>();
 
-	Hero* wizard = new Hero(game_, entityManager_);
-	Hero* warrior = new Hero(game_, entityManager_);
-	Hero* rogue = new Hero(game_, entityManager_);
-	Hero* cleric = new Hero(game_, entityManager_);
-	Enemy* e1 = new Enemy(game_, entityManager_);
-	Enemy* e2 = new Enemy(game_, entityManager_);
-	Enemy* e3 = new Enemy(game_, entityManager_);
-
-	wizard->loadFromTemplate(rpgLogic::WIZARD);
-	warrior->loadFromTemplate(rpgLogic::WARRIOR);
-	rogue->loadFromTemplate(rpgLogic::ROGUE);
-	cleric->loadFromTemplate(rpgLogic::CLERIC);
-	e1->loadFromTemplate(rpgLogic::ZOMBIE);
-	e2->loadFromTemplate(rpgLogic::ZOMBIE);
-	e3->loadFromTemplate(rpgLogic::ZOMBIE);
+	Hero* wizard = characterManager_->addHeroFromTemplate(WIZARD);
+	wizard->giveWeapon(itemManager_->giveRandomWeapon());
+	Hero* warrior = characterManager_->addHeroFromTemplate(WARRIOR);
+	//warrior->getWeapon();
+	//warrior->getArmor();
+	Hero* rogue = characterManager_->addHeroFromTemplate(ROGUE);
+	//rogue->getWeapon();
+	//rogue->getArmor();
+	Hero* cleric = characterManager_->addHeroFromTemplate(CLERIC);;
+	//cleric->getWeapon();
+	//cleric->getArmor();
+	Enemy* e1 = characterManager_->addRandomEnemy();
+	Enemy* e2 = characterManager_->addRandomEnemy();
+	Enemy* e3 = characterManager_->addRandomEnemy();
 
 	wizard->addHability<Fireball>();
 	wizard->addHability<SingleTargetAttackExample>();
@@ -127,7 +144,7 @@ void Game::initGame() {
 // }
 void Game::closeGame() {
 	delete entityManager_;
-
+	delete characterManager_;
 }
 
 void Game::start() {
@@ -177,6 +194,7 @@ void Game::handleInput() {
 
 void Game::update() {
 	entityManager_->update();
+	characterManager_->update();
 }
 
 void Game::render() {
@@ -184,7 +202,7 @@ void Game::render() {
 	SDL_RenderClear(game_->getRenderer());
 
 	entityManager_->draw();
+	characterManager_->draw();
 
 	SDL_RenderPresent(game_->getRenderer());
 }
-

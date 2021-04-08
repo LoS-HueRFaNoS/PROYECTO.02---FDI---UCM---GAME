@@ -81,7 +81,7 @@ vector<Resources::JsonInfo> Resources::jsons_{
 //
 		{ Heroes, "resources/jsons/heroes.json" }, //
 		{ Enemies, "resources/jsons/enemies.json" }, //
-		{ Weapons, "resources/jsons/characters.json" }, //
-		{ Armors, "resources/jsons/characters.json" } //
+		{ Weapons, "resources/jsons/pruebasArmas.json" }, //
+		{ Armors, "resources/jsons/pruebasArmaduras.json" } //
 };
 
