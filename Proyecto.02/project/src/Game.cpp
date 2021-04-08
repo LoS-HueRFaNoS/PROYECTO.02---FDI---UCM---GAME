@@ -15,6 +15,7 @@
 #include "InterfazManager.h"
 #include "PlayerMotion.h"
 #include "PlayerViewer.h"
+#include "../TheElementalMaze.h"
 //
 
 using namespace std;
@@ -36,12 +37,8 @@ void Game::initGame() {
 
 	entityManager_ = new EntityManager(game_);
 
-	//// 1. Personajes
-
-	//cout << "Loading Characters please wait..." << endl;
-
-	Entity* GameMngr = entityManager_->addEntity();
-	//CombatManager* cm = GameMngr->addComponent<CombatManager>();	
+	TheElementalMaze* TEM = static_cast<TheElementalMaze*>(entityManager_->addEntity());
+	TEM->init(game_, entityManager_);
 
 	//Hero* wizard = new Hero(game_, entityManager_);
 	//Hero* warrior = new Hero(game_, entityManager_);
@@ -88,20 +85,6 @@ void Game::initGame() {
 	//cout << "Characters Loaded" << endl;
 	//
 
-	// 2. Mapa / Laberinto
-	Entity* laberinto = entityManager_->addEntity();
-	Laberinto* lab = laberinto->addComponent<Laberinto>(entityManager_);
-	lab->initFromFile();
-
-	Entity* player = entityManager_->addEntity();
-	player->addComponent<MazePos>(Vector2D(0, 0));
-	PlayerMotion* plmot = player->addComponent<PlayerMotion>(SDLK_UP, SDLK_LEFT, SDLK_RIGHT, lab);
-	player->addComponent<PlayerViewer>(lab);
-
-	// 3. Interfaz
-
-	//Interfaz F = Interfaz(this, entityManager_, plmot);
-	InterfazManager* F = GameMngr->addComponent<InterfazManager>();
 }
 
 void Game::closeGame() {

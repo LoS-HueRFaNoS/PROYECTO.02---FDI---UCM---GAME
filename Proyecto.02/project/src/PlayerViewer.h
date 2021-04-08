@@ -37,8 +37,7 @@ public:
 
 	virtual void draw()
 	{
-		SDL_Rect dest
-			RECT(0, 0, 800, 600);
+		SDL_Rect dest = { 0, 0, 800, 600 };
 		Texture* texturaCasilla;
 		Texture* texturaIzquierda;
 		Texture* texturaDerecha;

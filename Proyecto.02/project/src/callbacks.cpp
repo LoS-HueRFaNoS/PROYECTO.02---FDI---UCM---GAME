@@ -27,21 +27,30 @@ void callbacks::pruebaGame3(InterfazManager* app) {
 // ----------------------------------------------------
 
 #pragma region PanelHeroes
+#include "CombatManager.h"
 
 void callbacks::infoHeroe01(InterfazManager* app) {
-	std::cout << "heroe 01: " << std::endl;
+	Entity* e = app->getEntity();
+	string name = GETCMP2(e, CombatManager)->getHero(hero01)->name();
+	std::cout << "heroe 01: " << name << std::endl;
 }
 
 void callbacks::infoHeroe02(InterfazManager* app) {
-	std::cout << "heroe 02: " << std::endl;
+	Entity* e = app->getEntity();
+	string name = GETCMP2(e, CombatManager)->getHero(hero02)->name();
+	std::cout << "heroe 02: " << name << std::endl;
 }
 
 void callbacks::infoHeroe03(InterfazManager* app) {
-	std::cout << "heroe 03: " << std::endl;
+	Entity* e = app->getEntity();
+	string name = GETCMP2(e, CombatManager)->getHero(hero03)->name();
+	std::cout << "heroe 03: " << name << std::endl;
 }
 
 void callbacks::infoHeroe04(InterfazManager* app) {
-	std::cout << "heroe 04: " << std::endl;
+	Entity* e = app->getEntity();
+	string name = GETCMP2(e, CombatManager)->getHero(hero04)->name();
+	std::cout << "heroe 04: " << name << std::endl;
 }
 
 #pragma endregion
