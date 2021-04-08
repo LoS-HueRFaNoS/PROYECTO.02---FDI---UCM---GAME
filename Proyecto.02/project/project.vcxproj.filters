@@ -266,8 +266,11 @@
     <ClInclude Include="src\callbacks.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
-    <ClInclude Include="src\Interfaz.h">
-      <Filter>Archivos de encabezado</Filter>
+    <ClInclude Include="src\InterfazManager.h">
+      <Filter>Archivos de encabezado\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ecs_interfaz.h">
+      <Filter>Archivos de encabezado\Components</Filter>
     </ClInclude>
     <ClInclude Include="src\PlayerMotion.h">
       <Filter>Archivos de encabezado\Components</Filter>
