@@ -1,69 +1,146 @@
 #include "callbacks.h"
-#include "MazePos.h"
 #include "Entity.h"
+#include "Component.h"
+#include <iostream>
+#include "InterfazManager.h"
+#include "ecs.h"
 
-void callbacks::pruebaGame0(Game* app) {
+// ----------------------------------------------------
+
+#pragma region PruebasBotones
+
+void callbacks::pruebaGame0(InterfazManager* app) {
 	std::cout << "pruebaGame0" << std::endl;
 }
-void callbacks::pruebaGame1(Game* app) {
+void callbacks::pruebaGame1(InterfazManager* app) {
 	std::cout << "pruebaGame1" << std::endl;
 }
-void callbacks::pruebaGame2(Game* app) {
+void callbacks::pruebaGame2(InterfazManager* app) {
 	std::cout << "pruebaGame2" << std::endl;
 }
-void callbacks::pruebaGame3(Game* app) {
+void callbacks::pruebaGame3(InterfazManager* app) {
 	std::cout << "pruebaGame3" << std::endl;
 }
 
-void callbacks::interactuar(Game* app)
+#pragma endregion
+
+// ----------------------------------------------------
+
+#pragma region PanelHeroes
+
+void callbacks::infoHeroe01(InterfazManager* app) {
+	std::cout << "heroe 01: " << std::endl;
+}
+
+void callbacks::infoHeroe02(InterfazManager* app) {
+	std::cout << "heroe 02: " << std::endl;
+}
+
+void callbacks::infoHeroe03(InterfazManager* app) {
+	std::cout << "heroe 03: " << std::endl;
+}
+
+void callbacks::infoHeroe04(InterfazManager* app) {
+	std::cout << "heroe 04: " << std::endl;
+}
+
+#pragma endregion
+
+// ----------------------------------------------------
+
+#pragma region PanelMovimiento
+#include "PlayerMotion.h"
+
+void callbacks::rotarDerecha(InterfazManager* app)
+{
+	Entity* e = app->getEntity();
+	GETCMP2(e, PlayerMotion)->rotarDerecha();
+}
+
+void callbacks::rotarIzquierda(InterfazManager* app)
+{
+	Entity* e = app->getEntity();
+	GETCMP2(e, PlayerMotion)->rotarIzquierda();
+}
+
+void callbacks::avanzar(InterfazManager* app)
+{
+	Entity* e = app->getEntity();
+	GETCMP2(e, PlayerMotion)->avanzar();
+}
+
+void callbacks::interactuar(InterfazManager* app)
 {
 	std::cout << "has interactuado" << std::endl;
 }
 
-void callbacks::inventario(Game* app)
+#pragma endregion
+
+// ----------------------------------------------------
+
+#pragma region PanelInformation
+
+void callbacks::inventario(InterfazManager* app)
 {
 	std::cout << "has abierto el inventario" << std::endl;
 }
 
-void callbacks::pocionVida(Game* app)
+void callbacks::pocionVida(InterfazManager* app)
 {
 	std::cout << "has usado la poción de vida" << std::endl;
 }
 
-void callbacks::pocionMana(Game* app)
+void callbacks::pocionMana(InterfazManager* app)
 {
 	std::cout << "has usado la poción de maná" << std::endl;
 }
 
-void callbacks::chat(Game* app)
-{
-	std::cout << "has usado el botón de chat" << std::endl;
-}
-
-void callbacks::configuracion(Game* app)
+void callbacks::configuracion(InterfazManager* app)
 {
 	std::cout << "has usado el botón de configuración y ayuda" << std::endl;
 }
 
-void callbacks::ataqueNormal(Game* app)
+#pragma endregion
+
+// ----------------------------------------------------
+
+#pragma region PanelChatMapa
+
+void callbacks::chat(InterfazManager* app)
+{
+	std::cout << "has usado el botón de chat" << std::endl;
+}
+
+#pragma endregion
+
+// ----------------------------------------------------
+
+#pragma region PanelCombate
+
+void callbacks::ataqueNormal(InterfazManager* app)
 {
 	std::cout << "ataque cuerpo a cuerpo" << std::endl;
 }
 
-void callbacks::ataqueMagico(Game* app)
+void callbacks::ataqueMagico(InterfazManager* app)
 {
 	std::cout << "ataque magico" << std::endl;
 }
 
-void callbacks::defensa(Game* app)
+void callbacks::defensa(InterfazManager* app)
 {
 	std::cout << "te has defendido" << std::endl;
 }
 
-void callbacks::huida(Game* app)
+void callbacks::huida(InterfazManager* app)
 {
 	std::cout << "escapaste" << std::endl;
 }
+
+#pragma endregion
+
+// ----------------------------------------------------
+
 //void callbacks::start(Game* app) // previo app->setLevel(lvl);
 //{
 //	/*app->getMachine()->setAction(goGame);

@@ -9,12 +9,12 @@
 #include "SDLGame.h"
 #include "SDL_macros.h"
 #include "MazePos.h"
-#include "PlayerMotion.h"
-#include "PlayerViewer.h"
-#include "Interfaz.h"
 
 // Nuestro includes
 #include "CombatManager.h"
+#include "InterfazManager.h"
+#include "PlayerMotion.h"
+#include "PlayerViewer.h"
 //
 
 using namespace std;
@@ -40,9 +40,8 @@ void Game::initGame() {
 
 	//cout << "Loading Characters please wait..." << endl;
 
-	//Entity* manager = entityManager_->addEntity();
-	//CombatManager* cm = manager->addComponent<CombatManager>();
-
+	Entity* GameMngr = entityManager_->addEntity();
+	//CombatManager* cm = GameMngr->addComponent<CombatManager>();	
 
 	//Hero* wizard = new Hero(game_, entityManager_);
 	//Hero* warrior = new Hero(game_, entityManager_);
@@ -100,7 +99,9 @@ void Game::initGame() {
 	player->addComponent<PlayerViewer>(lab);
 
 	// 3. Interfaz
-	Interfaz F = Interfaz(this, entityManager_, plmot);
+
+	//Interfaz F = Interfaz(this, entityManager_, plmot);
+	InterfazManager* F = GameMngr->addComponent<InterfazManager>();
 }
 
 void Game::closeGame() {

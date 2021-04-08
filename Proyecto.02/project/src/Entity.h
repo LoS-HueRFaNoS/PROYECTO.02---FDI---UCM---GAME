@@ -17,6 +17,10 @@ public:
 		return mngr_;
 	}
 
+	SDLGame* getSDLGame() {
+		return game_;
+	}
+
 	template<typename T, typename ... TArgs>
 	T* addComponent(TArgs&& ...mArgs) {
 		T *c(new T(std::forward<TArgs>(mArgs)...));

@@ -19,7 +19,6 @@
     <ClCompile Include="src\Game.cpp" />
     <ClCompile Include="src\HabilityResources.cpp" />
     <ClCompile Include="src\InputHandler.cpp" />
-    <ClCompile Include="src\Interfaz.cpp" />
     <ClCompile Include="src\jute.cpp" />
     <ClCompile Include="src\Laberinto.cpp" />
     <ClCompile Include="src\main.cpp" />
@@ -43,6 +42,7 @@
     <ClCompile Include="src\Transform.cpp" />
     <ClCompile Include="src\Vector2D.cpp" />
     <ClCompile Include="TheElementalMaze.cpp" />
+    <ClCompile Include="src\InterfazManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\AudioManager.h" />
@@ -66,7 +66,6 @@
     <ClInclude Include="src\Image.h" />
     <ClInclude Include="src\HabilityResources.h" />
     <ClInclude Include="src\InputHandler.h" />
-    <ClInclude Include="src\Interfaz.h" />
     <ClInclude Include="src\jute.h" />
     <ClInclude Include="src\Laberinto.h" />
     <ClInclude Include="src\Manager.h" />
@@ -93,6 +92,8 @@
     <ClInclude Include="src\usings.h" />
     <ClInclude Include="src\Vector2D.h" />
     <ClInclude Include="TheElementalMaze.h" />
+    <ClInclude Include="src\InterfazManager.h" />
+    <ClInclude Include="src\ecs_interfaz.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="resources\jsons\heroes.json" />

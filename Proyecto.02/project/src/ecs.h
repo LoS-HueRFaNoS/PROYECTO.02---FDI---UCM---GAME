@@ -1,5 +1,9 @@
 #pragma once
+
 #include <ctime>
+
+class Entity;
+class Component;
 
 namespace ecs {
 
@@ -19,6 +23,7 @@ enum CmpId : CmpIdType {
 	MazePos,
 	PlayerViewer,
 	CombatManager,
+	InterfazManager,
 	Equipement,
 	//
 	// don't touch the rest of this enum, it is to identify the max
@@ -37,5 +42,6 @@ constexpr std::size_t maxComponents = _LastCmptId_;
 // entity e provided as a parameter
 #define GETCMP2(e,type) GETCMP3(e,ecs::type,type)
 #define GETCMP3(e,id,type) e->getComponent<type>(id)
+
 }
 

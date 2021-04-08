@@ -20,10 +20,10 @@ public:
 
 	//template<typename T, typename ... TArgs>
 	//T* addButtonEntity(TArgs&& ...mArgs);
-	ButtonMovimiento* addButtonMovimientoEntity();
+	/*ButtonMovimiento* addButtonMovimientoEntity();
 	ButtonCombate* addButtonCombateEntity();
 	ButtonHeroes* addButtonHeroesEntity();
-	ButtonInfo* addButtonInfoEntity();
+	ButtonInfo* addButtonInfoEntity();*/
 
 
 private:

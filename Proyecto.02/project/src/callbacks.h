@@ -1,31 +1,39 @@
 #pragma once
-#include <iostream>
 
-class Game;
-using CallBackOnClick = void(Game*);
+class InterfazManager;
+using CallBackOnClick = void(InterfazManager*);
 
 // MENU
 using namespace std;
 
 class callbacks {
 public:
-	static void pruebaGame0(Game* app);
-	static void pruebaGame1(Game* app);
-	static void pruebaGame2(Game* app);
-	static void pruebaGame3(Game* app);
-
-	static void interactuar(Game* app);
-
-	static void inventario(Game* app);
-	static void pocionVida(Game* app);
-	static void pocionMana(Game* app);
-	static void chat(Game* app);
-	static void configuracion(Game* app);
-
-	static void ataqueNormal(Game* app);
-	static void ataqueMagico(Game* app);
-	static void defensa(Game* app);
-	static void huida(Game* app);
+	// pruebas (solo escriben por consola)
+	static void pruebaGame0(InterfazManager* app);
+	static void pruebaGame1(InterfazManager* app);
+	static void pruebaGame2(InterfazManager* app);
+	static void pruebaGame3(InterfazManager* app);
+	// acceso a heroes
+	static void infoHeroe01(InterfazManager* app);
+	static void infoHeroe02(InterfazManager* app);
+	static void infoHeroe03(InterfazManager* app);
+	static void infoHeroe04(InterfazManager* app);
+	// acceso a movimiento
+	static void rotarDerecha(InterfazManager* app);
+	static void rotarIzquierda(InterfazManager* app);
+	static void avanzar(InterfazManager* app);
+	static void interactuar(InterfazManager* app);
+	// acceso a informacion
+	static void inventario(InterfazManager* app);
+	static void pocionVida(InterfazManager* app);
+	static void pocionMana(InterfazManager* app);
+	static void chat(InterfazManager* app);
+	static void configuracion(InterfazManager* app);
+	// acceso a combate
+	static void ataqueNormal(InterfazManager* app);
+	static void ataqueMagico(InterfazManager* app);
+	static void defensa(InterfazManager* app);
+	static void huida(InterfazManager* app);
 };
 
 //const enum action { gogame, gomenu, gopause, goback, pausetomenu, shutdown, saveoption, savecurrent, loadoption, gostageclear, goloselife, gogameover, gogameclear };

@@ -11,12 +11,12 @@ using Objective = std::vector<Character*>;
 class CombatManager : public Component {
 private:
 
-	vector<Hero*> _heroes;
-	vector<Enemy*> _enemies;
+	vector<Hero*> _heroes;	// equipo formado por los heroes elegidos
+	vector<Enemy*> _enemies; // enemigos en combate
 
-	vector<Character*> _turnQueue;
+	vector<Character*> _turnQueue; // lista ordenada de turnos
 
-	Character* currentCharacter;
+	Character* currentCharacter; // personaje actual en combate
 
 	int _turn = 0;
 
