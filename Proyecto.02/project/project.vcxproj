@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="PlayerMotion.cpp" />
     <ClCompile Include="src\AudioManager.cpp" />
     <ClCompile Include="src\Button.cpp" />
     <ClCompile Include="src\ButtonCtrl.cpp" />

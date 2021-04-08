@@ -142,14 +142,14 @@ void CombatManager::castToSingleTarget(characterType team, Hability* hability)
 	int maxTarget = 0;
 
 	if (team) {
-		maxTarget = _enemies.size();
+		maxTarget = int(_enemies.size());
 		for (int i = 0; i < _enemies.size(); i++) {
 			CharacterSheet* c = _enemies[i]->getComponent<CharacterSheet>(ecs::CharacterSheet);
 			cout << i << ". " << std::setfill(' ') << std::left << setw(12) << c->name << setw(15) << "HP " + to_string(c->hitPoints()) + "/" + to_string(c->maxHitPoints()) << endl;
 		}
 	}
 	else {
-		maxTarget = _heroes.size();
+		maxTarget = int(_heroes.size());
 		for (int i = 0; i < _heroes.size(); i++) {
 			CharacterSheet* c = _heroes[i]->getComponent<CharacterSheet>(ecs::CharacterSheet);
 			cout << i << ". " << std::setfill(' ') << std::left << setw(12) << c->name << setw(15) << "HP " + to_string(c->hitPoints()) + "/" + to_string(c->maxHitPoints()) << endl;

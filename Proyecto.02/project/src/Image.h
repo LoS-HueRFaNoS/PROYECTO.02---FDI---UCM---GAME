@@ -23,7 +23,7 @@ public:
 	}
 
 	void draw() override {
-		SDL_Rect dest = { tr_->getPos().getX(), tr_->getPos().getY(), tr_->getW(), tr_->getH() };
+		SDL_Rect dest = { int(tr_->getPos().getX()), int(tr_->getPos().getY()), int(tr_->getW()), int(tr_->getH()) };
 		tex_->render(dest, tr_->getRot());
 	}
 

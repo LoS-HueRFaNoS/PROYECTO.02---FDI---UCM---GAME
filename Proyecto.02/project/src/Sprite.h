@@ -25,13 +25,13 @@ public:
 	}
 
 	void draw() override {
-		SDL_Rect dest = { tr_->getPos().getX(), tr_->getPos().getY(), tr_->getW(), tr_->getH() };
-		SDL_Rect clip = { row, col, tex_->getWidth() / 4, tex_->getHeight() };
+		SDL_Rect dest = { int(tr_->getPos().getX()), int(tr_->getPos().getY()), int(tr_->getW()), int(tr_->getH()) };
+		SDL_Rect clip = { int(row), int(col), tex_->getWidth() / 4, tex_->getHeight() };
 		tex_->render(dest, clip);
 	}
 
 	void avanza() { row = row + tex_->getHeight(); };
-	bool get() { return (row > 0 && row < tex_->getHeight() * 2); };
+	bool get() { return (row > 0 && int(row) < tex_->getHeight() * 2); };
 	void reset() { row = 0; };
 private:
 	Transform* tr_;
