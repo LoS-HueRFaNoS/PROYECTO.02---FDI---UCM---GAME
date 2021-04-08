@@ -96,7 +96,7 @@ void Game::initGame() {
 
 void Game::closeGame() {
 	delete entityManager_;
-	delete TEM;
+	//delete TEM;
 	delete game_;
 }
 

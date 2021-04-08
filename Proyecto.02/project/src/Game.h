@@ -3,7 +3,6 @@
 #include <vector>
 
 #include "CharacterManager.h"
-#include "ItemManager.h"
 #include "SDLGame.h"
 #include "checkML.h"
 class Game {
@@ -26,7 +25,6 @@ private:
 	void render();
 	SDLGame* game_;
 	EntityManager* entityManager_;
-	ItemManager* itemManager_;
 	CharacterManager* characterManager_;
 
 	bool exit_;

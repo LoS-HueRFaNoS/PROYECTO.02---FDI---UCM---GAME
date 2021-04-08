@@ -5,6 +5,7 @@
 #include "src/Laberinto.h"
 #include "src/PlayerMotion.h"
 #include "src/PlayerViewer.h"
+#include "src/ItemManager.h"
 
 // A los componentes se pueden acceder mediante la entidad y se pueden comunicar entre sí
 // del mismo modo, mediante el puente que es la entidad.
@@ -15,6 +16,7 @@ private:
 	Entity* laberinto; // 
 	Entity* player; // 
 	InterfazManager* F; // compt
+	ItemManager* itemManager_; //
 	Laberinto* lab;	//compt
 	PlayerMotion* plmot; // compt
 
