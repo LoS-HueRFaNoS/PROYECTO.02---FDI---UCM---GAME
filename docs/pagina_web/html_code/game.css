@@ -53,6 +53,24 @@ body {
 
 	text-align: center;
 }
+
+#video{
+	background-color: rgba(0,0,0,0.5);
+	margin: -300px 0 0 110px;
+	height: 500px;
+	width: 900px;
+
+	text-align: center;
+}
+
+#texto{
+	background-color: rgba(0,0,0,0.5);
+	margin: 90px 1.5em 0 auto;
+	height: auto;
+	width: auto;
+
+	text-align: center;
+}
 			
 #header {
 	margin: auto;
