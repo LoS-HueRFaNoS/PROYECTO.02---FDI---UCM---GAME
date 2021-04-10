@@ -62,6 +62,14 @@ body {
 
 	text-align: center;
 }
+#fotos{
+	background-color: rgba(0,0,0,0.5);
+	margin: auto;
+	height: 1800px;
+	width: 1500px;
+
+	text-align: center;
+}
 
 #texto{
 	background-color: rgba(0,0,0,0.5);
