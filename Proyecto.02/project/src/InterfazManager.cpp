@@ -142,6 +142,44 @@ void InterfazManager::createInfo()
 	createButton(p, this, cb::configuracion, Vector2D( width * 6 / 7, height * 5 / 6), tamBoton, tamBoton, src::Configuracion);
 }
 
+void InterfazManager::createInventory()
+{
+	SDLGame* game_ = entity_->getSDLGame();
+
+	double slotTam = game_->getWindowWidth() / 16;
+	double posX;
+	double posY = slotTam * 1.5;
+
+	Panel* p = new Panel(Inventory);
+	allPanels.push_back(p);
+
+	//Cuadro de inventario 5x5
+	for (int i = 0; i < 5; ++i) {
+
+		posX = slotTam * 1.2; //Se resetea la coordenada X
+
+		for (int j = 0; j < 5; ++j) {
+
+			createButton(p, this, {/*Solo quiero que se renderice no tiene cb xd*/}, Vector2D(posX, posY), slotTam, slotTam, src::Slot);
+
+			posX += slotTam; // Se suma la coordenada X
+		}
+		
+		posY += slotTam; // Se suma la coordenada Y
+	}
+
+	posX += slotTam; // Se suma la coordenada X dejando un espacio.
+	posY = slotTam * 1.5;
+	//Inventario personajes
+	for (int i = 0; i < 4; ++i) {
+		createButton(p, this, {/*Solo quiero que se renderice no tiene cb xd*/ }, Vector2D(posX, posY), slotTam, slotTam, src::Bardo);
+		createButton(p, this, {/*Solo quiero que se renderice no tiene cb xd*/ }, Vector2D(posX + slotTam, posY), slotTam, slotTam, src::Slot);
+		createButton(p, this, {/*Solo quiero que se renderice no tiene cb xd*/ }, Vector2D(posX + slotTam * 2, posY), slotTam, slotTam, src::Slot);
+
+		posY += slotTam * 1.33;
+	}
+}
+
 
 void InterfazManager::createPanel(idPanel panelID)
 {
@@ -201,6 +239,7 @@ void InterfazManager::init()
 	createPanel(Minimap);
 	createPanel(Heroes);
 	createPanel(Info);
+	createPanel(Inventory);
 	c_ = createCursor(Vector2D(200, 200), 50, 50, src::Mouse);
 }
 

@@ -61,7 +61,10 @@ public:
 		AtaqueNormal,
 		AtaqueMagico, 
 		Defensa,
-		Huida
+		Huida,
+
+		//Inventario
+		Slot
 	};
 
 	enum AudioId : std::size_t {

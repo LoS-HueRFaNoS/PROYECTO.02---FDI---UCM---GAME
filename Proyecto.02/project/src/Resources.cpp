@@ -53,7 +53,8 @@ vector<Resources::ImageInfo> Resources::images_ {
 	{AtaqueNormal,  "resources/sprites/iconos combate/ataque.png"},
 	{AtaqueMagico,  "resources/sprites/iconos combate/magic.png"},
 	{Defensa,  "resources/sprites/iconos combate/defensa.png"},
-	{Huida,  "resources/sprites/iconos combate/huir.png"}
+	{Huida,  "resources/sprites/iconos combate/huir.png"},
+	{Slot, "resources/sprites/iconos inventario/inventorySlot.png"}
 	
 };
 

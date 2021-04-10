@@ -24,7 +24,7 @@ private:
 	void createHeroes();
 	void createInfo();
 	void createMinimap(){}; //
-	void createInventory(){}; //
+	void createInventory(); 
 	void createHeroesStats(){}; //
 	void createBigMap(){}; //
 	void createTurns(){}; //
