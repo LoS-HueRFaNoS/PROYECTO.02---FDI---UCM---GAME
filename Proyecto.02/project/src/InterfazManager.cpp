@@ -91,9 +91,9 @@ void InterfazManager::createMovement()
 	createButtonMovement(p, MovType::rotR, plmot, Vector2D(pPos.getX() + 200, pPos.getY()), 82, 72, src::RotarD);
 	createButtonMovement(p, MovType::rotL, plmot, Vector2D(pPos.getX(), pPos.getY()), 82, 72, src::RotarI);
 	createButtonMovement(p, MovType::touch, plmot, Vector2D(pPos.getX() + 300, pPos.getY()), 100, 55, src::Interactuar);*/
-	createButton(p, this, cb::avanzar, Vector2D(pPos.getX(), pPos.getY()), 82, 72, src::Avanzar);
-	createButton(p, this, cb::rotarDerecha, Vector2D(pPos.getX() + 100, pPos.getY()), 85, 96, src::RotarD);
-	createButton(p, this, cb::rotarIzquierda, Vector2D(pPos.getX() + 200, pPos.getY()), 82, 72, src::RotarI);
+	createButton(p, this, cb::rotarIzquierda, Vector2D(pPos.getX(), pPos.getY()), 82, 72, src::RotarI);
+	createButton(p, this, cb::avanzar, Vector2D(pPos.getX() + 100, pPos.getY()), 82, 72, src::Avanzar);
+	createButton(p, this, cb::rotarDerecha, Vector2D(pPos.getX() + 200, pPos.getY()), 85, 96, src::RotarD);
 	createButton(p, this, cb::interactuar, Vector2D(pPos.getX() + 300, pPos.getY()), 100, 55, src::Interactuar);
 }
 

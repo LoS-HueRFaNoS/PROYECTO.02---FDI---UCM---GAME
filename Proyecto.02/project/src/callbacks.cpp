@@ -58,24 +58,34 @@ void callbacks::infoHeroe04(InterfazManager* app) {
 // ----------------------------------------------------
 
 #pragma region PanelMovimiento
+#include "../TheElementalMaze.h"
 #include "PlayerMotion.h"
 
 void callbacks::rotarDerecha(InterfazManager* app)
 {
-	Entity* e = app->getEntity();
-	GETCMP2(e, PlayerMotion)->rotarDerecha();
+	/*Entity* e = app->getEntity();
+	GETCMP2(e, PlayerMotion)->rotarDerecha();*/
+	TheElementalMaze* maze = static_cast<TheElementalMaze*>(app->getEntity());
+	PlayerMotion* c = maze->getPlayerMotion();
+	c->rotarDerecha();
 }
 
 void callbacks::rotarIzquierda(InterfazManager* app)
 {
-	Entity* e = app->getEntity();
-	GETCMP2(e, PlayerMotion)->rotarIzquierda();
+	/*Entity* e = app->getEntity();
+	GETCMP2(e, PlayerMotion)->rotarIzquierda();*/
+	TheElementalMaze* maze = static_cast<TheElementalMaze*>(app->getEntity());
+	PlayerMotion* c = maze->getPlayerMotion();
+	c->rotarIzquierda();
 }
 
 void callbacks::avanzar(InterfazManager* app)
 {
-	Entity* e = app->getEntity();
-	GETCMP2(e, PlayerMotion)->avanzar();
+	TheElementalMaze* maze = static_cast<TheElementalMaze*>(app->getEntity());
+	//Entity* e = maze->getPlayer();
+	//PlayerMotion* c = GETCMP2(e, PlayerMotion);
+	PlayerMotion* c = maze->getPlayerMotion();
+	c->avanzar();
 }
 
 void callbacks::interactuar(InterfazManager* app)

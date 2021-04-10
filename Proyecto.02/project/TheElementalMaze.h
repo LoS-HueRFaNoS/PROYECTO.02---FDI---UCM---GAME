@@ -28,4 +28,5 @@ public:
 
 	Entity* getLaberinto() { return laberinto; };
 	Entity* getPlayer() { return player; };
+	PlayerMotion* getPlayerMotion() { return plmot; };
 };

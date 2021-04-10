@@ -147,7 +147,7 @@ void Game::handleInput() {
 
 void Game::update() {
 	entityManager_->update();
-	characterManager_->update();
+	//characterManager_->update();
 }
 
 void Game::render() {
@@ -155,7 +155,7 @@ void Game::render() {
 	SDL_RenderClear(game_->getRenderer());
 
 	entityManager_->draw();
-	characterManager_->draw();
+	//characterManager_->draw();
 
 	SDL_RenderPresent(game_->getRenderer());
 }
