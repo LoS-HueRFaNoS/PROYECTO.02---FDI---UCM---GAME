@@ -88,12 +88,14 @@ public:
 		return SDL_GetTicks();
 	}
 
+	// pasa a  ser publico para poder segmentar el inicio
+	void initResources(); // initialize the SDLResources object with the data at the top of this file
+
 private:
 	SDLGame(string windowTitle_, int width, int height);
 
 	void initSDL(); // initialize SDL
 	void closeSDL(); // close SDL
-	void initResources(); // initialize the SDLResources object with the data at the top of this file
 	void closeResources(); // close the SDLResources object (frees all memory)
 
 protected:

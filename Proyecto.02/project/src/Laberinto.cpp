@@ -72,8 +72,8 @@ void Laberinto::createRandomMaze(Vector2D entrada)
 	for (int i = 0; i < h; ++i)
 		laberinto[i].resize(w);
 	maze1D.resize(w * h);
-	x = entrada.getX();
-	y = entrada.getY();
+	x = int(entrada.getX());
+	y = int(entrada.getY());
 
 	maze1D[y * w + x] = true;
 	m_stack.push_back(Vector2D(x, y));

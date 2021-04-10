@@ -126,7 +126,7 @@ void InterfazManager::createInfo()
 	SDLGame* game_ = entity_->getSDLGame();
 	double width = game_->getWindowWidth();
 	double height = game_->getWindowHeight();
-	uint tamBoton = width / 16;
+	uint tamBoton = uint(width / 16);
 
 	Panel* p = new Panel(Info);
 	allPanels.push_back(p);
@@ -135,9 +135,9 @@ void InterfazManager::createInfo()
 	createButtonInfo(p, Inf::potionMana, plmot, Vector2D(width * 5 / 7, height * 5 / 6), tamBoton * 0.8, tamBoton * 0.8, src::PocionMana);
 	createButtonInfo(p, Inf::chat, plmot, Vector2D(width * 6 / 7, height * 3 / 4), tamBoton, tamBoton, src::Chat);
 	createButtonInfo(p, Inf::config, plmot, Vector2D( width * 6 / 7, height * 5 / 6), tamBoton, tamBoton, src::Configuracion);*/
-	createButton(p, this, cb::inventario, Vector2D(width * 4 / 7, height * 3 / 4), tamBoton*2, tamBoton*2, src::Inventario);
-	createButton(p, this, cb::pocionVida, Vector2D(width * 5 / 7, height * 3 / 4), tamBoton* 0.8, tamBoton * 0.8, src::PocionVida);
-	createButton(p, this, cb::pocionMana, Vector2D(width * 5 / 7, height * 5 / 6), tamBoton * 0.8, tamBoton * 0.8, src::PocionMana);
+	createButton(p, this, cb::inventario, Vector2D(width * 4 / 7, height * 3 / 4), uint(tamBoton*2), uint(tamBoton*2), src::Inventario);
+	createButton(p, this, cb::pocionVida, Vector2D(width * 5 / 7, height * 3 / 4), uint(tamBoton* 0.8), uint(tamBoton * 0.8), src::PocionVida);
+	createButton(p, this, cb::pocionMana, Vector2D(width * 5 / 7, height * 5 / 6), uint(tamBoton * 0.8), uint(tamBoton * 0.8), src::PocionMana);
 	createButton(p, this, cb::chat, Vector2D(width * 6 / 7, height * 3 / 4), tamBoton, tamBoton, src::Chat);
 	createButton(p, this, cb::configuracion, Vector2D( width * 6 / 7, height * 5 / 6), tamBoton, tamBoton, src::Configuracion);
 }

@@ -19,6 +19,7 @@ vector<Resources::ImageInfo> Resources::images_ {
 		{ muro_izq, "resources/images/pasillos/muro_izq.png"}, //
 		{ muro_der, "resources/images/pasillos/muro_der.png"}, //
 		{ muro_del, "resources/images/pasillos/muro_del.png"}, //
+		{ cargando, "resources/images/cargando.png"}, //
 		//{ Pasillo1, "resources/images/pasillos/Pasillo1.png"}, //
 		//{ Pasillo2, "resources/images/pasillos/Pasillo2.png"}, //
 		//{ Pasillo3, "resources/images/pasillos/Pasillo3.png"}, //

@@ -4,7 +4,7 @@
 using namespace std;
 
 
-const static enum  Visibilidad { noVisitado, noEntrado,visitado };
+enum  Visibilidad { noVisitado, noEntrado,visitado };
 
 class Casilla
 {

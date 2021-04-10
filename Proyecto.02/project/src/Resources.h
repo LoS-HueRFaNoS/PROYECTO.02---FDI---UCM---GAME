@@ -21,6 +21,7 @@ public:
 		muro_izq,
 		muro_der,
 		muro_del,
+		cargando,
 
 		// text
 		HelloWorld,

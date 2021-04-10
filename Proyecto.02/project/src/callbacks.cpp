@@ -29,9 +29,11 @@ void callbacks::pruebaGame3(InterfazManager* app) {
 #pragma region PanelHeroes
 #include "CombatManager.h"
 
+// fallan al coger el dato del template/sheet_
 void callbacks::infoHeroe01(InterfazManager* app) {
 	Entity* e = app->getEntity();
-	string name = GETCMP2(e, CombatManager)->getHero(hero01)->name();
+	CombatManager* c = GETCMP2(e, CombatManager);
+	string name = c->getHero(hero01)->name();
 	std::cout << "heroe 01: " << name << std::endl;
 }
 
@@ -61,6 +63,7 @@ void callbacks::infoHeroe04(InterfazManager* app) {
 #include "../TheElementalMaze.h"
 #include "PlayerMotion.h"
 
+// la primera vez no funcionan, en las siguientes ejecuciones sí
 void callbacks::rotarDerecha(InterfazManager* app)
 {
 	/*Entity* e = app->getEntity();

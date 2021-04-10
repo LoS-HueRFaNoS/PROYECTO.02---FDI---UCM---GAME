@@ -16,6 +16,9 @@ public:
 	Enemy* addEnemyFromTemplate(rpgLogic::enemyTemplate t);
 	Enemy* addRandomEnemy();
 
+	jute::jValue getEnemyJV() { return enemyJson; };
+	jute::jValue getHeroJV() { return heroJson; };
+
 private:
 	void newCharacter(Entity* e);
 

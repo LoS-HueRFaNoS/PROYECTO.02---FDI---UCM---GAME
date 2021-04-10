@@ -108,14 +108,14 @@ bool CombatManager::checkEnd()
 {
 	bool end = true;
 	for (Hero* h : _heroes)
-		end *= h->isDead();
+		end = h->isDead(); // antes habia un *=
 	if (end) {
 		_win = false;
 		return true;
 	}
 	end = true;
 	for (Enemy* e : _enemies)
-		end *= e->isDead();
+		end = e->isDead(); // antes habia un *=
 	return end;
 }
 

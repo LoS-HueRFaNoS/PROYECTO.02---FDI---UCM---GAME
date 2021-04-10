@@ -32,14 +32,28 @@ Game::~Game() {
 	closeGame();
 }
 
-void Game::initGame() {
-
+void Game::initGame() 
+{
+	int initTime = 0;
 	game_ = SDLGame::init("VAMOS A LLORAR CON SDL", _WINDOW_WIDTH_, _WINDOW_HEIGHT_);
+
+	Texture* tex_ = new Texture(game_->getRenderer(), "resources/images/cargando.png");
+	SDL_Rect dest = { 0, 0, int(game_->getWindowWidth()), int(game_->getWindowHeight()) };
+	SDL_SetRenderDrawColor(game_->getRenderer(), COLOR(0x00AAAAFF));
+	SDL_RenderClear(game_->getRenderer());
+	tex_->render(dest);
+	SDL_RenderPresent(game_->getRenderer());
+
+	game_->initResources();
 
 	entityManager_ = new EntityManager(game_);
 
+	characterManager_ = new CharacterManager(game_);
+
 	TheElementalMaze* TEM = static_cast<TheElementalMaze*>(entityManager_->addEntity());
-	TEM->init(game_, entityManager_);
+	TEM->init(characterManager_->getEnemyJV(), characterManager_->getHeroJV());
+
+	int endTime = 0;
 
 	//Hero* wizard = new Hero(game_, entityManager_);
 	//Hero* warrior = new Hero(game_, entityManager_);
