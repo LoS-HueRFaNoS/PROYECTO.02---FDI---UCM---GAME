@@ -1,5 +1,5 @@
-#include "src/PlayerMotion.h"
-#include "src/InputHandler.h"
+#include "PlayerMotion.h"
+#include "InputHandler.h"
 
 
 PlayerMotion::PlayerMotion(SDL_KeyCode avanzar, SDL_KeyCode izq, SDL_KeyCode der, Laberinto* lab_):Component(ecs::PlayerMotion), //

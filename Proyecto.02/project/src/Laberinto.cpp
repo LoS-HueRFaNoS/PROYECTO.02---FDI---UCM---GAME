@@ -194,10 +194,10 @@ void Laberinto::generaObjeto(int object, int type, Casilla* casilla, int maxObje
 {
 	if (object == 0) {
 
-		Enemy* enemy = new Enemy(game_, entityManager);
+		/*Enemy* enemy = new Enemy(game_, entityManager);					// CAMBIAR A ENUM
 		enemy->loadFromTemplate(static_cast<enemyTemplate>(type));
 		casilla->addEnemy(enemy);
-		cout << "generado " << (cant+1) << " enemigo"<<endl;
+		cout << "generado " << (cant+1) << " enemigo"<<endl;*/
 	}
 	else if (object ==1)
 	{

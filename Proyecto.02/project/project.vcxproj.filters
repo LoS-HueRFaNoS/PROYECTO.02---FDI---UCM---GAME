@@ -126,9 +126,6 @@
     <ClCompile Include="src\ButtonCtrl.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
-    <ClCompile Include="src\Interfaz.cpp">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
     <ClCompile Include="TheElementalMaze.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
@@ -177,7 +174,10 @@
     <ClCompile Include="src\Sprite.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
-    <ClCompile Include="PlayerMotion.cpp">
+    <ClCompile Include="src\InterfazManager.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="src\PlayerMotion.cpp">
       <Filter>Archivos de origen\Components</Filter>
     </ClCompile>
   </ItemGroup>

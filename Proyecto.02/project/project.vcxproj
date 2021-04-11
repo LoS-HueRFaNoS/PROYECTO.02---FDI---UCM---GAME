@@ -19,7 +19,6 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="PlayerMotion.cpp" />
     <ClCompile Include="src\AudioManager.cpp" />
     <ClCompile Include="src\Button.cpp" />
     <ClCompile Include="src\ButtonCtrl.cpp" />
@@ -48,6 +47,7 @@
     <ClCompile Include="src\MouseCtrl.cpp" />
     <ClCompile Include="src\ObjectPool.cpp" />
     <ClCompile Include="src\Panel.cpp" />
+    <ClCompile Include="src\PlayerMotion.cpp" />
     <ClCompile Include="src\RandomNumberGenerator.cpp" />
     <ClCompile Include="src\Rectangle.cpp" />
     <ClCompile Include="src\Resources.cpp" />
