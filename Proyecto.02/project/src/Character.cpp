@@ -1,6 +1,7 @@
 #include <fstream>
 #include <iostream>
 #include "CombatManager.h"
+#include "../TheElementalMaze.h"
 //#include "Equipement.h"
 
 using namespace rpgLogic;
@@ -52,9 +53,9 @@ void Character::recieveHealing(int healing)
 	_sheet->recieveHealing(healing);
 }
 
-void Character::recieveBuff(int buff,mainStat stat)
+void Character::recieveBuff(int buff, mainStat stat)
 {
-	_sheet->changeStat(stat,buff);
+	_sheet->changeStat(stat, buff);
 }
 bool Character::savingThrow(int save, rpgLogic::mainStat stat)
 {
@@ -118,12 +119,11 @@ void Hero::loadFromJson(jute::jValue v, int t) {
 
 	_sheet->weaknesses = Weaknesses(weak);
 
-	//_equipement -> loadWeaponTemplate("pruebasArmas.json", getRandomWeapon());
+	_weapon = gameManager_->getItemManager()->getRandomWeapon();
+	_armor = gameManager_->getItemManager()->getRandomArmor();
 
 	//Escoge un arma aleatoria simple
 	//int idRWeapons = v["Characters"][t]["Equipement"]["ListWeapons"].as_int();
-
-
 	//int r2 = v["Characters"][t]["Equipement"]["ListArmors"].size();
 	//int idRArmor = v["Characters"][t]["Equipement"]["ListArmors"][game_->getRandGen()->nextInt(0, r2)].as_int();
 
@@ -154,7 +154,7 @@ void Hero::consoleTurn(CombatManager* cm)
 	while (true) {
 
 		cin >> spell;
-		if(spell == -1)
+		if (spell == -1)
 			break;
 		if (!cin.good() || spell >= _habilities.size()) {
 			cin.clear();
@@ -165,7 +165,7 @@ void Hero::consoleTurn(CombatManager* cm)
 			cin.clear();
 			cin.ignore(INT_MAX, '\n');
 			cout << "Not enough mana, try again: ";
-		}			
+		}
 		else
 		{
 			cin.clear();

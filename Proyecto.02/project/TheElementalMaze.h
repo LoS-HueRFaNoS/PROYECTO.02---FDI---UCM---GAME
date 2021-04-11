@@ -1,6 +1,7 @@
 #pragma once
 #include "src/Entity.h"
 #include "src/CombatManager.h"
+#include "src/CharacterManager.h"
 #include "src/InterfazManager.h"
 #include "src/Laberinto.h"
 #include "src/PlayerMotion.h"
@@ -12,25 +13,31 @@ using jv = jute::jValue;
 class TheElementalMaze : public Entity
 {
 private:
-	CombatManager* cm; // compt
-	Entity* laberinto; // 
-	Entity* player; // 
-	InterfazManager* F; // compt
+	CombatManager* combatManager_; // compt
+	Entity* laberintoE_; // 
+	Entity* player_; // 
+	InterfazManager* uiManager_; // compt
 	ItemManager* itemManager_; //
-	Laberinto* lab;	//compt
-	PlayerMotion* plmot; // compt
-	jv enemyJson;
-	jv heroJson;
+	Laberinto* laberintoC_;	//compt
+	PlayerMotion* playerMotion_; // compt
+	CharacterManager* characterManager_; // 
 
 public:
-	TheElementalMaze(SDLGame* game, EntityManager* mngr) : 
+	TheElementalMaze(SDLGame* game, EntityManager* mngr, CharacterManager* chMngr) :
+		characterManager_(chMngr),
 		Entity(game, mngr)
 	{};
 	virtual ~TheElementalMaze() {};
 
-	void init(jv enJs, jv heJs);
+	void init();
 
-	Entity* getLaberinto() { return laberinto; };
-	Entity* getPlayer() { return player; };
-	PlayerMotion* getPlayerMotion() { return player->getComponent<PlayerMotion>(ecs::PlayerMotion); };
+	Entity* getLaberinto() { return laberintoE_; };
+
+	Entity* getPlayer() { return player_; };
+
+	PlayerMotion* getPlayerMotion() { return playerMotion_; };
+
+	CharacterManager* getCharacterManager() { return characterManager_; }
+
+	ItemManager* getItemManager() { return itemManager_; }
 };

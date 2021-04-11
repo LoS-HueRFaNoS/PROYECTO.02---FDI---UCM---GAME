@@ -1,4 +1,5 @@
 ﻿#include "CharacterManager.h"
+#include "../TheElementalMaze.h"
 #include <fstream>
 
 void CharacterManager::init()
@@ -28,7 +29,7 @@ void CharacterManager::loadJson(string json, jute::jValue& j)
 
 Hero* CharacterManager::addHeroFromTemplate(rpgLogic::heroTemplate t)
 {
-	Hero* h = new Hero(game_, this);
+	Hero* h = new Hero(game_, this, gameManager_);
 	h->loadFromTemplate(heroJson, t);
 	newCharacter(h);
 	return h;
@@ -36,7 +37,7 @@ Hero* CharacterManager::addHeroFromTemplate(rpgLogic::heroTemplate t)
 
 Hero* CharacterManager::addRandomHero()
 {
-	Hero* h = new Hero(game_, this);
+	Hero* h = new Hero(game_, this, gameManager_);
 	h->loadFromTemplate(heroJson, getRandomHero());
 	newCharacter(h);
 	return h;
@@ -44,7 +45,7 @@ Hero* CharacterManager::addRandomHero()
 
 Enemy* CharacterManager::addEnemyFromTemplate(rpgLogic::enemyTemplate t)
 {
-	Enemy* e = new Enemy(game_, this);
+	Enemy* e = new Enemy(game_, this, gameManager_);
 	e->loadFromTemplate(enemyJson, t);
 	newCharacter(e);
 	return e;
@@ -52,10 +53,15 @@ Enemy* CharacterManager::addEnemyFromTemplate(rpgLogic::enemyTemplate t)
 
 Enemy* CharacterManager::addRandomEnemy()
 {
-	Enemy* e = new Enemy(game_, this);
+	Enemy* e = new Enemy(game_, this, gameManager_);
 	e->loadFromTemplate(enemyJson, getRandomEnemy());
 	newCharacter(e);
 	return e;
+}
+
+void CharacterManager::setElementalMaze(TheElementalMaze* gameMngr)
+{
+	gameManager_ = gameMngr;
 }
 
 void CharacterManager::newCharacter(Entity* e)

@@ -1,48 +1,37 @@
 #include "TheElementalMaze.h"
 
-void TheElementalMaze::init(jv enJs, jv heJs)
+void TheElementalMaze::init()
 {
 	// 1. Laberinto
-	laberinto = mngr_->addEntity();
-	lab = laberinto->addComponent<Laberinto>(mngr_); // esto es redundante ._.
-	lab->initFromFile();
+	laberintoE_ = mngr_->addEntity();
+	laberintoC_ = laberintoE_->addComponent<Laberinto>(mngr_); // esto es redundante ._.
+	laberintoC_->initFromFile();
 
 	// 2. Player
-	player = mngr_->addEntity(); // lo primero en crearse debería ser el player ¿?
-	player->addComponent<MazePos>(Vector2D(0, 0));
-	plmot = player->addComponent<PlayerMotion>(SDLK_UP, SDLK_LEFT, SDLK_RIGHT, lab);
-	player->addComponent<PlayerViewer>(lab);
+	player_ = mngr_->addEntity(); // lo primero en crearse debería ser el player ¿?
+	player_->addComponent<MazePos>(Vector2D(0, 0));
+	playerMotion_ = player_->addComponent<PlayerMotion>(SDLK_UP, SDLK_LEFT, SDLK_RIGHT, laberintoC_);
+	player_->addComponent<PlayerViewer>(laberintoC_);
 
 	// 3. Interfaz
-	F = addComponent<InterfazManager>();
+	uiManager_ = addComponent<InterfazManager>();
 
 	// 4. Personajes
-	cm = addComponent<CombatManager>(); // al seguir por consola, bloquea el juego y faltan cosas que me he dejado
 
-	Hero* wizard = new Hero(game_, mngr_);
-	Hero* warrior = new Hero(game_, mngr_);
-	Hero* rogue = new Hero(game_, mngr_);
-	Hero* cleric = new Hero(game_, mngr_);
-	Enemy* e1 = new Enemy(game_, mngr_);
-	Enemy* e2 = new Enemy(game_, mngr_);
-	Enemy* e3 = new Enemy(game_, mngr_);
+	itemManager_ = new ItemManager();
 
-	/* loadFromTemplate(jute::jValue v, heroTemplate t)
-	* requiere de jValue y template, pero estaba puesto sólo con el template.
-	* Para solucionar esto sin tocar mucho he añadido un getter pero no funciona bien.
-	* Los jValue los guarda CharacterManager pero este se crea en Game.cpp
-	* 
-	*/
+	combatManager_ = addComponent<CombatManager>(); // al seguir por consola, bloquea el juego y faltan cosas que me he dejado
 
-	/*wizard->loadFromTemplate(heroJson, rpgLogic::WIZARD);
-	warrior->loadFromTemplate(heroJson, rpgLogic::WARRIOR);
-	rogue->loadFromTemplate(heroJson, rpgLogic::ROGUE);
-	cleric->loadFromTemplate(heroJson, rpgLogic::CLERIC);
-	e1->loadFromTemplate(enemyJson, rpgLogic::ZOMBIE);
-	e2->loadFromTemplate(enemyJson, rpgLogic::ZOMBIE);
-	e3->loadFromTemplate(enemyJson, rpgLogic::ZOMBIE);*/
+	Hero* wizard = characterManager_->addHeroFromTemplate(WIZARD);
+	Hero* warrior = characterManager_->addHeroFromTemplate(WARRIOR);
+	Hero* rogue = characterManager_->addHeroFromTemplate(ROGUE);
+	Hero* cleric = characterManager_->addHeroFromTemplate(CLERIC);;
 
-	/*wizard->addHability<Fireball>();
+	Enemy* e1 = characterManager_->addRandomEnemy();
+	Enemy* e2 = characterManager_->addRandomEnemy();
+	Enemy* e3 = characterManager_->addRandomEnemy();
+
+	wizard->addHability<Fireball>();
 	wizard->addHability<SingleTargetAttackExample>();
 	wizard->addHability<SelfHealExample>();
 	wizard->addHability<AllyTeamAttackExample>();
@@ -56,17 +45,18 @@ void TheElementalMaze::init(jv enJs, jv heJs)
 	cleric->addHability<SingleTargetHealxample>();
 	cleric->addHability<SelfHealExample>();
 	cleric->addHability<AllyTeamHealExample>();
-	cleric->addHability<AllyTeamAttackExample>();*/
+	cleric->addHability<AllyTeamAttackExample>();
 
-	cm->addCharacter(wizard);
-	cm->addCharacter(warrior);
-	cm->addCharacter(rogue);
-	cm->addCharacter(cleric);
-	cm->addCharacter(e1);
-	cm->addCharacter(e2);
-	cm->addCharacter(e3);
+	combatManager_->addCharacter(wizard);
+	combatManager_->addCharacter(warrior);
+	combatManager_->addCharacter(rogue);
+	combatManager_->addCharacter(cleric);
+	combatManager_->addCharacter(e1);
+	combatManager_->addCharacter(e2);
+	combatManager_->addCharacter(e3);
+	
+	//combatManager_->startCombat();
 
-	//cm->startCombat();
 
 	cout << "Characters Loaded" << endl;
 	

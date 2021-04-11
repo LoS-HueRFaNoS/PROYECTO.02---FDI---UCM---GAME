@@ -9,27 +9,27 @@ public:
 		init();
 	}
 
-	Weapon* giveWeaponFromId(weaponId id) {
+	Weapon* getWeaponFromId(weaponId id) {
 		Weapon* _weapon = new Weapon();
-		_weapon->loadWeaponTemplate(weaponJson,id);
+		_weapon->loadWeaponTemplate(weaponJson, id);
 		return _weapon;
 	};
 
-	Weapon* giveRandomWeapon() {
+	Weapon* getRandomWeapon() {
 		Weapon* _weapon = new Weapon();
-		_weapon->loadWeaponTemplate(weaponJson,getRandomWeapon());
+		_weapon->loadWeaponTemplate(weaponJson, rpgLogic::getRandomWeapon());
 		return _weapon;
 	};
 
-	Armor* giveArmorFromId(armorId id) {
+	Armor* getArmorFromId(armorId id) {
 		Armor* _armor = new Armor();
-		_armor->loadArmorTemplate(armorJson,id);
+		_armor->loadArmorTemplate(armorJson, id);
 		return _armor;
 	};
 
-	Armor* giveRandomArmor() {
+	Armor* getRandomArmor() {
 		Armor* _armor = new Armor();
-		_armor->loadArmorTemplate(armorJson,getRandomArmor());
+		_armor->loadArmorTemplate(armorJson, rpgLogic::getRandomArmor());
 		return _armor;
 	};
 

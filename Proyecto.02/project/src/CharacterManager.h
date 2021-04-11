@@ -4,6 +4,8 @@
 #include "Character.h"
 #include "jute.h"
 
+class TheElementalMaze;
+
 class CharacterManager : public EntityManager {
 public:
 	CharacterManager(SDLGame* game) :EntityManager(game) {
@@ -16,8 +18,7 @@ public:
 	Enemy* addEnemyFromTemplate(rpgLogic::enemyTemplate t);
 	Enemy* addRandomEnemy();
 
-	jute::jValue getEnemyJV() { return enemyJson; };
-	jute::jValue getHeroJV() { return heroJson; };
+	void setElementalMaze(TheElementalMaze* gameMngr);
 
 private:
 	void newCharacter(Entity* e);
@@ -28,4 +29,6 @@ private:
 
 	jute::jValue enemyJson;
 	jute::jValue heroJson;
+
+	TheElementalMaze* gameManager_;
 };

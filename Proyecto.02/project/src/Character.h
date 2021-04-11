@@ -9,9 +9,13 @@
 
 class CombatManager;
 
+class TheElementalMaze;
+
 class Character : public Entity
 {
 protected:
+
+	TheElementalMaze* gameManager_;
 
 	characterType _type;
 
@@ -35,7 +39,7 @@ protected:
 
 public:
 
-	Character(SDLGame* game, EntityManager* mngr, characterType type) : _type(type), _habilities(vector<Hability*>()), Entity(game, mngr) {
+	Character(SDLGame* game, EntityManager* mngr, TheElementalMaze* gameManager, characterType type) : gameManager_(gameManager), _type(type), _habilities(vector<Hability*>()), Entity(game, mngr) {
 		init();
 	}
 
@@ -154,7 +158,7 @@ private:
 #pragma endregion
 
 public:
-	Hero(SDLGame* game, EntityManager* mngr) :Character(game, mngr, HERO) {
+	Hero(SDLGame* game, EntityManager* mngr, TheElementalMaze* gameManager) :Character(game, mngr, gameManager, HERO) {
 		init();
 	}
 
@@ -184,7 +188,7 @@ private:
 	virtual void manageTurn(CombatManager* cm);
 
 public:
-	Enemy(SDLGame* game, EntityManager* mngr) : Character(game, mngr, ENEMY) {
+	Enemy(SDLGame* game, EntityManager* mngr, TheElementalMaze* gameManager) : Character(game, mngr, gameManager, ENEMY) {
 		init();
 	}
 

@@ -5,6 +5,7 @@
 #include "CharacterManager.h"
 #include "SDLGame.h"
 #include "checkML.h"
+#include "../TheElementalMaze.h"
 class Game {
 
 public:
@@ -26,6 +27,7 @@ private:
 	SDLGame* game_;
 	EntityManager* entityManager_;
 	CharacterManager* characterManager_;
+	TheElementalMaze* gameManager_;
 
 	bool exit_;
 
