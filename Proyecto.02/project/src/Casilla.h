@@ -1,6 +1,7 @@
 #pragma once
 #include <vector>
 #include "Entity.h"
+#include "Character.h"
 using namespace std;
 
 
@@ -13,7 +14,7 @@ private:
 	vector<bool> direcciones;
 	bool esSalida;
 	Visibilidad visib;
-	//vector<Enemys*> enemigos;
+	vector<Enemy*> enemigos;
 	//vector<Chests*> cofres;
 
 public:
@@ -28,5 +29,14 @@ public:
 	void setSalida() { esSalida = true; }
 	void setDirs(Look dir) { direcciones[dir] = true; }
 	bool isExit() { return esSalida; }
+	void addEnemy(Enemy* e) {
+		enemigos.push_back(e);
+	}
+	vector<Enemy*> getEnemy() { return enemigos; }
+	void addChest()
+	{
+
+	}
+	//vector<Chest*> getChest() { return cofres; }
 };
 
