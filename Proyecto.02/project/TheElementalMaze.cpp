@@ -4,7 +4,7 @@ void TheElementalMaze::init()
 {
 	// 1. Laberinto
 	laberintoE_ = mngr_->addEntity();
-	laberintoC_ = laberintoE_->addComponent<Laberinto>(mngr_); // esto es redundante ._.
+	laberintoC_ = laberintoE_->addComponent<Laberinto>(); // esto es redundante ._.
 	laberintoC_->initFromFile();
 
 	// 2. Player
@@ -56,10 +56,10 @@ void TheElementalMaze::init()
 	combatManager_->addCharacter(e1);
 	combatManager_->addCharacter(e2);
 	combatManager_->addCharacter(e3);
-	
+
 	//combatManager_->startCombat();
 
 
 	cout << "Characters Loaded" << endl;
-	
+
 }

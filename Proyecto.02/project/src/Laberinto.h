@@ -22,8 +22,8 @@ private:
 	int cellsCreated = 0;
 	
 public:
-	Laberinto(EntityManager* entityManager_,int h,int w);
-	Laberinto(EntityManager* entityManager_);
+	Laberinto(int h,int w);
+	Laberinto();
 	virtual ~Laberinto();
 	void initFromFile();
 	int mazeWidth() { return w; };

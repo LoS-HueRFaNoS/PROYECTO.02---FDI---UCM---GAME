@@ -15,7 +15,7 @@ enum ItemType
 class Item
 {
 protected:
- 
+
 	int sellValue = 0;
 	int buyValue = 0;
 
@@ -48,15 +48,21 @@ private:
 	int damage;
 	int diceNumber;
 	int hands;
-public: 
+public:
 
 	Weapon() {
-		
+
 		equipment = true;
 		_ItemType = WEAPON;
 		sellValue = rand() % 100;
 		buyValue = rand() % 100;
 	}
+
+	int getDamage() { return damage; }
+
+	int getNDice() { return diceNumber; }
+
+	damageType getDamageType() { return _damageType; }
 
 	void loadWeaponTemplate(jute::jValue v, weaponId t);
 };
@@ -71,7 +77,7 @@ private:
 
 public:
 
-	Armor(){
+	Armor() {
 		equipment = true;
 		_ItemType = ARMOR;
 		sellValue = rand() % 100;

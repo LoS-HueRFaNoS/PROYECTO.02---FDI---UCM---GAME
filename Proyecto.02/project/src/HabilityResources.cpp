@@ -13,6 +13,17 @@ void Fireball::throwHability(Character* obj, bool critical) const
 	obj->recieveDamage(damage, _damageType);
 }
 
+
+void LightAttack::throwHability(Character* obj, bool critical) const
+{
+	Weapon* w = static_cast<Hero*>(_caster)->getWeapon();
+
+	int damage = throwDice(w->getNDice(), w->getDamage(), true);
+
+	obj->recieveDamage(damage, w->getDamageType());
+}
+
+
 void SingleTargetAttackExample::throwHability(Character* obj, bool critical) const
 {
 	int damage = throwDice(1 + critical, 5, true);
@@ -146,3 +157,5 @@ bool EjemploDañoPorTurno::onTurnStarted()
 }
 
 #pragma endregion
+
+
