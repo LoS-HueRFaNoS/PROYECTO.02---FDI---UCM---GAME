@@ -18,6 +18,8 @@ void TheElementalMaze::init()
 
 	// 4. Personajes
 
+	characterManager_->setElementalMaze(this);
+
 	itemManager_ = new ItemManager();
 
 	combatManager_ = addComponent<CombatManager>(); // al seguir por consola, bloquea el juego y faltan cosas que me he dejado
