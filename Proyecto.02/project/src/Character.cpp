@@ -119,16 +119,15 @@ void Hero::loadFromJson(jute::jValue v, int t) {
 
 	_sheet->weaknesses = Weaknesses(weak);
 
-	_weapon = gameManager_->getItemManager()->getRandomWeapon();
-	_armor = gameManager_->getItemManager()->getRandomArmor();
+	_marcial = v["Characters"][t]["Marcial"].as_bool();
 
-	//Escoge un arma aleatoria simple
-	//int idRWeapons = v["Characters"][t]["Equipement"]["ListWeapons"].as_int();
-	//int r2 = v["Characters"][t]["Equipement"]["ListArmors"].size();
-	//int idRArmor = v["Characters"][t]["Equipement"]["ListArmors"][game_->getRandGen()->nextInt(0, r2)].as_int();
+	int r1 = v["Characters"][t]["Equipement"]["ListWeapons"].size();
+	int idRWeapon = v["Characters"][t]["Equipement"]["ListWeapons"][game_->getRandGen()->nextInt(0, r1)].as_int();
+	_weapon = gameManager_->getItemManager()->getWeaponFromId(weaponId(idRWeapon));
 
-	// JSON DE ARMAS Y ARMADURAS 
-
+	int r2 = v["Characters"][t]["Equipement"]["ListArmors"].size();
+	int idRArmor = v["Characters"][t]["Equipement"]["ListArmors"][game_->getRandGen()->nextInt(0, r2)].as_int();
+	_armor = gameManager_->getItemManager()->getArmorFromId(armorId(idRArmor));
 }
 
 void Hero::manageTurn(CombatManager* cm)
@@ -197,9 +196,15 @@ void Enemy::loadFromJson(jute::jValue v, int t)
 
 	_sheet->name = v["Characters"][t]["Name"].as_string();
 
+	description = v["Characters"][t]["Description"].as_string();
+
 	// Igual con la vida y el mana
 	int hp = v["Characters"][t]["HitPoints"].as_int();
 	int mp = v["Characters"][t]["ManaPoints"].as_int();
+
+	exp = v["Characters"][t]["Experience"].as_int();
+	coins = v["Characters"][t]["Coins"].as_int();
+
 	_sheet->setHitPoints(hp);
 	_sheet->setMaxHitPoints(hp);
 	_sheet->setManaPoints(mp);

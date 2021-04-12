@@ -64,6 +64,8 @@ public:
 
 	damageType getDamageType() { return _damageType; }
 
+	bool isMarcial() { return marcial; }
+
 	void loadWeaponTemplate(jute::jValue v, weaponId t);
 };
 
@@ -85,6 +87,10 @@ public:
 	}
 
 	Weaknesses getWeaknesses() { return _weaknesses; }
+
+	mainStat getStatNeeded() { return _statNeeded; }
+
+	int getMinStatNeeded() { return minStatNeeded; }
 
 	void loadArmorTemplate(jute::jValue v, armorId t);
 };

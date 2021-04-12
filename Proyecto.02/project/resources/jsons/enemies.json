@@ -3,6 +3,7 @@
 
     {
       "Name": "Zombie",
+      "Description": "Un muerto viviente, sin mucha vida o poder. Un enemigo relativamente sencillo",
 
       "Stats": [
         {
@@ -25,6 +26,8 @@
 
       "HitPoints": 22,
       "ManaPoints": 10,
+      "Experience": 50,
+      "Coins":  25,
 
       "Weaknesses": [
         {
@@ -72,6 +75,7 @@
 
     {
       "Name": "Troll",
+      "Description": "Una criatura bastante estúpida de gran tamaño. Un enemigo peligroso, pero solo si no tienes cuidado",
 
       "Stats": [
         {
@@ -94,6 +98,8 @@
 
       "HitPoints": 40,
       "ManaPoints": 10,
+      "Experience": 100,
+      "Coins": 50,
 
       "Weaknesses": [
         {
@@ -141,6 +147,7 @@
 
     {
       "Name": "Skeleton",
+      "Description": "Un muerto viviente bastante esquivo, pero también muy débil",
 
       "Stats": [
         {
@@ -163,6 +170,8 @@
 
       "HitPoints": 13,
       "ManaPoints": 12,
+      "Experience": 50,
+      "Coins": 25,
 
       "Weaknesses": [
         {
@@ -210,6 +219,7 @@
 
     {
       "Name": "Hellhound",
+      "Description": "Un perro infernal, bastante más fuerte que los enemigos comunes",
 
       "Stats": [
         {
@@ -232,6 +242,8 @@
 
       "HitPoints": 45,
       "ManaPoints": 12,
+      "Experience": 120,
+      "Coins": 80,
 
       "Weaknesses": [
         {
@@ -279,6 +291,7 @@
 
     {
       "Name": "Specter",
+      "Description": "Un alma en pena, con ataques bastante débiles pero siendo una criatura extremadamente resistente",
 
       "Stats": [
         {
@@ -301,6 +314,8 @@
 
       "HitPoints": 22,
       "ManaPoints": 20,
+      "Experience": 50,
+      "Coins": 25,
 
       "Weaknesses": [
         {
@@ -348,6 +363,7 @@
 
     {
       "Name": "Goblin",
+      "Description": "Una criatura desagradable, de pequeño tamaño y que disfruta torturando a los aventureros",
 
       "Stats": [
         {
@@ -370,6 +386,8 @@
 
       "HitPoints": 7,
       "ManaPoints": 20,
+      "Experience": 20,
+      "Coins": 10,
 
       "Weaknesses": [
         {
@@ -417,6 +435,7 @@
 
     {
       "Name": "Death Knight",
+      "Description": "El alma de un aventurero caído, muy poderoso y peligroso",
 
       "Stats": [
         {
@@ -439,6 +458,8 @@
 
       "HitPoints": 90,
       "ManaPoints": 24,
+      "Experience": 500,
+      "Coins": 500,
 
       "Weaknesses": [
         {
@@ -486,6 +507,7 @@
 
     {
       "Name": "Mimic",
+      "Description": "Una criatura cambiante, que se camufla en objetos mundanos para poder devorar a los incautos",
 
       "Stats": [
         {
@@ -508,6 +530,8 @@
 
       "HitPoints": 58,
       "ManaPoints": 10,
+      "Experience": 100,
+      "Coins": 50,
 
       "Weaknesses": [
         {
@@ -555,6 +579,7 @@
 
     {
       "Name": "Pixie",
+      "Description": "Pequeñas molestias aladas, bastante débiles pero esquivas",
 
       "Stats": [
         {
@@ -577,6 +602,8 @@
 
       "HitPoints": 5,
       "ManaPoints": 20,
+      "Experience": 20,
+      "Coins": 10,
 
       "Weaknesses": [
         {
@@ -624,6 +651,7 @@
 
     {
       "Name": "Ghoul",
+      "Description": "Necrófagos, pero aún así bastante peligrosos para los vivos",
 
       "Stats": [
         {
@@ -646,6 +674,8 @@
 
       "HitPoints": 36,
       "ManaPoints": 22,
+      "Experience": 100,
+      "Coins": 50,
 
       "Weaknesses": [
         {
@@ -693,6 +723,7 @@
 
     {
       "Name": "Dracolich",
+      "Description": "Un poderoso dragón resucitado gracias a los poderes del Lich",
 
       "Stats": [
         {
@@ -715,6 +746,8 @@
 
       "HitPoints": 112,
       "ManaPoints": 32,
+      "Experience": 500,
+      "Coins": 500,
 
       "Weaknesses": [
         {
@@ -762,6 +795,7 @@
 
     {
       "Name": "Giant worm",
+      "Description": "Un traicionero gusano de tierra gigante, muy voraz",
 
       "Stats": [
         {
@@ -784,6 +818,8 @@
 
       "HitPoints": 60,
       "ManaPoints": 10,
+      "Experience": 200,
+      "Coins": 100,
 
       "Weaknesses": [
         {
@@ -831,6 +867,7 @@
 
     {
       "Name": "Banshee",
+      "Description": "Un alma en pena, capaz de dejarte sordo con sus chillidos",
 
       "Stats": [
         {
@@ -853,6 +890,8 @@
 
       "HitPoints": 58,
       "ManaPoints": 24,
+      "Experience": 100,
+      "Coins": 50,
 
       "Weaknesses": [
         {

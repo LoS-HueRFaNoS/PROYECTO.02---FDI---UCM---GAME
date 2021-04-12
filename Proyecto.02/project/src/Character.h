@@ -3,7 +3,6 @@
 #include "CharacterSheet.h"
 #include "Entity.h"
 #include "Item.h"
-//#include "Equipement.h"
 
 #pragma region CHARACTER
 
@@ -178,6 +177,8 @@ public:
 
 class Enemy : public Character {
 private:
+
+	string description = "Un enemigo muy chungo";
 
 	int exp = 0;
 
