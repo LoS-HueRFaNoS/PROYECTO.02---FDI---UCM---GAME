@@ -148,20 +148,6 @@ void Laberinto::createRandomMaze(Vector2D entrada)
 			{
 				shortestWay = new vector<Vector2D>(m_stack);
 				laberinto[x][y]->setSalida();
-
-				cout << "shotwast copiado " << endl;
-				for (int j = 3; j < shortestWay->size(); j++)
-				{
-					int posX, posY;
-					int enemyType = game_->getRandGen()->nextInt(0, enemyTemplate::_LastEnemyTemplateId_ *3);
-					if (enemyType < enemyTemplate::_LastEnemyTemplateId_)
-					{
-						posX = (*shortestWay)[j].getX();
-						posY = (*shortestWay)[j].getY();
-						cout << "En la casilla [" << x << " , " << y << " ]" << endl;
-						generaObjeto(0, enemyType, laberinto[x][y], 3, 0);
-					}
-				}
 			}
 
 			int hayEnemy = game_->getRandGen()->nextInt(0,10);
@@ -277,7 +263,7 @@ void Laberinto::generaObjeto(int object, int type, Casilla* casilla, int maxObje
 	cant++;
 
 	int generaOtro = game_->getRandGen()->nextInt(0, 10);
-	if (cant <= maxObject && generaOtro)
+	if (cant < maxObject && generaOtro)
 	{
 		if (object == 0)
 		{
