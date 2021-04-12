@@ -87,16 +87,16 @@ void Laberinto::createRandomMaze(Vector2D entrada)
 		x = m_stack.back().getX();
 		y = m_stack.back().getY();
 		// North neighbour
-		if (y > 0 && !maze1D[(y - 1) * w + x])
+		if (y > 0 && !maze1D[(int)((y - 1) * w + x)])
 			neighbours.push_back(Norte);
 		// East neighbour
-		if (x < w - 1 && !maze1D[y * w + (x + 1)])
+		if (x < w - 1 && !maze1D[(int)(y * w + (x + 1))])
 			neighbours.push_back(Este);
 		// South neighbour
-		if (y < h - 1 && !maze1D[(y + 1) * w + x])
+		if (y < h - 1 && !maze1D[(int)((y + 1) * w + x)])
 			neighbours.push_back(Sur);
 		// West neighbour
-		if (x > 0 && !maze1D[y * w + (x - 1)])
+		if (x > 0 && !maze1D[(int)(y * w + (x - 1))])
 			neighbours.push_back(Oeste);
 
 		// Are there any neighbours available?
@@ -149,10 +149,17 @@ void Laberinto::createRandomMaze(Vector2D entrada)
 				shortestWay = new vector<Vector2D>(m_stack);
 				laberinto[x][y]->setSalida();
 
+
 				for (int j = 3; j < shortestWay->size(); j++)
 				{
 					int posX, posY;
 					int enemyType = game_->getRandGen()->nextInt(0, enemyTemplate::_LastEnemyTemplateId_ * 3);
+				cout << "shotwast copiado " << endl;
+				for (int j = 3; j < shortestWay->size(); j++)
+				{
+					int posX, posY;
+					int enemyType = game_->getRandGen()->nextInt(0, enemyTemplate::_LastEnemyTemplateId_ *3);
+
 					if (enemyType < enemyTemplate::_LastEnemyTemplateId_)
 					{
 						posX = (*shortestWay)[j].getX();
@@ -163,19 +170,21 @@ void Laberinto::createRandomMaze(Vector2D entrada)
 				}
 			}
 
-			int enemyType = game_->getRandGen()->nextInt(0, enemyTemplate::_LastEnemyTemplateId_ *3);
+			int enemyType = game_->getRandGen()->nextInt(0, enemyTemplate::_LastEnemyTemplateId_*3 );
 			if (enemyType < enemyTemplate::_LastEnemyTemplateId_)
 			{
 				cout << "En la casilla [" << x << " , " << y << " ]" << endl;
-				generaObjeto(0, enemyType, laberinto[x][y], 3,0);
+				generaObjeto(0, enemyType, laberinto[x][y], 4,0);
 				
 			}
 
-			/*int chestType = game_->getRandGen()->nextInt(0,  weaponsId::_LastWeaponId_ *3);
-			if (chestType < weaponsId::_LastWeaponId_)
+			int totalItem = weaponId::_LastWeaponId_ + armorId::_LastArmorId_ + 4;
+			int chestType = game_->getRandGen()->nextInt(0, totalItem*5);
+			if (chestType <totalItem )
 			{
-				generaObjeto(1, chestType, laberinto[x][y]);
-			}*/
+				cout << "En la casilla [" << x << " , " << y << " ]" << " hay un cofre con :" << endl;
+				generaObjeto(1, chestType, laberinto[x][y],2,0);
+			}
 
 		}
 		else
@@ -205,22 +214,76 @@ void Laberinto::draw()
 
 void Laberinto::generaObjeto(int object, int type, Casilla* casilla, int maxObject, int cant)
 {
+	casilla->addEnemy((static_cast<enemyTemplate>(type)));
+	cout << "generado " << (cant + 1) << " enemigo" << endl;
+
+
 	if (object == 0) {
 
-		/*Enemy* enemy = new Enemy(game_, entityManager);					// CAMBIAR A ENUM
-		enemy->loadFromTemplate(static_cast<enemyTemplate>(type));
-		casilla->addEnemy(enemy);
-		cout << "generado " << (cant+1) << " enemigo"<<endl;*/
+		casilla->addEnemy((static_cast<enemyTemplate>(type)));
+		cout << "generado " << (cant+1) << " enemigo"<<endl;
 	}
 	else if (object ==1)
 	{
 
-		/*Chest * cofre = new Chest(game_, entityManager);
-		Chest->loadFromTemplate(static_cast<weaponsId>(type));
-		casilla->addChest(cofre);*/
+		
+		//Generacion de tipo de cofre
+		if (type < weaponId::_LastWeaponId_)
+		{
+			casilla->addChest(static_cast<ItemType>(0), type);
+			cout << "weapon de " << static_cast<weaponId>(type) <<endl;
+		}
+		else if (type < weaponId::_LastWeaponId_ + armorId::_LastArmorId_)
+		{
+			type -= weaponId::_LastWeaponId_;
+			cout << "armor de " << static_cast<armorId>(type) <<endl;
+			casilla->addChest(static_cast<ItemType>(1),type);
+		}
+		else if ((type < weaponId::_LastWeaponId_ + armorId::_LastArmorId_ + 3))
+		{
+			type -= weaponId::_LastWeaponId_;
+			type -= armorId::_LastArmorId_;
+			cout << "potion de ";
+			switch (type)
+			{
+			case 0:
+				cout <<"Health" <<"Potion" << endl;
+				break;
+			case 1:
+				cout << "Mana" << "Potion" << endl;
+				break;
+			case 2:
+				cout << "Revive" << "Potion" << endl;
+				break;
+			default:
+				break;
+			}
+			
+			casilla->addChest(static_cast<ItemType>(2), type );
+
+			
+		}
+		else
+		{
+			int dinero = game_->getRandGen()->nextInt(5, 21); // 5 a 21 runas
+			cout << dinero << " Runas" <<endl;
+			casilla->addChest(static_cast<ItemType>(3), dinero);
+		}
+
+		
+		
 	}
 	cant++;
-	type = game_->getRandGen()->nextInt(0, enemyTemplate::_LastEnemyTemplateId_ * 3);
+	if (object ==0)
+		type = game_->getRandGen()->nextInt(0, enemyTemplate::_LastEnemyTemplateId_ * 2);
+	else
+	{
+		
+		
+		int totalItem = weaponId::_LastWeaponId_ + armorId::_LastArmorId_ + 4;
+		type = game_->getRandGen()->nextInt(0, totalItem * 5);
+	}
+
 	if (cant <= maxObject && type < enemyTemplate::_LastEnemyTemplateId_)
 	{
 		generaObjeto(object, type, casilla, maxObject, cant);
