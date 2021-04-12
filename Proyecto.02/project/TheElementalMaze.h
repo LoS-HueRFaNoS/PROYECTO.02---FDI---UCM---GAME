@@ -10,6 +10,7 @@
 using jv = jute::jValue;
 // A los componentes se pueden acceder mediante la entidad y se pueden comunicar entre sí
 // del mismo modo, mediante el puente que es la entidad.
+
 class TheElementalMaze : public Entity
 {
 private:
