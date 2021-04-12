@@ -37,7 +37,7 @@ void Laberinto::initFromFile()
 	}
 	else
 	{
-		input >> h >> w; // Primero se leen el número de filas y de columnas
+		input >> h >> w; // Primero se leen el nï¿½mero de filas y de columnas
 		laberinto.resize(h);
 		for (int i = 0; i < h; ++i)
 			laberinto[i].resize(w);
@@ -148,6 +148,19 @@ void Laberinto::createRandomMaze(Vector2D entrada)
 			{
 				shortestWay = new vector<Vector2D>(m_stack);
 				laberinto[x][y]->setSalida();
+
+				for (int j = 3; j < shortestWay->size(); j++)
+				{
+					int posX, posY;
+					int enemyType = game_->getRandGen()->nextInt(0, enemyTemplate::_LastEnemyTemplateId_ * 3);
+					if (enemyType < enemyTemplate::_LastEnemyTemplateId_)
+					{
+						posX = (*shortestWay)[j].getX();
+						posY = (*shortestWay)[j].getY();
+						cout << "En la casilla [" << x << " , " << y << " ]" << endl;
+						generaObjeto(0, enemyType, laberinto[x][y], 3, 0);
+					}
+				}
 			}
 
 			int enemyType = game_->getRandGen()->nextInt(0, enemyTemplate::_LastEnemyTemplateId_ *3);
