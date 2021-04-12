@@ -11,6 +11,12 @@ using jv = jute::jValue;
 // A los componentes se pueden acceder mediante la entidad y se pueden comunicar entre sí
 // del mismo modo, mediante el puente que es la entidad.
 
+enum GameState {
+	COMBAT,
+	EXPLORING,
+	LOBBY
+};
+
 class TheElementalMaze : public Entity
 {
 private:
@@ -22,6 +28,8 @@ private:
 	Laberinto* laberintoC_;	//compt
 	PlayerMotion* playerMotion_; // compt
 	CharacterManager* characterManager_; // 
+
+	bool pause_ = false;
 
 public:
 	TheElementalMaze(SDLGame* game, EntityManager* mngr, CharacterManager* chMngr) :
@@ -41,4 +49,8 @@ public:
 	CharacterManager* getCharacterManager() { return characterManager_; }
 
 	ItemManager* getItemManager() { return itemManager_; }
+
+	bool isPause() { return pause_; }
+
+	void setPauseState(bool set) { pause_ = set; }
 };
