@@ -8,7 +8,7 @@ void TheElementalMaze::init()
 	laberintoC_->createRandomMaze(Vector2D(0, 0));
 
 	// 2. Player
-	player_ = mngr_->addEntity(); // lo primero en crearse debería ser el player ¿?
+	player_ = mngr_->addEntity(); // lo primero en crearse deberï¿½a ser el player ï¿½?
 	player_->addComponent<MazePos>(Vector2D(0, 0));
 	playerMotion_ = player_->addComponent<PlayerMotion>(SDLK_UP, SDLK_LEFT, SDLK_RIGHT, laberintoC_);
 	player_->addComponent<PlayerViewer>(laberintoC_);
