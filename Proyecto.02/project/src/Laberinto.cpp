@@ -164,21 +164,30 @@ void Laberinto::createRandomMaze(Vector2D entrada)
 				}
 			}
 
-			int enemyType = game_->getRandGen()->nextInt(0, enemyTemplate::_LastEnemyTemplateId_*3 );
-			if (enemyType < enemyTemplate::_LastEnemyTemplateId_)
+			int hayEnemy = game_->getRandGen()->nextInt(0,10);
+			
+			if (hayEnemy < 3)
 			{
+				int enemyType = game_->getRandGen()->nextInt(0, enemyTemplate::_LastEnemyTemplateId_);
 				cout << "En la casilla [" << x << " , " << y << " ]" << endl;
-				generaObjeto(0, enemyType, laberinto[x][y], 4,0);
+				generaObjeto(0, enemyType, laberinto[x][y], 3,0);
+				
+			}
+			else
+			{
+				int hayCofre = game_->getRandGen()->nextInt(0, 10);
+				if (hayCofre < 2)
+				{
+					int totalItem = weaponId::_LastWeaponId_ + armorId::_LastArmorId_ + 4;
+					int chestType = game_->getRandGen()->nextInt(0, totalItem );
+					cout << "En la casilla [" << x << " , " << y << " ]" << " hay un cofre con :" << endl;
+					generaObjeto(1, chestType, laberinto[x][y], 2, 0);
+				}
+
 				
 			}
 
-			int totalItem = weaponId::_LastWeaponId_ + armorId::_LastArmorId_ + 4;
-			int chestType = game_->getRandGen()->nextInt(0, totalItem*5);
-			if (chestType <totalItem )
-			{
-				cout << "En la casilla [" << x << " , " << y << " ]" << " hay un cofre con :" << endl;
-				generaObjeto(1, chestType, laberinto[x][y],2,0);
-			}
+			
 
 		}
 		else
@@ -208,8 +217,6 @@ void Laberinto::draw()
 
 void Laberinto::generaObjeto(int object, int type, Casilla* casilla, int maxObject, int cant)
 {
-	casilla->addEnemy((static_cast<enemyTemplate>(type)));
-	cout << "generado " << (cant + 1) << " enemigo" << endl;
 
 
 	if (object == 0) {
@@ -268,18 +275,23 @@ void Laberinto::generaObjeto(int object, int type, Casilla* casilla, int maxObje
 		
 	}
 	cant++;
-	if (object ==0)
-		type = game_->getRandGen()->nextInt(0, enemyTemplate::_LastEnemyTemplateId_ * 2);
-	else
-	{
-		
-		
-		int totalItem = weaponId::_LastWeaponId_ + armorId::_LastArmorId_ + 4;
-		type = game_->getRandGen()->nextInt(0, totalItem * 5);
-	}
 
-	if (cant <= maxObject && type < enemyTemplate::_LastEnemyTemplateId_)
+	int generaOtro = game_->getRandGen()->nextInt(0, 10);
+	if (cant <= maxObject && generaOtro)
 	{
+		if (object == 0)
+		{
+			type = game_->getRandGen()->nextInt(0, enemyTemplate::_LastEnemyTemplateId_);
+		}
+		else
+		{
+			int totalItem = weaponId::_LastWeaponId_ + armorId::_LastArmorId_ + 4;
+			type = game_->getRandGen()->nextInt(0, totalItem);
+		}
+
 		generaObjeto(object, type, casilla, maxObject, cant);
 	}
+
+
+
 }
