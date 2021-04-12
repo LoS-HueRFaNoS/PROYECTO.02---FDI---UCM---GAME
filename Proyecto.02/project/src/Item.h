@@ -144,3 +144,20 @@ public:
 		_ItemType = TREASURE;
 	}
 };
+
+
+
+
+
+
+class Chest
+{
+private:
+	ItemType item;
+	int itemId;
+public:
+	Chest(ItemType it, int value) : item(it), itemId(value){}
+	ItemType getType() { return item; }
+	int getIdValue() { return itemId; }
+
+};

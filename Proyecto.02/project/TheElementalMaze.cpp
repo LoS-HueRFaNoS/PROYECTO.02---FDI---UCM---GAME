@@ -4,8 +4,8 @@ void TheElementalMaze::init()
 {
 	// 1. Laberinto
 	laberintoE_ = mngr_->addEntity();
-	laberintoC_ = laberintoE_->addComponent<Laberinto>(); // esto es redundante ._.
-	laberintoC_->initFromFile();
+	laberintoC_ = laberintoE_->addComponent<Laberinto>(10,10); // esto es redundante ._.
+	laberintoC_->createRandomMaze(Vector2D(0, 0));
 
 	// 2. Player
 	player_ = mngr_->addEntity(); // lo primero en crearse debería ser el player ¿?
