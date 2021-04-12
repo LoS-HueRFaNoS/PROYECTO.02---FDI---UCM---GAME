@@ -142,10 +142,17 @@ void PlayerMotion::debugear()
 {
 	cout << "Estas en la casilla " << pos->getPos() << ".	\n";
 
-	vector<Enemy*> enemigo = lab->getCasillaInfo(pos->getPos().getX(), pos->getPos().getY())->getEnemy();
+	Casilla* cas = lab->getCasillaInfo(pos->getPos().getX(), pos->getPos().getY());
+	vector<enemyTemplate>* enemigo = cas->getEnemy();
 
-	for (int i = 0; i < enemigo.size(); i++)
+	for (int i = 0; i < enemigo->size(); i++)
 	{
-		cout << "Encuentras con el enemigo " << enemigo[i]->name() << endl;
+		cout << "Encuentras con el enemigo " << to_string((*enemigo)[i]) << endl;
+	}
+
+	vector<Chest>* cofres = cas->getChest();
+	for (int i = 0; i < cofres->size(); i++)
+	{
+		cout << "Encuentras con un cofre con " << to_string((*cofres)[i].getType()) <<" de tipo " << to_string((*cofres)[i].getIdValue()) << endl;
 	}
 }

@@ -6,7 +6,6 @@
 
 #include <queue>
 
-enum teamID { hero01, hero02, hero03, hero04 };
 using Objective = std::vector<Character*>;
 
 class CombatManager : public Component {
@@ -93,7 +92,10 @@ public:
 
 	void castHability(Hability* hability);
 
-	Hero* getHero(teamID number) { return _heroes[number]; };
+	Character* getCharacter(int index, characterType type) {
+		return  type ? static_cast<Character*>(_enemies[index]) : static_cast<Character*>(_heroes[index]);
+	};
+
 
 };
 

@@ -33,25 +33,28 @@ void callbacks::pruebaGame3(InterfazManager* app) {
 void callbacks::infoHeroe01(InterfazManager* app) {
 	Entity* e = app->getEntity();
 	CombatManager* c = GETCMP2(e, CombatManager);
-	string name = c->getHero(hero01)->name();
+	string name = c->getCharacter(0, HERO)->name();
 	std::cout << "heroe 01: " << name << std::endl;
 }
 
 void callbacks::infoHeroe02(InterfazManager* app) {
 	Entity* e = app->getEntity();
-	string name = GETCMP2(e, CombatManager)->getHero(hero02)->name();
+	CombatManager* c = GETCMP2(e, CombatManager);
+	string name = c->getCharacter(1, HERO)->name();
 	std::cout << "heroe 02: " << name << std::endl;
 }
 
 void callbacks::infoHeroe03(InterfazManager* app) {
 	Entity* e = app->getEntity();
-	string name = GETCMP2(e, CombatManager)->getHero(hero03)->name();
+	CombatManager* c = GETCMP2(e, CombatManager);
+	string name = c->getCharacter(2, HERO)->name();
 	std::cout << "heroe 03: " << name << std::endl;
 }
 
 void callbacks::infoHeroe04(InterfazManager* app) {
 	Entity* e = app->getEntity();
-	string name = GETCMP2(e, CombatManager)->getHero(hero04)->name();
+	CombatManager* c = GETCMP2(e, CombatManager);
+	string name = c->getCharacter(2, HERO)->name();
 	std::cout << "heroe 04: " << name << std::endl;
 }
 
