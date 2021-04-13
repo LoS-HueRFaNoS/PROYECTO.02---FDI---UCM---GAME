@@ -19,14 +19,14 @@ vector<Resources::ImageInfo> Resources::images_ {
 		{ muro_izq, "resources/images/pasillos/muro_izq.png"}, //
 		{ muro_der, "resources/images/pasillos/muro_der.png"}, //
 		{ muro_del, "resources/images/pasillos/muro_del.png"}, //
+		{ no_visitado, "resources/images/pasillos/pasillo_no_visitado.png"}, //
+		{ no_entrado, "resources/images/pasillos/pasillo_no_entrado.png"}, //
+		{ visitado, "resources/images/pasillos/pasillo_visitado.png"}, //		
+		{ pared_N, "resources/images/pasillos/pared_norte.png"}, //		
+		{ pared_E, "resources/images/pasillos/pared_este.png"}, //		
+		{ pared_S, "resources/images/pasillos/pared_sur.png"}, //		
+		{ pared_O, "resources/images/pasillos/pared_oeste.png"}, //
 		{ cargando, "resources/images/cargando.png"}, //
-		//{ Pasillo1, "resources/images/pasillos/Pasillo1.png"}, //
-		//{ Pasillo2, "resources/images/pasillos/Pasillo2.png"}, //
-		//{ Pasillo3, "resources/images/pasillos/Pasillo3.png"}, //
-		//{ Pasillo4, "resources/images/pasillos/Pasillo4.png"}, //
-		//{ Pasillo5, "resources/images/pasillos/Pasillo5.png"}, //
-		//{ Pasillo6, "resources/images/pasillos/Pasillo6.png"}, //
-		//{ Pasillo7, "resources/images/pasillos/Pasillo7.png"}, //
 		{ Bardo, "resources/sprites/iconos personajes/bardo.png" },
 		{ Brujo, "resources/sprites/iconos personajes/brujo.png" },
 		{ Clerigo, "resources/sprites/iconos personajes/clerigo.png" },

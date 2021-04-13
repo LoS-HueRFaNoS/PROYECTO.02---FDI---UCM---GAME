@@ -18,10 +18,10 @@ private:
 	Visibilidad visib;
 	vector<enemyTemplate> enemyEnum;
 	vector< Chest> cofres;
-
+	SDLGame* game_;
 public:
-	Casilla();
-	Casilla( bool _N, bool _E, bool _S, bool _O);
+	Casilla(SDLGame* game);
+	Casilla(SDLGame* game, bool _N, bool _E, bool _S, bool _O);
 	~Casilla();
 	vector<bool> checkCell();
 	//vector<Chests*>* checkChests();        //devuelve el puntero del vector de los cofres, que puede consultar si es nulo, o que renderiza.
@@ -31,6 +31,7 @@ public:
 	void setSalida() { esSalida = true; }
 	void setDirs(Look dir) { direcciones[dir] = true; }
 	bool isExit() { return esSalida; }
+	void casillaRender(int x, int y);
 	void addEnemy(enemyTemplate e) {
 		enemyEnum.push_back(e);
 	}

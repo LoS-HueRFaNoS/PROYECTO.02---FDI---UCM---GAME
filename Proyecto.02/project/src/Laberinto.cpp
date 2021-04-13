@@ -48,7 +48,7 @@ void Laberinto::initFromFile()
 			{
 				input >> norte >> este >> sur >> oeste; // Se recoge el siguiente dato
 
-				auto a = new Casilla(norte, este, sur, oeste);
+				auto a = new Casilla(game_, norte, este, sur, oeste);
 				laberinto[j][i] = a;
 			}
 		}
@@ -77,7 +77,7 @@ void Laberinto::createRandomMaze(Vector2D entrada)
 
 	maze1D[y * w + x] = true;
 	m_stack.push_back(Vector2D(x, y));
-	laberinto[x][y] = new Casilla();
+	laberinto[x][y] = new Casilla(game_);
 	cellsCreated = 1;
 
 	// Create a set of unvisted neighbours
@@ -111,7 +111,7 @@ void Laberinto::createRandomMaze(Vector2D entrada)
 			case 0: // North
 				laberinto[x][y]->setDirs(Norte);
 				y--;
-				laberinto[x][y] = new Casilla();
+				laberinto[x][y] = new Casilla(game_);
 				laberinto[x][y]->setDirs(Sur);
 
 
@@ -120,7 +120,7 @@ void Laberinto::createRandomMaze(Vector2D entrada)
 			case 1: // East
 				laberinto[x][y]->setDirs(Este);
 				x++;
-				laberinto[x][y] = new Casilla();
+				laberinto[x][y] = new Casilla(game_);
 				laberinto[x][y]->setDirs(Oeste);
 
 				break;
@@ -128,14 +128,14 @@ void Laberinto::createRandomMaze(Vector2D entrada)
 			case 2: // South
 				laberinto[x][y]->setDirs(Sur);
 				y++;
-				laberinto[x][y] = new Casilla();
+				laberinto[x][y] = new Casilla(game_);
 				laberinto[x][y]->setDirs(Norte);
 				break;
 
 			case 3: // West
 				laberinto[x][y]->setDirs(Oeste);
 				x--;
-				laberinto[x][y] = new Casilla();
+				laberinto[x][y] = new Casilla(game_);
 				laberinto[x][y]->setDirs(Este);
 				break;
 
@@ -192,13 +192,14 @@ Casilla* Laberinto::getCasillaInfo(int x, int y)
 
 void Laberinto::draw()
 {
-	//for (int i = 0; i < h; ++i) // Por cada fila  = Y
-	//{
-	//	for (int j = 0; j < w; ++j) // Por cada columna  = X
-	//	{
-	//		laberinto[j][i].
-	//	}
-	//}
+//
+	for (int i = 0; i < h; ++i) // Por cada fila  = Y
+	{
+		for (int j = 0; j < w; ++j) // Por cada columna  = X
+		{
+			 laberinto[j][i]->casillaRender(802 + j*28, 2 +i*20);
+		}
+	}
 }
 
 void Laberinto::generaObjeto(int object, int type, Casilla* casilla, int maxObject, int cant)

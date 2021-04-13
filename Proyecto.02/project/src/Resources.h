@@ -21,6 +21,13 @@ public:
 		muro_izq,
 		muro_der,
 		muro_del,
+		no_visitado,
+		no_entrado,
+		visitado,
+		pared_N,
+		pared_E,
+		pared_S,
+		pared_O,
 		cargando,
 
 		// text
