@@ -2,23 +2,23 @@
 #include "Entity.h"
 #include "Component.h"
 #include <iostream>
-#include "InterfazManager.h"
+#include "Interfaz.h"
 #include "ecs.h"
 
 // ----------------------------------------------------
 
 #pragma region PruebasBotones
 
-void callbacks::pruebaGame0(InterfazManager* app) {
+void callbacks::pruebaGame0(Interfaz* app) {
 	std::cout << "pruebaGame0" << std::endl;
 }
-void callbacks::pruebaGame1(InterfazManager* app) {
+void callbacks::pruebaGame1(Interfaz* app) {
 	std::cout << "pruebaGame1" << std::endl;
 }
-void callbacks::pruebaGame2(InterfazManager* app) {
+void callbacks::pruebaGame2(Interfaz* app) {
 	std::cout << "pruebaGame2" << std::endl;
 }
-void callbacks::pruebaGame3(InterfazManager* app) {
+void callbacks::pruebaGame3(Interfaz* app) {
 	std::cout << "pruebaGame3" << std::endl;
 }
 
@@ -29,29 +29,28 @@ void callbacks::pruebaGame3(InterfazManager* app) {
 #pragma region PanelHeroes
 #include "CombatManager.h"
 
-// fallan al coger el dato del template/sheet_
-void callbacks::infoHeroe01(InterfazManager* app) {
+void callbacks::infoHeroe01(Interfaz* app) {
 	Entity* e = app->getEntity();
 	CombatManager* c = GETCMP2(e, CombatManager);
 	string name = c->getCharacter(0, HERO)->name();
 	std::cout << "heroe 01: " << name << std::endl;
 }
 
-void callbacks::infoHeroe02(InterfazManager* app) {
+void callbacks::infoHeroe02(Interfaz* app) {
 	Entity* e = app->getEntity();
 	CombatManager* c = GETCMP2(e, CombatManager);
 	string name = c->getCharacter(1, HERO)->name();
 	std::cout << "heroe 02: " << name << std::endl;
 }
 
-void callbacks::infoHeroe03(InterfazManager* app) {
+void callbacks::infoHeroe03(Interfaz* app) {
 	Entity* e = app->getEntity();
 	CombatManager* c = GETCMP2(e, CombatManager);
 	string name = c->getCharacter(2, HERO)->name();
 	std::cout << "heroe 03: " << name << std::endl;
 }
 
-void callbacks::infoHeroe04(InterfazManager* app) {
+void callbacks::infoHeroe04(Interfaz* app) {
 	Entity* e = app->getEntity();
 	CombatManager* c = GETCMP2(e, CombatManager);
 	string name = c->getCharacter(2, HERO)->name();
@@ -66,8 +65,12 @@ void callbacks::infoHeroe04(InterfazManager* app) {
 #include "../TheElementalMaze.h"
 #include "PlayerMotion.h"
 
-// la primera vez no funcionan, en las siguientes ejecuciones sí
-void callbacks::rotarDerecha(InterfazManager* app)
+void callbacks::movCommand(int movType)
+{
+	cout << movType << endl;
+}
+
+void callbacks::rotarDerecha(Interfaz* app)
 {
 	/*Entity* e = app->getEntity();
 	GETCMP2(e, PlayerMotion)->rotarDerecha();*/
@@ -76,7 +79,7 @@ void callbacks::rotarDerecha(InterfazManager* app)
 	c->rotarDerecha();
 }
 
-void callbacks::rotarIzquierda(InterfazManager* app)
+void callbacks::rotarIzquierda(Interfaz* app)
 {
 	/*Entity* e = app->getEntity();
 	GETCMP2(e, PlayerMotion)->rotarIzquierda();*/
@@ -85,7 +88,7 @@ void callbacks::rotarIzquierda(InterfazManager* app)
 	c->rotarIzquierda();
 }
 
-void callbacks::avanzar(InterfazManager* app)
+void callbacks::avanzar(Interfaz* app)
 {
 	TheElementalMaze* maze = static_cast<TheElementalMaze*>(app->getEntity());
 	//Entity* e = maze->getPlayer();
@@ -94,7 +97,7 @@ void callbacks::avanzar(InterfazManager* app)
 	c->avanzar();
 }
 
-void callbacks::interactuar(InterfazManager* app)
+void callbacks::interactuar(Interfaz* app)
 {
 	std::cout << "has interactuado" << std::endl;
 }
@@ -105,24 +108,24 @@ void callbacks::interactuar(InterfazManager* app)
 
 #pragma region PanelInformation
 
-void callbacks::inventario(InterfazManager* app)
+void callbacks::inventario(Interfaz* app)
 {
 	std::cout << "has abierto el inventario" << std::endl;
 }
 
-void callbacks::pocionVida(InterfazManager* app)
+void callbacks::pocionVida(Interfaz* app)
 {
-	std::cout << "has usado la poción de vida" << std::endl;
+	std::cout << "has usado la pociï¿½n de vida" << std::endl;
 }
 
-void callbacks::pocionMana(InterfazManager* app)
+void callbacks::pocionMana(Interfaz* app)
 {
-	std::cout << "has usado la poción de maná" << std::endl;
+	std::cout << "has usado la pociï¿½n de manï¿½" << std::endl;
 }
 
-void callbacks::configuracion(InterfazManager* app)
+void callbacks::configuracion(Interfaz* app)
 {
-	std::cout << "has usado el botón de configuración y ayuda" << std::endl;
+	std::cout << "has usado el botï¿½n de configuraciï¿½n y ayuda" << std::endl;
 }
 
 #pragma endregion
@@ -131,9 +134,9 @@ void callbacks::configuracion(InterfazManager* app)
 
 #pragma region PanelChatMapa
 
-void callbacks::chat(InterfazManager* app)
+void callbacks::chat(Interfaz* app)
 {
-	std::cout << "has usado el botón de chat" << std::endl;
+	std::cout << "has usado el botï¿½n de chat" << std::endl;
 }
 
 #pragma endregion
@@ -142,22 +145,22 @@ void callbacks::chat(InterfazManager* app)
 
 #pragma region PanelCombate
 
-void callbacks::ataqueNormal(InterfazManager* app)
+void callbacks::ataqueNormal(Interfaz* app)
 {
 	std::cout << "ataque cuerpo a cuerpo" << std::endl;
 }
 
-void callbacks::ataqueMagico(InterfazManager* app)
+void callbacks::ataqueMagico(Interfaz* app)
 {
 	std::cout << "ataque magico" << std::endl;
 }
 
-void callbacks::defensa(InterfazManager* app)
+void callbacks::defensa(Interfaz* app)
 {
 	std::cout << "te has defendido" << std::endl;
 }
 
-void callbacks::huida(InterfazManager* app)
+void callbacks::huida(Interfaz* app)
 {
 	std::cout << "escapaste" << std::endl;
 }

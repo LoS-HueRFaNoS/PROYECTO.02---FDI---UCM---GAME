@@ -1,14 +1,15 @@
 #pragma once
 #include "src/Entity.h"
 #include "src/CombatManager.h"
-#include "src/CharacterManager.h"
-#include "src/InterfazManager.h"
+#include "src/Interfaz.h"
 #include "src/Laberinto.h"
 #include "src/PlayerMotion.h"
 #include "src/PlayerViewer.h"
+#include "src/CharacterManager.h"
 #include "src/ItemManager.h"
-using jv = jute::jValue;
-// A los componentes se pueden acceder mediante la entidad y se pueden comunicar entre sí
+
+
+// A los componentes se pueden acceder mediante la entidad y se pueden comunicar entre sï¿½
 // del mismo modo, mediante el puente que es la entidad.
 
 enum GameState {
@@ -23,7 +24,8 @@ private:
 	CombatManager* combatManager_; // compt
 	Entity* laberintoE_; // 
 	Entity* player_; // 
-	InterfazManager* uiManager_; // compt
+	Interfaz* uiManager_;
+	InterfazManager* iManager_; // compt
 	ItemManager* itemManager_; //
 	Laberinto* laberintoC_;	//compt
 	PlayerMotion* playerMotion_; // compt
@@ -32,8 +34,9 @@ private:
 	bool pause_ = false;
 
 public:
-	TheElementalMaze(SDLGame* game, EntityManager* mngr, CharacterManager* chMngr) :
+	TheElementalMaze(SDLGame* game, EntityManager* mngr, CharacterManager* chMngr, InterfazManager* iMngr) :
 		characterManager_(chMngr),
+		iManager_(iMngr),
 		Entity(game, mngr)
 	{};
 	virtual ~TheElementalMaze() {};

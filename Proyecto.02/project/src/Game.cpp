@@ -9,12 +9,16 @@
 #include "SDLGame.h"
 #include "SDL_macros.h"
 #include "MazePos.h"
+#include "Manager.h"
 
 // Nuestro includes
+#include "CharacterManager.h"
 #include "CombatManager.h"
-#include "InterfazManager.h"
+#include "Interfaz.h"
+#include "InterfazManger.h"
 #include "PlayerMotion.h"
 #include "PlayerViewer.h"
+#include "../TheElementalMaze.h"
 //
 
 using namespace std;
@@ -49,7 +53,9 @@ void Game::initGame()
 
 	characterManager_ = new CharacterManager(game_);
 
-	gameManager_ = new TheElementalMaze(game_, entityManager_, characterManager_);
+	interfazManager_ = new InterfazManager(game_);
+
+	gameManager_ = new TheElementalMaze(game_, entityManager_, characterManager_, interfazManager_);
 
 	entityManager_->addEntity(gameManager_);
 	

@@ -37,9 +37,9 @@
     <ClCompile Include="src\Game.cpp" />
     <ClCompile Include="src\HabilityResources.cpp" />
     <ClCompile Include="src\InputHandler.cpp" />
-    <ClCompile Include="src\InterfazManager.cpp" />
     <ClCompile Include="src\Item.cpp" />
     <ClCompile Include="src\ItemManager.cpp" />
+    <ClCompile Include="src\Interfaz.cpp" />
     <ClCompile Include="src\jute.cpp" />
     <ClCompile Include="src\Laberinto.cpp" />
     <ClCompile Include="src\main.cpp" />
@@ -91,6 +91,8 @@
     <ClInclude Include="src\InterfazManager.h" />
     <ClInclude Include="src\Item.h" />
     <ClInclude Include="src\ItemManager.h" />
+    <ClInclude Include="src\Interfaz.h" />
+    <ClInclude Include="src\InterfazManger.h" />
     <ClInclude Include="src\jute.h" />
     <ClInclude Include="src\Laberinto.h" />
     <ClInclude Include="src\Manager.h" />
