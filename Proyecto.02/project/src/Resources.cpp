@@ -13,6 +13,7 @@ vector<Resources::ImageInfo> Resources::images_ {
 		{ Asteroid, "resources/images/asteroid.png" }, //
 		{ Heart, "resources/images/heart.png" }, //
 		{ WhiteRect, "resources/images/whiterect.png" }, //
+		{ posMiniMap, "resources/images/pasillos/posJugador.png"},//
 		{ camino_izq, "resources/images/pasillos/camino_izq.png"}, //
 		{ camino_der, "resources/images/pasillos/camino_der.png"}, //
 		{ camino_del, "resources/images/pasillos/camino_del.png"}, //

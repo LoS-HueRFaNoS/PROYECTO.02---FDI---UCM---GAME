@@ -31,10 +31,11 @@ vector<bool> Casilla::checkCell()
 {
 	return direcciones;
 }
-void Casilla::casillaRender(int x, int y)
+void Casilla::casillaRender(int x, int y )
 {
 	SDL_Rect dest = { x, y, 28, 20 };
 	Texture* texturaSuelo;
+	Texture* texturaPosActual;
 	Texture* texturaPared = nullptr;
 	auto manager = game_->getTextureMngr();
 
@@ -45,12 +46,12 @@ void Casilla::casillaRender(int x, int y)
 	}
 	else if (visib == noEntrado)
 	{
-		texturaSuelo = manager->getTexture(Resources::no_visitado);
+		texturaSuelo = manager->getTexture(Resources::no_entrado);
 		texturaSuelo->render(dest);
 	}
 	else if (visib == visitado)
 	{
-		texturaSuelo = manager->getTexture(Resources::no_visitado);
+		texturaSuelo = manager->getTexture(Resources::visitado);
 		texturaSuelo->render(dest);
 
 		for (int i = 0; i < direcciones.size(); ++i)
@@ -78,6 +79,13 @@ void Casilla::casillaRender(int x, int y)
 			}
 
 		}
+
+	}
+
+	if (esPosActual)
+	{
+		texturaPosActual = manager->getTexture(Resources::posMiniMap);
+		texturaPosActual->render(dest,angulo);
 
 	}
 	

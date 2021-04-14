@@ -8,13 +8,14 @@ using namespace std;
 
 
 enum  Visibilidad { noVisitado, noEntrado,visitado };
-
 class Casilla
 {
 private:
 	//int look;
 	vector<bool> direcciones;
 	bool esSalida;
+	bool esPosActual = false;
+	int angulo = 0;
 	Visibilidad visib;
 	vector<enemyTemplate> enemyEnum;
 	vector< Chest> cofres;
@@ -29,6 +30,8 @@ public:
 	Visibilidad getVisibilidad() {return visib; }
 	void setVisibilidad(Visibilidad vi) { visib = vi; }
 	void setSalida() { esSalida = true; }
+	void setPosActual(bool value) { esPosActual = value; }
+	void setLook(int ang) { angulo = ang; }
 	void setDirs(Look dir) { direcciones[dir] = true; }
 	bool isExit() { return esSalida; }
 	void casillaRender(int x, int y);

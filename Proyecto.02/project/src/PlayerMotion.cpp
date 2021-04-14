@@ -33,7 +33,8 @@ void PlayerMotion::rotarDerecha()
 {
 	x = int(pos->getPos().getX());
 	y = int(pos->getPos().getY());
-	casillaActual = lab->getCasillaInfo(x, y)->checkCell();
+	Casilla* cas = lab->getCasillaInfo(x, y);
+	casillaActual = cas->checkCell();
 
 	sent = pos->getLook();
 	if (sent == Oeste)
@@ -42,7 +43,7 @@ void PlayerMotion::rotarDerecha()
 		sent++;
 
 	pos->setLook(sent);
-
+	cas->setLook(sent*90);
 	switch (pos->getLook())
 	{
 	case Norte:
@@ -64,7 +65,8 @@ void PlayerMotion::rotarIzquierda()
 {
 	x = int(pos->getPos().getX());
 	y = int(pos->getPos().getY());
-	casillaActual = lab->getCasillaInfo(x, y)->checkCell();
+	Casilla* cas = lab->getCasillaInfo(x, y) ;
+	casillaActual = cas->checkCell();
 
 	auto sent = pos->getLook();
 	if (sent == Norte)
@@ -72,7 +74,7 @@ void PlayerMotion::rotarIzquierda()
 	else
 		sent--;
 	pos->setLook(sent);
-
+	cas->setLook(sent*90);
 	switch (pos->getLook())
 	{
 	case Norte:
@@ -94,35 +96,38 @@ void PlayerMotion::avanzar()
 {
 	x = int(pos->getPos().getX());
 	y = int(pos->getPos().getY());
-	casillaActual = lab->getCasillaInfo(x, y)->checkCell();
+	Casilla* cas = lab->getCasillaInfo(x, y);
+	casillaActual = cas ->checkCell();
 
 	if (casillaActual[pos->getLook()])
 	{
+		cas->setPosActual(false);
 		switch (pos->getLook())
 		{
 		case Norte:
-			if (y - 1 >= 0)
-			{
+			//if (y - 1 >= 0)
+			//{
+
 				pos->setPos(Vector2D(x, y - 1));
-			}
+			//}
 			break;
 		case Este:
-			if (x + 1 < lab->mazeWidth())
-			{
+			//if (x + 1 < lab->mazeWidth())
+			//{
 				pos->setPos(Vector2D(x + 1, y));
-			}
+			//}
 			break;
 		case Sur:
-			if (y + 1 < lab->mazeHeigh())
-			{
+			//if (y + 1 < lab->mazeHeigh())
+			//{
 				pos->setPos(Vector2D(x, y + 1));
-			}
+			//}
 			break;
 		case Oeste:
-			if (x - 1 >= 0)
-			{
+			//if (x - 1 >= 0)
+			//{
 				pos->setPos(Vector2D(x - 1, y));
-			}
+			//}
 			break;
 		}
 		/*cout << "Estas en la casilla " << pos->getPos() << ".	\n";
@@ -142,7 +147,38 @@ void PlayerMotion::debugear()
 {
 	cout << "Estas en la casilla " << pos->getPos() << ".	\n";
 
+	
 	Casilla* cas = lab->getCasillaInfo(pos->getPos().getX(), pos->getPos().getY());
+	cas->setVisibilidad(Visibilidad::visitado);
+	cas->setPosActual(true);
+	cas->setLook(pos->getLook()*90);
+
+	vector<bool> vecinos = cas->checkCell();
+	for (int k = 0; k < vecinos.size(); k++)
+	{
+		if (vecinos[k])
+		{
+			switch (k)
+			{
+			case Norte:
+				if (lab->getCasillaInfo(pos->getPos().getX(), pos->getPos().getY() - 1)->getVisibilidad() == Visibilidad::noVisitado)
+					lab->getCasillaInfo(pos->getPos().getX(), pos->getPos().getY() - 1)->setVisibilidad(Visibilidad::noEntrado);
+				break;
+			case Este:
+				if (lab->getCasillaInfo(pos->getPos().getX() + 1, pos->getPos().getY())->getVisibilidad() == Visibilidad::noVisitado)
+					lab->getCasillaInfo(pos->getPos().getX() + 1, pos->getPos().getY())->setVisibilidad(Visibilidad::noEntrado);
+				break;
+			case Sur:
+				if (lab->getCasillaInfo(pos->getPos().getX(), pos->getPos().getY() + 1)->getVisibilidad() == Visibilidad::noVisitado)
+					lab->getCasillaInfo(pos->getPos().getX(), pos->getPos().getY() + 1)->setVisibilidad(Visibilidad::noEntrado);
+				break;
+			case Oeste:
+				if (lab->getCasillaInfo(pos->getPos().getX() - 1, pos->getPos().getY())->getVisibilidad() == Visibilidad::noVisitado)
+					lab->getCasillaInfo(pos->getPos().getX() - 1, pos->getPos().getY())->setVisibilidad(Visibilidad::noEntrado);
+				break;
+			}
+		}
+	}
 	vector<enemyTemplate>* enemigo = cas->getEnemy();
 
 	for (int i = 0; i < enemigo->size(); i++)

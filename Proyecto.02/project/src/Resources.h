@@ -15,6 +15,7 @@ public:
 		Asteroid,
 		Heart,
 		WhiteRect,
+		posMiniMap,
 		camino_izq,
 		camino_der,
 		camino_del,
