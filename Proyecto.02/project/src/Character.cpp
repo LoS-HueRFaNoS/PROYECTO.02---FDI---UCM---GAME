@@ -61,7 +61,8 @@ bool Character::savingThrow(int save, rpgLogic::mainStat stat)
 {
 	cout << "Saving throw (" << save << "): " << endl;
 	bool saved = save < throw20PlusMod(stat, false);
-	cout << saved ? "Successful throw\n" : "Failed throw\n";
+	string mess = saved ? "Successful throw\n" : "Failed throw\n";
+	cout << mess;
 	return saved;
 }
 

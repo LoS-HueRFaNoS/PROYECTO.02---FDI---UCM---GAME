@@ -1,5 +1,6 @@
 #include "CombatManager.h"
 #include "RPGLogic.h"
+#include "../TheElementalMaze.h"
 
 
 #pragma region CombatePorConsola
@@ -85,7 +86,6 @@ void CombatManager::passTurn()
 	if (!checkEnd()) {
 		for (std::vector<Character*>::iterator it = _turnQueue.begin(); it != _turnQueue.end();) {
 			if ((*it)->isDead() && (*it)->getType()) {
-				_exp += dynamic_cast<Enemy*>(*it)->getExp();
 				it = _turnQueue.erase(it);
 			}
 			else {
@@ -122,6 +122,11 @@ void CombatManager::endCombat()
 	}
 	else
 		cout << "PERDISTE, ASI ES LA VIDA" << endl;
+
+	_heroes.clear();
+	for (Enemy* e : _enemies) {
+		static_cast<TheElementalMaze*>(entity_)->getCharacterManager()->removeEntiy(e);
+	}
 }
 
 void CombatManager::castHability(Hability* hability)
@@ -220,6 +225,12 @@ void CombatManager::calculateTurns()
 	currentCharacter = _turnQueue[0];
 }
 
+void CombatManager::calculateExp()
+{
+	for (Enemy* e : _enemies)
+		_exp += e->getExp();
+}
+
 
 void CombatManager::onStateChanged()
 {
@@ -232,6 +243,7 @@ void CombatManager::onStateChanged()
 		_exp = 0;
 		currentCharacter = nullptr;
 		calculateTurns();
+		calculateExp();
 		changeState(START_TURN);
 		break;
 	case PASS_TURN:

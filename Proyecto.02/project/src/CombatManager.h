@@ -69,6 +69,8 @@ private:
 
 	void calculateTurns();
 
+	void calculateExp();
+
 	void passTurn();
 
 	bool checkEnd();

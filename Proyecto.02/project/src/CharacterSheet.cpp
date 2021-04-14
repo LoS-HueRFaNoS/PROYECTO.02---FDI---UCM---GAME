@@ -5,7 +5,7 @@ bool CharacterSheet::recieveDamage(int damage, rpgLogic::damageType type)
 {
 	float res = weaknesses.getWeakness(type);
 
-	int damageAfterRes = damage - (damage * int(res));
+	int damageAfterRes = int(damage - (damage * res));
 
 	cout << name << " recieves " << damageAfterRes << " damage" << "( " << damage << " " << (int)(res * 100) << "% RES)" << endl;
 
