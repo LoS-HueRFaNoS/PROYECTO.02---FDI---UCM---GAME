@@ -43,6 +43,7 @@ public:
 	}
 
 	void loadFromTemplate(jute::jValue v, heroTemplate t);
+
 	void loadFromTemplate(jute::jValue v, enemyTemplate t);
 
 	void recieveDamage(int damage, damageType type);
@@ -142,19 +143,12 @@ private:
 
 	virtual void loadFromJson(jute::jValue v, int t);
 
-	virtual void manageTurn(CombatManager* cm);
+	virtual void manageTurn(CombatManager* cm){}
 
 	virtual void init() {
 		//_equipement = addComponent<Equipement>();
 		Character::init();
 	}
-
-
-#pragma region CombatePorConsola
-
-	void consoleTurn(CombatManager* cm);
-
-#pragma endregion
 
 public:
 	Hero(SDLGame* game, EntityManager* mngr, TheElementalMaze* gameManager) :Character(game, mngr, gameManager, HERO) {
@@ -168,6 +162,12 @@ public:
 	Armor* getArmor() { return _armor; }
 
 	void giveArmor(Armor* a) { _armor = a; }
+
+	void endCombat();
+
+	void showSpellList();
+
+	void manageInput(CombatManager* cm, int input);
 };
 
 #pragma endregion

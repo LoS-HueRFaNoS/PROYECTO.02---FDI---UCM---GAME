@@ -57,7 +57,7 @@ void TheElementalMaze::init()
 	combatManager_->addCharacter(e2);
 	combatManager_->addCharacter(e3);
 
-	//combatManager_->startCombat();
+	combatManager_->startCombat();
 
 
 	cout << "Characters Loaded" << endl;

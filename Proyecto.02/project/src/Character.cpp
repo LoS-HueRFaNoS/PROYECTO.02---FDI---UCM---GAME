@@ -130,55 +130,43 @@ void Hero::loadFromJson(jute::jValue v, int t) {
 	_armor = gameManager_->getItemManager()->getArmorFromId(armorId(idRArmor));
 }
 
-void Hero::manageTurn(CombatManager* cm)
+void Hero::endCombat()
 {
-	consoleTurn(cm);
-}
 
-#pragma region CombatePorConsola
+}
 
 #include <iomanip>
 
-void Hero::consoleTurn(CombatManager* cm)
+void Hero::showSpellList()
 {
 	cout << "\nSpells: " << endl;
 
 	for (int i = 0; i < _habilities.size(); i++)
 		cout << i << ". " << setw(30) << _habilities[i]->name() << _habilities[i]->getMana() << setw(15) << " MP" << _habilities[i]->description() << endl;
 
-	int spell;
-
-	cout << "Choose a spell to cast (-1 to skip turn): ";
-
-	while (true) {
-
-		cin >> spell;
-		if (spell == -1)
-			break;
-		if (!cin.good() || spell >= _habilities.size()) {
-			cin.clear();
-			cin.ignore(INT_MAX, '\n');
-			cout << "Use a valid index please: ";
-		}
-		else if (_habilities[spell]->getMana() > _sheet->manaPoints()) {
-			cin.clear();
-			cin.ignore(INT_MAX, '\n');
-			cout << "Not enough mana, try again: ";
-		}
-		else
-		{
-			cin.clear();
-			cin.ignore(INT_MAX, '\n');
-			cm->castHability(_habilities[spell]);
-			//_sheet->setManaPoints(_sheet->manaPoints() - _habilities[spell]->getMana());
-			break;
-		}
-		cin.sync();
-	}
-	cin.sync();
+	cout << "Choose a spell to cast (Enter to skip turn): \n";
 }
 
-#pragma endregion
+
+void Hero::manageInput(CombatManager* cm, int input)
+{
+	if (input == -1) {
+		cm->changeState(END_TURN);
+		return;
+	}
+	if (input >= _habilities.size()) {
+		cout << "Use a valid index please:\n";
+	}
+	else if (_habilities[input]->getMana() > _sheet->manaPoints()) {
+		cout << "Not enough mana, try again:\n";
+	}
+	else
+	{
+		cm->castHability(_habilities[input]);
+		//_sheet->setManaPoints(_sheet->manaPoints() - _habilities[spell]->getMana());
+		return;
+	}
+}
 
 #pragma endregion
 
@@ -223,6 +211,7 @@ void Enemy::loadFromJson(jute::jValue v, int t)
 void Enemy::manageTurn(CombatManager* cm)
 {
 	cout << "AQUI EL ENEMIGO HACE COSAS" << endl;
+	cm->changeState(END_TURN);
 }
 
 #pragma endregion
