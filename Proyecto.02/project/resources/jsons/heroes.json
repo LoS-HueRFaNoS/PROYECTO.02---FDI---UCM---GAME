@@ -156,6 +156,7 @@
       "Equipement": {
         "Check": true,
         "ListWeapons": [
+          0
         ],
         "ListArmors": [
           0

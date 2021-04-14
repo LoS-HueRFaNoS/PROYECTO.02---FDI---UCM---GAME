@@ -1,10 +1,13 @@
 #pragma once
 #include <vector>
 #include "Entity.h"
+#include "Character.h"
+#include "RPGLogic.h"
+#include "Item.h"
 using namespace std;
 
 
-const static enum  Visibilidad { noVisitado, noEntrado,visitado };
+enum  Visibilidad { noVisitado, noEntrado,visitado };
 
 class Casilla
 {
@@ -13,8 +16,8 @@ private:
 	vector<bool> direcciones;
 	bool esSalida;
 	Visibilidad visib;
-	//vector<Enemys*> enemigos;
-	//vector<Chests*> cofres;
+	vector<enemyTemplate> enemyEnum;
+	vector< Chest> cofres;
 
 public:
 	Casilla();
@@ -28,5 +31,14 @@ public:
 	void setSalida() { esSalida = true; }
 	void setDirs(Look dir) { direcciones[dir] = true; }
 	bool isExit() { return esSalida; }
+	void addEnemy(enemyTemplate e) {
+		enemyEnum.push_back(e);
+	}
+	vector<enemyTemplate>* getEnemy() { return &enemyEnum; }
+	void addChest(ItemType it, int itId)
+	{
+		cofres.push_back({ it,itId });
+	}
+	vector<Chest>* getChest() { return &cofres; }
 };
 

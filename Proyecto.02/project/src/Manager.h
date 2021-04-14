@@ -17,6 +17,7 @@ public:
 	void update();
 	void draw();
 	Entity* addEntity();
+	void addEntity(Entity* e);
 
 	//template<typename T, typename ... TArgs>
 	//T* addButtonEntity(TArgs&& ...mArgs);
@@ -26,7 +27,7 @@ public:
 	ButtonInfo* addButtonInfoEntity();*/
 
 
-private:
+protected:
 	SDLGame* game_;
 	std::vector<std::unique_ptr<Entity>> entities;
 };

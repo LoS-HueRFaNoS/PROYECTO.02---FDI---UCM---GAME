@@ -11,31 +11,32 @@ void CombatManager::consoleCombat()
 {
 	system("CLS");
 
-	mostratEstadoEquipos();
+	showTeams();
 
-	mostrarCola();
+	showQ();
 
 	cout << "---------- PRESS ENTER TO START TURN ----------" << endl;
-
+	cin.ignore(INT_MAX, '\n');
 	cin.get();
+	cin.sync();
 
 	currentCharacter->startTurn(this);
 
 	cout << "---------- PRESS ENTER TO END TURN ----------" << endl;
-
-	cin.clear();    // Restore input stream to working state
-	cin.ignore(100, '\n');    // Get rid of any garbage that user might have entered
+	cin.ignore(INT_MAX, '\n');
 	cin.get();
+	cin.sync();
+
 	passTurn();
 }
 
-void CombatManager::mostratEstadoEquipos()
+void CombatManager::showTeams()
 {
 	cout << "---------- HEROES ----------" << endl;
 	for (Hero* h : _heroes) {
 		CharacterSheet* s = h->getComponent<CharacterSheet>(ecs::CharacterSheet);
 		cout << std::setfill(' ') << std::left << setw(12) << s->name << setw(15) << "HP " + to_string(s->hitPoints()) + "/" + to_string(s->maxHitPoints()) <<
-			setw(15) << "MP " + to_string(s->manaPoints()) + "/" + to_string(s->maxManaPoints()) <<
+			setw(15) << "MP " + to_string(s->manaPoints()) + "/" + to_string(s->maxManaPoints()) << std::right <<
 			" STR " << std::setfill('0') << setw(2) << s->getStat(rpgLogic::STR).value << "  CON " << std::setfill('0') << setw(2) <<
 			s->getStat(rpgLogic::CON).value << "  DEX " << std::setfill('0') << setw(2) << s->getStat(rpgLogic::DEX).value << "  INT " <<
 			std::setfill('0') << setw(2) << s->getStat(rpgLogic::INT).value << endl;
@@ -49,7 +50,7 @@ void CombatManager::mostratEstadoEquipos()
 			cout << std::setfill(' ') << std::left << setw(10) << s->name << std::right << setw(8) << "DEAD" << endl;
 		else {
 			cout << std::setfill(' ') << std::left << setw(12) << s->name << setw(15) << "HP " + to_string(s->hitPoints()) + "/" + to_string(s->maxHitPoints()) <<
-				setw(15) << "MP " + to_string(s->manaPoints()) + "/" + to_string(s->maxManaPoints()) <<
+				setw(15) << "MP " + to_string(s->manaPoints()) + "/" + to_string(s->maxManaPoints()) << std::right <<
 				" STR " << std::setfill('0') << setw(2) << s->getStat(rpgLogic::STR).value << "  CON " << std::setfill('0') << setw(2) <<
 				s->getStat(rpgLogic::CON).value << "  DEX " << std::setfill('0') << setw(2) << s->getStat(rpgLogic::DEX).value << "  INT " <<
 				std::setfill('0') << setw(2) << s->getStat(rpgLogic::INT).value << endl;
@@ -58,7 +59,7 @@ void CombatManager::mostratEstadoEquipos()
 
 }
 
-void CombatManager::mostrarCola()
+void CombatManager::showQ()
 {
 	cout << std::left << std::setfill(' ') << "\n---------- TURN QUEUE ----------" << endl;
 
@@ -78,6 +79,7 @@ void CombatManager::startCombat()
 {
 	_turn = 0;
 	_exp = 0;
+	_combatEnd = false;
 	currentCharacter = nullptr;
 	calculateTurns();
 	currentCharacter = _turnQueue[0];
@@ -85,17 +87,46 @@ void CombatManager::startCombat()
 
 void CombatManager::passTurn()
 {
-	for (std::vector<Character*>::iterator it = _turnQueue.begin(); it != _turnQueue.end();) {
-		if ((*it)->isDead() && (*it)->getType()) {
-			_exp += dynamic_cast<Enemy*>(*it)->getExp();
-			it = _turnQueue.erase(it);
+	if (!checkEnd()) {
+		for (std::vector<Character*>::iterator it = _turnQueue.begin(); it != _turnQueue.end();) {
+			if ((*it)->isDead() && (*it)->getType()) {
+				_exp += dynamic_cast<Enemy*>(*it)->getExp();
+				it = _turnQueue.erase(it);
+			}
+			else {
+				it++;
+			}
 		}
-		else {
-			it++;
-		}
+		_turn = ++_turn % _turnQueue.size();
+		currentCharacter = _turnQueue[_turn];
 	}
-	_turn = ++_turn % _turnQueue.size();
-	currentCharacter = _turnQueue[_turn];
+	else
+		endCombat();
+}
+
+bool CombatManager::checkEnd()
+{
+	bool end = true;
+	for (Hero* h : _heroes)
+		end *= h->isDead();
+	if (end) {
+		_win = false;
+		return true;
+	}
+	end = true;
+	for (Enemy* e : _enemies)
+		end *= e->isDead(); 
+	return end;
+}
+
+void CombatManager::endCombat()
+{
+	_combatEnd = true;
+	if (_win) {
+		cout << "GANASTE, ERES BUENISIMO NO ?" << endl << _exp << " DE EXPERIENCIA GANADA" << endl;
+	}
+	else
+		cout << "PERDISTE, ASI ES LA VIDA" << endl;
 }
 
 void CombatManager::castHability(Hability* hability)
@@ -128,12 +159,15 @@ void CombatManager::castHability(Hability* hability)
 
 void CombatManager::castToTeam(characterType team, Hability* hability)
 {
-	if (team)
+	if (team) {
 		for (Enemy* e : _enemies)
-			throwHability(e, hability);
-	else
+			if (!e->isDead())throwHability(e, hability);
+	}
+	else {
 		for (Hero* h : _heroes)
-			throwHability(h, hability);
+			if (!h->isDead())throwHability(h, hability);
+	}
+
 }
 
 void CombatManager::castToSingleTarget(characterType team, Hability* hability)
@@ -161,11 +195,16 @@ void CombatManager::castToSingleTarget(characterType team, Hability* hability)
 	while (true) {
 
 		cin >> target;
-		if (target < maxTarget && target >= 0)
+		if (!cin.good() || !(target < maxTarget && target >= 0)) {
+			cin.clear();
+			cin.ignore(INT_MAX, '\n');
+			cout << "Use a valid index please: ";
+		}
+		else if (target < maxTarget && target >= 0)
 			break;
-		else
-			cout << "Wrong target, te explico como contar o que ?" << endl;
+		cin.sync();
 	}
+	cin.sync();
 
 	throwHability(team ? dynamic_cast<Character*>(_enemies[target]) : dynamic_cast<Character*>(_heroes[target]), hability);
 }
@@ -210,5 +249,6 @@ void CombatManager::calculateTurns()
 
 void CombatManager::update()
 {
-	consoleCombat();
+	if (!_combatEnd)
+		consoleCombat();
 }

@@ -15,7 +15,6 @@
 #include "InterfazManager.h"
 #include "PlayerMotion.h"
 #include "PlayerViewer.h"
-#include "../TheElementalMaze.h"
 //
 
 using namespace std;
@@ -23,6 +22,7 @@ using namespace std;
 Game::Game() :
 	game_(nullptr), //
 	entityManager_(nullptr), //
+	characterManager_(nullptr), //
 	exit_(false) {
 	initGame();
 }
@@ -31,64 +31,37 @@ Game::~Game() {
 	closeGame();
 }
 
-void Game::initGame() {
-
+void Game::initGame()
+{
+	int initTime = 0;
 	game_ = SDLGame::init("VAMOS A LLORAR CON SDL", _WINDOW_WIDTH_, _WINDOW_HEIGHT_);
+
+	Texture* tex_ = new Texture(game_->getRenderer(), "resources/images/cargando.png");
+	SDL_Rect dest = { 0, 0, int(game_->getWindowWidth()), int(game_->getWindowHeight()) };
+	SDL_SetRenderDrawColor(game_->getRenderer(), COLOR(0x00AAAAFF));
+	SDL_RenderClear(game_->getRenderer());
+	tex_->render(dest);
+	SDL_RenderPresent(game_->getRenderer());
+
+	game_->initResources();
 
 	entityManager_ = new EntityManager(game_);
 
-	TheElementalMaze* TEM = static_cast<TheElementalMaze*>(entityManager_->addEntity());
-	TEM->init(game_, entityManager_);
+	characterManager_ = new CharacterManager(game_);
 
-	//Hero* wizard = new Hero(game_, entityManager_);
-	//Hero* warrior = new Hero(game_, entityManager_);
-	//Hero* rogue = new Hero(game_, entityManager_);
-	//Hero* cleric = new Hero(game_, entityManager_);
-	//Enemy* e1 = new Enemy(game_, entityManager_);
-	//Enemy* e2 = new Enemy(game_, entityManager_);
-	//Enemy* e3 = new Enemy(game_, entityManager_);
+	gameManager_ = new TheElementalMaze(game_, entityManager_, characterManager_);
 
-	//wizard->loadFromTemplate(rpgLogic::WIZARD);
-	//warrior->loadFromTemplate(rpgLogic::WARRIOR);
-	//rogue->loadFromTemplate(rpgLogic::ROGUE);
-	//cleric->loadFromTemplate(rpgLogic::CLERIC);
-	//e1->loadFromTemplate(rpgLogic::ZOMBIE);
-	//e2->loadFromTemplate(rpgLogic::ZOMBIE);
-	//e3->loadFromTemplate(rpgLogic::ZOMBIE);
+	entityManager_->addEntity(gameManager_);
+	
+	gameManager_->init();
 
-	//wizard->addHability<Fireball>();
-	//wizard->addHability<SingleTargetAttackExample>();
-	//wizard->addHability<SelfHealExample>();
-	//wizard->addHability<AllyTeamAttackExample>();
-
-	//warrior->addHability<SingleTargetAttackExample>();
-	//warrior->addHability<AllyTeamAttackExample>();
-
-	//rogue->addHability<SingleTargetAttackExample>();
-	//rogue->addHability<AllyTeamAttackExample>();
-
-	//cleric->addHability<SingleTargetHealxample>();
-	//cleric->addHability<SelfHealExample>();
-	//cleric->addHability<AllyTeamHealExample>();
-	//cleric->addHability<AllyTeamAttackExample>();
-
-	//cm->addCharacter(wizard);
-	//cm->addCharacter(warrior);
-	//cm->addCharacter(rogue);
-	//cm->addCharacter(cleric);
-	//cm->addCharacter(e1);
-	//cm->addCharacter(e2);
-	//cm->addCharacter(e3);
-
-	//cm->startCombat();
-
-	//cout << "Characters Loaded" << endl;
-	//
+	int endTime = 0;
 
 }
 
 void Game::closeGame() {
 	delete entityManager_;
+	//delete TEM;
 	delete game_;
 }
 
@@ -139,6 +112,7 @@ void Game::handleInput() {
 
 void Game::update() {
 	entityManager_->update();
+	characterManager_->update();
 }
 
 void Game::render() {
@@ -146,7 +120,7 @@ void Game::render() {
 	SDL_RenderClear(game_->getRenderer());
 
 	entityManager_->draw();
+	characterManager_->draw();
 
 	SDL_RenderPresent(game_->getRenderer());
 }
-

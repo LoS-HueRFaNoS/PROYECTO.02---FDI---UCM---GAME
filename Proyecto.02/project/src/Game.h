@@ -2,9 +2,10 @@
 
 #include <vector>
 
-#include "Manager.h"
+#include "CharacterManager.h"
 #include "SDLGame.h"
 #include "checkML.h"
+#include "../TheElementalMaze.h"
 class Game {
 
 public:
@@ -25,6 +26,9 @@ private:
 	void render();
 	SDLGame* game_;
 	EntityManager* entityManager_;
+	CharacterManager* characterManager_;
+	TheElementalMaze* gameManager_;
+
 	bool exit_;
 
 	const static int _WINDOW_WIDTH_ = 1200;

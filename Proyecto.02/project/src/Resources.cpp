@@ -51,7 +51,7 @@ vector<Resources::ImageInfo> Resources::images_ {
 	{ Huida,  "resources/sprites/iconos combate/huir.png" },
 	{ Slot, "resources/sprites/iconos inventario/inventorySlot.png" },
 
-	// Armas clasicas ¿?
+	// Armas clasicas ï¿½?
 	{ Desarmado, "resources/images/iconos armas/joker.png"}, ///TODO
 	{ Baston, "resources/images/iconos armas/baston.png"},
 	{ Daga, "resources/images/iconos armas/daga.png"},
@@ -115,8 +115,9 @@ vector<Resources::SoundInfo> Resources::sounds_ {
 
 vector<Resources::JsonInfo> Resources::jsons_{
 //
-	{ Heroes, "resources/jsons/heroes.json" }, //
-	{ Enemies, "resources/jsons/enemies.json" }, //
-	{ Weapons, "resources/jsons/characters.json" }, //characters.json
-	{ Armors, "resources/jsons/characters.json" } //characters.json
+		{ Heroes, "resources/jsons/heroes.json" }, //
+		{ Enemies, "resources/jsons/enemies.json" }, //
+		{ Weapons, "resources/jsons/pruebasArmas.json" }, //
+		{ Armors, "resources/jsons/pruebasArmaduras.json" } //
 };
+

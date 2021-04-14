@@ -29,27 +29,32 @@ void callbacks::pruebaGame3(InterfazManager* app) {
 #pragma region PanelHeroes
 #include "CombatManager.h"
 
+// fallan al coger el dato del template/sheet_
 void callbacks::infoHeroe01(InterfazManager* app) {
 	Entity* e = app->getEntity();
-	string name = GETCMP2(e, CombatManager)->getHero(hero01)->name();
+	CombatManager* c = GETCMP2(e, CombatManager);
+	string name = c->getCharacter(0, HERO)->name();
 	std::cout << "heroe 01: " << name << std::endl;
 }
 
 void callbacks::infoHeroe02(InterfazManager* app) {
 	Entity* e = app->getEntity();
-	string name = GETCMP2(e, CombatManager)->getHero(hero02)->name();
+	CombatManager* c = GETCMP2(e, CombatManager);
+	string name = c->getCharacter(1, HERO)->name();
 	std::cout << "heroe 02: " << name << std::endl;
 }
 
 void callbacks::infoHeroe03(InterfazManager* app) {
 	Entity* e = app->getEntity();
-	string name = GETCMP2(e, CombatManager)->getHero(hero03)->name();
+	CombatManager* c = GETCMP2(e, CombatManager);
+	string name = c->getCharacter(2, HERO)->name();
 	std::cout << "heroe 03: " << name << std::endl;
 }
 
 void callbacks::infoHeroe04(InterfazManager* app) {
 	Entity* e = app->getEntity();
-	string name = GETCMP2(e, CombatManager)->getHero(hero04)->name();
+	CombatManager* c = GETCMP2(e, CombatManager);
+	string name = c->getCharacter(2, HERO)->name();
 	std::cout << "heroe 04: " << name << std::endl;
 }
 
@@ -58,24 +63,35 @@ void callbacks::infoHeroe04(InterfazManager* app) {
 // ----------------------------------------------------
 
 #pragma region PanelMovimiento
+#include "../TheElementalMaze.h"
 #include "PlayerMotion.h"
 
+// la primera vez no funcionan, en las siguientes ejecuciones sí
 void callbacks::rotarDerecha(InterfazManager* app)
 {
-	Entity* e = app->getEntity();
-	GETCMP2(e, PlayerMotion)->rotarDerecha();
+	/*Entity* e = app->getEntity();
+	GETCMP2(e, PlayerMotion)->rotarDerecha();*/
+	TheElementalMaze* maze = static_cast<TheElementalMaze*>(app->getEntity());
+	PlayerMotion* c = maze->getPlayerMotion();
+	c->rotarDerecha();
 }
 
 void callbacks::rotarIzquierda(InterfazManager* app)
 {
-	Entity* e = app->getEntity();
-	GETCMP2(e, PlayerMotion)->rotarIzquierda();
+	/*Entity* e = app->getEntity();
+	GETCMP2(e, PlayerMotion)->rotarIzquierda();*/
+	TheElementalMaze* maze = static_cast<TheElementalMaze*>(app->getEntity());
+	PlayerMotion* c = maze->getPlayerMotion();
+	c->rotarIzquierda();
 }
 
 void callbacks::avanzar(InterfazManager* app)
 {
-	Entity* e = app->getEntity();
-	GETCMP2(e, PlayerMotion)->avanzar();
+	TheElementalMaze* maze = static_cast<TheElementalMaze*>(app->getEntity());
+	//Entity* e = maze->getPlayer();
+	//PlayerMotion* c = GETCMP2(e, PlayerMotion);
+	PlayerMotion* c = maze->getPlayerMotion();
+	c->avanzar();
 }
 
 void callbacks::interactuar(InterfazManager* app)
