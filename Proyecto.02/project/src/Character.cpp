@@ -18,7 +18,7 @@ void Character::startTurn(CombatManager* cm)
 	for (std::vector<Condition*>::iterator it = _conditions.begin(); it != _conditions.end();) {
 		if (!(*it)->onTurnStarted()) {
 			Condition* temp = (*it);
-			removeCondition((*it)->id());
+			removeCondition((*it)->getId());
 			it = _conditions.erase(it);
 			delete temp;
 		}
