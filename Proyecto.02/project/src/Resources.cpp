@@ -85,13 +85,13 @@ vector<Resources::ImageInfo> Resources::images_ {
 
 	// Armaduras	
 	{ Acolchada, "resources/sprites/iconos armas/acolchada.png" },
-	{ CueroTachonado, "resources/sprites/iconos armas/joker.png" }, ///TODO
-	{ CotaEscamas, "resources/sprites/iconos armas/joker.png" }, ///TODO
-	{ Coraza, "resources/sprites/iconos armas/joker.png" }, ///TODO
-	{ SemiPlacas, "resources/sprites/iconos armas/joker.png" }, ///TODO
-	{ CotaDeMalla, "resources/sprites/iconos armas/joker.png" }, ///TODO
+	{ CueroTachonado, "resources/sprites/iconos armas/cuero_tachonado.png" },
+	{ CotaEscamas, "resources/sprites/iconos armas/cota_escamas.png" },
+	{ Coraza, "resources/sprites/iconos armas/coraza.png" },
+	{ SemiPlacas, "resources/sprites/iconos armas/semiplacas.png" },
+	{ CotaMalla, "resources/sprites/iconos armas/cota_mallas.png" },
 	{ Bandas, "resources/sprites/iconos armas/bandas.png" },
-	{ Placas, "resources/sprites/iconos armas/joker.png" } ///TODO
+	{ Placas, "resources/sprites/iconos armas/placas.png" }
 };
 
 vector<Resources::TextMsgInfo> Resources::messages_ {
