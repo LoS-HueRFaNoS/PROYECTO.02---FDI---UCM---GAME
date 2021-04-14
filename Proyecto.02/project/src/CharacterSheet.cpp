@@ -5,11 +5,11 @@ bool CharacterSheet::recieveDamage(int damage, rpgLogic::damageType type)
 {
 	float res = weaknesses.getWeakness(type);
 
-	damage -= damage * int(res);
+	int damageAfterRes = damage - (damage * int(res));
 
-	cout << name << " recieves " << damage << " damage" << endl;
+	cout << name << " recieves " << damageAfterRes << " damage" << "( " << damage << " " << (int)(res * 100) << "% RES)" << endl;
 
-	_hitPoints -= damage;
+	_hitPoints -= damageAfterRes;
 
 	if (_hitPoints < 0)
 		_hitPoints = 0;
@@ -35,5 +35,5 @@ void CharacterSheet::recieveHealing(int healing)
 
 	//cout << name << " aumenta su "<< stat << buff << " puntos" << endl;
 
-	
+
 }*/

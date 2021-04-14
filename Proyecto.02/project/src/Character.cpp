@@ -60,7 +60,9 @@ void Character::recieveBuff(int buff, mainStat stat)
 bool Character::savingThrow(int save, rpgLogic::mainStat stat)
 {
 	cout << "Saving throw (" << save << "): " << endl;
-	return save < throw20PlusMod(stat, false);
+	bool saved = save < throw20PlusMod(stat, false);
+	cout << saved ? "Successful throw\n" : "Failed throw\n";
+	return saved;
 }
 
 int Character::throw20PlusMod(mainStat mod, bool crit)
