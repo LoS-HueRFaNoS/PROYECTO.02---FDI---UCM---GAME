@@ -97,21 +97,21 @@ void CombatManager::passTurn()
 		changeState(START_TURN);
 	}
 	else
-		endCombat();
+		changeState(COMBAT_END);
 }
 
 bool CombatManager::checkEnd()
 {
 	bool end = true;
 	for (Hero* h : _heroes)
-		end = h->isDead(); // antes habia un *=
+		end *= h->isDead();
 	if (end) {
 		_win = false;
 		return true;
 	}
 	end = true;
 	for (Enemy* e : _enemies)
-		end = e->isDead(); // antes habia un *=
+		end *= e->isDead();
 	return end;
 }
 
