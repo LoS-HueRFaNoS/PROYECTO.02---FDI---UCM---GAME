@@ -3,10 +3,7 @@
 #include "Component.h"
 #include "Character.h"
 #include "checkML.h"
-
 #include <queue>
-
-using Objective = std::vector<Character*>;
 
 enum CombatState {
 	COMBAT_START,

@@ -1,8 +1,9 @@
 #include <fstream>
 #include <iostream>
 #include "CombatManager.h"
+#include "ItemManager.h"
+#include "Character.h"
 #include "../TheElementalMaze.h"
-//#include "Equipement.h"
 
 using namespace rpgLogic;
 
@@ -126,11 +127,11 @@ void Hero::loadFromJson(jute::jValue v, int t) {
 
 	int r1 = v["Characters"][t]["Equipement"]["ListWeapons"].size();
 	int idRWeapon = v["Characters"][t]["Equipement"]["ListWeapons"][game_->getRandGen()->nextInt(0, r1)].as_int();
-	_weapon = gameManager_->getItemManager()->getWeaponFromId(weaponId(idRWeapon));
+	_weapon = TheElementalMaze::instance()->getItemManager()->getWeaponFromId(weaponId(idRWeapon));
 
 	int r2 = v["Characters"][t]["Equipement"]["ListArmors"].size();
 	int idRArmor = v["Characters"][t]["Equipement"]["ListArmors"][game_->getRandGen()->nextInt(0, r2)].as_int();
-	_armor = gameManager_->getItemManager()->getArmorFromId(armorId(idRArmor));
+	_armor = TheElementalMaze::instance()->getItemManager()->getArmorFromId(armorId(idRArmor));
 }
 
 void Hero::endCombat()

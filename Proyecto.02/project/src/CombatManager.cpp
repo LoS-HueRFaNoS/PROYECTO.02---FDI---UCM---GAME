@@ -1,5 +1,6 @@
 #include "CombatManager.h"
 #include "RPGLogic.h"
+#include "CharacterManager.h"
 #include "../TheElementalMaze.h"
 
 
@@ -125,7 +126,7 @@ void CombatManager::endCombat()
 
 	_heroes.clear();
 	for (Enemy* e : _enemies) {
-		static_cast<TheElementalMaze*>(entity_)->getCharacterManager()->removeEntiy(e);
+		TheElementalMaze::instance()->getCharacterManager()->removeEntiy(e);
 	}
 }
 

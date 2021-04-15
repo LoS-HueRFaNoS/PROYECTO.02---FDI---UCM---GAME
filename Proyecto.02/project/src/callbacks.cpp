@@ -72,7 +72,7 @@ void callbacks::rotarDerecha(InterfazManager* app)
 	/*Entity* e = app->getEntity();
 	GETCMP2(e, PlayerMotion)->rotarDerecha();*/
 	TheElementalMaze* maze = static_cast<TheElementalMaze*>(app->getEntity());
-	PlayerMotion* c = maze->getPlayerMotion();
+	PlayerMotion* c = maze->getPlayer()->getComponent<PlayerMotion>(ecs::PlayerMotion);
 	c->rotarDerecha();
 }
 
@@ -81,7 +81,7 @@ void callbacks::rotarIzquierda(InterfazManager* app)
 	/*Entity* e = app->getEntity();
 	GETCMP2(e, PlayerMotion)->rotarIzquierda();*/
 	TheElementalMaze* maze = static_cast<TheElementalMaze*>(app->getEntity());
-	PlayerMotion* c = maze->getPlayerMotion();
+	PlayerMotion* c = maze->getPlayer()->getComponent<PlayerMotion>(ecs::PlayerMotion);
 	c->rotarIzquierda();
 }
 
@@ -90,7 +90,7 @@ void callbacks::avanzar(InterfazManager* app)
 	TheElementalMaze* maze = static_cast<TheElementalMaze*>(app->getEntity());
 	//Entity* e = maze->getPlayer();
 	//PlayerMotion* c = GETCMP2(e, PlayerMotion);
-	PlayerMotion* c = maze->getPlayerMotion();
+	PlayerMotion* c = maze->getPlayer()->getComponent<PlayerMotion>(ecs::PlayerMotion);
 	c->avanzar();
 }
 
