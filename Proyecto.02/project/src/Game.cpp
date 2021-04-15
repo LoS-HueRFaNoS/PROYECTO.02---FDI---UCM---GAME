@@ -49,11 +49,9 @@ void Game::initGame()
 
 	characterManager_ = new CharacterManager(game_);
 
-	gameManager_ = new TheElementalMaze(game_, entityManager_, characterManager_);
+	gameManager_ = TheElementalMaze::initInstace(game_, entityManager_, characterManager_);
 
 	entityManager_->addEntity(gameManager_);
-	
-	gameManager_->init();
 
 	int endTime = 0;
 
@@ -61,7 +59,8 @@ void Game::initGame()
 
 void Game::closeGame() {
 	delete entityManager_;
-	//delete TEM;
+	delete characterManager_;
+	delete gameManager_;
 	delete game_;
 }
 

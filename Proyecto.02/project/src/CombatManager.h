@@ -3,10 +3,18 @@
 #include "Component.h"
 #include "Character.h"
 #include "checkML.h"
-
 #include <queue>
 
-using Objective = std::vector<Character*>;
+enum CombatState {
+	COMBAT_START,
+	PASS_TURN,
+	START_TURN,
+	ACTION_PHASE_SPELL,
+	ACTION_PHASE_TARGET,
+	END_TURN,
+	COMBAT_END,
+	NO_COMBAT
+};
 
 class CombatManager : public Component {
 private:
@@ -22,9 +30,15 @@ private:
 
 	int _exp = 0;
 
-	bool _combatEnd = true;
-
 	bool _win = true;
+
+	CombatState _state;
+
+	bool stateChanged = false;
+
+	Hability* _habilityToCast = nullptr;
+	characterType targetList = ENEMY;
+	int maxTargets = 0;
 
 	struct Initiative {
 		characterType type;
@@ -46,7 +60,13 @@ private:
 		}
 	};
 
+	void onStateChanged();
+
+	void sendKeyEvent(int key);
+
 	void calculateTurns();
+
+	void calculateExp();
 
 	void passTurn();
 
@@ -56,9 +76,9 @@ private:
 
 	void throwHability(Character* objective, Hability* hability);
 
-	void castToTeam(characterType team, Hability* hability);
+	void castToTeam();
 
-	void castToSingleTarget(characterType team, Hability* hability);
+	void castToSingleTarget(int input);
 
 #pragma region CombatePorConsola
 
@@ -67,6 +87,8 @@ private:
 	void showTeams();
 
 	void showQ();
+
+	void showTargets();
 
 #pragma endregion
 public:
@@ -91,6 +113,8 @@ public:
 	void startCombat();
 
 	void castHability(Hability* hability);
+
+	void changeState(CombatState state) { _state = state; stateChanged = true; }
 
 	Character* getCharacter(int index, characterType type) {
 		return  type ? static_cast<Character*>(_enemies[index]) : static_cast<Character*>(_heroes[index]);

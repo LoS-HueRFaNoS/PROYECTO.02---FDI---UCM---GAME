@@ -431,6 +431,8 @@ public:
 
 	void addStack() { _stack++; }
 
+	virtual Conditions_Id getId() { return id(); }
+
 	static Conditions_Id id() { return _lastConditionId_; }
 };
 
@@ -447,6 +449,8 @@ public:
 	virtual void init();
 
 	virtual bool onTurnStarted();
+
+	virtual Conditions_Id getId() { return id(); }
 
 	static Conditions_Id id() { return EJEMPLODAÑOPORTURNO; }
 };

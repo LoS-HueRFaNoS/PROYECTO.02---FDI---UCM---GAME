@@ -149,7 +149,7 @@ bool EjemploDañoPorTurno::onTurnStarted()
 	cout << "Sangrado: ";
 	_objective->recieveDamage(throwDice(_stack, 3, true), PIERCE);
 	if (!--_turnsLeft) {
-		cout << "SE ACABO EL DAÑO" << endl;
+		cout << "SE ACABO EL DANYO" << endl;
 		return false;
 	}
 	cout << "TURNOS RESTANTES: " << _turnsLeft << endl;

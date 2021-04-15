@@ -1,8 +1,9 @@
 #include <fstream>
 #include <iostream>
 #include "CombatManager.h"
+#include "ItemManager.h"
+#include "Character.h"
 #include "../TheElementalMaze.h"
-//#include "Equipement.h"
 
 using namespace rpgLogic;
 
@@ -18,7 +19,7 @@ void Character::startTurn(CombatManager* cm)
 	for (std::vector<Condition*>::iterator it = _conditions.begin(); it != _conditions.end();) {
 		if (!(*it)->onTurnStarted()) {
 			Condition* temp = (*it);
-			removeCondition((*it)->id());
+			removeCondition((*it)->getId());
 			it = _conditions.erase(it);
 			delete temp;
 		}
@@ -60,7 +61,10 @@ void Character::recieveBuff(int buff, mainStat stat)
 bool Character::savingThrow(int save, rpgLogic::mainStat stat)
 {
 	cout << "Saving throw (" << save << "): " << endl;
-	return save < throw20PlusMod(stat, false);
+	bool saved = save < throw20PlusMod(stat, false);
+	string mess = saved ? "Successful throw\n" : "Failed throw\n";
+	cout << mess;
+	return saved;
 }
 
 int Character::throw20PlusMod(mainStat mod, bool crit)
@@ -119,67 +123,54 @@ void Hero::loadFromJson(jute::jValue v, int t) {
 
 	_sheet->weaknesses = Weaknesses(weak);
 
-	_weapon = gameManager_->getItemManager()->getRandomWeapon();
-	_armor = gameManager_->getItemManager()->getRandomArmor();
+	_marcial = v["Characters"][t]["Marcial"].as_bool();
 
-	//Escoge un arma aleatoria simple
-	//int idRWeapons = v["Characters"][t]["Equipement"]["ListWeapons"].as_int();
-	//int r2 = v["Characters"][t]["Equipement"]["ListArmors"].size();
-	//int idRArmor = v["Characters"][t]["Equipement"]["ListArmors"][game_->getRandGen()->nextInt(0, r2)].as_int();
+	int r1 = v["Characters"][t]["Equipement"]["ListWeapons"].size();
+	int idRWeapon = v["Characters"][t]["Equipement"]["ListWeapons"][game_->getRandGen()->nextInt(0, r1)].as_int();
+	_weapon = TheElementalMaze::instance()->getItemManager()->getWeaponFromId(weaponId(idRWeapon));
 
-	// JSON DE ARMAS Y ARMADURAS 
-
+	int r2 = v["Characters"][t]["Equipement"]["ListArmors"].size();
+	int idRArmor = v["Characters"][t]["Equipement"]["ListArmors"][game_->getRandGen()->nextInt(0, r2)].as_int();
+	_armor = TheElementalMaze::instance()->getItemManager()->getArmorFromId(armorId(idRArmor));
 }
 
-void Hero::manageTurn(CombatManager* cm)
+void Hero::endCombat()
 {
-	consoleTurn(cm);
-}
 
-#pragma region CombatePorConsola
+}
 
 #include <iomanip>
 
-void Hero::consoleTurn(CombatManager* cm)
+void Hero::showSpellList()
 {
 	cout << "\nSpells: " << endl;
 
 	for (int i = 0; i < _habilities.size(); i++)
 		cout << i << ". " << setw(30) << _habilities[i]->name() << _habilities[i]->getMana() << setw(15) << " MP" << _habilities[i]->description() << endl;
 
-	int spell;
-
-	cout << "Choose a spell to cast (-1 to skip turn): ";
-
-	while (true) {
-
-		cin >> spell;
-		if (spell == -1)
-			break;
-		if (!cin.good() || spell >= _habilities.size()) {
-			cin.clear();
-			cin.ignore(INT_MAX, '\n');
-			cout << "Use a valid index please: ";
-		}
-		else if (_habilities[spell]->getMana() > _sheet->manaPoints()) {
-			cin.clear();
-			cin.ignore(INT_MAX, '\n');
-			cout << "Not enough mana, try again: ";
-		}
-		else
-		{
-			cin.clear();
-			cin.ignore(INT_MAX, '\n');
-			cm->castHability(_habilities[spell]);
-			//_sheet->setManaPoints(_sheet->manaPoints() - _habilities[spell]->getMana());
-			break;
-		}
-		cin.sync();
-	}
-	cin.sync();
+	cout << "Choose a spell to cast (Enter to skip turn): \n";
 }
 
-#pragma endregion
+
+void Hero::manageInput(CombatManager* cm, int input)
+{
+	if (input == -1) {
+		cm->changeState(END_TURN);
+		return;
+	}
+	if (input >= _habilities.size()) {
+		cout << "Use a valid index please:\n";
+	}
+	else if (_habilities[input]->getMana() > _sheet->manaPoints()) {
+		cout << "Not enough mana, try again:\n";
+	}
+	else
+	{
+		cm->castHability(_habilities[input]);
+		//_sheet->setManaPoints(_sheet->manaPoints() - _habilities[spell]->getMana());
+		return;
+	}
+}
 
 #pragma endregion
 
@@ -197,9 +188,15 @@ void Enemy::loadFromJson(jute::jValue v, int t)
 
 	_sheet->name = v["Characters"][t]["Name"].as_string();
 
+	description = v["Characters"][t]["Description"].as_string();
+
 	// Igual con la vida y el mana
 	int hp = v["Characters"][t]["HitPoints"].as_int();
 	int mp = v["Characters"][t]["ManaPoints"].as_int();
+
+	exp = v["Characters"][t]["Experience"].as_int();
+	coins = v["Characters"][t]["Coins"].as_int();
+
 	_sheet->setHitPoints(hp);
 	_sheet->setMaxHitPoints(hp);
 	_sheet->setManaPoints(mp);
@@ -218,6 +215,7 @@ void Enemy::loadFromJson(jute::jValue v, int t)
 void Enemy::manageTurn(CombatManager* cm)
 {
 	cout << "AQUI EL ENEMIGO HACE COSAS" << endl;
+	cm->changeState(END_TURN);
 }
 
 #pragma endregion

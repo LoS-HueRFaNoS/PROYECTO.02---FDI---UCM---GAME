@@ -18,14 +18,7 @@ public:
 	void draw();
 	Entity* addEntity();
 	void addEntity(Entity* e);
-
-	//template<typename T, typename ... TArgs>
-	//T* addButtonEntity(TArgs&& ...mArgs);
-	/*ButtonMovimiento* addButtonMovimientoEntity();
-	ButtonCombate* addButtonCombateEntity();
-	ButtonHeroes* addButtonHeroesEntity();
-	ButtonInfo* addButtonInfoEntity();*/
-
+	void removeEntiy(Entity* e);
 
 protected:
 	SDLGame* game_;

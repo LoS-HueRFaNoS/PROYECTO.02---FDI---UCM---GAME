@@ -35,40 +35,14 @@ void EntityManager::addEntity(Entity* e) {
 	entities.emplace_back(std::move(uPtr));
 }
 
-/*
-template<typename T, typename ... TArgs>
-T* EntityManager::addButtonEntity(TArgs&& ...mArgs) {
-	T* e(new T(std::forward<TArgs>(mArgs)...));
-	std::unique_ptr<Button> uPtr(e);
-	entities.emplace_back(std::move(uPtr));
-	return e;
+void EntityManager::removeEntiy(Entity* e)
+{
+	for (auto it = entities.begin(); it != entities.end();) {
+		if ((*it).get() == e) {
+			it = entities.erase(it);
+		}
+		else
+			it++;
+	}
 }
-*/
 
-//ButtonMovimiento* EntityManager::addButtonMovimientoEntity() {
-//	ButtonMovimiento* e = new ButtonMovimiento(game_, this);
-//	std::unique_ptr<Entity> uPtr(e);
-//	entities.emplace_back(std::move(uPtr));
-//	return e;
-//}
-//
-//ButtonCombate* EntityManager::addButtonCombateEntity() {
-//	ButtonCombate* e = new ButtonCombate(game_, this);
-//	std::unique_ptr<Entity> uPtr(e);
-//	entities.emplace_back(std::move(uPtr));
-//	return e;
-//}
-//
-//ButtonHeroes* EntityManager::addButtonHeroesEntity() {
-//	ButtonHeroes* e = new ButtonHeroes(game_, this);
-//	std::unique_ptr<Entity> uPtr(e);
-//	entities.emplace_back(std::move(uPtr));
-//	return e;
-//}
-//
-//ButtonInfo* EntityManager::addButtonInfoEntity() {
-//	ButtonInfo* e = new ButtonInfo(game_, this);
-//	std::unique_ptr<Entity> uPtr(e);
-//	entities.emplace_back(std::move(uPtr));
-//	return e;
-//}
