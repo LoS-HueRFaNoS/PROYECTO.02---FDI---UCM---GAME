@@ -26,6 +26,16 @@ enum Hability_Id {
 	DIVINEPROTECTION,
 	FLASH,
 	FREEZE,
+	WHIRLPOOL,
+	LIGHTBEAM,
+	DARKVORTEX,
+	FIREARROW,
+	MEDITATE,
+	LIGHTEN,
+	STRENGTHEN,
+	TOUGHEN,
+	BLOODTHIRST,
+	SACRIFICE,
 	_lasHabilityId_
 };
 
@@ -392,6 +402,202 @@ public:
 
 	void throwHability(Character* obj, bool critical)const override;
 };
+class Whirlpool : public Hability {
+public:
+	Whirlpool(Character* caster) :Hability(caster) {
+
+		level = 4;
+		_mana = 0;
+		_name = "Whirlpool";
+		_description = "Mas agua, a hace 1d8 a un enemigo frente a salvacion DEX (y reduce DEX)";
+
+		_damageType = WATER;
+		_habilityType = ATTACK;
+		_mod = INT;
+		_obj = SINGLEENEMY;
+	}
+
+	static Hability_Id id() { return WHIRLPOOL; }
+
+	void throwHability(Character* obj, bool critical)const override;
+};
+class LightBeam : public Hability {
+public:
+	LightBeam(Character* caster) :Hability(caster) {
+
+		level = 4;
+		_mana = 0;
+		_name = "Light Beam";
+		_description = "Muy bonito, pero doloroso, a hace 1d8 a un enemigo frente a salvacion DEX (y reduce DEX)";
+
+		_damageType = LIGHT;
+		_habilityType = ATTACK;
+		_mod = INT;
+		_obj = SINGLEENEMY;
+	}
+
+	static Hability_Id id() { return LIGHTBEAM; }
+
+	void throwHability(Character* obj, bool critical)const override;
+};
+class DarkVortex : public Hability {
+public:
+	DarkVortex(Character* caster) :Hability(caster) {
+
+		level = 4;
+		_mana = 0;
+		_name = "Dark Vortex";
+		_description = "No veo, a hace 1d8 a un enemigo frente a salvacion DEX (y reduce DEX)";
+
+		_damageType = DARK;
+		_habilityType = ATTACK;
+		_mod = INT;
+		_obj = SINGLEENEMY;
+	}
+
+	static Hability_Id id() { return DARKVORTEX; }
+
+	void throwHability(Character* obj, bool critical)const override;
+};
+
+class FireArrow : public Hability {
+public:
+	FireArrow(Character* caster) :Hability(caster) {
+
+		level = 4;
+		_mana = 0;
+		_name = "Fire Arrow";
+		_description = "Quema, a hace 1d8 a un enemigo frente a salvacion DEX (y reduce DEX)";
+
+		_damageType = FIRE;
+		_habilityType = ATTACK;
+		_mod = INT;
+		_obj = SINGLEENEMY;
+	}
+
+	static Hability_Id id() { return FIREARROW; }
+
+	void throwHability(Character* obj, bool critical)const override;
+};
+
+
+class Lighten: public Hability {
+public:
+	Lighten(Character* caster) :Hability(caster) {
+
+		level = 4;
+		_mana = 0;
+		_name = "Lighten";
+		_description = "Aumenta la destreza";
+
+		_damageType = LIGHT;
+		_habilityType = BUFF;
+		_mod = INT;
+		_obj = CASTER;
+	}
+
+	static Hability_Id id() { return LIGHTEN; }
+
+	void throwHability(Character* obj, bool critical)const override;
+};
+class Strengthen : public Hability {
+public:
+	Strengthen(Character* caster) :Hability(caster) {
+
+		level = 4;
+		_mana = 0;
+		_name = "Strengthen";
+		_description = "Aumenta la fuerza";
+
+		_damageType = LIGHT;
+		_habilityType = BUFF;
+		_mod = INT;
+		_obj = CASTER;
+	}
+
+	static Hability_Id id() { return STRENGTHEN; }
+
+	void throwHability(Character* obj, bool critical)const override;
+};
+class Toughen : public Hability {
+public:
+	Toughen(Character* caster) :Hability(caster) {
+
+		level = 4;
+		_mana = 0;
+		_name = "Toughen";
+		_description = "Aumenta la constitucion";
+
+		_damageType = LIGHT;
+		_habilityType = BUFF;
+		_mod = INT;
+		_obj = CASTER;
+	}
+
+	static Hability_Id id() { return TOUGHEN; }
+
+	void throwHability(Character* obj, bool critical)const override;
+};
+class Meditate: public Hability {
+public:
+	Meditate(Character* caster) :Hability(caster) {
+
+		level = 4;
+		_mana = 0;
+		_name = "Meditate";
+		_description = "Aumenta la inteligencia";
+
+		_damageType = LIGHT;
+		_habilityType = BUFF;
+		_mod = INT;
+		_obj = CASTER;
+	}
+
+	static Hability_Id id() { return MEDITATE; }
+
+	void throwHability(Character* obj, bool critical)const override;
+};
+
+class BloodThirst : public Hability {
+public:
+	BloodThirst(Character* caster) :Hability(caster) {
+
+		level = 4;
+		_mana = 0;
+		_name = "Blood Thirst";
+		_description = "Dame tu vida, a hace 1d8 a un enemigo frente a salvacion DEX y cura al usuario";
+
+		_damageType = LIGHT;
+		_habilityType = ATTACK;
+		_mod = INT;
+		_obj = SINGLEENEMY;
+	}
+
+	static Hability_Id id() { return BLOODTHIRST; }
+
+	void throwHability(Character* obj, bool critical)const override;
+};
+
+class Sacrifice : public Hability {
+public:
+	Sacrifice(Character* caster) :Hability(caster) {
+
+		level = 4;
+		_mana = 0;
+		_name = "Sacrificio";
+		_description = "Dame tu vida, a hace 1d8 a un enemigo frente a salvacion DEX x1.5 ,pero recibe daño de retroceso";
+
+		_damageType = LIGHT;
+		_habilityType = ATTACK;
+		_mod = INT;
+		_obj = SINGLEENEMY;
+	}
+
+	static Hability_Id id() { return SACRIFICE; }
+
+	void throwHability(Character* obj, bool critical)const override;
+};
+
 
 #pragma endregion
 

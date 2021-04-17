@@ -134,6 +134,92 @@ void Freeze::throwHability(Character* obj, bool critical) const //hay que mirar 
 	obj->recieveBuff(-3, DEX);
 }
 
+void Whirlpool::throwHability(Character* obj, bool critical) const //hay que mirar que hacer con el debuff y ajustar el ataque
+{
+	int damage = throwDice(1 + critical, 8, true);
+
+	damage = obj->savingThrow(10 + _caster->getMod(_mod), DEX) ? damage / 2 : damage;
+
+	obj->recieveDamage(damage, _damageType);
+	obj->recieveBuff(-3, STR);
+}
+
+void LightBeam::throwHability(Character* obj, bool critical) const //hay que mirar que hacer con el debuff y ajustar el ataque
+{
+	int damage = throwDice(1 + critical, 8, true);
+
+	damage = obj->savingThrow(10 + _caster->getMod(_mod), DEX) ? damage / 2 : damage;
+
+	obj->recieveDamage(damage, _damageType);
+	obj->recieveBuff(-3, DEX);
+}
+
+void DarkVortex::throwHability(Character* obj, bool critical) const //hay que mirar que hacer con el debuff y ajustar el ataque
+{
+	int damage = throwDice(1 + critical, 8, true);
+
+	damage = obj->savingThrow(10 + _caster->getMod(_mod), DEX) ? damage / 2 : damage;
+
+	obj->recieveDamage(damage, _damageType);
+	obj->recieveBuff(-3, DEX);
+}
+
+
+void Lighten::throwHability(Character* obj, bool critical) const
+{
+	mainStat buffedStat = DEX;
+	
+	obj->recieveBuff(2, buffedStat);
+}
+
+void Strengthen::throwHability(Character* obj, bool critical) const
+{
+	mainStat buffedStat = STR;
+
+	obj->recieveBuff(2, buffedStat);
+}
+
+void Toughen::throwHability(Character* obj, bool critical) const
+{
+	mainStat buffedStat = CON;
+
+	obj->recieveBuff(2, buffedStat);
+}
+
+void Meditate::throwHability(Character* obj, bool critical) const
+{
+	mainStat buffedStat = INT;
+
+	obj->recieveBuff(2, buffedStat);
+}
+
+void BloodThirst::throwHability(Character* obj, bool critical) const //hay que mirar que hacer con el debuff y ajustar el ataque
+{
+	Weapon* w = static_cast<Hero*>(_caster)->getWeapon();
+
+	int damage = throwDice(w->getNDice(), w->getDamage(), true);
+
+	damage = obj->savingThrow(10 + _caster->getMod(_mod), DEX) ? damage / 2 : damage;
+
+	obj->recieveDamage(damage, _damageType);
+	obj =_caster;
+	obj->recieveHealing(damage / 3);
+}
+
+void Sacrifice::throwHability(Character* obj, bool critical) const //hay que mirar que hacer con el debuff y ajustar el ataque
+{
+	Weapon* w = static_cast<Hero*>(_caster)->getWeapon();
+
+	int damage = throwDice(w->getNDice(), w->getDamage(), true);
+
+	damage = obj->savingThrow(10 + _caster->getMod(_mod), DEX) ? damage / 2 : damage;
+
+	obj->recieveDamage(damage * 1.5, _damageType);
+	obj =_caster;
+	obj->recieveDamage(damage / 5,_damageType);
+}
+
+
 #pragma endregion
 
 #pragma region CONDITION
