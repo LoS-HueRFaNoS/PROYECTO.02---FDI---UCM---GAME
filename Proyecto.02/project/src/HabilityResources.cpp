@@ -219,6 +219,30 @@ void Sacrifice::throwHability(Character* obj, bool critical) const //hay que mir
 	obj->recieveDamage(damage / 5,_damageType);
 }
 
+void DoubleShot::throwHability(Character* obj, bool critical) const 
+{
+	Weapon* w = static_cast<Hero*>(_caster)->getWeapon();
+
+	int damage = throwDice(w->getNDice(), w->getDamage(), true);
+
+	damage = obj->savingThrow(10 + _caster->getMod(_mod), DEX) ? damage / 2 : damage;
+
+	obj->recieveDamage(damage, _damageType);
+	
+	obj->recieveDamage(damage / 2, _damageType);
+}
+
+void ThrowingAxes::throwHability(Character* obj, bool critical) const //revisar que se tiran el numero correcto de dados
+{
+	Weapon* w = static_cast<Hero*>(_caster)->getWeapon();
+
+	int damage = throwDice(3, w->getDamage(), true);
+
+	damage = obj->savingThrow(10 + _caster->getMod(_mod), DEX) ? damage / 2 : damage;
+
+	obj->recieveDamage(damage, _damageType);
+
+}
 
 #pragma endregion
 

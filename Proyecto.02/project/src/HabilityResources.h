@@ -36,6 +36,8 @@ enum Hability_Id {
 	TOUGHEN,
 	BLOODTHIRST,
 	SACRIFICE,
+	DOUBLESHOT,
+	THROWINGAXES,
 	_lasHabilityId_
 };
 
@@ -584,7 +586,7 @@ public:
 
 		level = 4;
 		_mana = 0;
-		_name = "Sacrificio";
+		_name = "Sacrifice";
 		_description = "Dame tu vida, a hace 1d8 a un enemigo frente a salvacion DEX x1.5 ,pero recibe daño de retroceso";
 
 		_damageType = LIGHT;
@@ -597,6 +599,47 @@ public:
 
 	void throwHability(Character* obj, bool critical)const override;
 };
+
+class DoubleShot : public Hability {
+public:
+	DoubleShot(Character* caster) :Hability(caster) {
+
+		level = 4;
+		_mana = 0;
+		_name = "Double Shot";
+		_description = "Dispara 2 flechas a la vez, la segunda flecha hace la mitad de daño de la primera";
+
+		_damageType = LIGHT;
+		_habilityType = ATTACK;
+		_mod = DEX;
+		_obj = SINGLEENEMY;
+	}
+
+	static Hability_Id id() { return DOUBLESHOT; }
+
+	void throwHability(Character* obj, bool critical)const override;
+};
+
+class ThrowingAxes : public Hability { //revisar los modificadores
+public:
+	ThrowingAxes(Character* caster) :Hability(caster) {
+
+		level = 4;
+		_mana = 0;
+		_name = "Throwing Axes";
+		_description = "Lanza 3 hachas";
+
+		_damageType = LIGHT;
+		_habilityType = ATTACK;
+		_mod = DEX;
+		_obj = SINGLEENEMY;
+	}
+
+	static Hability_Id id() { return THROWINGAXES; }
+
+	void throwHability(Character* obj, bool critical)const override;
+};
+
 
 
 #pragma endregion
