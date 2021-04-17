@@ -126,7 +126,7 @@ void CombatManager::endCombat()
 
 	_heroes.clear();
 	for (Enemy* e : _enemies) {
-		TheElementalMaze::instance()->getCharacterManager()->removeEntiy(e);
+		TheElementalMaze::instance()->getCharacterManager()->removeEntity(e);
 	}
 }
 
