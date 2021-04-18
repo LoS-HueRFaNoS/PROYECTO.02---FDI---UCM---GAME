@@ -1,39 +1,37 @@
 #include "TheElementalMaze.h"
 
-void TheElementalMaze::init(SDLGame* game, EntityManager* mngr)
+void TheElementalMaze::init()
 {
 	// 1. Laberinto
-	laberinto = mngr->addEntity();
-	lab = laberinto->addComponent<Laberinto>(mngr); // esto es redundante ._.
-	lab->initFromFile();
+	laberintoE_ = mngr_->addEntity();
+	laberintoC_ = laberintoE_->addComponent<Laberinto>(10,10); // esto es redundante ._.
+	laberintoC_->createRandomMaze(Vector2D(0, 0));
 
 	// 2. Player
-	player = mngr->addEntity(); // lo primero en crearse debería ser el player ¿?
-	player->addComponent<MazePos>(Vector2D(0, 0));
-	plmot = player->addComponent<PlayerMotion>(SDLK_UP, SDLK_LEFT, SDLK_RIGHT, lab);
-	player->addComponent<PlayerViewer>(lab);
+	player_ = mngr_->addEntity(); // lo primero en crearse deberï¿½a ser el player ï¿½?
+	player_->addComponent<MazePos>(Vector2D(0, 0));
+	playerMotion_ = player_->addComponent<PlayerMotion>(SDLK_UP, SDLK_LEFT, SDLK_RIGHT, laberintoC_);
+	player_->addComponent<PlayerViewer>(laberintoC_);
 
 	// 3. Interfaz
-	F = addComponent<InterfazManager>();
+	uiManager_ = addComponent<Interfaz>(iManager_);
 
 	// 4. Personajes
-	//cm = addComponent<CombatManager>(); // al seguir por consola, bloquea el juego y faltan cosas que me he dejado
 
-	/*Hero* wizard = new Hero(game_, mngr);
-	Hero* warrior = new Hero(game_, mngr);
-	Hero* rogue = new Hero(game_, mngr);
-	Hero* cleric = new Hero(game_, mngr);
-	Enemy* e1 = new Enemy(game_, mngr);
-	Enemy* e2 = new Enemy(game_, mngr);
-	Enemy* e3 = new Enemy(game_, mngr);
+	characterManager_->setElementalMaze(this);
 
-	wizard->loadFromTemplate(rpgLogic::WIZARD);
-	warrior->loadFromTemplate(rpgLogic::WARRIOR);
-	rogue->loadFromTemplate(rpgLogic::ROGUE);
-	cleric->loadFromTemplate(rpgLogic::CLERIC);
-	e1->loadFromTemplate(rpgLogic::ZOMBIE);
-	e2->loadFromTemplate(rpgLogic::ZOMBIE);
-	e3->loadFromTemplate(rpgLogic::ZOMBIE);
+	itemManager_ = new ItemManager();
+
+	combatManager_ = addComponent<CombatManager>(); // al seguir por consola, bloquea el juego y faltan cosas que me he dejado
+
+	Hero* wizard = characterManager_->addHeroFromTemplate(WIZARD);
+	Hero* warrior = characterManager_->addHeroFromTemplate(WARRIOR);
+	Hero* rogue = characterManager_->addHeroFromTemplate(ROGUE);
+	Hero* cleric = characterManager_->addHeroFromTemplate(CLERIC);;
+
+	Enemy* e1 = characterManager_->addRandomEnemy();
+	Enemy* e2 = characterManager_->addRandomEnemy();
+	Enemy* e3 = characterManager_->addRandomEnemy();
 
 	wizard->addHability<Fireball>();
 	wizard->addHability<SingleTargetAttackExample>();
@@ -51,16 +49,17 @@ void TheElementalMaze::init(SDLGame* game, EntityManager* mngr)
 	cleric->addHability<AllyTeamHealExample>();
 	cleric->addHability<AllyTeamAttackExample>();
 
-	cm->addCharacter(wizard);
-	cm->addCharacter(warrior);
-	cm->addCharacter(rogue);
-	cm->addCharacter(cleric);
-	cm->addCharacter(e1);
-	cm->addCharacter(e2);
-	cm->addCharacter(e3);
+	combatManager_->addCharacter(wizard);
+	combatManager_->addCharacter(warrior);
+	combatManager_->addCharacter(rogue);
+	combatManager_->addCharacter(cleric);
+	combatManager_->addCharacter(e1);
+	combatManager_->addCharacter(e2);
+	combatManager_->addCharacter(e3);
 
-	cm->startCombat();
+	//combatManager_->startCombat();
 
-	cout << "Characters Loaded" << endl;*/
-	
+
+	cout << "Characters Loaded" << endl;
+
 }

@@ -26,3 +26,14 @@ void CharacterSheet::recieveHealing(int healing)
 	if (_hitPoints > _maxHitPoints)
 		_hitPoints = _maxHitPoints;
 }
+
+/*void CharacterSheet::recieveBuff(int buff,mainStat st)
+{
+	//cambiar el _hitPoints por el stat que aumenta
+
+	_stats[st].value += buff;
+
+	//cout << name << " aumenta su "<< stat << buff << " puntos" << endl;
+
+	
+}*/

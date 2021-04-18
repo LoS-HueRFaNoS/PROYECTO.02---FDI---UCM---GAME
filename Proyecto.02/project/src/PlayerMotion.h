@@ -15,6 +15,7 @@ public:
 	void rotarDerecha();
 	void rotarIzquierda();
 	void avanzar();
+	void debugear();
 private:
 	MazePos* pos;
 	SDL_KeyCode avance, giraIzq, giraDer;
