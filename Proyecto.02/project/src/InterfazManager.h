@@ -10,6 +10,7 @@ using namespace std;
 class InterfazManager : public Component {
 private:
 	vector<Panel*> allPanels;
+	vector<Entity*> entitiesV;
 	Cursor* c_;
 
 	Cursor* createCursor(Vector2D pos, uint width, uint height, Resources::TextureId image);
