@@ -25,9 +25,6 @@ public:
 	virtual void init(Vector2D pos, uint ancho, uint alto, Resources::TextureId imagen) {};
 
 	virtual void click() = 0;
-	/*virtual void click(InterfazManager* im) {
-		cb_(im);
-	};*/
 };
 
 enum class MovType { rotR, rotL, forward, touch };
@@ -40,8 +37,8 @@ public:
 
 	~ButtonMovimiento() {};
 
-	virtual void init(Vector2D pos, uint ancho, uint alto, Resources::TextureId imagen, uint movement) {
-		movementType_ = (MovType)movement;
+	virtual void init(Vector2D pos, uint ancho, uint alto, Resources::TextureId imagen, MovType movement) {
+		movementType_ = movement;
 		initComponents(pos, ancho, alto, imagen);
 	};
 

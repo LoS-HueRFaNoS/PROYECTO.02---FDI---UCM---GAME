@@ -3,9 +3,6 @@
 #include "Manager.h"
 #include "Button.h"
 
-typedef unsigned int uint;
-
-
 class InterfazManager : public EntityManager {
 
 public:
