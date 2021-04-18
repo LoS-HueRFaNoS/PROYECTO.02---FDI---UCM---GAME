@@ -2,10 +2,14 @@
 
 #include <vector>
 
-#include "CharacterManager.h"
 #include "SDLGame.h"
 #include "checkML.h"
-#include "../TheElementalMaze.h"
+
+class InterfazManager;
+class CharacterManager;
+class TheElementalMaze;
+class EntityManager;
+
 class Game {
 
 public:
@@ -28,6 +32,7 @@ private:
 	EntityManager* entityManager_;
 	CharacterManager* characterManager_;
 	TheElementalMaze* gameManager_;
+	InterfazManager* interfazManager_;
 
 	bool exit_;
 

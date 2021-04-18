@@ -11,10 +11,6 @@ public:
 
 	enum TextureId : std::size_t {
 		// images
-		Airplanes,
-		Asteroid,
-		Heart,
-		WhiteRect,
 		camino_izq,
 		camino_der,
 		camino_del,
@@ -62,7 +58,52 @@ public:
 		AtaqueNormal,
 		AtaqueMagico, 
 		Defensa,
-		Huida
+		Huida,
+
+		//Inventario
+		Slot,
+		EmptySword,
+		EmptyArmor,
+
+		//Objetos
+		Desarmado,
+		Baston,
+		Daga,
+		Clava,
+		HachaPequena,
+		Hoz,
+		Lanza,
+		MartilloPequeno,
+		Maza,
+		ArcoPequeno,
+		BallestaLigera,
+
+		//Armas Marciales
+		Alabarda,
+		Atarraga,
+		EspadaCorta,
+		EspadaLarga,
+		Espadon,
+		EspadaRopera,
+		HachaBatalla,
+		Guja,
+		Latigo,
+		LuceroAlba,
+		MartilloGuerra,
+		Pica,
+		Tridente,
+		ArcoLargo,
+		BallestaPesada,
+
+		//Armaduras
+		Acolchada,
+		CueroTachonado,
+		CotaEscamas,
+		Coraza,
+		SemiPlacas,
+		CotaMalla,
+		Bandas,
+		Placas
 	};
 
 	enum AudioId : std::size_t {

@@ -4,10 +4,6 @@
 
 class Entity;
 class Game;
-class ButtonMovimiento;
-class ButtonCombate;
-class ButtonHeroes;
-class ButtonInfo;
 
 class EntityManager {
 public:

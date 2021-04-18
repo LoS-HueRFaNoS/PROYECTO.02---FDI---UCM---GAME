@@ -5,15 +5,19 @@
 #include "Panel.h"
 #include "Cursor.h"
 
+class InterfazManager;
+
 using namespace std;
 
-class InterfazManager : public Component {
+class Interfaz : public Component {
+
 private:
+
+	InterfazManager* iManager;
 	vector<Panel*> allPanels;
 	Cursor* c_;
 
 	Cursor* createCursor(Vector2D pos, uint width, uint height, Resources::TextureId image);
-	Button* createButton(Panel* p, InterfazManager* im, CallBackOnClick* cb, Vector2D pos, uint width, uint height, Resources::TextureId image);
 	/*void createButtonFight(Panel* p, AtkType type, PlayerMotion* plmot, Vector2D pos, uint width, uint height, Resources::TextureId image);
 	void createButtonMovement(Panel * p, MovType type, PlayerMotion * plmot, Vector2D pos, uint width, uint height, Resources::TextureId image);
 	void createButtonHeroes(Panel * p, HeroNum type, PlayerMotion * plmot, Vector2D pos, uint width, uint height, Resources::TextureId image);
@@ -23,21 +27,22 @@ private:
 	void createMovement();
 	void createHeroes();
 	void createInfo();
-	void createMinimap(){}; //
-	void createInventory(){}; //
-	void createHeroesStats(){}; //
-	void createBigMap(){}; //
-	void createTurns(){}; //
-	void createSettings(){}; //
-	void createChat(){}; //
+	void createMinimap() {}; //
+	void createInventory();
+	void createHeroesStats() {}; //
+	void createBigMap() {}; //
+	void createTurns() {}; //
+	void createSettings() {}; //
+	void createChat() {}; //
 
 public:
-	InterfazManager() : 
-		Component(ecs::InterfazManager), 
-		allPanels(vector<Panel*>()), 
-		c_(nullptr) 
+	Interfaz(InterfazManager* i) :
+		Component(ecs::InterfazManager),
+		allPanels(vector<Panel*>()),
+		c_(nullptr),
+		iManager(i)
 	{};
-	virtual ~InterfazManager();
+	virtual ~Interfaz();
 
 	void createPanel(idPanel panelID);
 	void destroyPanel(idPanel panelID);

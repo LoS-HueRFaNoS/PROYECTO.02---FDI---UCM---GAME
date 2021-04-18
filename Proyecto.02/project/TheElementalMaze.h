@@ -8,7 +8,7 @@ class ItemManager;
 class Laberinto;
 class CharacterManager;
 
-// A los componentes se pueden acceder mediante la entidad y se pueden comunicar entre sí
+// A los componentes se pueden acceder mediante la entidad y se pueden comunicar entre sï¿½
 // del mismo modo, mediante el puente que es la entidad.
 
 enum GameState {
@@ -26,20 +26,23 @@ private:
 	CombatManager* combatManager_; // compt
 	Entity* laberinto_; // 
 	Entity* player_; // 
-	InterfazManager* uiManager_; // compt
+	Interfaz* uiManager_;
+	InterfazManager* iManager_; // compt
 	ItemManager* itemManager_; //
 	CharacterManager* characterManager_; // 
 
 	bool pause_ = false;
 
-	TheElementalMaze(SDLGame* game, EntityManager* mngr, CharacterManager* chMngr) :
+public:
+	TheElementalMaze(SDLGame* game, EntityManager* mngr, CharacterManager* chMngr, InterfazManager* iMngr) :
 		characterManager_(chMngr),
+		iManager_(iMngr),
 		Entity(game, mngr)
 	{};
 
 public:
 
-	inline static TheElementalMaze* initInstace(SDLGame* game, EntityManager* mngr, CharacterManager* chMngr) {
+	inline static TheElementalMaze* initInstace(SDLGame* game, EntityManager* mngr, CharacterManager* chMngr,InterfazManager* iMngr) {
 		assert(instance_.get() == nullptr);
 		instance_.reset(new TheElementalMaze(game, mngr, chMngr));
 		instance_.get()->init();

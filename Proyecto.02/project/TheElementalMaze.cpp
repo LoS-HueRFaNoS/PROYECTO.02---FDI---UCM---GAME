@@ -24,7 +24,7 @@ void TheElementalMaze::init()
 	player_->addComponent<PlayerViewer>(lab);
 
 	// 3. Interfaz
-	uiManager_ = addComponent<InterfazManager>();
+	uiManager_ = addComponent<Interfaz>(iManager_);
 
 	// 4. Personajes
 

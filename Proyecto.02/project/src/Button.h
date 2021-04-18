@@ -6,7 +6,6 @@
 
 typedef unsigned int uint;
 
-enum class MovType { rotR, rotL, forward, touch };
 enum class AtkType { normal, magic, defend, escape };
 enum class HeroNum { hero1, hero2, hero3, hero4 };
 enum class Inf { inventory, potionHealth, potionMana, chat, config };
@@ -14,73 +13,40 @@ enum class Inf { inventory, potionHealth, potionMana, chat, config };
 //class InterfazManager;
 class Button : public Entity
 {
-private:
-	//InterfazManager* im_;
-	//CallBackOnClick* cb_;
+protected:
+
+	void initComponents(Vector2D pos, uint ancho, uint alto, Resources::TextureId imagen);
+
 public:
-	Button(SDLGame* game, EntityManager* mngr) : 
+	Button(SDLGame* game, EntityManager* mngr) :
 		Entity(game, mngr)
-		//im_(nullptr),
-		//cb_(nullptr)
 	{};
-	virtual ~Button() {};
-	void init(InterfazManager* im, CallBackOnClick* cb, Vector2D pos, uint ancho, uint alto, Resources::TextureId imagen);
-	/*virtual void click(InterfazManager* im) { 
-		cb_(im); 
-	};*/
+	~Button() {};
+	virtual void init(Vector2D pos, uint ancho, uint alto, Resources::TextureId imagen) {};
+
+	virtual void click() = 0;
 };
 
-template<typename T>
-class ButtonType : public Entity
-{
+enum class MovType { rotR, rotL, forward, touch };
+
+class ButtonMovimiento : public Button {
 private:
-	//InterfazManager* im_;
-	//CallBackOnClick* cb_;
-	T* addon;
+	MovType movementType_;
 public:
-	ButtonType(SDLGame* game, EntityManager* mngr) :
-		Entity(game, mngr),
-		addon(nullptr)
-		//im_(nullptr),
-		//cb_(nullptr)
-	{};
-	virtual ~ButtonType() {};
-	void init(T* add, InterfazManager* im, CallBackOnClick* cb, Vector2D pos, uint ancho, uint alto, Resources::TextureId imagen);
-	/*virtual void click(InterfazManager* im) {
-		cb_(im);
-	};*/
-};
+	ButtonMovimiento(SDLGame* game, EntityManager* mngr) : Button(game, mngr), movementType_(MovType::touch){};
 
-//class ButtonMovimiento : public Button {
-//public:
-//	void setPlayerMotion(PlayerMotion* plmot) { playermotion_ = plmot; };
-//	void setMovType(MovType movType) { movementType_ = movType; };
-//private:
-//	MovType movementType_;
-//	PlayerMotion* playermotion_;
-//public:
-//	ButtonMovimiento(SDLGame* game, EntityManager* mngr) : Button(game, mngr) {};
-//	virtual void click(Game* i) override
-//	{
-//		switch (movementType_)
-//		{
-//		case MovType::rotR:
-//			playermotion_->rotarDerecha();
-//			break;
-//		case MovType::rotL:
-//			playermotion_->rotarIzquierda();
-//			break;
-//		case MovType::forward:
-//			playermotion_->avanzar();
-//			break;
-//		case MovType::touch:
-//			callbacks::interactuar(i);
-//			break;
-//		default:
-//			break;
-//		}
-//	}
-//};
+	~ButtonMovimiento() {};
+
+	virtual void init(Vector2D pos, uint ancho, uint alto, Resources::TextureId imagen, MovType movement) {
+		movementType_ = movement;
+		initComponents(pos, ancho, alto, imagen);
+	};
+
+	virtual void click() 
+	{
+		callbacks::movCommand((int)movementType_);
+	}
+};
 
 //class ButtonMovimiento : public Button {
 //public:
