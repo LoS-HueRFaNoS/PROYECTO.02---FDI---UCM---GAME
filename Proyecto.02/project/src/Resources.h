@@ -92,7 +92,7 @@ public:
 		Pica,
 		Tridente,
 		ArcoLargo,
-		BallestaPesada/*,
+		BallestaPesada,
 
 		//Armaduras
 		Acolchada,
@@ -102,7 +102,7 @@ public:
 		SemiPlacas,
 		CotaMalla,
 		Bandas,
-		Placas*/
+		Placas
 	};
 
 	enum AudioId : std::size_t {

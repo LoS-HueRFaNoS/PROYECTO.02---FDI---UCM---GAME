@@ -88,14 +88,14 @@ vector<Resources::ImageInfo> Resources::images_ {
 	{ BallestaPesada, "resources/sprites/iconos armas/ballesta_pesada.png" },
 
 	// Armaduras	
-	/*{ Acolchada, "resources/sprites/iconos armas/acolchada.png" },
-	{ CueroTachonado, "resources/sprites/iconos armas/cuero_tachonado.png" },
-	{ CotaEscamas, "resources/sprites/iconos armas/cota_escamas.png" },
-	{ Coraza, "resources/sprites/iconos armas/coraza.png" },
-	{ SemiPlacas, "resources/sprites/iconos armas/semiplacas.png" },
-	{ CotaMalla, "resources/sprites/iconos armas/cota_mallas.png" },
-	{ Bandas, "resources/sprites/iconos armas/bandas.png" },
-	{ Placas, "resources/sprites/iconos armas/placas.png" }*/
+	{ Acolchada, "resources/sprites/iconos armaduras/acolchada.png" },
+	{ CueroTachonado, "resources/sprites/iconos armaduras/cuero_tachonado.png" },
+	{ CotaEscamas, "resources/sprites/iconos armaduras/cota_escamas.png" },
+	{ Coraza, "resources/sprites/iconos armaduras/coraza.png" },
+	{ SemiPlacas, "resources/sprites/iconos armaduras/semiplacas.png" },
+	{ CotaMalla, "resources/sprites/iconos armaduras/cota_mallas.png" },
+	{ Bandas, "resources/sprites/iconos armaduras/bandas.png" },
+	{ Placas, "resources/sprites/iconos armaduras/placas.png" }
 };
 
 vector<Resources::TextMsgInfo> Resources::messages_ {
