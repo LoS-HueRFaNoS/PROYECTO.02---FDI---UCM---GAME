@@ -19,7 +19,7 @@ ul{
 	color:whitesmoke;
 	font-size: 32px;
 	display: inline-block;
-	padding-inline: 110px;
+	padding-inline: 0px;
 }
 
 h3 {
@@ -46,7 +46,7 @@ body {
 	text-align: center;
 }
 #descargar{
-	background-color: rgba(0,0,0,0.5);
+	background-image: url("../html_imgs/marco.png");
 	margin: 90px 1.5em 0 auto;
 	height: 300px;
 	width: 350px;
@@ -55,7 +55,7 @@ body {
 }
 
 #video{
-	background-color: rgba(0,0,0,0.5);
+	background-image: url("../html_imgs/marco.png");
 	margin: -300px 0 0 110px;
 	height: 500px;
 	width: 900px;
@@ -63,7 +63,7 @@ body {
 	text-align: center;
 }
 #fotos{
-	background-color: rgba(0,0,0,0.5);
+	background-image: url("../html_imgs/marco.png");
 	margin: auto;
 	height: 1800px;
 	width: 1500px;
@@ -72,7 +72,7 @@ body {
 }
 
 #texto{
-	background-color: rgba(0,0,0,0.5);
+	background-image: url("../html_imgs/marco.png");
 	margin: 90px 1.5em 0 auto;
 	height: auto;
 	width: auto;
@@ -139,10 +139,10 @@ ul#rrss{
 #menu10{
 	width: 300px;
 	height: 90px;
-	background-image: url("../html_imgs/narrativa.png");
+	background-image: url("../html_imgs/objetivos.png");
 }
 #menu10:hover{
-	background-image: url("../html_imgs/narrativah.png");
+	background-image: url("../html_imgs/objetivosh.png");
 }
 #menu11{
 	width: 300px;
@@ -155,10 +155,10 @@ ul#rrss{
 #menu12{
 	width: 300px;
 	height: 90px;
-	background-image: url("../html_imgs/esptie.png");
+	background-image: url("../html_imgs/armas.png");
 }
 #menu12:hover{
-	background-image: url("../html_imgs/esptieh.png");
+	background-image: url("../html_imgs/armash.png");
 }
 #menu2{
 	width: 300px;
@@ -176,18 +176,10 @@ ul#rrss{
 #menu21{
 	width: 300px;
 	height: 90px;
-	background-image: url("../html_imgs/jodas.png");
+	background-image: url("../html_imgs/nosotros.png");
 }
 #menu21:hover{
-	background-image: url("../html_imgs/jodash.png");
-}
-#menu22{
-	width: 300px;
-	height: 90px;
-	background-image: url("../html_imgs/trabajo.png");
-}
-#menu22:hover{
-	background-image: url("../html_imgs/trabajoh.png");
+	background-image: url("../html_imgs/nosotrosh.png");
 }
 #menu3{
 	width: 300px;
