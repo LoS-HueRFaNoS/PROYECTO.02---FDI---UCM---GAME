@@ -26,7 +26,6 @@ public:
 			// mouse event
 			if (!e) {
 				if (SDL_PointInRect(&p_, &rect_)) {
-					//button_->click(im_);
 					button_->click(); // click
 				}
 			}

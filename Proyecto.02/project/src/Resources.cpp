@@ -52,12 +52,12 @@ vector<Resources::ImageInfo> Resources::images_ {
 	{ Slot, "resources/sprites/iconos inventario/inventorySlot.png" },
 
 	// Armas clasicas �?
-	{ Desarmado, "resources/images/iconos armas/joker.png"}, ///TODO
-	{ Baston, "resources/images/iconos armas/baston.png"},
-	{ Daga, "resources/images/iconos armas/daga.png"},
-	{ Clava, "resources/images/iconos armas/clava.png"},
-	{ HachaPequena, "resources/images/iconos armas/hacha.png"},
-	{ Hoz, "resources/images/iconos armas/joker.png"}, ///TODO
+	{ Desarmado, "resources/sprites/iconos armas/joker.png"}, ///TODO
+	{ Baston, "resources/sprites/iconos armas/baston.png"},
+	{ Daga, "resources/sprites/iconos armas/daga.png"},
+	{ Clava, "resources/sprites/iconos armas/clava.png"},
+	{ HachaPequena, "resources/sprites/iconos armas/hacha.png"},
+	{ Hoz, "resources/sprites/iconos armas/joker.png"}, ///TODO
 	{ Lanza, "resources/sprites/iconos armas/lanza.png" },
 	{ MartilloPequeno, "resources/sprites/iconos armas/joker.png" }, ///TODO
 	{ Maza, "resources/sprites/iconos armas/maza.png" },
@@ -74,24 +74,22 @@ vector<Resources::ImageInfo> Resources::images_ {
 	{ HachaBatalla, "resources/sprites/iconos armas/joker.png" }, ///TODO
 	{ Guja, "resources/sprites/iconos armas/joker.png" }, ///TODO
 	{ Latigo, "resources/sprites/iconos armas/joker.png" }, ///TODO
-	{ EspadaRopera, "resources/sprites/iconos armas/joker.png" }, ///TODO
 	{ LuceroAlba, "resources/sprites/iconos armas/lucero.png" }, ///TODO
 	{ MartilloGuerra, "resources/sprites/iconos armas/martillo.png" },
 	{ Pica, "resources/sprites/iconos armas/joker.png" }, ///TODO
 	{ Tridente, "resources/sprites/iconos armas/joker.png" }, ///TODO
-	{ EspadaRopera, "resources/sprites/iconos armas/joker.png" }, ///TODO
 	{ ArcoLargo, "resources/sprites/iconos armas/arco_largo.png" },
 	{ BallestaPesada, "resources/sprites/iconos armas/ballesta_pesada.png" },
 
 	// Armaduras	
-	{ Acolchada, "resources/sprites/iconos armaduras/acolchada.png" },
-	{ CueroTachonado, "resources/sprites/iconos armaduras/cuero_tachonado.png" },
+	{ Acolchada, "resources/sprites/iconos armaduras/joker.png" },
+	{ CueroTachonado, "resources/sprites/iconos armaduras/joker.png" },
 	{ CotaEscamas, "resources/sprites/iconos armaduras/cota_escamas.png" },
-	{ Coraza, "resources/sprites/iconos armaduras/coraza.png" },
-	{ SemiPlacas, "resources/sprites/iconos armaduras/semiplacas.png" },
+	{ Coraza, "resources/sprites/iconos armaduras/joker.png" },
+	{ SemiPlacas, "resources/sprites/iconos armaduras/joker.png" },
 	{ CotaMalla, "resources/sprites/iconos armaduras/cota_mallas.png" },
-	{ Bandas, "resources/sprites/iconos armaduras/bandas.png" },
-	{ Placas, "resources/sprites/iconos armaduras/placas.png" }
+	{ Bandas, "resources/sprites/iconos armaduras/joker.png" },
+	{ Placas, "resources/sprites/iconos armaduras/joker.png" }
 };
 
 vector<Resources::TextMsgInfo> Resources::messages_ {

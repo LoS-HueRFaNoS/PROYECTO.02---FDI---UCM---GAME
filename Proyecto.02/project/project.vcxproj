@@ -88,7 +88,6 @@
     <ClInclude Include="src\Image.h" />
     <ClInclude Include="src\HabilityResources.h" />
     <ClInclude Include="src\InputHandler.h" />
-    <ClInclude Include="src\InterfazManager.h" />
     <ClInclude Include="src\Item.h" />
     <ClInclude Include="src\ItemManager.h" />
     <ClInclude Include="src\Interfaz.h" />

@@ -33,6 +33,19 @@ public:
 		return c;
 	}
 
+	void deleteComponent(ecs::CmpIdType id) {
+		for (auto it = components_.begin(); it != components_.end(); /**/)
+		{
+			if ((*it).get()->getId() == id) {
+				it = components_.erase(it);
+			}
+			else it++;
+		}		
+		Component* c = componentsArray_[id];
+		componentsArray_[id] = nullptr;
+		delete c;
+	}
+
 	template<typename T>
 	T* getComponent(ecs::CmpIdType id) {
 		return static_cast<T*>(componentsArray_[id]);
