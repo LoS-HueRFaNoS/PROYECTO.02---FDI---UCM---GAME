@@ -180,6 +180,7 @@ void InterfazManager::createInventory()
 
 	posX += slotTam; // Se suma la coordenada X dejando un espacio.
 	posY = slotTam * 1.5;
+	int margen = 6;
 	//Inventario personajes
 	for (int i = 0; i < 4; ++i) {
 
@@ -197,6 +198,18 @@ void InterfazManager::createInventory()
 		auxAr->addComponent<Transform>(Vector2D(posX + slotTam*2, posY), Vector2D(), slotTam, slotTam, 0.0);
 		auxAr->addComponent<Image>(game_->getTextureMngr()->getTexture(src::Slot));
 		entitiesV.push_back(auxAr);
+
+		//Empty Sword / Armor
+
+		Entity* emptySword = entity_->getEntityMangr()->addEntity();
+		emptySword->addComponent<Transform>(Vector2D(posX + slotTam + margen, posY + margen), Vector2D(), slotTam - margen * 2, slotTam - margen * 2, 0.0);
+		emptySword->addComponent<Image>(game_->getTextureMngr()->getTexture(src::EmptySword));
+		entitiesV.push_back(emptySword);
+
+		Entity* emptyArmor = entity_->getEntityMangr()->addEntity();
+		emptyArmor->addComponent<Transform>(Vector2D(posX + slotTam * 2 + margen, posY + margen), Vector2D(), slotTam - margen * 2, slotTam - margen * 2, 0.0);
+		emptyArmor->addComponent<Image>(game_->getTextureMngr()->getTexture(src::EmptyArmor));
+		entitiesV.push_back(emptyArmor);
 
 		posY += slotTam * 1.33;
 	}
