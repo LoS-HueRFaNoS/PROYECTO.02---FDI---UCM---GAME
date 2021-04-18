@@ -26,8 +26,16 @@ public:
             // mouse event
             if (!e) {
                 if (SDL_PointInRect(&p_, &rect_)) {
-                    //button_->click(im_);
-                    button_(im_); // click
+                    button_->click();
+                    //ButtonType* b2t = static_cast<ButtonMovement*>(entity_); // on/off
+                    //Button* b = static_cast<Button*>(entity_); // normal
+                    //if (b != nullptr && button_ != nullptr)
+                    //    b->click(button_, im_);
+                    //else {
+                    //    
+                    //    if (b != nullptr)
+                    //        b->click(button_, im_);
+                    //}
                 }
             }
         }
@@ -36,6 +44,6 @@ public:
 private:
     InterfazManager* im_;
     InputHandler* ih_;
-    //Button* button_;
-    cb* button_;
+    Button* button_;
+    //cb* button_;
 };

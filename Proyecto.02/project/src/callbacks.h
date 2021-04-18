@@ -1,7 +1,8 @@
 #pragma once
 
 class InterfazManager;
-using CallBackOnClick = void(InterfazManager*);
+//using CallBackOnClick = void(Entity*);
+
 
 // MENU
 using namespace std;
@@ -14,6 +15,7 @@ public:
 	static void pruebaGame2(InterfazManager* app);
 	static void pruebaGame3(InterfazManager* app);
 	// acceso a heroes
+	static void infoHeroe(int index);
 	static void infoHeroe01(InterfazManager* app);
 	static void infoHeroe02(InterfazManager* app);
 	static void infoHeroe03(InterfazManager* app);
@@ -35,6 +37,11 @@ public:
 	static void defensa(InterfazManager* app);
 	static void huida(InterfazManager* app);
 };
+
+//template<typename ... TArgs>
+//using CallBackOnClick = void (callbacks::*)(TArgs&& ...);
+//using CallBackOnClick = void (*)(...);
+using CallBackOnClick = void (*);
 
 //const enum action { gogame, gomenu, gopause, goback, pausetomenu, shutdown, saveoption, savecurrent, loadoption, gostageclear, goloselife, gogameover, gogameclear };
 //

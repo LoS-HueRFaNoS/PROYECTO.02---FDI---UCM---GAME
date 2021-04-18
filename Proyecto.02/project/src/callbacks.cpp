@@ -29,6 +29,12 @@ void callbacks::pruebaGame3(InterfazManager* app) {
 #pragma region PanelHeroes
 #include "CombatManager.h"
 
+void callbacks::infoHeroe(int index)
+{
+	// swicth en funcion del heroe
+	std::cout << "heroe 01: " << index << std::endl;
+}
+
 void callbacks::infoHeroe01(InterfazManager* app) {
 	Entity* e = app->getEntity();
 	string name = GETCMP2(e, CombatManager)->getHero(hero01)->name();
@@ -56,7 +62,7 @@ void callbacks::infoHeroe04(InterfazManager* app) {
 #pragma endregion
 
 // ----------------------------------------------------
-
+// callback generico por tipo que se le envia el parametro y hace switch
 #pragma region PanelMovimiento
 #include "PlayerMotion.h"
 
@@ -91,6 +97,8 @@ void callbacks::interactuar(InterfazManager* app)
 
 void callbacks::inventario(InterfazManager* app)
 {
+	//app->createPanel(Inventory);
+	app->destroyPanel(Inventory);
 	std::cout << "has abierto el inventario" << std::endl;
 }
 

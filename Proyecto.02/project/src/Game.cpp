@@ -40,6 +40,8 @@ void Game::initGame() {
 	TheElementalMaze* TEM = static_cast<TheElementalMaze*>(entityManager_->addEntity());
 	TEM->init(game_, entityManager_);
 
+	Entity* e = entityManager_->addEntity();
+	e->addComponent<Panel>(Fight);
 	//Hero* wizard = new Hero(game_, entityManager_);
 	//Hero* warrior = new Hero(game_, entityManager_);
 	//Hero* rogue = new Hero(game_, entityManager_);
