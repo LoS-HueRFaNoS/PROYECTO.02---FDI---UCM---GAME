@@ -3,7 +3,7 @@
 
 class CombatManager;
 class InterfazManager;
-class InterfazManager;
+class Interfaz;
 class ItemManager;
 class Laberinto;
 class CharacterManager;
@@ -44,7 +44,7 @@ public:
 
 	inline static TheElementalMaze* initInstace(SDLGame* game, EntityManager* mngr, CharacterManager* chMngr,InterfazManager* iMngr) {
 		assert(instance_.get() == nullptr);
-		instance_.reset(new TheElementalMaze(game, mngr, chMngr));
+		instance_.reset(new TheElementalMaze(game, mngr, chMngr, iMngr));
 		instance_.get()->init();
 		return instance_.get();
 	}

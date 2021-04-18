@@ -91,7 +91,7 @@
     <ClInclude Include="src\Item.h" />
     <ClInclude Include="src\ItemManager.h" />
     <ClInclude Include="src\Interfaz.h" />
-    <ClInclude Include="src\InterfazManger.h" />
+    <ClInclude Include="src\InterfazManager.h" />
     <ClInclude Include="src\jute.h" />
     <ClInclude Include="src\Laberinto.h" />
     <ClInclude Include="src\Manager.h" />

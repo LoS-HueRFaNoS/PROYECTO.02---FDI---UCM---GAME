@@ -1,7 +1,7 @@
 #include "Interfaz.h"
 #include "Button.h"
 #include "SDLGame.h"
-#include "InterfazManger.h"
+#include "InterfazManager.h"
 #include "callbacks.h"
 
 using cb = callbacks;

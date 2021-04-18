@@ -1,7 +1,7 @@
 #include "TheElementalMaze.h"
 #include "src/CombatManager.h"
 #include "src/CharacterManager.h"
-#include "src/InterfazManager.h"
+#include "src/Interfaz.h"
 #include "src/Laberinto.h"
 #include "src/PlayerMotion.h"
 #include "src/PlayerViewer.h"

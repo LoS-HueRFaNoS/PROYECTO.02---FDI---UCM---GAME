@@ -67,16 +67,20 @@ void callbacks::infoHeroe04(Interfaz* app) {
 
 void callbacks::movCommand(int movType) // CUANDO SE TENGA EL SINGLETON DEL GAMEMANAGER SE HARÁN LOS METODOS
 {
+	PlayerMotion* p = TheElementalMaze::instance()->getPlayer()->getComponent<PlayerMotion>(ecs::PlayerMotion);
 	switch (movType)
 	{
 	case 0:
 		std::cout << "has girado a la derecha" << std::endl;
+		p->rotarDerecha();
 		break;
 	case 1:
 		std::cout << "has girado a la izquierda" << std::endl;
+		p->rotarIzquierda();
 		break;
 	case 2:
 		std::cout << "has avanzado" << std::endl;
+		p->avanzar();
 		break;
 	case 3:
 		std::cout << "has interactuado" << std::endl;

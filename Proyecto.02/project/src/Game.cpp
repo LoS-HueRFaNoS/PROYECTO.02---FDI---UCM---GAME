@@ -15,7 +15,7 @@
 #include "CharacterManager.h"
 #include "CombatManager.h"
 #include "Interfaz.h"
-#include "InterfazManger.h"
+#include "InterfazManager.h"
 #include "PlayerMotion.h"
 #include "PlayerViewer.h"
 #include "../TheElementalMaze.h"
