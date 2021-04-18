@@ -30,6 +30,11 @@ Entity* EntityManager::addEntity() {
 	return e;
 }
 
+void EntityManager::addEntity(Entity* e) {
+	std::unique_ptr<Entity> uPtr(e);
+	entities.emplace_back(std::move(uPtr));
+}
+
 /*
 template<typename T, typename ... TArgs>
 T* EntityManager::addButtonEntity(TArgs&& ...mArgs) {

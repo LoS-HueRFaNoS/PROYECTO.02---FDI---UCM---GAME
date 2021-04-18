@@ -7,7 +7,7 @@
       "Ndice": 0,
       "Damage": 1,
       "Type": 0,
-      "Weight": 0
+      "Marcial": false
     },
 
     {
@@ -16,7 +16,7 @@
       "Ndice": 1,
       "Damage": 8,
       "Type": 0,
-      "Weight": 2
+      "Marcial": false
     },
 
     {
@@ -25,7 +25,7 @@
       "Ndice": 1,
       "Damage": 4,
       "Type": 1,
-      "Weight": 1
+      "Marcial": false
     },
 
     {
@@ -34,7 +34,7 @@
       "Ndice": 1,
       "Damage": 8,
       "Type": 0,
-      "Weight": 2
+      "Marcial": false
     },
 
     {
@@ -43,7 +43,7 @@
       "Ndice": 1,
       "Damage": 6,
       "Type": 2,
-      "Weight": 1
+      "Marcial": false
     },
 
     {
@@ -52,7 +52,7 @@
       "Ndice": 1,
       "Damage": 4,
       "Type": 2,
-      "Weight": 1
+      "Marcial": false
     },
 
     {
@@ -61,7 +61,7 @@
       "Ndice": 1,
       "Damage": 12,
       "Type": 1,
-      "Weight": 2
+      "Marcial": false
     },
 
     {
@@ -70,7 +70,7 @@
       "Ndice": 1,
       "Damage": 4,
       "Type": 0,
-      "Weight": 1
+      "Marcial": false
     },
 
     {
@@ -79,7 +79,7 @@
       "Ndice": 1,
       "Damage": 6,
       "Type": 0,
-      "Weight": 1
+      "Marcial": false
     },
 
     {
@@ -88,7 +88,7 @@
       "Ndice": 1,
       "Damage": 6,
       "Type": 1,
-      "Weight": 1
+      "Marcial": false
     },
 
     {
@@ -97,7 +97,7 @@
       "Ndice": 1,
       "Damage": 8,
       "Type": 2,
-      "Weight": 1
+      "Marcial": false
     },
 
     {
@@ -106,7 +106,7 @@
       "Ndice": 1,
       "Damage": 10,
       "Type": 2,
-      "Weight": 2
+      "Marcial": true
     },
 
     {
@@ -115,7 +115,7 @@
       "Ndice": 2,
       "Damage": 6,
       "Type": 0,
-      "Weight": 2
+      "Marcial": true
     },
 
     {
@@ -124,7 +124,7 @@
       "Ndice": 1,
       "Damage": 6,
       "Type": 2,
-      "Weight": 1
+      "Marcial": true
     },
 
     {
@@ -133,7 +133,7 @@
       "Ndice": 1,
       "Damage": 8,
       "Type": 2,
-      "Weight": 2
+      "Marcial": true
     },
 
     {
@@ -142,7 +142,7 @@
       "Ndice": 2,
       "Damage": 6,
       "Type": 2,
-      "Weight": 2
+      "Marcial": true
     },
 
     {
@@ -151,7 +151,7 @@
       "Ndice": 1,
       "Damage": 8,
       "Type": 1,
-      "Weight": 1
+      "Marcial": true
     },
 
     {
@@ -160,7 +160,7 @@
       "Ndice": 1,
       "Damage": 12,
       "Type": 2,
-      "Weight": 2
+      "Marcial": true
     },
 
     {
@@ -169,7 +169,7 @@
       "Ndice": 1,
       "Damage": 10,
       "Type": 2,
-      "Weight": 1
+      "Marcial": true
     },
 
     {
@@ -178,7 +178,7 @@
       "Ndice": 1,
       "Damage": 4,
       "Type": 2,
-      "Weight": 1
+      "Marcial": true
     },
 
     {
@@ -187,7 +187,7 @@
       "Ndice": 1,
       "Damage": 8,
       "Type": 1,
-      "Weight": 1
+      "Marcial": true
     },
 
     {
@@ -196,7 +196,7 @@
       "Ndice": 1,
       "Damage": 10,
       "Type": 0,
-      "Weight": 2
+      "Marcial": true
     },
 
     {
@@ -205,8 +205,8 @@
       "Ndice": 1,
       "Damage": 10,
       "Type": 1,
-      "Weight": 2
-    }
+      "Marcial": true
+    },
 
     {
       "Name": "Tridente",
@@ -214,7 +214,7 @@
       "Ndice": 1,
       "Damage": 6,
       "Type": 1,
-      "Weight": 2
+      "Marcial": true
     },
 
     {
@@ -223,7 +223,7 @@
       "Ndice": 1,
       "Damage": 8,
       "Type": 1,
-      "Weight": 2
+      "Marcial": true
     },
 
     {
@@ -232,7 +232,7 @@
       "Ndice": 1,
       "Damage": 10,
       "Type": 1,
-      "Weight": 2
+      "Marcial": true
     }
   ]
 }

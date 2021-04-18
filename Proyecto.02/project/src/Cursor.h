@@ -3,12 +3,12 @@
 #include "Resources.h"
 #include <cassert>
 
-class InterfazManager;
+class Interfaz;
 typedef unsigned int uint;
 class Cursor : public Entity
 {
 public:
 	Cursor(SDLGame* game, EntityManager* mngr) : Entity(game, mngr) {};
-	void init(InterfazManager* im, Vector2D pos, uint ancho, uint alto, Resources::TextureId imagen);
+	void init(Interfaz* im, Vector2D pos, uint ancho, uint alto, Resources::TextureId imagen);
 };
 

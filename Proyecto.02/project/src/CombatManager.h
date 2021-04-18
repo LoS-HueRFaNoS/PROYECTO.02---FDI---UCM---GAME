@@ -6,7 +6,6 @@
 
 #include <queue>
 
-enum teamID { hero01, hero02, hero03, hero04 };
 using Objective = std::vector<Character*>;
 
 class CombatManager : public Component {
@@ -22,6 +21,10 @@ private:
 	int _turn = 0;
 
 	int _exp = 0;
+
+	bool _combatEnd = true;
+
+	bool _win = true;
 
 	struct Initiative {
 		characterType type;
@@ -45,24 +48,28 @@ private:
 
 	void calculateTurns();
 
+	void passTurn();
+
+	bool checkEnd();
+
+	void endCombat();
+
 	void throwHability(Character* objective, Hability* hability);
-	
+
 	void castToTeam(characterType team, Hability* hability);
 
-	void castToSingleTarget(characterType team,  Hability* hability);
-
-public:
+	void castToSingleTarget(characterType team, Hability* hability);
 
 #pragma region CombatePorConsola
 
 	void consoleCombat();
 
-	void mostratEstadoEquipos();
+	void showTeams();
 
-	void mostrarCola();
+	void showQ();
 
 #pragma endregion
-
+public:
 	CombatManager() : currentCharacter(nullptr), _heroes(vector<Hero*>()), _enemies(vector<Enemy*>()), Component(ecs::CombatManager)
 	{}
 
@@ -83,11 +90,12 @@ public:
 
 	void startCombat();
 
-	void passTurn();
-
 	void castHability(Hability* hability);
 
-	Hero* getHero(teamID number) { return _heroes[number]; };
+	Character* getCharacter(int index, characterType type) {
+		return  type ? static_cast<Character*>(_enemies[index]) : static_cast<Character*>(_heroes[index]);
+	};
+
 
 };
 

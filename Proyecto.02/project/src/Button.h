@@ -6,126 +6,50 @@
 
 typedef unsigned int uint;
 
-enum class MovType { rotR, rotL, forward, touch };
 enum class AtkType { normal, magic, defend, escape };
 enum class HeroNum { hero1, hero2, hero3, hero4 };
 enum class Inf { inventory, potionHealth, potionMana, chat, config };
 
-// clasic button
+//class InterfazManager;
 class Button : public Entity
 {
+protected:
+
+	void initComponents(Vector2D pos, uint ancho, uint alto, Resources::TextureId imagen);
+
 public:
-	/*Button(SDLGame* game, 
-		EntityManager* mngr,
-		Vector2D pos, 
-		uint ancho, 
-		uint alto, 
-		Resources::TextureId imagen);*/
-	Button(SDLGame* game, EntityManager* mngr) : 
+	Button(SDLGame* game, EntityManager* mngr) :
 		Entity(game, mngr)
 	{};
-	virtual ~Button() {};
-	template<typename ... TArgs>
-	void init(InterfazManager* im, Vector2D pos, uint ancho, uint alto, Resources::TextureId imagen);
-	/*static void click(CallBackOnClick* cb_, InterfazManager* im) {
+	~Button() {};
+	virtual void init(Vector2D pos, uint ancho, uint alto, Resources::TextureId imagen) {};
+
+	virtual void click() = 0;
+	/*virtual void click(InterfazManager* im) {
 		cb_(im);
 	};*/
-	virtual void click() = 0;
 };
 
-class ButtonHeroes : public Button {
+enum class MovType { rotR, rotL, forward, touch };
+
+class ButtonMovimiento : public Button {
 private:
-	uint hero_;
+	MovType movementType_;
 public:
-	virtual void click()
+	ButtonMovimiento(SDLGame* game, EntityManager* mngr) : Button(game, mngr), movementType_(MovType::touch){};
+
+	~ButtonMovimiento() {};
+
+	virtual void init(Vector2D pos, uint ancho, uint alto, Resources::TextureId imagen, uint movement) {
+		movementType_ = (MovType)movement;
+		initComponents(pos, ancho, alto, imagen);
+	};
+
+	virtual void click() 
 	{
-		callbacks::infoHeroe(hero_);
+		callbacks::movCommand((int)movementType_);
 	}
 };
-
-// button de 2 tiempos -> On / Off
-//class Button_2Times : public Button
-//{
-//protected:
-//	//Panel* p;
-//	bool activated;
-//public:
-//	Button_2Times(SDLGame* game, EntityManager* mngr) :
-//		Button(game, mngr),
-//		activated(false)
-//	{};
-//	virtual ~Button_2Times() {};
-//};
-//
-//// clasic button + variable genérica
-//template<typename T>
-//class ButtonType : public Button
-//{
-//private:
-//	T* addon;
-//public:
-//	ButtonType(SDLGame* game, EntityManager* mngr) :
-//		Button(game, mngr),
-//		addon(nullptr),
-//		activated(false)
-//	{};
-//	virtual ~ButtonType() {};
-//	static void click(CallBackOnClick* cb_, InterfazManager* im) override;
-//
-//	void setAddon(T* add) { addon = add; };
-//	T* getAddon() { return addon; };
-//};
-//
-//// button de 2 tiempos + variable genérica
-//template<typename T>
-//class ButtonType_2T : public Button
-//{
-//private:
-//	bool activated;
-//	T* addon;
-//public:
-//	ButtonType_2T(SDLGame* game, EntityManager* mngr) :
-//		Button(game, mngr),
-//		addon(nullptr),
-//		activated(false)
-//	{};
-//	virtual ~ButtonType_2T() {};
-//	static void click(CallBackOnClick* cb_, InterfazManager* im) override;
-//
-//	void setAddon(T* add) { addon = add; };
-//	T* getAddon() { return addon; };
-//};
-
-//class ButtonMovimiento : public Button {
-//public:
-//	void setPlayerMotion(PlayerMotion* plmot) { playermotion_ = plmot; };
-//	void setMovType(MovType movType) { movementType_ = movType; };
-//private:
-//	MovType movementType_;
-//	PlayerMotion* playermotion_;
-//public:
-//	ButtonMovimiento(SDLGame* game, EntityManager* mngr) : Button(game, mngr) {};
-//	virtual void click(Game* i) override
-//	{
-//		switch (movementType_)
-//		{
-//		case MovType::rotR:
-//			playermotion_->rotarDerecha();
-//			break;
-//		case MovType::rotL:
-//			playermotion_->rotarIzquierda();
-//			break;
-//		case MovType::forward:
-//			playermotion_->avanzar();
-//			break;
-//		case MovType::touch:
-//			callbacks::interactuar(i);
-//			break;
-//		default:
-//			break;
-//		}
-//	}
-//};
 
 //class ButtonMovimiento : public Button {
 //public:

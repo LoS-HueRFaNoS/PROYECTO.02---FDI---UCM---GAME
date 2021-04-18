@@ -1,8 +1,6 @@
 #pragma once
 
-class InterfazManager;
-//using CallBackOnClick = void(Entity*);
-
+class Interfaz;
 
 // MENU
 using namespace std;
@@ -10,38 +8,33 @@ using namespace std;
 class callbacks {
 public:
 	// pruebas (solo escriben por consola)
-	static void pruebaGame0(InterfazManager* app);
-	static void pruebaGame1(InterfazManager* app);
-	static void pruebaGame2(InterfazManager* app);
-	static void pruebaGame3(InterfazManager* app);
+	static void pruebaGame0(Interfaz* app);
+	static void pruebaGame1(Interfaz* app);
+	static void pruebaGame2(Interfaz* app);
+	static void pruebaGame3(Interfaz* app);
 	// acceso a heroes
-	static void infoHeroe(int index);
-	static void infoHeroe01(InterfazManager* app);
-	static void infoHeroe02(InterfazManager* app);
-	static void infoHeroe03(InterfazManager* app);
-	static void infoHeroe04(InterfazManager* app);
+	static void infoHeroe01(Interfaz* app);
+	static void infoHeroe02(Interfaz* app);
+	static void infoHeroe03(Interfaz* app);
+	static void infoHeroe04(Interfaz* app);
 	// acceso a movimiento
-	static void rotarDerecha(InterfazManager* app);
-	static void rotarIzquierda(InterfazManager* app);
-	static void avanzar(InterfazManager* app);
-	static void interactuar(InterfazManager* app);
+	static void movCommand(int movType);
+	static void rotarDerecha(Interfaz* app);
+	static void rotarIzquierda(Interfaz* app);
+	static void avanzar(Interfaz* app);
+	static void interactuar(Interfaz* app);
 	// acceso a informacion
-	static void inventario(InterfazManager* app);
-	static void pocionVida(InterfazManager* app);
-	static void pocionMana(InterfazManager* app);
-	static void chat(InterfazManager* app);
-	static void configuracion(InterfazManager* app);
+	static void inventario(Interfaz* app);
+	static void pocionVida(Interfaz* app);
+	static void pocionMana(Interfaz* app);
+	static void chat(Interfaz* app);
+	static void configuracion(Interfaz* app);
 	// acceso a combate
-	static void ataqueNormal(InterfazManager* app);
-	static void ataqueMagico(InterfazManager* app);
-	static void defensa(InterfazManager* app);
-	static void huida(InterfazManager* app);
+	static void ataqueNormal(Interfaz* app);
+	static void ataqueMagico(Interfaz* app);
+	static void defensa(Interfaz* app);
+	static void huida(Interfaz* app);
 };
-
-//template<typename ... TArgs>
-//using CallBackOnClick = void (callbacks::*)(TArgs&& ...);
-//using CallBackOnClick = void (*)(...);
-using CallBackOnClick = void (*);
 
 //const enum action { gogame, gomenu, gopause, goback, pausetomenu, shutdown, saveoption, savecurrent, loadoption, gostageclear, goloselife, gogameover, gogameclear };
 //

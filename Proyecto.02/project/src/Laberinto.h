@@ -4,6 +4,7 @@
 #include <vector>
 #include "Component.h"
 #include "Vector2D.h"
+#include "Character.h"
 
 
 
@@ -21,8 +22,8 @@ private:
 	int cellsCreated = 0;
 	
 public:
-	Laberinto(EntityManager* entityManager_,int h,int w);
-	Laberinto(EntityManager* entityManager_);
+	Laberinto(int h,int w);
+	Laberinto();
 	virtual ~Laberinto();
 	void initFromFile();
 	int mazeWidth() { return w; };
@@ -32,4 +33,6 @@ public:
 	Casilla* getCasillaInfo(int x, int y);
 	vector<Vector2D>* getShortWay() { return shortestWay; }
 	virtual void draw();
+
+	void generaObjeto(int object, int type, Casilla* casilla, int maxObject, int cant);
 };

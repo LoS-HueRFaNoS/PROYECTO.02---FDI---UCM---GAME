@@ -49,19 +49,15 @@ vector<Resources::ImageInfo> Resources::images_ {
 	{ AtaqueMagico,  "resources/sprites/iconos combate/magic.png" },
 	{ Defensa,  "resources/sprites/iconos combate/defensa.png" },
 	{ Huida,  "resources/sprites/iconos combate/huir.png" },
-	
-	// Inventario
 	{ Slot, "resources/sprites/iconos inventario/inventorySlot.png" },
-	{ EmptySword, "resources/sprites/iconos inventario/inventorySword.png" },
-	{ EmptyArmor, "resources/sprites/iconos inventario/inventoryArmor.png" },
 
-	// Armas clasicas ¿?
-	{ Desarmado, "resources/sprites/iconos armas/joker.png"}, ///TODO
-	{ Baston, "resources/sprites/iconos armas/baston.png"},
-	{ Daga, "resources/sprites/iconos armas/daga.png"},
-	{ Clava, "resources/sprites/iconos armas/clava.png"},
-	{ HachaPequena, "resources/sprites/iconos armas/hacha.png"},
-	{ Hoz, "resources/sprites/iconos armas/joker.png"}, ///TODO
+	// Armas clasicas ï¿½?
+	{ Desarmado, "resources/images/iconos armas/joker.png"}, ///TODO
+	{ Baston, "resources/images/iconos armas/baston.png"},
+	{ Daga, "resources/images/iconos armas/daga.png"},
+	{ Clava, "resources/images/iconos armas/clava.png"},
+	{ HachaPequena, "resources/images/iconos armas/hacha.png"},
+	{ Hoz, "resources/images/iconos armas/joker.png"}, ///TODO
 	{ Lanza, "resources/sprites/iconos armas/lanza.png" },
 	{ MartilloPequeno, "resources/sprites/iconos armas/joker.png" }, ///TODO
 	{ Maza, "resources/sprites/iconos armas/maza.png" },
@@ -88,14 +84,14 @@ vector<Resources::ImageInfo> Resources::images_ {
 	{ BallestaPesada, "resources/sprites/iconos armas/ballesta_pesada.png" },
 
 	// Armaduras	
-	/*{ Acolchada, "resources/sprites/iconos armas/acolchada.png" },
+	{ Acolchada, "resources/sprites/iconos armas/acolchada.png" },
 	{ CueroTachonado, "resources/sprites/iconos armas/cuero_tachonado.png" },
 	{ CotaEscamas, "resources/sprites/iconos armas/cota_escamas.png" },
 	{ Coraza, "resources/sprites/iconos armas/coraza.png" },
 	{ SemiPlacas, "resources/sprites/iconos armas/semiplacas.png" },
 	{ CotaMalla, "resources/sprites/iconos armas/cota_mallas.png" },
 	{ Bandas, "resources/sprites/iconos armas/bandas.png" },
-	{ Placas, "resources/sprites/iconos armas/placas.png" }*/
+	{ Placas, "resources/sprites/iconos armas/placas.png" }
 };
 
 vector<Resources::TextMsgInfo> Resources::messages_ {
@@ -119,8 +115,9 @@ vector<Resources::SoundInfo> Resources::sounds_ {
 
 vector<Resources::JsonInfo> Resources::jsons_{
 //
-	{ Heroes, "resources/jsons/heroes.json" }, //
-	{ Enemies, "resources/jsons/enemies.json" }, //
-	{ Weapons, "resources/jsons/characters.json" }, //characters.json
-	{ Armors, "resources/jsons/characters.json" } //characters.json
+		{ Heroes, "resources/jsons/heroes.json" }, //
+		{ Enemies, "resources/jsons/enemies.json" }, //
+		{ Weapons, "resources/jsons/pruebasArmas.json" }, //
+		{ Armors, "resources/jsons/pruebasArmaduras.json" } //
 };
+
