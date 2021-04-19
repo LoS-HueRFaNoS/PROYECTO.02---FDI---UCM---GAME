@@ -3,6 +3,8 @@
 #include "SDLGame.h"
 #include "InterfazManager.h"
 #include "callbacks.h"
+#include "Image.h"
+#include "Transform.h"
 
 using cb = callbacks;
 using src = Resources;
@@ -105,13 +107,21 @@ void Interfaz::createInventory()
 	//Cuadro de inventario 5x5
 	for (int i = 0; i < 5; ++i) {
 
-		posX = slotTam * 1.2; //Se resetea la coordenada X
+		posX = slotTam * 0.84; //Se resetea la coordenada X
 
 		for (int j = 0; j < 5; ++j) {
 
-			//createButton(p, this, {/*Solo quiero que se renderice no tiene cb xd*/ }, Vector2D(posX, posY), slotTam, slotTam, src::Slot);
+			//createButton(p, this, {/*Solo quiero que se renderice no tiene cb xd*/}, Vector2D(posX, posY), slotTam, slotTam, src::Slot);
 
-			posX += slotTam; // Se suma la coordenada X
+			//SDL_Rect dest = { posX, posY, slotTam, slotTam };
+			//game_->getTextureMngr()->getTexture(src::Slot)->render(dest);
+
+			Entity* aux = entity_->getEntityMangr()->addEntity();
+			aux->addComponent<Transform>(Vector2D(posX, posY), Vector2D(), slotTam, slotTam, 0.0);
+			aux->addComponent<Image>(game_->getTextureMngr()->getTexture(src::Slot));
+			entitiesV.push_back(aux);
+
+			posX += slotTam;
 		}
 
 		posY += slotTam; // Se suma la coordenada Y
@@ -119,11 +129,36 @@ void Interfaz::createInventory()
 
 	posX += slotTam; // Se suma la coordenada X dejando un espacio.
 	posY = slotTam * 1.5;
+	int margen = 6;
+
 	//Inventario personajes
 	for (int i = 0; i < 4; ++i) {
-		//createButton(p, this, {/*Solo quiero que se renderice no tiene cb xd*/ }, Vector2D(posX, posY), slotTam, slotTam, src::Bardo);
-		//createButton(p, this, {/*Solo quiero que se renderice no tiene cb xd*/ }, Vector2D(posX + slotTam, posY), slotTam, slotTam, src::Slot);
-		//createButton(p, this, {/*Solo quiero que se renderice no tiene cb xd*/ }, Vector2D(posX + slotTam * 2, posY), slotTam, slotTam, src::Slot);
+		Entity* auxCh = entity_->getEntityMangr()->addEntity();
+		auxCh->addComponent<Transform>(Vector2D(posX, posY), Vector2D(), slotTam, slotTam, 0.0);
+		auxCh->addComponent<Image>(game_->getTextureMngr()->getTexture(src::Bardo));
+		entitiesV.push_back(auxCh);
+
+		Entity* auxSw = entity_->getEntityMangr()->addEntity();
+		auxSw->addComponent<Transform>(Vector2D(posX + slotTam, posY), Vector2D(), slotTam, slotTam, 0.0);
+		auxSw->addComponent<Image>(game_->getTextureMngr()->getTexture(src::Slot));
+		entitiesV.push_back(auxSw);
+
+		Entity* auxAr = entity_->getEntityMangr()->addEntity();
+		auxAr->addComponent<Transform>(Vector2D(posX + slotTam * 2, posY), Vector2D(), slotTam, slotTam, 0.0);
+		auxAr->addComponent<Image>(game_->getTextureMngr()->getTexture(src::Slot));
+		entitiesV.push_back(auxAr);
+
+		//Empty Sword / Armor
+
+		Entity* emptySword = entity_->getEntityMangr()->addEntity();
+		emptySword->addComponent<Transform>(Vector2D(posX + slotTam + margen, posY + margen), Vector2D(), slotTam - margen * 2, slotTam - margen * 2, 0.0);
+		emptySword->addComponent<Image>(game_->getTextureMngr()->getTexture(src::EmptySword));
+		entitiesV.push_back(emptySword);
+
+		Entity* emptyArmor = entity_->getEntityMangr()->addEntity();
+		emptyArmor->addComponent<Transform>(Vector2D(posX + slotTam * 2 + margen, posY + margen), Vector2D(), slotTam - margen * 2, slotTam - margen * 2, 0.0);
+		emptyArmor->addComponent<Image>(game_->getTextureMngr()->getTexture(src::EmptyArmor));
+		entitiesV.push_back(emptyArmor);
 
 		posY += slotTam * 1.33;
 	}
@@ -179,6 +214,15 @@ void Interfaz::destroyPanel(idPanel panelID)
 	}
 
 	if (encontrado && allPanels[i] != nullptr) delete allPanels[i];
+
+	if (panelID == idPanel::Inventory) {
+		for (int j = 0; j < entitiesV.size(); ++j) {
+			delete entitiesV[j];
+		}
+
+		entitiesV.clear();
+	}
+
 }
 
 void Interfaz::init()
@@ -188,7 +232,7 @@ void Interfaz::init()
 	createPanel(Minimap);
 	createPanel(Heroes);
 	createPanel(Info);
-	createPanel(Inventory);
+	//createPanel(Inventory);
 }
 
 Entity* Interfaz::getEntity()
