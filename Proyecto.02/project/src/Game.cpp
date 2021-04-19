@@ -67,7 +67,7 @@ void Game::closeGame()
 {
 	delete entityManager_;
 	delete characterManager_;
-	delete gameManager_;
+	delete interfazManager_;
 	delete game_;
 }
 
