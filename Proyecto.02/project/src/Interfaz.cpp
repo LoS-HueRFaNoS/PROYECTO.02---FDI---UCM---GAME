@@ -48,7 +48,6 @@ void Interfaz::createMovement()
 	p->addButton(iManager->addButton<ButtonMovimiento>(Vector2D(pPos.getX() + 300, pPos.getY()), 100, 55, src::Interactuar, MovType::touch));
 } // rotR, rotL, forward, touch
 
-
 void Interfaz::createHeroes()
 {
 	// posicion del panel respecto a la ventana
@@ -221,14 +220,33 @@ void Interfaz::destroyPanel(idPanel panelID)
 
 }
 
+void Interfaz::toggleCombat_Movement()
+{
+	togglePanel(Fight);
+	togglePanel(Movement);
+}
+
 void Interfaz::init()
 {
 	createPanel(Movement);
 	createPanel(Fight);
+	togglePanel(Fight);
 	createPanel(Minimap);
 	createPanel(Heroes);
 	createPanel(Info);
 	//createPanel(Inventory);
+}
+
+void Interfaz::update()
+{
+	InputHandler* ih_ = InputHandler::instance();
+	if (ih_->mouseButtonEvent()) {
+		uint e = ih_->getMouseButtonState(InputHandler::RIGHT);
+		// mouse event
+		if (!e) {
+			toggleCombat_Movement();
+		}
+	}
 }
 
 Entity* Interfaz::getEntity()

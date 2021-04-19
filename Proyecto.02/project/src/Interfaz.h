@@ -44,8 +44,10 @@ public:
 		allPanels[panID]->toggleButtons();
 	}
 
+	void toggleCombat_Movement();
+
 	virtual void init() override;
-	virtual void update() override {};
+	virtual void update() override;
 	virtual void draw() override {};
 
 	Entity* getEntity();
