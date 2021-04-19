@@ -9,6 +9,9 @@ class InterfazManager;
 class CharacterManager;
 class TheElementalMaze;
 class EntityManager;
+class Cursor;
+
+typedef unsigned int uint;
 
 class Game {
 
@@ -33,6 +36,9 @@ private:
 	CharacterManager* characterManager_;
 	TheElementalMaze* gameManager_;
 	InterfazManager* interfazManager_;
+
+	Cursor* c_;
+	Cursor* createCursor(Vector2D pos, uint width, uint height, Resources::TextureId image);
 
 	bool exit_;
 

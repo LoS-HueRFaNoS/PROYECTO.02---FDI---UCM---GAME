@@ -16,13 +16,6 @@ Interfaz::~Interfaz()
 	allPanels.clear();
 }
 
-Cursor* Interfaz::createCursor(Vector2D pos, uint width, uint height, src::TextureId image)
-{
-	Cursor* c = static_cast<Cursor*>(entity_->getEntityMangr()->addEntity());
-	c->init(this, pos, width, height, image);
-	return c;
-}
-
 void Interfaz::createFight()
 {
 	Panel* p = new Panel(Fight);
@@ -196,7 +189,6 @@ void Interfaz::init()
 	createPanel(Heroes);
 	createPanel(Info);
 	createPanel(Inventory);
-	c_ = createCursor(Vector2D(200, 200), 50, 50, src::Mouse);
 }
 
 Entity* Interfaz::getEntity()

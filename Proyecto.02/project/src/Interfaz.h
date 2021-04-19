@@ -15,9 +15,6 @@ private:
 
 	InterfazManager* iManager;
 	vector<Panel*> allPanels;
-	Cursor* c_;
-
-	Cursor* createCursor(Vector2D pos, uint width, uint height, Resources::TextureId image);
 
 	void createFight();
 	void createMovement();
@@ -35,7 +32,6 @@ public:
 	Interfaz(InterfazManager* i) :
 		Component(ecs::InterfazManager),
 		allPanels(vector<Panel*>()),
-		c_(nullptr),
 		iManager(i)
 	{};
 	virtual ~Interfaz();
