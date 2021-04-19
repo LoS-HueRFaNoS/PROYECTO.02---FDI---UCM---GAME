@@ -80,12 +80,14 @@ void callbacks::movCommand(int movType)
 
 void callbacks::inventario(Interfaz* app)
 {
+	//app->createPanel(Inventory);
 	std::cout << "has abierto el inventario" << std::endl;
 }
 
 void callbacks::configuracion(Interfaz* app)
 {
-
+	//app->createPanel(Settings);
+	std::cout << "has abierto la configuración" << std::endl;
 }
 
 void callbacks::potionType(int potionType_)
