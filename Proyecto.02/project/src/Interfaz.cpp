@@ -43,10 +43,10 @@ void Interfaz::createMovement()
 	Panel* p = new Panel(Movement);
 	allPanels.push_back(p);
 	// BOTONES:
-	p->addButton(iManager->addButton<ButtonMovimiento>(Vector2D(pPos.getX() + 100, pPos.getY()), 85, 96, src::RotarD, MovType::rotR));
-	p->addButton(iManager->addButton<ButtonMovimiento>(Vector2D(pPos.getX() + 200, pPos.getY()), 82, 72, src::RotarI, MovType::rotL));
-	p->addButton(iManager->addButton<ButtonMovimiento>(Vector2D(pPos.getX(), pPos.getY()), 82, 72, src::Avanzar, MovType::forward));
-	p->addButton(iManager->addButton<ButtonMovimiento>(Vector2D(pPos.getX() + 300, pPos.getY()), 100, 55, src::Interactuar, MovType::touch));
+	p->addButton(iManager->addButton<ButtonMovimiento>(Vector2D(pPos.getX() + 200, pPos.getY()), 64, 64, src::RotarD, MovType::rotR));
+	p->addButton(iManager->addButton<ButtonMovimiento>(Vector2D(pPos.getX() + 000, pPos.getY()), 64, 64, src::RotarI, MovType::rotL));
+	p->addButton(iManager->addButton<ButtonMovimiento>(Vector2D(pPos.getX() + 100, pPos.getY()), 64, 64, src::Avanzar, MovType::forward));
+	p->addButton(iManager->addButton<ButtonMovimiento>(Vector2D(pPos.getX() + 300, pPos.getY()), 128, 64, src::Interactuar, MovType::touch));
 } // rotR, rotL, forward, touch
 
 
