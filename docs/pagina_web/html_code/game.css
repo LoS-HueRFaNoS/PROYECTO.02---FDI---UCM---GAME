@@ -47,37 +47,82 @@ body {
 }
 #descargar{
 	background-image: url("../html_imgs/marco.png");
+	background-repeat: no-repeat;;
+	background-size: 100% 100%;
 	margin: 90px 1.5em 0 auto;
 	height: 300px;
 	width: 350px;
-
+	display:flex;
+    justify-content: center;
+    align-items: center;
 	text-align: center;
+	ms-word-break: break-all;
+    word-break: break-all;
+	word-break: break-word;
+	-webkit-hyphens: auto;
+	-moz-hyphens: auto;
+    -ms-hyphens: auto;
+    hyphens: auto;
 }
 
 #video{
 	background-image: url("../html_imgs/marco.png");
+	background-repeat: no-repeat;;
+	background-size: 100% 100%;
 	margin: -300px 0 0 110px;
 	height: 500px;
 	width: 900px;
-
+	display:flex;
+    justify-content: center;
+    align-items: center;
 	text-align: center;
+	ms-word-break: break-all;
+    word-break: break-all;
+	word-break: break-word;
+	-webkit-hyphens: auto;
+	-moz-hyphens: auto;
+    -ms-hyphens: auto;
+    hyphens: auto;
+	
 }
 #fotos{
 	background-image: url("../html_imgs/marco.png");
+	background-repeat: no-repeat;;
+	background-size: 100% 100%;
 	margin: auto;
 	height: 1800px;
 	width: 1500px;
-
+	display:flex;
+    justify-content: center;
+    align-items: center;
 	text-align: center;
+	ms-word-break: break-all;
+    word-break: break-all;
+	word-break: break-word;
+	-webkit-hyphens: auto;
+	-moz-hyphens: auto;
+    -ms-hyphens: auto;
+    hyphens: auto;
 }
 
 #texto{
 	background-image: url("../html_imgs/marco.png");
+	background-repeat: no-repeat;;
+	background-size: 100% 100%;
 	margin: 90px 1.5em 0 auto;
 	height: auto;
 	width: auto;
-
+	display:flex;
+    justify-content: center;
+    align-items: center;
 	text-align: center;
+	ms-word-break: break-all;
+    word-break: break-all;
+	word-break: break-word;
+	-webkit-hyphens: auto;
+	-moz-hyphens: auto;
+    -ms-hyphens: auto;
+    hyphens: auto;
 }
 			
 #header {
