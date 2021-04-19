@@ -257,6 +257,30 @@ void GladiatorBallad::throwHability(Character* obj, bool critical) const
 
 	obj->recieveBuff(2, buffedStat);
 }
+
+void HeavyStrike::throwHability(Character* obj, bool critical) const
+{
+	Weapon* w = static_cast<Hero*>(_caster)->getWeapon();
+
+	int damage = throwDice(w->getNDice(), w->getDamage(), true);
+
+	damage = obj->savingThrow(10 + _caster->getMod(_mod), DEX) ? damage / 2 : damage;
+
+	obj->recieveDamage(damage + 3, _damageType);
+
+}
+
+void SmokeArrow::throwHability(Character* obj, bool critical) const //hay que testear si es adecuado el defuff 
+																	//y si dura el numero correcto de turnos
+{
+	int buff = throwDice(1 + critical, 6, true);
+
+	buff = obj->savingThrow(10 + _caster->getMod(_mod), DEX) ? buff / 2 : buff;
+
+	//obj->recieveDamage(damage, _damageType);
+	obj->recieveBuff(-buff, DEX);
+}
+
 #pragma endregion
 
 #pragma region CONDITION

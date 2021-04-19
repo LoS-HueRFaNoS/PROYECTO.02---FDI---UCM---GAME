@@ -40,6 +40,8 @@ enum Hability_Id {
 	THROWINGAXES,
 	WINDSONG,
 	GLADIATORBALLAD,
+	HEAVYSTRIKE,
+	SMOKEARROW,
 	_lasHabilityId_
 };
 
@@ -669,8 +671,8 @@ public:
 
 		level = 4;
 		_mana = 0;
-		_name = "Gladiator Ballad";
-		_description = "Aumenta la velocidad de un aliado (el siguiente turno atacará el que la reciba)";
+		_name = "Gladiator's Ballad";
+		_description = "Aumenta el daño de todos los miembros del equipo durante 2 turnos";
 
 		_damageType = WIND;
 		_habilityType = BUFF;
@@ -683,6 +685,45 @@ public:
 	void throwHability(Character* obj, bool critical)const override;
 };
 
+class HeavyStrike : public Hability { //modificar la descripcion cuando lo ajustemos, pero de momento solo hace +3 de daño el ataque
+public:
+	HeavyStrike(Character* caster) :Hability(caster) {
+
+		level = 4;
+		_mana = 0;
+		_name = "Heavy Strike";
+		_description = "El ataque hace +3 de daño";
+
+		_damageType = LIGHT;
+		_habilityType = ATTACK;
+		_mod = STR;
+		_obj = SINGLEENEMY;
+	}
+
+	static Hability_Id id() { return HEAVYSTRIKE; }
+
+	void throwHability(Character* obj, bool critical)const override;
+};
+
+class SmokeArrow : public Hability {
+public:
+	SmokeArrow(Character* caster) :Hability(caster) {
+
+		level = 4;
+		_mana = 0;
+		_name = "Smoke arrow";
+		_description = "Dispara una flecha de humo que desorienta a los enemigos y les reduce la destreza durante 3 turnos";
+
+		_damageType = DARK;
+		_habilityType = BUFF;
+		_mod = INT;
+		_obj = ENEMYTEAM;
+	}
+
+	static Hability_Id id() { return SMOKEARROW; }
+
+	void throwHability(Character* obj, bool critical)const override;
+};
 
 #pragma endregion
 
