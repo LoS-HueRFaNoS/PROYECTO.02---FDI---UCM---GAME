@@ -20,13 +20,21 @@ Interfaz::~Interfaz()
 
 void Interfaz::createFight()
 {
+	// posicion del panel respecto a la ventana
+	SDLGame* game_ = entity_->getSDLGame();
+	double width = game_->getWindowWidth();
+	width = width * 0.03;
+	double height = game_->getWindowHeight();
+	height = height * 0.875;
+	Vector2D pPos = Vector2D(width, height);
+	// construccion del panel
 	Panel* p = new Panel(Fight);
 	allPanels.push_back(p);
 	// BOTONES:
-	p->addButton(iManager->addButton<ButtonAttack>(Vector2D(150, 680), 85, 96, src::AtaqueNormal, AtkType::normal));
-	p->addButton(iManager->addButton<ButtonAttack>(Vector2D(250, 700), 82, 72, src::AtaqueMagico, AtkType::magic));
-	p->addButton(iManager->addButton<ButtonAttack>(Vector2D(50, 700), 82, 72, src::Defensa, AtkType::defend));
-	p->addButton(iManager->addButton<ButtonAttack>(Vector2D(350, 710), 100, 55, src::Huida, AtkType::escape));
+	p->addButton(iManager->addButton<ButtonAttack>(Vector2D(pPos.getX() + 100, pPos.getY()), 85, 96, src::AtaqueNormal, AtkType::normal));
+	p->addButton(iManager->addButton<ButtonAttack>(Vector2D(pPos.getX() + 200, pPos.getY()), 82, 72, src::AtaqueMagico, AtkType::magic));
+	p->addButton(iManager->addButton<ButtonAttack>(Vector2D(pPos.getX(), pPos.getY()), 82, 72, src::Defensa, AtkType::defend));
+	p->addButton(iManager->addButton<ButtonAttack>(Vector2D(pPos.getX() + 300, pPos.getY()), 100, 55, src::Huida, AtkType::escape));
 } // normal, magic, defend, escape
 
 void Interfaz::createMovement()
