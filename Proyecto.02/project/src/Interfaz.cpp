@@ -248,12 +248,9 @@ void Interfaz::init()
 void Interfaz::update()
 {
 	InputHandler* ih_ = InputHandler::instance();
-	if (ih_->mouseButtonEvent()) {
-		uint e = ih_->getMouseButtonState(InputHandler::RIGHT);
+	if (ih_->isKeyDown(SDLK_t)) {
 		// mouse event
-		if (!e) {
-			toggleCombat_Movement();
-		}
+		toggleCombat_Movement();
 	}
 }
 
