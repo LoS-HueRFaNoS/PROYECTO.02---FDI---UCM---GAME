@@ -244,6 +244,19 @@ void ThrowingAxes::throwHability(Character* obj, bool critical) const //revisar 
 
 }
 
+void WindSong::throwHability(Character* obj, bool critical) const
+{
+	mainStat buffedStat = DEX;
+
+	obj->recieveBuff(2, buffedStat);
+}
+
+void GladiatorBallad::throwHability(Character* obj, bool critical) const
+{
+	mainStat buffedStat = STR;
+
+	obj->recieveBuff(2, buffedStat);
+}
 #pragma endregion
 
 #pragma region CONDITION

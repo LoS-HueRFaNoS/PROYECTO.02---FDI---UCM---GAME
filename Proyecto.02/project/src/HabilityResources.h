@@ -38,6 +38,8 @@ enum Hability_Id {
 	SACRIFICE,
 	DOUBLESHOT,
 	THROWINGAXES,
+	WINDSONG,
+	GLADIATORBALLAD,
 	_lasHabilityId_
 };
 
@@ -640,6 +642,46 @@ public:
 	void throwHability(Character* obj, bool critical)const override;
 };
 
+class WindSong : public Hability {
+public:
+	WindSong(Character* caster) :Hability(caster) { //por ahora aumenta la DEX a todo el equipo, pero hay que cambiar a un solo objetivo 
+		                                            //y que este sea el siguiente en atacar
+
+		level = 4;
+		_mana = 0;
+		_name = "Wind Song";
+		_description = "Aumenta la velocidad de un aliado (el siguiente turno atacará el que la reciba)";
+
+		_damageType = WIND;
+		_habilityType = BUFF;
+		_mod = INT;
+		_obj = ALLYTEAM;
+	}
+
+	static Hability_Id id() { return WINDSONG; }
+
+	void throwHability(Character* obj, bool critical)const override;
+};
+
+class GladiatorBallad : public Hability {
+public:
+	GladiatorBallad(Character* caster) :Hability(caster) { 
+
+		level = 4;
+		_mana = 0;
+		_name = "Gladiator Ballad";
+		_description = "Aumenta la velocidad de un aliado (el siguiente turno atacará el que la reciba)";
+
+		_damageType = WIND;
+		_habilityType = BUFF;
+		_mod = INT;
+		_obj = ALLYTEAM;
+	}
+
+	static Hability_Id id() { return GLADIATORBALLAD; }
+
+	void throwHability(Character* obj, bool critical)const override;
+};
 
 
 #pragma endregion
