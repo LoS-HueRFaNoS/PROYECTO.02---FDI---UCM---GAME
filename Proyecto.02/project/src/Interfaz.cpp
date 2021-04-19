@@ -49,11 +49,7 @@ void Interfaz::createMovement()
 	// construccion del panel
 	Panel* p = new Panel(Movement);
 	allPanels.push_back(p);
-	p->addButton(new ButtonMovimiento(game_, iManager));
-	/*createButtonMovement(this, rotarDerecha, Vector2D(pPos.getX() + 100, pPos.getY()), 85, 96, src::Avanzar);
-	createButtonMovement(p, MovType::rotR, plmot, Vector2D(pPos.getX() + 200, pPos.getY()), 82, 72, src::RotarD);
-	createButtonMovement(p, MovType::rotL, plmot, Vector2D(pPos.getX(), pPos.getY()), 82, 72, src::RotarI);
-	createButtonMovement(p, MovType::touch, plmot, Vector2D(pPos.getX() + 300, pPos.getY()), 100, 55, src::Interactuar);*/
+	// BOTONES:
 	p->addButton(iManager->addButton<ButtonMovimiento>(Vector2D(pPos.getX() + 100, pPos.getY()), 85, 96, src::RotarD, MovType::rotR));
 	p->addButton(iManager->addButton<ButtonMovimiento>(Vector2D(pPos.getX() + 200, pPos.getY()), 82, 72, src::RotarI, MovType::rotL));
 	p->addButton(iManager->addButton<ButtonMovimiento>(Vector2D(pPos.getX(), pPos.getY()), 82, 72, src::Avanzar, MovType::forward));
@@ -74,15 +70,12 @@ void Interfaz::createHeroes()
 	Panel* p = new Panel(Movement);
 	allPanels.push_back(p);
 	uint tamL = 100;
-	/*createButtonHeroes(p, HeroNum::hero1, plmot, Vector2D(pPos.getX(), pPos.getY()), tamL, tamL, src::Bardo);
-	createButtonHeroes(p, HeroNum::hero2, plmot, Vector2D(pPos.getX(), pPos.getY() + 100), tamL, tamL, src::Brujo);
-	createButtonHeroes(p, HeroNum::hero3, plmot, Vector2D(pPos.getX(), pPos.getY() + 200), tamL, tamL, src::Clerigo);
-	createButtonHeroes(p, HeroNum::hero4, plmot, Vector2D(pPos.getX(), pPos.getY() + 300), tamL, tamL, src::Guerrero);*/
-	/*createButton(p, this, cb::infoHeroe01, Vector2D(pPos.getX(), pPos.getY()), tamL, tamL, src::Bardo);
-	createButton(p, this, cb::infoHeroe02, Vector2D(pPos.getX(), pPos.getY() + 100), tamL, tamL, src::Brujo);
-	createButton(p, this, cb::infoHeroe03, Vector2D(pPos.getX(), pPos.getY() + 200), tamL, tamL, src::Clerigo);
-	createButton(p, this, cb::infoHeroe04, Vector2D(pPos.getX(), pPos.getY() + 300), tamL, tamL, src::Guerrero);*/
-}
+	// BOTONES:
+	p->addButton(iManager->addButton<ButtonHero>(Vector2D(pPos.getX(), pPos.getY()), tamL, tamL, src::Bardo, HeroNum::hero1));
+	p->addButton(iManager->addButton<ButtonHero>(Vector2D(pPos.getX(), pPos.getY() + 100), tamL, tamL, src::Brujo, HeroNum::hero2));
+	p->addButton(iManager->addButton<ButtonHero>(Vector2D(pPos.getX(), pPos.getY() + 200), tamL, tamL, src::Clerigo, HeroNum::hero3));
+	p->addButton(iManager->addButton<ButtonHero>(Vector2D(pPos.getX(), pPos.getY() + 300), tamL, tamL, src::Guerrero, HeroNum::hero4));
+} // hero1, hero2, hero3, hero4
 
 void Interfaz::createInfo()
 {

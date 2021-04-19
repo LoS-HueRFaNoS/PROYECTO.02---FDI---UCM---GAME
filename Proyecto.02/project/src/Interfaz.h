@@ -18,10 +18,6 @@ private:
 	Cursor* c_;
 
 	Cursor* createCursor(Vector2D pos, uint width, uint height, Resources::TextureId image);
-	/*void createButtonFight(Panel* p, AtkType type, PlayerMotion* plmot, Vector2D pos, uint width, uint height, Resources::TextureId image);
-	void createButtonMovement(Panel * p, MovType type, PlayerMotion * plmot, Vector2D pos, uint width, uint height, Resources::TextureId image);
-	void createButtonHeroes(Panel * p, HeroNum type, PlayerMotion * plmot, Vector2D pos, uint width, uint height, Resources::TextureId image);
-	void createButtonInfo(Panel * p, Inf type, PlayerMotion * plmot, Vector2D pos, uint width, uint height, Resources::TextureId image);*/
 
 	void createFight();
 	void createMovement();
