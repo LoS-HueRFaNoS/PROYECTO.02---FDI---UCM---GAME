@@ -10,10 +10,10 @@ vector<Resources::ImageInfo> Resources::images_{
 	{posMiniMap, "resources/images/pasillos/posJugador.png"},			//
 	{camino_izq, "resources/images/pasillos/camino_izq.png"},			//
 	{camino_der, "resources/images/pasillos/camino_der.png"},			//
-	{camino_del, "resources/images/pasillos/camino_del.png"},			//
+	{camino_fr, "resources/images/pasillos/camino_del.png"},			//
 	{muro_izq, "resources/images/pasillos/muro_izq.png"},				//
 	{muro_der, "resources/images/pasillos/muro_der.png"},				//
-	{muro_del, "resources/images/pasillos/muro_del.png"},				//
+	{muro_fr, "resources/images/pasillos/muro_del.png"},				//
 	{no_visitado, "resources/images/pasillos/pasillo_no_visitado.png"}, //
 	{no_entrado, "resources/images/pasillos/pasillo_no_entrado.png"},	//
 	{visitado, "resources/images/pasillos/pasillo_visitado.png"},		//
@@ -91,6 +91,8 @@ vector<Resources::ImageInfo> Resources::images_{
 	{CotaMalla, "resources/sprites/iconos armaduras/cota_mallas.png"},
 	{Bandas, "resources/sprites/iconos armaduras/joker.png"},
 	{Placas, "resources/sprites/iconos armaduras/joker.png"}};
+
+//
 
 vector<Resources::TextMsgInfo> Resources::messages_{
 	//
