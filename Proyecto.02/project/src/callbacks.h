@@ -18,13 +18,9 @@ public:
 	static void movCommand(int movType);
 	// acceso a informacion
 	static void inventario(Interfaz* app);
-	static void pocionVida(Interfaz* app);
-	static void pocionMana(Interfaz* app);
 	static void chat(Interfaz* app);
 	static void configuracion(Interfaz* app);
+	static void potionType(int potionType_);
 	// acceso a combate
-	static void ataqueNormal(Interfaz* app);
-	static void ataqueMagico(Interfaz* app);
-	static void defensa(Interfaz* app);
-	static void huida(Interfaz* app);
+	static void attackType(int attackType_);
 };

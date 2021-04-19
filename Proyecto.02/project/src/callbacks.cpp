@@ -76,24 +76,34 @@ void callbacks::movCommand(int movType)
 
 #pragma region PanelInformation
 
+
+
 void callbacks::inventario(Interfaz* app)
 {
 	std::cout << "has abierto el inventario" << std::endl;
 }
 
-void callbacks::pocionVida(Interfaz* app)
-{
-	std::cout << "has usado la poci�n de vida" << std::endl;
-}
-
-void callbacks::pocionMana(Interfaz* app)
-{
-	std::cout << "has usado la poci�n de man�" << std::endl;
-}
-
 void callbacks::configuracion(Interfaz* app)
 {
-	std::cout << "has usado el bot�n de configuraci�n y ayuda" << std::endl;
+
+}
+
+void callbacks::potionType(int potionType_)
+{
+	switch (potionType_)
+	{
+	case 0:
+		std::cout << "has usado la pocion de vida" << std::endl;
+		break;
+	case 1:
+		std::cout << "has usado la pocion de mana" << std::endl;
+		break;
+	case 2:
+		std::cout << "has usado la pocion de resurreccion" << std::endl;
+		break;
+	default:
+		break;
+	}
 }
 
 #pragma endregion
@@ -112,25 +122,28 @@ void callbacks::chat(Interfaz* app)
 // ----------------------------------------------------
 
 #pragma region PanelCombate
+#include "../TheElementalMaze.h"
+#include "CombatManager.h"
 
-void callbacks::ataqueNormal(Interfaz* app)
+void callbacks::attackType(int attackType_)
 {
-	std::cout << "ataque cuerpo a cuerpo" << std::endl;
-}
-
-void callbacks::ataqueMagico(Interfaz* app)
-{
-	std::cout << "ataque magico" << std::endl;
-}
-
-void callbacks::defensa(Interfaz* app)
-{
-	std::cout << "te has defendido" << std::endl;
-}
-
-void callbacks::huida(Interfaz* app)
-{
-	std::cout << "escapaste" << std::endl;
+	switch (attackType_)
+	{
+	case 0:
+		std::cout << "ataque cuerpo a cuerpo" << std::endl;
+		break;
+	case 1:
+		std::cout << "ataque magico" << std::endl;
+		break;
+	case 2:
+		std::cout << "te has defendido" << std::endl;
+		break;
+	case 3:
+		std::cout << "escapaste" << std::endl;
+		break;
+	default:
+		break;
+	}
 }
 
 #pragma endregion

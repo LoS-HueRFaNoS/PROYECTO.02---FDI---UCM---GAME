@@ -6,9 +6,6 @@
 
 typedef unsigned int uint;
 
-enum class AtkType { normal, magic, defend, escape };
-enum class Inf { inventory, potionHealth, potionMana, chat, config };
-
 //class InterfazManager;
 class Button : public Entity
 {
@@ -76,11 +73,50 @@ public:
 
 // ----------------------------------------------------
 
+enum class AtkType { normal, magic, defend, escape };
 
+class ButtonAttack : public Button {
+private:
+	AtkType attackType_;
+public:
+	ButtonAttack(SDLGame* game, EntityManager* mngr) : Button(game, mngr), attackType_(AtkType::normal) {};
+
+	~ButtonAttack() {};
+
+	virtual void init(Vector2D pos, uint ancho, uint alto, Resources::TextureId imagen, AtkType attack) {
+		attackType_ = attack;
+		Button::init(pos, ancho, alto, imagen);
+	};
+
+	virtual void click()
+	{
+		callbacks::attackType((int)attackType_);
+	}
+};
 
 // ----------------------------------------------------
 
+//enum class Inf { inventory, potionHealth, potionMana, chat, config };
+enum class PtnType { health, mana, resurrection };
 
+class ButtonPotion : public Button {
+private:
+	PtnType potionType_;
+public:
+	ButtonPotion(SDLGame* game, EntityManager* mngr) : Button(game, mngr), potionType_(PtnType::health) {};
+
+	~ButtonPotion() {};
+
+	virtual void init(Vector2D pos, uint ancho, uint alto, Resources::TextureId imagen, PtnType potion) {
+		potionType_ = potion;
+		Button::init(pos, ancho, alto, imagen);
+	};
+
+	virtual void click()
+	{
+		callbacks::potionType((int)potionType_);
+	}
+};
 
 // ----------------------------------------------------
 

@@ -43,6 +43,7 @@ vector<Resources::ImageInfo> Resources::images_{
 	{Inventario, "resources/sprites/iconos info/infoInventario.png"},
 	{PocionVida, "resources/sprites/iconos info/infoPocionVida.png"},
 	{PocionMana, "resources/sprites/iconos info/infoPocionMana.png"},
+	{PocionRess, "resources/sprites/iconos info/infoPocionRess.png"},
 	{Chat, "resources/sprites/iconos info/infoChat.png"},
 	{Configuracion, "resources/sprites/iconos info/infoConfiguracionAyuda.png"},
 

@@ -20,16 +20,13 @@ void Interfaz::createFight()
 {
 	Panel* p = new Panel(Fight);
 	allPanels.push_back(p);
-	/*createButtonFight(p, AtkType::normal, plmot, Vector2D(150, 680), 85, 96, src::AtaqueNormal);
-	createButtonFight(p, AtkType::magic, plmot, Vector2D(250, 700), 82, 72, src::AtaqueMagico);
-	createButtonFight(p, AtkType::defend, plmot, Vector2D(50, 700), 82, 72, src::Defensa);
-	createButtonFight(p, AtkType::escape, plmot, Vector2D(350, 710), 100, 55, src::Huida);*/
+	// BOTONES:
+	p->addButton(iManager->addButton<ButtonAttack>(Vector2D(150, 680), 85, 96, src::AtaqueNormal, AtkType::normal));
+	p->addButton(iManager->addButton<ButtonAttack>(Vector2D(250, 700), 82, 72, src::AtaqueMagico, AtkType::magic));
+	p->addButton(iManager->addButton<ButtonAttack>(Vector2D(50, 700), 82, 72, src::Defensa, AtkType::defend));
+	p->addButton(iManager->addButton<ButtonAttack>(Vector2D(350, 710), 100, 55, src::Huida, AtkType::escape));
+} // normal, magic, defend, escape
 
-	/*createButton(p, this, cb::ataqueNormal, Vector2D(150, 680), 85, 96, src::AtaqueNormal);
-	createButton(p, this, cb::ataqueMagico, Vector2D(250, 700), 82, 72, src::AtaqueMagico);
-	createButton(p, this, cb::defensa, Vector2D(50, 700), 82, 72, src::Defensa);
-	createButton(p, this, cb::huida, Vector2D(350, 710), 100, 55, src::Huida);*/
-}
 void Interfaz::createMovement()
 {
 	// posicion del panel respecto a la ventana
@@ -79,17 +76,16 @@ void Interfaz::createInfo()
 
 	Panel* p = new Panel(Info);
 	allPanels.push_back(p);
-	/*createButtonInfo(p, Inf::inventory, plmot, Vector2D(width * 4 / 7, height * 3 / 4), tamBoton*2, tamBoton*2, src::Inventario);
-	createButtonInfo(p, Inf::potionHealth, plmot, Vector2D(width * 5 / 7, height * 3 / 4), tamBoton* 0.8, tamBoton * 0.8, src::PocionVida);
-	createButtonInfo(p, Inf::potionMana, plmot, Vector2D(width * 5 / 7, height * 5 / 6), tamBoton * 0.8, tamBoton * 0.8, src::PocionMana);
-	createButtonInfo(p, Inf::chat, plmot, Vector2D(width * 6 / 7, height * 3 / 4), tamBoton, tamBoton, src::Chat);
-	createButtonInfo(p, Inf::config, plmot, Vector2D( width * 6 / 7, height * 5 / 6), tamBoton, tamBoton, src::Configuracion);*/
+
+	double space = tamBoton * 0.8;
+	// BOTONES:
+	p->addButton(iManager->addButton<ButtonPotion>(Vector2D(width * 5 / 7, height * 3 / 4), tamBoton * 0.8, tamBoton * 0.8, src::PocionVida, PtnType::health));
+	p->addButton(iManager->addButton<ButtonPotion>(Vector2D(width * 5 / 7, height * 5 / 6), tamBoton * 0.8, tamBoton * 0.8, src::PocionMana, PtnType::mana));
+	p->addButton(iManager->addButton<ButtonPotion>(Vector2D(width * 5 / 7, height * 5 / 6 + space), tamBoton * 0.8, tamBoton * 0.8, src::PocionRess, PtnType::resurrection));
 	/*createButton(p, this, cb::inventario, Vector2D(width * 4 / 7, height * 3 / 4), tamBoton * 2, tamBoton * 2, src::Inventario);
-	createButton(p, this, cb::pocionVida, Vector2D(width * 5 / 7, height * 3 / 4), tamBoton * 0.8, tamBoton * 0.8, src::PocionVida);
-	createButton(p, this, cb::pocionMana, Vector2D(width * 5 / 7, height * 5 / 6), tamBoton * 0.8, tamBoton * 0.8, src::PocionMana);
 	createButton(p, this, cb::chat, Vector2D(width * 6 / 7, height * 3 / 4), tamBoton, tamBoton, src::Chat);
 	createButton(p, this, cb::configuracion, Vector2D(width * 6 / 7, height * 5 / 6), tamBoton, tamBoton, src::Configuracion);*/
-}
+} // health, mana, resurrection
 
 void Interfaz::createInventory()
 {
