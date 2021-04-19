@@ -67,16 +67,20 @@ void callbacks::infoHeroe04(Interfaz* app) {
 
 void callbacks::movCommand(int movType) // CUANDO SE TENGA EL SINGLETON DEL GAMEMANAGER SE HARÁN LOS METODOS
 {
+	PlayerMotion* p = TheElementalMaze::instance()->getPlayer()->getComponent<PlayerMotion>(ecs::PlayerMotion);
 	switch (movType)
 	{
 	case 0:
 		std::cout << "has girado a la derecha" << std::endl;
+		p->rotarDerecha();
 		break;
 	case 1:
 		std::cout << "has girado a la izquierda" << std::endl;
+		p->rotarIzquierda();
 		break;
 	case 2:
 		std::cout << "has avanzado" << std::endl;
+		p->avanzar();
 		break;
 	case 3:
 		std::cout << "has interactuado" << std::endl;
@@ -91,7 +95,7 @@ void callbacks::rotarDerecha(Interfaz* app)
 	/*Entity* e = app->getEntity();
 	GETCMP2(e, PlayerMotion)->rotarDerecha();*/
 	TheElementalMaze* maze = static_cast<TheElementalMaze*>(app->getEntity());
-	PlayerMotion* c = maze->getPlayerMotion();
+	PlayerMotion* c = maze->getPlayer()->getComponent<PlayerMotion>(ecs::PlayerMotion);
 	c->rotarDerecha();
 }
 
@@ -100,7 +104,7 @@ void callbacks::rotarIzquierda(Interfaz* app)
 	/*Entity* e = app->getEntity();
 	GETCMP2(e, PlayerMotion)->rotarIzquierda();*/
 	TheElementalMaze* maze = static_cast<TheElementalMaze*>(app->getEntity());
-	PlayerMotion* c = maze->getPlayerMotion();
+	PlayerMotion* c = maze->getPlayer()->getComponent<PlayerMotion>(ecs::PlayerMotion);
 	c->rotarIzquierda();
 }
 
@@ -109,7 +113,7 @@ void callbacks::avanzar(Interfaz* app)
 	TheElementalMaze* maze = static_cast<TheElementalMaze*>(app->getEntity());
 	//Entity* e = maze->getPlayer();
 	//PlayerMotion* c = GETCMP2(e, PlayerMotion);
-	PlayerMotion* c = maze->getPlayerMotion();
+	PlayerMotion* c = maze->getPlayer()->getComponent<PlayerMotion>(ecs::PlayerMotion);
 	c->avanzar();
 }
 

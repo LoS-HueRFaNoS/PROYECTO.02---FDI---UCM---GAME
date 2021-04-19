@@ -1,24 +1,32 @@
 #include "TheElementalMaze.h"
+#include "src/CombatManager.h"
+#include "src/CharacterManager.h"
+#include "src/Interfaz.h"
+#include "src/Laberinto.h"
+#include "src/PlayerMotion.h"
+#include "src/PlayerViewer.h"
+#include "src/ItemManager.h"
+
+
+unique_ptr<TheElementalMaze> TheElementalMaze::instance_;
 
 void TheElementalMaze::init()
 {
 	// 1. Laberinto
-	laberintoE_ = mngr_->addEntity();
-	laberintoC_ = laberintoE_->addComponent<Laberinto>(10,10); // esto es redundante ._.
-	laberintoC_->createRandomMaze(Vector2D(0, 0));
+	laberinto_ = mngr_->addEntity();
+	Laberinto* lab = laberinto_->addComponent<Laberinto>(10, 10);
+	lab->createRandomMaze(Vector2D(0, 0));
 
 	// 2. Player
 	player_ = mngr_->addEntity(); // lo primero en crearse deber�a ser el player �?
 	player_->addComponent<MazePos>(Vector2D(0, 0));
-	playerMotion_ = player_->addComponent<PlayerMotion>(SDLK_UP, SDLK_LEFT, SDLK_RIGHT, laberintoC_);
-	player_->addComponent<PlayerViewer>(laberintoC_);
+	player_->addComponent<PlayerMotion>(SDLK_UP, SDLK_LEFT, SDLK_RIGHT, lab);
+	player_->addComponent<PlayerViewer>(lab);
 
 	// 3. Interfaz
 	uiManager_ = addComponent<Interfaz>(iManager_);
 
 	// 4. Personajes
-
-	characterManager_->setElementalMaze(this);
 
 	itemManager_ = new ItemManager();
 
@@ -57,7 +65,7 @@ void TheElementalMaze::init()
 	combatManager_->addCharacter(e2);
 	combatManager_->addCharacter(e3);
 
-	//combatManager_->startCombat();
+	combatManager_->startCombat();
 
 
 	cout << "Characters Loaded" << endl;

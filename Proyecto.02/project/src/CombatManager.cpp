@@ -1,5 +1,7 @@
 #include "CombatManager.h"
 #include "RPGLogic.h"
+#include "CharacterManager.h"
+#include "../TheElementalMaze.h"
 
 
 #pragma region CombatePorConsola
@@ -7,31 +9,9 @@
 #include <iomanip>
 #include <string>
 
-void CombatManager::consoleCombat()
-{
-	system("CLS");
-
-	showTeams();
-
-	showQ();
-
-	cout << "---------- PRESS ENTER TO START TURN ----------" << endl;
-	cin.ignore(INT_MAX, '\n');
-	cin.get();
-	cin.sync();
-
-	currentCharacter->startTurn(this);
-
-	cout << "---------- PRESS ENTER TO END TURN ----------" << endl;
-	cin.ignore(INT_MAX, '\n');
-	cin.get();
-	cin.sync();
-
-	passTurn();
-}
-
 void CombatManager::showTeams()
 {
+	system("CLS");
 	cout << "---------- HEROES ----------" << endl;
 	for (Hero* h : _heroes) {
 		CharacterSheet* s = h->getComponent<CharacterSheet>(ecs::CharacterSheet);
@@ -72,17 +52,34 @@ void CombatManager::showQ()
 
 }
 
+void CombatManager::showTargets()
+{
+	cout << "TARGETS" << endl;
+	maxTargets = 0;
+
+	if (targetList) {
+		maxTargets = int(_enemies.size());
+		for (int i = 0; i < _enemies.size(); i++) {
+			CharacterSheet* c = _enemies[i]->getComponent<CharacterSheet>(ecs::CharacterSheet);
+			cout << i << ". " << std::setfill(' ') << std::left << setw(12) << c->name << setw(15) << "HP " + to_string(c->hitPoints()) + "/" + to_string(c->maxHitPoints()) << endl;
+		}
+	}
+	else {
+		maxTargets = int(_heroes.size());
+		for (int i = 0; i < _heroes.size(); i++) {
+			CharacterSheet* c = _heroes[i]->getComponent<CharacterSheet>(ecs::CharacterSheet);
+			cout << i << ". " << std::setfill(' ') << std::left << setw(12) << c->name << setw(15) << "HP " + to_string(c->hitPoints()) + "/" + to_string(c->maxHitPoints()) << endl;
+		}
+	}
+	cout << "Choose target: ";
+}
+
 #pragma endregion
 
 
 void CombatManager::startCombat()
 {
-	_turn = 0;
-	_exp = 0;
-	_combatEnd = false;
-	currentCharacter = nullptr;
-	calculateTurns();
-	currentCharacter = _turnQueue[0];
+	changeState(COMBAT_START);
 }
 
 void CombatManager::passTurn()
@@ -90,7 +87,6 @@ void CombatManager::passTurn()
 	if (!checkEnd()) {
 		for (std::vector<Character*>::iterator it = _turnQueue.begin(); it != _turnQueue.end();) {
 			if ((*it)->isDead() && (*it)->getType()) {
-				_exp += dynamic_cast<Enemy*>(*it)->getExp();
 				it = _turnQueue.erase(it);
 			}
 			else {
@@ -99,9 +95,10 @@ void CombatManager::passTurn()
 		}
 		_turn = ++_turn % _turnQueue.size();
 		currentCharacter = _turnQueue[_turn];
+		changeState(START_TURN);
 	}
 	else
-		endCombat();
+		changeState(COMBAT_END);
 }
 
 bool CombatManager::checkEnd()
@@ -115,18 +112,22 @@ bool CombatManager::checkEnd()
 	}
 	end = true;
 	for (Enemy* e : _enemies)
-		end *= e->isDead(); 
+		end *= e->isDead();
 	return end;
 }
 
 void CombatManager::endCombat()
 {
-	_combatEnd = true;
 	if (_win) {
 		cout << "GANASTE, ERES BUENISIMO NO ?" << endl << _exp << " DE EXPERIENCIA GANADA" << endl;
 	}
 	else
 		cout << "PERDISTE, ASI ES LA VIDA" << endl;
+
+	_heroes.clear();
+	for (Enemy* e : _enemies) {
+		TheElementalMaze::instance()->getCharacterManager()->removeEntiy(e);
+	}
 }
 
 void CombatManager::castHability(Hability* hability)
@@ -134,19 +135,25 @@ void CombatManager::castHability(Hability* hability)
 	ObjectiveType t = hability->getObjectiveType();
 	cout << "\n";
 
+	_habilityToCast = hability;
+
 	switch (t)
 	{
 	case SINGLEALLY:
-		castToSingleTarget(currentCharacter->getType(), hability);
+		targetList = currentCharacter->getType();
+		changeState(ACTION_PHASE_TARGET);
 		break;
 	case SINGLEENEMY:
-		castToSingleTarget((characterType)((int)currentCharacter->getType() ^ 1), hability);
+		targetList = (characterType)((int)currentCharacter->getType() ^ 1);
+		changeState(ACTION_PHASE_TARGET);
 		break;
 	case ALLYTEAM:
-		castToTeam(currentCharacter->getType(), hability);
+		targetList = currentCharacter->getType();
+		castToTeam();
 		break;
 	case ENEMYTEAM:
-		castToTeam((characterType)((int)currentCharacter->getType() ^ 1), hability);
+		targetList = (characterType)((int)currentCharacter->getType() ^ 1);
+		castToTeam();
 		break;
 	case CASTER:
 		throwHability(hability->getCaster(), hability);
@@ -157,56 +164,27 @@ void CombatManager::castHability(Hability* hability)
 }
 
 
-void CombatManager::castToTeam(characterType team, Hability* hability)
+void CombatManager::castToTeam()
 {
-	if (team) {
+	if (targetList) {
 		for (Enemy* e : _enemies)
-			if (!e->isDead())throwHability(e, hability);
+			if (!e->isDead())throwHability(e, _habilityToCast);
 	}
 	else {
 		for (Hero* h : _heroes)
-			if (!h->isDead())throwHability(h, hability);
+			if (!h->isDead())throwHability(h, _habilityToCast);
 	}
 
 }
 
-void CombatManager::castToSingleTarget(characterType team, Hability* hability)
+void CombatManager::castToSingleTarget(int input)
 {
-	cout << "TARGETS" << endl;
-	int maxTarget = 0;
-
-	if (team) {
-		maxTarget = int(_enemies.size());
-		for (int i = 0; i < _enemies.size(); i++) {
-			CharacterSheet* c = _enemies[i]->getComponent<CharacterSheet>(ecs::CharacterSheet);
-			cout << i << ". " << std::setfill(' ') << std::left << setw(12) << c->name << setw(15) << "HP " + to_string(c->hitPoints()) + "/" + to_string(c->maxHitPoints()) << endl;
-		}
-	}
-	else {
-		maxTarget = int(_heroes.size());
-		for (int i = 0; i < _heroes.size(); i++) {
-			CharacterSheet* c = _heroes[i]->getComponent<CharacterSheet>(ecs::CharacterSheet);
-			cout << i << ". " << std::setfill(' ') << std::left << setw(12) << c->name << setw(15) << "HP " + to_string(c->hitPoints()) + "/" + to_string(c->maxHitPoints()) << endl;
-		}
+	if (!(input < maxTargets && input >= 0)) {
+		cout << "Use a valid index please: \n";
+		return;
 	}
 
-	int target;
-	cout << "Choose target: ";
-	while (true) {
-
-		cin >> target;
-		if (!cin.good() || !(target < maxTarget && target >= 0)) {
-			cin.clear();
-			cin.ignore(INT_MAX, '\n');
-			cout << "Use a valid index please: ";
-		}
-		else if (target < maxTarget && target >= 0)
-			break;
-		cin.sync();
-	}
-	cin.sync();
-
-	throwHability(team ? dynamic_cast<Character*>(_enemies[target]) : dynamic_cast<Character*>(_heroes[target]), hability);
+	throwHability(targetList ? dynamic_cast<Character*>(_enemies[input]) : dynamic_cast<Character*>(_heroes[input]), _habilityToCast);
 }
 
 void CombatManager::throwHability(Character* objective, Hability* hability)
@@ -225,8 +203,9 @@ void CombatManager::throwHability(Character* objective, Hability* hability)
 		cout << "No Hit" << endl;
 	}
 	cout << "\n\n";
-}
 
+	changeState(END_TURN);
+}
 
 void CombatManager::calculateTurns()
 {
@@ -244,11 +223,105 @@ void CombatManager::calculateTurns()
 		else
 			_turnQueue.push_back(_heroes[i.pos]);
 	}
+	currentCharacter = _turnQueue[0];
+}
+
+void CombatManager::calculateExp()
+{
+	for (Enemy* e : _enemies)
+		_exp += e->getExp();
+}
+
+
+void CombatManager::onStateChanged()
+{
+	stateChanged = false;
+
+	switch (_state)
+	{
+	case COMBAT_START:
+		_turn = 0;
+		_exp = 0;
+		currentCharacter = nullptr;
+		calculateTurns();
+		calculateExp();
+		changeState(START_TURN);
+		break;
+	case PASS_TURN:
+		passTurn();
+		break;
+	case START_TURN:
+		showTeams();
+		showQ();
+		cout << "---------- PRESS ENTER TO START TURN ----------" << endl;
+		break;
+	case ACTION_PHASE_SPELL:
+		if (!currentCharacter->getType())
+			static_cast<Hero*>(currentCharacter)->showSpellList();
+		break;
+	case ACTION_PHASE_TARGET:
+		showTargets();
+		break;
+	case END_TURN:
+		cout << "---------- PRESS ENTER TO END TURN ----------" << endl;
+		break;
+	case COMBAT_END:
+		endCombat();
+		break;
+	case NO_COMBAT:
+		break;
+	default:
+		break;
+	}
+}
+
+void CombatManager::sendKeyEvent(int key)
+{
+	switch (_state)
+	{
+	case START_TURN:
+		if (key == -1) {
+			changeState(ACTION_PHASE_SPELL);
+			currentCharacter->startTurn(this);
+		}
+		break;
+	case END_TURN:
+		if (key == -1) changeState(PASS_TURN);
+		break;
+	case ACTION_PHASE_SPELL:
+		if (!currentCharacter->getType())
+			static_cast<Hero*>(currentCharacter)->manageInput(this, key);
+		break;
+	case ACTION_PHASE_TARGET:
+		if (!currentCharacter->getType())
+			castToSingleTarget(key);
+		break;
+	default:
+		break;
+	}
 
 }
 
+
 void CombatManager::update()
 {
-	if (!_combatEnd)
-		consoleCombat();
+	if (stateChanged)
+		onStateChanged();
+
+	InputHandler* ih = InputHandler::instance();
+
+	if (ih->keyDownEvent()) {
+		if (ih->isKeyDown(SDLK_0)) sendKeyEvent(0);
+		else if (ih->isKeyDown(SDLK_1)) sendKeyEvent(1);
+		else if (ih->isKeyDown(SDLK_2)) sendKeyEvent(2);
+		else if (ih->isKeyDown(SDLK_3)) sendKeyEvent(3);
+		else if (ih->isKeyDown(SDLK_4)) sendKeyEvent(4);
+		else if (ih->isKeyDown(SDLK_5)) sendKeyEvent(5);
+		else if (ih->isKeyDown(SDLK_6)) sendKeyEvent(6);
+		else if (ih->isKeyDown(SDLK_7)) sendKeyEvent(7);
+		else if (ih->isKeyDown(SDLK_8)) sendKeyEvent(8);
+		else if (ih->isKeyDown(SDLK_9)) sendKeyEvent(9);
+		else if (ih->isKeyDown(SDLK_RETURN)) sendKeyEvent(-1);
+	}
+
 }

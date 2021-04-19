@@ -112,7 +112,6 @@ namespace rpgLogic {
 		_LastEnemyTemplateId_
 	};
 
-
 	struct  Stat
 	{
 		int value;

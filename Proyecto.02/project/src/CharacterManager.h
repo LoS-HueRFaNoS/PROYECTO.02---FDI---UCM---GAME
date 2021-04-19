@@ -1,9 +1,14 @@
 #pragma once
 
 #include "Manager.h"
-#include "Character.h"
-#include "jute.h"
 
+namespace jute {
+
+	class Jvalue;
+}
+
+class Hero;
+class Enemy;
 class TheElementalMaze;
 
 class CharacterManager : public EntityManager {
@@ -18,8 +23,6 @@ public:
 	Enemy* addEnemyFromTemplate(rpgLogic::enemyTemplate t);
 	Enemy* addRandomEnemy();
 
-	void setElementalMaze(TheElementalMaze* gameMngr);
-
 private:
 	void newCharacter(Entity* e);
 
@@ -29,6 +32,4 @@ private:
 
 	jute::jValue enemyJson;
 	jute::jValue heroJson;
-
-	TheElementalMaze* gameManager_;
 };

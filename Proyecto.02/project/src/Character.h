@@ -1,22 +1,17 @@
 #ifndef _CHARACTER_
 #define _CHARACTER_
+
 #include "CharacterSheet.h"
 #include "Entity.h"
 #include "Item.h"
-//#include "Equipement.h"
 
 #pragma region CHARACTER
 
 class CombatManager;
 
-class TheElementalMaze;
-
 class Character : public Entity
 {
 protected:
-
-	TheElementalMaze* gameManager_;
-
 	characterType _type;
 
 	CharacterSheet* _sheet;
@@ -39,11 +34,12 @@ protected:
 
 public:
 
-	Character(SDLGame* game, EntityManager* mngr, TheElementalMaze* gameManager, characterType type) : gameManager_(gameManager), _type(type), _habilities(vector<Hability*>()), Entity(game, mngr) {
+	Character(SDLGame* game, EntityManager* mngr,  characterType type) :  _type(type), _habilities(vector<Hability*>()), Entity(game, mngr) {
 		init();
 	}
 
 	void loadFromTemplate(jute::jValue v, heroTemplate t);
+
 	void loadFromTemplate(jute::jValue v, enemyTemplate t);
 
 	void recieveDamage(int damage, damageType type);
@@ -83,7 +79,7 @@ public:
 	void addHability() {
 		if (!hasHability(T::id())) {
 			T* c(new T(this));
-			_habilities.push_back(static_cast<Hability*>(c));
+			_habilities.push_back(c);
 			_habilitiesArray[T::id()] = c;
 		}
 	}
@@ -143,23 +139,15 @@ private:
 
 	virtual void loadFromJson(jute::jValue v, int t);
 
-	virtual void manageTurn(CombatManager* cm);
+	virtual void manageTurn(CombatManager* cm){}
 
 	virtual void init() {
 		//_equipement = addComponent<Equipement>();
 		Character::init();
 	}
 
-
-#pragma region CombatePorConsola
-
-	void consoleTurn(CombatManager* cm);
-
-#pragma endregion
-
 public:
-	Hero(SDLGame* game, EntityManager* mngr, TheElementalMaze* gameManager) :Character(game, mngr, gameManager, HERO) {
-		init();
+	Hero(SDLGame* game, EntityManager* mngr) :Character(game, mngr, HERO) {
 	}
 
 	Weapon* getWeapon() { return _weapon; }
@@ -169,6 +157,12 @@ public:
 	Armor* getArmor() { return _armor; }
 
 	void giveArmor(Armor* a) { _armor = a; }
+
+	void endCombat();
+
+	void showSpellList();
+
+	void manageInput(CombatManager* cm, int input);
 };
 
 #pragma endregion
@@ -179,6 +173,8 @@ public:
 class Enemy : public Character {
 private:
 
+	string description = "Un enemigo muy chungo";
+
 	int exp = 0;
 
 	int coins = 0;
@@ -188,8 +184,7 @@ private:
 	virtual void manageTurn(CombatManager* cm);
 
 public:
-	Enemy(SDLGame* game, EntityManager* mngr, TheElementalMaze* gameManager) : Character(game, mngr, gameManager, ENEMY) {
-		init();
+	Enemy(SDLGame* game, EntityManager* mngr) : Character(game, mngr, ENEMY) {
 	}
 
 	int getExp() { return exp; }

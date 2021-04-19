@@ -3,6 +3,7 @@
 
     {
       "Name": "Acolchada",
+      "Description": "Armadura rellena, que amortigua los golpes", 
       "Weaknesses": [
         {
           "Key": "Blunt",
@@ -51,6 +52,7 @@
 
     {
       "Name": "Cuero tachonado",
+      "Description": "Armadura de cuero endurecido, dificil de romper",
       "Weaknesses": [
         {
           "Key": "Blunt",
@@ -99,6 +101,7 @@
 
     {
       "Name": "Cota de escamas",
+      "Description": "Armadura de escamas, bastante resistente a los cortes",
       "Weaknesses": [
         {
           "Key": "Blunt",
@@ -147,6 +150,7 @@
 
     {
       "Name": "Coraza",
+      "Description": "Armadura acorazada, capaz de soportar fuertes impactos",
       "Weaknesses": [
         {
           "Key": "Blunt",
@@ -195,6 +199,7 @@
 
     {
       "Name": "Semiplacas",
+      "Description": "Armadura de placas sin completar, que ofrece resistencia y movilidad",
       "Weaknesses": [
         {
           "Key": "Blunt",
@@ -243,6 +248,7 @@
 
     {
       "Name": "Cota de mallas",
+      "Description": "Armadura de cota, capaz de hacer rebotar ataques perforantes",
       "Weaknesses": [
         {
           "Key": "Blunt",
@@ -291,6 +297,7 @@
 
     {
       "Name": "Bandas",
+      "Description": "Armadura reforzada, capaz de tolerar ataques de diversos tipos",
       "Weaknesses": [
         {
           "Key": "Blunt",
@@ -339,6 +346,7 @@
 
     {
       "Name": "Placas",
+      "Description": "Armadura de placas, quizás la más resistente y pesada que puedas encontrar",
       "Weaknesses": [
         {
           "Key": "Blunt",

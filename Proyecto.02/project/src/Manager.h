@@ -14,7 +14,7 @@ public:
 	void draw();
 	Entity* addEntity();
 	void addEntity(Entity* e);
-
+	void removeEntiy(Entity* e);
 
 protected:
 	SDLGame* game_;

@@ -338,7 +338,7 @@
     <ClInclude Include="src\Interfaz.h">
       <Filter>Archivos de encabezado\Components</Filter>
     </ClInclude>
-    <ClInclude Include="src\InterfazManger.h">
+    <ClInclude Include="src\InterfazManager.h">
       <Filter>Archivos de encabezado\Managers</Filter>
     </ClInclude>
   </ItemGroup>

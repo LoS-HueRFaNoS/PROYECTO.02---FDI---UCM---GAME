@@ -26,7 +26,7 @@ void Armor::loadArmorTemplate(jute::jValue v, armorId t)
 {
 
 	_name = v["Armaduras"][t]["Name"].as_string();
-	_description = "Armadura interesante";
+	_description = v["Armaduras"][t]["Description"].as_string();
 
 	// Guardamos las debilidades en un vector para luego inicializarlas
 	vector<float> weak = vector<float>();
