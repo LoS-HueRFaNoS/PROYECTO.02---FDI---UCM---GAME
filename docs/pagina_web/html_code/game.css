@@ -272,6 +272,11 @@ body {
 	margin: 90px 1.5em 0 auto;
 	height: auto;
 	width: auto;
+	font-family: 'Monaco', monospace;
+	color:whitesmoke;
+	font-size: 40px;
+	margin-left: 25%;
+ 	margin-right: 25%;
 	display:flex;
     justify-content: center;
     align-items: center;
