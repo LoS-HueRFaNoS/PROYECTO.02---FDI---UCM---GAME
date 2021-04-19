@@ -9,6 +9,6 @@ class Cursor : public Entity
 {
 public:
 	Cursor(SDLGame* game, EntityManager* mngr) : Entity(game, mngr) {};
-	void init(Interfaz* im, Vector2D pos, uint ancho, uint alto, Resources::TextureId imagen);
+	void init(SDLGame* game, Vector2D pos, uint ancho, uint alto, Resources::TextureId imagen);
 };
 

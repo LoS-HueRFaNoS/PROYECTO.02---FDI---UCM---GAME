@@ -27,34 +27,13 @@ void callbacks::pruebaGame3(Interfaz* app) {
 // ----------------------------------------------------
 
 #pragma region PanelHeroes
+#include "../TheElementalMaze.h"
 #include "CombatManager.h"
 
-void callbacks::infoHeroe01(Interfaz* app) {
-	Entity* e = app->getEntity();
-	CombatManager* c = GETCMP2(e, CombatManager);
-	string name = c->getCharacter(0, HERO)->name();
+void callbacks::heroType(int numberHeroe) {
+	CombatManager* c = GETCMP2(TheElementalMaze::instance(), CombatManager);
+	string name = c->getCharacter(numberHeroe, HERO)->name();
 	std::cout << "heroe 01: " << name << std::endl;
-}
-
-void callbacks::infoHeroe02(Interfaz* app) {
-	Entity* e = app->getEntity();
-	CombatManager* c = GETCMP2(e, CombatManager);
-	string name = c->getCharacter(1, HERO)->name();
-	std::cout << "heroe 02: " << name << std::endl;
-}
-
-void callbacks::infoHeroe03(Interfaz* app) {
-	Entity* e = app->getEntity();
-	CombatManager* c = GETCMP2(e, CombatManager);
-	string name = c->getCharacter(2, HERO)->name();
-	std::cout << "heroe 03: " << name << std::endl;
-}
-
-void callbacks::infoHeroe04(Interfaz* app) {
-	Entity* e = app->getEntity();
-	CombatManager* c = GETCMP2(e, CombatManager);
-	string name = c->getCharacter(2, HERO)->name();
-	std::cout << "heroe 04: " << name << std::endl;
 }
 
 #pragma endregion
@@ -65,9 +44,10 @@ void callbacks::infoHeroe04(Interfaz* app) {
 #include "../TheElementalMaze.h"
 #include "PlayerMotion.h"
 
-void callbacks::movCommand(int movType) // CUANDO SE TENGA EL SINGLETON DEL GAMEMANAGER SE HARÁN LOS METODOS
+void callbacks::movCommand(int movType)
 {
-	PlayerMotion* p = TheElementalMaze::instance()->getPlayer()->getComponent<PlayerMotion>(ecs::PlayerMotion);
+	PlayerMotion* p = GETCMP2(TheElementalMaze::instance()->getPlayer(), PlayerMotion);
+
 	switch (movType)
 	{
 	case 0:
@@ -88,38 +68,6 @@ void callbacks::movCommand(int movType) // CUANDO SE TENGA EL SINGLETON DEL GAME
 	default:
 		break;
 	}
-}
-
-void callbacks::rotarDerecha(Interfaz* app)
-{
-	/*Entity* e = app->getEntity();
-	GETCMP2(e, PlayerMotion)->rotarDerecha();*/
-	TheElementalMaze* maze = static_cast<TheElementalMaze*>(app->getEntity());
-	PlayerMotion* c = maze->getPlayer()->getComponent<PlayerMotion>(ecs::PlayerMotion);
-	c->rotarDerecha();
-}
-
-void callbacks::rotarIzquierda(Interfaz* app)
-{
-	/*Entity* e = app->getEntity();
-	GETCMP2(e, PlayerMotion)->rotarIzquierda();*/
-	TheElementalMaze* maze = static_cast<TheElementalMaze*>(app->getEntity());
-	PlayerMotion* c = maze->getPlayer()->getComponent<PlayerMotion>(ecs::PlayerMotion);
-	c->rotarIzquierda();
-}
-
-void callbacks::avanzar(Interfaz* app)
-{
-	TheElementalMaze* maze = static_cast<TheElementalMaze*>(app->getEntity());
-	//Entity* e = maze->getPlayer();
-	//PlayerMotion* c = GETCMP2(e, PlayerMotion);
-	PlayerMotion* c = maze->getPlayer()->getComponent<PlayerMotion>(ecs::PlayerMotion);
-	c->avanzar();
-}
-
-void callbacks::interactuar(Interfaz* app)
-{
-	std::cout << "has interactuado" << std::endl;
 }
 
 #pragma endregion

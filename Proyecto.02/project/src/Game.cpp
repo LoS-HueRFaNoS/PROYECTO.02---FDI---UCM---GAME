@@ -18,6 +18,7 @@
 #include "InterfazManager.h"
 #include "PlayerMotion.h"
 #include "PlayerViewer.h"
+#include "Cursor.h"
 #include "../TheElementalMaze.h"
 //
 
@@ -60,6 +61,8 @@ void Game::initGame()
 
 	entityManager_->addEntity(gameManager_);
 
+	c_ = createCursor(Vector2D(200, 200), 50, 50, Resources::Mouse);
+
 	int endTime = 0;
 }
 
@@ -67,7 +70,7 @@ void Game::closeGame()
 {
 	delete entityManager_;
 	delete characterManager_;
-	delete gameManager_;
+	delete interfazManager_;
 	delete game_;
 }
 
@@ -139,6 +142,14 @@ void Game::render()
 	entityManager_->draw();
 	characterManager_->draw();
 	interfazManager_->draw();
+	c_->draw();
 
 	SDL_RenderPresent(game_->getRenderer());
+}
+
+Cursor* Game::createCursor(Vector2D pos, uint width, uint height, Resources::TextureId image)
+{
+	Cursor* c = static_cast<Cursor*>(entityManager_->addEntity());
+	c->init(game_, pos, width, height, image);
+	return c;
 }
