@@ -35,7 +35,7 @@ void EntityManager::addEntity(Entity* e) {
 	entities.emplace_back(std::move(uPtr));
 }
 
-void EntityManager::removeEntiy(Entity* e)
+void EntityManager::removeEntity(Entity* e)
 {
 	for (auto it = entities.begin(); it != entities.end();) {
 		if ((*it).get() == e) {

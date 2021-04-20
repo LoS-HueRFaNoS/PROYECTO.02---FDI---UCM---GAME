@@ -22,6 +22,8 @@ public:
 		buttonList.clear();
 	}
 
+	void removeButtons();
+
 	void addButton(Button* b) {
 		buttonList.push_back(b);
 	}

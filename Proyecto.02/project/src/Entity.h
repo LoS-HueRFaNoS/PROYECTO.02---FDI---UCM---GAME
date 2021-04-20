@@ -33,7 +33,7 @@ public:
 		return c;
 	}
 
-	void deleteComponent(ecs::CmpIdType id) {
+	void removeComponent(ecs::CmpIdType id) {
 		for (auto it = components_.begin(); it != components_.end(); /**/)
 		{
 			if ((*it).get()->getId() == id) {
