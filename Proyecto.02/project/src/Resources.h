@@ -73,6 +73,8 @@ public:
 		Slot,
 		EmptySword,
 		EmptyArmor,
+		WeaponSlot,
+		ArmorSlot,
 
 		//Objetos
 		Desarmado,

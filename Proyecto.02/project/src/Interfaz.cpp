@@ -90,9 +90,10 @@ void Interfaz::createInfo()
 	// BOTONES:
 	p->addButton(iManager->addButton<ButtonPotion>(Vector2D(width * 5 / 7, height * 3 / 4), tamBoton * 0.8, tamBoton * 0.8, src::PocionVida, PtnType::health));
 	p->addButton(iManager->addButton<ButtonPotion>(Vector2D(width * 5 / 7, height * 5 / 6), tamBoton * 0.8, tamBoton * 0.8, src::PocionMana, PtnType::mana));
-	p->addButton(iManager->addButton<ButtonPotion>(Vector2D(width * 5 / 7, height * 5 / 6 + space), tamBoton * 0.8, tamBoton * 0.8, src::PocionRess, PtnType::resurrection));
-	/*createButton(p, this, cb::inventario, Vector2D(width * 4 / 7, height * 3 / 4), tamBoton * 2, tamBoton * 2, src::Inventario);
-	createButton(p, this, cb::chat, Vector2D(width * 6 / 7, height * 3 / 4), tamBoton, tamBoton, src::Chat);
+	//p->addButton(iManager->addButton<ButtonPotion>(Vector2D(width * 5 / 7, height * 5 / 6 + space), tamBoton * 0.8, tamBoton * 0.8, src::PocionRess, PtnType::resurrection));
+
+	//p->addButton(iManager->addButton<ButtonPanelCte>(Vector2D(width * 4 / 7, height * 3 / 4), tamBoton * 2, tamBoton * 2, src::Inventario, p));
+	/*createButton(p, this, cb::chat, Vector2D(width * 6 / 7, height * 3 / 4), tamBoton, tamBoton, src::Chat);
 	createButton(p, this, cb::configuracion, Vector2D(width * 6 / 7, height * 5 / 6), tamBoton, tamBoton, src::Configuracion);*/
 } // health, mana, resurrection
 
@@ -107,23 +108,13 @@ void Interfaz::createInventory()
 	Panel* p = new Panel(Inventory);
 	allPanels.push_back(p);
 
-	//Cuadro de inventario 5x5
+	// Cuadro de inventario 5x5
 	for (int i = 0; i < 5; ++i) {
 
 		posX = slotTam * 0.84; //Se resetea la coordenada X
 
 		for (int j = 0; j < 5; ++j) {
-
-			//createButton(p, this, {/*Solo quiero que se renderice no tiene cb xd*/}, Vector2D(posX, posY), slotTam, slotTam, src::Slot);
-
-			//SDL_Rect dest = { posX, posY, slotTam, slotTam };
-			//game_->getTextureMngr()->getTexture(src::Slot)->render(dest);
-
-			Entity* aux = entity_->getEntityMangr()->addEntity();
-			aux->addComponent<Transform>(Vector2D(posX, posY), Vector2D(), slotTam, slotTam, 0.0);
-			aux->addComponent<Image>(game_->getTextureMngr()->getTexture(src::Slot));
-			entitiesV.push_back(aux);
-
+			p->addButton(iManager->addButton<ButtonSlott>(Vector2D(posX, posY), slotTam, slotTam, src::Slot));
 			posX += slotTam;
 		}
 
@@ -134,34 +125,11 @@ void Interfaz::createInventory()
 	posY = slotTam * 1.5;
 	int margen = 6;
 
-	//Inventario personajes
+	// Inventario personajes: clase + arma + armadura
 	for (int i = 0; i < 4; ++i) {
-		Entity* auxCh = entity_->getEntityMangr()->addEntity();
-		auxCh->addComponent<Transform>(Vector2D(posX, posY), Vector2D(), slotTam, slotTam, 0.0);
-		auxCh->addComponent<Image>(game_->getTextureMngr()->getTexture(src::Bardo));
-		entitiesV.push_back(auxCh);
-
-		Entity* auxSw = entity_->getEntityMangr()->addEntity();
-		auxSw->addComponent<Transform>(Vector2D(posX + slotTam, posY), Vector2D(), slotTam, slotTam, 0.0);
-		auxSw->addComponent<Image>(game_->getTextureMngr()->getTexture(src::Slot));
-		entitiesV.push_back(auxSw);
-
-		Entity* auxAr = entity_->getEntityMangr()->addEntity();
-		auxAr->addComponent<Transform>(Vector2D(posX + slotTam * 2, posY), Vector2D(), slotTam, slotTam, 0.0);
-		auxAr->addComponent<Image>(game_->getTextureMngr()->getTexture(src::Slot));
-		entitiesV.push_back(auxAr);
-
-		//Empty Sword / Armor
-
-		Entity* emptySword = entity_->getEntityMangr()->addEntity();
-		emptySword->addComponent<Transform>(Vector2D(posX + slotTam + margen, posY + margen), Vector2D(), slotTam - margen * 2, slotTam - margen * 2, 0.0);
-		emptySword->addComponent<Image>(game_->getTextureMngr()->getTexture(src::EmptySword));
-		entitiesV.push_back(emptySword);
-
-		Entity* emptyArmor = entity_->getEntityMangr()->addEntity();
-		emptyArmor->addComponent<Transform>(Vector2D(posX + slotTam * 2 + margen, posY + margen), Vector2D(), slotTam - margen * 2, slotTam - margen * 2, 0.0);
-		emptyArmor->addComponent<Image>(game_->getTextureMngr()->getTexture(src::EmptyArmor));
-		entitiesV.push_back(emptyArmor);
+		p->addButton(iManager->addButton<ButtonSlott>(Vector2D(posX, posY), slotTam, slotTam, src::Bardo));
+		p->addButton(iManager->addButton<ButtonSlott>(Vector2D(posX + slotTam, posY), slotTam, slotTam, src::WeaponSlot));
+		p->addButton(iManager->addButton<ButtonSlott>(Vector2D(posX + slotTam * 2, posY), slotTam, slotTam, src::ArmorSlot));
 
 		posY += slotTam * 1.33;
 	}

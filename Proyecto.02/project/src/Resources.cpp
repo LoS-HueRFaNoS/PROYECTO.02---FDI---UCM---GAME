@@ -54,8 +54,10 @@ vector<Resources::ImageInfo> Resources::images_{
 
 	//Inventario
 	{Slot, "resources/sprites/iconos inventario/inventorySlot.png"},
-	{ EmptySword, "resources/sprites/iconos inventario/inventorySword.png" },
-	{ EmptyArmor, "resources/sprites/iconos inventario/inventoryArmor.png" },
+	{EmptySword, "resources/sprites/iconos inventario/inventorySword.png"},
+	{EmptyArmor, "resources/sprites/iconos inventario/inventoryArmor.png"},
+	{WeaponSlot, "resources/sprites/iconos inventario/weapon_slot.png"},
+	{ArmorSlot, "resources/sprites/iconos inventario/armor_slot.png"},
 
 	// Armas clasicas �?
 	{Desarmado, "resources/sprites/iconos armas/joker.png"}, ///TODO
