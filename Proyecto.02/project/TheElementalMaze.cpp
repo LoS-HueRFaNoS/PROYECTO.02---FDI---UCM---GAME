@@ -23,11 +23,7 @@ void TheElementalMaze::init()
 	player_->addComponent<PlayerMotion>(SDLK_UP, SDLK_LEFT, SDLK_RIGHT, lab);
 	player_->addComponent<PlayerViewer>(lab);
 
-	// 3. Interfaz
-	uiManager_ = addComponent<Interfaz>(iManager_);
-
-	// 4. Personajes
-
+	// 3. Personajes
 	itemManager_ = new ItemManager();
 
 	combatManager_ = addComponent<CombatManager>(); // al seguir por consola, bloquea el juego y faltan cosas que me he dejado
@@ -69,5 +65,8 @@ void TheElementalMaze::init()
 
 
 	cout << "Characters Loaded" << endl;
+
+	// 4. Interfaz
+	uiManager_ = addComponent<Interfaz>(iManager_);
 
 }

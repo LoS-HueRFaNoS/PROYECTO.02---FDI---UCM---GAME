@@ -70,10 +70,10 @@ void Interfaz::createHeroes()
 	allPanels.push_back(p);
 	uint tamL = 100;
 	// BOTONES:
-	p->addButton(iManager->addButton<ButtonHero>(Vector2D(pPos.getX(), pPos.getY()), tamL, tamL, src::Bardo, HeroNum::hero1));
-	p->addButton(iManager->addButton<ButtonHero>(Vector2D(pPos.getX(), pPos.getY() + 100), tamL, tamL, src::Brujo, HeroNum::hero2));
-	p->addButton(iManager->addButton<ButtonHero>(Vector2D(pPos.getX(), pPos.getY() + 200), tamL, tamL, src::Clerigo, HeroNum::hero3));
-	p->addButton(iManager->addButton<ButtonHero>(Vector2D(pPos.getX(), pPos.getY() + 300), tamL, tamL, src::Guerrero, HeroNum::hero4));
+	p->addButton(iManager->addButton<ButtonHero>(Vector2D(pPos.getX(), pPos.getY()), tamL, tamL, getHeroTxt(0), HeroNum::hero1));
+	p->addButton(iManager->addButton<ButtonHero>(Vector2D(pPos.getX(), pPos.getY() + 100), tamL, tamL, getHeroTxt(1), HeroNum::hero2));
+	p->addButton(iManager->addButton<ButtonHero>(Vector2D(pPos.getX(), pPos.getY() + 200), tamL, tamL, getHeroTxt(2), HeroNum::hero3));
+	p->addButton(iManager->addButton<ButtonHero>(Vector2D(pPos.getX(), pPos.getY() + 300), tamL, tamL, getHeroTxt(3), HeroNum::hero4));
 } // hero1, hero2, hero3, hero4
 
 void Interfaz::createInfo()
@@ -211,5 +211,23 @@ void Interfaz::update()
 Entity* Interfaz::getEntity()
 {
 	return entity_;
+}
+
+#include "CombatManager.h"
+Resources::TextureId Interfaz::getHeroTxt(uint number)
+{
+	CombatManager* c = GETCMP2(entity_, CombatManager);
+	string name = c->getCharacter((int)number, HERO)->name();
+
+	if (name == "Warrior") return src::Guerrero;
+	if (name == "Wizard") return src::Brujo;
+	if (name == "Ranger") return src::Explorador;
+	if (name == "Bard") return src::Bardo;
+	if (name == "Cleric") return src::Clerigo;
+	if (name == "Paladin") return src::Paladin;
+	if (name == "Barbarian") return src::Barbaro;
+	if (name == "Rogue") return src::Picaro;
+	if (name == "Druid") return src::Druida;
+	return Resources::TextureId();
 }
 

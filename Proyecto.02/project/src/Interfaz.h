@@ -40,10 +40,7 @@ public:
 	void destroyPanel(idPanel panelID);
 
 	void togglePanel(Panel* pan) { pan->toggleButtons(); }
-	void togglePanel(idPanel panID) {
-		togglePanel(allPanels[panID]);
-		//allPanels[panID]->toggleButtons();
-	}
+	void togglePanel(idPanel panID) { togglePanel(allPanels[panID]); }
 
 	void toggleCombat_Movement();
 
@@ -52,4 +49,6 @@ public:
 	virtual void draw() override {};
 
 	Entity* getEntity();
+private:
+	Resources::TextureId getHeroTxt(uint number);
 };

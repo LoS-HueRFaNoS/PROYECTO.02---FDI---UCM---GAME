@@ -159,7 +159,6 @@ public:
 	virtual void click();
 };
 
-
 #pragma endregion
 
 // ----------------------------------------------------

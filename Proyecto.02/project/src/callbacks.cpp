@@ -33,7 +33,7 @@ void callbacks::pruebaGame3(Interfaz* app) {
 void callbacks::heroType(int numberHeroe) {
 	CombatManager* c = GETCMP2(TheElementalMaze::instance(), CombatManager);
 	string name = c->getCharacter(numberHeroe, HERO)->name();
-	std::cout << "heroe 01: " << name << std::endl;
+	std::cout << "heroe " << numberHeroe << ": " << name << std::endl;
 }
 
 #pragma endregion
