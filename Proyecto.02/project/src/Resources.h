@@ -68,6 +68,7 @@ public:
 		AtaqueMagico, 
 		Defensa,
 		Huida,
+		Marco,
 
 		//Inventario
 		Slot,

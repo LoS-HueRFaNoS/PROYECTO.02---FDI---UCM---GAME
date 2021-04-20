@@ -35,6 +35,7 @@ void Interfaz::createFight()
 	p->addButton(iManager->addButton<ButtonAttack>(Vector2D(pPos.getX() + 200, pPos.getY()), 82, 72, src::AtaqueMagico, AtkType::magic));
 	p->addButton(iManager->addButton<ButtonAttack>(Vector2D(pPos.getX(), pPos.getY()), 82, 72, src::Defensa, AtkType::defend));
 	p->addButton(iManager->addButton<ButtonAttack>(Vector2D(pPos.getX() + 300, pPos.getY()), 100, 55, src::Huida, AtkType::escape));
+	p->addButton(iManager->addButton<ButtonSlott>(Vector2D(pPos.getX() - 10, pPos.getY() - 10), 85 * 5 + 20, 96 + 10, src::Marco));
 } // normal, magic, defend, escape
 
 void Interfaz::createMovement()

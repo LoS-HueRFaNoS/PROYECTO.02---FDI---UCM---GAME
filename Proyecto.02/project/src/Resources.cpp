@@ -51,6 +51,7 @@ vector<Resources::ImageInfo> Resources::images_{
 	{AtaqueMagico, "resources/sprites/iconos combate/magic.png"},
 	{Defensa, "resources/sprites/iconos combate/defensa.png"},
 	{Huida, "resources/sprites/iconos combate/huir.png"},
+	{Marco, "resources/sprites/iconos combate/marco.png"},
 
 	//Inventario
 	{Slot, "resources/sprites/iconos inventario/inventorySlot.png"},
