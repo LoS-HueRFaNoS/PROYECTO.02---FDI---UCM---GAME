@@ -9,10 +9,10 @@ namespace interfaz {
 	enum idPanel : idPanelType {
 		Fight, 
 		Movement, 
-		Minimap, 
 		Heroes, 
 		Info, 
 		Inventory, 
+		Minimap, 
 		HeroesStats, 
 		BigMap, 
 		Turns, 

@@ -3,7 +3,6 @@
 #include <list>
 #include "Component.h"
 #include "Panel.h"
-#include "Cursor.h"
 
 class InterfazManager;
 
@@ -31,7 +30,7 @@ private:
 
 public:
 	Interfaz(InterfazManager* i) :
-		Component(ecs::InterfazManager),
+		Component(ecs::Interfaz),
 		allPanels(vector<Panel*>()),
 		iManager(i)
 	{};

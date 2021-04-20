@@ -204,13 +204,14 @@ void Interfaz::toggleCombat_Movement()
 
 void Interfaz::init()
 {
-	createPanel(Movement);
 	createPanel(Fight);
 	togglePanel(Fight);
-	createPanel(Minimap);
+	createPanel(Movement);
 	createPanel(Heroes);
 	createPanel(Info);
-	//createPanel(Inventory);
+	createPanel(Inventory);
+	destroyPanel(Inventory);
+	createPanel(Minimap);
 }
 
 void Interfaz::update()
