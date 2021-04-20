@@ -90,7 +90,7 @@ public:
 
 // ----------------------------------------------------
 
-enum class AtkType { normal, magic, defend, escape };
+enum class AtkType { normal, magic };
 
 class ButtonAttack : public Button {
 private:
@@ -108,6 +108,69 @@ public:
 	virtual void click()
 	{
 		callbacks::attackType((int)attackType_);
+	}
+};
+
+enum class DfndType { defend, escape };
+
+class ButtonDefend : public Button {
+private:
+	DfndType defendType_;
+public:
+	ButtonDefend(SDLGame* game, EntityManager* mngr) : Button(game, mngr), defendType_(DfndType::defend) {};
+
+	~ButtonDefend() {};
+
+	virtual void init(Vector2D pos, uint ancho, uint alto, Resources::TextureId imagen, DfndType attack) {
+		defendType_ = attack;
+		Button::init(pos, ancho, alto, imagen);
+	};
+
+	virtual void click()
+	{
+		callbacks::defendType((int)defendType_);
+	}
+};
+
+enum class target { target01, target02, target03, target04, target05 };
+
+class ButtonTarget : public Button {
+private:
+	target target_;
+public:
+	ButtonTarget(SDLGame* game, EntityManager* mngr) : Button(game, mngr), defendType_(target::target01) {};
+
+	~ButtonTarget() {};
+
+	virtual void init(Vector2D pos, uint ancho, uint alto, Resources::TextureId imagen, target attack) {
+		target_ = attack;
+		Button::init(pos, ancho, alto, imagen);
+	};
+
+	virtual void click()
+	{
+		callbacks::addTarget((int)target_);
+	}
+};
+
+enum class DfndType { defend, escape };
+
+class ButtonDefend : public Button {
+private:
+	DfndType defendType_;
+public:
+	ButtonDefend(SDLGame* game, EntityManager* mngr) : Button(game, mngr), defendType_(DfndType::normal) {};
+
+	~ButtonDefend() {};
+
+	virtual void init(Vector2D pos, uint ancho, uint alto, Resources::TextureId imagen, AtkType attack) {
+		defendType_ = attack;
+		Button::init(pos, ancho, alto, imagen);
+	};
+
+	virtual void click()
+	{
+		callbacks::defendType((int)defendType_);
 	}
 };
 

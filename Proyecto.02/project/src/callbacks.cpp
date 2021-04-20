@@ -76,8 +76,6 @@ void callbacks::movCommand(int movType)
 
 #pragma region PanelInformation
 
-
-
 void callbacks::inventario(Interfaz* app)
 {
 	std::cout << "has abierto el inventario" << std::endl;
@@ -127,6 +125,7 @@ void callbacks::chat(Interfaz* app)
 
 void callbacks::attackType(int attackType_)
 {
+	CombatManager* c = GETCMP2(TheElementalMaze::instance(), CombatManager);
 	switch (attackType_)
 	{
 	case 0:
@@ -135,10 +134,22 @@ void callbacks::attackType(int attackType_)
 	case 1:
 		std::cout << "ataque magico" << std::endl;
 		break;
-	case 2:
+	default:
+		break;
+	}
+}
+
+void callbacks::defendType(int attackType_)
+{
+	CombatManager* c = GETCMP2(TheElementalMaze::instance(), CombatManager);
+	switch (attackType_)
+	{
+	case 0:
+		//c->defend();
 		std::cout << "te has defendido" << std::endl;
 		break;
-	case 3:
+	case 1:
+		//c->escape();
 		std::cout << "escapaste" << std::endl;
 		break;
 	default:

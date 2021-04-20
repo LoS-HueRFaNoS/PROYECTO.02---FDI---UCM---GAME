@@ -31,11 +31,11 @@ void Interfaz::createFight()
 	Panel* p = new Panel(Fight);
 	allPanels.push_back(p);
 	// BOTONES:
-	p->addButton(iManager->addButton<ButtonAttack>(Vector2D(pPos.getX() + 100, pPos.getY()), 85, 96, src::AtaqueNormal, AtkType::normal));
-	p->addButton(iManager->addButton<ButtonAttack>(Vector2D(pPos.getX() + 200, pPos.getY()), 82, 72, src::AtaqueMagico, AtkType::magic));
-	p->addButton(iManager->addButton<ButtonAttack>(Vector2D(pPos.getX(), pPos.getY()), 82, 72, src::Defensa, AtkType::defend));
-	p->addButton(iManager->addButton<ButtonAttack>(Vector2D(pPos.getX() + 300, pPos.getY()), 100, 55, src::Huida, AtkType::escape));
 	p->addButton(iManager->addButton<ButtonSlott>(Vector2D(pPos.getX() - 10, pPos.getY() - 10), 85 * 5 + 20, 96 + 10, src::Marco));
+	p->addButton(iManager->addButton<ButtonPanelCte>(Vector2D(pPos.getX(), pPos.getY()), 85, 96, src::AtaqueNormal, AtkType::normal, allPanels[Targets]));
+	p->addButton(iManager->addButton<ButtonPanelCte>(Vector2D(pPos.getX() + 100, pPos.getY()), 82, 72, src::AtaqueMagico, AtkType::magic, allPanels[Habilities]));
+	p->addButton(iManager->addButton<ButtonDefend>(Vector2D(pPos.getX() + 200, pPos.getY()), 82, 72, src::Defensa, DfndType::defend));
+	p->addButton(iManager->addButton<ButtonDefend>(Vector2D(pPos.getX() + 300, pPos.getY()), 100, 55, src::Huida, DfndType::escape));
 } // normal, magic, defend, escape
 
 void Interfaz::createMovement()
@@ -136,6 +136,46 @@ void Interfaz::createInventory()
 	}
 }
 
+void Interfaz::createTargets()
+{
+	// posicion del panel respecto a la ventana
+	SDLGame* game_ = entity_->getSDLGame();
+	double width = game_->getWindowWidth();
+	width = width * 0.03;
+	double height = game_->getWindowHeight();
+	height = height * 0.875;
+	Vector2D pPos = Vector2D(width, height);
+	// construccion del panel
+	Panel* p = new Panel(Fight);
+	allPanels.push_back(p);
+	// BOTONES:
+	p->addButton(iManager->addButton<ButtonSlott>(Vector2D(pPos.getX() - 10, pPos.getY() - 10), 85 * 5 + 20, 96 + 10, src::Marco));
+	p->addButton(iManager->addButton<ButtonPanelCte>(Vector2D(pPos.getX(), pPos.getY()), 85, 96, src::AtaqueNormal, AtkType::normal, allPanels[Targets]));
+	p->addButton(iManager->addButton<ButtonPanelCte>(Vector2D(pPos.getX() + 100, pPos.getY()), 82, 72, src::AtaqueMagico, AtkType::magic, allPanels[Habilities]));
+	p->addButton(iManager->addButton<ButtonDefend>(Vector2D(pPos.getX() + 200, pPos.getY()), 82, 72, src::Defensa, DfndType::defend));
+	p->addButton(iManager->addButton<ButtonDefend>(Vector2D(pPos.getX() + 300, pPos.getY()), 100, 55, src::Huida, DfndType::escape));
+}
+
+void Interfaz::createHabilities()
+{
+	// posicion del panel respecto a la ventana
+	SDLGame* game_ = entity_->getSDLGame();
+	double width = game_->getWindowWidth();
+	width = width * 0.03;
+	double height = game_->getWindowHeight();
+	height = height * 0.875;
+	Vector2D pPos = Vector2D(width, height);
+	// construccion del panel
+	Panel* p = new Panel(Fight);
+	allPanels.push_back(p);
+	// BOTONES:
+	p->addButton(iManager->addButton<ButtonSlott>(Vector2D(pPos.getX() - 10, pPos.getY() - 10), 85 * 5 + 20, 96 + 10, src::Marco));
+	p->addButton(iManager->addButton<ButtonPanelCte>(Vector2D(pPos.getX(), pPos.getY()), 85, 96, src::AtaqueNormal, AtkType::normal, allPanels[Targets]));
+	p->addButton(iManager->addButton<ButtonPanelCte>(Vector2D(pPos.getX() + 100, pPos.getY()), 82, 72, src::AtaqueMagico, AtkType::magic, allPanels[Habilities]));
+	p->addButton(iManager->addButton<ButtonDefend>(Vector2D(pPos.getX() + 200, pPos.getY()), 82, 72, src::Defensa, DfndType::defend));
+	p->addButton(iManager->addButton<ButtonDefend>(Vector2D(pPos.getX() + 300, pPos.getY()), 100, 55, src::Huida, DfndType::escape));
+}
+
 
 void Interfaz::createPanel(idPanel panelID)
 {
@@ -190,14 +230,14 @@ void Interfaz::toggleCombat_Movement()
 
 void Interfaz::init()
 {
-	createPanel(Fight);
-	togglePanel(Fight);
 	createPanel(Movement);
 	createPanel(Heroes);
 	createPanel(Inventory);
 	togglePanel(Inventory);
 	createPanel(Info);
 	createPanel(Minimap);
+	createPanel(Fight);
+	togglePanel(Fight);
 }
 
 void Interfaz::update()

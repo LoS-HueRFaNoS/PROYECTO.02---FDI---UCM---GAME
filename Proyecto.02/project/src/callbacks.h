@@ -23,4 +23,6 @@ public:
 	static void potionType(int potionType_);
 	// acceso a combate
 	static void attackType(int attackType_);
+	static void defendType(int attackType_);
+	static void addTarget(int attackType_);
 };

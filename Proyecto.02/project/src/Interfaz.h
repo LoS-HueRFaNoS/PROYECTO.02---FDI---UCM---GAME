@@ -27,6 +27,8 @@ private:
 	void createTurns() {}; //
 	void createSettings() {}; //
 	void createChat() {}; //
+	void createTargets(); //
+	void createHabilities(); //
 
 public:
 	Interfaz(InterfazManager* i) :
