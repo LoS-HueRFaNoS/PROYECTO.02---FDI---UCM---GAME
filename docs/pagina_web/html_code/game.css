@@ -9,10 +9,18 @@ a {
 p{
 	font-family: 'Monaco', monospace;
 	color:whitesmoke;
-	font-size: 32px;
+	font-size: 36px;
 	display: inline-block;
 	padding-inline: 20px;
+	margin:50px 60px 20px 60px;
+	text-align: center;
 
+}
+img{
+	text-align: center;
+	align-items: center;
+	margin-right: 60px;
+	margin-bottom: 50px;
 }
 ul{
 	font-family: 'Monaco', monospace;
@@ -50,8 +58,8 @@ body {
 	background-repeat: no-repeat;;
 	background-size: 100% 100%;
 	margin: 90px 1.5em 0 auto;
-	height: 300px;
-	width: 350px;
+	height: 400px;
+	width: 450px;
 	display:flex;
     justify-content: center;
     align-items: center;
@@ -68,7 +76,7 @@ body {
 	background-image: url("../html_imgs/marco.png");
 	background-repeat: no-repeat;;
 	background-size: 100% 100%;
-	margin: -300px 0 0 110px;
+	margin: -400px 0 0 40px;
 	height: 500px;
 	width: 900px;
 	display:flex;
@@ -275,10 +283,7 @@ body {
 	font-family: 'Monaco', monospace;
 	color:whitesmoke;
 	font-size: 40px;
-	margin-left: 25%;
- 	margin-right: 25%;
 	display:flex;
-    justify-content: center;
     align-items: center;
 	text-align: center;
     word-break: break-all;
