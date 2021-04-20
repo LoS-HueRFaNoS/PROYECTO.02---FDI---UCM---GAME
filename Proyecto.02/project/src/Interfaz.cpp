@@ -92,7 +92,7 @@ void Interfaz::createInfo()
 	p->addButton(iManager->addButton<ButtonPotion>(Vector2D(width * 5 / 7, height * 5 / 6), tamBoton * 0.8, tamBoton * 0.8, src::PocionMana, PtnType::mana));
 	//p->addButton(iManager->addButton<ButtonPotion>(Vector2D(width * 5 / 7, height * 5 / 6 + space), tamBoton * 0.8, tamBoton * 0.8, src::PocionRess, PtnType::resurrection));
 
-	//p->addButton(iManager->addButton<ButtonPanelCte>(Vector2D(width * 4 / 7, height * 3 / 4), tamBoton * 2, tamBoton * 2, src::Inventario, p));
+	p->addButton(iManager->addButton<ButtonPanelCte>(Vector2D(width * 4 / 7, height * 3 / 4), tamBoton * 2, tamBoton * 2, src::Inventario, allPanels[Inventory]));
 	/*createButton(p, this, cb::chat, Vector2D(width * 6 / 7, height * 3 / 4), tamBoton, tamBoton, src::Chat);
 	createButton(p, this, cb::configuracion, Vector2D(width * 6 / 7, height * 5 / 6), tamBoton, tamBoton, src::Configuracion);*/
 } // health, mana, resurrection
@@ -177,23 +177,8 @@ void Interfaz::createPanel(idPanel panelID)
 
 void Interfaz::destroyPanel(idPanel panelID)
 {
-	bool encontrado = false;
-	int i = 0;
-	while (!encontrado && i < allPanels.size()) {
-		encontrado = i == panelID;
-		++i;
-	}
-
-	if (encontrado && allPanels[i] != nullptr) delete allPanels[i];
-
-	if (panelID == idPanel::Inventory) {
-		for (int j = 0; j < entitiesV.size(); ++j) {
-			delete entitiesV[j];
-		}
-
-		entitiesV.clear();
-	}
-
+	/*delete allPanels[panelID];
+	allPanels[panelID] = nullptr;*/
 }
 
 void Interfaz::toggleCombat_Movement()
@@ -208,9 +193,9 @@ void Interfaz::init()
 	togglePanel(Fight);
 	createPanel(Movement);
 	createPanel(Heroes);
-	createPanel(Info);
 	createPanel(Inventory);
-	destroyPanel(Inventory);
+	togglePanel(Inventory);
+	createPanel(Info);
 	createPanel(Minimap);
 }
 

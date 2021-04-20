@@ -113,7 +113,6 @@ public:
 
 // ----------------------------------------------------
 
-//enum class Inf { inventory, potionHealth, potionMana, chat, config };
 enum class PtnType { health, mana, resurrection };
 
 class ButtonPotion : public Button {
@@ -137,6 +136,30 @@ public:
 
 // ----------------------------------------------------
 
+#pragma region ButtonPanelResources
+#include "callbacks.h"
+#include "ecs_interfaz.h"
+class Panel;
 
+using namespace interfaz;
+
+class ButtonPanelCte : public Button {
+private:
+	Panel* pan_;
+public:
+	ButtonPanelCte(SDLGame* game, EntityManager* mngr) : Button(game, mngr), pan_(nullptr) {};
+
+	~ButtonPanelCte() {};
+
+	virtual void init(Vector2D pos, uint ancho, uint alto, Resources::TextureId imagen, Panel* p) {
+		pan_ = p;
+		Button::init(pos, ancho, alto, imagen);
+	};
+
+	virtual void click();
+};
+
+
+#pragma endregion
 
 // ----------------------------------------------------

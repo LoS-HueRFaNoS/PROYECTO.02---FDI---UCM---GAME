@@ -39,8 +39,10 @@ public:
 	void createPanel(idPanel panelID);
 	void destroyPanel(idPanel panelID);
 
+	void togglePanel(Panel* pan) { pan->toggleButtons(); }
 	void togglePanel(idPanel panID) {
-		allPanels[panID]->toggleButtons();
+		togglePanel(allPanels[panID]);
+		//allPanels[panID]->toggleButtons();
 	}
 
 	void toggleCombat_Movement();

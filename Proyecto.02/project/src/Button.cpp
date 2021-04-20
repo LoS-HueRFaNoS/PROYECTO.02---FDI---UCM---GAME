@@ -12,3 +12,14 @@ void Button::initComponents(Vector2D pos, uint ancho, uint alto, Resources::Text
 	addComponent<Image>(game_->getTextureMngr()->getTexture(imagen));
 	addComponent<ButtonCtrl>(this);
 }
+
+// ----------------------------------------------------
+
+#pragma region ButtonPanelResources
+
+void ButtonPanelCte::click()
+{
+	pan_->toggleButtons();
+}
+
+#pragma endregion
