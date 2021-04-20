@@ -39,6 +39,7 @@ public:
 	virtual ~Interfaz();
 
 	void createPanel(idPanel panelID);
+	void removePanel(idPanel panelID) { allPanels[panelID]->removeButtons(); };
 	void destroyPanel(idPanel panelID);
 
 	void togglePanel(Panel* pan) { pan->toggleButtons(); }
@@ -53,4 +54,5 @@ public:
 	Entity* getEntity();
 private:
 	Resources::TextureId getHeroTxt(uint number);
+	void initialize();
 };

@@ -222,6 +222,28 @@ public:
 	virtual void click();
 };
 
+class ButtonPanel : public Button {
+private:
+	bool activated;
+	idPanel pan_;
+public:
+	ButtonPanel(SDLGame* game, EntityManager* mngr) : Button(game, mngr), activated(false), pan_(Fight) {};
+
+	~ButtonPanel() {};
+
+	virtual void init(Vector2D pos, uint ancho, uint alto, Resources::TextureId imagen, idPanel p, bool active) {
+		activated = active;
+		pan_ = p;
+		Button::init(pos, ancho, alto, imagen);
+	};
+
+	virtual void click()
+	{
+		callbacks::createPanel(activated, pan_);
+		activated = !activated;
+	}
+};
+
 #pragma endregion
 
 // ----------------------------------------------------

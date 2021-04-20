@@ -108,11 +108,27 @@ void callbacks::potionType(int potionType_)
 
 // ----------------------------------------------------
 
+#pragma region PanelResources
+#include "../TheElementalMaze.h"
+#include "Interfaz.h"
+
+void callbacks::createPanel(bool active, int panelType)
+{
+	Interfaz* i_ = GETCMP2(TheElementalMaze::instance(), Interfaz);
+
+	if (!active) i_->createPanel((idPanel)panelType);
+	else i_->removePanel((idPanel)panelType);
+}
+
+#pragma endregion
+
+// ----------------------------------------------------
+
 #pragma region PanelChatMapa
 
 void callbacks::chat(Interfaz* app)
 {
-	std::cout << "has usado el bot�n de chat" << std::endl;
+	std::cout << "has usado el boton de chat" << std::endl;
 }
 
 #pragma endregion
