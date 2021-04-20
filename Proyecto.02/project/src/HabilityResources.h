@@ -54,6 +54,13 @@ enum ObjectiveType
 	CASTER
 };
 
+enum HabilityType {
+	ATTACK,
+	DEBUFF,
+	HEAL,
+	BUFF
+};
+
 class Hability {
 protected:
 	int level = 0;
@@ -64,6 +71,8 @@ protected:
 	damageType _damageType = damageType(0);
 	mainStat _mod = _LastStatId_;
 	ObjectiveType _obj = CASTER;
+
+	HabilityType _habilityType = ATTACK;
 
 	Character* _caster;
 
@@ -92,6 +101,8 @@ public:
 	mainStat getMod() { return _mod; }
 
 	ObjectiveType getObjectiveType() { return _obj; }
+
+	HabilityType getHabilityType() { return _habilityType; }
 };
 
 class LightAttack : public Hability {
@@ -102,6 +113,7 @@ public:
 		_name = "Light Attack";
 		_description = "Golpe to guapo con el arma, a terminar";
 
+		_habilityType = ATTACK;
 		_mod = STR;
 		_obj = SINGLEENEMY;
 	}
@@ -119,6 +131,7 @@ public:
 		_description = "Bola de fuego to guapa, a hace 8d6 a todos los enemigos frente a salvacion DEX";
 
 		_damageType = FIRE;
+		_habilityType = ATTACK;
 		_mod = INT;
 		_obj = ENEMYTEAM;
 	}
@@ -139,6 +152,7 @@ public:
 		_description = "Esto es un ejemplo, hace 1d5 de daño";
 
 		_damageType = ICE;
+		_habilityType = ATTACK;
 		_mod = INT;
 		_obj = SINGLEENEMY;
 	}
@@ -160,6 +174,7 @@ public:
 		_description = "Esto es un ejemplo, cura 2d5 de vida a un aliado";
 
 		_damageType = LIGHT;
+		_habilityType = HEAL;
 		_mod = INT;
 		_obj = SINGLEALLY;
 	}
@@ -180,6 +195,7 @@ public:
 		_description = "Esto es un ejemplo, cura a todo tu equipo 1d5";
 
 		_damageType = LIGHT;
+		_habilityType = HEAL;
 		_mod = INT;
 		_obj = ALLYTEAM;
 	}
@@ -200,6 +216,7 @@ public:
 		_description = "Esto es un ejemplo, te cura 1d8";
 
 		_damageType = LIGHT;
+		_habilityType = HEAL;
 		_mod = INT;
 		_obj = CASTER;
 	}
@@ -220,6 +237,7 @@ public:
 		_description = "Esto es un ejemplo, se te va la cabeza y haces 2d4 de daño a tu equipo";
 
 		_damageType = DARK;
+		_habilityType = ATTACK;
 		_mod = INT;
 		_obj = ALLYTEAM;
 	}
@@ -241,6 +259,7 @@ public:
 		_description = "Sal a que te de el aire, hace 8d6 a todos los enemigos frente a salvacion DEX (reduce DEX)";
 
 		_damageType = WIND;
+		_habilityType = ATTACK;
 		_mod = INT;
 		_obj = ENEMYTEAM;
 	}
@@ -260,6 +279,7 @@ public:
 		_description = "Menuda brisa, a hace 1d8 a un enemigo frente a salvacion DEX";
 
 		_damageType = WIND;
+		_habilityType = ATTACK;
 		_mod = INT;
 		_obj = SINGLEENEMY;
 	}
@@ -279,6 +299,7 @@ public:
 		_description = "Mejorando la estructura, a hace 1d8 a un enemigo frente a salvacion DEX (reduce CON)";
 
 		_damageType = WIND;
+		_habilityType = ATTACK;
 		_mod = INT;
 		_obj = SINGLEENEMY;
 	}
@@ -298,6 +319,7 @@ public:
 		_description = "Sientes cosquillas, a hace 1d8 a un enemigo frente a salvacion DEX (puede causar envenenamiento)";
 
 		_damageType = WIND;
+		_habilityType = ATTACK;
 		_mod = INT;
 		_obj = SINGLEENEMY;
 	}
@@ -317,6 +339,7 @@ public:
 		_description = "Avisaron de bandera roja, a hace 8d6 a todos los enemigos frente a salvacion DEX (y reduce STR)";
 
 		_damageType = WATER;
+		_habilityType = ATTACK;
 		_mod = INT;
 		_obj = ENEMYTEAM;
 	}
@@ -336,6 +359,7 @@ public:
 		_description = "Reduce el daño recibido en el proximo ataque";
 
 		_damageType = LIGHT;
+		_habilityType = BUFF;
 		_mod = INT;
 		_obj = CASTER;
 	}
@@ -355,6 +379,7 @@ public:
 		_description = "Sonrie, a hace 1d8 a un enemigo frente a salvacion DEX(reduce DEX)";
 
 		_damageType = LIGHT;
+		_habilityType = ATTACK;
 		_mod = INT;
 		_obj = SINGLEENEMY;
 	}
@@ -374,6 +399,7 @@ public:
 		_description = "Winter is coming FOR THEM, a hace 1d8 a un enemigo frente a salvacion DEX (y reduce DEX)";
 
 		_damageType = ICE;
+		_habilityType = ATTACK;
 		_mod = INT;
 		_obj = SINGLEENEMY;
 	}
@@ -392,6 +418,7 @@ public:
 		_description = "Mas agua, a hace 1d8 a un enemigo frente a salvacion DEX (y reduce DEX)";
 
 		_damageType = WATER;
+		_habilityType = ATTACK;
 		_mod = INT;
 		_obj = SINGLEENEMY;
 	}
@@ -410,6 +437,7 @@ public:
 		_description = "Muy bonito, pero doloroso, a hace 1d8 a un enemigo frente a salvacion DEX (y reduce DEX)";
 
 		_damageType = LIGHT;
+		_habilityType = ATTACK;
 		_mod = INT;
 		_obj = SINGLEENEMY;
 	}
@@ -428,6 +456,7 @@ public:
 		_description = "No veo, a hace 1d8 a un enemigo frente a salvacion DEX (y reduce DEX)";
 
 		_damageType = DARK;
+		_habilityType = ATTACK;
 		_mod = INT;
 		_obj = SINGLEENEMY;
 	}
@@ -447,6 +476,7 @@ public:
 		_description = "Quema, a hace 1d8 a un enemigo frente a salvacion DEX (y reduce DEX)";
 
 		_damageType = FIRE;
+		_habilityType = ATTACK;
 		_mod = INT;
 		_obj = SINGLEENEMY;
 	}
@@ -457,7 +487,7 @@ public:
 };
 
 
-class Lighten : public Hability {
+class Lighten: public Hability {
 public:
 	Lighten(Character* caster) :Hability(caster) {
 
@@ -467,6 +497,7 @@ public:
 		_description = "Aumenta la destreza";
 
 		_damageType = LIGHT;
+		_habilityType = BUFF;
 		_mod = INT;
 		_obj = CASTER;
 	}
@@ -485,6 +516,7 @@ public:
 		_description = "Aumenta la fuerza";
 
 		_damageType = LIGHT;
+		_habilityType = BUFF;
 		_mod = INT;
 		_obj = CASTER;
 	}
@@ -503,6 +535,7 @@ public:
 		_description = "Aumenta la constitucion";
 
 		_damageType = LIGHT;
+		_habilityType = BUFF;
 		_mod = INT;
 		_obj = CASTER;
 	}
@@ -511,7 +544,7 @@ public:
 
 	void throwHability(Character* obj, bool critical)const override;
 };
-class Meditate : public Hability {
+class Meditate: public Hability {
 public:
 	Meditate(Character* caster) :Hability(caster) {
 
@@ -521,6 +554,7 @@ public:
 		_description = "Aumenta la inteligencia";
 
 		_damageType = LIGHT;
+		_habilityType = BUFF;
 		_mod = INT;
 		_obj = CASTER;
 	}
@@ -540,6 +574,7 @@ public:
 		_description = "Dame tu vida, a hace 1d8 a un enemigo frente a salvacion DEX y cura al usuario";
 
 		_damageType = LIGHT;
+		_habilityType = ATTACK;
 		_mod = INT;
 		_obj = SINGLEENEMY;
 	}
@@ -559,6 +594,7 @@ public:
 		_description = "Dame tu vida, a hace 1d8 a un enemigo frente a salvacion DEX x1.5 ,pero recibe daño de retroceso";
 
 		_damageType = LIGHT;
+		_habilityType = ATTACK;
 		_mod = INT;
 		_obj = SINGLEENEMY;
 	}
@@ -578,6 +614,7 @@ public:
 		_description = "Dispara 2 flechas a la vez, la segunda flecha hace la mitad de daño de la primera";
 
 		_damageType = LIGHT;
+		_habilityType = ATTACK;
 		_mod = DEX;
 		_obj = SINGLEENEMY;
 	}
@@ -597,6 +634,7 @@ public:
 		_description = "Lanza 3 hachas";
 
 		_damageType = LIGHT;
+		_habilityType = ATTACK;
 		_mod = DEX;
 		_obj = SINGLEENEMY;
 	}
@@ -609,7 +647,7 @@ public:
 class WindSong : public Hability {
 public:
 	WindSong(Character* caster) :Hability(caster) { //por ahora aumenta la DEX a todo el equipo, pero hay que cambiar a un solo objetivo 
-													//y que este sea el siguiente en atacar
+		                                            //y que este sea el siguiente en atacar
 
 		level = 4;
 		_mana = 0;
@@ -617,6 +655,7 @@ public:
 		_description = "Aumenta la velocidad de un aliado (el siguiente turno atacará el que la reciba)";
 
 		_damageType = WIND;
+		_habilityType = BUFF;
 		_mod = INT;
 		_obj = ALLYTEAM;
 	}
@@ -628,7 +667,7 @@ public:
 
 class GladiatorBallad : public Hability {
 public:
-	GladiatorBallad(Character* caster) :Hability(caster) {
+	GladiatorBallad(Character* caster) :Hability(caster) { 
 
 		level = 4;
 		_mana = 0;
@@ -636,6 +675,7 @@ public:
 		_description = "Aumenta el daño de todos los miembros del equipo durante 2 turnos";
 
 		_damageType = WIND;
+		_habilityType = BUFF;
 		_mod = INT;
 		_obj = ALLYTEAM;
 	}
@@ -655,6 +695,7 @@ public:
 		_description = "El ataque hace +3 de daño";
 
 		_damageType = LIGHT;
+		_habilityType = ATTACK;
 		_mod = STR;
 		_obj = SINGLEENEMY;
 	}
@@ -674,6 +715,7 @@ public:
 		_description = "Dispara una flecha de humo que desorienta a los enemigos y les reduce la destreza durante 3 turnos";
 
 		_damageType = DARK;
+		_habilityType = BUFF;
 		_mod = INT;
 		_obj = ENEMYTEAM;
 	}
@@ -688,7 +730,10 @@ public:
 #pragma region CONDITION
 
 enum Conditions_Id {
-	EJEMPLODAÑOPORTURNO,
+	EJEMPLODAÑOPORTURNOBEGIN,
+	EJEMPLOCURACIONFINALTURNO,
+	EJEMPLOREDUCCIONATAQUE,
+	EJEMPLOREVIVIRMUERTE,
 	_lastConditionId_
 };
 
@@ -725,7 +770,13 @@ public:
 
 	virtual void init() = 0;
 
-	virtual bool onTurnStarted() = 0;
+	virtual bool onTurnStarted() { return false; };
+
+	virtual bool onTurnEnd() { return false; };
+
+	virtual bool onAttackRecieved(int& damage) { return false; };
+
+	virtual bool onDeath() { return false; };
 
 	int getTurnsLeft() { return _turnsLeft; }
 
@@ -740,14 +791,14 @@ public:
 	static Conditions_Id id() { return _lastConditionId_; }
 };
 
-class EjemploDañoPorTurno : public Condition {
+class EjemploDañoPorTurnoBegin : public Condition {
 public:
-	EjemploDañoPorTurno(Character* caster, Character* objective) : Condition(caster, objective) {
+	EjemploDañoPorTurnoBegin(Character* caster, Character* objective) : Condition(caster, objective) {
 		_name = "Ejemplo de daño cada turno";
-		_description = "Hace 1 de daño cada turno, durante 3 turnos";
+		_description = "Hace 1d3 de daño cada turno, durante 3 turnos";
 		_turns = 3;
 		_type = ON_TURN_STARTED;
-		_id = EJEMPLODAÑOPORTURNO;
+		_id = EJEMPLODAÑOPORTURNOBEGIN;
 		resetTurns();
 	}
 
@@ -755,7 +806,67 @@ public:
 
 	virtual bool onTurnStarted();
 
-	static Conditions_Id id() { return EJEMPLODAÑOPORTURNO; }
+	static Conditions_Id id() { return EJEMPLODAÑOPORTURNOBEGIN; }
+};
+
+
+class EjemploCuracionFinalTurno : public Condition {
+public:
+
+	EjemploCuracionFinalTurno(Character* caster, Character* objective) : Condition(caster, objective) {
+		_name = "Ejemplo de daño cada turno";
+		_description = "Cura 1d3 cada final de turno, durante 3 turnos";
+		_turns = 3;
+		_type = ON_TURN_ENDED;
+		_id = EJEMPLOCURACIONFINALTURNO;
+		resetTurns();
+	}
+
+	virtual void init();
+
+	virtual bool onTurnEnd();
+
+	static Conditions_Id id() { return EJEMPLOCURACIONFINALTURNO; }
+};
+
+class EjemploReduccionAtaque : public Condition {
+public:
+
+	EjemploReduccionAtaque(Character* caster, Character* objective) : Condition(caster, objective) {
+		_name = "Ejemplo de daño cada turno";
+		_description = "Reduce el daño el siguiente ataque a la mitad";
+		_type = ON_ATTACK_RECIEVED;
+		_id = EJEMPLOREDUCCIONATAQUE;
+		resetTurns();
+	}
+
+	virtual void init();
+
+	virtual bool onAttackRecieved(int& damage);
+
+	static Conditions_Id id() { return EJEMPLOREDUCCIONATAQUE; }
+};
+
+
+class EjemploRevivirMuerte : public Condition {
+public:
+
+	EjemploRevivirMuerte(Character* caster, Character* objective) : Condition(caster, objective) {
+		_name = "Ejemplo de daño cada turno";
+		_description = "Revivira con 5 de vida al morir";
+		_type = ON_DEATH;
+		_id = EJEMPLOREVIVIRMUERTE;
+		resetTurns();
+	}
+
+	virtual void init();
+
+	virtual bool onDeath();
+
+	static Conditions_Id id() { return EJEMPLOREVIVIRMUERTE; }
 };
 
 #pragma endregion
+
+
+

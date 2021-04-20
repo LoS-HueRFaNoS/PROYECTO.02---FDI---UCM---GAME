@@ -10,7 +10,7 @@ using namespace rpgLogic;
 
 #pragma region CHARACTER
 
-Character::~Character(){
+Character::~Character() {
 	for (Hability* h : _habilitiesArray) {
 		delete h;
 		h = nullptr;
@@ -26,23 +26,36 @@ void Character::startTurn(CombatManager* cm)
 
 	// Manejar estados y cambios que ocurren al pasar de turnos
 	cout << name() << " TURN" << endl;
-	
-	for (int i = 0; i < _lastConditionType_; i++) {
-		for (std::vector<Condition*>::iterator it = _conditions[(ConditionType)i].begin(); it != _conditions[(ConditionType)i].end();) {
-			if (!(*it)->onTurnStarted()) {
-				Condition* temp = (*it);
-				removeCondition((*it)->getId());
-				it = _conditions[(ConditionType)i].erase(it);
-				delete temp;
-			}
-			else {
-				it++;
-			}
+
+	for (std::vector<Condition*>::iterator it = _conditions[ON_TURN_STARTED].begin(); it != _conditions[ON_TURN_STARTED].end();) {
+		if (!(*it)->onTurnStarted()) {
+			Condition* temp = (*it);
+			removeCondition((*it)->getId());
+			it = _conditions[ON_TURN_STARTED].erase(it);
+			delete temp;
+		}
+		else {
+			it++;
 		}
 	}
 
 
 	manageTurn(cm);
+}
+
+void Character::endTurn()
+{
+	for (std::vector<Condition*>::iterator it = _conditions[ON_TURN_ENDED].begin(); it != _conditions[ON_TURN_ENDED].end();) {
+		if (!(*it)->onTurnEnd()) {
+			Condition* temp = (*it);
+			removeCondition((*it)->getId());
+			it = _conditions[ON_TURN_ENDED].erase(it);
+			delete temp;
+		}
+		else {
+			it++;
+		}
+	}
 }
 
 void Character::loadFromTemplate(jute::jValue v, heroTemplate t)
@@ -57,8 +70,30 @@ void Character::loadFromTemplate(jute::jValue v, enemyTemplate t)
 
 void Character::recieveDamage(int damage, rpgLogic::damageType type)
 {
+	for (std::vector<Condition*>::iterator it = _conditions[ON_ATTACK_RECIEVED].begin(); it != _conditions[ON_ATTACK_RECIEVED].end();) {
+		if (!(*it)->onAttackRecieved(damage)) {
+			Condition* temp = (*it);
+			removeCondition((*it)->getId());
+			it = _conditions[ON_ATTACK_RECIEVED].erase(it);
+			delete temp;
+		}
+		else {
+			it++;
+		}
+	}
 	if (_sheet->recieveDamage(damage, type)) {
 		cout << name() << " has fainted" << endl;
+		for (std::vector<Condition*>::iterator it = _conditions[ON_DEATH].begin(); it != _conditions[ON_DEATH].end();) {
+			if (!(*it)->onDeath()) {
+				Condition* temp = (*it);
+				removeCondition((*it)->getId());
+				it = _conditions[ON_DEATH].erase(it);
+				delete temp;
+			}
+			else {
+				it++;
+			}
+		}
 	}
 }
 
@@ -175,7 +210,7 @@ void Hero::showSpellList()
 
 void Hero::manageInput(CombatManager* cm, int input)
 {
-	if (input >= _habilities.size()) 
+	if (input >= _habilities.size())
 		cout << "Use a valid index please:\n";
 	else if (_habilities[input]->getMana() > _sheet->manaPoints())
 		cout << "Not enough mana, try again:\n";

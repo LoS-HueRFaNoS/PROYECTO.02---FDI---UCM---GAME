@@ -52,7 +52,6 @@ public:
 
 	void recieveBuff(int buff, mainStat stat);
 
-
 	bool savingThrow(int save, mainStat stat);
 
 	int throw20PlusMod(mainStat mod, bool crit);
@@ -70,6 +69,8 @@ public:
 	}
 
 	void startTurn(CombatManager* cm);
+
+	void endTurn();
 
 	characterType getType() {
 		return _type;

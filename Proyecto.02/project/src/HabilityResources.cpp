@@ -30,7 +30,7 @@ void SingleTargetAttackExample::throwHability(Character* obj, bool critical) con
 
 	obj->recieveDamage(damage, _damageType);
 
-	obj->addCondition<EjemploDañoPorTurno>(_caster);
+	obj->addCondition<EjemploDañoPorTurnoBegin>(_caster);
 }
 
 void SingleTargetHealxample::throwHability(Character* obj, bool critical) const
@@ -38,6 +38,8 @@ void SingleTargetHealxample::throwHability(Character* obj, bool critical) const
 	int healing = throwDice(2 + (2 * critical), 5, true);
 
 	obj->recieveHealing(healing);
+
+	obj->addCondition<EjemploRevivirMuerte>(_caster);
 }
 
 void AllyTeamHealExample::throwHability(Character* obj, bool critical) const
@@ -45,6 +47,8 @@ void AllyTeamHealExample::throwHability(Character* obj, bool critical) const
 	int healing = throwDice(1 + critical, 5, true);
 
 	obj->recieveHealing(healing);
+
+	obj->addCondition<EjemploCuracionFinalTurno>(_caster);
 }
 
 void SelfHealExample::throwHability(Character* obj, bool critical) const
@@ -52,6 +56,8 @@ void SelfHealExample::throwHability(Character* obj, bool critical) const
 	int healing = throwDice(1 + critical, 8, true);
 
 	obj->recieveHealing(healing);
+
+	obj->addCondition<EjemploReduccionAtaque>(_caster);
 }
 
 void AllyTeamAttackExample::throwHability(Character* obj, bool critical) const
@@ -292,13 +298,13 @@ void SmokeArrow::throwHability(Character* obj, bool critical) const //hay que te
 
 #pragma region CONDITION
 
-void EjemploDañoPorTurno::init()
+void EjemploDañoPorTurnoBegin::init()
 {
 	cout << _objective->name() << " tiene sangrado!!!" << endl;
 	_objective->recieveDamage(throwDice(1, 3, true), PIERCE);
 }
 
-bool EjemploDañoPorTurno::onTurnStarted()
+bool EjemploDañoPorTurnoBegin::onTurnStarted()
 {
 	cout << "Sangrado: ";
 	_objective->recieveDamage(throwDice(_stack, 3, true), PIERCE);
@@ -310,6 +316,44 @@ bool EjemploDañoPorTurno::onTurnStarted()
 	return true;
 }
 
+void EjemploCuracionFinalTurno::init()
+{
+	cout << _objective->name() << " se curará cada final de turno!!!" << endl;
+}
+
+bool EjemploCuracionFinalTurno::onTurnEnd()
+{
+	cout << "Curación: ";
+	_objective->recieveHealing(throwDice(_stack, 3, true));
+	if (!--_turnsLeft) {
+		cout << "SE ACABO LA CURASAO" << endl;
+		return false;
+	}
+	cout << "TURNOS RESTANTES: " << _turnsLeft << endl;
+	return true;
+}
+
+void EjemploReduccionAtaque::init()
+{
+	cout << _objective->name() << " recivirá la mitad del danyo el siguiente ataque" << endl;
+}
+
+bool EjemploReduccionAtaque::onAttackRecieved(int& damage)
+{
+	damage = damage / 2;
+	return false;
+}
+
+void EjemploRevivirMuerte::init()
+{
+	cout << _objective->name() << " revivira con 5 de vida al morir" << endl;
+}
+
+bool EjemploRevivirMuerte::onDeath()
+{
+	cout << _objective->name() << "revives!!" << endl;
+	_objective->recieveHealing(5);
+	return false;
+}
+
 #pragma endregion
-
-
