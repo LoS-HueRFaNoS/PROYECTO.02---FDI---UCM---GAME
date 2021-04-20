@@ -10,21 +10,34 @@ using namespace rpgLogic;
 
 #pragma region CHARACTER
 
+Character::~Character(){
+	for (Hability* h : _habilitiesArray) {
+		delete h;
+		h = nullptr;
+	}
+	for (Condition* c : _conditonsArray) {
+		delete c;
+		c = nullptr;
+	}
+}
+
 void Character::startTurn(CombatManager* cm)
 {
 
 	// Manejar estados y cambios que ocurren al pasar de turnos
 	cout << name() << " TURN" << endl;
-
-	for (std::vector<Condition*>::iterator it = _conditions.begin(); it != _conditions.end();) {
-		if (!(*it)->onTurnStarted()) {
-			Condition* temp = (*it);
-			removeCondition((*it)->getId());
-			it = _conditions.erase(it);
-			delete temp;
-		}
-		else {
-			it++;
+	
+	for (int i = 0; i < _lastConditionType_; i++) {
+		for (std::vector<Condition*>::iterator it = _conditions[(ConditionType)i].begin(); it != _conditions[(ConditionType)i].end();) {
+			if (!(*it)->onTurnStarted()) {
+				Condition* temp = (*it);
+				removeCondition((*it)->getId());
+				it = _conditions[(ConditionType)i].erase(it);
+				delete temp;
+			}
+			else {
+				it++;
+			}
 		}
 	}
 
@@ -96,6 +109,14 @@ bool Character::checkHit(int hit)
 
 #pragma region HERO
 
+Hero::~Hero()
+{
+	delete _weapon;
+	_weapon = nullptr;
+	delete _armor;
+	_armor = nullptr;
+}
+
 void Hero::loadFromJson(jute::jValue v, int t) {
 
 	// Buscamos las stats en el json dentro de nuestro heroe "t" y asignamos un valor aleatorio entre los valores dados
@@ -154,21 +175,14 @@ void Hero::showSpellList()
 
 void Hero::manageInput(CombatManager* cm, int input)
 {
-	if (input == -1) {
-		cm->changeState(END_TURN);
-		return;
-	}
-	if (input >= _habilities.size()) {
+	if (input >= _habilities.size()) 
 		cout << "Use a valid index please:\n";
-	}
-	else if (_habilities[input]->getMana() > _sheet->manaPoints()) {
+	else if (_habilities[input]->getMana() > _sheet->manaPoints())
 		cout << "Not enough mana, try again:\n";
-	}
 	else
 	{
 		cm->castHability(_habilities[input]);
 		//_sheet->setManaPoints(_sheet->manaPoints() - _habilities[spell]->getMana());
-		return;
 	}
 }
 

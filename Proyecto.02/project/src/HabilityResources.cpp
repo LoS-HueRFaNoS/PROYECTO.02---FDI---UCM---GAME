@@ -141,7 +141,8 @@ void Whirlpool::throwHability(Character* obj, bool critical) const //hay que mir
 	damage = obj->savingThrow(10 + _caster->getMod(_mod), DEX) ? damage / 2 : damage;
 
 	obj->recieveDamage(damage, _damageType);
-	obj->recieveBuff(-3, STR);
+
+	//obj->recieveBuff(-3, STR);						// ESTO COMO UN ESTADO
 }
 
 void LightBeam::throwHability(Character* obj, bool critical) const //hay que mirar que hacer con el debuff y ajustar el ataque
@@ -151,7 +152,8 @@ void LightBeam::throwHability(Character* obj, bool critical) const //hay que mir
 	damage = obj->savingThrow(10 + _caster->getMod(_mod), DEX) ? damage / 2 : damage;
 
 	obj->recieveDamage(damage, _damageType);
-	obj->recieveBuff(-3, DEX);
+
+	//obj->recieveBuff(-3, STR);						// ESTO COMO UN ESTADO
 }
 
 void DarkVortex::throwHability(Character* obj, bool critical) const //hay que mirar que hacer con el debuff y ajustar el ataque
@@ -161,7 +163,8 @@ void DarkVortex::throwHability(Character* obj, bool critical) const //hay que mi
 	damage = obj->savingThrow(10 + _caster->getMod(_mod), DEX) ? damage / 2 : damage;
 
 	obj->recieveDamage(damage, _damageType);
-	obj->recieveBuff(-3, DEX);
+
+	//obj->recieveBuff(-3, STR);						// ESTO COMO UN ESTADO
 }
 
 
@@ -202,8 +205,10 @@ void BloodThirst::throwHability(Character* obj, bool critical) const //hay que m
 	damage = obj->savingThrow(10 + _caster->getMod(_mod), DEX) ? damage / 2 : damage;
 
 	obj->recieveDamage(damage, _damageType);
-	obj =_caster;
-	obj->recieveHealing(damage / 3);
+
+	//obj =_caster;									NO BORREIS LA REFERENCIA AL OBJETIVO USAD DIRECTAMENTE EL CASTER
+
+	_caster->recieveHealing(damage / 3);
 }
 
 void Sacrifice::throwHability(Character* obj, bool critical) const //hay que mirar que hacer con el debuff y ajustar el ataque
@@ -215,8 +220,10 @@ void Sacrifice::throwHability(Character* obj, bool critical) const //hay que mir
 	damage = obj->savingThrow(10 + _caster->getMod(_mod), DEX) ? damage / 2 : damage;
 
 	obj->recieveDamage(damage * 1.5, _damageType);
-	obj =_caster;
-	obj->recieveDamage(damage / 5,_damageType);
+
+	//obj =_caster;									NO BORREIS LA REFERENCIA AL OBJETIVO USAD DIRECTAMENTE EL CASTER
+
+	_caster->recieveDamage(damage / 5,_damageType);
 }
 
 void DoubleShot::throwHability(Character* obj, bool critical) const 

@@ -21,7 +21,7 @@ class TheElementalMaze : public Entity
 {
 private:
 
-	static unique_ptr<TheElementalMaze> instance_;
+	static TheElementalMaze* instance_;
 
 	CombatManager* combatManager_; // compt
 	Entity* laberinto_; // 
@@ -40,22 +40,22 @@ private:
 public:
 
 	inline static TheElementalMaze* initInstace(SDLGame* game, EntityManager* mngr, CharacterManager* chMngr) {
-		assert(instance_.get() == nullptr);
-		instance_.reset(new TheElementalMaze(game, mngr, chMngr));
-		instance_.get()->init();
-		return instance_.get();
+		assert(instance_ == nullptr);
+		instance_ = new TheElementalMaze(game, mngr, chMngr);
+		instance_->init();
+		return instance_;
 	}
 
 	inline static TheElementalMaze* instance() {
-		assert(instance_.get() != nullptr);
-		return instance_.get();
+		assert(instance_ != nullptr);
+		return instance_;
 	}
 
 	TheElementalMaze(TheElementalMaze&) = delete;
 
 	TheElementalMaze& operator=(TheElementalMaze&) = delete;
 
-	virtual ~TheElementalMaze() {};
+	~TheElementalMaze();
 
 	void init();
 

@@ -191,7 +191,7 @@ void CombatManager::throwHability(Character* objective, Hability* hability)
 {
 	cout << hability->name() << " on " << objective->name() << endl;
 	int hit = hability->getCaster()->throw20PlusMod(hability->getMod(), true);
-	if ((hability->getHabilityType() > 1) || objective->checkHit(hit)) {
+	if (objective->checkHit(hit)) {
 		cout << hability->name() << " hits" << endl;;
 		if (hit == 100)
 			cout << "CRITICAL" << endl;
@@ -289,6 +289,7 @@ void CombatManager::sendKeyEvent(int key)
 		if (key == -1) changeState(PASS_TURN);
 		break;
 	case ACTION_PHASE_SPELL:
+		if (key == -1) changeState(PASS_TURN);
 		if (!currentCharacter->getType())
 			static_cast<Hero*>(currentCharacter)->manageInput(this, key);
 		break;
