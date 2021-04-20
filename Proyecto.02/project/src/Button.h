@@ -27,6 +27,23 @@ public:
 
 // ----------------------------------------------------
 
+class ButtonSlott : public Button
+{
+	// private: Item* i_;
+public:
+	ButtonSlott(SDLGame* game, EntityManager* mngr) : Button(game, mngr) {};
+	~ButtonSlott() {};
+	virtual void init(Vector2D pos, uint ancho, uint alto, Resources::TextureId imagen) {
+		Button::init(pos, ancho, alto, imagen);
+	};
+
+	virtual void click() {
+		// i_->use();
+	};
+};
+
+// ----------------------------------------------------
+
 enum class MovType { rotR, rotL, forward, touch };
 
 class ButtonMovimiento : public Button {
