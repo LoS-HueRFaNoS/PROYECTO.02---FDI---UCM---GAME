@@ -24,7 +24,7 @@ void CombatManager::showTeams()
 				" STR " << std::setfill('0') << setw(2) << s->getStat(rpgLogic::STR).value << "  CON " << std::setfill('0') << setw(2) <<
 				s->getStat(rpgLogic::CON).value << "  DEX " << std::setfill('0') << setw(2) << s->getStat(rpgLogic::DEX).value << "  INT " <<
 				std::setfill('0') << setw(2) << s->getStat(rpgLogic::INT).value << endl;
-		}	
+		}
 	}
 
 	cout << endl << "---------- ENEMIES ----------" << endl;
@@ -91,8 +91,11 @@ void CombatManager::passTurn()
 {
 	if (!checkEnd()) {
 		for (std::vector<Character*>::iterator it = _turnQueue.begin(); it != _turnQueue.end();) {
-			if ((*it)->isDead() && (*it)->getType()) {
-				it = _turnQueue.erase(it);
+			if ((*it)->isDead()) {
+				if ((*it)->getType() || (!(*it)->getType() && static_cast<Hero*>(*it)->getDeathGate()))
+					it = _turnQueue.erase(it);
+				else
+					it++;
 			}
 			else {
 				it++;

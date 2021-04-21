@@ -144,9 +144,11 @@ private:
 
 	int savingSuccess = 0, savingFailure = 0;
 
+	bool _deathGate = false;
+
 	virtual void loadFromJson(jute::jValue v, int t);
 
-	virtual void manageTurn(CombatManager* cm) {}
+	virtual void manageTurn(CombatManager* cm);
 
 	virtual void init() {
 		//_equipement = addComponent<Equipement>();
@@ -181,6 +183,8 @@ public:
 	void showSpellList();
 
 	void manageInput(CombatManager* cm, int input);
+
+	bool getDeathGate() { return _deathGate; }
 };
 
 #pragma endregion

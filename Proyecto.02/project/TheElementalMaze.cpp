@@ -39,10 +39,6 @@ void TheElementalMaze::init()
 	Hero* rogue = characterManager_->addHeroFromTemplate(ROGUE);
 	Hero* cleric = characterManager_->addHeroFromTemplate(CLERIC);;
 
-	Enemy* e1 = characterManager_->addRandomEnemy();
-	Enemy* e2 = characterManager_->addRandomEnemy();
-	Enemy* e3 = characterManager_->addRandomEnemy();
-
 	wizard->addHability<Fireball>();
 	wizard->addHability<SingleTargetAttackExample>();
 	wizard->addHability<SelfHealExample>();
@@ -63,9 +59,12 @@ void TheElementalMaze::init()
 	combatManager_->addCharacter(warrior);
 	combatManager_->addCharacter(rogue);
 	combatManager_->addCharacter(cleric);
-	combatManager_->addCharacter(e1);
-	combatManager_->addCharacter(e2);
-	combatManager_->addCharacter(e3);
+
+	int enemies = rpgLogic::throwDice(1, 3);
+
+	for (int i = 0 ;i < enemies; i++)
+		combatManager_->addCharacter(characterManager_->addRandomEnemy());
+
 
 	combatManager_->startCombat();
 

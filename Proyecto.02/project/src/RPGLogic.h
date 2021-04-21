@@ -152,7 +152,7 @@ namespace rpgLogic {
 		_LastSpellId_
 	};*/
 
-	int throwDice(int n, int dice, bool text);
+	int throwDice(int n, int dice, bool text = false);
 
 	enemyTemplate getRandomEnemy();
 
