@@ -44,7 +44,7 @@ public:
 
 	inline static TheElementalMaze* initInstace(SDLGame* game, EntityManager* mngr, CharacterManager* chMngr,InterfazManager* iMngr) {
 		assert(instance_ == nullptr);
-		instance_ = new TheElementalMaze(game, mngr, chMngr, iMngr)
+		instance_ = new TheElementalMaze(game, mngr, chMngr, iMngr);
 		instance_->init();
 		return instance_;
 	}

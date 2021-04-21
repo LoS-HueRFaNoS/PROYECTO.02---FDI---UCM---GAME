@@ -26,7 +26,7 @@ public:
 	void init() override
 	{
 		pos = GETCMP1_(MazePos);
-		auto manager = game_->getTextureMngr();
+		manager = game_->getTextureMngr();
 	}
 	void update() override
 	{
