@@ -81,7 +81,7 @@ protected:
 	EntityManager* mngr_;
 
 	bool enabled;	// equivalente a hide / unhide
-	bool active;	// se mantiene en memoria o se prepara paraser eliminado
+	bool active;	// se mantiene en memoria o se prepara para ser eliminado
 
 	std::vector<unique_ptr<Component>> components_;
 	std::array<Component*,ecs::maxComponents> componentsArray_ = {};

@@ -21,9 +21,9 @@ public:
 		return b;
 	}	
 
-	virtual void update() override {
-		EntityManager::update();
-		refresh(); // exclusivo actualmente, elimina los botones deshabilitados
-	}
+	//virtual void update() override {
+	//	EntityManager::update();
+	//	//refresh(); // exclusivo actualmente, elimina los botones deshabilitados
+	//}
 };
 

@@ -14,10 +14,13 @@ EntityManager::~EntityManager() {
 void EntityManager::update() {
 	auto n = entities.size();
 	for (auto i = 0u; i < n; i++)
-	//for (auto& e : entities)
 		entities[i]->update();
-		//e->update();
-	//refresh(); sólo si todos los managers lo necesitan
+	/*for (auto& e : entities)
+		e->update();*/
+	/*for (auto it = entities.begin(); it != entities.end();it++) {
+		(*it)->update();
+	}*/
+	refresh(); // sólo si todos los managers lo necesitan
 }
 
 void EntityManager::refresh() {

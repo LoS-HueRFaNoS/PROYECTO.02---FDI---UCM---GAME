@@ -5,10 +5,12 @@
 void Panel::removeButtons()
 {
 	//for (auto it = buttonList.begin(); it != buttonList.end(); ++it)
-	for (auto it = buttonList.begin(); it != buttonList.end(); )
+	for (auto it = buttonList.begin(); it != buttonList.end(); it++)
 	{
 		(*it)->disable();
-		it++;
-	}
+	}/*
+	for (auto& b : buttonList) {
+		TheElementalMaze::instance()->getUIManager()->removeEntity(b);
+	}*/
 	buttonList.clear();
 }
