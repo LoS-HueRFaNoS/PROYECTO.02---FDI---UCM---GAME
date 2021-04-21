@@ -48,7 +48,7 @@ public:
 
 	void recieveDamage(int damage, damageType type);
 
-	void recieveHealing(int healing);
+	virtual void recieveHealing(int healing);
 
 	void recieveBuff(int buff, mainStat stat);
 
@@ -142,6 +142,8 @@ private:
 
 	bool _marcial;
 
+	int savingSuccess = 0, savingFailure = 0;
+
 	virtual void loadFromJson(jute::jValue v, int t);
 
 	virtual void manageTurn(CombatManager* cm) {}
@@ -164,6 +166,15 @@ public:
 	Armor* getArmor() { return _armor; }
 
 	void giveArmor(Armor* a) { _armor = a; }
+
+	int getSavingSuccess() { return savingSuccess; }
+	int getSavingFailures() { return savingFailure; }
+
+	void savingDeathThrow();
+
+	virtual void recieveHealing(int healing);
+
+	void resetThrows();
 
 	void endCombat();
 
