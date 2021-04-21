@@ -69,15 +69,19 @@ public:
 		}
 	}
 
-	void toggleEnabled() {
-		enabled = !enabled;
-	}
+	// ocultar / mostrar
+	void toggleEnabled() { enabled = !enabled; }
+
+	// deshabilitar / delete
+	void disable() { active = false; }
+	bool isActive() const { return active; };
 
 protected:
 	SDLGame *game_;
 	EntityManager* mngr_;
 
-	bool enabled;
+	bool enabled;	// equivalente a hide / unhide
+	bool active;	// se mantiene en memoria o se prepara paraser eliminado
 
 	std::vector<unique_ptr<Component>> components_;
 	std::array<Component*,ecs::maxComponents> componentsArray_ = {};

@@ -12,9 +12,21 @@ EntityManager::~EntityManager() {
 }
 
 void EntityManager::update() {
-	for (auto &e : entities) {
-		e->update();
-	}
+	auto n = entities.size();
+	for (auto i = 0u; i < n; i++)
+		entities[i]->update();
+	//refresh(); sólo si todos los managers lo necesitan
+}
+
+void EntityManager::refresh() {
+	// elimina todas las entidades dehabilitados
+	for (auto it = entities.begin(); it != entities.end();) {
+		if (!(*it).get()->isActive()) {
+			it = entities.erase(it);
+		}
+		else
+			it++;
+	}	
 }
 
 void EntityManager::draw() {
