@@ -15,12 +15,10 @@ public:
 	Panel(idPanel idPan) : id(idPan) {};
 
 	~Panel(){
-		for (auto it = buttonList.begin(); it != buttonList.end(); ++it)
-		{
-			delete (*it);
-		}
-		buttonList.clear();
+		removeButtons();
 	}
+
+	void removeButtons();
 
 	void addButton(Button* b) {
 		buttonList.push_back(b);

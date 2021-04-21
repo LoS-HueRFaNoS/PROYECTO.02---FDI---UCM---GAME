@@ -68,6 +68,8 @@ public:
 
 	CharacterManager* getCharacterManager() { return characterManager_; }
 
+	InterfazManager* getUIManager() { return iManager_; }
+
 	ItemManager* getItemManager() { return itemManager_; }
 
 	bool isPause() { return pause_; }

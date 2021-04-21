@@ -18,13 +18,14 @@ public:
 	static void movCommand(int movType);
 	// acceso a informacion
 	static void inventario(Interfaz* app);
-	static void pocionVida(Interfaz* app);
-	static void pocionMana(Interfaz* app);
 	static void chat(Interfaz* app);
 	static void configuracion(Interfaz* app);
+	static void potionType(int potionType_);
 	// acceso a combate
-	static void ataqueNormal(Interfaz* app);
-	static void ataqueMagico(Interfaz* app);
-	static void defensa(Interfaz* app);
-	static void huida(Interfaz* app);
+	static void attackType(int attackType_);
+	static void defendType(int attackType_);
+	static void addTarget(int attackType_);
+	static void s_cast_hability(int attackType_);
+	// habilitar/deshabilitar paneles
+	static void createPanel(bool active, int panelType);
 };

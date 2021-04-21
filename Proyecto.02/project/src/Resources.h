@@ -59,6 +59,7 @@ public:
 		Inventario,
 		PocionVida,
 		PocionMana,
+		PocionRess,
 		Chat,
 		Configuracion, 
 
@@ -67,11 +68,14 @@ public:
 		AtaqueMagico, 
 		Defensa,
 		Huida,
+		Marco,
 
 		//Inventario
 		Slot,
 		EmptySword,
 		EmptyArmor,
+		WeaponSlot,
+		ArmorSlot,
 
 		//Objetos
 		Desarmado,

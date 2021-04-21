@@ -126,7 +126,7 @@ void CombatManager::endCombat()
 
 	_heroes.clear();
 	for (Enemy* e : _enemies) {
-		TheElementalMaze::instance()->getCharacterManager()->removeEntiy(e);
+		TheElementalMaze::instance()->getCharacterManager()->removeEntity(e);
 	}
 }
 
@@ -299,9 +299,7 @@ void CombatManager::sendKeyEvent(int key)
 	default:
 		break;
 	}
-
 }
-
 
 void CombatManager::update()
 {
@@ -323,5 +321,4 @@ void CombatManager::update()
 		else if (ih->isKeyDown(SDLK_9)) sendKeyEvent(9);
 		else if (ih->isKeyDown(SDLK_RETURN)) sendKeyEvent(-1);
 	}
-
 }

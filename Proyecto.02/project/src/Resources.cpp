@@ -43,6 +43,7 @@ vector<Resources::ImageInfo> Resources::images_{
 	{Inventario, "resources/sprites/iconos info/infoInventario.png"},
 	{PocionVida, "resources/sprites/iconos info/infoPocionVida.png"},
 	{PocionMana, "resources/sprites/iconos info/infoPocionMana.png"},
+	{PocionRess, "resources/sprites/iconos info/infoPocionRess.png"},
 	{Chat, "resources/sprites/iconos info/infoChat.png"},
 	{Configuracion, "resources/sprites/iconos info/infoConfiguracionAyuda.png"},
 
@@ -50,7 +51,14 @@ vector<Resources::ImageInfo> Resources::images_{
 	{AtaqueMagico, "resources/sprites/iconos combate/magic.png"},
 	{Defensa, "resources/sprites/iconos combate/defensa.png"},
 	{Huida, "resources/sprites/iconos combate/huir.png"},
+	{Marco, "resources/sprites/iconos combate/marco.png"},
+
+	//Inventario
 	{Slot, "resources/sprites/iconos inventario/inventorySlot.png"},
+	{EmptySword, "resources/sprites/iconos inventario/inventorySword.png"},
+	{EmptyArmor, "resources/sprites/iconos inventario/inventoryArmor.png"},
+	{WeaponSlot, "resources/sprites/iconos inventario/weapon_slot.png"},
+	{ArmorSlot, "resources/sprites/iconos inventario/armor_slot.png"},
 
 	// Armas clasicas �?
 	{Desarmado, "resources/sprites/iconos armas/joker.png"}, ///TODO

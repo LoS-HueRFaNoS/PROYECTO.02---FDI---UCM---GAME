@@ -7,15 +7,17 @@ namespace interfaz {
 	using idPanelType = std::size_t;
 
 	enum idPanel : idPanelType {
-		Fight, 
 		Movement, 
-		Minimap, 
 		Heroes, 
-		Info, 
 		Inventory, 
+		Info, 
+		Minimap, 
+		Targets,
+		Habilities,
+		Fight, 
+		Turns, 
 		HeroesStats, 
 		BigMap, 
-		Turns, 
 		Settings, 
 		Chat,
 		//

@@ -33,7 +33,7 @@ void callbacks::pruebaGame3(Interfaz* app) {
 void callbacks::heroType(int numberHeroe) {
 	CombatManager* c = GETCMP2(TheElementalMaze::instance(), CombatManager);
 	string name = c->getCharacter(numberHeroe, HERO)->name();
-	std::cout << "heroe 01: " << name << std::endl;
+	std::cout << "heroe " << numberHeroe << ": " << name << std::endl;
 }
 
 #pragma endregion
@@ -81,19 +81,43 @@ void callbacks::inventario(Interfaz* app)
 	std::cout << "has abierto el inventario" << std::endl;
 }
 
-void callbacks::pocionVida(Interfaz* app)
-{
-	std::cout << "has usado la poci�n de vida" << std::endl;
-}
-
-void callbacks::pocionMana(Interfaz* app)
-{
-	std::cout << "has usado la poci�n de man�" << std::endl;
-}
-
 void callbacks::configuracion(Interfaz* app)
 {
-	std::cout << "has usado el bot�n de configuraci�n y ayuda" << std::endl;
+
+}
+
+void callbacks::potionType(int potionType_)
+{
+	switch (potionType_)
+	{
+	case 0:
+		std::cout << "has usado la pocion de vida" << std::endl;
+		break;
+	case 1:
+		std::cout << "has usado la pocion de mana" << std::endl;
+		break;
+	case 2:
+		std::cout << "has usado la pocion de resurreccion" << std::endl;
+		break;
+	default:
+		break;
+	}
+}
+
+#pragma endregion
+
+// ----------------------------------------------------
+
+#pragma region PanelResources
+#include "../TheElementalMaze.h"
+#include "Interfaz.h"
+
+void callbacks::createPanel(bool active, int panelType)
+{
+	Interfaz* i_ = GETCMP2(TheElementalMaze::instance(), Interfaz);
+
+	if (!active) i_->createPanel((idPanel)panelType);
+	else if (active) i_->removePanel((idPanel)panelType);
 }
 
 #pragma endregion
@@ -104,7 +128,7 @@ void callbacks::configuracion(Interfaz* app)
 
 void callbacks::chat(Interfaz* app)
 {
-	std::cout << "has usado el bot�n de chat" << std::endl;
+	std::cout << "has usado el boton de chat" << std::endl;
 }
 
 #pragma endregion
@@ -112,25 +136,51 @@ void callbacks::chat(Interfaz* app)
 // ----------------------------------------------------
 
 #pragma region PanelCombate
+#include "../TheElementalMaze.h"
+#include "CombatManager.h"
 
-void callbacks::ataqueNormal(Interfaz* app)
+void callbacks::attackType(int attackType_)
 {
-	std::cout << "ataque cuerpo a cuerpo" << std::endl;
+	CombatManager* c = GETCMP2(TheElementalMaze::instance(), CombatManager);
+	switch (attackType_)
+	{
+	case 0:
+		std::cout << "ataque cuerpo a cuerpo" << std::endl;
+		break;
+	case 1:
+		std::cout << "ataque magico" << std::endl;
+		break;
+	default:
+		break;
+	}
 }
 
-void callbacks::ataqueMagico(Interfaz* app)
+void callbacks::defendType(int attackType_)
 {
-	std::cout << "ataque magico" << std::endl;
+	CombatManager* c = GETCMP2(TheElementalMaze::instance(), CombatManager);
+	switch (attackType_)
+	{
+	case 0:
+		//c->defend();
+		std::cout << "te has defendido" << std::endl;
+		break;
+	case 1:
+		//c->escape();
+		std::cout << "escapaste" << std::endl;
+		break;
+	default:
+		break;
+	}
 }
 
-void callbacks::defensa(Interfaz* app)
+void callbacks::addTarget(int attackType_)
 {
-	std::cout << "te has defendido" << std::endl;
+
 }
 
-void callbacks::huida(Interfaz* app)
+void callbacks::s_cast_hability(int attackType_)
 {
-	std::cout << "escapaste" << std::endl;
+
 }
 
 #pragma endregion

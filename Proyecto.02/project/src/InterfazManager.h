@@ -19,7 +19,11 @@ public:
 		entities.emplace_back(std::move(uPtr));
 		b->init(std::forward<TArgs>(mArgs)...);
 		return b;
-	}
+	}	
 
+	//virtual void update() override {
+	//	EntityManager::update();
+	//	//refresh(); // exclusivo actualmente, elimina los botones deshabilitados
+	//}
 };
 
