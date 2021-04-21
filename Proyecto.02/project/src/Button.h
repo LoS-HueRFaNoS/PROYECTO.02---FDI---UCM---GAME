@@ -206,6 +206,7 @@ class Panel;
 
 using namespace interfaz;
 
+// activa / desactiva los botones de un panel concreto
 class ButtonPanelCte : public Button {
 private:
 	Panel* pan_;
@@ -222,12 +223,13 @@ public:
 	virtual void click();
 };
 
+// crear / destruye en tiempo de ejecución los botones de un panel concreto
 class ButtonPanel : public Button {
 private:
 	bool activated;
 	idPanel pan_;
 public:
-	ButtonPanel(SDLGame* game, EntityManager* mngr) : Button(game, mngr), activated(false), pan_(Fight) {};
+	ButtonPanel(SDLGame* game, EntityManager* mngr) : Button(game, mngr), activated(true), pan_(Fight) {};
 
 	~ButtonPanel() {};
 

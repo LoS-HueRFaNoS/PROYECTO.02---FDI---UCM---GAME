@@ -29,11 +29,12 @@ void Interfaz::createFight()
 	Vector2D pPos = Vector2D(width, height);
 	// construccion del panel
 	Panel* p = new Panel(Fight);
-	allPanels.emplace(allPanels.begin() + Fight, p);
+	//allPanels.emplace(allPanels.begin() + Fight, p);
+	allPanels[Fight] = p;
 	// BOTONES:
 	p->addButton(iManager->addButton<ButtonSlott>(Vector2D(pPos.getX() - 10, pPos.getY() - 10), 85 * 5 + 20, 96 + 10, src::Marco));
-	p->addButton(iManager->addButton<ButtonPanelCte>(Vector2D(pPos.getX(), pPos.getY()), 85, 96, src::AtaqueNormal, AtkType::normal, allPanels[Targets]));
-	p->addButton(iManager->addButton<ButtonPanelCte>(Vector2D(pPos.getX() + 100, pPos.getY()), 82, 72, src::AtaqueMagico, AtkType::magic, allPanels[Habilities]));
+	/*p->addButton(iManager->addButton<ButtonPanelCte>(Vector2D(pPos.getX(), pPos.getY()), 85, 96, src::AtaqueNormal, AtkType::normal, allPanels[Targets]));
+	p->addButton(iManager->addButton<ButtonPanelCte>(Vector2D(pPos.getX() + 100, pPos.getY()), 82, 72, src::AtaqueMagico, AtkType::magic, allPanels[Habilities]));*/
 	p->addButton(iManager->addButton<ButtonDefend>(Vector2D(pPos.getX() + 200, pPos.getY()), 82, 72, src::Defensa, DfndType::defend));
 	p->addButton(iManager->addButton<ButtonDefend>(Vector2D(pPos.getX() + 300, pPos.getY()), 100, 55, src::Huida, DfndType::escape));
 } // normal, magic, defend, escape
@@ -49,7 +50,8 @@ void Interfaz::createMovement()
 	Vector2D pPos = Vector2D(width, height);
 	// construccion del panel
 	Panel* p = new Panel(Movement);
-	allPanels.emplace(allPanels.begin() + Movement, p);
+	//allPanels.emplace(allPanels.begin() + Movement, p);
+	allPanels[Movement] = p;
 	// BOTONES:
 	p->addButton(iManager->addButton<ButtonMovimiento>(Vector2D(pPos.getX() + 100, pPos.getY()), 85, 96, src::RotarD, MovType::rotR));
 	p->addButton(iManager->addButton<ButtonMovimiento>(Vector2D(pPos.getX() + 200, pPos.getY()), 82, 72, src::RotarI, MovType::rotL));
@@ -68,7 +70,8 @@ void Interfaz::createHeroes()
 	Vector2D pPos = Vector2D(width, height);
 	// construccion del panel de heroes
 	Panel* p = new Panel(Heroes);
-	allPanels.emplace(allPanels.begin() + Heroes, p);
+	//allPanels.emplace(allPanels.begin() + Heroes, p);
+	allPanels[Heroes] = p;
 	uint tamL = 100;
 	// BOTONES:
 	p->addButton(iManager->addButton<ButtonHero>(Vector2D(pPos.getX(), pPos.getY()), tamL, tamL, getHeroTxt(0), HeroNum::hero1));
@@ -85,7 +88,8 @@ void Interfaz::createInfo()
 	uint tamBoton = uint(width / 16);
 
 	Panel* p = new Panel(Info);
-	allPanels.emplace(allPanels.begin() + Info, p);
+	//allPanels.emplace(allPanels.begin() + Info, p);
+	allPanels[Info] = p;
 
 	double space = tamBoton * 0.8;
 	// BOTONES:
@@ -94,7 +98,7 @@ void Interfaz::createInfo()
 	//p->addButton(iManager->addButton<ButtonPotion>(Vector2D(width * 5 / 7, height * 5 / 6 + space), tamBoton * 0.8, tamBoton * 0.8, src::PocionRess, PtnType::resurrection));
 
 	//p->addButton(iManager->addButton<ButtonPanelCte>(Vector2D(width * 4 / 7, height * 3 / 4), tamBoton * 2, tamBoton * 2, src::Inventario, allPanels[Inventory]));
-	p->addButton(iManager->addButton<ButtonPanelCte>(Vector2D(width * 4 / 7, height * 3 / 4), tamBoton * 2, tamBoton * 2, src::Inventario, Inventory, false));
+	p->addButton(iManager->addButton<ButtonPanel>(Vector2D(width * 4 / 7, height * 3 / 4), tamBoton * 2, tamBoton * 2, src::Inventario, Inventory, false));
 	/*createButton(p, this, cb::chat, Vector2D(width * 6 / 7, height * 3 / 4), tamBoton, tamBoton, src::Chat);
 	createButton(p, this, cb::configuracion, Vector2D(width * 6 / 7, height * 5 / 6), tamBoton, tamBoton, src::Configuracion);*/
 } // health, mana, resurrection
@@ -108,7 +112,8 @@ void Interfaz::createInventory()
 	double posY = slotTam * 1.5;
 
 	Panel* p = new Panel(Inventory);
-	allPanels.emplace(allPanels.begin() + Inventory, p);
+	//allPanels.emplace(allPanels.begin() + Inventory, p);
+	allPanels[Inventory] = p;
 
 	// Cuadro de inventario 5x5
 	for (int i = 0; i < 5; ++i) {
@@ -148,13 +153,14 @@ void Interfaz::createTargets()
 	Vector2D pPos = Vector2D(width, height);
 	// construccion del panel
 	Panel* p = new Panel(Targets);
-	allPanels.emplace(allPanels.begin() + Targets, p);
+	//allPanels.emplace(allPanels.begin() + Targets, p);
+	allPanels[Targets] = p;
 	// BOTONES:
-	p->addButton(iManager->addButton<ButtonSlott>(Vector2D(pPos.getX() - 10, pPos.getY() - 10), 85 * 5 + 20, 96 + 10, src::Marco));
+	/*p->addButton(iManager->addButton<ButtonSlott>(Vector2D(pPos.getX() - 10, pPos.getY() - 10), 85 * 5 + 20, 96 + 10, src::Marco));
 	p->addButton(iManager->addButton<ButtonPanelCte>(Vector2D(pPos.getX(), pPos.getY()), 85, 96, src::AtaqueNormal, AtkType::normal, allPanels[Targets]));
 	p->addButton(iManager->addButton<ButtonPanelCte>(Vector2D(pPos.getX() + 100, pPos.getY()), 82, 72, src::AtaqueMagico, AtkType::magic, allPanels[Habilities]));
 	p->addButton(iManager->addButton<ButtonDefend>(Vector2D(pPos.getX() + 200, pPos.getY()), 82, 72, src::Defensa, DfndType::defend));
-	p->addButton(iManager->addButton<ButtonDefend>(Vector2D(pPos.getX() + 300, pPos.getY()), 100, 55, src::Huida, DfndType::escape));
+	p->addButton(iManager->addButton<ButtonDefend>(Vector2D(pPos.getX() + 300, pPos.getY()), 100, 55, src::Huida, DfndType::escape));*/
 }
 
 void Interfaz::createHabilities()
@@ -168,13 +174,14 @@ void Interfaz::createHabilities()
 	Vector2D pPos = Vector2D(width, height);
 	// construccion del panel
 	Panel* p = new Panel(Habilities);
-	allPanels.emplace(allPanels.begin() + Habilities, p);
+	//allPanels.emplace(allPanels.begin() + Habilities, p);
+	allPanels[Habilities] = p;
 	// BOTONES:
-	p->addButton(iManager->addButton<ButtonSlott>(Vector2D(pPos.getX() - 10, pPos.getY() - 10), 85 * 5 + 20, 96 + 10, src::Marco));
+	/*p->addButton(iManager->addButton<ButtonSlott>(Vector2D(pPos.getX() - 10, pPos.getY() - 10), 85 * 5 + 20, 96 + 10, src::Marco));
 	p->addButton(iManager->addButton<ButtonPanelCte>(Vector2D(pPos.getX(), pPos.getY()), 85, 96, src::AtaqueNormal, AtkType::normal, allPanels[Targets]));
 	p->addButton(iManager->addButton<ButtonPanelCte>(Vector2D(pPos.getX() + 100, pPos.getY()), 82, 72, src::AtaqueMagico, AtkType::magic, allPanels[Habilities]));
 	p->addButton(iManager->addButton<ButtonDefend>(Vector2D(pPos.getX() + 200, pPos.getY()), 82, 72, src::Defensa, DfndType::defend));
-	p->addButton(iManager->addButton<ButtonDefend>(Vector2D(pPos.getX() + 300, pPos.getY()), 100, 55, src::Huida, DfndType::escape));
+	p->addButton(iManager->addButton<ButtonDefend>(Vector2D(pPos.getX() + 300, pPos.getY()), 100, 55, src::Huida, DfndType::escape));*/
 }
 
 
@@ -231,15 +238,12 @@ void Interfaz::toggleCombat_Movement()
 
 void Interfaz::init()
 {
-	allPanels.reserve(maxPanels);
+	//allPanels.reserve(maxPanels);
+	initialize();
 	createPanel(Movement);
 	createPanel(Heroes);
-	createPanel(Inventory);
-	togglePanel(Inventory);
 	createPanel(Info);
 	createPanel(Minimap);
-	createPanel(Fight);
-	togglePanel(Fight);
 }
 
 void Interfaz::update()
@@ -278,7 +282,7 @@ void Interfaz::initialize()
 {
 	for (uint i = 0; i < maxPanels; ++i)
 	{
-		allPanels[i] = nullptr;
+		allPanels.push_back(nullptr);
 	}
 }
 

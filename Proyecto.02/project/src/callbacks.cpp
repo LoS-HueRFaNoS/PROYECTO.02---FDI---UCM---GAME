@@ -117,7 +117,7 @@ void callbacks::createPanel(bool active, int panelType)
 	Interfaz* i_ = GETCMP2(TheElementalMaze::instance(), Interfaz);
 
 	if (!active) i_->createPanel((idPanel)panelType);
-	else i_->removePanel((idPanel)panelType);
+	else if (active) i_->removePanel((idPanel)panelType);
 }
 
 #pragma endregion
