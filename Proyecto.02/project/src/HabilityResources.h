@@ -26,6 +26,22 @@ enum Hability_Id {
 	DIVINEPROTECTION,
 	FLASH,
 	FREEZE,
+	WHIRLPOOL,
+	LIGHTBEAM,
+	DARKVORTEX,
+	FIREARROW,
+	MEDITATE,
+	LIGHTEN,
+	STRENGTHEN,
+	TOUGHEN,
+	BLOODTHIRST,
+	SACRIFICE,
+	DOUBLESHOT,
+	THROWINGAXES,
+	WINDSONG,
+	GLADIATORBALLAD,
+	HEAVYSTRIKE,
+	SMOKEARROW,
 	_lasHabilityId_
 };
 
@@ -392,14 +408,342 @@ public:
 
 	void throwHability(Character* obj, bool critical)const override;
 };
+class Whirlpool : public Hability {
+public:
+	Whirlpool(Character* caster) :Hability(caster) {
+
+		level = 4;
+		_mana = 0;
+		_name = "Whirlpool";
+		_description = "Mas agua, a hace 1d8 a un enemigo frente a salvacion DEX (y reduce DEX)";
+
+		_damageType = WATER;
+		_habilityType = ATTACK;
+		_mod = INT;
+		_obj = SINGLEENEMY;
+	}
+
+	static Hability_Id id() { return WHIRLPOOL; }
+
+	void throwHability(Character* obj, bool critical)const override;
+};
+class LightBeam : public Hability {
+public:
+	LightBeam(Character* caster) :Hability(caster) {
+
+		level = 4;
+		_mana = 0;
+		_name = "Light Beam";
+		_description = "Muy bonito, pero doloroso, a hace 1d8 a un enemigo frente a salvacion DEX (y reduce DEX)";
+
+		_damageType = LIGHT;
+		_habilityType = ATTACK;
+		_mod = INT;
+		_obj = SINGLEENEMY;
+	}
+
+	static Hability_Id id() { return LIGHTBEAM; }
+
+	void throwHability(Character* obj, bool critical)const override;
+};
+class DarkVortex : public Hability {
+public:
+	DarkVortex(Character* caster) :Hability(caster) {
+
+		level = 4;
+		_mana = 0;
+		_name = "Dark Vortex";
+		_description = "No veo, a hace 1d8 a un enemigo frente a salvacion DEX (y reduce DEX)";
+
+		_damageType = DARK;
+		_habilityType = ATTACK;
+		_mod = INT;
+		_obj = SINGLEENEMY;
+	}
+
+	static Hability_Id id() { return DARKVORTEX; }
+
+	void throwHability(Character* obj, bool critical)const override;
+};
+
+class FireArrow : public Hability {
+public:
+	FireArrow(Character* caster) :Hability(caster) {
+
+		level = 4;
+		_mana = 0;
+		_name = "Fire Arrow";
+		_description = "Quema, a hace 1d8 a un enemigo frente a salvacion DEX (y reduce DEX)";
+
+		_damageType = FIRE;
+		_habilityType = ATTACK;
+		_mod = INT;
+		_obj = SINGLEENEMY;
+	}
+
+	static Hability_Id id() { return FIREARROW; }
+
+	void throwHability(Character* obj, bool critical)const override;
+};
+
+
+class Lighten: public Hability {
+public:
+	Lighten(Character* caster) :Hability(caster) {
+
+		level = 4;
+		_mana = 0;
+		_name = "Lighten";
+		_description = "Aumenta la destreza";
+
+		_damageType = LIGHT;
+		_habilityType = BUFF;
+		_mod = INT;
+		_obj = CASTER;
+	}
+
+	static Hability_Id id() { return LIGHTEN; }
+
+	void throwHability(Character* obj, bool critical)const override;
+};
+class Strengthen : public Hability {
+public:
+	Strengthen(Character* caster) :Hability(caster) {
+
+		level = 4;
+		_mana = 0;
+		_name = "Strengthen";
+		_description = "Aumenta la fuerza";
+
+		_damageType = LIGHT;
+		_habilityType = BUFF;
+		_mod = INT;
+		_obj = CASTER;
+	}
+
+	static Hability_Id id() { return STRENGTHEN; }
+
+	void throwHability(Character* obj, bool critical)const override;
+};
+class Toughen : public Hability {
+public:
+	Toughen(Character* caster) :Hability(caster) {
+
+		level = 4;
+		_mana = 0;
+		_name = "Toughen";
+		_description = "Aumenta la constitucion";
+
+		_damageType = LIGHT;
+		_habilityType = BUFF;
+		_mod = INT;
+		_obj = CASTER;
+	}
+
+	static Hability_Id id() { return TOUGHEN; }
+
+	void throwHability(Character* obj, bool critical)const override;
+};
+class Meditate: public Hability {
+public:
+	Meditate(Character* caster) :Hability(caster) {
+
+		level = 4;
+		_mana = 0;
+		_name = "Meditate";
+		_description = "Aumenta la inteligencia";
+
+		_damageType = LIGHT;
+		_habilityType = BUFF;
+		_mod = INT;
+		_obj = CASTER;
+	}
+
+	static Hability_Id id() { return MEDITATE; }
+
+	void throwHability(Character* obj, bool critical)const override;
+};
+
+class BloodThirst : public Hability {
+public:
+	BloodThirst(Character* caster) :Hability(caster) {
+
+		level = 4;
+		_mana = 0;
+		_name = "Blood Thirst";
+		_description = "Dame tu vida, a hace 1d8 a un enemigo frente a salvacion DEX y cura al usuario";
+
+		_damageType = LIGHT;
+		_habilityType = ATTACK;
+		_mod = INT;
+		_obj = SINGLEENEMY;
+	}
+
+	static Hability_Id id() { return BLOODTHIRST; }
+
+	void throwHability(Character* obj, bool critical)const override;
+};
+
+class Sacrifice : public Hability {
+public:
+	Sacrifice(Character* caster) :Hability(caster) {
+
+		level = 4;
+		_mana = 0;
+		_name = "Sacrifice";
+		_description = "Dame tu vida, a hace 1d8 a un enemigo frente a salvacion DEX x1.5 ,pero recibe daño de retroceso";
+
+		_damageType = LIGHT;
+		_habilityType = ATTACK;
+		_mod = INT;
+		_obj = SINGLEENEMY;
+	}
+
+	static Hability_Id id() { return SACRIFICE; }
+
+	void throwHability(Character* obj, bool critical)const override;
+};
+
+class DoubleShot : public Hability {
+public:
+	DoubleShot(Character* caster) :Hability(caster) {
+
+		level = 4;
+		_mana = 0;
+		_name = "Double Shot";
+		_description = "Dispara 2 flechas a la vez, la segunda flecha hace la mitad de daño de la primera";
+
+		_damageType = LIGHT;
+		_habilityType = ATTACK;
+		_mod = DEX;
+		_obj = SINGLEENEMY;
+	}
+
+	static Hability_Id id() { return DOUBLESHOT; }
+
+	void throwHability(Character* obj, bool critical)const override;
+};
+
+class ThrowingAxes : public Hability { //revisar los modificadores
+public:
+	ThrowingAxes(Character* caster) :Hability(caster) {
+
+		level = 4;
+		_mana = 0;
+		_name = "Throwing Axes";
+		_description = "Lanza 3 hachas";
+
+		_damageType = LIGHT;
+		_habilityType = ATTACK;
+		_mod = DEX;
+		_obj = SINGLEENEMY;
+	}
+
+	static Hability_Id id() { return THROWINGAXES; }
+
+	void throwHability(Character* obj, bool critical)const override;
+};
+
+class WindSong : public Hability {
+public:
+	WindSong(Character* caster) :Hability(caster) { //por ahora aumenta la DEX a todo el equipo, pero hay que cambiar a un solo objetivo 
+		                                            //y que este sea el siguiente en atacar
+
+		level = 4;
+		_mana = 0;
+		_name = "Wind Song";
+		_description = "Aumenta la velocidad de un aliado (el siguiente turno atacará el que la reciba)";
+
+		_damageType = WIND;
+		_habilityType = BUFF;
+		_mod = INT;
+		_obj = ALLYTEAM;
+	}
+
+	static Hability_Id id() { return WINDSONG; }
+
+	void throwHability(Character* obj, bool critical)const override;
+};
+
+class GladiatorBallad : public Hability {
+public:
+	GladiatorBallad(Character* caster) :Hability(caster) { 
+
+		level = 4;
+		_mana = 0;
+		_name = "Gladiator's Ballad";
+		_description = "Aumenta el daño de todos los miembros del equipo durante 2 turnos";
+
+		_damageType = WIND;
+		_habilityType = BUFF;
+		_mod = INT;
+		_obj = ALLYTEAM;
+	}
+
+	static Hability_Id id() { return GLADIATORBALLAD; }
+
+	void throwHability(Character* obj, bool critical)const override;
+};
+
+class HeavyStrike : public Hability { //modificar la descripcion cuando lo ajustemos, pero de momento solo hace +3 de daño el ataque
+public:
+	HeavyStrike(Character* caster) :Hability(caster) {
+
+		level = 4;
+		_mana = 0;
+		_name = "Heavy Strike";
+		_description = "El ataque hace +3 de daño";
+
+		_damageType = LIGHT;
+		_habilityType = ATTACK;
+		_mod = STR;
+		_obj = SINGLEENEMY;
+	}
+
+	static Hability_Id id() { return HEAVYSTRIKE; }
+
+	void throwHability(Character* obj, bool critical)const override;
+};
+
+class SmokeArrow : public Hability {
+public:
+	SmokeArrow(Character* caster) :Hability(caster) {
+
+		level = 4;
+		_mana = 0;
+		_name = "Smoke arrow";
+		_description = "Dispara una flecha de humo que desorienta a los enemigos y les reduce la destreza durante 3 turnos";
+
+		_damageType = DARK;
+		_habilityType = BUFF;
+		_mod = INT;
+		_obj = ENEMYTEAM;
+	}
+
+	static Hability_Id id() { return SMOKEARROW; }
+
+	void throwHability(Character* obj, bool critical)const override;
+};
 
 #pragma endregion
 
 #pragma region CONDITION
 
 enum Conditions_Id {
-	EJEMPLODAÑOPORTURNO,
+	EJEMPLODAÑOPORTURNOBEGIN,
+	EJEMPLOCURACIONFINALTURNO,
+	EJEMPLOREDUCCIONATAQUE,
+	EJEMPLOREVIVIRMUERTE,
 	_lastConditionId_
+};
+
+
+enum ConditionType {
+	ON_TURN_STARTED,
+	ON_TURN_ENDED,
+	ON_ATTACK_RECIEVED,
+	ON_DEATH,
+	_lastConditionType_
 };
 
 class Condition {
@@ -407,9 +751,12 @@ protected:
 	std::string _name = "DefaultName";
 	std::string _description = "DefaultDescription";
 
-	int _turnsLeft = 0;
+	int _counter = 0;
 	int _turns = 0;
 	int _stack = 1;
+
+	ConditionType _type;
+	Conditions_Id _id;
 
 	Character* _objective;
 	Character* _caster;
@@ -423,26 +770,35 @@ public:
 
 	virtual void init() = 0;
 
-	virtual bool onTurnStarted() = 0;
+	virtual bool onTurnStarted() { return false; };
 
-	int getTurnsLeft() { return _turnsLeft; }
+	virtual bool onTurnEnd() { return false; };
 
-	void resetTurns() { _turnsLeft = _turns; }
+	virtual bool onAttackRecieved(int& damage) { return false; };
+
+	virtual bool onDeath() { return false; };
+
+	int getTurnsLeft() { return _counter; }
+
+	void resetTurns() { _counter = _turns; }
 
 	void addStack() { _stack++; }
 
-	virtual Conditions_Id getId() { return id(); }
+	Conditions_Id getId() { return _id; }
+
+	ConditionType getType() { return _type; }
 
 	static Conditions_Id id() { return _lastConditionId_; }
 };
 
-
-class EjemploDañoPorTurno : public Condition {
+class EjemploDañoPorTurnoBegin : public Condition {
 public:
-	EjemploDañoPorTurno(Character* caster, Character* objective) :Condition(caster, objective) {
+	EjemploDañoPorTurnoBegin(Character* caster, Character* objective) : Condition(caster, objective) {
 		_name = "Ejemplo de daño cada turno";
-		_description = "Hace 1 de daño cada turno, durante 3 turnos";
+		_description = "Hace 1d3 de daño cada turno, durante 3 turnos";
 		_turns = 3;
+		_type = ON_TURN_STARTED;
+		_id = EJEMPLODAÑOPORTURNOBEGIN;
 		resetTurns();
 	}
 
@@ -450,9 +806,67 @@ public:
 
 	virtual bool onTurnStarted();
 
-	virtual Conditions_Id getId() { return id(); }
+	static Conditions_Id id() { return EJEMPLODAÑOPORTURNOBEGIN; }
+};
 
-	static Conditions_Id id() { return EJEMPLODAÑOPORTURNO; }
+
+class EjemploCuracionFinalTurno : public Condition {
+public:
+
+	EjemploCuracionFinalTurno(Character* caster, Character* objective) : Condition(caster, objective) {
+		_name = "Ejemplo de daño cada turno";
+		_description = "Cura 1d3 cada final de turno, durante 3 turnos";
+		_turns = 3;
+		_type = ON_TURN_ENDED;
+		_id = EJEMPLOCURACIONFINALTURNO;
+		resetTurns();
+	}
+
+	virtual void init();
+
+	virtual bool onTurnEnd();
+
+	static Conditions_Id id() { return EJEMPLOCURACIONFINALTURNO; }
+};
+
+class EjemploReduccionAtaque : public Condition {
+public:
+
+	EjemploReduccionAtaque(Character* caster, Character* objective) : Condition(caster, objective) {
+		_name = "Ejemplo de daño cada turno";
+		_description = "Reduce el daño el siguiente ataque a la mitad";
+		_type = ON_ATTACK_RECIEVED;
+		_id = EJEMPLOREDUCCIONATAQUE;
+		resetTurns();
+	}
+
+	virtual void init();
+
+	virtual bool onAttackRecieved(int& damage);
+
+	static Conditions_Id id() { return EJEMPLOREDUCCIONATAQUE; }
+};
+
+
+class EjemploRevivirMuerte : public Condition {
+public:
+
+	EjemploRevivirMuerte(Character* caster, Character* objective) : Condition(caster, objective) {
+		_name = "Ejemplo de daño cada turno";
+		_description = "Revivira con 5 de vida al morir";
+		_type = ON_DEATH;
+		_id = EJEMPLOREVIVIRMUERTE;
+		resetTurns();
+	}
+
+	virtual void init();
+
+	virtual bool onDeath();
+
+	static Conditions_Id id() { return EJEMPLOREVIVIRMUERTE; }
 };
 
 #pragma endregion
+
+
+

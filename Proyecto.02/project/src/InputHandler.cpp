@@ -10,7 +10,7 @@ InputHandler::InputHandler() {
 InputHandler::~InputHandler() {
 }
 
-void InputHandler::update() {
+bool InputHandler::update() {
 
 	SDL_Event event;
 
@@ -18,6 +18,9 @@ void InputHandler::update() {
 
 	while (SDL_PollEvent(&event)) {
 		switch (event.type) {
+		case SDL_QUIT:
+			return false;
+			break;
 		case SDL_KEYDOWN:
 			onKeyDown(event);
 			break;
@@ -35,6 +38,7 @@ void InputHandler::update() {
 			break;
 		}
 	}
+	return true;
 }
 
 void InputHandler::clearState() {

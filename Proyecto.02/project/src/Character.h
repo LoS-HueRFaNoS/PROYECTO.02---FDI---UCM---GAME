@@ -20,11 +20,13 @@ protected:
 
 	std::array<Hability*, _lasHabilityId_> _habilitiesArray = {};
 
-	vector<Condition*> _conditions;
+	std::map < ConditionType, vector<Condition*>> _conditions;
 
 	std::array<Condition*, _lastConditionId_> _conditonsArray = {};
 
 	virtual void init() {
+		for (int i = 0; i < _lastConditionType_; i++)
+			_conditions[(ConditionType)i] = vector<Condition*>();
 		_sheet = addComponent<CharacterSheet>();
 	}
 
@@ -34,9 +36,11 @@ protected:
 
 public:
 
-	Character(SDLGame* game, EntityManager* mngr,  characterType type) :  _type(type), _habilities(vector<Hability*>()), Entity(game, mngr) {
+	Character(SDLGame* game, EntityManager* mngr, characterType type) : _type(type), Entity(game, mngr) {
 		init();
 	}
+	
+	~Character();
 
 	void loadFromTemplate(jute::jValue v, heroTemplate t);
 
@@ -44,10 +48,9 @@ public:
 
 	void recieveDamage(int damage, damageType type);
 
-	void recieveHealing(int healing);
+	virtual void recieveHealing(int healing);
 
 	void recieveBuff(int buff, mainStat stat);
-
 
 	bool savingThrow(int save, mainStat stat);
 
@@ -66,6 +69,8 @@ public:
 	}
 
 	void startTurn(CombatManager* cm);
+
+	void endTurn();
 
 	characterType getType() {
 		return _type;
@@ -88,7 +93,7 @@ public:
 	void addCondition(Character* caster) {
 		if (!hasCondition(T::id())) {
 			T* c(new T(caster, this));
-			_conditions.push_back(c);
+			_conditions[c->getType()].push_back(c);
 			_conditonsArray[T::id()] = c;
 			c->init();
 		}
@@ -137,9 +142,11 @@ private:
 
 	bool _marcial;
 
+	int savingSuccess = 0, savingFailure = 0;
+
 	virtual void loadFromJson(jute::jValue v, int t);
 
-	virtual void manageTurn(CombatManager* cm){}
+	virtual void manageTurn(CombatManager* cm) {}
 
 	virtual void init() {
 		//_equipement = addComponent<Equipement>();
@@ -150,6 +157,8 @@ public:
 	Hero(SDLGame* game, EntityManager* mngr) :Character(game, mngr, HERO) {
 	}
 
+	~Hero();
+
 	Weapon* getWeapon() { return _weapon; }
 
 	void giveWeapon(Weapon* w) { _weapon = w; }
@@ -157,6 +166,15 @@ public:
 	Armor* getArmor() { return _armor; }
 
 	void giveArmor(Armor* a) { _armor = a; }
+
+	int getSavingSuccess() { return savingSuccess; }
+	int getSavingFailures() { return savingFailure; }
+
+	void savingDeathThrow();
+
+	virtual void recieveHealing(int healing);
+
+	void resetThrows();
 
 	void endCombat();
 

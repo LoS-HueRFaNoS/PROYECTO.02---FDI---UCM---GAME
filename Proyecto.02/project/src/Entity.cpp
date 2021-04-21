@@ -9,5 +9,6 @@ Entity::Entity(SDLGame *game, EntityManager *mngr) :
 }
 
 Entity::~Entity() {
+	components_.clear();
 }
 

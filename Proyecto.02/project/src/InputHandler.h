@@ -26,7 +26,7 @@ public:
 	}
 
 	// update the state
-	void update();
+	bool update();
 
 	// keyboard
 	inline bool keyDownEvent() {

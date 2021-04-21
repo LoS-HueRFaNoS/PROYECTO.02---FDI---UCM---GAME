@@ -22,7 +22,12 @@ Laberinto::Laberinto() : Component(ecs::Laberinto), h(5), w(5)
 
 Laberinto::~Laberinto()
 {
-
+	for (vector<Casilla*> v : laberinto) {
+		for (Casilla* c : v) {
+			delete c;
+			c = nullptr;
+		}
+	}
 }
 
 
@@ -146,7 +151,7 @@ void Laberinto::createRandomMaze(Vector2D entrada)
 
 			if (x == salida.getX() && y == salida.getY())
 			{
-				shortestWay = new vector<Vector2D>(m_stack);
+				shortestWay = vector<Vector2D>(m_stack);
 				laberinto[x][y]->setSalida();
 			}
 

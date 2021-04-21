@@ -8,7 +8,13 @@
 #include "src/ItemManager.h"
 
 
-unique_ptr<TheElementalMaze> TheElementalMaze::instance_;
+TheElementalMaze* TheElementalMaze::instance_ = nullptr;
+
+TheElementalMaze::~TheElementalMaze()
+{
+	delete itemManager_;
+	itemManager_ = nullptr;
+}
 
 void TheElementalMaze::init()
 {

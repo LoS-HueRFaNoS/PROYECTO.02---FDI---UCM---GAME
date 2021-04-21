@@ -64,6 +64,7 @@ void Game::initGame()
 	c_ = createCursor(Vector2D(200, 200), 50, 50, Resources::Mouse);
 
 	int endTime = 0;
+	delete tex_;
 }
 
 void Game::closeGame()
@@ -71,7 +72,6 @@ void Game::closeGame()
 	delete entityManager_;
 	delete characterManager_;
 	delete interfazManager_;
-	delete game_;
 }
 
 void Game::start()
@@ -102,29 +102,27 @@ void Game::handleInput()
 
 	InputHandler *ih = InputHandler::instance();
 
-	ih->update();
-
-	if (ih->keyDownEvent())
-	{
-		if (ih->isKeyDown(SDLK_ESCAPE))
-		{
-			exit_ = true;
-		}
-
-		if (ih->isKeyDown(SDLK_f))
-		{
-			int flags = SDL_GetWindowFlags(game_->getWindow());
-			if (flags & SDL_WINDOW_FULLSCREEN)
-			{
-				SDL_SetWindowFullscreen(game_->getWindow(), 0);
+	if (ih->update()) {
+		if (ih->keyDownEvent()) {
+			if (ih->isKeyDown(SDLK_ESCAPE)) {
+				exit_ = true;
 			}
-			else
-			{
-				SDL_SetWindowFullscreen(game_->getWindow(),
-										SDL_WINDOW_FULLSCREEN);
+
+			if (ih->isKeyDown(SDLK_f)) {
+				int flags = SDL_GetWindowFlags(game_->getWindow());
+				if (flags & SDL_WINDOW_FULLSCREEN) {
+					SDL_SetWindowFullscreen(game_->getWindow(), 0);
+				}
+				else {
+					SDL_SetWindowFullscreen(game_->getWindow(),
+						SDL_WINDOW_FULLSCREEN);
+				}
 			}
 		}
 	}
+	else
+		exit_ = true;
+
 }
 
 void Game::update()
