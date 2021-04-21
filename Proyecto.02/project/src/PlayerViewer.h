@@ -26,7 +26,7 @@ public:
 	void init() override
 	{
 		pos = GETCMP1_(MazePos);
-		auto manager = game_->getTextureMngr();
+		
 	}
 	void update() override
 	{
@@ -75,7 +75,7 @@ public:
 		if (sentido == Oeste) derecha = Norte;
 		else derecha = sentido+1;
 
-		
+		auto manager = game_->getTextureMngr();
 
 		if (casillaActual[sentido]) // <-^->
 		{
@@ -166,6 +166,7 @@ private:
 		if (!casSig->getEnemy()->empty())
 		{
 			Texture* enemigo;
+			auto manager = game_->getTextureMngr();
 			//enemigo = manager->getTexture(Resources::EnemigoSombra);
 			SDL_Rect dest = { 400 + 60, 100, 60, 60 };
 			enemigo->render(dest);
@@ -174,6 +175,7 @@ private:
 	void enemyViewer(enemyTemplate temp, int x, int y , int w, int h)
 	{
 		Texture* enemigo;
+		auto manager = game_->getTextureMngr();
 		enemigo = manager->getTexture(Resources::Placas+temp);
 		SDL_Rect dest = { x, y, w, h };
 		enemigo->render(dest);

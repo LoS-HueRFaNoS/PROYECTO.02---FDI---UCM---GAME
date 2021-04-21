@@ -27,4 +27,8 @@ public:
 	static void ataqueMagico(Interfaz* app);
 	static void defensa(Interfaz* app);
 	static void huida(Interfaz* app);
+	static void startLobby(Interfaz* app);
+	static void options(Interfaz* app);
+	static void howToPlay(Interfaz* app);
+	static void quit(Interfaz* app);
 };

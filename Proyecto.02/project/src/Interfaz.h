@@ -27,7 +27,8 @@ private:
 	void createTurns() {}; //
 	void createSettings() {}; //
 	void createChat() {}; //
-
+	void createMenuPrincipal() ; //
+	void createLobby() ; //
 public:
 	Interfaz(InterfazManager* i) :
 		Component(ecs::InterfazManager),

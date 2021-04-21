@@ -129,6 +129,22 @@ void Interfaz::createInventory()
 	}
 }
 
+void Interfaz::createMenuPrincipal()
+{
+	SDLGame* game_ = entity_->getSDLGame();
+
+	int width = game_->getWindowWidth();
+	int height = game_->getWindowHeight();
+
+	Panel* panelMenu = new Panel(MenuPrincipal);
+	allPanels.push_back(panelMenu);
+	//panelMenu->addButton(iManager->addButton<ButtonMenu>(Vector2D(width/2,height/2 ), 200, 100, src::AtaqueMagico, ));
+}
+
+void Interfaz::createLobby()
+{
+
+}
 
 void Interfaz::createPanel(idPanel panelID)
 {
@@ -165,6 +181,12 @@ void Interfaz::createPanel(idPanel panelID)
 		break;
 	case Chat:
 		createChat();
+		break;
+	case MenuPrincipal:
+		createMenuPrincipal();
+		break;
+	case Lobby:
+		createLobby();
 		break;
 	}
 }

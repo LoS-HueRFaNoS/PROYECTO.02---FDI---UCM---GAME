@@ -76,8 +76,25 @@ public:
 
 // ----------------------------------------------------
 
+enum class accionMenu { start, how_to_play, options, quit};
 
+class ButtonMenu : public Button {
+private:
+	
+public:
+	ButtonMenu(SDLGame* game, EntityManager* mngr) : Button(game, mngr) {};
 
+	~ButtonMenu() {};
+
+	virtual void init(Vector2D pos, uint ancho, uint alto, Resources::TextureId imagen) {
+		Button::init(pos, ancho, alto, imagen);
+	};
+
+	virtual void click()
+	{
+		//callbacks::((int)heroType_);
+	}
+};
 // ----------------------------------------------------
 
 

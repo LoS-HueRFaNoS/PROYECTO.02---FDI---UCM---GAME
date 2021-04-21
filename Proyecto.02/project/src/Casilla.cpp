@@ -31,7 +31,7 @@ vector<bool> Casilla::checkCell()
 {
 	return direcciones;
 }
-void Casilla::casillaRender(int x, int y )
+void Casilla::casillaRender(int x, int y)
 {
 	SDL_Rect dest = { x, y, 28, 20 };
 	Texture* texturaSuelo;

@@ -136,7 +136,24 @@ void callbacks::huida(Interfaz* app)
 #pragma endregion
 
 // ----------------------------------------------------
-
+#pragma region MenuPrincipal
+void callbacks::startLobby(Interfaz* app)
+{
+	std::cout << "startLobby se ha activado\n";
+}
+void callbacks::options(Interfaz* app)
+{
+	std::cout << "options se ha activado\n";
+}
+void callbacks::howToPlay(Interfaz* app)
+{
+	std::cout << "howToPlay se ha activado\n";
+}
+void callbacks::quit(Interfaz* app)
+{
+	std::cout << "quit se ha activado\n";
+}
+#pragma endregion
 //void callbacks::start(Game* app) // previo app->setLevel(lvl);
 //{
 //	/*app->getMachine()->setAction(goGame);
