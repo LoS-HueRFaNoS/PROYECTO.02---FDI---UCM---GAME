@@ -283,12 +283,14 @@ void Hero::manageInput(CombatManager *cm, int input)
 			cm->castHability(_habilities[input]);
 			//_sheet->setManaPoints(_sheet->manaPoints() - _habilities[spell]->getMana());
 		}
+	}
 
-		else
-		{
-			savingDeathThrow();
-			cm->changeState(END_TURN);
-		}
+	else
+	{
+		savingDeathThrow();
+		cm->changeState(END_TURN);
+	}
+		
 	}
 
 #pragma endregion
