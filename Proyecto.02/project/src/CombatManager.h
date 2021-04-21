@@ -120,6 +120,8 @@ public:
 		return  type ? static_cast<Character*>(_enemies[index]) : static_cast<Character*>(_heroes[index]);
 	};
 
+	size_t getHerosTam() { return _heroes.size(); }
+
 
 };
 

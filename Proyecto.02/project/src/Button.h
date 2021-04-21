@@ -38,7 +38,7 @@ public:
 	};
 
 	virtual void click() {
-		// i_->use();
+		// if(i_ != nulptr) i_->use();
 	};
 };
 

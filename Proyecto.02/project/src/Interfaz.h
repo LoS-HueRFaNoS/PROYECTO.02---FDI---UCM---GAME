@@ -14,7 +14,6 @@ private:
 
 	InterfazManager* iManager;
 	vector<Panel*> allPanels;
-	vector<Entity*> entitiesV;
 
 	void createFight();
 	void createMovement();

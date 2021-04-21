@@ -33,8 +33,8 @@ void Interfaz::createFight()
 	allPanels[Fight] = p;
 	// BOTONES:
 	p->addButton(iManager->addButton<ButtonSlott>(Vector2D(pPos.getX() - 10, pPos.getY() - 10), 85 * 5 + 20, 96 + 10, src::Marco));
-	/*p->addButton(iManager->addButton<ButtonPanelCte>(Vector2D(pPos.getX(), pPos.getY()), 85, 96, src::AtaqueNormal, AtkType::normal, allPanels[Targets]));
-	p->addButton(iManager->addButton<ButtonPanelCte>(Vector2D(pPos.getX() + 100, pPos.getY()), 82, 72, src::AtaqueMagico, AtkType::magic, allPanels[Habilities]));*/
+	p->addButton(iManager->addButton<ButtonPanel>(Vector2D(pPos.getX(), pPos.getY()), 85, 96, src::AtaqueNormal, Targets, false));
+	p->addButton(iManager->addButton<ButtonPanel>(Vector2D(pPos.getX() + 100, pPos.getY()), 82, 72, src::AtaqueMagico, Habilities, false));
 	p->addButton(iManager->addButton<ButtonDefend>(Vector2D(pPos.getX() + 200, pPos.getY()), 82, 72, src::Defensa, DfndType::defend));
 	p->addButton(iManager->addButton<ButtonDefend>(Vector2D(pPos.getX() + 300, pPos.getY()), 100, 55, src::Huida, DfndType::escape));
 } // normal, magic, defend, escape
@@ -59,6 +59,9 @@ void Interfaz::createMovement()
 	p->addButton(iManager->addButton<ButtonMovimiento>(Vector2D(pPos.getX() + 300, pPos.getY()), 100, 55, src::Interactuar, MovType::touch));
 } // rotR, rotL, forward, touch
 
+#include "ecs.h"
+#include "../TheElementalMaze.h"
+#include "CombatManager.h"
 void Interfaz::createHeroes()
 {
 	// posicion del panel respecto a la ventana
@@ -74,10 +77,11 @@ void Interfaz::createHeroes()
 	allPanels[Heroes] = p;
 	uint tamL = 100;
 	// BOTONES:
-	p->addButton(iManager->addButton<ButtonHero>(Vector2D(pPos.getX(), pPos.getY()), tamL, tamL, getHeroTxt(0), HeroNum::hero1));
-	p->addButton(iManager->addButton<ButtonHero>(Vector2D(pPos.getX(), pPos.getY() + 100), tamL, tamL, getHeroTxt(1), HeroNum::hero2));
-	p->addButton(iManager->addButton<ButtonHero>(Vector2D(pPos.getX(), pPos.getY() + 200), tamL, tamL, getHeroTxt(2), HeroNum::hero3));
-	p->addButton(iManager->addButton<ButtonHero>(Vector2D(pPos.getX(), pPos.getY() + 300), tamL, tamL, getHeroTxt(3), HeroNum::hero4));
+	CombatManager* c = GETCMP2(TheElementalMaze::instance(), CombatManager);
+	uint n = c->getHerosTam();
+	for (int i = 0; i < n; i++) {
+		p->addButton(iManager->addButton<ButtonHero>(Vector2D(pPos.getX(), pPos.getY() + i * 100.0), tamL, tamL, getHeroTxt(i), (HeroNum)i));
+	}
 } // hero1, hero2, hero3, hero4
 
 void Interfaz::createInfo()
@@ -97,7 +101,6 @@ void Interfaz::createInfo()
 	p->addButton(iManager->addButton<ButtonPotion>(Vector2D(width * 5 / 7, height * 5 / 6), tamBoton * 0.8, tamBoton * 0.8, src::PocionMana, PtnType::mana));
 	//p->addButton(iManager->addButton<ButtonPotion>(Vector2D(width * 5 / 7, height * 5 / 6 + space), tamBoton * 0.8, tamBoton * 0.8, src::PocionRess, PtnType::resurrection));
 
-	//p->addButton(iManager->addButton<ButtonPanelCte>(Vector2D(width * 4 / 7, height * 3 / 4), tamBoton * 2, tamBoton * 2, src::Inventario, allPanels[Inventory]));
 	p->addButton(iManager->addButton<ButtonPanel>(Vector2D(width * 4 / 7, height * 3 / 4), tamBoton * 2, tamBoton * 2, src::Inventario, Inventory, false));
 	/*createButton(p, this, cb::chat, Vector2D(width * 6 / 7, height * 3 / 4), tamBoton, tamBoton, src::Chat);
 	createButton(p, this, cb::configuracion, Vector2D(width * 6 / 7, height * 5 / 6), tamBoton, tamBoton, src::Configuracion);*/
@@ -244,6 +247,8 @@ void Interfaz::init()
 	createPanel(Heroes);
 	createPanel(Info);
 	createPanel(Minimap);
+	createPanel(Fight);
+	togglePanel(Fight);
 }
 
 void Interfaz::update()
