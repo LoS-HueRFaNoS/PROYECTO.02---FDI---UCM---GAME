@@ -29,10 +29,10 @@ namespace rpgLogic {
 
 
 	enum mainStat {
-		STR,
-		CON,
-		DEX,
-		INT,
+		STR, // fuerza = strength
+		CON, // constitucion
+		DEX, // detreza = dexterity
+		INT, // inteligencia = intelect
 		_LastStatId_
 	};
 
