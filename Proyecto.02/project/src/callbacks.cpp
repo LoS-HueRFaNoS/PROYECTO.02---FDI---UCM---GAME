@@ -173,6 +173,16 @@ void callbacks::defendType(int attackType_)
 	}
 }
 
+void callbacks::addTarget(int attackType_)
+{
+
+}
+
+void callbacks::s_cast_hability(int attackType_)
+{
+
+}
+
 #pragma endregion
 
 // ----------------------------------------------------

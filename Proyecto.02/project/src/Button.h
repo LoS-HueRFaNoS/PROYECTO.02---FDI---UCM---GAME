@@ -138,7 +138,7 @@ class ButtonTarget : public Button {
 private:
 	target target_;
 public:
-	ButtonTarget(SDLGame* game, EntityManager* mngr) : Button(game, mngr), defendType_(target::target01) {};
+	ButtonTarget(SDLGame* game, EntityManager* mngr) : Button(game, mngr), target_(target::target01) {};
 
 	~ButtonTarget() {};
 
@@ -153,24 +153,24 @@ public:
 	}
 };
 
-enum class DfndType { defend, escape };
+enum class HbltType { hability1, hability2, hability3, hability4 };
 
-class ButtonDefend : public Button {
+class ButtonHability : public Button {
 private:
-	DfndType defendType_;
+	HbltType hability_;
 public:
-	ButtonDefend(SDLGame* game, EntityManager* mngr) : Button(game, mngr), defendType_(DfndType::normal) {};
+	ButtonHability(SDLGame* game, EntityManager* mngr) : Button(game, mngr), hability_(HbltType::hability1) {};
 
-	~ButtonDefend() {};
+	~ButtonHability() {};
 
-	virtual void init(Vector2D pos, uint ancho, uint alto, Resources::TextureId imagen, AtkType attack) {
-		defendType_ = attack;
+	virtual void init(Vector2D pos, uint ancho, uint alto, Resources::TextureId imagen, HbltType attack) {
+		hability_ = attack;
 		Button::init(pos, ancho, alto, imagen);
 	};
 
 	virtual void click()
 	{
-		callbacks::defendType((int)defendType_);
+		callbacks::defendType((int)hability_);
 	}
 };
 
