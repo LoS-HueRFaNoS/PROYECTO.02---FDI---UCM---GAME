@@ -308,11 +308,11 @@ bool EjemploDañoPorTurnoBegin::onTurnStarted()
 {
 	cout << "Sangrado: ";
 	_objective->recieveDamage(throwDice(_stack, 3, true), PIERCE);
-	if (!--_turnsLeft) {
+	if (!--_counter) {
 		cout << "SE ACABO EL DANYO" << endl;
 		return false;
 	}
-	cout << "TURNOS RESTANTES: " << _turnsLeft << endl;
+	cout << "TURNOS RESTANTES: " << _counter << endl;
 	return true;
 }
 
@@ -325,11 +325,11 @@ bool EjemploCuracionFinalTurno::onTurnEnd()
 {
 	cout << "Curación: ";
 	_objective->recieveHealing(throwDice(_stack, 3, true));
-	if (!--_turnsLeft) {
+	if (!--_counter) {
 		cout << "SE ACABO LA CURASAO" << endl;
 		return false;
 	}
-	cout << "TURNOS RESTANTES: " << _turnsLeft << endl;
+	cout << "TURNOS RESTANTES: " << _counter << endl;
 	return true;
 }
 

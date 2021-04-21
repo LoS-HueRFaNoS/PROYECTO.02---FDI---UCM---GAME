@@ -751,7 +751,7 @@ protected:
 	std::string _name = "DefaultName";
 	std::string _description = "DefaultDescription";
 
-	int _turnsLeft = 0;
+	int _counter = 0;
 	int _turns = 0;
 	int _stack = 1;
 
@@ -778,9 +778,9 @@ public:
 
 	virtual bool onDeath() { return false; };
 
-	int getTurnsLeft() { return _turnsLeft; }
+	int getTurnsLeft() { return _counter; }
 
-	void resetTurns() { _turnsLeft = _turns; }
+	void resetTurns() { _counter = _turns; }
 
 	void addStack() { _stack++; }
 

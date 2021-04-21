@@ -11,29 +11,29 @@ using namespace rpgLogic;
 
 Character::~Character()
 {
-	for (Hability *h : _habilitiesArray)
+	for (Hability* h : _habilitiesArray)
 	{
 		delete h;
 		h = nullptr;
 	}
-	for (Condition *c : _conditonsArray)
+	for (Condition* c : _conditonsArray)
 	{
 		delete c;
 		c = nullptr;
 	}
 }
 
-void Character::startTurn(CombatManager *cm)
+void Character::startTurn(CombatManager* cm)
 {
 
 	// Manejar estados y cambios que ocurren al pasar de turnos
 	cout << name() << " TURN" << endl;
 
-	for (std::vector<Condition *>::iterator it = _conditions[ON_TURN_STARTED].begin(); it != _conditions[ON_TURN_STARTED].end();)
+	for (std::vector<Condition*>::iterator it = _conditions[ON_TURN_STARTED].begin(); it != _conditions[ON_TURN_STARTED].end();)
 	{
 		if (!(*it)->onTurnStarted())
 		{
-			Condition *temp = (*it);
+			Condition* temp = (*it);
 			removeCondition((*it)->getId());
 			it = _conditions[ON_TURN_STARTED].erase(it);
 			delete temp;
@@ -49,11 +49,11 @@ void Character::startTurn(CombatManager *cm)
 
 void Character::endTurn()
 {
-	for (std::vector<Condition *>::iterator it = _conditions[ON_TURN_ENDED].begin(); it != _conditions[ON_TURN_ENDED].end();)
+	for (std::vector<Condition*>::iterator it = _conditions[ON_TURN_ENDED].begin(); it != _conditions[ON_TURN_ENDED].end();)
 	{
 		if (!(*it)->onTurnEnd())
 		{
-			Condition *temp = (*it);
+			Condition* temp = (*it);
 			removeCondition((*it)->getId());
 			it = _conditions[ON_TURN_ENDED].erase(it);
 			delete temp;
@@ -77,11 +77,11 @@ void Character::loadFromTemplate(jute::jValue v, enemyTemplate t)
 
 void Character::recieveDamage(int damage, rpgLogic::damageType type)
 {
-	for (std::vector<Condition *>::iterator it = _conditions[ON_ATTACK_RECIEVED].begin(); it != _conditions[ON_ATTACK_RECIEVED].end();)
+	for (std::vector<Condition*>::iterator it = _conditions[ON_ATTACK_RECIEVED].begin(); it != _conditions[ON_ATTACK_RECIEVED].end();)
 	{
 		if (!(*it)->onAttackRecieved(damage))
 		{
-			Condition *temp = (*it);
+			Condition* temp = (*it);
 			removeCondition((*it)->getId());
 			it = _conditions[ON_ATTACK_RECIEVED].erase(it);
 			delete temp;
@@ -94,11 +94,11 @@ void Character::recieveDamage(int damage, rpgLogic::damageType type)
 	if (_sheet->recieveDamage(damage, type))
 	{
 		cout << name() << " has fainted" << endl;
-		for (std::vector<Condition *>::iterator it = _conditions[ON_DEATH].begin(); it != _conditions[ON_DEATH].end();)
+		for (std::vector<Condition*>::iterator it = _conditions[ON_DEATH].begin(); it != _conditions[ON_DEATH].end();)
 		{
 			if (!(*it)->onDeath())
 			{
-				Condition *temp = (*it);
+				Condition* temp = (*it);
 				removeCondition((*it)->getId());
 				it = _conditions[ON_DEATH].erase(it);
 				delete temp;
@@ -232,7 +232,7 @@ void Hero::showSpellList()
 
 		else
 			cout << "This character is dead. \n"
-				 << endl;
+			<< endl;
 	}
 }
 
@@ -270,7 +270,7 @@ void Hero::resetThrows()
 	savingSuccess = 0;
 }
 
-void Hero::manageInput(CombatManager *cm, int input)
+void Hero::manageInput(CombatManager* cm, int input)
 {
 	if (!isDead())
 	{
@@ -290,52 +290,52 @@ void Hero::manageInput(CombatManager *cm, int input)
 		savingDeathThrow();
 		cm->changeState(END_TURN);
 	}
-		
-	}
+
+}
 
 #pragma endregion
 
 #pragma region ENEMY
 
-	void Enemy::loadFromJson(jute::jValue v, int t)
+void Enemy::loadFromJson(jute::jValue v, int t)
+{
+
+	// Buscamos las stats en el json dentro de nuestro heroe "t" y asignamos un valor aleatorio entre los valores dados
+	for (int i = 0; i < _LastStatId_; i++)
 	{
-
-		// Buscamos las stats en el json dentro de nuestro heroe "t" y asignamos un valor aleatorio entre los valores dados
-		for (int i = 0; i < _LastStatId_; i++)
-		{
-			_sheet->setStat(i, v["Characters"][t]["Stats"][i]["Value"].as_int());
-		}
-
-		_sheet->name = v["Characters"][t]["Name"].as_string();
-
-		description = v["Characters"][t]["Description"].as_string();
-
-		// Igual con la vida y el mana
-		int hp = v["Characters"][t]["HitPoints"].as_int();
-		int mp = v["Characters"][t]["ManaPoints"].as_int();
-
-		exp = v["Characters"][t]["Experience"].as_int();
-		coins = v["Characters"][t]["Coins"].as_int();
-
-		_sheet->setHitPoints(hp);
-		_sheet->setMaxHitPoints(hp);
-		_sheet->setManaPoints(mp);
-		_sheet->setMaxManaPoints(mp);
-
-		// Guardamos las debilidades en un vector para luego inicializarlas
-		vector<float> weak = vector<float>();
-		for (int i = 0; i < _LastTypeId_; i++)
-		{
-			weak.push_back((float)v["Characters"][t]["Weaknesses"][i]["Value"].as_double());
-		}
-
-		_sheet->weaknesses = Weaknesses(weak);
+		_sheet->setStat(i, v["Characters"][t]["Stats"][i]["Value"].as_int());
 	}
 
-	void Enemy::manageTurn(CombatManager * cm)
+	_sheet->name = v["Characters"][t]["Name"].as_string();
+
+	description = v["Characters"][t]["Description"].as_string();
+
+	// Igual con la vida y el mana
+	int hp = v["Characters"][t]["HitPoints"].as_int();
+	int mp = v["Characters"][t]["ManaPoints"].as_int();
+
+	exp = v["Characters"][t]["Experience"].as_int();
+	coins = v["Characters"][t]["Coins"].as_int();
+
+	_sheet->setHitPoints(hp);
+	_sheet->setMaxHitPoints(hp);
+	_sheet->setManaPoints(mp);
+	_sheet->setMaxManaPoints(mp);
+
+	// Guardamos las debilidades en un vector para luego inicializarlas
+	vector<float> weak = vector<float>();
+	for (int i = 0; i < _LastTypeId_; i++)
 	{
-		cout << "AQUI EL ENEMIGO HACE COSAS" << endl;
-		cm->changeState(END_TURN);
+		weak.push_back((float)v["Characters"][t]["Weaknesses"][i]["Value"].as_double());
 	}
+
+	_sheet->weaknesses = Weaknesses(weak);
+}
+
+void Enemy::manageTurn(CombatManager* cm)
+{
+	cout << "AQUI EL ENEMIGO HACE COSAS" << endl;
+	cm->changeState(END_TURN);
+}
 
 #pragma endregion
