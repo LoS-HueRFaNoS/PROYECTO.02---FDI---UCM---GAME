@@ -127,9 +127,9 @@ void Game::handleInput()
 
 void Game::update()
 {
+	interfazManager_->update();
 	entityManager_->update();
 	characterManager_->update();
-	interfazManager_->update();
 }
 
 void Game::render()
@@ -137,9 +137,9 @@ void Game::render()
 	SDL_SetRenderDrawColor(game_->getRenderer(), COLOR(0x00AAAAFF));
 	SDL_RenderClear(game_->getRenderer());
 
+	interfazManager_->draw();
 	entityManager_->draw();
 	characterManager_->draw();
-	interfazManager_->draw();
 	c_->draw();
 
 	SDL_RenderPresent(game_->getRenderer());

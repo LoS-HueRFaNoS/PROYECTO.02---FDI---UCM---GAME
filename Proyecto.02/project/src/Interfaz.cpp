@@ -242,7 +242,10 @@ void Interfaz::toggleCombat_Movement()
 void Interfaz::init()
 {
 	//allPanels.reserve(maxPanels);
-	initialize();
+	initialize(); // convertir a tipo std::map<clave, valor> -> ahora está hardcodeado
+	// Fondo de todo la interfaz, para delimitar claramente los paneles: 
+	// (mejor que ButtonSlott sería crear unaclase foto/image y que button herede de ella)
+	iManager->addButton<ButtonSlott>(Vector2D(), game_->getWindowWidth(), game_->getWindowHeight(), src::Fondo); 
 	createPanel(Movement);
 	createPanel(Heroes);
 	createPanel(Info);

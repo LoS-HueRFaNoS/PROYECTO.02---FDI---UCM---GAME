@@ -35,6 +35,7 @@ vector<Resources::ImageInfo> Resources::images_{
 	{GranArchimago, "resources/sprites/iconos personajes/heroe-mago.png"},
 
 	{Mouse, "resources/images/interfaz/cursor+sombras.png"},
+	{Fondo, "resources/sprites/fondos y marcos/Fondo_Interfaz_02.png"},
 	{Avanzar, "resources/sprites/iconos movimiento/movimientoAvanzar.png"},
 	{RotarD, "resources/sprites/iconos movimiento/movimientoRotarDerecha.png"},
 	{RotarI, "resources/sprites/iconos movimiento/movimientoRotarIzquierda.png"},

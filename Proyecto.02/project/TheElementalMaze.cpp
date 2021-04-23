@@ -6,6 +6,7 @@
 #include "src/PlayerMotion.h"
 #include "src/PlayerViewer.h"
 #include "src/ItemManager.h"
+#include "src/Image.h"
 
 
 TheElementalMaze* TheElementalMaze::instance_ = nullptr;
