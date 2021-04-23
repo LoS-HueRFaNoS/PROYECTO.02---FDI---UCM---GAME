@@ -1,4 +1,5 @@
 #include "CharacterSheet.h"
+#include <iostream>
 
 
 bool CharacterSheet::recieveDamage(int damage, rpgLogic::damageType type)
@@ -7,7 +8,7 @@ bool CharacterSheet::recieveDamage(int damage, rpgLogic::damageType type)
 
 	int damageAfterRes = int(damage - (damage * res));
 
-	cout << name << " recieves " << damageAfterRes << " damage" << "( " << damage << " " << (int)(res * 100) << "% RES)" << endl;
+	std::cout << name << " recieves " << damageAfterRes << " damage" << "( " << damage << " " << (int)(res * 100) << "% RES)" << std::endl;
 
 	_hitPoints -= damageAfterRes;
 
@@ -21,7 +22,7 @@ void CharacterSheet::recieveHealing(int healing)
 {
 	_hitPoints += healing;
 
-	cout << name << " heals for " << healing << " points" << endl;
+	std::cout << name << " heals for " << healing << " points" << std::endl;
 
 	if (_hitPoints > _maxHitPoints)
 		_hitPoints = _maxHitPoints;

@@ -180,6 +180,9 @@
     <ClCompile Include="src\Interfaz.cpp">
       <Filter>Archivos de origen\Components</Filter>
     </ClCompile>
+    <ClCompile Include="src\PartyManager.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\ecs.h">
@@ -284,9 +287,6 @@
     <ClInclude Include="src\MazePos.h">
       <Filter>Archivos de encabezado\Components</Filter>
     </ClInclude>
-    <ClInclude Include="src\CharacterSheet.h">
-      <Filter>Archivos de encabezado\Components</Filter>
-    </ClInclude>
     <ClInclude Include="src\Character.h">
       <Filter>Archivos de encabezado\Templates/Resources</Filter>
     </ClInclude>
@@ -340,6 +340,12 @@
     </ClInclude>
     <ClInclude Include="src\InterfazManager.h">
       <Filter>Archivos de encabezado\Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="src\CharacterSheet.h">
+      <Filter>Archivos de encabezado\Templates/Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="src\PartyManager.h">
+      <Filter>Archivos de encabezado\Templates/Resources</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

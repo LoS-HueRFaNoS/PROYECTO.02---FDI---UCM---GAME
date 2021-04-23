@@ -27,7 +27,7 @@ protected:
 	virtual void init() {
 		for (int i = 0; i < _lastConditionType_; i++)
 			_conditions[(ConditionType)i] = vector<Condition*>();
-		_sheet = addComponent<CharacterSheet>();
+		_sheet = new CharacterSheet();
 	}
 
 	virtual void loadFromJson(jute::jValue v, int t) = 0;
@@ -59,6 +59,8 @@ public:
 	int throwStat(mainStat stat);
 
 	bool checkHit(int hit);
+
+	CharacterSheet* getCharacterSheet() { return _sheet; }
 
 	int getMod(rpgLogic::mainStat stat) {
 		return _sheet->getStat(stat).getMod();
@@ -149,11 +151,6 @@ private:
 	virtual void loadFromJson(jute::jValue v, int t);
 
 	virtual void manageTurn(CombatManager* cm);
-
-	virtual void init() {
-		//_equipement = addComponent<Equipement>();
-		Character::init();
-	}
 
 public:
 	Hero(SDLGame* game, EntityManager* mngr) :Character(game, mngr, HERO) {

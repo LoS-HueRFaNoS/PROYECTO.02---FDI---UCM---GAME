@@ -11,6 +11,8 @@ using namespace rpgLogic;
 
 Character::~Character()
 {
+	delete _sheet;
+	_sheet = nullptr;
 	for (Hability* h : _habilitiesArray)
 	{
 		delete h;

@@ -47,6 +47,7 @@
     <ClCompile Include="src\MouseCtrl.cpp" />
     <ClCompile Include="src\ObjectPool.cpp" />
     <ClCompile Include="src\Panel.cpp" />
+    <ClCompile Include="src\PartyManager.cpp" />
     <ClCompile Include="src\PlayerMotion.cpp" />
     <ClCompile Include="src\RandomNumberGenerator.cpp" />
     <ClCompile Include="src\Rectangle.cpp" />
@@ -99,6 +100,7 @@
     <ClInclude Include="src\MouseCtrl.h" />
     <ClInclude Include="src\ObjectPool.h" />
     <ClInclude Include="src\Panel.h" />
+    <ClInclude Include="src\PartyManager.h" />
     <ClInclude Include="src\PlayerMotion.h" />
     <ClInclude Include="src\PlayerViewer.h" />
     <ClInclude Include="src\RandomNumberGenerator.h" />

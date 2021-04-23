@@ -110,6 +110,14 @@ public:
 			_heroes.push_back(dynamic_cast<Hero*>(c));
 	}
 
+	void addHeroesTeam(vector<Hero*> heroes) {
+		_heroes = heroes;
+	}
+
+	void addEnemyTeam(vector<Enemy*> enemies) {
+		_enemies = enemies;
+	}
+
 	void startCombat();
 
 	void castHability(Hability* hability);

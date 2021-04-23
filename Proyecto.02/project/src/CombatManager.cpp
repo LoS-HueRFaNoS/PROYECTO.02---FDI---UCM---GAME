@@ -14,7 +14,7 @@ void CombatManager::showTeams()
 	system("CLS");
 	cout << "---------- HEROES ----------" << endl;
 	for (Hero* h : _heroes) {
-		CharacterSheet* s = h->getComponent<CharacterSheet>(ecs::CharacterSheet);
+		CharacterSheet* s = h->getCharacterSheet();
 		if (h->isDead())
 			cout << std::setfill(' ') << std::left << setw(10) << s->name << std::right << setw(8) << "DEAD" << endl;
 		else
@@ -30,7 +30,7 @@ void CombatManager::showTeams()
 	cout << endl << "---------- ENEMIES ----------" << endl;
 
 	for (Enemy* e : _enemies) {
-		CharacterSheet* s = e->getComponent<CharacterSheet>(ecs::CharacterSheet);
+		CharacterSheet* s = e->getCharacterSheet();
 		if (e->isDead())
 			cout << std::setfill(' ') << std::left << setw(10) << s->name << std::right << setw(8) << "DEAD" << endl;
 		else {
@@ -65,14 +65,14 @@ void CombatManager::showTargets()
 	if (targetList) {
 		maxTargets = int(_enemies.size());
 		for (int i = 0; i < _enemies.size(); i++) {
-			CharacterSheet* c = _enemies[i]->getComponent<CharacterSheet>(ecs::CharacterSheet);
+			CharacterSheet* c = _enemies[i]->getCharacterSheet();
 			cout << i << ". " << std::setfill(' ') << std::left << setw(12) << c->name << setw(15) << "HP " + to_string(c->hitPoints()) + "/" + to_string(c->maxHitPoints()) << endl;
 		}
 	}
 	else {
 		maxTargets = int(_heroes.size());
 		for (int i = 0; i < _heroes.size(); i++) {
-			CharacterSheet* c = _heroes[i]->getComponent<CharacterSheet>(ecs::CharacterSheet);
+			CharacterSheet* c = _heroes[i]->getCharacterSheet();
 			cout << i << ". " << std::setfill(' ') << std::left << setw(12) << c->name << setw(15) << "HP " + to_string(c->hitPoints()) + "/" + to_string(c->maxHitPoints()) << endl;
 		}
 	}
@@ -134,8 +134,11 @@ void CombatManager::endCombat()
 
 	_heroes.clear();
 	for (Enemy* e : _enemies) {
-		TheElementalMaze::instance()->getCharacterManager()->removeEntity(e);
+		e->disable();
 	}
+	_enemies.clear();
+
+	
 }
 
 void CombatManager::castHability(Hability* hability)
@@ -276,8 +279,10 @@ void CombatManager::onStateChanged()
 		break;
 	case COMBAT_END:
 		endCombat();
+		cout << "---------- PRESS ENTER TO END COMBAT ----------" << endl;
 		break;
 	case NO_COMBAT:
+		TheElementalMaze::instance()->changeState(EXPLORING);
 		break;
 	default:
 		break;
@@ -309,6 +314,9 @@ void CombatManager::sendKeyEvent(int key)
 		if (!currentCharacter->getType())
 			castToSingleTarget(key);
 		break;
+	case COMBAT_END:
+		if (key == -1)
+			changeState(NO_COMBAT);
 	default:
 		break;
 	}
@@ -316,6 +324,8 @@ void CombatManager::sendKeyEvent(int key)
 
 void CombatManager::update()
 {
+	if (TheElementalMaze::instance()->gameState() != COMBAT)
+		return;
 	if (stateChanged)
 		onStateChanged();
 

@@ -6,6 +6,7 @@
 #include "src/PlayerMotion.h"
 #include "src/PlayerViewer.h"
 #include "src/ItemManager.h"
+#include "src/PartyManager.h"
 
 
 TheElementalMaze* TheElementalMaze::instance_ = nullptr;
@@ -14,6 +15,8 @@ TheElementalMaze::~TheElementalMaze()
 {
 	delete itemManager_;
 	itemManager_ = nullptr;
+	delete partyManager_;
+	partyManager_ = nullptr;
 }
 
 void TheElementalMaze::init()
@@ -32,7 +35,9 @@ void TheElementalMaze::init()
 	// 3. Personajes
 	itemManager_ = new ItemManager();
 
-	combatManager_ = addComponent<CombatManager>(); // al seguir por consola, bloquea el juego y faltan cosas que me he dejado
+	combatManager_ = addComponent<CombatManager>();
+
+	partyManager_ = new PartyManager();
 
 	Hero* wizard = characterManager_->addHeroFromTemplate(WIZARD);
 	Hero* warrior = characterManager_->addHeroFromTemplate(WARRIOR);
@@ -55,23 +60,43 @@ void TheElementalMaze::init()
 	cleric->addHability<AllyTeamHealExample>();
 	cleric->addHability<AllyTeamAttackExample>();
 
-	combatManager_->addCharacter(wizard);
-	combatManager_->addCharacter(warrior);
-	combatManager_->addCharacter(rogue);
-	combatManager_->addCharacter(cleric);
-
-	int enemies = rpgLogic::throwDice(1, 3);
-
-	for (int i = 0 ;i < enemies; i++)
-		combatManager_->addCharacter(characterManager_->addRandomEnemy());
-
-
-	combatManager_->startCombat();
-
+	partyManager_->addHero(wizard);
+	partyManager_->addHero(warrior);
+	partyManager_->addHero(rogue);
+	partyManager_->addHero(cleric);
 
 	cout << "Characters Loaded" << endl;
 
 	// 4. Interfaz
 	uiManager_ = addComponent<Interfaz>(iManager_);
 
+	changeState(EXPLORING);
+}
+
+void TheElementalMaze::onStateChanged()
+{
+	switch (state_)
+	{
+	case COMBAT:
+		combatManager_->addHeroesTeam(partyManager_->getHeroes());
+		combatManager_->startCombat();
+		break;
+	case EXPLORING:
+		cout << "EXPLORING STARTED" << endl;
+		break;
+	case LOBBY:
+		cout << "LOBBY REACHED" << endl;
+		break;
+	default:
+		break;
+	}
+}
+
+
+void TheElementalMaze::changeState(GameState state)
+{
+	if (state_ != state) {
+		state_ = state;
+		onStateChanged();
+	}
 }
