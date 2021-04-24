@@ -38,8 +38,8 @@ enum Hability_Id {
 	SACRIFICE,
 	DOUBLESHOT,
 	THROWINGAXES,
-	WINDSONG,
-	GLADIATORBALLAD,
+	MORPH,
+	REVERSEMORPH,
 	HEAVYSTRIKE,
 	SMOKEARROW,
 	_lasHabilityId_
@@ -644,46 +644,9 @@ public:
 	void throwHability(Character* obj, bool critical)const override;
 };
 
-class WindSong : public Hability {
-public:
-	WindSong(Character* caster) :Hability(caster) { //por ahora aumenta la DEX a todo el equipo, pero hay que cambiar a un solo objetivo 
-		                                            //y que este sea el siguiente en atacar
 
-		level = 4;
-		_mana = 0;
-		_name = "Wind Song";
-		_description = "Aumenta la velocidad de un aliado (el siguiente turno atacará el que la reciba)";
 
-		_damageType = WIND;
-		_habilityType = BUFF;
-		_mod = INT;
-		_obj = ALLYTEAM;
-	}
 
-	static Hability_Id id() { return WINDSONG; }
-
-	void throwHability(Character* obj, bool critical)const override;
-};
-
-class GladiatorBallad : public Hability {
-public:
-	GladiatorBallad(Character* caster) :Hability(caster) { 
-
-		level = 4;
-		_mana = 0;
-		_name = "Gladiator's Ballad";
-		_description = "Aumenta el daño de todos los miembros del equipo durante 2 turnos";
-
-		_damageType = WIND;
-		_habilityType = BUFF;
-		_mod = INT;
-		_obj = ALLYTEAM;
-	}
-
-	static Hability_Id id() { return GLADIATORBALLAD; }
-
-	void throwHability(Character* obj, bool critical)const override;
-};
 
 class HeavyStrike : public Hability { //modificar la descripcion cuando lo ajustemos, pero de momento solo hace +3 de daño el ataque
 public:
@@ -725,6 +688,45 @@ public:
 	void throwHability(Character* obj, bool critical)const override;
 };
 
+class Morph : public Hability {
+public:
+	Morph(Character* caster) :Hability(caster) {
+
+		level = 4;
+		_mana = 0;
+		_name = "Morph";
+		_description = "Conviertete en una bestia alterando las estadisticas";
+
+		_damageType = DARK;
+		_habilityType = BUFF;
+		_mod = INT;
+		_obj = CASTER;
+	}
+
+	static Hability_Id id() { return MORPH; }
+
+	void throwHability(Character* obj, bool critical)const override;
+};
+class ReverseMorph : public Hability {
+public:
+	ReverseMorph(Character* caster) :Hability(caster) {
+
+		level = 4;
+		_mana = 0;
+		_name = "Reverse Morph";
+		_description = "Vuelve al estado anterior";
+
+		_damageType = DARK;
+		_habilityType = BUFF;
+		_mod = INT;
+		_obj = CASTER;
+	}
+
+	static Hability_Id id() { return REVERSEMORPH; }
+
+	void throwHability(Character* obj, bool critical)const override;
+};
+
 #pragma endregion
 
 #pragma region CONDITION
@@ -734,6 +736,8 @@ enum Conditions_Id {
 	EJEMPLOCURACIONFINALTURNO,
 	EJEMPLOREDUCCIONATAQUE,
 	EJEMPLOREVIVIRMUERTE,
+	GLADIATORBALLAD,
+	WINDSONG,
 	_lastConditionId_
 };
 
@@ -865,6 +869,64 @@ public:
 
 	static Conditions_Id id() { return EJEMPLOREVIVIRMUERTE; }
 };
+
+class GladiatorBallad : public Condition {
+public:
+
+	GladiatorBallad(Character* caster, Character* objective) : Condition(caster, objective) {
+		_name = "Ejemplo de daño cada turno";
+		_description = "Revivira con 5 de vida al morir";
+		_type = ON_TURN_STARTED;
+		_id = GLADIATORBALLAD;
+		resetTurns();
+	}
+
+	virtual void init();
+
+	virtual bool onTurnStarted();
+
+	static Conditions_Id id() { return GLADIATORBALLAD; }
+};
+
+class GladiatorBallad : public Condition {
+public:
+
+	GladiatorBallad(Character* caster, Character* objective) : Condition(caster, objective) {
+		_name = "";
+		_description = "Revivira con 5 de vida al morir";
+		_type = ON_TURN_STARTED;
+		_id = GLADIATORBALLAD;
+		//_objective = ALLYTEAM;
+		resetTurns();
+	}
+
+	virtual void init();
+
+	virtual bool onTurnStarted();
+
+	static Conditions_Id id() { return GLADIATORBALLAD; }
+};
+
+class WindSong : public Condition { //por ahora aumenta la DEX a todo el equipo, pero hay que cambiar a un solo objetivo 
+		                                            //y que este sea el siguiente en atacar
+public:
+
+	WindSong(Character* caster, Character* objective) : Condition(caster, objective) {
+		_name = "Wind Song";
+		_description = "Aumenta la destreza de todo el equipo 3 turnos";
+		_type = ON_TURN_STARTED;
+		_id = GLADIATORBALLAD;
+		//_objective = ALLYTEAM;
+		resetTurns();
+	}
+
+	virtual void init();
+
+	virtual bool onTurnStarted();
+
+	static Conditions_Id id() { return WINDSONG; }
+};
+
 
 #pragma endregion
 

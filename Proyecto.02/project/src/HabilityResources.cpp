@@ -257,20 +257,6 @@ void ThrowingAxes::throwHability(Character* obj, bool critical) const //revisar 
 
 }
 
-void WindSong::throwHability(Character* obj, bool critical) const
-{
-	mainStat buffedStat = DEX;
-
-	obj->recieveBuff(2, buffedStat);
-}
-
-void GladiatorBallad::throwHability(Character* obj, bool critical) const
-{
-	mainStat buffedStat = STR;
-
-	obj->recieveBuff(2, buffedStat);
-}
-
 void HeavyStrike::throwHability(Character* obj, bool critical) const
 {
 	Weapon* w = static_cast<Hero*>(_caster)->getWeapon();
@@ -294,6 +280,23 @@ void SmokeArrow::throwHability(Character* obj, bool critical) const //hay que te
 	obj->recieveBuff(-buff, DEX);
 }
 
+void Morph::throwHability(Character* obj, bool critical) const //hay que testear si es adecuado el defuff 
+																	//y si dura el numero correcto de turnos
+{
+	obj->recieveBuff(15, STR);
+	obj->recieveBuff(-5, STR);
+	obj->recieveBuff(5, STR);
+	obj->recieveBuff(-15, STR);
+}
+
+void ReverseMorph::throwHability(Character* obj, bool critical) const //hay que testear si es adecuado el defuff 
+																	//y si dura el numero correcto de turnos
+{
+	obj->recieveBuff(-15, STR);
+	obj->recieveBuff(5, STR);
+	obj->recieveBuff(-5, STR);
+	obj->recieveBuff(15, STR);
+}
 #pragma endregion
 
 #pragma region CONDITION
@@ -356,4 +359,39 @@ bool EjemploRevivirMuerte::onDeath()
 	return false;
 }
 
+void GladiatorBallad::init()
+{
+	cout << _objective->name() << "aumenta la fuerza 3 puntos durante 3 turnos a todos" << endl;
+	_objective->recieveBuff(3, STR);
+}
+
+bool GladiatorBallad::onTurnStarted()
+{
+	cout << "Buffo activo: ";
+	
+	if (!--_counter) {
+		cout << "Se acabó el bufo" << endl;
+		return false;
+	}
+	cout << "TURNOS RESTANTES: " << _counter << endl;
+	return true;
+}
+
+void WindSong::init()
+{
+	cout << _objective->name() << "aumenta la fuerza 3 puntos durante 3 turnos a todos" << endl;
+	_objective->recieveBuff(3, DEX);
+}
+
+bool WindSong::onTurnStarted()
+{
+	cout << "Buffo activo: ";
+
+	if (!--_counter) {
+		cout << "Se acabó el bufo" << endl;
+		return false;
+	}
+	cout << "TURNOS RESTANTES: " << _counter << endl;
+	return true;
+}
 #pragma endregion
