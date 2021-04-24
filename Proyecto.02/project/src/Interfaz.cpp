@@ -20,34 +20,45 @@ Interfaz::~Interfaz()
 
 void Interfaz::createFight()
 {
+	// posición en pixeles del 'fondo'
+	double x_ = 70;
+	double y_ = 790;
+	// tamaño en pixeles del 'fondo'
+	double w_ = 710;
+	double h_ = 190;
+	// tamaño de los margenes
+	double n = 20;
+
 	// posicion del panel respecto a la ventana
-	SDLGame* game_ = entity_->getSDLGame();
-	double width = game_->getWindowWidth();
-	width = width * 0.03;
-	double height = game_->getWindowHeight();
-	height = height * 0.875;
-	Vector2D pPos = Vector2D(width, height);
-	// construccion del panel
+	x_ = setHorizontalScale(x_ + n);
+	y_ = setVerticalScale(y_ + n);
+
+	/* || 20px - button - 20px - button - 20px - button - 20px - button - 20px - button - 20px || */
+	double espace = setHorizontalScale((w_ - n) / 4);
+
+	w_ = espace - setHorizontalScale(n);
+	h_ = setVerticalScale(h_ - n * 2);
+
+	// construccion y asignacion del panel:
 	Panel* p = new Panel(Fight);
-	//allPanels.emplace(allPanels.begin() + Fight, p);
 	allPanels[Fight] = p;
-	// BOTONES:
-	p->addButton(iManager->addButton<ButtonSlott>(Vector2D(pPos.getX() - 10, pPos.getY() - 10), 85 * 5 + 20, 96 + 10, src::Marco));
-	p->addButton(iManager->addButton<ButtonPanel>(Vector2D(pPos.getX(), pPos.getY()), 85, 96, src::AtaqueNormal, Targets, false));
-	p->addButton(iManager->addButton<ButtonPanel>(Vector2D(pPos.getX() + 100, pPos.getY()), 82, 72, src::AtaqueMagico, Habilities, false));
-	p->addButton(iManager->addButton<ButtonDefend>(Vector2D(pPos.getX() + 200, pPos.getY()), 82, 72, src::Defensa, DfndType::defend));
-	p->addButton(iManager->addButton<ButtonDefend>(Vector2D(pPos.getX() + 300, pPos.getY()), 100, 55, src::Huida, DfndType::escape));
-} // normal, magic, defend, escape
+
+	// BOTONES: normal, magic, defend, escape
+	p->addButton(iManager->addButton<ButtonPanel>(Vector2D(x_ + 0, y_), w_, h_, src::AtaqueNormal, Targets, false));
+	p->addButton(iManager->addButton<ButtonPanel>(Vector2D(x_ + espace, y_), w_, h_, src::AtaqueMagico, Habilities, false));
+	p->addButton(iManager->addButton<ButtonDefend>(Vector2D(x_ + espace * 2, y_), w_, h_, src::Defensa, DfndType::defend));
+	p->addButton(iManager->addButton<ButtonDefend>(Vector2D(x_ + espace * 3, y_), w_, h_, src::Huida, DfndType::escape));
+}
 
 void Interfaz::createMovement()
 {
-	// posiciï¿½n en pixeles del 'fondo'
+	// posición en pixeles del 'fondo'
 	double x_ = 70;
 	double y_ = 790;
-	// tamaï¿½o en pixeles del 'fondo'
+	// tamaño en pixeles del 'fondo'
 	double w_ = 710;
 	double h_ = 190;
-	// tamaï¿½o de los margenes
+	// tamaño de los margenes
 	double n = 20;
 
 	// posicion del panel respecto a la ventana
@@ -76,23 +87,34 @@ void Interfaz::createMovement()
 #include "CombatManager.h"
 void Interfaz::createHeroes()
 {
+	CombatManager* c = GETCMP2(TheElementalMaze::instance(), CombatManager);
+	uint nHeros = c->getHerosTam();
+
+	// posición en pixeles del 'fondo'
+	double x_ = 1510;
+	double y_ = 360;
+	// tamaño en pixeles del 'fondo'
+	double w_ = 340;
+	double h_ = 330;
+	// tamaño de los margenes
+	double n = 5;
+
 	// posicion del panel respecto a la ventana
-	SDLGame* game_ = entity_->getSDLGame();
-	double width = game_->getWindowWidth();
-	width = width * 3 / 4;
-	double height = game_->getWindowHeight();
-	height = height * 1 / 4;
-	Vector2D pPos = Vector2D(width, height);
+	x_ = setHorizontalScale(x_ + n);
+	y_ = setVerticalScale(y_ + n);
+
+	double espace = setVerticalScale((h_ - n) / nHeros);
+
+	h_ = espace - setHorizontalScale(n);
+	w_ = h_;
+
 	// construccion del panel de heroes
 	Panel* p = new Panel(Heroes);
-	//allPanels.emplace(allPanels.begin() + Heroes, p);
 	allPanels[Heroes] = p;
-	uint tamL = 100;
+
 	// BOTONES:
-	CombatManager* c = GETCMP2(TheElementalMaze::instance(), CombatManager);
-	uint n = c->getHerosTam();
-	for (int i = 0; i < n; i++) {
-		p->addButton(iManager->addButton<ButtonHero>(Vector2D(pPos.getX(), pPos.getY() + i * 100.0), tamL, tamL, getHeroTxt(i), (HeroNum)i));
+	for (int i = 0; i < nHeros; i++) {
+		p->addButton(iManager->addButton<ButtonHero>(Vector2D(x_, y_ + i * espace), w_, h_, getHeroTxt(i), (HeroNum)i));
 	}
 } // hero1, hero2, hero3, hero4
 
