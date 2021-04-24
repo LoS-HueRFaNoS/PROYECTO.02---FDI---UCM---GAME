@@ -173,14 +173,18 @@ void callbacks::defendType(int attackType_)
 	}
 }
 
-void callbacks::addTarget(int attackType_)
+void callbacks::addTarget(int objetive_)
 {
-
+	CombatManager* c = GETCMP2(TheElementalMaze::instance(), CombatManager);
+	//c->castToSingleTarget(objetive_);
+	std::cout << "has fijado tu objetivo" << std::endl;
 }
 
-void callbacks::s_cast_hability(int attackType_)
+void callbacks::set_hability(int hability_)
 {
-
+	CombatManager* c = GETCMP2(TheElementalMaze::instance(), CombatManager); // falta paso intermedio para guardar la habilidad y seleccionar enemigos
+	//c->sendKeyEvent(hability_);
+	std::cout << "has seleccionado una habilidad" << std::endl;
 }
 
 #pragma endregion

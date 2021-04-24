@@ -33,7 +33,6 @@ void Interfaz::createFight()
 	x_ = setHorizontalScale(x_ + n);
 	y_ = setVerticalScale(y_ + n);
 
-	/* || 20px - button - 20px - button - 20px - button - 20px - button - 20px - button - 20px || */
 	double espace = setHorizontalScale((w_ - n) / 4);
 
 	w_ = espace - setHorizontalScale(n);
@@ -112,11 +111,11 @@ void Interfaz::createHeroes()
 	Panel* p = new Panel(Heroes);
 	allPanels[Heroes] = p;
 
-	// BOTONES:
+	// BOTONES: hero1, hero2, hero3, hero4
 	for (int i = 0; i < nHeros; i++) {
 		p->addButton(iManager->addButton<ButtonHero>(Vector2D(x_, y_ + i * espace), w_, h_, getHeroTxt(i), (HeroNum)i));
 	}
-} // hero1, hero2, hero3, hero4
+}
 
 void Interfaz::createInfo()
 {
@@ -181,44 +180,68 @@ void Interfaz::createInventory()
 
 void Interfaz::createTargets()
 {
+	CombatManager* c = GETCMP2(TheElementalMaze::instance(), CombatManager);
+	uint nEnemys = c->getEnemysTam();
+
+	// posición en pixeles del 'fondo'
+	double x_ = 70;
+	double y_ = 790;
+	// tamaño en pixeles del 'fondo'
+	double w_ = 710;
+	double h_ = 190;
+	// tamaño de los margenes
+	double n = 20;
+
 	// posicion del panel respecto a la ventana
-	SDLGame* game_ = entity_->getSDLGame();
-	double width = game_->getWindowWidth();
-	width = width * 0.03;
-	double height = game_->getWindowHeight();
-	height = height * 0.875;
-	Vector2D pPos = Vector2D(width, height);
-	// construccion del panel
+	x_ = setHorizontalScale(x_ + n);
+	y_ = setVerticalScale(y_ + n);
+
+	double espace = setHorizontalScale((w_ - n) / 4);
+
+	w_ = espace - setHorizontalScale(n);
+	h_ = setVerticalScale(h_ - n * 2);
+
+	// construccion y asignacion del panel:
 	Panel* p = new Panel(Targets);
-	//allPanels.emplace(allPanels.begin() + Targets, p);
 	allPanels[Targets] = p;
+
 	// BOTONES:
-	/*p->addButton(iManager->addButton<ButtonSlott>(Vector2D(pPos.getX() - 10, pPos.getY() - 10), 85 * 5 + 20, 96 + 10, src::Marco));
-	p->addButton(iManager->addButton<ButtonPanelCte>(Vector2D(pPos.getX(), pPos.getY()), 85, 96, src::AtaqueNormal, AtkType::normal, allPanels[Targets]));
-	p->addButton(iManager->addButton<ButtonPanelCte>(Vector2D(pPos.getX() + 100, pPos.getY()), 82, 72, src::AtaqueMagico, AtkType::magic, allPanels[Habilities]));
-	p->addButton(iManager->addButton<ButtonDefend>(Vector2D(pPos.getX() + 200, pPos.getY()), 82, 72, src::Defensa, DfndType::defend));
-	p->addButton(iManager->addButton<ButtonDefend>(Vector2D(pPos.getX() + 300, pPos.getY()), 100, 55, src::Huida, DfndType::escape));*/
+	for (int i = 0; i < nEnemys; i++) {
+		p->addButton(iManager->addButton<ButtonTarget>(Vector2D(x_ + espace * i, y_), w_, h_, getHeroTxt(i), (target)i));
+	}
 }
 
 void Interfaz::createHabilities()
 {
+	CombatManager* c = GETCMP2(TheElementalMaze::instance(), CombatManager);
+	uint nEnemys = c->getEnemysTam();
+
+	// posición en pixeles del 'fondo'
+	double x_ = 70;
+	double y_ = 790;
+	// tamaño en pixeles del 'fondo'
+	double w_ = 710;
+	double h_ = 190;
+	// tamaño de los margenes
+	double n = 20;
+
 	// posicion del panel respecto a la ventana
-	SDLGame* game_ = entity_->getSDLGame();
-	double width = game_->getWindowWidth();
-	width = width * 0.03;
-	double height = game_->getWindowHeight();
-	height = height * 0.875;
-	Vector2D pPos = Vector2D(width, height);
-	// construccion del panel
+	x_ = setHorizontalScale(x_ + n);
+	y_ = setVerticalScale(y_ + n);
+
+	double espace = setHorizontalScale((w_ - n) / 4);
+
+	w_ = espace - setHorizontalScale(n);
+	h_ = setVerticalScale(h_ - n * 2);
+
+	// construccion y asignacion del panel:
 	Panel* p = new Panel(Habilities);
-	//allPanels.emplace(allPanels.begin() + Habilities, p);
 	allPanels[Habilities] = p;
+
 	// BOTONES:
-	/*p->addButton(iManager->addButton<ButtonSlott>(Vector2D(pPos.getX() - 10, pPos.getY() - 10), 85 * 5 + 20, 96 + 10, src::Marco));
-	p->addButton(iManager->addButton<ButtonPanelCte>(Vector2D(pPos.getX(), pPos.getY()), 85, 96, src::AtaqueNormal, AtkType::normal, allPanels[Targets]));
-	p->addButton(iManager->addButton<ButtonPanelCte>(Vector2D(pPos.getX() + 100, pPos.getY()), 82, 72, src::AtaqueMagico, AtkType::magic, allPanels[Habilities]));
-	p->addButton(iManager->addButton<ButtonDefend>(Vector2D(pPos.getX() + 200, pPos.getY()), 82, 72, src::Defensa, DfndType::defend));
-	p->addButton(iManager->addButton<ButtonDefend>(Vector2D(pPos.getX() + 300, pPos.getY()), 100, 55, src::Huida, DfndType::escape));*/
+	for (int i = 0; i < nEnemys; i++) {
+		p->addButton(iManager->addButton<ButtonHability>(Vector2D(x_ + espace * i, y_), w_, h_, getHeroTxt(i), (HbltType)i, Targets, false, allPanels[Fight]));
+	}
 }
 
 
@@ -258,13 +281,29 @@ void Interfaz::createPanel(idPanel panelID)
 	case Chat:
 		createChat();
 		break;
+	case Targets:
+		createTargets();
+		break;
+	case Habilities:
+		createHabilities();
+		break;
 	}
+}
+
+void Interfaz::removePanel(idPanel panelID)
+{
+	allPanels[panelID]->removeButtons();
 }
 
 void Interfaz::destroyPanel(idPanel panelID)
 {
 	/*delete allPanels[panelID];
 	allPanels[panelID] = nullptr;*/
+}
+
+void Interfaz::togglePanel(Panel* pan)
+{
+	pan->toggleButtons();
 }
 
 void Interfaz::toggleCombat_Movement()
@@ -279,7 +318,7 @@ void Interfaz::init()
 	initialize(); // convertir a tipo std::map<clave, valor> -> ahora está hardcodeado
 	// Fondo de todo la interfaz, para delimitar claramente los paneles: 
 	// (mejor que ButtonSlott sería crear unaclase foto/image y que button herede de ella)
-	iManager->addButton<ButtonSlott>(Vector2D(), game_->getWindowWidth(), game_->getWindowHeight(), src::Fondo); 
+	//iManager->addButton<ButtonSlott>(Vector2D(), game_->getWindowWidth(), game_->getWindowHeight(), src::Fondo); 
 	createPanel(Movement);
 	createPanel(Heroes);
 	createPanel(Info);
