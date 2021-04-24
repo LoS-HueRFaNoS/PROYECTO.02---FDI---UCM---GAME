@@ -140,6 +140,8 @@ private:
 
 	Armor* _armor;
 
+	heroTemplate template_;
+
 	bool _marcial;
 
 	int savingSuccess = 0, savingFailure = 0;
@@ -164,6 +166,8 @@ public:
 	void giveWeapon(Weapon* w) { _weapon = w; }
 
 	Armor* getArmor() { return _armor; }
+
+	heroTemplate getTemplate() { return template_; }
 
 	void giveArmor(Armor* a) { _armor = a; }
 

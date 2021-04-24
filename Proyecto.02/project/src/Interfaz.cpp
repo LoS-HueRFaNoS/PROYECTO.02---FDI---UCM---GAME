@@ -345,18 +345,45 @@ Entity* Interfaz::getEntity()
 Resources::TextureId Interfaz::getHeroTxt(uint number)
 {
 	CombatManager* c = GETCMP2(entity_, CombatManager);
-	string name = c->getCharacter((int)number, HERO)->name();
+	heroTemplate tem = static_cast<Hero*>(c->getCharacter((int)number, HERO))->getTemplate();
 
-	if (name == "Warrior") return src::Guerrero;
-	if (name == "Wizard") return src::Brujo;
-	if (name == "Ranger") return src::Explorador;
-	if (name == "Bard") return src::Bardo;
-	if (name == "Cleric") return src::Clerigo;
-	if (name == "Paladin") return src::Paladin;
-	if (name == "Barbarian") return src::Barbaro;
-	if (name == "Rogue") return src::Picaro;
-	if (name == "Druid") return src::Druida;
-	return Resources::TextureId();
+	Resources::TextureId id;
+
+	switch (tem)
+	{
+	case rpgLogic::WARRIOR:
+		id = src::Guerrero;
+		break;
+	case rpgLogic::WIZARD:
+		id = src::Brujo;
+		break;
+	case rpgLogic::RANGER:
+		id = src::Explorador;
+		break;
+	case rpgLogic::BARD:
+		id = src::Bardo;
+		break;
+	case rpgLogic::CLERIC:
+		id = src::Clerigo;
+		break;
+	case rpgLogic::PALADIN:
+		id = src::Paladin;
+		break;
+	case rpgLogic::BARBARIAN:
+		id = src::Barbaro;
+		break;
+	case rpgLogic::ROGUE:
+		id = src::Picaro;
+		break;
+	case rpgLogic::DRUID:
+		id = src::Druida;
+		break;
+	default:
+		id = Resources::TextureId();
+		break;
+	}
+
+	return id;
 }
 
 void Interfaz::initialize()
