@@ -54,4 +54,7 @@ public:
 private:
 	Resources::TextureId getHeroTxt(uint number);
 	void initialize();
+
+	double setVerticalScale(double num) { return num * game_->getWindowHeight() / 1050; };
+	double setHorizontalScale(double num) { return num * game_->getWindowWidth() / 1920; };
 };

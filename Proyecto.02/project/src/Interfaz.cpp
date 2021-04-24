@@ -41,23 +41,35 @@ void Interfaz::createFight()
 
 void Interfaz::createMovement()
 {
+	// posici�n en pixeles del 'fondo'
+	double x_ = 70;
+	double y_ = 790;
+	// tama�o en pixeles del 'fondo'
+	double w_ = 710;
+	double h_ = 190;
+	// tama�o de los margenes
+	double n = 20;
+
 	// posicion del panel respecto a la ventana
-	SDLGame* game_ = entity_->getSDLGame();
-	double width = game_->getWindowWidth();
-	width = width * 0.03;
-	double height = game_->getWindowHeight();
-	height = height * 0.875;
-	Vector2D pPos = Vector2D(width, height);
-	// construccion del panel
+	x_ = setHorizontalScale(x_ + n);
+	y_ = setVerticalScale(y_ + n);
+
+	/* || 20px - button - 20px - button - 20px - button - 20px - button - 20px - button - 20px || */
+	double espace = setHorizontalScale((w_ - n) / 4);
+
+	w_ = espace - setHorizontalScale(n);
+	h_ = setVerticalScale(h_ - n * 2);
+
+	// construccion y asignacion del panel:
 	Panel* p = new Panel(Movement);
-	//allPanels.emplace(allPanels.begin() + Movement, p);
 	allPanels[Movement] = p;
-	// BOTONES:
-	p->addButton(iManager->addButton<ButtonMovimiento>(Vector2D(pPos.getX() + 200, pPos.getY()), 64, 64, src::RotarD, MovType::rotR));
-	p->addButton(iManager->addButton<ButtonMovimiento>(Vector2D(pPos.getX() + 000, pPos.getY()), 64, 64, src::RotarI, MovType::rotL));
-	p->addButton(iManager->addButton<ButtonMovimiento>(Vector2D(pPos.getX() + 100, pPos.getY()), 64, 64, src::Avanzar, MovType::forward));
-	p->addButton(iManager->addButton<ButtonMovimiento>(Vector2D(pPos.getX() + 300, pPos.getY()), 128, 64, src::Interactuar, MovType::touch));
-} // rotR, rotL, forward, touch
+
+	// BOTONES: rotR, rotL, forward, touch
+	p->addButton(iManager->addButton<ButtonMovimiento>(Vector2D(x_ + 0, y_), w_, h_, src::RotarI, MovType::rotL));
+	p->addButton(iManager->addButton<ButtonMovimiento>(Vector2D(x_ + espace, y_), w_, h_, src::Avanzar, MovType::forward));
+	p->addButton(iManager->addButton<ButtonMovimiento>(Vector2D(x_ + espace * 2, y_), w_, h_, src::RotarD, MovType::rotR));
+	p->addButton(iManager->addButton<ButtonMovimiento>(Vector2D(x_ + espace * 3, y_), w_, h_, src::Interactuar, MovType::touch));
+}
 
 #include "ecs.h"
 #include "../TheElementalMaze.h"

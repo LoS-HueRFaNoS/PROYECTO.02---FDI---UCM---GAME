@@ -70,7 +70,6 @@ void TheElementalMaze::init()
 
 	combatManager_->startCombat();
 
-
 	cout << "Characters Loaded" << endl;
 
 	// 4. Interfaz
