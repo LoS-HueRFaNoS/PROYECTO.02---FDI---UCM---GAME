@@ -53,6 +53,10 @@ void Game::initGame()
 
 	entityManager_ = new EntityManager(game_);
 
+	Entity* fondo = entityManager_->addEntity();
+	fondo->addComponent<Transform>(Vector2D(), Vector2D(), game_->getWindowWidth(), game_->getWindowHeight(), 0);
+	fondo->addComponent<Image>(game_->getTextureMngr()->getTexture(Resources::Fondo));
+
 	characterManager_ = new CharacterManager(game_);
 
 	interfazManager_ = new InterfazManager(game_);
@@ -127,9 +131,9 @@ void Game::handleInput()
 
 void Game::update()
 {
-	interfazManager_->update();
-	entityManager_->update();
-	characterManager_->update();
+	interfazManager_->update(); // interfaz
+	entityManager_->update(); // laberinto
+	characterManager_->update(); // characters
 }
 
 void Game::render()
@@ -137,9 +141,9 @@ void Game::render()
 	SDL_SetRenderDrawColor(game_->getRenderer(), COLOR(0x00AAAAFF));
 	SDL_RenderClear(game_->getRenderer());
 
-	interfazManager_->draw();
 	entityManager_->draw();
-	characterManager_->draw();
+	interfazManager_->draw();
+	characterManager_->draw(); //
 	c_->draw();
 
 	SDL_RenderPresent(game_->getRenderer());
