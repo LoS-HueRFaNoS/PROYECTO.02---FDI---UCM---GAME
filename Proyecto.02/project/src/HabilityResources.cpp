@@ -297,6 +297,45 @@ void ReverseMorph::throwHability(Character* obj, bool critical) const //hay que 
 	obj->recieveBuff(-5, STR);
 	obj->recieveBuff(15, STR);
 }
+
+void RainOfDaggers::throwHability(Character* obj, bool critical) const //testear si esta bien el daño
+{
+	Weapon* w = static_cast<Hero*>(_caster)->getWeapon();
+
+	int numDaggers = throwDice(1, 10, true);
+
+	int damage = throwDice(w->getNDice(), w->getDamage(), true);
+
+	damage = obj->savingThrow(10 + _caster->getMod(_mod), DEX) ? damage / 2 : damage;
+
+	obj->recieveDamage((damage*numDaggers)/5, _damageType);
+
+}
+
+void RockProjectiles::throwHability(Character* obj, bool critical) const //testear si funcionan correctamente los 3 proyectiles
+{
+	Weapon* w = static_cast<Hero*>(_caster)->getWeapon();
+
+	int damage = throwDice(w->getNDice(), w->getDamage(), true);
+	for (int i = 0; i < 3; i++) {
+		damage = obj->savingThrow(10 + _caster->getMod(_mod), DEX) ? damage / 2 : damage;
+
+		obj->recieveDamage(damage, _damageType);
+	}
+}
+
+void TrickShot::throwHability(Character* obj, bool critical) const //cambiarlo si al final hacemos lo de comprobar 2 tiradas de ataque para que acierte
+{
+	Weapon* w = static_cast<Hero*>(_caster)->getWeapon();
+
+	int damage = throwDice(w->getNDice(), w->getDamage(), true);
+
+	damage = obj->savingThrow(10 + _caster->getMod(_mod), DEX) ? damage / 2 : damage;
+
+	obj->recieveDamage(damage * 3, _damageType);
+
+}
+
 #pragma endregion
 
 #pragma region CONDITION

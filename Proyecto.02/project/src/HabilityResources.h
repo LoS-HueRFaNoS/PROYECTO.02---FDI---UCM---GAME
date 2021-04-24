@@ -42,6 +42,9 @@ enum Hability_Id {
 	REVERSEMORPH,
 	HEAVYSTRIKE,
 	SMOKEARROW,
+	RAINOFDAGGERS,
+	ROCKPROJECTILES,
+	TRICKSHOT,
 	_lasHabilityId_
 };
 
@@ -646,8 +649,6 @@ public:
 
 
 
-
-
 class HeavyStrike : public Hability { //modificar la descripcion cuando lo ajustemos, pero de momento solo hace +3 de daño el ataque
 public:
 	HeavyStrike(Character* caster) :Hability(caster) {
@@ -723,6 +724,66 @@ public:
 	}
 
 	static Hability_Id id() { return REVERSEMORPH; }
+
+	void throwHability(Character* obj, bool critical)const override;
+};
+
+class RainOfDaggers : public Hability { //revisar los modificadores
+public:
+	RainOfDaggers(Character* caster) :Hability(caster) {
+
+		level = 4;
+		_mana = 0;
+		_name = "Rain of Daggers";
+		_description = "Lanza un numero aleatorio de dagas entre 1 y 10 que hacen cada una un 20% del daño del personaje";
+
+		_damageType = LIGHT;
+		_habilityType = ATTACK;
+		_mod = DEX;
+		_obj = SINGLEENEMY;
+	}
+
+	static Hability_Id id() { return RAINOFDAGGERS; }
+
+	void throwHability(Character* obj, bool critical)const override;
+};
+
+class RockProjectiles : public Hability { 
+public:
+	RockProjectiles(Character* caster) :Hability(caster) {
+
+		level = 4;
+		_mana = 0;
+		_name = "Rock Projectiles";
+		_description = "Dispara tres rocas que tiene cada una su propia probabilidad de fallar";
+
+		_damageType = EARTH;
+		_habilityType = ATTACK;
+		_mod = INT;
+		_obj = SINGLEENEMY;
+	}
+
+	static Hability_Id id() { return ROCKPROJECTILES; }
+
+	void throwHability(Character* obj, bool critical)const override;
+};
+
+class TrickShot : public Hability {
+public:
+	TrickShot(Character* caster) :Hability(caster) { //cambiar la descripcion si al final se hace lo de hacer 2 tiradas de ataque para confirmar que acierta
+
+		level = 4;
+		_mana = 0;
+		_name = "Trick Shot";
+		_description = "Dispara una flecha que hace el triple de daño";
+
+		_damageType = LIGHT;
+		_habilityType = ATTACK;
+		_mod = DEX;
+		_obj = SINGLEENEMY;
+	}
+
+	static Hability_Id id() { return TRICKSHOT; }
 
 	void throwHability(Character* obj, bool critical)const override;
 };
