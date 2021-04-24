@@ -121,7 +121,7 @@ public:
 		_obj = SINGLEENEMY;
 	}
 
-	void throwHability(Character* obj, bool critical)const override;
+	virtual void throwHability(Character* obj, bool critical)const;
 };
 
 class Fireball : public Hability {
@@ -141,7 +141,7 @@ public:
 
 	static Hability_Id id() { return FIREBALL; }
 
-	void throwHability(Character* obj, bool critical)const override;
+	virtual void throwHability(Character* obj, bool critical)const;
 };
 
 
@@ -162,7 +162,7 @@ public:
 
 	static Hability_Id id() { return SINGLETARGETATTACKEXAMPLE; }
 
-	void throwHability(Character* obj, bool critical)const override;
+	virtual void throwHability(Character* obj, bool critical)const;
 };
 
 
@@ -184,7 +184,7 @@ public:
 
 	static Hability_Id id() { return SINGLETARGETHEALXAMPLE; }
 
-	void throwHability(Character* obj, bool critical)const override;
+	virtual void throwHability(Character* obj, bool critical)const;
 };
 
 
@@ -205,7 +205,7 @@ public:
 
 	static Hability_Id id() { return ALLYTEAMHEALEXAMPLE; }
 
-	void throwHability(Character* obj, bool critical)const override;
+	virtual void throwHability(Character* obj, bool critical)const;
 };
 
 
@@ -226,7 +226,7 @@ public:
 
 	static Hability_Id id() { return SELFHEALEXAMPLE; }
 
-	void throwHability(Character* obj, bool critical)const override;
+	virtual void throwHability(Character* obj, bool critical)const;
 };
 
 
@@ -247,7 +247,7 @@ public:
 
 	static Hability_Id id() { return ALLYTEAMATTACKEXAMPLE; }
 
-	void throwHability(Character* obj, bool critical)const override;
+	virtual void throwHability(Character* obj, bool critical)const;
 };
 
 //-----------------------------------------------------------------------------
@@ -269,7 +269,7 @@ public:
 
 	static Hability_Id id() { return WINDBURST; }
 
-	void throwHability(Character* obj, bool critical)const override;
+	virtual void throwHability(Character* obj, bool critical)const;
 };
 
 class WindSlash : public Hability {
@@ -289,7 +289,7 @@ public:
 
 	static Hability_Id id() { return WINDSLASH; }
 
-	void throwHability(Character* obj, bool critical)const override;
+	virtual void throwHability(Character* obj, bool critical)const;
 };
 
 class RockPillar : public Hability {
@@ -309,7 +309,7 @@ public:
 
 	static Hability_Id id() { return ROCKPILLAR; }
 
-	void throwHability(Character* obj, bool critical)const override;
+	virtual void throwHability(Character* obj, bool critical)const;
 };
 
 class ToxicShadow : public Hability {
@@ -329,7 +329,7 @@ public:
 
 	static Hability_Id id() { return TOXICSHADOW; }
 
-	void throwHability(Character* obj, bool critical)const override;
+	virtual void throwHability(Character* obj, bool critical)const;
 };
 
 class Tsunami : public Hability {
@@ -349,7 +349,7 @@ public:
 
 	static Hability_Id id() { return TSUNAMI; }
 
-	void throwHability(Character* obj, bool critical)const override;
+	virtual void throwHability(Character* obj, bool critical)const;
 };
 
 class DivineProtection : public Hability {
@@ -369,7 +369,7 @@ public:
 
 	static Hability_Id id() { return DIVINEPROTECTION; }
 
-	void throwHability(Character* obj, bool critical)const override;
+	virtual void throwHability(Character* obj, bool critical)const;
 };
 
 class Flash : public Hability {
@@ -389,7 +389,7 @@ public:
 
 	static Hability_Id id() { return FLASH; }
 
-	void throwHability(Character* obj, bool critical)const override;
+	virtual void throwHability(Character* obj, bool critical)const;
 };
 
 class Freeze : public Hability {
@@ -409,7 +409,7 @@ public:
 
 	static Hability_Id id() { return FREEZE; }
 
-	void throwHability(Character* obj, bool critical)const override;
+	virtual void throwHability(Character* obj, bool critical)const;
 };
 class Whirlpool : public Hability {
 public:
@@ -428,7 +428,7 @@ public:
 
 	static Hability_Id id() { return WHIRLPOOL; }
 
-	void throwHability(Character* obj, bool critical)const override;
+	virtual void throwHability(Character* obj, bool critical)const;
 };
 class LightBeam : public Hability {
 public:
@@ -447,7 +447,7 @@ public:
 
 	static Hability_Id id() { return LIGHTBEAM; }
 
-	void throwHability(Character* obj, bool critical)const override;
+	virtual void throwHability(Character* obj, bool critical)const;
 };
 class DarkVortex : public Hability {
 public:
@@ -466,7 +466,7 @@ public:
 
 	static Hability_Id id() { return DARKVORTEX; }
 
-	void throwHability(Character* obj, bool critical)const override;
+	virtual void throwHability(Character* obj, bool critical)const;
 };
 
 class FireArrow : public Hability {
@@ -486,7 +486,7 @@ public:
 
 	static Hability_Id id() { return FIREARROW; }
 
-	void throwHability(Character* obj, bool critical)const override;
+	virtual void throwHability(Character* obj, bool critical)const;
 };
 
 
@@ -507,7 +507,7 @@ public:
 
 	static Hability_Id id() { return LIGHTEN; }
 
-	void throwHability(Character* obj, bool critical)const override;
+	virtual void throwHability(Character* obj, bool critical)const;
 };
 class Strengthen : public Hability {
 public:
@@ -526,7 +526,7 @@ public:
 
 	static Hability_Id id() { return STRENGTHEN; }
 
-	void throwHability(Character* obj, bool critical)const override;
+	virtual void throwHability(Character* obj, bool critical)const;
 };
 class Toughen : public Hability {
 public:
@@ -545,7 +545,7 @@ public:
 
 	static Hability_Id id() { return TOUGHEN; }
 
-	void throwHability(Character* obj, bool critical)const override;
+	virtual void throwHability(Character* obj, bool critical)const;
 };
 class Meditate: public Hability {
 public:
@@ -564,7 +564,7 @@ public:
 
 	static Hability_Id id() { return MEDITATE; }
 
-	void throwHability(Character* obj, bool critical)const override;
+	virtual void throwHability(Character* obj, bool critical)const;
 };
 
 class BloodThirst : public Hability {
@@ -584,7 +584,7 @@ public:
 
 	static Hability_Id id() { return BLOODTHIRST; }
 
-	void throwHability(Character* obj, bool critical)const override;
+	virtual void throwHability(Character* obj, bool critical)const;
 };
 
 class Sacrifice : public Hability {
@@ -604,7 +604,7 @@ public:
 
 	static Hability_Id id() { return SACRIFICE; }
 
-	void throwHability(Character* obj, bool critical)const override;
+	virtual void throwHability(Character* obj, bool critical)const;
 };
 
 class DoubleShot : public Hability {
@@ -624,7 +624,7 @@ public:
 
 	static Hability_Id id() { return DOUBLESHOT; }
 
-	void throwHability(Character* obj, bool critical)const override;
+	virtual void throwHability(Character* obj, bool critical)const;
 };
 
 class ThrowingAxes : public Hability { //revisar los modificadores
@@ -644,7 +644,7 @@ public:
 
 	static Hability_Id id() { return THROWINGAXES; }
 
-	void throwHability(Character* obj, bool critical)const override;
+	virtual void throwHability(Character* obj, bool critical)const;
 };
 
 
@@ -666,7 +666,7 @@ public:
 
 	static Hability_Id id() { return HEAVYSTRIKE; }
 
-	void throwHability(Character* obj, bool critical)const override;
+	virtual void throwHability(Character* obj, bool critical)const;
 };
 
 class SmokeArrow : public Hability {
@@ -686,7 +686,7 @@ public:
 
 	static Hability_Id id() { return SMOKEARROW; }
 
-	void throwHability(Character* obj, bool critical)const override;
+	virtual void throwHability(Character* obj, bool critical)const;
 };
 
 class Morph : public Hability {
@@ -706,7 +706,7 @@ public:
 
 	static Hability_Id id() { return MORPH; }
 
-	void throwHability(Character* obj, bool critical)const override;
+	virtual void throwHability(Character* obj, bool critical)const;
 };
 class ReverseMorph : public Hability {
 public:
@@ -725,7 +725,7 @@ public:
 
 	static Hability_Id id() { return REVERSEMORPH; }
 
-	void throwHability(Character* obj, bool critical)const override;
+	virtual void throwHability(Character* obj, bool critical)const;
 };
 
 class RainOfDaggers : public Hability { //revisar los modificadores
@@ -745,7 +745,7 @@ public:
 
 	static Hability_Id id() { return RAINOFDAGGERS; }
 
-	void throwHability(Character* obj, bool critical)const override;
+	virtual void throwHability(Character* obj, bool critical)const;
 };
 
 class RockProjectiles : public Hability { 
@@ -765,7 +765,7 @@ public:
 
 	static Hability_Id id() { return ROCKPROJECTILES; }
 
-	void throwHability(Character* obj, bool critical)const override;
+	virtual void throwHability(Character* obj, bool critical)const;
 };
 
 class TrickShot : public Hability {
@@ -785,7 +785,7 @@ public:
 
 	static Hability_Id id() { return TRICKSHOT; }
 
-	void throwHability(Character* obj, bool critical)const override;
+	virtual void throwHability(Character* obj, bool critical)const;
 };
 
 #pragma endregion
@@ -939,25 +939,6 @@ public:
 		_description = "Revivira con 5 de vida al morir";
 		_type = ON_TURN_STARTED;
 		_id = GLADIATORBALLAD;
-		resetTurns();
-	}
-
-	virtual void init();
-
-	virtual bool onTurnStarted();
-
-	static Conditions_Id id() { return GLADIATORBALLAD; }
-};
-
-class GladiatorBallad : public Condition {
-public:
-
-	GladiatorBallad(Character* caster, Character* objective) : Condition(caster, objective) {
-		_name = "";
-		_description = "Revivira con 5 de vida al morir";
-		_type = ON_TURN_STARTED;
-		_id = GLADIATORBALLAD;
-		//_objective = ALLYTEAM;
 		resetTurns();
 	}
 
