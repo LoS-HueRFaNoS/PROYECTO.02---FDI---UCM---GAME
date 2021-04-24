@@ -384,7 +384,7 @@ Resources::TextureId Interfaz::getHeroTxt(uint number)
 	}
 
 	return id;
-}
+} // hace falta un metodo como este para los enemigos y otro para las habilidades (tambien estan armas, armaduras y objetos, pero urgen menos)
 
 void Interfaz::initialize()
 {
