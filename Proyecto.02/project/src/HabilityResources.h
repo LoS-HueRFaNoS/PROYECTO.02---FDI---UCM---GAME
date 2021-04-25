@@ -490,7 +490,7 @@ public:
 };
 
 
-class Lighten: public Hability {
+class Lighten : public Hability {
 public:
 	Lighten(Character* caster) :Hability(caster) {
 
@@ -547,7 +547,7 @@ public:
 
 	virtual void throwHability(Character* obj, bool critical)const;
 };
-class Meditate: public Hability {
+class Meditate : public Hability {
 public:
 	Meditate(Character* caster) :Hability(caster) {
 
@@ -748,7 +748,7 @@ public:
 	virtual void throwHability(Character* obj, bool critical)const;
 };
 
-class RockProjectiles : public Hability { 
+class RockProjectiles : public Hability {
 public:
 	RockProjectiles(Character* caster) :Hability(caster) {
 
@@ -824,13 +824,12 @@ protected:
 	Conditions_Id _id;
 
 	Character* _objective;
-	Character* _caster;
 
 public:
 
-	Condition() :_caster(nullptr), _objective(nullptr) {}
+	Condition() :_objective(nullptr) {}
 
-	Condition(Character* caster, Character* objective) :_caster(caster), _objective(objective) {
+	Condition(Character* objective) :_objective(objective) {
 	}
 
 	virtual void init() = 0;
@@ -858,7 +857,7 @@ public:
 
 class EjemploDañoPorTurnoBegin : public Condition {
 public:
-	EjemploDañoPorTurnoBegin(Character* caster, Character* objective) : Condition(caster, objective) {
+	EjemploDañoPorTurnoBegin(Character* objective) : Condition(objective) {
 		_name = "Ejemplo de daño cada turno";
 		_description = "Hace 1d3 de daño cada turno, durante 3 turnos";
 		_turns = 3;
@@ -878,7 +877,7 @@ public:
 class EjemploCuracionFinalTurno : public Condition {
 public:
 
-	EjemploCuracionFinalTurno(Character* caster, Character* objective) : Condition(caster, objective) {
+	EjemploCuracionFinalTurno(Character* objective) : Condition(objective) {
 		_name = "Ejemplo de daño cada turno";
 		_description = "Cura 1d3 cada final de turno, durante 3 turnos";
 		_turns = 3;
@@ -897,7 +896,7 @@ public:
 class EjemploReduccionAtaque : public Condition {
 public:
 
-	EjemploReduccionAtaque(Character* caster, Character* objective) : Condition(caster, objective) {
+	EjemploReduccionAtaque(Character* objective) : Condition(objective) {
 		_name = "Ejemplo de daño cada turno";
 		_description = "Reduce el daño el siguiente ataque a la mitad";
 		_type = ON_ATTACK_RECIEVED;
@@ -916,7 +915,7 @@ public:
 class EjemploRevivirMuerte : public Condition {
 public:
 
-	EjemploRevivirMuerte(Character* caster, Character* objective) : Condition(caster, objective) {
+	EjemploRevivirMuerte(Character* objective) : Condition(objective) {
 		_name = "Ejemplo de daño cada turno";
 		_description = "Revivira con 5 de vida al morir";
 		_type = ON_DEATH;
@@ -931,10 +930,13 @@ public:
 	static Conditions_Id id() { return EJEMPLOREVIVIRMUERTE; }
 };
 
+
+//obj->addCondition<BuffoX>(mainStat x, string name, string description);
+
 class GladiatorBallad : public Condition {
 public:
 
-	GladiatorBallad(Character* caster, Character* objective) : Condition(caster, objective) {
+	GladiatorBallad(Character* objective) : Condition(objective) {
 		_name = "Ejemplo de daño cada turno";
 		_description = "Revivira con 5 de vida al morir";
 		_type = ON_TURN_STARTED;
@@ -950,10 +952,10 @@ public:
 };
 
 class WindSong : public Condition { //por ahora aumenta la DEX a todo el equipo, pero hay que cambiar a un solo objetivo 
-		                                            //y que este sea el siguiente en atacar
+													//y que este sea el siguiente en atacar
 public:
 
-	WindSong(Character* caster, Character* objective) : Condition(caster, objective) {
+	WindSong(Character* objective) : Condition(objective) {
 		_name = "Wind Song";
 		_description = "Aumenta la destreza de todo el equipo 3 turnos";
 		_type = ON_TURN_STARTED;

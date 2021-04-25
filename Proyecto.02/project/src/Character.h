@@ -91,10 +91,10 @@ public:
 		}
 	}
 
-	template<typename T>
-	void addCondition(Character* caster) {
+	template<typename T, typename ... TArgs>
+	void addCondition(TArgs&& ...mArgs) {
 		if (!hasCondition(T::id())) {
-			T* c(new T(caster, this));
+			T* c(new T(this, std::forward<TArgs>(mArgs)...));
 			_conditions[c->getType()].push_back(c);
 			_conditonsArray[T::id()] = c;
 			c->init();
