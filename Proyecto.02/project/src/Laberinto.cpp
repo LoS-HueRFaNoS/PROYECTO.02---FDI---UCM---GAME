@@ -198,11 +198,15 @@ Casilla* Laberinto::getCasillaInfo(int x, int y)
 void Laberinto::draw()
 {
 //
+	double _x = game_->setHorizontalScale(1510); // 28
+	double _y = game_->setVerticalScale(70); // 20
+	double _w = game_->setHorizontalScale(34); // 28
+	double _h = game_->setVerticalScale(19); // 20
 	for (int i = 0; i < h; ++i) // Por cada fila  = Y
 	{
 		for (int j = 0; j < w; ++j) // Por cada columna  = X
 		{
-			 laberinto[j][i]->casillaRender(802 + j*28, 2 +i*20);
+			laberinto[j][i]->casillaRender(_x + j * _w, _y + i * _h);
 		}
 	}
 }
