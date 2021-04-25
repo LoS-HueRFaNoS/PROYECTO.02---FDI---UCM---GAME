@@ -20,6 +20,8 @@ namespace interfaz {
 		BigMap, 
 		Settings, 
 		Chat,
+		MenuPrincipal,
+		Lobby,
 		//
 		// don't touch the rest of this enum, it is to identify the max
 		// number of components

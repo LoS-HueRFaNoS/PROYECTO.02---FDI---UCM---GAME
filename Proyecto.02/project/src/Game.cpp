@@ -45,7 +45,7 @@ void Game::initGame()
 
 	Texture *tex_ = new Texture(game_->getRenderer(), "resources/images/cargando.png");
 	SDL_Rect dest = {0, 0, int(game_->getWindowWidth()), int(game_->getWindowHeight())};
-	SDL_SetRenderDrawColor(game_->getRenderer(), COLOR(0x00AAAAFF));
+	SDL_SetRenderDrawColor(game_->getRenderer(), COLOR(0x00000000));
 	SDL_RenderClear(game_->getRenderer());
 	tex_->render(dest);
 	SDL_RenderPresent(game_->getRenderer());
@@ -138,7 +138,7 @@ void Game::update()
 
 void Game::render()
 {
-	SDL_SetRenderDrawColor(game_->getRenderer(), COLOR(0x00AAAAFF));
+	SDL_SetRenderDrawColor(game_->getRenderer(), COLOR(0x00000000));
 	SDL_RenderClear(game_->getRenderer());
 
 	fondo->draw();

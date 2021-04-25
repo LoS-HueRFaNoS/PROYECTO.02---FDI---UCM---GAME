@@ -28,4 +28,12 @@ public:
 	static void set_hability(int attackType_);
 	// habilitar/deshabilitar paneles
 	static void createPanel(bool active, int panelType);
+	static void ataqueNormal(Interfaz* app);
+	static void ataqueMagico(Interfaz* app);
+	static void defensa(Interfaz* app);
+	static void huida(Interfaz* app);
+	static void startLobby(Interfaz* app);
+	static void options(Interfaz* app);
+	static void howToPlay(Interfaz* app);
+	static void quit(Interfaz* app);
 };

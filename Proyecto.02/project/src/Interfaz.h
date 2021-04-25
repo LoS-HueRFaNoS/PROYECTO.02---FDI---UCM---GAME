@@ -29,6 +29,8 @@ private:
 	void createTargets(); //
 	void createHabilities(); //
 
+	void createMenuPrincipal() ; //
+	void createLobby() ; //
 public:
 	Interfaz(InterfazManager* i) :
 		Component(ecs::Interfaz),

@@ -31,7 +31,7 @@ vector<bool> Casilla::checkCell()
 {
 	return direcciones;
 }
-void Casilla::casillaRender(int x, int y )
+void Casilla::casillaRender(int x, int y)
 {
 	double w = game_->setHorizontalScale(34); // 28
 	double h = game_->setVerticalScale(19); // 20

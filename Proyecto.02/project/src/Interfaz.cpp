@@ -20,13 +20,13 @@ Interfaz::~Interfaz()
 
 void Interfaz::createFight()
 {
-	// posición en pixeles del 'fondo'
+	// posiciï¿½n en pixeles del 'fondo'
 	double x_ = 70;
 	double y_ = 790;
-	// tamaño en pixeles del 'fondo'
+	// tamaï¿½o en pixeles del 'fondo'
 	double w_ = 710;
 	double h_ = 190;
-	// tamaño de los margenes
+	// tamaï¿½o de los margenes
 	double n = 20;
 
 	// posicion del panel respecto a la ventana
@@ -51,13 +51,13 @@ void Interfaz::createFight()
 
 void Interfaz::createMovement()
 {
-	// posición en pixeles del 'fondo'
+	// posiciï¿½n en pixeles del 'fondo'
 	double x_ = 70;
 	double y_ = 790;
-	// tamaño en pixeles del 'fondo'
+	// tamaï¿½o en pixeles del 'fondo'
 	double w_ = 710;
 	double h_ = 190;
-	// tamaño de los margenes
+	// tamaï¿½o de los margenes
 	double n = 20;
 
 	// posicion del panel respecto a la ventana
@@ -89,13 +89,13 @@ void Interfaz::createHeroes()
 	CombatManager* c = GETCMP2(TheElementalMaze::instance(), CombatManager);
 	uint nHeros = c->getHerosTam();
 
-	// posición en pixeles del 'fondo'
+	// posiciï¿½n en pixeles del 'fondo'
 	double x_ = 1510;
 	double y_ = 360;
-	// tamaño en pixeles del 'fondo'
+	// tamaï¿½o en pixeles del 'fondo'
 	double w_ = 340;
 	double h_ = 330;
-	// tamaño de los margenes
+	// tamaï¿½o de los margenes
 	double n = 5;
 
 	// posicion del panel respecto a la ventana
@@ -122,13 +122,13 @@ void Interfaz::createInfo()
 	uint nInfoButton_H = 4; // separaciones horizontales
 	uint nInfoButton_V = 2; // separaciones verticales
 
-	// posición en pixeles del 'fondo'
+	// posiciï¿½n en pixeles del 'fondo'
 	double x_ = 880;
 	double y_ = 790;
-	// tamaño en pixeles del 'fondo'
+	// tamaï¿½o en pixeles del 'fondo'
 	double w_ = 530;
 	double h_ = 190;
-	// tamaño de los margenes
+	// tamaï¿½o de los margenes
 	double n = 5;
 
 	// posicion del panel respecto a la ventana
@@ -199,13 +199,13 @@ void Interfaz::createTargets()
 	CombatManager* c = GETCMP2(TheElementalMaze::instance(), CombatManager);
 	uint nEnemys = c->getEnemysTam();
 
-	// posición en pixeles del 'fondo'
+	// posiciï¿½n en pixeles del 'fondo'
 	double x_ = 70;
 	double y_ = 790;
-	// tamaño en pixeles del 'fondo'
+	// tamaï¿½o en pixeles del 'fondo'
 	double w_ = 710;
 	double h_ = 190;
-	// tamaño de los margenes
+	// tamaï¿½o de los margenes
 	double n = 20;
 
 	// posicion del panel respecto a la ventana
@@ -232,13 +232,13 @@ void Interfaz::createHabilities()
 	CombatManager* c = GETCMP2(TheElementalMaze::instance(), CombatManager);
 	uint nEnemys = c->getEnemysTam();
 
-	// posición en pixeles del 'fondo'
+	// posiciï¿½n en pixeles del 'fondo'
 	double x_ = 70;
 	double y_ = 790;
-	// tamaño en pixeles del 'fondo'
+	// tamaï¿½o en pixeles del 'fondo'
 	double w_ = 710;
 	double h_ = 190;
-	// tamaño de los margenes
+	// tamaï¿½o de los margenes
 	double n = 20;
 
 	// posicion del panel respecto a la ventana
@@ -260,6 +260,22 @@ void Interfaz::createHabilities()
 	}
 }
 
+void Interfaz::createMenuPrincipal()
+{
+	SDLGame* game_ = entity_->getSDLGame();
+
+	int width = game_->getWindowWidth();
+	int height = game_->getWindowHeight();
+
+	Panel* panelMenu = new Panel(MenuPrincipal);
+	allPanels.push_back(panelMenu);
+	//panelMenu->addButton(iManager->addButton<ButtonMenu>(Vector2D(width/2,height/2 ), 200, 100, src::AtaqueMagico, ));
+}
+
+void Interfaz::createLobby()
+{
+
+}
 
 void Interfaz::createPanel(idPanel panelID)
 {
@@ -302,6 +318,11 @@ void Interfaz::createPanel(idPanel panelID)
 		break;
 	case Habilities:
 		createHabilities();
+	case MenuPrincipal:
+		createMenuPrincipal();
+		break;
+	case Lobby:
+		createLobby();
 		break;
 	}
 }
@@ -331,9 +352,9 @@ void Interfaz::toggleCombat_Movement()
 void Interfaz::init()
 {
 	//allPanels.reserve(maxPanels);
-	initialize(); // convertir a tipo std::map<clave, valor> -> ahora está hardcodeado
+	initialize(); // convertir a tipo std::map<clave, valor> -> ahora estï¿½ hardcodeado
 	// Fondo de todo la interfaz, para delimitar claramente los paneles: 
-	// (mejor que ButtonSlott sería crear unaclase foto/image y que button herede de ella)
+	// (mejor que ButtonSlott serï¿½a crear unaclase foto/image y que button herede de ella)
 	//iManager->addButton<ButtonSlott>(Vector2D(), game_->getWindowWidth(), game_->getWindowHeight(), src::Fondo); 
 	createPanel(Movement);
 	createPanel(Heroes);

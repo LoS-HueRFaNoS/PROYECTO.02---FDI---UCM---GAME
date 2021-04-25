@@ -90,6 +90,7 @@ public:
 
 // ----------------------------------------------------
 
+
 enum class AtkType { normal, magic };
 
 class ButtonAttack : public Button {
@@ -154,7 +155,26 @@ public:
 };
 
 
+enum class accionMenu { start, how_to_play, options, quit};
 
+
+class ButtonMenu : public Button {
+private:
+	
+public:
+	ButtonMenu(SDLGame* game, EntityManager* mngr) : Button(game, mngr) {};
+
+	~ButtonMenu() {};
+
+	virtual void init(Vector2D pos, uint ancho, uint alto, Resources::TextureId imagen) {
+		Button::init(pos, ancho, alto, imagen);
+	};
+
+	virtual void click()
+	{
+		//callbacks::((int)heroType_);
+	}
+};
 // ----------------------------------------------------
 
 enum class PtnType { health, mana, resurrection };
@@ -204,7 +224,7 @@ public:
 	virtual void click();
 };
 
-// crear / destruye en tiempo de ejecución los botones de un panel concreto
+// crear / destruye en tiempo de ejecuciï¿½n los botones de un panel concreto
 class ButtonPanel : public Button {
 private:
 	bool activated;
