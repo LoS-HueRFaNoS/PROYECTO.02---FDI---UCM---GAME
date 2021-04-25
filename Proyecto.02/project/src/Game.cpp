@@ -19,6 +19,7 @@
 #include "PlayerMotion.h"
 #include "PlayerViewer.h"
 #include "Cursor.h"
+#include "Fondo.h"
 #include "../TheElementalMaze.h"
 //
 
@@ -53,9 +54,8 @@ void Game::initGame()
 
 	entityManager_ = new EntityManager(game_);
 
-	Entity* fondo = entityManager_->addEntity();
-	fondo->addComponent<Transform>(Vector2D(), Vector2D(), game_->getWindowWidth(), game_->getWindowHeight(), 0);
-	fondo->addComponent<Image>(game_->getTextureMngr()->getTexture(Resources::Fondo));
+	fondo = static_cast<Fondo*>(entityManager_->addEntity());
+	fondo->init(Vector2D(), game_->getWindowWidth(), game_->getWindowHeight(), Resources::Fondo);
 
 	characterManager_ = new CharacterManager(game_);
 
@@ -141,6 +141,7 @@ void Game::render()
 	SDL_SetRenderDrawColor(game_->getRenderer(), COLOR(0x00AAAAFF));
 	SDL_RenderClear(game_->getRenderer());
 
+	fondo->draw();
 	entityManager_->draw();
 	interfazManager_->draw();
 	characterManager_->draw(); //
