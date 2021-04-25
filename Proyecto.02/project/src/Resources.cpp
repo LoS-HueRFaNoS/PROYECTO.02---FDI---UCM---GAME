@@ -8,12 +8,27 @@ vector<Resources::FontInfo> Resources::fonts_{
 
 vector<Resources::ImageInfo> Resources::images_{
 	{posMiniMap, "resources/images/pasillos/posJugador.png"},			//
-	{camino_izq, "resources/images/pasillos/camino_izq.png"},			//
-	{camino_der, "resources/images/pasillos/camino_der.png"},			//
-	{camino_fr, "resources/images/pasillos/camino_del.png"},			//
-	{muro_izq, "resources/images/pasillos/muro_izq.png"},				//
-	{muro_der, "resources/images/pasillos/muro_der.png"},				//
-	{muro_fr, "resources/images/pasillos/muro_del.png"},				//
+	{camino_izq, "resources/images/pasillos/frente/giro_izquierda/frente_giro_izquierda_suelo.png"},			//
+	{camino_der, "resources/images/pasillos/frente/giro_derecha/frente_giro_derecha_suelo.png"},			//
+	{camino_fr, "resources/images/pasillos/frente/frente_suelo.png"},			//
+	{muro_izq, "resources/images/pasillos/frente/frente_pared_izquierda.png"},				//
+	{muro_der, "resources/images/pasillos/frente/frente_pared_derecha.png"},				//
+	{muro_fr, "resources/images/pasillos/frente/frente_pared.png"},				//
+	{muro_fr_izq, "resources/images/pasillos/frente/giro_izquierda/frente_giro_izquierda_pared.png"},				//
+	{muro_fr_der, "resources/images/pasillos/frente/giro_derecha/frente_giro_derecha_pared.png"},				//
+	
+
+
+	{camino_fondo_izq, "resources/images/pasillos/fondo/giro_izquierda/fondo_giro_izquierda_suelo.png"},			//
+	{camino_fondo_der, "resources/images/pasillos/fondo/giro_derecha/fondo_giro_derecha_suelo.png"},			//
+	{camino_fondo_fr, "resources/images/pasillos/fondo/fondo_suelo.png"},			//
+	{muro_fondo_izq, "resources/images/pasillos/fondo/fondo_pared_izquierda.png"},				//
+	{muro_fondo_der, "resources/images/pasillos/fondo/fondo_pared_derecha.png"},				//
+	{muro_fondo_fr, "resources/images/pasillos/fondo/fondo_pared.png"},				//
+	{muro_fondo_fr_izq, "resources/images/pasillos/fondo/giro_izquierda/fondo_giro_izquierda_pared.png"},				//
+	{muro_fondo_fr_der, "resources/images/pasillos/fondo/giro_derecha/fondo_giro_derecha_pared.png"},				//
+
+
 	{no_visitado, "resources/images/pasillos/pasillo_no_visitado.png"}, //
 	{no_entrado, "resources/images/pasillos/pasillo_no_entrado.png"},	//
 	{visitado, "resources/images/pasillos/pasillo_visitado.png"},		//

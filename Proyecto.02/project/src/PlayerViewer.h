@@ -59,71 +59,65 @@ public:
 
 	virtual void draw()
 	{
-		SDL_Rect dest = { 0, 0, 800, 600 };
-		Texture* texturaCasilla;
+		SDL_Rect dest = { 0, 0, 800, 600 }; // Ventana del laberinto
+		/*Texture* texturaCasilla;
+		Texture* suelo;
 		Texture* texturaIzquierda;
 		Texture* texturaDerecha;
-		/*Texture* texturaSigFr;
+		Texture* texturaSigFr;
 		Texture* texturaSigIzq;
 		Texture* texturaSigDer;*/
 
-		int izquierda;
+		int izquierda; // Variable que guarda que direccion hay a la izquierda
 		if (sentido == Norte) izquierda = Oeste;
 		else izquierda = sentido-1;
 
-		int derecha;
+		int derecha; // Variable que guarda que direccion hay a la derecha
 		if (sentido == Oeste) derecha = Norte;
 		else derecha = sentido+1;
 
-		auto manager = game_->getTextureMngr();
-
-		if (casillaActual[sentido]) // <-^->
+		auto manager = game_->getTextureMngr(); // Manager de texturas
+		if (casillaActual[sentido]) // <-^-> Si delante hay un camino, dibujaremos la informacion de la casilla siguiente
 		{
-			texturaCasilla = manager->getTexture(Resources::camino_fr);
+			
 
-			//if (casillaSig[sentido])
-			//{
-			//	texturaSigFr = manager->getTexture(Resources::sigcamino_fr);
-			//}
-			//else 
-			//	texturaSigFr = manager->getTexture(Resources::sigmuro_fr);
-			//if (casillaSig[izquierda])
-			//	texturaSigIzq = manager->getTexture(Resources::sigcamino_izq);
-			//else
-			//	texturaSigIzq = manager->getTexture(Resources::sigmuro_izq);
+			manager->getTexture(Resources::camino_fondo_fr)->render(dest);
+			if (!casillaSig[sentido])manager->getTexture(Resources::muro_fondo_fr)->render(dest);
 
-			//if (casillaSig[derecha]) // <-
-			//	texturaSigDer = manager->getTexture(Resources::sigcamino_der);
-			//else
-			//	texturaSigDer = manager->getTexture(Resources::sigmuro_der);
-
+			if (casillaSig[izquierda])
+			{
+				manager->getTexture(Resources::camino_fondo_izq)->render(dest);
+				manager->getTexture(Resources::muro_fondo_fr_izq)->render(dest);
+			}
+			else manager->getTexture(Resources::muro_fondo_izq)->render(dest);
+	
+			if (casillaSig[derecha]) // <-
+			{
+				manager->getTexture(Resources::camino_fondo_der)->render(dest);
+				manager->getTexture(Resources::muro_fondo_fr_der)->render(dest);
+			}
+			else manager->getTexture(Resources::muro_fondo_der)->render(dest);
+			manager->getTexture(Resources::camino_fr)->render(dest);
 		}
-		else
-			texturaCasilla = manager->getTexture(Resources::muro_fr);
+		else manager->getTexture(Resources::muro_fr)->render(dest);
 
-		if (casillaActual[izquierda])
-			texturaIzquierda = manager->getTexture(Resources::camino_izq);
-		else
-			texturaIzquierda = manager->getTexture(Resources::muro_izq);
-
-		if (casillaActual[derecha]) // <-
-			texturaDerecha = manager->getTexture(Resources::camino_der);
-		else
-			texturaDerecha = manager->getTexture(Resources::muro_der);
-
-		/*if (casillaActual[sentido])
+		if (casillaActual[izquierda]) // <- Si hay un camino a la izquierda
 		{
-			texturaSigFr->render(dest);
-			texturaSigIzq->render(dest);
-			texturaSigDer->render(dest);
+			manager->getTexture(Resources::camino_izq)->render(dest);
+			manager->getTexture(Resources::muro_fr_izq)->render(dest);
+		}
 
-			renderEnemySig();
-		}*/
+		else manager->getTexture(Resources::muro_izq)->render(dest);
 
-		texturaCasilla->render(dest);
-		texturaIzquierda->render(dest);
-		texturaDerecha->render(dest);
+		if (casillaActual[derecha]) // -> Si hay un camino a la derecha
+		{
+			manager->getTexture(Resources::camino_der)->render(dest);
+			manager->getTexture(Resources::muro_fr_der)->render(dest);
+		}
+		else manager->getTexture(Resources::muro_der)->render(dest);
 
+		//renderEnemySig();
+		manager->getTexture(Resources::camino_fr)->render(dest);
 		//renderEnemyActual();
 
 	}
