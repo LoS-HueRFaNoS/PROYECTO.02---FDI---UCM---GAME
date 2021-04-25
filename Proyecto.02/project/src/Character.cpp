@@ -11,6 +11,8 @@ using namespace rpgLogic;
 
 Character::~Character()
 {
+	delete _sheet;
+	_sheet = nullptr;
 	for (Hability* h : _habilitiesArray)
 	{
 		delete h;
@@ -210,32 +212,33 @@ void Hero::loadFromJson(jute::jValue v, int t)
 
 void Hero::endCombat()
 {
+	if (!_deathGate && !isDead())
+		recieveHealing(5);
 }
 
 #include <iomanip>
 
 void Hero::showSpellList()
 {
-	if (!isDead())
-	{
-		cout << "\nSpells: " << endl;
 
-		for (int i = 0; i < _habilities.size(); i++)
-			cout << i << ". " << setw(30) << _habilities[i]->name() << _habilities[i]->getMana() << setw(15) << " MP" << _habilities[i]->description() << endl;
+	cout << "\nSpells: " << endl;
 
-		cout << "Choose a spell to cast (Enter to skip turn): \n";
-	}
+	for (int i = 0; i < _habilities.size(); i++)
+		cout << i << ". " << setw(30) << _habilities[i]->name() << _habilities[i]->getMana() << setw(15) << " MP" << _habilities[i]->description() << endl;
 
-	else
-	{
-		if (getSavingFailures() < 3)
-			cout << "This character is at the death gates. \n";
+	cout << "Choose a spell to cast (Enter to skip turn): \n";
+}
 
-		else
-			cout << "This character is dead. \n"
-			<< endl;
+
+void Hero::manageTurn(CombatManager* cm)
+{
+	if (isDead()) {
+		cout << "This character is at the death gates. \n";
+		savingDeathThrow();
+		cm->changeState(END_TURN);
 	}
 }
+
 
 void Hero::savingDeathThrow()
 {
@@ -243,18 +246,22 @@ void Hero::savingDeathThrow()
 	{
 		bool saveThrow = 10 < throwDice(1, 20, false);
 
-		if (saveThrow && getSavingSuccess() < 3)
+		if (false)
 			savingSuccess++;
 
-		else if (!saveThrow && getSavingFailures() < 3)
+		else
 			savingFailure++;
 
 		string mess = saveThrow ? "Successful throw\n" : "Failed throw\n";
 		cout << "Saving throw from death: " << mess << endl;
 
-		if (getSavingSuccess() >= 3)
-		{
+		if (getSavingSuccess() >= 3) {
+			cout << name() << " is no longer at the death gates.\n";
 			recieveHealing(1);
+		}
+		else if (getSavingFailures() >= 3) {
+			cout << name() << " is dead. \n";
+			_deathGate = true;
 		}
 	}
 }
@@ -273,25 +280,15 @@ void Hero::resetThrows()
 
 void Hero::manageInput(CombatManager* cm, int input)
 {
-	if (!isDead())
-	{
-		if (input >= _habilities.size())
-			cout << "Use a valid index please:\n";
-		else if (_habilities[input]->getMana() > _sheet->manaPoints())
-			cout << "Not enough mana, try again:\n";
-		else
-		{
-			cm->castHability(_habilities[input]);
-			//_sheet->setManaPoints(_sheet->manaPoints() - _habilities[spell]->getMana());
-		}
-	}
-
+	if (input >= _habilities.size())
+		cout << "Use a valid index please:\n";
+	else if (_habilities[input]->getMana() > _sheet->manaPoints())
+		cout << "Not enough mana, try again:\n";
 	else
 	{
-		savingDeathThrow();
-		cm->changeState(END_TURN);
+		cm->castHability(_habilities[input]);
+		//_sheet->setManaPoints(_sheet->manaPoints() - _habilities[spell]->getMana());
 	}
-
 }
 
 #pragma endregion
@@ -330,12 +327,59 @@ void Enemy::loadFromJson(jute::jValue v, int t)
 		weak.push_back((float)v["Characters"][t]["Weaknesses"][i]["Value"].as_double());
 	}
 
+	addHability<AllyTeamHealExample>();
+	addHability<SingleTargetHealxample>();
+	addHability<SingleTargetAttackExample>();
+
 	_sheet->weaknesses = Weaknesses(weak);
 }
 
 void Enemy::manageTurn(CombatManager* cm)
 {
-	cout << "AQUI EL ENEMIGO HACE COSAS" << endl;
+	int aux = game_->getRandGen()->nextInt(0, _habilities.size());
+
+	Hability* hab = _habilities[aux];
+
+	if (hab->getObjectiveType() == ENEMYTEAM || hab->getObjectiveType() == ALLYTEAM
+		|| hab->getObjectiveType() == CASTER)
+		cm->castHability(hab);
+		
+	else
+	{
+		if (hab->getObjectiveType() == SINGLEENEMY)
+		{
+			vector <Hero*> heroTeam = cm->getHeroesTeam();
+
+			while (true)
+			{
+				int heroe = game_->getRandGen()->nextInt(0, heroTeam.size());
+
+				if (!heroTeam[heroe]->isDead())
+				{
+					cm->throwHability(heroTeam[heroe], hab);
+					break;
+				}
+			}
+		}
+
+		else
+		{
+			vector <Enemy*> enemyTeam = cm->getEnemiesTeam();
+
+			while (true)
+			{
+				int enemigo = game_->getRandGen()->nextInt(0, enemyTeam.size());
+
+				if (!enemyTeam[enemigo]->isDead())
+				{
+					cm->throwHability(enemyTeam[enemigo], hab);
+					break;
+				}
+			}
+		}
+	}
+
+
 	cm->changeState(END_TURN);
 }
 

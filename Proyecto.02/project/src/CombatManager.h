@@ -62,6 +62,7 @@ private:
 
 	void onStateChanged();
 
+	void castHability(Hability* hability);
 
 	void calculateTurns();
 
@@ -72,8 +73,6 @@ private:
 	bool checkEnd();
 
 	void endCombat();
-
-	void throwHability(Character* objective, Hability* hability);
 
 	void castToTeam();
 
@@ -109,12 +108,33 @@ public:
 			_heroes.push_back(dynamic_cast<Hero*>(c));
 	}
 
+	void addHeroesTeam(vector<Hero*> heroes) {
+		_heroes = heroes;
+	}
+
+	vector<Hero*> getHeroesTeam()
+	{
+		return _heroes;
+	}
+
+	vector<Enemy*> getEnemiesTeam()
+	{
+		return _enemies;
+	}
+
+	void addEnemyTeam(vector<Enemy*> enemies) {
+		_enemies = enemies;
+	}
+
 	void startCombat();
 
+
+	void throwHability(Character* objective, Hability* hability);
 
 	void changeState(CombatState state) { _state = state; stateChanged = true; }
 
 	// -------- METODOS NECESARIOS PARA INTERFAZ ---------
+	CombatState getState() { return _state; }
 
 	Character* getCharacter(int index, characterType type) {
 		return  type ? static_cast<Character*>(_enemies[index]) : static_cast<Character*>(_heroes[index]);
@@ -125,7 +145,6 @@ public:
 
 	void sendKeyEvent(int key);
 	void castToSingleTarget(int input);
-	void castHability(Hability* hability);
 
 	// ----------------------------------------------------
 };
