@@ -10,6 +10,7 @@ class CharacterManager;
 class TheElementalMaze;
 class EntityManager;
 class Cursor;
+class Fondo;
 
 typedef unsigned int uint;
 
@@ -37,6 +38,7 @@ private:
 	TheElementalMaze* gameManager_;
 	InterfazManager* interfazManager_;
 
+	Fondo* fondo;
 	Cursor* c_;
 	Cursor* createCursor(Vector2D pos, uint width, uint height, Resources::TextureId image);
 

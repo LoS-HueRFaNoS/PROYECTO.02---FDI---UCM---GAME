@@ -30,13 +30,13 @@ void Interfaz::createFight()
 	double n = 20;
 
 	// posicion del panel respecto a la ventana
-	x_ = setHorizontalScale(x_ + n);
-	y_ = setVerticalScale(y_ + n);
+	x_ = game_->setHorizontalScale(x_ + n);
+	y_ = game_->setVerticalScale(y_ + n);
 
-	double espace = setHorizontalScale((w_ - n) / 4);
+	double espace = game_->setHorizontalScale((w_ - n) / 4);
 
-	w_ = espace - setHorizontalScale(n);
-	h_ = setVerticalScale(h_ - n * 2);
+	w_ = espace - game_->setHorizontalScale(n);
+	h_ = game_->setVerticalScale(h_ - n * 2);
 
 	// construccion y asignacion del panel:
 	Panel* p = new Panel(Fight);
@@ -61,14 +61,14 @@ void Interfaz::createMovement()
 	double n = 20;
 
 	// posicion del panel respecto a la ventana
-	x_ = setHorizontalScale(x_ + n);
-	y_ = setVerticalScale(y_ + n);
+	x_ = game_->setHorizontalScale(x_ + n);
+	y_ = game_->setVerticalScale(y_ + n);
 
 	/* || 20px - button - 20px - button - 20px - button - 20px - button - 20px - button - 20px || */
-	double espace = setHorizontalScale((w_ - n) / 4);
+	double espace = game_->setHorizontalScale((w_ - n) / 4);
 
-	w_ = espace - setHorizontalScale(n);
-	h_ = setVerticalScale(h_ - n * 2);
+	w_ = espace - game_->setHorizontalScale(n);
+	h_ = game_->setVerticalScale(h_ - n * 2);
 
 	// construccion y asignacion del panel:
 	Panel* p = new Panel(Movement);
@@ -99,12 +99,12 @@ void Interfaz::createHeroes()
 	double n = 5;
 
 	// posicion del panel respecto a la ventana
-	x_ = setHorizontalScale(x_ + n);
-	y_ = setVerticalScale(y_ + n);
+	x_ = game_->setHorizontalScale(x_ + n);
+	y_ = game_->setVerticalScale(y_ + n);
 
-	double espace = setVerticalScale((h_ - n) / nHeros);
+	double espace = game_->setVerticalScale((h_ - n) / nHeros);
 
-	h_ = espace - setHorizontalScale(n);
+	h_ = espace - game_->setVerticalScale(n);
 	w_ = h_;
 
 	// construccion del panel de heroes
@@ -119,25 +119,41 @@ void Interfaz::createHeroes()
 
 void Interfaz::createInfo()
 {
-	SDLGame* game_ = entity_->getSDLGame();
-	double width = game_->getWindowWidth();
-	double height = game_->getWindowHeight();
-	uint tamBoton = uint(width / 16);
+	uint nInfoButton_H = 4; // separaciones horizontales
+	uint nInfoButton_V = 2; // separaciones verticales
 
+	// posición en pixeles del 'fondo'
+	double x_ = 880;
+	double y_ = 790;
+	// tamaño en pixeles del 'fondo'
+	double w_ = 530;
+	double h_ = 190;
+	// tamaño de los margenes
+	double n = 5;
+
+	// posicion del panel respecto a la ventana
+	x_ = game_->setHorizontalScale(x_ + n);
+	y_ = game_->setVerticalScale(y_ + n);
+
+	double espace_H = game_->setHorizontalScale((w_ - n) / nInfoButton_H);
+	double espace_V = game_->setVerticalScale((h_ - n) / nInfoButton_V);
+
+	w_ = espace_H - game_->setHorizontalScale(n);
+	h_ = espace_V - game_->setVerticalScale(n);
+
+	// construccion del panel de informacion
 	Panel* p = new Panel(Info);
-	//allPanels.emplace(allPanels.begin() + Info, p);
 	allPanels[Info] = p;
 
-	double space = tamBoton * 0.8;
-	// BOTONES:
-	p->addButton(iManager->addButton<ButtonPotion>(Vector2D(width * 5 / 7, height * 3 / 4), tamBoton * 0.8, tamBoton * 0.8, src::PocionVida, PtnType::health));
-	p->addButton(iManager->addButton<ButtonPotion>(Vector2D(width * 5 / 7, height * 5 / 6), tamBoton * 0.8, tamBoton * 0.8, src::PocionMana, PtnType::mana));
+	// BOTONES: health, mana, resurrection
+	p->addButton(iManager->addButton<ButtonPanel>(Vector2D(x_, y_), w_ * 2, h_ * 2, src::Inventario, Inventory, false));
+	p->addButton(iManager->addButton<ButtonPotion>(Vector2D(x_ + 2 * espace_H, y_ + 0 * espace_V), w_, h_, src::PocionVida, PtnType::health));
+	p->addButton(iManager->addButton<ButtonPotion>(Vector2D(x_ + 2 * espace_H, y_ + 1 * espace_V), w_, h_, src::PocionMana, PtnType::mana));
 	//p->addButton(iManager->addButton<ButtonPotion>(Vector2D(width * 5 / 7, height * 5 / 6 + space), tamBoton * 0.8, tamBoton * 0.8, src::PocionRess, PtnType::resurrection));
 
-	p->addButton(iManager->addButton<ButtonPanel>(Vector2D(width * 4 / 7, height * 3 / 4), tamBoton * 2, tamBoton * 2, src::Inventario, Inventory, false));
-	/*createButton(p, this, cb::chat, Vector2D(width * 6 / 7, height * 3 / 4), tamBoton, tamBoton, src::Chat);
-	createButton(p, this, cb::configuracion, Vector2D(width * 6 / 7, height * 5 / 6), tamBoton, tamBoton, src::Configuracion);*/
-} // health, mana, resurrection
+	p->addButton(iManager->addButton<ButtonPanel>(Vector2D(x_ + 3 * espace_H, y_ + 0 * espace_V), w_, h_, src::Chat, Chat, false));
+	p->addButton(iManager->addButton<ButtonPanel>(Vector2D(x_ + 3 * espace_H, y_ + 1 * espace_V), w_, h_, src::Configuracion, Settings, false));
+} // 
 
 void Interfaz::createInventory()
 {
@@ -193,13 +209,13 @@ void Interfaz::createTargets()
 	double n = 20;
 
 	// posicion del panel respecto a la ventana
-	x_ = setHorizontalScale(x_ + n);
-	y_ = setVerticalScale(y_ + n);
+	x_ = game_->setHorizontalScale(x_ + n);
+	y_ = game_->setVerticalScale(y_ + n);
 
-	double espace = setHorizontalScale((w_ - n) / 4);
+	double espace = game_->setHorizontalScale((w_ - n) / 4);
 
-	w_ = espace - setHorizontalScale(n);
-	h_ = setVerticalScale(h_ - n * 2);
+	w_ = espace - game_->setHorizontalScale(n);
+	h_ = game_->setVerticalScale(h_ - n * 2);
 
 	// construccion y asignacion del panel:
 	Panel* p = new Panel(Targets);
@@ -226,13 +242,13 @@ void Interfaz::createHabilities()
 	double n = 20;
 
 	// posicion del panel respecto a la ventana
-	x_ = setHorizontalScale(x_ + n);
-	y_ = setVerticalScale(y_ + n);
+	x_ = game_->setHorizontalScale(x_ + n);
+	y_ = game_->setVerticalScale(y_ + n);
 
-	double espace = setHorizontalScale((w_ - n) / 4);
+	double espace = game_->setHorizontalScale((w_ - n) / 4);
 
-	w_ = espace - setHorizontalScale(n);
-	h_ = setVerticalScale(h_ - n * 2);
+	w_ = espace - game_->setHorizontalScale(n);
+	h_ = game_->setVerticalScale(h_ - n * 2);
 
 	// construccion y asignacion del panel:
 	Panel* p = new Panel(Habilities);
