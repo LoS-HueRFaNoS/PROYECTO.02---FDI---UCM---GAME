@@ -134,6 +134,8 @@ public:
 
 	void changeState(CombatState state) { _state = state; stateChanged = true; }
 
+	CombatState getState() { return _state; }
+
 	Character* getCharacter(int index, characterType type) {
 		return  type ? static_cast<Character*>(_enemies[index]) : static_cast<Character*>(_heroes[index]);
 	};
