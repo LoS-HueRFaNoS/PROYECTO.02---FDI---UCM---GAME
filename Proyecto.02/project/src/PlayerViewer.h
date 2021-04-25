@@ -41,20 +41,30 @@ public:
 			{
 			case Norte:
 				y -= 1;
+				if (y != 0)
+					casSig = lab->getCasillaInfo(x, y - 1);
 				break;
 			case Este:
 				x += 1;
+				if (x != lab->mazeWidth())
+					casSig = lab->getCasillaInfo(x + 1, y);
 				break;
 			case Sur:
 				y += 1;
+				if (y != lab->mazeHeigh())
+					casSig = lab->getCasillaInfo(x, y + 1);
 				break;
 			case Oeste:
 				x -= 1;
+				if (x != 0)
+					casSig = lab->getCasillaInfo(x - 1, y);
 				break;
 			}
-			casSig = lab->getCasillaInfo(x, y);
+			cas = lab->getCasillaInfo(x, y);
+			casillaActual = cas->checkCell();
 			casillaSig = casSig->checkCell();
 		}
+		else casillaSig = cas->checkCell();
 	}
 
 	virtual void draw()

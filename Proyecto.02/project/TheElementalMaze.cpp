@@ -13,8 +13,7 @@ unique_ptr<TheElementalMaze> TheElementalMaze::instance_;
 void TheElementalMaze::init()
 {
 	// 1. Laberinto
-	laberinto_ = mngr_->addEntity();
-	Laberinto* lab = laberinto_->addComponent<Laberinto>(10, 10);
+	Laberinto* lab = this->addComponent<Laberinto>(10, 10);
 	lab->createRandomMaze(Vector2D(0, 0));
 
 	// 2. Player
