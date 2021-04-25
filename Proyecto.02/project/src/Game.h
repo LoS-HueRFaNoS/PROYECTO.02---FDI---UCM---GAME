@@ -45,5 +45,5 @@ private:
 	bool exit_;
 
 	const static int _WINDOW_WIDTH_ = 1200; // 1920px
-	const static int _WINDOW_HEIGHT_ = 900; // 1050px
+	const static int _WINDOW_HEIGHT_ = 900; // 1080px
 };

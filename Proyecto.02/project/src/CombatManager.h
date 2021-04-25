@@ -62,7 +62,7 @@ private:
 
 	void onStateChanged();
 
-	void castHability(Hability* hability);
+	void castToSingleTarget(int input);
 
 	void calculateTurns();
 
@@ -144,7 +144,8 @@ public:
 	size_t getEnemysTam() { return _enemies.size(); }
 
 	void sendKeyEvent(int key);
-	void castToSingleTarget(int input);
+
+	void castHability(Hability* hability);
 
 	// ----------------------------------------------------
 };
