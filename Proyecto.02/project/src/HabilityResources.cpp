@@ -111,6 +111,7 @@ void Tsunami::throwHability(Character* obj, bool critical) const
 	damage = obj->savingThrow(10 + _caster->getMod(_mod), DEX) ? damage / 2 : damage;
 
 	obj->recieveDamage(damage, _damageType);
+	obj->addCondition<BuffStats>(-3, STR, _name, _description);
 }
 
 void DivineProtection::throwHability(Character* obj, bool critical) const
@@ -118,7 +119,7 @@ void DivineProtection::throwHability(Character* obj, bool critical) const
 	mainStat buffedStat = CON;
 	int buff = throwDice(1 + critical, 8, true);
 
-	obj->recieveBuff(buff, CON);
+	obj->addCondition<BuffStats>(buff, CON, _name, _description);
 }
 
 void Flash::throwHability(Character* obj, bool critical) const
@@ -137,7 +138,7 @@ void Freeze::throwHability(Character* obj, bool critical) const //hay que mirar 
 	damage = obj->savingThrow(10 + _caster->getMod(_mod), DEX) ? damage / 2 : damage;
 
 	obj->recieveDamage(damage, _damageType);
-	obj->recieveBuff(-3, DEX);
+	obj->addCondition<BuffStats>(-3, DEX, _name, _description);
 }
 
 void Whirlpool::throwHability(Character* obj, bool critical) const //hay que mirar que hacer con el debuff y ajustar el ataque
@@ -148,7 +149,7 @@ void Whirlpool::throwHability(Character* obj, bool critical) const //hay que mir
 
 	obj->recieveDamage(damage, _damageType);
 
-	//obj->recieveBuff(-3, STR);						// ESTO COMO UN ESTADO
+    obj->addCondition<BuffStats>(-3, STR, _name, _description);						// ESTO COMO UN ESTADO
 }
 
 void LightBeam::throwHability(Character* obj, bool critical) const //hay que mirar que hacer con el debuff y ajustar el ataque
@@ -159,7 +160,7 @@ void LightBeam::throwHability(Character* obj, bool critical) const //hay que mir
 
 	obj->recieveDamage(damage, _damageType);
 
-	//obj->recieveBuff(-3, STR);						// ESTO COMO UN ESTADO
+	obj->addCondition<BuffStats>(-3, DEX, _name, _description);						// ESTO COMO UN ESTADO
 }
 
 void DarkVortex::throwHability(Character* obj, bool critical) const //hay que mirar que hacer con el debuff y ajustar el ataque
@@ -170,37 +171,29 @@ void DarkVortex::throwHability(Character* obj, bool critical) const //hay que mi
 
 	obj->recieveDamage(damage, _damageType);
 
-	//obj->recieveBuff(-3, STR);						// ESTO COMO UN ESTADO
+	obj->addCondition<BuffStats>(-3, DEX, _name, _description);						// ESTO COMO UN ESTADO
 }
 
 
 void Lighten::throwHability(Character* obj, bool critical) const
 {
-	mainStat buffedStat = DEX;
-
-	obj->recieveBuff(2, buffedStat);
+	obj->addCondition<BuffStats>(2, DEX, _name, _description);
 
 }
 
 void Strengthen::throwHability(Character* obj, bool critical) const
 {
-	mainStat buffedStat = STR;
-
-	obj->recieveBuff(2, buffedStat);
+	obj->addCondition<BuffStats>(2, STR, _name, _description);
 }
 
 void Toughen::throwHability(Character* obj, bool critical) const
 {
-	mainStat buffedStat = CON;
-
-	obj->recieveBuff(2, buffedStat);
+	obj->addCondition<BuffStats>(2, CON, _name, _description);
 }
 
 void Meditate::throwHability(Character* obj, bool critical) const
 {
-	mainStat buffedStat = INT;
-
-	obj->recieveBuff(2, buffedStat);
+	obj->addCondition<BuffStats>(2, INT, _name, _description);
 }
 
 void BloodThirst::throwHability(Character* obj, bool critical) const //hay que mirar que hacer con el debuff y ajustar el ataque
@@ -278,7 +271,7 @@ void SmokeArrow::throwHability(Character* obj, bool critical) const //hay que te
 	buff = obj->savingThrow(10 + _caster->getMod(_mod), DEX) ? buff / 2 : buff;
 
 	//obj->recieveDamage(damage, _damageType);
-	obj->recieveBuff(-buff, DEX);
+	obj->addCondition<BuffStats>(buff, DEX, _name, _description);
 }
 
 void Morph::throwHability(Character* obj, bool critical) const //hay que testear si es adecuado el defuff 
@@ -335,6 +328,21 @@ void TrickShot::throwHability(Character* obj, bool critical) const //cambiarlo s
 
 	obj->recieveDamage(damage * 3, _damageType);
 
+}
+
+void GladiatorBallad::throwHability(Character* obj, bool critical) const
+{
+	int strUp = 3;
+
+
+	obj->addCondition<BuffStats>(strUp, STR, _name, _description);
+}
+
+void WindSong::throwHability(Character* obj, bool critical) const
+{
+	int velUp = 3;
+
+	obj->addCondition<BuffStats>(velUp, STR, _name, _description);
 }
 
 #pragma endregion
@@ -399,36 +407,20 @@ bool EjemploRevivirMuerte::onDeath()
 	return false;
 }
 
-void GladiatorBallad::init()
+void BuffStats::init()
 {
+
 	cout << _objective->name() << "aumenta la fuerza 3 puntos durante 3 turnos a todos" << endl;
-	_objective->recieveBuff(3, STR);
+	_objective->recieveBuff(value, statMod);
 }
 
-bool GladiatorBallad::onTurnStarted()
+bool BuffStats::onTurnStarted()
 {
 	cout << "Buffo activo: ";
 
 	if (!--_counter) {
 		cout << "Se acabó el bufo" << endl;
-		return false;
-	}
-	cout << "TURNOS RESTANTES: " << _counter << endl;
-	return true;
-}
-
-void WindSong::init()
-{
-	cout << _objective->name() << "aumenta la fuerza 3 puntos durante 3 turnos a todos" << endl;
-	_objective->recieveBuff(3, DEX);
-}
-
-bool WindSong::onTurnStarted()
-{
-	cout << "Buffo activo: ";
-
-	if (!--_counter) {
-		cout << "Se acabó el bufo" << endl;
+		_objective->recieveBuff(-value, statMod);
 		return false;
 	}
 	cout << "TURNOS RESTANTES: " << _counter << endl;

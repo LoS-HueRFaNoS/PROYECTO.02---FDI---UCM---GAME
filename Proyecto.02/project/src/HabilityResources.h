@@ -45,6 +45,8 @@ enum Hability_Id {
 	RAINOFDAGGERS,
 	ROCKPROJECTILES,
 	TRICKSHOT,
+	GLADIATORBALLAD,
+	WINDSONG,
 	_lasHabilityId_
 };
 
@@ -788,6 +790,46 @@ public:
 	virtual void throwHability(Character* obj, bool critical)const;
 };
 
+class GladiatorBallad : public Hability {
+public:
+	GladiatorBallad(Character* caster) :Hability(caster) {
+
+		level = 0;
+		_mana = 0;
+		_name = "Gladiator's Ballad";
+		_description = "Aumenta la fuerza del equipo durante 3 turnos";
+
+		_damageType = LIGHT;
+		_habilityType = BUFF;
+		_mod = INT;
+		_obj = ALLYTEAM;
+	}
+
+	static Hability_Id id() { return GLADIATORBALLAD; }
+
+	virtual void throwHability(Character* obj, bool critical)const;
+};
+
+class WindSong : public Hability {
+public:
+	WindSong(Character* caster) :Hability(caster) {
+
+		level = 0;
+		_mana = 0;
+		_name = "Gladiator's Ballad";
+		_description = "Aumenta la fuerza del equipo durante 3 turnos";
+
+		_damageType = LIGHT;
+		_habilityType = BUFF;
+		_mod = INT;
+		_obj = ALLYTEAM;
+	}
+
+	static Hability_Id id() { return WINDSONG; }
+
+	virtual void throwHability(Character* obj, bool critical)const;
+};
+
 #pragma endregion
 
 #pragma region CONDITION
@@ -797,8 +839,7 @@ enum Conditions_Id {
 	EJEMPLOCURACIONFINALTURNO,
 	EJEMPLOREDUCCIONATAQUE,
 	EJEMPLOREVIVIRMUERTE,
-	GLADIATORBALLAD,
-	WINDSONG,
+	BUFFSTATS,
 	_lastConditionId_
 };
 
@@ -933,14 +974,16 @@ public:
 
 //obj->addCondition<BuffoX>(mainStat x, string name, string description);
 
-class GladiatorBallad : public Condition {
+
+class BuffStats : public Condition {
 public:
 
-	GladiatorBallad(Character* objective) : Condition(objective) {
-		_name = "Ejemplo de daño cada turno";
-		_description = "Revivira con 5 de vida al morir";
+	BuffStats(Character* objective, int val, mainStat stat, std::string name, std::string description) :statMod(stat), value(val),Condition(objective) {
+		_name = name;
+		_description = description;
 		_type = ON_TURN_STARTED;
-		_id = GLADIATORBALLAD;
+		_id = BUFFSTATS;
+
 		resetTurns();
 	}
 
@@ -948,27 +991,11 @@ public:
 
 	virtual bool onTurnStarted();
 
-	static Conditions_Id id() { return GLADIATORBALLAD; }
-};
+	static Conditions_Id id() { return BUFFSTATS; }
 
-class WindSong : public Condition { //por ahora aumenta la DEX a todo el equipo, pero hay que cambiar a un solo objetivo 
-													//y que este sea el siguiente en atacar
-public:
-
-	WindSong(Character* objective) : Condition(objective) {
-		_name = "Wind Song";
-		_description = "Aumenta la destreza de todo el equipo 3 turnos";
-		_type = ON_TURN_STARTED;
-		_id = GLADIATORBALLAD;
-		//_objective = ALLYTEAM;
-		resetTurns();
-	}
-
-	virtual void init();
-
-	virtual bool onTurnStarted();
-
-	static Conditions_Id id() { return WINDSONG; }
+private:
+	int value;
+	mainStat statMod;
 };
 
 
