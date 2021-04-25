@@ -12,3 +12,26 @@ void Button::initComponents(Vector2D pos, uint ancho, uint alto, Resources::Text
 	addComponent<Image>(game_->getTextureMngr()->getTexture(imagen));
 	addComponent<ButtonCtrl>(this);
 }
+
+// ----------------------------------------------------
+
+#pragma region ButtonPanelResources
+
+void ButtonPanelCte::click()
+{
+	pan_->toggleButtons();
+}
+
+#pragma endregion
+
+#pragma region ButtonCombateResources
+
+void ButtonHability::init(Vector2D pos, uint ancho, uint alto, Resources::TextureId imagen, HbltType attack, idPanel panId, bool active, Panel* p_)
+{
+	hability_ = attack;
+	activated = active;
+	pan_ = panId;
+	p_->toggleButtons();
+	Button::init(pos, ancho, alto, imagen);
+}
+#pragma endregion

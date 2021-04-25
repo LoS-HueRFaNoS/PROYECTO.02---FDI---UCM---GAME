@@ -10,10 +10,10 @@ vector<Resources::ImageInfo> Resources::images_{
 	{posMiniMap, "resources/images/pasillos/posJugador.png"},			//
 	{camino_izq, "resources/images/pasillos/camino_izq.png"},			//
 	{camino_der, "resources/images/pasillos/camino_der.png"},			//
-	{camino_del, "resources/images/pasillos/camino_del.png"},			//
+	{camino_fr, "resources/images/pasillos/camino_del.png"},			//
 	{muro_izq, "resources/images/pasillos/muro_izq.png"},				//
 	{muro_der, "resources/images/pasillos/muro_der.png"},				//
-	{muro_del, "resources/images/pasillos/muro_del.png"},				//
+	{muro_fr, "resources/images/pasillos/muro_del.png"},				//
 	{no_visitado, "resources/images/pasillos/pasillo_no_visitado.png"}, //
 	{no_entrado, "resources/images/pasillos/pasillo_no_entrado.png"},	//
 	{visitado, "resources/images/pasillos/pasillo_visitado.png"},		//
@@ -35,6 +35,7 @@ vector<Resources::ImageInfo> Resources::images_{
 	{GranArchimago, "resources/sprites/iconos personajes/heroe-mago.png"},
 
 	{Mouse, "resources/images/interfaz/cursor+sombras.png"},
+	{Fondo, "resources/sprites/fondos y marcos/Fondo_Interfaz_02.png"},
 	{Avanzar, "resources/sprites/iconos movimiento/movimientoAvanzar.png"},
 	{RotarD, "resources/sprites/iconos movimiento/movimientoRotarDerecha.png"},
 	{RotarI, "resources/sprites/iconos movimiento/movimientoRotarIzquierda.png"},
@@ -51,11 +52,14 @@ vector<Resources::ImageInfo> Resources::images_{
 	{AtaqueMagico, "resources/sprites/iconos combate/magic.png"},
 	{Defensa, "resources/sprites/iconos combate/defensa.png"},
 	{Huida, "resources/sprites/iconos combate/huir.png"},
+	{Marco, "resources/sprites/iconos combate/marco.png"},
 
 	//Inventario
 	{Slot, "resources/sprites/iconos inventario/inventorySlot.png"},
-	{ EmptySword, "resources/sprites/iconos inventario/inventorySword.png" },
-	{ EmptyArmor, "resources/sprites/iconos inventario/inventoryArmor.png" },
+	{EmptySword, "resources/sprites/iconos inventario/inventorySword.png"},
+	{EmptyArmor, "resources/sprites/iconos inventario/inventoryArmor.png"},
+	{WeaponSlot, "resources/sprites/iconos inventario/weapon_slot.png"},
+	{ArmorSlot, "resources/sprites/iconos inventario/armor_slot.png"},
 
 	// Armas clasicas �?
 	{Desarmado, "resources/sprites/iconos armas/joker.png"}, ///TODO
@@ -96,6 +100,8 @@ vector<Resources::ImageInfo> Resources::images_{
 	{CotaMalla, "resources/sprites/iconos armaduras/cota_mallas.png"},
 	{Bandas, "resources/sprites/iconos armaduras/joker.png"},
 	{Placas, "resources/sprites/iconos armaduras/joker.png"}};
+
+//
 
 vector<Resources::TextMsgInfo> Resources::messages_{
 	//

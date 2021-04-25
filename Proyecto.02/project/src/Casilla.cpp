@@ -1,5 +1,5 @@
 #include "Casilla.h"
-Casilla::Casilla(SDLGame* game) :esSalida(false)
+Casilla::Casilla(SDLGame* game):esSalida(false)
 {
 	game_ = game;
 	direcciones.resize(4);
@@ -10,16 +10,16 @@ Casilla::Casilla(SDLGame* game) :esSalida(false)
 	visib = noVisitado;
 }
 
-Casilla::Casilla(SDLGame* game, bool _N, bool _E, bool _S, bool _O) :esSalida(false)
+Casilla::Casilla(SDLGame* game, bool _N, bool _E, bool _S, bool _O ) :esSalida(false)
 {
-	game_ = game;
+	game_= game;
 	direcciones.resize(4);
 	direcciones[Norte] = _N;
 	direcciones[Este] = _E;
 	direcciones[Sur] = _S;
 	direcciones[Oeste] = _O;
 	visib = noVisitado;
-
+	
 }
 
 Casilla::~Casilla()
@@ -31,8 +31,7 @@ vector<bool> Casilla::checkCell()
 {
 	return direcciones;
 }
-
-void Casilla::casillaRender(int x, int y)
+void Casilla::casillaRender(int x, int y )
 {
 	SDL_Rect dest = { x, y, 28, 20 };
 	Texture* texturaSuelo;
@@ -76,7 +75,7 @@ void Casilla::casillaRender(int x, int y)
 				}
 				if (texturaPared != nullptr)
 					texturaPared->render(dest);
-
+					
 			}
 
 		}
@@ -86,7 +85,11 @@ void Casilla::casillaRender(int x, int y)
 	if (esPosActual)
 	{
 		texturaPosActual = manager->getTexture(Resources::posMiniMap);
-		texturaPosActual->render(dest, angulo);
+		texturaPosActual->render(dest,angulo);
 
 	}
+	
+
+	
+
 }

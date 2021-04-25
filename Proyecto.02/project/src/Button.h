@@ -27,6 +27,23 @@ public:
 
 // ----------------------------------------------------
 
+class ButtonSlott : public Button
+{
+	// private: Item* i_;
+public:
+	ButtonSlott(SDLGame* game, EntityManager* mngr) : Button(game, mngr) {};
+	~ButtonSlott() {};
+	virtual void init(Vector2D pos, uint ancho, uint alto, Resources::TextureId imagen) {
+		Button::init(pos, ancho, alto, imagen);
+	};
+
+	virtual void click() {
+		// if(i_ != nulptr) i_->use();
+	};
+};
+
+// ----------------------------------------------------
+
 enum class MovType { rotR, rotL, forward, touch };
 
 class ButtonMovimiento : public Button {
@@ -73,7 +90,7 @@ public:
 
 // ----------------------------------------------------
 
-enum class AtkType { normal, magic, defend, escape };
+enum class AtkType { normal, magic };
 
 class ButtonAttack : public Button {
 private:
@@ -94,9 +111,52 @@ public:
 	}
 };
 
+enum class DfndType { defend, escape };
+
+class ButtonDefend : public Button {
+private:
+	DfndType defendType_;
+public:
+	ButtonDefend(SDLGame* game, EntityManager* mngr) : Button(game, mngr), defendType_(DfndType::defend) {};
+
+	~ButtonDefend() {};
+
+	virtual void init(Vector2D pos, uint ancho, uint alto, Resources::TextureId imagen, DfndType attack) {
+		defendType_ = attack;
+		Button::init(pos, ancho, alto, imagen);
+	};
+
+	virtual void click()
+	{
+		callbacks::defendType((int)defendType_);
+	}
+};
+
+enum class target { target01, target02, target03, target04, target05 };
+
+class ButtonTarget : public Button {
+private:
+	target target_;
+public:
+	ButtonTarget(SDLGame* game, EntityManager* mngr) : Button(game, mngr), target_(target::target01) {};
+
+	~ButtonTarget() {};
+
+	virtual void init(Vector2D pos, uint ancho, uint alto, Resources::TextureId imagen, target attack) {
+		target_ = attack;
+		Button::init(pos, ancho, alto, imagen);
+	};
+
+	virtual void click()
+	{
+		callbacks::addTarget((int)target_);
+	}
+};
+
+
+
 // ----------------------------------------------------
 
-//enum class Inf { inventory, potionHealth, potionMana, chat, config };
 enum class PtnType { health, mana, resurrection };
 
 class ButtonPotion : public Button {
@@ -120,6 +180,84 @@ public:
 
 // ----------------------------------------------------
 
+#pragma region ButtonPanelResources
+#include "callbacks.h"
+#include "ecs_interfaz.h"
+class Panel;
 
+using namespace interfaz;
+
+// activa / desactiva los botones de un panel concreto
+class ButtonPanelCte : public Button {
+private:
+	Panel* pan_;
+public:
+	ButtonPanelCte(SDLGame* game, EntityManager* mngr) : Button(game, mngr), pan_(nullptr) {};
+
+	~ButtonPanelCte() {};
+
+	virtual void init(Vector2D pos, uint ancho, uint alto, Resources::TextureId imagen, Panel* p) {
+		pan_ = p;
+		Button::init(pos, ancho, alto, imagen);
+	};
+
+	virtual void click();
+};
+
+// crear / destruye en tiempo de ejecución los botones de un panel concreto
+class ButtonPanel : public Button {
+private:
+	bool activated;
+	idPanel pan_;
+public:
+	ButtonPanel(SDLGame* game, EntityManager* mngr) : Button(game, mngr), activated(true), pan_(Fight) {};
+
+	~ButtonPanel() {};
+
+	virtual void init(Vector2D pos, uint ancho, uint alto, Resources::TextureId imagen, idPanel p, bool active) {
+		activated = active;
+		pan_ = p;
+		Button::init(pos, ancho, alto, imagen);
+	};
+
+	virtual void click()
+	{
+		callbacks::createPanel(activated, pan_);
+		activated = !activated;
+	}
+};
+
+#pragma endregion
+
+// ----------------------------------------------------
+
+#pragma region ButtonCombateResources
+#include "callbacks.h"
+#include "ecs_interfaz.h"
+#include "Interfaz.h"
+
+enum class HbltType { hability1, hability2, hability3, hability4 };
+
+class ButtonHability : public Button {
+private:
+	HbltType hability_;
+	bool activated;
+	idPanel pan_;
+public:
+	ButtonHability(SDLGame* game, EntityManager* mngr) : Button(game, mngr), hability_(HbltType::hability1) {};
+
+	~ButtonHability() {};
+
+	virtual void init(Vector2D pos, uint ancho, uint alto, Resources::TextureId imagen, HbltType attack, idPanel panId, bool active, Panel* p_);
+
+	virtual void click()
+	{
+		callbacks::createPanel(activated, pan_);
+		activated = !activated;
+		callbacks::set_hability((int)hability_);
+	}
+};
+
+#pragma endregion
 
 // ----------------------------------------------------

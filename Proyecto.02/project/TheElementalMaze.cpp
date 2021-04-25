@@ -6,9 +6,16 @@
 #include "src/PlayerMotion.h"
 #include "src/PlayerViewer.h"
 #include "src/ItemManager.h"
+#include "src/Image.h"
 
 
-unique_ptr<TheElementalMaze> TheElementalMaze::instance_;
+TheElementalMaze* TheElementalMaze::instance_ = nullptr;
+
+TheElementalMaze::~TheElementalMaze()
+{
+	delete itemManager_;
+	itemManager_ = nullptr;
+}
 
 void TheElementalMaze::init()
 {
@@ -23,11 +30,7 @@ void TheElementalMaze::init()
 	player_->addComponent<PlayerMotion>(SDLK_UP, SDLK_LEFT, SDLK_RIGHT, lab);
 	player_->addComponent<PlayerViewer>(lab);
 
-	// 3. Interfaz
-	uiManager_ = addComponent<Interfaz>(iManager_);
-
-	// 4. Personajes
-
+	// 3. Personajes
 	itemManager_ = new ItemManager();
 
 	combatManager_ = addComponent<CombatManager>(); // al seguir por consola, bloquea el juego y faltan cosas que me he dejado
@@ -67,7 +70,9 @@ void TheElementalMaze::init()
 
 	combatManager_->startCombat();
 
-
 	cout << "Characters Loaded" << endl;
+
+	// 4. Interfaz
+	uiManager_ = addComponent<Interfaz>(iManager_);
 
 }

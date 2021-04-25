@@ -53,6 +53,10 @@ void Game::initGame()
 
 	entityManager_ = new EntityManager(game_);
 
+	Entity* fondo = entityManager_->addEntity();
+	fondo->addComponent<Transform>(Vector2D(), Vector2D(), game_->getWindowWidth(), game_->getWindowHeight(), 0);
+	fondo->addComponent<Image>(game_->getTextureMngr()->getTexture(Resources::Fondo));
+
 	characterManager_ = new CharacterManager(game_);
 
 	interfazManager_ = new InterfazManager(game_);
@@ -64,6 +68,7 @@ void Game::initGame()
 	c_ = createCursor(Vector2D(200, 200), 50, 50, Resources::Mouse);
 
 	int endTime = 0;
+	delete tex_;
 }
 
 void Game::closeGame()
@@ -71,7 +76,6 @@ void Game::closeGame()
 	delete entityManager_;
 	delete characterManager_;
 	delete interfazManager_;
-	delete game_;
 }
 
 void Game::start()
@@ -102,36 +106,34 @@ void Game::handleInput()
 
 	InputHandler *ih = InputHandler::instance();
 
-	ih->update();
-
-	if (ih->keyDownEvent())
-	{
-		if (ih->isKeyDown(SDLK_ESCAPE))
-		{
-			exit_ = true;
-		}
-
-		if (ih->isKeyDown(SDLK_f))
-		{
-			int flags = SDL_GetWindowFlags(game_->getWindow());
-			if (flags & SDL_WINDOW_FULLSCREEN)
-			{
-				SDL_SetWindowFullscreen(game_->getWindow(), 0);
+	if (ih->update()) {
+		if (ih->keyDownEvent()) {
+			if (ih->isKeyDown(SDLK_ESCAPE)) {
+				exit_ = true;
 			}
-			else
-			{
-				SDL_SetWindowFullscreen(game_->getWindow(),
-										SDL_WINDOW_FULLSCREEN);
+
+			if (ih->isKeyDown(SDLK_f)) {
+				int flags = SDL_GetWindowFlags(game_->getWindow());
+				if (flags & SDL_WINDOW_FULLSCREEN) {
+					SDL_SetWindowFullscreen(game_->getWindow(), 0);
+				}
+				else {
+					SDL_SetWindowFullscreen(game_->getWindow(),
+						SDL_WINDOW_FULLSCREEN);
+				}
 			}
 		}
 	}
+	else
+		exit_ = true;
+
 }
 
 void Game::update()
 {
-	entityManager_->update();
-	characterManager_->update();
-	interfazManager_->update();
+	interfazManager_->update(); // interfaz
+	entityManager_->update(); // laberinto
+	characterManager_->update(); // characters
 }
 
 void Game::render()
@@ -140,8 +142,8 @@ void Game::render()
 	SDL_RenderClear(game_->getRenderer());
 
 	entityManager_->draw();
-	characterManager_->draw();
 	interfazManager_->draw();
+	characterManager_->draw(); //
 	c_->draw();
 
 	SDL_RenderPresent(game_->getRenderer());

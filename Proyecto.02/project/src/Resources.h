@@ -14,10 +14,10 @@ public:
 		posMiniMap,
 		camino_izq,
 		camino_der,
-		camino_del,
+		camino_fr,
 		muro_izq,
 		muro_der,
-		muro_del,
+		muro_fr,
 		no_visitado,
 		no_entrado,
 		visitado,
@@ -48,6 +48,7 @@ public:
 
 		// UI
 		Mouse,
+		Fondo,
 
 		// movement
 		Avanzar,
@@ -68,11 +69,14 @@ public:
 		AtaqueMagico, 
 		Defensa,
 		Huida,
+		Marco,
 
 		//Inventario
 		Slot,
 		EmptySword,
 		EmptyArmor,
+		WeaponSlot,
+		ArmorSlot,
 
 		//Objetos
 		Desarmado,

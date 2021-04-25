@@ -99,6 +99,7 @@
     <ClInclude Include="src\MouseCtrl.h" />
     <ClInclude Include="src\ObjectPool.h" />
     <ClInclude Include="src\Panel.h" />
+    <ClInclude Include="src\PlayerData.h" />
     <ClInclude Include="src\PlayerMotion.h" />
     <ClInclude Include="src\PlayerViewer.h" />
     <ClInclude Include="src\RandomNumberGenerator.h" />

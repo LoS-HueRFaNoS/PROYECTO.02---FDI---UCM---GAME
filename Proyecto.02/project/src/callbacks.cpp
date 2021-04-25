@@ -33,7 +33,7 @@ void callbacks::pruebaGame3(Interfaz* app) {
 void callbacks::heroType(int numberHeroe) {
 	CombatManager* c = GETCMP2(TheElementalMaze::instance(), CombatManager);
 	string name = c->getCharacter(numberHeroe, HERO)->name();
-	std::cout << "heroe 01: " << name << std::endl;
+	std::cout << "heroe " << numberHeroe << ": " << name << std::endl;
 }
 
 #pragma endregion
@@ -76,8 +76,6 @@ void callbacks::movCommand(int movType)
 
 #pragma region PanelInformation
 
-
-
 void callbacks::inventario(Interfaz* app)
 {
 	//app->createPanel(Inventory);
@@ -112,11 +110,27 @@ void callbacks::potionType(int potionType_)
 
 // ----------------------------------------------------
 
+#pragma region PanelResources
+#include "../TheElementalMaze.h"
+#include "Interfaz.h"
+
+void callbacks::createPanel(bool active, int panelType)
+{
+	Interfaz* i_ = GETCMP2(TheElementalMaze::instance(), Interfaz);
+
+	if (!active) i_->createPanel((idPanel)panelType);
+	else if (active) i_->removePanel((idPanel)panelType);
+}
+
+#pragma endregion
+
+// ----------------------------------------------------
+
 #pragma region PanelChatMapa
 
 void callbacks::chat(Interfaz* app)
 {
-	std::cout << "has usado el bot�n de chat" << std::endl;
+	std::cout << "has usado el boton de chat" << std::endl;
 }
 
 #pragma endregion
@@ -129,6 +143,7 @@ void callbacks::chat(Interfaz* app)
 
 void callbacks::attackType(int attackType_)
 {
+	CombatManager* c = GETCMP2(TheElementalMaze::instance(), CombatManager);
 	switch (attackType_)
 	{
 	case 0:
@@ -137,15 +152,41 @@ void callbacks::attackType(int attackType_)
 	case 1:
 		std::cout << "ataque magico" << std::endl;
 		break;
-	case 2:
+	default:
+		break;
+	}
+}
+
+void callbacks::defendType(int attackType_)
+{
+	CombatManager* c = GETCMP2(TheElementalMaze::instance(), CombatManager);
+	switch (attackType_)
+	{
+	case 0:
+		//c->defend();
 		std::cout << "te has defendido" << std::endl;
 		break;
-	case 3:
+	case 1:
+		//c->escape();
 		std::cout << "escapaste" << std::endl;
 		break;
 	default:
 		break;
 	}
+}
+
+void callbacks::addTarget(int objetive_)
+{
+	CombatManager* c = GETCMP2(TheElementalMaze::instance(), CombatManager);
+	//c->castToSingleTarget(objetive_);
+	std::cout << "has fijado tu objetivo" << std::endl;
+}
+
+void callbacks::set_hability(int hability_)
+{
+	CombatManager* c = GETCMP2(TheElementalMaze::instance(), CombatManager); // falta paso intermedio para guardar la habilidad y seleccionar enemigos
+	//c->sendKeyEvent(hability_);
+	std::cout << "has seleccionado una habilidad" << std::endl;
 }
 
 #pragma endregion

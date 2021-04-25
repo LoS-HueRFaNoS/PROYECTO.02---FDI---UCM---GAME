@@ -62,7 +62,6 @@ private:
 
 	void onStateChanged();
 
-	void sendKeyEvent(int key);
 
 	void calculateTurns();
 
@@ -78,7 +77,7 @@ private:
 
 	void castToTeam();
 
-	void castToSingleTarget(int input);
+	/*void castToSingleTarget(int input);*/
 
 #pragma region CombatePorConsola
 
@@ -112,15 +111,23 @@ public:
 
 	void startCombat();
 
-	void castHability(Hability* hability);
 
 	void changeState(CombatState state) { _state = state; stateChanged = true; }
+
+	// -------- METODOS NECESARIOS PARA INTERFAZ ---------
 
 	Character* getCharacter(int index, characterType type) {
 		return  type ? static_cast<Character*>(_enemies[index]) : static_cast<Character*>(_heroes[index]);
 	};
 
+	size_t getHerosTam() { return _heroes.size(); }
+	size_t getEnemysTam() { return _enemies.size(); }
 
+	void sendKeyEvent(int key);
+	void castToSingleTarget(int input);
+	void castHability(Hability* hability);
+
+	// ----------------------------------------------------
 };
 
 

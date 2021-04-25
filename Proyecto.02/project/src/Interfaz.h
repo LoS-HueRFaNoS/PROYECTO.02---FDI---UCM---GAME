@@ -3,7 +3,6 @@
 #include <list>
 #include "Component.h"
 #include "Panel.h"
-#include "Cursor.h"
 
 class InterfazManager;
 
@@ -15,7 +14,6 @@ private:
 
 	InterfazManager* iManager;
 	vector<Panel*> allPanels;
-	vector<Entity*> entitiesV;
 
 	void createFight();
 	void createMovement();
@@ -28,21 +26,23 @@ private:
 	void createTurns() {}; //
 	void createSettings() {}; //
 	void createChat() {}; //
+	void createTargets(); //
+	void createHabilities(); //
 
 public:
 	Interfaz(InterfazManager* i) :
-		Component(ecs::InterfazManager),
+		Component(ecs::Interfaz),
 		allPanels(vector<Panel*>()),
 		iManager(i)
 	{};
 	virtual ~Interfaz();
 
 	void createPanel(idPanel panelID);
+	void removePanel(idPanel panelID);
 	void destroyPanel(idPanel panelID);
 
-	void togglePanel(idPanel panID) {
-		allPanels[panID]->toggleButtons();
-	}
+	void togglePanel(Panel* pan);
+	void togglePanel(idPanel panID) { togglePanel(allPanels[panID]); }
 
 	void toggleCombat_Movement();
 
@@ -51,4 +51,10 @@ public:
 	virtual void draw() override {};
 
 	Entity* getEntity();
+private:
+	Resources::TextureId getHeroTxt(uint number);
+	void initialize();
+
+	double setVerticalScale(double num) { return num * game_->getWindowHeight() / 1050; };
+	double setHorizontalScale(double num) { return num * game_->getWindowWidth() / 1920; };
 };

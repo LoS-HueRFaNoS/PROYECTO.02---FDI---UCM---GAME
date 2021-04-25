@@ -8,8 +8,8 @@ using namespace std;
 void start() {
 	Game* g = new Game();
 	g->start();
+
 	delete g;
-	g = nullptr;
 }
 
 int main(int ac, char **av) {

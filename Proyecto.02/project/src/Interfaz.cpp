@@ -20,53 +20,102 @@ Interfaz::~Interfaz()
 
 void Interfaz::createFight()
 {
+	// posici�n en pixeles del 'fondo'
+	double x_ = 70;
+	double y_ = 790;
+	// tama�o en pixeles del 'fondo'
+	double w_ = 710;
+	double h_ = 190;
+	// tama�o de los margenes
+	double n = 20;
+
+	// posicion del panel respecto a la ventana
+	x_ = setHorizontalScale(x_ + n);
+	y_ = setVerticalScale(y_ + n);
+
+	double espace = setHorizontalScale((w_ - n) / 4);
+
+	w_ = espace - setHorizontalScale(n);
+	h_ = setVerticalScale(h_ - n * 2);
+
+	// construccion y asignacion del panel:
 	Panel* p = new Panel(Fight);
-	allPanels.push_back(p);
-	// BOTONES:
-	p->addButton(iManager->addButton<ButtonAttack>(Vector2D(150, 680), 85, 96, src::AtaqueNormal, AtkType::normal));
-	p->addButton(iManager->addButton<ButtonAttack>(Vector2D(250, 700), 82, 72, src::AtaqueMagico, AtkType::magic));
-	p->addButton(iManager->addButton<ButtonAttack>(Vector2D(50, 700), 82, 72, src::Defensa, AtkType::defend));
-	p->addButton(iManager->addButton<ButtonAttack>(Vector2D(350, 710), 100, 55, src::Huida, AtkType::escape));
-} // normal, magic, defend, escape
+	allPanels[Fight] = p;
+
+	// BOTONES: normal, magic, defend, escape
+	p->addButton(iManager->addButton<ButtonPanel>(Vector2D(x_ + 0, y_), w_, h_, src::AtaqueNormal, Targets, false));
+	p->addButton(iManager->addButton<ButtonPanel>(Vector2D(x_ + espace, y_), w_, h_, src::AtaqueMagico, Habilities, false));
+	p->addButton(iManager->addButton<ButtonDefend>(Vector2D(x_ + espace * 2, y_), w_, h_, src::Defensa, DfndType::defend));
+	p->addButton(iManager->addButton<ButtonDefend>(Vector2D(x_ + espace * 3, y_), w_, h_, src::Huida, DfndType::escape));
+}
 
 void Interfaz::createMovement()
 {
-	// posicion del panel respecto a la ventana
-	SDLGame* game_ = entity_->getSDLGame();
-	double width = game_->getWindowWidth();
-	width = width * 0.03;
-	double height = game_->getWindowHeight();
-	height = height * 0.875;
-	Vector2D pPos = Vector2D(width, height);
-	// construccion del panel
-	Panel* p = new Panel(Movement);
-	allPanels.push_back(p);
-	// BOTONES:
-	p->addButton(iManager->addButton<ButtonMovimiento>(Vector2D(pPos.getX() + 100, pPos.getY()), 85, 96, src::RotarD, MovType::rotR));
-	p->addButton(iManager->addButton<ButtonMovimiento>(Vector2D(pPos.getX() + 200, pPos.getY()), 82, 72, src::RotarI, MovType::rotL));
-	p->addButton(iManager->addButton<ButtonMovimiento>(Vector2D(pPos.getX(), pPos.getY()), 82, 72, src::Avanzar, MovType::forward));
-	p->addButton(iManager->addButton<ButtonMovimiento>(Vector2D(pPos.getX() + 300, pPos.getY()), 100, 55, src::Interactuar, MovType::touch));
-} // rotR, rotL, forward, touch
+	// posici�n en pixeles del 'fondo'
+	double x_ = 70;
+	double y_ = 790;
+	// tama�o en pixeles del 'fondo'
+	double w_ = 710;
+	double h_ = 190;
+	// tama�o de los margenes
+	double n = 20;
 
+	// posicion del panel respecto a la ventana
+	x_ = setHorizontalScale(x_ + n);
+	y_ = setVerticalScale(y_ + n);
+
+	/* || 20px - button - 20px - button - 20px - button - 20px - button - 20px - button - 20px || */
+	double espace = setHorizontalScale((w_ - n) / 4);
+
+	w_ = espace - setHorizontalScale(n);
+	h_ = setVerticalScale(h_ - n * 2);
+
+	// construccion y asignacion del panel:
+	Panel* p = new Panel(Movement);
+	allPanels[Movement] = p;
+
+	// BOTONES: rotR, rotL, forward, touch
+	p->addButton(iManager->addButton<ButtonMovimiento>(Vector2D(x_ + 0, y_), w_, h_, src::RotarI, MovType::rotL));
+	p->addButton(iManager->addButton<ButtonMovimiento>(Vector2D(x_ + espace, y_), w_, h_, src::Avanzar, MovType::forward));
+	p->addButton(iManager->addButton<ButtonMovimiento>(Vector2D(x_ + espace * 2, y_), w_, h_, src::RotarD, MovType::rotR));
+	p->addButton(iManager->addButton<ButtonMovimiento>(Vector2D(x_ + espace * 3, y_), w_, h_, src::Interactuar, MovType::touch));
+}
+
+#include "ecs.h"
+#include "../TheElementalMaze.h"
+#include "CombatManager.h"
 void Interfaz::createHeroes()
 {
+	CombatManager* c = GETCMP2(TheElementalMaze::instance(), CombatManager);
+	uint nHeros = c->getHerosTam();
+
+	// posici�n en pixeles del 'fondo'
+	double x_ = 1510;
+	double y_ = 360;
+	// tama�o en pixeles del 'fondo'
+	double w_ = 340;
+	double h_ = 330;
+	// tama�o de los margenes
+	double n = 5;
+
 	// posicion del panel respecto a la ventana
-	SDLGame* game_ = entity_->getSDLGame();
-	double width = game_->getWindowWidth();
-	width = width * 3 / 4;
-	double height = game_->getWindowHeight();
-	height = height * 1 / 4;
-	Vector2D pPos = Vector2D(width, height);
+	x_ = setHorizontalScale(x_ + n);
+	y_ = setVerticalScale(y_ + n);
+
+	double espace = setVerticalScale((h_ - n) / nHeros);
+
+	h_ = espace - setHorizontalScale(n);
+	w_ = h_;
+
 	// construccion del panel de heroes
-	Panel* p = new Panel(Movement);
-	allPanels.push_back(p);
-	uint tamL = 100;
-	// BOTONES:
-	p->addButton(iManager->addButton<ButtonHero>(Vector2D(pPos.getX(), pPos.getY()), tamL, tamL, src::Bardo, HeroNum::hero1));
-	p->addButton(iManager->addButton<ButtonHero>(Vector2D(pPos.getX(), pPos.getY() + 100), tamL, tamL, src::Brujo, HeroNum::hero2));
-	p->addButton(iManager->addButton<ButtonHero>(Vector2D(pPos.getX(), pPos.getY() + 200), tamL, tamL, src::Clerigo, HeroNum::hero3));
-	p->addButton(iManager->addButton<ButtonHero>(Vector2D(pPos.getX(), pPos.getY() + 300), tamL, tamL, src::Guerrero, HeroNum::hero4));
-} // hero1, hero2, hero3, hero4
+	Panel* p = new Panel(Heroes);
+	allPanels[Heroes] = p;
+
+	// BOTONES: hero1, hero2, hero3, hero4
+	for (int i = 0; i < nHeros; i++) {
+		p->addButton(iManager->addButton<ButtonHero>(Vector2D(x_, y_ + i * espace), w_, h_, getHeroTxt(i), (HeroNum)i));
+	}
+}
 
 void Interfaz::createInfo()
 {
@@ -76,14 +125,17 @@ void Interfaz::createInfo()
 	uint tamBoton = uint(width / 16);
 
 	Panel* p = new Panel(Info);
-	allPanels.push_back(p);
+	//allPanels.emplace(allPanels.begin() + Info, p);
+	allPanels[Info] = p;
 
 	double space = tamBoton * 0.8;
 	// BOTONES:
 	p->addButton(iManager->addButton<ButtonPotion>(Vector2D(width * 5 / 7, height * 3 / 4), tamBoton * 0.8, tamBoton * 0.8, src::PocionVida, PtnType::health));
 	p->addButton(iManager->addButton<ButtonPotion>(Vector2D(width * 5 / 7, height * 5 / 6), tamBoton * 0.8, tamBoton * 0.8, src::PocionMana, PtnType::mana));
-	/*createButton(p, this, cb::inventario, Vector2D(width * 4 / 7, height * 3 / 4), tamBoton * 2, tamBoton * 2, src::Inventario);
-	createButton(p, this, cb::chat, Vector2D(width * 6 / 7, height * 3 / 4), tamBoton, tamBoton, src::Chat);
+	//p->addButton(iManager->addButton<ButtonPotion>(Vector2D(width * 5 / 7, height * 5 / 6 + space), tamBoton * 0.8, tamBoton * 0.8, src::PocionRess, PtnType::resurrection));
+
+	p->addButton(iManager->addButton<ButtonPanel>(Vector2D(width * 4 / 7, height * 3 / 4), tamBoton * 2, tamBoton * 2, src::Inventario, Inventory, false));
+	/*createButton(p, this, cb::chat, Vector2D(width * 6 / 7, height * 3 / 4), tamBoton, tamBoton, src::Chat);
 	createButton(p, this, cb::configuracion, Vector2D(width * 6 / 7, height * 5 / 6), tamBoton, tamBoton, src::Configuracion);*/
 } // health, mana, resurrection
 
@@ -96,25 +148,16 @@ void Interfaz::createInventory()
 	double posY = slotTam * 1.5;
 
 	Panel* p = new Panel(Inventory);
-	allPanels.push_back(p);
+	//allPanels.emplace(allPanels.begin() + Inventory, p);
+	allPanels[Inventory] = p;
 
-	//Cuadro de inventario 5x5
+	// Cuadro de inventario 5x5
 	for (int i = 0; i < 5; ++i) {
 
 		posX = slotTam * 0.84; //Se resetea la coordenada X
 
 		for (int j = 0; j < 5; ++j) {
-
-			//createButton(p, this, {/*Solo quiero que se renderice no tiene cb xd*/}, Vector2D(posX, posY), slotTam, slotTam, src::Slot);
-
-			//SDL_Rect dest = { posX, posY, slotTam, slotTam };
-			//game_->getTextureMngr()->getTexture(src::Slot)->render(dest);
-
-			Entity* aux = entity_->getEntityMangr()->addEntity();
-			aux->addComponent<Transform>(Vector2D(posX, posY), Vector2D(), slotTam, slotTam, 0.0);
-			aux->addComponent<Image>(game_->getTextureMngr()->getTexture(src::Slot));
-			entitiesV.push_back(aux);
-
+			p->addButton(iManager->addButton<ButtonSlott>(Vector2D(posX, posY), slotTam, slotTam, src::Slot));
 			posX += slotTam;
 		}
 
@@ -125,36 +168,79 @@ void Interfaz::createInventory()
 	posY = slotTam * 1.5;
 	int margen = 6;
 
-	//Inventario personajes
+	// Inventario personajes: clase + arma + armadura
 	for (int i = 0; i < 4; ++i) {
-		Entity* auxCh = entity_->getEntityMangr()->addEntity();
-		auxCh->addComponent<Transform>(Vector2D(posX, posY), Vector2D(), slotTam, slotTam, 0.0);
-		auxCh->addComponent<Image>(game_->getTextureMngr()->getTexture(src::Bardo));
-		entitiesV.push_back(auxCh);
-
-		Entity* auxSw = entity_->getEntityMangr()->addEntity();
-		auxSw->addComponent<Transform>(Vector2D(posX + slotTam, posY), Vector2D(), slotTam, slotTam, 0.0);
-		auxSw->addComponent<Image>(game_->getTextureMngr()->getTexture(src::Slot));
-		entitiesV.push_back(auxSw);
-
-		Entity* auxAr = entity_->getEntityMangr()->addEntity();
-		auxAr->addComponent<Transform>(Vector2D(posX + slotTam * 2, posY), Vector2D(), slotTam, slotTam, 0.0);
-		auxAr->addComponent<Image>(game_->getTextureMngr()->getTexture(src::Slot));
-		entitiesV.push_back(auxAr);
-
-		//Empty Sword / Armor
-
-		Entity* emptySword = entity_->getEntityMangr()->addEntity();
-		emptySword->addComponent<Transform>(Vector2D(posX + slotTam + margen, posY + margen), Vector2D(), slotTam - margen * 2, slotTam - margen * 2, 0.0);
-		emptySword->addComponent<Image>(game_->getTextureMngr()->getTexture(src::EmptySword));
-		entitiesV.push_back(emptySword);
-
-		Entity* emptyArmor = entity_->getEntityMangr()->addEntity();
-		emptyArmor->addComponent<Transform>(Vector2D(posX + slotTam * 2 + margen, posY + margen), Vector2D(), slotTam - margen * 2, slotTam - margen * 2, 0.0);
-		emptyArmor->addComponent<Image>(game_->getTextureMngr()->getTexture(src::EmptyArmor));
-		entitiesV.push_back(emptyArmor);
+		p->addButton(iManager->addButton<ButtonSlott>(Vector2D(posX, posY), slotTam, slotTam, src::Bardo));
+		p->addButton(iManager->addButton<ButtonSlott>(Vector2D(posX + slotTam, posY), slotTam, slotTam, src::WeaponSlot));
+		p->addButton(iManager->addButton<ButtonSlott>(Vector2D(posX + slotTam * 2, posY), slotTam, slotTam, src::ArmorSlot));
 
 		posY += slotTam * 1.33;
+	}
+}
+
+void Interfaz::createTargets()
+{
+	CombatManager* c = GETCMP2(TheElementalMaze::instance(), CombatManager);
+	uint nEnemys = c->getEnemysTam();
+
+	// posici�n en pixeles del 'fondo'
+	double x_ = 70;
+	double y_ = 790;
+	// tama�o en pixeles del 'fondo'
+	double w_ = 710;
+	double h_ = 190;
+	// tama�o de los margenes
+	double n = 20;
+
+	// posicion del panel respecto a la ventana
+	x_ = setHorizontalScale(x_ + n);
+	y_ = setVerticalScale(y_ + n);
+
+	double espace = setHorizontalScale((w_ - n) / 4);
+
+	w_ = espace - setHorizontalScale(n);
+	h_ = setVerticalScale(h_ - n * 2);
+
+	// construccion y asignacion del panel:
+	Panel* p = new Panel(Targets);
+	allPanels[Targets] = p;
+
+	// BOTONES:
+	for (int i = 0; i < nEnemys; i++) {
+		p->addButton(iManager->addButton<ButtonTarget>(Vector2D(x_ + espace * i, y_), w_, h_, getHeroTxt(i), (target)i));
+	}
+}
+
+void Interfaz::createHabilities()
+{
+	CombatManager* c = GETCMP2(TheElementalMaze::instance(), CombatManager);
+	uint nEnemys = c->getEnemysTam();
+
+	// posici�n en pixeles del 'fondo'
+	double x_ = 70;
+	double y_ = 790;
+	// tama�o en pixeles del 'fondo'
+	double w_ = 710;
+	double h_ = 190;
+	// tama�o de los margenes
+	double n = 20;
+
+	// posicion del panel respecto a la ventana
+	x_ = setHorizontalScale(x_ + n);
+	y_ = setVerticalScale(y_ + n);
+
+	double espace = setHorizontalScale((w_ - n) / 4);
+
+	w_ = espace - setHorizontalScale(n);
+	h_ = setVerticalScale(h_ - n * 2);
+
+	// construccion y asignacion del panel:
+	Panel* p = new Panel(Habilities);
+	allPanels[Habilities] = p;
+
+	// BOTONES:
+	for (int i = 0; i < nEnemys; i++) {
+		p->addButton(iManager->addButton<ButtonHability>(Vector2D(x_ + espace * i, y_), w_, h_, getHeroTxt(i), (HbltType)i, Targets, false, allPanels[Fight]));
 	}
 }
 
@@ -195,28 +281,29 @@ void Interfaz::createPanel(idPanel panelID)
 	case Chat:
 		createChat();
 		break;
+	case Targets:
+		createTargets();
+		break;
+	case Habilities:
+		createHabilities();
+		break;
 	}
+}
+
+void Interfaz::removePanel(idPanel panelID)
+{
+	allPanels[panelID]->removeButtons();
 }
 
 void Interfaz::destroyPanel(idPanel panelID)
 {
-	bool encontrado = false;
-	int i = 0;
-	while (!encontrado && i < allPanels.size()) {
-		encontrado = i == panelID;
-		++i;
-	}
+	/*delete allPanels[panelID];
+	allPanels[panelID] = nullptr;*/
+}
 
-	if (encontrado && allPanels[i] != nullptr) delete allPanels[i];
-
-	if (panelID == idPanel::Inventory) {
-		for (int j = 0; j < entitiesV.size(); ++j) {
-			delete entitiesV[j];
-		}
-
-		entitiesV.clear();
-	}
-
+void Interfaz::togglePanel(Panel* pan)
+{
+	pan->toggleButtons();
 }
 
 void Interfaz::toggleCombat_Movement()
@@ -227,29 +314,83 @@ void Interfaz::toggleCombat_Movement()
 
 void Interfaz::init()
 {
+	//allPanels.reserve(maxPanels);
+	initialize(); // convertir a tipo std::map<clave, valor> -> ahora est� hardcodeado
+	// Fondo de todo la interfaz, para delimitar claramente los paneles: 
+	// (mejor que ButtonSlott ser�a crear unaclase foto/image y que button herede de ella)
+	//iManager->addButton<ButtonSlott>(Vector2D(), game_->getWindowWidth(), game_->getWindowHeight(), src::Fondo); 
 	createPanel(Movement);
-	createPanel(Fight);
-	togglePanel(Fight);
-	createPanel(Minimap);
 	createPanel(Heroes);
 	createPanel(Info);
-	//createPanel(Inventory);
+	createPanel(Minimap);
+	createPanel(Fight);
+	togglePanel(Fight);
 }
 
 void Interfaz::update()
 {
 	InputHandler* ih_ = InputHandler::instance();
-	if (ih_->mouseButtonEvent()) {
-		uint e = ih_->getMouseButtonState(InputHandler::RIGHT);
+	if (ih_->isKeyDown(SDLK_t)) {
 		// mouse event
-		if (!e) {
-			toggleCombat_Movement();
-		}
+		toggleCombat_Movement();
 	}
 }
 
 Entity* Interfaz::getEntity()
 {
 	return entity_;
+}
+
+#include "CombatManager.h"
+Resources::TextureId Interfaz::getHeroTxt(uint number)
+{
+	CombatManager* c = GETCMP2(entity_, CombatManager);
+	heroTemplate tem = static_cast<Hero*>(c->getCharacter((int)number, HERO))->getTemplate();
+
+	Resources::TextureId id;
+
+	switch (tem)
+	{
+	case rpgLogic::WARRIOR:
+		id = src::Guerrero;
+		break;
+	case rpgLogic::WIZARD:
+		id = src::Brujo;
+		break;
+	case rpgLogic::RANGER:
+		id = src::Explorador;
+		break;
+	case rpgLogic::BARD:
+		id = src::Bardo;
+		break;
+	case rpgLogic::CLERIC:
+		id = src::Clerigo;
+		break;
+	case rpgLogic::PALADIN:
+		id = src::Paladin;
+		break;
+	case rpgLogic::BARBARIAN:
+		id = src::Barbaro;
+		break;
+	case rpgLogic::ROGUE:
+		id = src::Picaro;
+		break;
+	case rpgLogic::DRUID:
+		id = src::Druida;
+		break;
+	default:
+		id = Resources::TextureId();
+		break;
+	}
+
+	return id;
+} // hace falta un metodo como este para los enemigos y otro para las habilidades (tambien estan armas, armaduras y objetos, pero urgen menos)
+
+void Interfaz::initialize()
+{
+	for (uint i = 0; i < maxPanels; ++i)
+	{
+		allPanels.push_back(nullptr);
+	}
 }
 
