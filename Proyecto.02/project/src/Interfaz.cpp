@@ -161,7 +161,7 @@ void Interfaz::createInventory()
 
 	double slotTam = game_->getWindowWidth() / 16;
 	double posX;
-	double posY = slotTam * 1.5;
+	double posY = slotTam * 1.8;
 
 	Panel* p = new Panel(Inventory);
 	//allPanels.emplace(allPanels.begin() + Inventory, p);
@@ -170,7 +170,7 @@ void Interfaz::createInventory()
 	// Cuadro de inventario 5x5
 	for (int i = 0; i < 5; ++i) {
 
-		posX = slotTam * 0.84; //Se resetea la coordenada X
+		posX = slotTam * 1.5; //Se resetea la coordenada X
 
 		for (int j = 0; j < 5; ++j) {
 			p->addButton(iManager->addButton<ButtonSlott>(Vector2D(posX, posY), slotTam, slotTam, src::Slot));
@@ -181,7 +181,7 @@ void Interfaz::createInventory()
 	}
 
 	posX += slotTam; // Se suma la coordenada X dejando un espacio.
-	posY = slotTam * 1.5;
+	posY = slotTam * 1.8;
 	int margen = 6;
 
 	// Inventario personajes: clase + arma + armadura
