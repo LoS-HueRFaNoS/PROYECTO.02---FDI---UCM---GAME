@@ -198,8 +198,8 @@ Casilla* Laberinto::getCasillaInfo(int x, int y)
 void Laberinto::draw()
 {
 //
-	double _x = game_->setHorizontalScale(1510); // 28
-	double _y = game_->setVerticalScale(70); // 20
+	double _x = game_->setHorizontalScale(1510);
+	double _y = game_->setVerticalScale(70);
 	double _w = game_->setHorizontalScale(34); // 28
 	double _h = game_->setVerticalScale(19); // 20
 	for (int i = 0; i < h; ++i) // Por cada fila  = Y
