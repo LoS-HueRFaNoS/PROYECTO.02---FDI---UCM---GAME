@@ -74,8 +74,6 @@ private:
 
 	void endCombat();
 
-	void throwHability(Character* objective, Hability* hability);
-
 	void castToTeam();
 
 	void castToSingleTarget(int input);
@@ -114,6 +112,16 @@ public:
 		_heroes = heroes;
 	}
 
+	vector<Hero*> getHeroesTeam()
+	{
+		return _heroes;
+	}
+
+	vector<Enemy*> getEnemiesTeam()
+	{
+		return _enemies;
+	}
+
 	void addEnemyTeam(vector<Enemy*> enemies) {
 		_enemies = enemies;
 	}
@@ -121,6 +129,8 @@ public:
 	void startCombat();
 
 	void castHability(Hability* hability);
+
+	void throwHability(Character* objective, Hability* hability);
 
 	void changeState(CombatState state) { _state = state; stateChanged = true; }
 

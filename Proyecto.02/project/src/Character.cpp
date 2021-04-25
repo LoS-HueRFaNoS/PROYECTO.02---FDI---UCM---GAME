@@ -326,16 +326,58 @@ void Enemy::loadFromJson(jute::jValue v, int t)
 		weak.push_back((float)v["Characters"][t]["Weaknesses"][i]["Value"].as_double());
 	}
 
+	addHability<AllyTeamHealExample>();
+	addHability<SingleTargetHealxample>();
+	addHability<SingleTargetAttackExample>();
+
 	_sheet->weaknesses = Weaknesses(weak);
 }
 
 void Enemy::manageTurn(CombatManager* cm)
 {
-	cout << "AQUI EL ENEMIGO HACE COSAS" << endl;
+	int aux = game_->getRandGen()->nextInt(0, _habilities.size());
 
-	//cm->castHability(_habilities[input]);
-	/*if (!currentCharacter->getType())
-		castToSingleTarget(key);*/
+	Hability* hab = _habilities[aux];
+
+	if (hab->getObjectiveType() == ENEMYTEAM || hab->getObjectiveType() == ALLYTEAM
+		|| hab->getObjectiveType() == CASTER)
+		cm->castHability(hab);
+		
+	else
+	{
+		if (hab->getObjectiveType() == SINGLEENEMY)
+		{
+			vector <Hero*> heroTeam = cm->getHeroesTeam();
+
+			while (true)
+			{
+				int heroe = game_->getRandGen()->nextInt(0, heroTeam.size());
+
+				if (!heroTeam[heroe]->isDead())
+				{
+					cm->throwHability(heroTeam[heroe], hab);
+					break;
+				}
+			}
+		}
+
+		else
+		{
+			vector <Enemy*> enemyTeam = cm->getEnemiesTeam();
+
+			while (true)
+			{
+				int enemigo = game_->getRandGen()->nextInt(0, enemyTeam.size());
+
+				if (!enemyTeam[enemigo]->isDead())
+				{
+					cm->throwHability(enemyTeam[enemigo], hab);
+					break;
+				}
+			}
+		}
+	}
+
 
 	cm->changeState(END_TURN);
 }
