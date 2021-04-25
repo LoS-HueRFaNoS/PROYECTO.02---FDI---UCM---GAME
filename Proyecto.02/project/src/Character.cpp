@@ -168,6 +168,7 @@ Hero::~Hero()
 
 void Hero::loadFromJson(jute::jValue v, int t)
 {
+	template_ = (heroTemplate)t;
 
 	// Buscamos las stats en el json dentro de nuestro heroe "t" y asignamos un valor aleatorio entre los valores dados
 	for (int i = 0; i < _LastStatId_; i++)

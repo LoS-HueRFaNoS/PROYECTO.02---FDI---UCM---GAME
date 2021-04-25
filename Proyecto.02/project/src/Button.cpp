@@ -23,3 +23,15 @@ void ButtonPanelCte::click()
 }
 
 #pragma endregion
+
+#pragma region ButtonCombateResources
+
+void ButtonHability::init(Vector2D pos, uint ancho, uint alto, Resources::TextureId imagen, HbltType attack, idPanel panId, bool active, Panel* p_)
+{
+	hability_ = attack;
+	activated = active;
+	pan_ = panId;
+	p_->toggleButtons();
+	Button::init(pos, ancho, alto, imagen);
+}
+#pragma endregion

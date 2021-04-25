@@ -10,6 +10,7 @@ class CharacterManager;
 class TheElementalMaze;
 class EntityManager;
 class Cursor;
+class Fondo;
 
 typedef unsigned int uint;
 
@@ -37,11 +38,12 @@ private:
 	TheElementalMaze* gameManager_;
 	InterfazManager* interfazManager_;
 
+	Fondo* fondo;
 	Cursor* c_;
 	Cursor* createCursor(Vector2D pos, uint width, uint height, Resources::TextureId image);
 
 	bool exit_;
 
-	const static int _WINDOW_WIDTH_ = 1200;
-	const static int _WINDOW_HEIGHT_ = 900;
+	const static int _WINDOW_WIDTH_ = 1200; // 1920px
+	const static int _WINDOW_HEIGHT_ = 900; // 1050px
 };

@@ -38,10 +38,10 @@ public:
 	virtual ~Interfaz();
 
 	void createPanel(idPanel panelID);
-	void removePanel(idPanel panelID) { allPanels[panelID]->removeButtons(); };
+	void removePanel(idPanel panelID);
 	void destroyPanel(idPanel panelID);
 
-	void togglePanel(Panel* pan) { pan->toggleButtons(); }
+	void togglePanel(Panel* pan);
 	void togglePanel(idPanel panID) { togglePanel(allPanels[panID]); }
 
 	void toggleCombat_Movement();

@@ -33,7 +33,9 @@ vector<bool> Casilla::checkCell()
 }
 void Casilla::casillaRender(int x, int y )
 {
-	SDL_Rect dest = { x, y, 28, 20 };
+	double w = game_->setHorizontalScale(34); // 28
+	double h = game_->setVerticalScale(19); // 20
+	SDL_Rect dest = { x, y, w, h };
 	Texture* texturaSuelo;
 	Texture* texturaPosActual;
 	Texture* texturaPared = nullptr;
