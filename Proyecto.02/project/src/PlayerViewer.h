@@ -46,12 +46,12 @@ public:
 				break;
 			case Este:
 				x += 1;
-				if (x != lab->mazeWidth())
+				if (x != lab->mazeWidth()-1)
 					casSig = lab->getCasillaInfo(x + 1, y);
 				break;
 			case Sur:
 				y += 1;
-				if (y != lab->mazeHeigh())
+				if (y != lab->mazeHeigh()-1)
 					casSig = lab->getCasillaInfo(x, y + 1);
 				break;
 			case Oeste:
