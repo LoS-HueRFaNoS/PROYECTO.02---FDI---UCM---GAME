@@ -16,6 +16,7 @@ vector<Resources::ImageInfo> Resources::images_{
 	{muro_fr, "resources/images/pasillos/frente/frente_pared.png"},				//
 	{muro_fr_izq, "resources/images/pasillos/frente/giro_izquierda/frente_giro_izquierda_pared.png"},				//
 	{muro_fr_der, "resources/images/pasillos/frente/giro_derecha/frente_giro_derecha_pared.png"},				//
+	{muro_del, "resources/images/pasillos/frente/muro_frontal.png"},				//
 	
 
 

@@ -20,7 +20,7 @@ public:
 		muro_fr,
 		muro_fr_izq,
 		muro_fr_der,
-		
+		muro_del,
 		// Imagenes de la casilla siguiente a la actual
 		camino_fondo_izq,
 		camino_fondo_der,
