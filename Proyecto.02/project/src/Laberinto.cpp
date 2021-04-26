@@ -159,9 +159,9 @@ void Laberinto::createRandomMaze(Vector2D entrada)
 			
 			if (hayEnemy < 3)
 			{
-				int enemyType = game_->getRandGen()->nextInt(0, enemyTemplate::_LastEnemyTemplateId_);
+				int enemyType = game_->getRandGen()->nextInt(0, enemyTemplate::ZOMBIE+1);
 				cout << "En la casilla [" << x << " , " << y << " ]" << endl;
-				generaObjeto(0, enemyType, laberinto[x][y], 3,0);
+				generaObjeto(0, enemyType, laberinto[x][y], 1,0);
 				
 			}
 			else

@@ -277,6 +277,14 @@ void Interfaz::createLobby()
 
 }
 
+void Interfaz::createOptions()
+{
+}
+
+void Interfaz::createGuide()
+{
+}
+
 void Interfaz::createPanel(idPanel panelID)
 {
 	switch (panelID) {
@@ -323,6 +331,12 @@ void Interfaz::createPanel(idPanel panelID)
 		break;
 	case Lobby:
 		createLobby();
+		break;
+	case Options:
+		createOptions();
+		break;
+	case HowToPlay:
+		createGuide();
 		break;
 	}
 }

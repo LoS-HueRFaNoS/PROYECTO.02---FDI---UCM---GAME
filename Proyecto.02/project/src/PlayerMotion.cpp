@@ -33,6 +33,8 @@ void PlayerMotion::update()
 
 void PlayerMotion::rotarDerecha()
 {
+	if (TheElementalMaze::instance()->gameState() != EXPLORING)
+		return;
 	x = int(pos->getPos().getX());
 	y = int(pos->getPos().getY());
 	Casilla* cas = lab->getCasillaInfo(x, y);
@@ -65,6 +67,8 @@ void PlayerMotion::rotarDerecha()
 
 void PlayerMotion::rotarIzquierda()
 {
+	if (TheElementalMaze::instance()->gameState() != EXPLORING)
+		return;
 	x = int(pos->getPos().getX());
 	y = int(pos->getPos().getY());
 	Casilla* cas = lab->getCasillaInfo(x, y);
@@ -96,6 +100,8 @@ void PlayerMotion::rotarIzquierda()
 
 void PlayerMotion::avanzar()
 {
+	if (TheElementalMaze::instance()->gameState() != EXPLORING)
+		return;
 	x = int(pos->getPos().getX());
 	y = int(pos->getPos().getY());
 	Casilla* cas = lab->getCasillaInfo(x, y);
@@ -190,9 +196,11 @@ void PlayerMotion::debugear()
 		for (int i = 0; i < enemigo->size(); i++)
 		{
 			cout << "Encuentras con el enemigo " << to_string((*enemigo)[i]) << endl;
+
 			comManager->addCharacter(chaManager->addEnemyFromTemplate((*enemigo)[i]));
 		}
 		TheElementalMaze::instance()->changeState(COMBAT);
+		
 		return;
 	}
 

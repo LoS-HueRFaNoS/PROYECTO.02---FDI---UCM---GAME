@@ -31,6 +31,9 @@ private:
 
 	void createMenuPrincipal() ; //
 	void createLobby() ; //
+	void createOptions(); //
+	void createGuide(); //
+
 public:
 	Interfaz(InterfazManager* i) :
 		Component(ecs::Interfaz),

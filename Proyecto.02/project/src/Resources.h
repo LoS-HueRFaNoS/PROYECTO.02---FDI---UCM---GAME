@@ -129,7 +129,14 @@ public:
 		SemiPlacas,
 		CotaMalla,
 		Bandas,
-		Placas
+		Placas,
+
+		//Enemigos
+		Lich,
+		Necrofago,
+		Monster,
+		Desconocido
+
 	};
 
 	enum AudioId : std::size_t {

@@ -25,7 +25,7 @@ private:
 	static TheElementalMaze* instance_;
 
 	CombatManager* combatManager_; // compt
-	Entity* laberinto_; // 
+	Laberinto* laberinto_; // 
 	Entity* player_; // 
 	Interfaz* uiManager_;
 	InterfazManager* iManager_; // compt
@@ -68,7 +68,7 @@ public:
 
 	void init();
 
-	Entity* getLaberinto() { return laberinto_; };
+	Laberinto* getLaberinto() { return laberinto_; };
 
 	Entity* getPlayer() { return player_; };
 

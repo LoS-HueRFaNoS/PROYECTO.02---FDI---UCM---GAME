@@ -12,7 +12,7 @@ class Laberinto : public Component
 {
 private:
 	int h, w; //Tamaño del laberinto 
-	EntityManager* entityManager;
+	//EntityManager* entityManager;
 	vector<vector<Casilla*>> laberinto;
 	Vector2D salida;
 

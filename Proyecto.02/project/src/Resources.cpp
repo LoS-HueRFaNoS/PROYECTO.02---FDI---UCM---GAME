@@ -17,7 +17,7 @@ vector<Resources::ImageInfo> Resources::images_{
 	{muro_fr_izq, "resources/images/pasillos/frente/giro_izquierda/frente_giro_izquierda_pared.png"},				//
 	{muro_fr_der, "resources/images/pasillos/frente/giro_derecha/frente_giro_derecha_pared.png"},				//
 	{muro_del, "resources/images/pasillos/frente/muro_frontal.png"},				//
-	
+
 
 
 	{camino_fondo_izq, "resources/images/pasillos/fondo/giro_izquierda/fondo_giro_izquierda_suelo.png"},			//
@@ -115,9 +115,20 @@ vector<Resources::ImageInfo> Resources::images_{
 	{SemiPlacas, "resources/sprites/iconos armaduras/joker.png"},
 	{CotaMalla, "resources/sprites/iconos armaduras/cota_mallas.png"},
 	{Bandas, "resources/sprites/iconos armaduras/joker.png"},
-	{Placas, "resources/sprites/iconos armaduras/joker.png"}};
+	{Placas, "resources/sprites/iconos armaduras/joker.png"},
 
-//
+		//Enemigo
+	{Lich, "resources/sprites/iconos personajes/lich.PNG"},
+	{Necrofago, "resources/sprites/iconos personajes/necrofago.png" },
+	{ Monster, "resources/images/monster.png" },
+	{ Desconocido, "resources/images/desconocido.png" }
+
+
+};
+
+	
+
+
 
 vector<Resources::TextMsgInfo> Resources::messages_{
 	//

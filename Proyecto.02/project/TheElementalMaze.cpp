@@ -23,14 +23,14 @@ TheElementalMaze::~TheElementalMaze()
 void TheElementalMaze::init()
 {
 	// 1. Laberinto
-	Laberinto* lab = this->addComponent<Laberinto>(10, 10);
-	lab->createRandomMaze(Vector2D(0, 0));
+	laberinto_ = this->addComponent<Laberinto>(10, 10);
+	laberinto_->createRandomMaze(Vector2D(0, 0));
 
 	// 2. Player
 	player_ = mngr_->addEntity(); // lo primero en crearse deber�a ser el player �?
 	player_->addComponent<MazePos>(Vector2D(0, 0));
-	player_->addComponent<PlayerMotion>(SDLK_UP, SDLK_LEFT, SDLK_RIGHT, lab);
-	player_->addComponent<PlayerViewer>(lab);
+	player_->addComponent<PlayerMotion>(SDLK_UP, SDLK_LEFT, SDLK_RIGHT, laberinto_);
+	player_->addComponent<PlayerViewer>(laberinto_);
 
 	// 3. Personajes
 	itemManager_ = new ItemManager();
@@ -83,6 +83,7 @@ void TheElementalMaze::onStateChanged()
 		break;
 	case EXPLORING:
 		cout << "EXPLORING STARTED" << endl;
+		laberinto_->getCasillaInfo(player_->getComponent<MazePos>(ecs::MazePos)->getPos().getX(), player_->getComponent<MazePos>(ecs::MazePos)->getPos().getY())->getEnemy()->clear();
 		break;
 	case LOBBY:
 		cout << "LOBBY REACHED" << endl;

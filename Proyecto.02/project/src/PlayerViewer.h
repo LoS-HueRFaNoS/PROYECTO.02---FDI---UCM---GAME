@@ -34,36 +34,36 @@ public:
 		int y = int(pos->getPos().getY());
 		sentido = pos->getLook();
 		cas = lab->getCasillaInfo(x, y);
-		casillaSig = cas->checkCell();
 		casillaActual = cas->checkCell();
-		if (casillaSig[sentido])
+		casillaSig = cas->checkCell();
+		if (casillaActual[sentido])
 		{
 			switch (sentido)
 			{
 			case Norte:
 				y -= 1;
 				if (y != 0)
-					casSig = lab->getCasillaInfo(x, y - 1);
+					casSigSig = lab->getCasillaInfo(x, y - 1);
 				break;
 			case Este:
 				x += 1;
 				if (x != lab->mazeWidth()-1)
-					casSig = lab->getCasillaInfo(x + 1, y);
+					casSigSig = lab->getCasillaInfo(x + 1, y);
 				break;
 			case Sur:
 				y += 1;
 				if (y != lab->mazeHeigh()-1)
-					casSig = lab->getCasillaInfo(x, y + 1);
+					casSigSig = lab->getCasillaInfo(x, y + 1);
 				break;
 			case Oeste:
 				x -= 1;
 				if (x != 0)
-					casSig = lab->getCasillaInfo(x - 1, y);
+					casSigSig = lab->getCasillaInfo(x - 1, y);
 				break;
 			}
-			cas = lab->getCasillaInfo(x, y);
-			casillaSig = cas->checkCell();
-			casillaSigSig = casSig->checkCell();
+			casSig = lab->getCasillaInfo(x, y);
+			casillaSig = casSig->checkCell();
+			casillaSigSig = casSigSig->checkCell();
 		}
 		else casillaSigSig = cas->checkCell();
 	}
@@ -94,7 +94,11 @@ public:
 		if (casillaActual[sentido]) // <-^-> Si delante hay un camino, dibujaremos la informacion de la casilla siguiente
 		{
 			manager->getTexture(Resources::camino_fondo_fr)->render(dest);
-			if (!casillaSigSig[sentido])manager->getTexture(Resources::muro_fondo_fr)->render(dest);
+			if (!casillaSigSig[sentido])
+			{
+				manager->getTexture(Resources::muro_fondo_fr)->render(dest);
+				
+			}
 
 			if (casillaSigSig[izquierda])
 			{
@@ -124,16 +128,21 @@ public:
 				manager->getTexture(Resources::muro_fr_der)->render(dest);
 			}
 			else manager->getTexture(Resources::muro_der)->render(dest);
+
 			if (casillaSig[sentido])
 			{
 				manager->getTexture(Resources::camino_fr)->render(dest);
+				//renderEnemySig();
+				
 			}
 			else manager->getTexture(Resources::muro_fr)->render(dest);
-			//renderEnemySig();
-			manager->getTexture(Resources::camino_fr)->render(dest);
-			//renderEnemyActual();
+			
+			//manager->getTexture(Resources::camino_fr)->render(dest);
+			
 		}
 		else manager->getTexture(Resources::muro_del)->render(dest);
+
+		renderEnemyActual();
 	}
 
 
@@ -146,6 +155,7 @@ private:
 	int sentido = Norte;
 	Casilla* cas;
 	Casilla* casSig;
+	Casilla* casSigSig;
 	TexturesManager* manager;
 
 	void renderEnemyActual()
@@ -157,19 +167,20 @@ private:
 			int tam = enemyVector.size();
 			if ( tam == 1)
 			{
-				enemyViewer(enemyVector[0], 400 + 60, 400, 60, 60);
+				enemyViewer(enemyVector[0], 100 + 200, 200, 250, 250);
 			}
 			else
 			{
 
 				for (int i = 0; i < tam; i++)
 				{
-					enemyViewer(enemyVector[i], 400 + i * 60, 400, 60, 60);
+					enemyViewer(enemyVector[i], 100 + i * 200, 200, 250, 250);
 				}
 			}
 			
 		}
 	}
+
 	void renderEnemySig()
 	{
 		if (!casSig->getEnemy()->empty())
@@ -177,7 +188,8 @@ private:
 			Texture* enemigo;
 			auto manager = game_->getTextureMngr();
 			//enemigo = manager->getTexture(Resources::EnemigoSombra);
-			SDL_Rect dest = { 400 + 60, 100, 60, 60 };
+			enemigo = manager->getTexture(Resources::Desconocido);
+			SDL_Rect dest = { 300 , 100, 300, 300 };
 			enemigo->render(dest);
 		}
 	}
@@ -185,7 +197,8 @@ private:
 	{
 		Texture* enemigo;
 		auto manager = game_->getTextureMngr();
-		enemigo = manager->getTexture(Resources::Placas+temp);
+		//enemigo = manager->getTexture(Resources::Placas+temp);
+		enemigo = manager->getTexture(Resources::Monster);
 		SDL_Rect dest = { x, y, w, h };
 		enemigo->render(dest);
 

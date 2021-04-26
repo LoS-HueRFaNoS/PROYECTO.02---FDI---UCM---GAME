@@ -138,6 +138,7 @@ void CombatManager::endCombat()
 	}
 	_enemies.clear();
 
+
 	
 }
 

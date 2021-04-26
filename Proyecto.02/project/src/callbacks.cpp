@@ -193,18 +193,23 @@ void callbacks::set_hability(int hability_)
 #pragma region MenuPrincipal
 void callbacks::startLobby(Interfaz* app)
 {
+	//app->destroyPanel(MenuPrincipal);
+	//app->createPanel(Lobby);
 	std::cout << "startLobby se ha activado\n";
 }
 void callbacks::options(Interfaz* app)
 {
+	//app->createPanel(Options);
 	std::cout << "options se ha activado\n";
 }
 void callbacks::howToPlay(Interfaz* app)
 {
+	//app->createPanel(HowToPlay);
 	std::cout << "howToPlay se ha activado\n";
 }
 void callbacks::quit(Interfaz* app)
 {
+	
 	std::cout << "quit se ha activado\n";
 }
 #pragma endregion
