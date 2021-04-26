@@ -137,9 +137,8 @@ void CombatManager::endCombat()
 		e->disable();
 	}
 	_enemies.clear();
-
-
 	
+	_turnQueue.clear();
 }
 
 void CombatManager::castHability(Hability* hability)
