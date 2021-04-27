@@ -199,8 +199,8 @@ void Interfaz::createFichaDD(uint nCharacter)
 	CombatManager* c = GETCMP2(TheElementalMaze::instance(), CombatManager);
 	Character* c_ = static_cast<Character*>(c->getCharacter((int)nCharacter, HERO));
 
-	uint nInfoButton_H = 10; // separaciones horizontales
-	uint nInfoButton_V = 10; // separaciones verticales
+	uint nInfoButton_H = 3; // separaciones horizontales
+	uint nInfoButton_V = 3; // separaciones verticales
 
 	// posicion en pixeles del 'fondo'
 	double x_ = 70;
@@ -230,23 +230,25 @@ void Interfaz::createFichaDD(uint nCharacter)
 	_nw = 10;
 	_nh = 10;
 	// posicion del primer button respecto al panel
-	double xs_ = game_->setHorizontalScale(x_);// +w_ * 1 / 10);
-	double ys_ = game_->setVerticalScale(y_);// +h_ * 1 / 10);
-	double espace_H = /*game_->setHorizontalScale(*/(w_ /*- _nw*/) / nInfoButton_H;
-	double espace_V = /*game_->setVerticalScale(*/(h_ /*- _nh*/) / nInfoButton_V;
+	double k = 3.75;
+	double xs_ = game_->setHorizontalScale(x_ + w_ * k / 10);
+	double ys_ = game_->setVerticalScale(y_ + h_ * k / 10);
+	k = 2;
+	double espace_H = w_ * (k / 10);
+	double espace_V = h_ * (k / 10);
 	// dimensiones de cada cuadrante
-	double ws_ = espace_H;// -game_->setHorizontalScale(_nw);	// ancho cuadrante
-	double hs_ = espace_V;// -game_->setVerticalScale(_nh);	// alto cuadrante
+	double ws_ = espace_H - game_->setHorizontalScale(_nw);	// ancho cuadrante
+	double hs_ = espace_V - game_->setVerticalScale(_nh);	// alto cuadrante
 	double lineTam_V = espace_V / 8;
 
 	// Titulo:
-	p->addButton(iManager->addButton<ButtonLine>(Vector2D(xs_, ys_), ws_ * 3, hs_, c_->name()));
+	p->addButton(iManager->addButton<ButtonLine>(Vector2D(xs_, ys_ - espace_V * 2 / 3), ws_ * 3, hs_, c_->name()));
 	// cuadrantes ejemplo:
 	for (size_t i = 0; i < nInfoButton_H; i++)
 	{
 		for (size_t j = 0; j < nInfoButton_V; j++)
 		{
-			p->addButton(iManager->addButton<ButtonSlott>(Vector2D(x_ + i * espace_H, y_ + j * espace_V), ws_, hs_, getHeroTxt((uint)nCharacter)));
+			p->addButton(iManager->addButton<ButtonSlott>(Vector2D(xs_ + i * espace_H, ys_ + j * espace_V), ws_, hs_, getHeroTxt((uint)nCharacter)));
 		}
 	}
 
