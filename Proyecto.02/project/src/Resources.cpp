@@ -4,7 +4,13 @@
 vector<Resources::FontInfo> Resources::fonts_{
 	{ARIAL16, "resources/fonts/ARIAL.ttf", 16}, //
 	{ARIAL24, "resources/fonts/ARIAL.ttf", 24},	//
-	{HERMAN8, "resources/fonts/ARHERMANN.ttf", 64}	//
+	{HERMAN, "resources/fonts/ARHERMANN.ttf", 64},
+	{Fornite, "resources/fonts/Fortnite.ttf", 64},
+	{Quake, "resources/fonts/dpquake_.ttf", 64},
+	{KillerInst, "resources/fonts/kinifed_.ttf", 64},
+	{Sega, "resources/fonts/SEGA.ttf", 64},
+	{Beaulieux, "resources/fonts/t4cbeaulieux.ttf", 64},
+	{Triforce, "resources/fonts/Triforce.ttf", 64}
 };
 
 vector<Resources::ImageInfo> Resources::images_{
@@ -63,6 +69,7 @@ vector<Resources::ImageInfo> Resources::images_{
 	{ArmorSlot, "resources/sprites/iconos inventario/armor_slot.png"},
 
 	// Armas clasicas �?
+	{Joker, "resources/sprites/iconos armas/joker.png"}, ///TODO
 	{Desarmado, "resources/sprites/iconos armas/joker.png"}, ///TODO
 	{Baston, "resources/sprites/iconos armas/baston.png"},
 	{Daga, "resources/sprites/iconos armas/daga.png"},

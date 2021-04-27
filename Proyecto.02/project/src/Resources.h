@@ -91,6 +91,9 @@ public:
 		ArcoPequeno,
 		BallestaLigera,
 
+		// Comodin
+		Joker,
+
 		//Armas Marciales
 		Alabarda,
 		Atarraga,
@@ -132,7 +135,7 @@ public:
 	};
 
 	enum FontId : std::size_t {
-		ARIAL16, ARIAL24, HERMAN8
+		ARIAL16, ARIAL24, HERMAN, Fornite, Quake, KillerInst, Sega, Beaulieux, Triforce
 	};
 
 	enum JsonId : std::size_t {

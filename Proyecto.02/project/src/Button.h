@@ -48,7 +48,7 @@ class ButtonLine : public Button
 public:
 	ButtonLine(SDLGame* game, EntityManager* mngr) : Button(game, mngr) {};
 	~ButtonLine() {};
-	virtual void init(Vector2D pos, uint ancho, uint alto, string line);
+	virtual void init(Vector2D pos, uint ancho, uint alto, string line, Resources::FontId font);
 
 	virtual void click() {
 		// if(i_ != nulptr) i_->use();

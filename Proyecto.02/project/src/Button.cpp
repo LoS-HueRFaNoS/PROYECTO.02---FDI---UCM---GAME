@@ -45,11 +45,11 @@ void ButtonHability::init(Vector2D pos, uint ancho, uint alto, Resources::Textur
 }
 #pragma endregion
 
-void ButtonLine::init(Vector2D pos, uint ancho, uint alto, string line)
+void ButtonLine::init(Vector2D pos, uint ancho, uint alto, string line, Resources::FontId font)
 {
 	addComponent<Transform>(pos, Vector2D(), ancho, alto, 0);
 	Texture* t = new Texture(); 
-	if (t->loadFromText(game_->getRenderer(), line, game_->getFontMngr()->getFont(Resources::HERMAN8), { 0,0,255,255 }))
+	if (t->loadFromText(game_->getRenderer(), line, game_->getFontMngr()->getFont(font), { 0,0,255,255 }))
 		addComponent<Image>(t);
 	addComponent<ButtonCtrl>(this);
 }
