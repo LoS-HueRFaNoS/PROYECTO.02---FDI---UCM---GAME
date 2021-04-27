@@ -3,7 +3,8 @@
 
 vector<Resources::FontInfo> Resources::fonts_{
 	{ARIAL16, "resources/fonts/ARIAL.ttf", 16}, //
-	{ARIAL24, "resources/fonts/ARIAL.ttf", 24}	//
+	{ARIAL24, "resources/fonts/ARIAL.ttf", 24},	//
+	{HERMAN8, "resources/fonts/ARHERMANN.ttf", 64}	//
 };
 
 vector<Resources::ImageInfo> Resources::images_{

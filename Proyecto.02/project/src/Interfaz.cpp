@@ -197,7 +197,7 @@ void Interfaz::createInventory()
 void Interfaz::createFichaDD(uint nCharacter)
 {
 	CombatManager* c = GETCMP2(TheElementalMaze::instance(), CombatManager);
-	uint nEnemys = c->getEnemysTam();
+	Character* c_ = static_cast<Character*>(c->getCharacter((int)nCharacter, HERO));
 
 	uint nInfoButton_H = 3; // separaciones horizontales
 	uint nInfoButton_V = 3; // separaciones verticales
@@ -222,31 +222,33 @@ void Interfaz::createFichaDD(uint nCharacter)
 	Panel* p = new Panel(DDPan);
 	allPanels[DDPan] = p;
 
+	w_ = game_->setHorizontalScale(w_);	// ancho panel
+	h_ = game_->setVerticalScale(h_);	// alto panel
+	double ws_ = espace_H - game_->setHorizontalScale(n);	// ancho cuadrante
+	double hs_ = espace_V - game_->setVerticalScale(n);		// alto cuadrante
+	
 	p->addButton(iManager->addButton<ButtonSlott>(Vector2D(x_, y_), w_, h_, src::Pergamino));
+	p->addButton(iManager->addButton<ButtonLine>(Vector2D(x_, y_), w_, hs_, c_->name()));
 
-	w_ = espace_H - game_->setHorizontalScale(n);
-	h_ = espace_V - game_->setVerticalScale(n);
 	double lineTam_V = espace_V / 8;
 
-	Character* c_ = static_cast<Character*>(c->getCharacter((int)nCharacter, HERO));
-	p->addButton(iManager->addButton<ButtonSlott>(Vector2D(x_ + 1 * espace_H, y_ + 1 * espace_V), w_, h_, getHeroTxt((uint) nCharacter)));
-	p->addButton(iManager->addButton<ButtonSlott>(Vector2D(x_ + 1 * espace_H, y_ + 1 * espace_V), w_, h_, getHeroTxt((uint)nCharacter)));
+	p->addButton(iManager->addButton<ButtonSlott>(Vector2D(x_ + 1 * espace_H, y_ + 1 * espace_V), ws_, hs_, getHeroTxt((uint) nCharacter)));
 
 	string info = "";
 	//STATS
-	p->addButton(iManager->addButton<ButtonLine>(Vector2D(x_ + 1 * espace_H, y_ + 1 * espace_V + lineTam_V * 0), w_, h_, "Stats:\n"));
-	string text = "Strength = " + c_->getStat(STR); info += text + "\n";
-	p->addButton(iManager->addButton<ButtonLine>(Vector2D(x_ + 1 * espace_H, y_ + 1 * espace_V + lineTam_V * 0), w_, h_, text));
-	text = "Constitution = " + c_->getStat(CON); info += text + "\n";
-	p->addButton(iManager->addButton<ButtonLine>(Vector2D(x_ + 0 * espace_H, y_ + 1 * espace_V + lineTam_V * 1), w_, h_, text));
-	text = "Dexterity = " + c_->getStat(DEX); info += text + "\n";
-	p->addButton(iManager->addButton<ButtonLine>(Vector2D(x_ + 0 * espace_H, y_ + 1 * espace_V + lineTam_V * 2), w_, h_, text));
-	text = "Intelect = " + c_->getStat(INT); info += text + "\n";
-	p->addButton(iManager->addButton<ButtonLine>(Vector2D(x_ + 0 * espace_H, y_ + 1 * espace_V + lineTam_V * 3), w_, h_, text));
+	//p->addButton(iManager->addButton<ButtonLine>(Vector2D(x_ + 1 * espace_H, y_ + 1 * espace_V + lineTam_V * 0), w_, h_, "Stats:\n"));
+	string text = "Strength = " + to_string(c_->getStat(STR)); info += text + "\n";
+	//p->addButton(iManager->addButton<ButtonLine>(Vector2D(x_ + 1 * espace_H, y_ + 1 * espace_V + lineTam_V * 0), w_, h_, text));
+	text = "Constitution = " + to_string(c_->getStat(CON)); info += text + "\n";
+	//p->addButton(iManager->addButton<ButtonLine>(Vector2D(x_ + 0 * espace_H, y_ + 1 * espace_V + lineTam_V * 1), w_, h_, text));
+	text = "Dexterity = " + to_string(c_->getStat(DEX)); info += text + "\n";
+	//p->addButton(iManager->addButton<ButtonLine>(Vector2D(x_ + 0 * espace_H, y_ + 1 * espace_V + lineTam_V * 2), w_, h_, text));
+	text = "Intelect = " + to_string(c_->getStat(INT)); info += text + "\n";
+	//p->addButton(iManager->addButton<ButtonLine>(Vector2D(x_ + 0 * espace_H, y_ + 1 * espace_V + lineTam_V * 3), w_, h_, text));
 
 	//RESISTENCIAS:
 
-	p->addButton(iManager->addButton<ButtonLine>(Vector2D(x_ + 2 * espace_H, y_ + 1 * espace_V), w_, h_, info));
+	//p->addButton(iManager->addButton<ButtonLine>(Vector2D(x_ + 0 * espace_H, y_ + 0 * espace_V), w_, hs_, info));
 }
 
 void Interfaz::createTargets()

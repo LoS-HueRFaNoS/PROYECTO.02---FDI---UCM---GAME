@@ -132,7 +132,7 @@ public:
 	};
 
 	enum FontId : std::size_t {
-		ARIAL16, ARIAL24,
+		ARIAL16, ARIAL24, HERMAN8
 	};
 
 	enum JsonId : std::size_t {
