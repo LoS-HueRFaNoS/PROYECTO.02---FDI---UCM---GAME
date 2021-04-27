@@ -142,7 +142,7 @@ namespace rpgLogic {
 			_weaknesses[type] += change;
 		}
 
-		float getWeakness(damageType type) {	// Devolver la resistencia en función de tipo o parametro
+		size_t getWeakness(damageType type) {	// Devolver la resistencia en función de tipo o parametro
 			return _weaknesses[type];
 		}
 	};
