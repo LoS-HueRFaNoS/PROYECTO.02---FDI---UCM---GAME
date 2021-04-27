@@ -116,7 +116,10 @@ public:
 		SemiPlacas,
 		CotaMalla,
 		Bandas,
-		Placas
+		Placas,
+
+		//Ficha DD
+		Pergamino
 	};
 
 	enum AudioId : std::size_t {

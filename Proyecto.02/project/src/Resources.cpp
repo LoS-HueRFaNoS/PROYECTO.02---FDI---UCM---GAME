@@ -99,7 +99,10 @@ vector<Resources::ImageInfo> Resources::images_{
 	{SemiPlacas, "resources/sprites/iconos armaduras/joker.png"},
 	{CotaMalla, "resources/sprites/iconos armaduras/cota_mallas.png"},
 	{Bandas, "resources/sprites/iconos armaduras/joker.png"},
-	{Placas, "resources/sprites/iconos armaduras/joker.png"}};
+	{Placas, "resources/sprites/iconos armaduras/joker.png"},
+
+	//Ficha DD
+	{Pergamino, "resources/sprites/iconos ficha/pergamino.png"}};
 
 //
 

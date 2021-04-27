@@ -4,6 +4,7 @@ class Interfaz;
 
 // MENU
 using namespace std;
+typedef unsigned int uint;
 
 class callbacks {
 public:
@@ -13,7 +14,8 @@ public:
 	static void pruebaGame2(Interfaz* app);
 	static void pruebaGame3(Interfaz* app);
 	// acceso a heroes
-	static void heroType(int numberHeroe);
+	static void heroType(uint numberHeroe);
+	static void createDDPan(uint numberHeroe);
 	// acceso a movimiento
 	static void movCommand(int movType);
 	// acceso a informacion

@@ -22,6 +22,15 @@ void ButtonPanelCte::click()
 	pan_->toggleButtons();
 }
 
+#include "Interfaz.h"
+void ButtonHero::click()
+{
+	Interfaz* i_ = TheElementalMaze::instance()->getComponent<Interfaz>(ecs::Interfaz);
+	i_->checkActiveHeroButton();
+	callbacks::createDDPan((uint)heroType_);
+	activated = !activated;
+}
+
 #pragma endregion
 
 #pragma region ButtonCombateResources
@@ -35,3 +44,14 @@ void ButtonHability::init(Vector2D pos, uint ancho, uint alto, Resources::Textur
 	Button::init(pos, ancho, alto, imagen);
 }
 #pragma endregion
+
+void ButtonLine::init(Vector2D pos, uint ancho, uint alto, string line)
+{
+	addComponent<Transform>(pos, Vector2D(), ancho, alto, 0);
+	Texture* t = nullptr; 
+	if (t->loadFromText(game_->getRenderer(), line, game_->getFontMngr()->getFont(Resources::ARIAL16), { 0,0,255,255 }))
+		addComponent<Image>(t);
+	addComponent<ButtonCtrl>(this);
+}
+
+

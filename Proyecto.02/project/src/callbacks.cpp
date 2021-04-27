@@ -9,6 +9,7 @@
 
 #pragma region PruebasBotones
 
+
 void callbacks::pruebaGame0(Interfaz* app) {
 	std::cout << "pruebaGame0" << std::endl;
 }
@@ -29,11 +30,17 @@ void callbacks::pruebaGame3(Interfaz* app) {
 #pragma region PanelHeroes
 #include "../TheElementalMaze.h"
 #include "CombatManager.h"
+#include "Interfaz.h"
 
-void callbacks::heroType(int numberHeroe) {
+void callbacks::heroType(uint numberHeroe) {
 	CombatManager* c = GETCMP2(TheElementalMaze::instance(), CombatManager);
 	string name = c->getCharacter(numberHeroe, HERO)->name();
 	std::cout << "heroe " << numberHeroe << ": " << name << std::endl;
+}
+
+void callbacks::createDDPan(uint numberHeroe) {
+	Interfaz* i = GETCMP2(TheElementalMaze::instance(), Interfaz);
+	i->createFichaDD(numberHeroe);
 }
 
 #pragma endregion

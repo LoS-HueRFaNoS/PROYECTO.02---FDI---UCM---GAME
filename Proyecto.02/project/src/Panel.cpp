@@ -14,3 +14,17 @@ void Panel::removeButtons()
 	}*/
 	buttonList.clear();
 }
+
+Button* Panel::getButtonActive()
+{
+	Button* b_active = nullptr;
+	for (Button* b : buttonList) {
+		ButtonPanel* b_ = dynamic_cast<ButtonPanel*>(b);
+		if (b_ != nullptr) {
+			if (b_->getActive()) {
+				b_active = static_cast<Button*>(b_);
+			}
+		}
+	}
+	return b_active;
+}

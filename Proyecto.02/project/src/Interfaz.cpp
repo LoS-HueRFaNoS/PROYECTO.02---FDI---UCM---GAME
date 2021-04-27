@@ -113,7 +113,7 @@ void Interfaz::createHeroes()
 
 	// BOTONES: hero1, hero2, hero3, hero4
 	for (int i = 0; i < nHeros; i++) {
-		p->addButton(iManager->addButton<ButtonHero>(Vector2D(x_, y_ + i * espace), w_, h_, getHeroTxt(i), (HeroNum)i));
+		p->addButton(iManager->addButton<ButtonHero>(Vector2D(x_, y_ + i * espace), w_, h_, getHeroTxt(i), (HeroNum)i, DDPan, false));
 	}
 }
 
@@ -194,18 +194,73 @@ void Interfaz::createInventory()
 	}
 }
 
+void Interfaz::createFichaDD(uint nCharacter)
+{
+	CombatManager* c = GETCMP2(TheElementalMaze::instance(), CombatManager);
+	uint nEnemys = c->getEnemysTam();
+
+	uint nInfoButton_H = 3; // separaciones horizontales
+	uint nInfoButton_V = 3; // separaciones verticales
+
+	// posici�n en pixeles del 'fondo'
+	double x_ = 70;
+	double y_ = 70;
+	// tama�o en pixeles del 'fondo'
+	double w_ = 1340;
+	double h_ = 620;
+	// tama�o de los margenes
+	double n = 20;
+
+	// posicion del panel respecto a la ventana
+	x_ = game_->setHorizontalScale(x_ + n);
+	y_ = game_->setVerticalScale(y_ + n);
+
+	double espace_H = game_->setHorizontalScale((w_ - n) / nInfoButton_H);
+	double espace_V = game_->setVerticalScale((h_ - n) / nInfoButton_V);
+
+	// construccion y asignacion del panel:
+	Panel* p = new Panel(DDPan);
+	allPanels[DDPan] = p;
+
+	p->addButton(iManager->addButton<ButtonSlott>(Vector2D(x_, y_), w_, h_, src::Pergamino));
+
+	w_ = espace_H - game_->setHorizontalScale(n);
+	h_ = espace_V - game_->setVerticalScale(n);
+	double lineTam_V = espace_V / 8;
+
+	Character* c_ = static_cast<Character*>(c->getCharacter((int)nCharacter, HERO));
+	p->addButton(iManager->addButton<ButtonSlott>(Vector2D(x_ + 1 * espace_H, y_ + 1 * espace_V), w_, h_, getHeroTxt((uint) nCharacter)));
+	p->addButton(iManager->addButton<ButtonSlott>(Vector2D(x_ + 1 * espace_H, y_ + 1 * espace_V), w_, h_, getHeroTxt((uint)nCharacter)));
+
+	string info = "";
+	//STATS
+	p->addButton(iManager->addButton<ButtonLine>(Vector2D(x_ + 1 * espace_H, y_ + 1 * espace_V + lineTam_V * 0), w_, h_, "Stats:\n"));
+	string text = "Strength = " + c_->getStat(STR); info += text + "\n";
+	p->addButton(iManager->addButton<ButtonLine>(Vector2D(x_ + 1 * espace_H, y_ + 1 * espace_V + lineTam_V * 0), w_, h_, text));
+	text = "Constitution = " + c_->getStat(CON); info += text + "\n";
+	p->addButton(iManager->addButton<ButtonLine>(Vector2D(x_ + 0 * espace_H, y_ + 1 * espace_V + lineTam_V * 1), w_, h_, text));
+	text = "Dexterity = " + c_->getStat(DEX); info += text + "\n";
+	p->addButton(iManager->addButton<ButtonLine>(Vector2D(x_ + 0 * espace_H, y_ + 1 * espace_V + lineTam_V * 2), w_, h_, text));
+	text = "Intelect = " + c_->getStat(INT); info += text + "\n";
+	p->addButton(iManager->addButton<ButtonLine>(Vector2D(x_ + 0 * espace_H, y_ + 1 * espace_V + lineTam_V * 3), w_, h_, text));
+
+	//RESISTENCIAS:
+
+	p->addButton(iManager->addButton<ButtonLine>(Vector2D(x_ + 2 * espace_H, y_ + 1 * espace_V), w_, h_, info));
+}
+
 void Interfaz::createTargets()
 {
 	CombatManager* c = GETCMP2(TheElementalMaze::instance(), CombatManager);
 	uint nEnemys = c->getEnemysTam();
 
-	// posici�n en pixeles del 'fondo'
+	// posicion en pixeles del 'fondo'
 	double x_ = 70;
 	double y_ = 790;
-	// tama�o en pixeles del 'fondo'
+	// tamano en pixeles del 'fondo'
 	double w_ = 710;
 	double h_ = 190;
-	// tama�o de los margenes
+	// tamano de los margenes
 	double n = 20;
 
 	// posicion del panel respecto a la ventana
@@ -283,7 +338,7 @@ void Interfaz::createPanel(idPanel panelID)
 		createInventory();
 		break;
 	case HeroesStats:
-		createHeroesStats();
+		//createFichaDD();
 		break;
 	case BigMap:
 		createBigMap();
@@ -355,6 +410,13 @@ void Interfaz::update()
 Entity* Interfaz::getEntity()
 {
 	return entity_;
+}
+
+void Interfaz::checkActiveHeroButton()
+{
+	Button* b = allPanels[Heroes]->getButtonActive();
+	if (b != nullptr)
+		static_cast<ButtonPanel*>(b)->setActive(false);
 }
 
 #include "CombatManager.h"
