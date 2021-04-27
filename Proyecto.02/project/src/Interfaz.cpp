@@ -257,7 +257,7 @@ void Interfaz::createFichaDD(uint nCharacter)
 	p->addButton(iManager->addButton<ButtonSlott>(Vector2D(xs_ + 1 * espace_H, ys_ + 1 * espace_V), ws_, hs_, getHeroTxt((uint)nCharacter)));
 
 
-	string info = "";
+	string info = ""; // auxiliar para recopilar todo en caso de poder sacarlo en una sola linea.
 
 	// VIDA y MANA:
 	string text = "Health = " + to_string(c_->getMaxHealth()); info += text + "\n";		// Health
@@ -290,6 +290,14 @@ void Interfaz::createFichaDD(uint nCharacter)
 	p->addButton(iManager->addButton<ButtonLine>(Vector2D(xs_ + 2 * espace_H, ys_ + 1 * espace_V + lineTam_V * 5), ws_, lineTam_V, text, Resources::Beaulieux));
 	text = "Dark = " + to_string(c_->getDarkRes()); info += text + "\n";		// Dark
 	p->addButton(iManager->addButton<ButtonLine>(Vector2D(xs_ + 2 * espace_H, ys_ + 1 * espace_V + lineTam_V * 6), ws_, lineTam_V, text, Resources::Beaulieux));
+
+	// ARMA & ARMADURA:
+	Hero* hero_ = dynamic_cast<Hero*>(c_);
+	if (hero_ != nullptr)
+	{
+		Armor* armor_ = hero_->getArmor();		// Armadura
+		Weapon* weapon_ = hero_->getWeapon();	// Arma
+	}
 
 	// No funciona bien lo ponerlo en una sola linea: (prueba si quieres)
 	//p->addButton(iManager->addButton<ButtonLine>(Vector2D(xs_ + 2 * espace_H, ys_ + 1 * espace_V + lineTam_V * 0), ws_, lineTam_V * 4, info, Resources::Beaulieux));
