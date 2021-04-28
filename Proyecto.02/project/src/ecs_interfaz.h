@@ -17,6 +17,7 @@ namespace interfaz {
 		Fight, 
 		Turns, 
 		HeroesStats, 
+		DDPan,
 		BigMap, 
 		Settings, 
 		Chat,

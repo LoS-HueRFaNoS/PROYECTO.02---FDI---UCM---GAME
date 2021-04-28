@@ -8,3 +8,9 @@ void Fondo::init(Vector2D pos, uint ancho, uint alto, Resources::TextureId image
 	addComponent<Transform>(pos, Vector2D(), ancho, alto, 0);
 	addComponent<Image>(game_->getTextureMngr()->getTexture(Resources::Fondo));
 }
+
+void Line::init(Vector2D pos, uint ancho, uint alto, string line)
+{
+	addComponent<Transform>(pos, Vector2D(), ancho, alto, 0);
+	addComponent<Image>(game_->getTextureMngr()->getTexture(Resources::Fondo));
+}

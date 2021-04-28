@@ -4,6 +4,8 @@
 #include "Component.h"
 #include "Panel.h"
 
+class Font;
+
 class InterfazManager;
 
 using namespace std;
@@ -21,7 +23,6 @@ private:
 	void createInfo();
 	void createMinimap() {}; //
 	void createInventory();
-	void createHeroesStats() {}; //
 	void createBigMap() {}; //
 	void createTurns() {}; //
 	void createSettings() {}; //
@@ -47,7 +48,7 @@ public:
 	void destroyPanel(idPanel panelID);
 
 	void togglePanel(Panel* pan);
-	void togglePanel(idPanel panID) { togglePanel(allPanels[panID]); }
+	void togglePanel(idPanel panID) { togglePanel(allPanels[panID]); };
 
 	void toggleCombat_Movement();
 
@@ -56,6 +57,10 @@ public:
 	virtual void draw() override {};
 
 	Entity* getEntity();
+	bool getActivePan(idPanel pan) { return allPanels[pan] != nullptr; };
+	void checkActiveHeroButton(HeroNum nAct);
+	void createFichaDD(uint nCharacter);
+
 private:
 	Resources::TextureId getHeroTxt(uint number);
 	void initialize();

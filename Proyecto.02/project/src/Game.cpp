@@ -41,7 +41,7 @@ Game::~Game()
 void Game::initGame()
 {
 	int initTime = 0;
-	game_ = SDLGame::init("VAMOS A LLORAR CON SDL", _WINDOW_WIDTH_, _WINDOW_HEIGHT_);
+	game_ = SDLGame::init("THE ELEMENTAL MAZE", _WINDOW_WIDTH_, _WINDOW_HEIGHT_);
 
 	Texture *tex_ = new Texture(game_->getRenderer(), "resources/images/cargando.png");
 	SDL_Rect dest = {0, 0, int(game_->getWindowWidth()), int(game_->getWindowHeight())};

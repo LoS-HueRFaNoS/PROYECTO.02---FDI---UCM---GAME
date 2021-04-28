@@ -62,6 +62,7 @@ public:
 		// UI
 		Mouse,
 		Fondo,
+		Selected,
 
 		// movement
 		Avanzar,
@@ -104,6 +105,9 @@ public:
 		ArcoPequeno,
 		BallestaLigera,
 
+		// Comodin
+		Joker,
+
 		//Armas Marciales
 		Alabarda,
 		Atarraga,
@@ -135,8 +139,10 @@ public:
 		Lich,
 		Necrofago,
 		Monster,
-		Desconocido
+		Desconocido,
 
+		//Ficha DD
+		Pergamino
 	};
 
 	enum AudioId : std::size_t {
@@ -149,7 +155,7 @@ public:
 	};
 
 	enum FontId : std::size_t {
-		ARIAL16, ARIAL24,
+		ARIAL16, ARIAL24, HERMAN, Fornite, Quake, KillerInst, Sega, Beaulieux, Triforce
 	};
 
 	enum JsonId : std::size_t {

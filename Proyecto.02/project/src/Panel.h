@@ -28,6 +28,7 @@ public:
 		for (Entity* var : buttonList) var->toggleEnabled();
 	}
 
+	ButtonPanel* getButtonActive();
 	idPanel GetID() { return id; };
 };
 

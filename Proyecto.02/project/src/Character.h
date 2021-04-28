@@ -126,7 +126,33 @@ public:
 		return !_sheet->hitPoints();
 	}
 
+	// -------- METODOS NECESARIOS PARA INTERFAZ ---------
 
+	size_t getMaxHealth() { return _sheet->maxHitPoints(); };	// vida
+	size_t getMaxMana() { return _sheet->maxManaPoints(); };	// mana
+	size_t getFireRes() { return _sheet->weaknesses.getWeakness(FIRE); };	// fire resistance
+	size_t getWaterRes() { return _sheet->weaknesses.getWeakness(WATER); };	// water resistance
+	size_t getIceRes() { return _sheet->weaknesses.getWeakness(ICE); };		// ice resistance
+	size_t getEarthRes() { return _sheet->weaknesses.getWeakness(EARTH); };	// earth resistance
+	size_t getWindRes() { return _sheet->weaknesses.getWeakness(WIND); };	// wind resistance
+	size_t getLightRes() { return _sheet->weaknesses.getWeakness(LIGHT); };	// light resistance
+	size_t getDarkRes() { return _sheet->weaknesses.getWeakness(DARK); };	// dark resistance
+
+	/*	damageType {
+			// Daños físicos
+			BLUNT,
+			PIERCE,
+			SLASH,
+			// Daños Elementales
+			FIRE,
+			WATER,
+			ICE,
+			EARTH,
+			WIND,
+			LIGHT,
+			DARK,		*/
+
+	// ----------------------------------------------------
 };
 
 #pragma endregion

@@ -3,7 +3,14 @@
 
 vector<Resources::FontInfo> Resources::fonts_{
 	{ARIAL16, "resources/fonts/ARIAL.ttf", 16}, //
-	{ARIAL24, "resources/fonts/ARIAL.ttf", 24}	//
+	{ARIAL24, "resources/fonts/ARIAL.ttf", 24},	//
+	{HERMAN, "resources/fonts/ARHERMANN.ttf", 64},
+	{Fornite, "resources/fonts/Fortnite.ttf", 64},
+	{Quake, "resources/fonts/dpquake_.ttf", 64},
+	{KillerInst, "resources/fonts/kinifed_.ttf", 64},
+	{Sega, "resources/fonts/SEGA.ttf", 64},
+	{Beaulieux, "resources/fonts/t4cbeaulieux.ttf", 64},
+	{Triforce, "resources/fonts/Triforce.ttf", 64}
 };
 
 vector<Resources::ImageInfo> Resources::images_{
@@ -52,6 +59,7 @@ vector<Resources::ImageInfo> Resources::images_{
 
 	{Mouse, "resources/images/interfaz/cursor+sombras.png"},
 	{Fondo, "resources/sprites/fondos y marcos/Fondo_Interfaz_02.png"},
+	{Selected, "resources/sprites/fondos y marcos/selected.png"},
 	{Avanzar, "resources/sprites/iconos movimiento/movimientoAvanzar.png"},
 	{RotarD, "resources/sprites/iconos movimiento/movimientoRotarDerecha.png"},
 	{RotarI, "resources/sprites/iconos movimiento/movimientoRotarIzquierda.png"},
@@ -77,7 +85,8 @@ vector<Resources::ImageInfo> Resources::images_{
 	{WeaponSlot, "resources/sprites/iconos inventario/weapon_slot.png"},
 	{ArmorSlot, "resources/sprites/iconos inventario/armor_slot.png"},
 
-	// Armas clasicas �?
+	// Armas clasicas
+	{Joker, "resources/sprites/iconos armas/joker.png"}, ///TODO
 	{Desarmado, "resources/sprites/iconos armas/joker.png"}, ///TODO
 	{Baston, "resources/sprites/iconos armas/baston.png"},
 	{Daga, "resources/sprites/iconos armas/daga.png"},
@@ -117,18 +126,15 @@ vector<Resources::ImageInfo> Resources::images_{
 	{Bandas, "resources/sprites/iconos armaduras/joker.png"},
 	{Placas, "resources/sprites/iconos armaduras/joker.png"},
 
-		//Enemigo
+	// Enemigos
 	{Lich, "resources/sprites/iconos personajes/lich.PNG"},
 	{Necrofago, "resources/sprites/iconos personajes/necrofago.png" },
 	{ Monster, "resources/images/monster.png" },
-	{ Desconocido, "resources/images/desconocido.png" }
+	{ Desconocido, "resources/images/desconocido.png" },
 
-
+	// Ficha DD
+	{Pergamino, "resources/sprites/iconos ficha/pergamino.png"}
 };
-
-	
-
-
 
 vector<Resources::TextMsgInfo> Resources::messages_{
 	//
