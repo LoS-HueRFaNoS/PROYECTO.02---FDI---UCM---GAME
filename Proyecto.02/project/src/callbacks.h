@@ -15,7 +15,7 @@ public:
 	static void pruebaGame3(Interfaz* app);
 	// acceso a heroes
 	static void heroType(uint numberHeroe);
-	static void createDDPan(uint numberHeroe);
+	static void createDDPan(bool activated, uint numberHeroe);
 	// acceso a movimiento
 	static void movCommand(int movType);
 	// acceso a informacion

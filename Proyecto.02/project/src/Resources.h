@@ -49,6 +49,7 @@ public:
 		// UI
 		Mouse,
 		Fondo,
+		Selected,
 
 		// movement
 		Avanzar,

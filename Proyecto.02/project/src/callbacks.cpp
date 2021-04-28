@@ -38,9 +38,11 @@ void callbacks::heroType(uint numberHeroe) {
 	std::cout << "heroe " << numberHeroe << ": " << name << std::endl;
 }
 
-void callbacks::createDDPan(uint numberHeroe) {
+void callbacks::createDDPan(bool active, uint numberHeroe) {
 	Interfaz* i = GETCMP2(TheElementalMaze::instance(), Interfaz);
-	i->createFichaDD(numberHeroe);
+	
+	if (!active) i->createFichaDD(numberHeroe);
+	else if (active) i->removePanel(DDPan);
 }
 
 #pragma endregion

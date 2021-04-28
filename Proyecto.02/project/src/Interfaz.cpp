@@ -20,13 +20,13 @@ Interfaz::~Interfaz()
 
 void Interfaz::createFight()
 {
-	// posiciï¿½n en pixeles del 'fondo'
+	// posicion en pixeles del 'fondo'
 	double x_ = 70;
 	double y_ = 790;
-	// tamaï¿½o en pixeles del 'fondo'
+	// tamano en pixeles del 'fondo'
 	double w_ = 710;
 	double h_ = 190;
-	// tamaï¿½o de los margenes
+	// tamano de los margenes
 	double n = 20;
 
 	// posicion del panel respecto a la ventana
@@ -51,13 +51,13 @@ void Interfaz::createFight()
 
 void Interfaz::createMovement()
 {
-	// posiciï¿½n en pixeles del 'fondo'
+	// posicion en pixeles del 'fondo'
 	double x_ = 70;
 	double y_ = 790;
-	// tamaï¿½o en pixeles del 'fondo'
+	// tamano en pixeles del 'fondo'
 	double w_ = 710;
 	double h_ = 190;
-	// tamaï¿½o de los margenes
+	// tamano de los margenes
 	double n = 20;
 
 	// posicion del panel respecto a la ventana
@@ -89,14 +89,14 @@ void Interfaz::createHeroes()
 	CombatManager* c = GETCMP2(TheElementalMaze::instance(), CombatManager);
 	uint nHeros = c->getHerosTam();
 
-	// posiciï¿½n en pixeles del 'fondo'
+	// posicion en pixeles del 'fondo'
 	double x_ = 1510;
 	double y_ = 360;
-	// tamaï¿½o en pixeles del 'fondo'
+	// tamano en pixeles del 'fondo'
 	double w_ = 340;
 	double h_ = 330;
-	// tamaï¿½o de los margenes
-	double n = 5;
+	// tamano de los margenes
+	double n = 5.0 + 5.0;
 
 	// posicion del panel respecto a la ventana
 	x_ = game_->setHorizontalScale(x_ + n);
@@ -122,13 +122,13 @@ void Interfaz::createInfo()
 	uint nInfoButton_H = 4; // separaciones horizontales
 	uint nInfoButton_V = 2; // separaciones verticales
 
-	// posición en pixeles del 'fondo'
+	// posicion en pixeles del 'fondo'
 	double x_ = 880;
 	double y_ = 790;
-	// tamaño en pixeles del 'fondo'
+	// tamano en pixeles del 'fondo'
 	double w_ = 530;
 	double h_ = 190;
-	// tamaño de los margenes
+	// tamano de los margenes
 	double n = 5;
 
 	// posicion del panel respecto a la ventana
@@ -351,13 +351,13 @@ void Interfaz::createHabilities()
 	CombatManager* c = GETCMP2(TheElementalMaze::instance(), CombatManager);
 	uint nEnemys = c->getEnemysTam();
 
-	// posiciï¿½n en pixeles del 'fondo'
+	// posicion en pixeles del 'fondo'
 	double x_ = 70;
 	double y_ = 790;
-	// tamaï¿½o en pixeles del 'fondo'
+	// tamano en pixeles del 'fondo'
 	double w_ = 710;
 	double h_ = 190;
-	// tamaï¿½o de los margenes
+	// tamano de los margenes
 	double n = 20;
 
 	// posicion del panel respecto a la ventana
@@ -476,11 +476,16 @@ Entity* Interfaz::getEntity()
 	return entity_;
 }
 
-void Interfaz::checkActiveHeroButton()
+void Interfaz::checkActiveHeroButton(HeroNum nAct)
 {
-	Button* b = allPanels[Heroes]->getButtonActive();
-	if (b != nullptr)
-		static_cast<ButtonPanel*>(b)->setActive(false);
+	ButtonPanel* b = allPanels[Heroes]->getButtonActive();
+	if (b != nullptr) {
+		ButtonHero* b_hero = dynamic_cast<ButtonHero*>(b);
+		if (b_hero != nullptr && b_hero->getNumHero() != nAct) {
+			b->turnOFF();
+			removePanel(DDPan);
+		}
+	}
 }
 
 #include "CombatManager.h"

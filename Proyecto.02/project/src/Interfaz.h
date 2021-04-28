@@ -55,7 +55,7 @@ public:
 
 	Entity* getEntity();
 	bool getActivePan(idPanel pan) { return allPanels[pan] != nullptr; };
-	void checkActiveHeroButton();
+	void checkActiveHeroButton(HeroNum nAct);
 	void createFichaDD(uint nCharacter);
 
 private:

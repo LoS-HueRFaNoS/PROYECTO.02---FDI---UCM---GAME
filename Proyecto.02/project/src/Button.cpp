@@ -3,6 +3,7 @@
 #include "Interfaz.h"
 #include "Transform.h"
 #include "Image.h"
+#include "Sprite.h"
 #include "ButtonCtrl.h"
 
 // todo el juego se une mediante GameMngr(entity_)
@@ -26,9 +27,12 @@ void ButtonPanelCte::click()
 void ButtonHero::click()
 {
 	Interfaz* i_ = TheElementalMaze::instance()->getComponent<Interfaz>(ecs::Interfaz);
-	i_->checkActiveHeroButton();
-	callbacks::createDDPan((uint)heroType_);
-	activated = !activated;
+	i_->checkActiveHeroButton(heroType_);
+	callbacks::createDDPan(activated, (uint)heroType_);
+	if (!activated) 
+		turnON();
+	else 
+		turnOFF();
 }
 
 #pragma endregion
@@ -54,4 +58,12 @@ void ButtonLine::init(Vector2D pos, uint ancho, uint alto, string line, Resource
 	addComponent<ButtonCtrl>(this);
 }
 
+void ButtonPanel::setActive(bool set)
+{
+	activated = set;
+}
 
+void ButtonPanel::setHide(bool set)
+{
+	GETCMP2(this, Sprite)->setHide(set);
+}

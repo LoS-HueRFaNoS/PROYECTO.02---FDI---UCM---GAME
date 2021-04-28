@@ -43,6 +43,7 @@ vector<Resources::ImageInfo> Resources::images_{
 
 	{Mouse, "resources/images/interfaz/cursor+sombras.png"},
 	{Fondo, "resources/sprites/fondos y marcos/Fondo_Interfaz_02.png"},
+	{Selected, "resources/sprites/fondos y marcos/selected.png"},
 	{Avanzar, "resources/sprites/iconos movimiento/movimientoAvanzar.png"},
 	{RotarD, "resources/sprites/iconos movimiento/movimientoRotarDerecha.png"},
 	{RotarI, "resources/sprites/iconos movimiento/movimientoRotarIzquierda.png"},

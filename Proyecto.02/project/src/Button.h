@@ -179,6 +179,7 @@ public:
 #pragma region ButtonPanelResources
 #include "callbacks.h"
 #include "ecs_interfaz.h"
+#include "Sprite.h"
 #include "../TheElementalMaze.h"
 
 class Interfaz;
@@ -214,19 +215,25 @@ public:
 	~ButtonPanel() {};
 
 	virtual void init(Vector2D pos, uint ancho, uint alto, Resources::TextureId imagen, idPanel p, bool active) {
-		activated = active;
+		setActive(active);
 		pan_ = p;
 		Button::init(pos, ancho, alto, imagen);
+		addComponent<Sprite>(game_->getTextureMngr()->getTexture(Resources::Selected), 0, 0, true, true); // marco select
 	};
 
 	virtual void click()
 	{
 		callbacks::createPanel(activated, pan_);
-		activated = !activated;
+		if (!activated) turnON();
+		else turnOFF();
 	}
 
 	bool getActive() { return activated; };
-	void setActive(bool set_) { activated = set_; };
+	void setActive(bool set);
+	void setHide(bool set);
+
+	void turnON() { setActive(true), setHide(false); }
+	void turnOFF() { setActive(false), setHide(true); }
 };
 
 enum class HeroNum { hero1, hero2, hero3, hero4 };
@@ -245,6 +252,8 @@ public:
 	};
 
 	virtual void click();
+
+	HeroNum getNumHero() { return heroType_; };
 };
 #pragma endregion
 
