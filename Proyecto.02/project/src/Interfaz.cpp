@@ -241,8 +241,9 @@ void Interfaz::createFichaDD(uint nCharacter)
 	double hs_ = espace_V - game_->setVerticalScale(_nh);	// alto cuadrante
 	double lineTam_V = espace_V * 2 / 8;
 
+	SDL_Color color = { 0,0,0,255 };
 	// Titulo:
-	p->addButton(iManager->addButton<ButtonLine>(Vector2D(xs_, ys_ - espace_V * 1 / 3), ws_ * 3, hs_, c_->name(), Resources::Beaulieux));
+	p->addButton(iManager->addButton<ButtonLine>(Vector2D(xs_, ys_ - espace_V * 1 / 3), ws_ * 3, hs_, c_->name(), Resources::Beaulieux, color));
 	
 	// cuadrantes ejemplo: (esto es sólo para ver las divisiones creadas para los botones, borra esto cuando esté listo!)
 	//for (size_t i = 0; i < nInfoButton_H; i++) // columnas: esta con un '1' para que se vean las stats! (la primera Columna)
@@ -254,42 +255,49 @@ void Interfaz::createFichaDD(uint nCharacter)
 	//} // end ejemplo
 
 	// icono heroe:
-	p->addButton(iManager->addButton<ButtonSlott>(Vector2D(xs_ + 1 * espace_H, ys_ + 1 * espace_V), ws_, hs_, getHeroTxt((uint)nCharacter)));
+	p->addButton(iManager->addButton<ButtonSlott>(Vector2D(xs_ + 1 * espace_H + (abs(ws_ - hs_) / 2), ys_ + 1 * espace_V), hs_, hs_, getHeroTxt((uint)nCharacter)));
 
 
 	string info = ""; // auxiliar para recopilar todo en caso de poder sacarlo en una sola linea.
 
 	// VIDA y MANA:
 	string text = "Health = " + to_string(c_->getMaxHealth()); info += text + "\n";		// Health
-	p->addButton(iManager->addButton<ButtonLine>(Vector2D(xs_ + 0 * espace_H, ys_ + 1 * espace_V + lineTam_V * 0), ws_, lineTam_V, text, Resources::Beaulieux));
+	p->addButton(iManager->addButton<ButtonLine>(Vector2D(xs_ + 0 * espace_H, ys_ + 1 * espace_V + lineTam_V * 0), ws_, lineTam_V, text, Resources::Beaulieux, color));
 	text = "Mana = " + to_string(c_->getMaxMana()); info += text + "\n";				// Mana
-	p->addButton(iManager->addButton<ButtonLine>(Vector2D(xs_ + 0 * espace_H, ys_ + 1 * espace_V + lineTam_V * 1), ws_, lineTam_V, text, Resources::Beaulieux));
+	p->addButton(iManager->addButton<ButtonLine>(Vector2D(xs_ + 0 * espace_H, ys_ + 1 * espace_V + lineTam_V * 1), ws_, lineTam_V, text, Resources::Beaulieux, color));
 
 	// MAIN STATS:
 	text = "Strength = " + to_string(c_->getStat(STR)); info += text + "\n";		// Fuerza
-	p->addButton(iManager->addButton<ButtonLine>(Vector2D(xs_ + 0 * espace_H, ys_ + 1 * espace_V + lineTam_V * 2), ws_, lineTam_V, text, Resources::Beaulieux));
+	p->addButton(iManager->addButton<ButtonLine>(Vector2D(xs_ + 0 * espace_H, ys_ + 1 * espace_V + lineTam_V * 3), ws_, lineTam_V, text, Resources::Beaulieux, color));
 	text = "Constitution = " + to_string(c_->getStat(CON)); info += text + "\n";	// Constitution
-	p->addButton(iManager->addButton<ButtonLine>(Vector2D(xs_ + 0 * espace_H, ys_ + 1 * espace_V + lineTam_V * 3), ws_, lineTam_V, text, Resources::Beaulieux));
+	p->addButton(iManager->addButton<ButtonLine>(Vector2D(xs_ + 0 * espace_H, ys_ + 1 * espace_V + lineTam_V * 4), ws_, lineTam_V, text, Resources::Beaulieux, color));
 	text = "Dexterity = " + to_string(c_->getStat(DEX)); info += text + "\n";		// Destreza
-	p->addButton(iManager->addButton<ButtonLine>(Vector2D(xs_ + 0 * espace_H, ys_ + 1 * espace_V + lineTam_V * 4), ws_, lineTam_V, text, Resources::Beaulieux));
+	p->addButton(iManager->addButton<ButtonLine>(Vector2D(xs_ + 0 * espace_H, ys_ + 1 * espace_V + lineTam_V * 5), ws_, lineTam_V, text, Resources::Beaulieux, color));
 	text = "Intelect = " + to_string(c_->getStat(INT)); info += text + "\n";		// Intelecto
-	p->addButton(iManager->addButton<ButtonLine>(Vector2D(xs_ + 0 * espace_H, ys_ + 1 * espace_V + lineTam_V * 5), ws_, lineTam_V, text, Resources::Beaulieux));
+	p->addButton(iManager->addButton<ButtonLine>(Vector2D(xs_ + 0 * espace_H, ys_ + 1 * espace_V + lineTam_V * 6), ws_, lineTam_V, text, Resources::Beaulieux, color));
 
 	// RESISTENCIAS:
 	text = "Fire = " + to_string(c_->getFireRes()); info += text + "\n";		// Fire
-	p->addButton(iManager->addButton<ButtonLine>(Vector2D(xs_ + 2 * espace_H, ys_ + 1 * espace_V + lineTam_V * 0), ws_, lineTam_V, text, Resources::Beaulieux));
+	color = { 255,0,0,255 };
+	p->addButton(iManager->addButton<ButtonLine>(Vector2D(xs_ + 2 * espace_H, ys_ + 1 * espace_V + lineTam_V * 0), ws_, lineTam_V, text, Resources::Beaulieux, color));
 	text = "Water = " + to_string(c_->getWaterRes()); info += text + "\n";		// Water
-	p->addButton(iManager->addButton<ButtonLine>(Vector2D(xs_ + 2 * espace_H, ys_ + 1 * espace_V + lineTam_V * 1), ws_, lineTam_V, text, Resources::Beaulieux));
+	color = { 0,0,255,255 };
+	p->addButton(iManager->addButton<ButtonLine>(Vector2D(xs_ + 2 * espace_H, ys_ + 1 * espace_V + lineTam_V * 1), ws_, lineTam_V, text, Resources::Beaulieux, color));
 	text = "Ice = " + to_string(c_->getIceRes()); info += text + "\n";			// Ice
-	p->addButton(iManager->addButton<ButtonLine>(Vector2D(xs_ + 2 * espace_H, ys_ + 1 * espace_V + lineTam_V * 2), ws_, lineTam_V, text, Resources::Beaulieux));
+	color = { 155,155,255,255 };
+	p->addButton(iManager->addButton<ButtonLine>(Vector2D(xs_ + 2 * espace_H, ys_ + 1 * espace_V + lineTam_V * 2), ws_, lineTam_V, text, Resources::Beaulieux, color));
 	text = "Earth = " + to_string(c_->getEarthRes()); info += text + "\n";		// Earth
-	p->addButton(iManager->addButton<ButtonLine>(Vector2D(xs_ + 2 * espace_H, ys_ + 1 * espace_V + lineTam_V * 3), ws_, lineTam_V, text, Resources::Beaulieux));
+	color = { 155,80,20,255 };
+	p->addButton(iManager->addButton<ButtonLine>(Vector2D(xs_ + 2 * espace_H, ys_ + 1 * espace_V + lineTam_V * 3), ws_, lineTam_V, text, Resources::Beaulieux, color));
 	text = "Wind = " + to_string(c_->getWindRes()); info += text + "\n";		// Wind
-	p->addButton(iManager->addButton<ButtonLine>(Vector2D(xs_ + 2 * espace_H, ys_ + 1 * espace_V + lineTam_V * 4), ws_, lineTam_V, text, Resources::Beaulieux));
+	color = { 0, 150, 0,255 };
+	p->addButton(iManager->addButton<ButtonLine>(Vector2D(xs_ + 2 * espace_H, ys_ + 1 * espace_V + lineTam_V * 4), ws_, lineTam_V, text, Resources::Beaulieux, color));
 	text = "Light = " + to_string(c_->getLightRes()); info += text + "\n";		// Light
-	p->addButton(iManager->addButton<ButtonLine>(Vector2D(xs_ + 2 * espace_H, ys_ + 1 * espace_V + lineTam_V * 5), ws_, lineTam_V, text, Resources::Beaulieux));
+	color = { 255,255,150,255 };
+	p->addButton(iManager->addButton<ButtonLine>(Vector2D(xs_ + 2 * espace_H, ys_ + 1 * espace_V + lineTam_V * 5), ws_, lineTam_V, text, Resources::Beaulieux, color));
 	text = "Dark = " + to_string(c_->getDarkRes()); info += text + "\n";		// Dark
-	p->addButton(iManager->addButton<ButtonLine>(Vector2D(xs_ + 2 * espace_H, ys_ + 1 * espace_V + lineTam_V * 6), ws_, lineTam_V, text, Resources::Beaulieux));
+	color = { 50,50,50,255 };
+	p->addButton(iManager->addButton<ButtonLine>(Vector2D(xs_ + 2 * espace_H, ys_ + 1 * espace_V + lineTam_V * 6), ws_, lineTam_V, text, Resources::Beaulieux, color));
 
 	// ARMA & ARMADURA:
 	Hero* hero_ = dynamic_cast<Hero*>(c_);
@@ -300,7 +308,9 @@ void Interfaz::createFichaDD(uint nCharacter)
 	}
 
 	// No funciona bien lo ponerlo en una sola linea: (prueba si quieres)
-	//p->addButton(iManager->addButton<ButtonLine>(Vector2D(xs_ + 2 * espace_H, ys_ + 1 * espace_V + lineTam_V * 0), ws_, lineTam_V * 4, info, Resources::Beaulieux));
+	p->addButton(iManager->addButton<ButtonSlott>(Vector2D(xs_ + 1 * espace_H + (abs(ws_ - hs_) / 2), ys_ + 2 * espace_V + (abs(ws_ - hs_) / 2)), hs_ / 2, hs_ / 2, Resources::WeaponSlot));
+	p->addButton(iManager->addButton<ButtonSlott>(Vector2D(xs_ + 1.5 * espace_H, ys_ + 2 * espace_V + (abs(ws_ - hs_) / 2)), hs_ / 2, hs_ / 2, Resources::ArmorSlot));
+	//p->addButton(iManager->addButton<ButtonLine>(Vector2D(xs_ + 2 * espace_H, ys_ + 1 * espace_V + lineTam_V * 0), ws_, lineTam_V * 4, info, Resources::Beaulieux,color));
 }
 
 void Interfaz::createTargets()
