@@ -38,11 +38,11 @@ public:
 		return _stats[st];
 	}
 
-	size_t getResistance(rpgLogic::damageType type) {
+	float getResistance(rpgLogic::damageType type) {
 		weaknesses.getWeakness(type);
 	}
 
-	void setStat(mainStat st, int set) {
+	void setStat(rpgLogic::mainStat st, int set) {
 		_stats[st].value = set;
 	}
 
