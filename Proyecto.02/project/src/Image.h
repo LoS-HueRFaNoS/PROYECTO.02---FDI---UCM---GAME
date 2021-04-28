@@ -12,7 +12,8 @@ public:
 	Image(Texture* tex) :
 		Component(ecs::Image),
 		tr_(nullptr), //
-		tex_(tex) //
+		tex_(tex), //
+		hide(false)
 	{}
 	virtual ~Image() {
 	}
@@ -34,5 +35,5 @@ public:
 private:
 	Transform *tr_;
 	Texture *tex_;
-	bool hide = false;
+	bool hide;
 };

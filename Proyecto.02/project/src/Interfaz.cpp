@@ -83,11 +83,12 @@ void Interfaz::createMovement()
 
 #include "ecs.h"
 #include "../TheElementalMaze.h"
-#include "CombatManager.h"
+#include "PartyManager.h"
 void Interfaz::createHeroes()
 {
-	CombatManager* c = GETCMP2(TheElementalMaze::instance(), CombatManager);
-	uint nHeros = c->getHerosTam();
+	PartyManager* c = TheElementalMaze::instance()->getPartyManager();
+	std::vector<Hero*> heroes = c->getHeroes();
+	uint nHeros = heroes.size();
 
 	// posicion en pixeles del 'fondo'
 	double x_ = 1510;
@@ -194,10 +195,14 @@ void Interfaz::createInventory()
 	}
 }
 
+#include "Character.h"
 void Interfaz::createFichaDD(uint nCharacter)
 {
-	CombatManager* c = GETCMP2(TheElementalMaze::instance(), CombatManager);
-	Character* c_ = static_cast<Character*>(c->getCharacter((int)nCharacter, HERO));
+	PartyManager* c = TheElementalMaze::instance()->getPartyManager();
+	std::vector<Hero*> heroes = c->getHeroes();
+
+	Character* hero = heroes[nCharacter];
+	CharacterSheet* hero_sheet = hero->getCharacterSheet();
 
 	uint nInfoButton_H = 3; // separaciones horizontales
 	uint nInfoButton_V = 3; // separaciones verticales
@@ -243,64 +248,54 @@ void Interfaz::createFichaDD(uint nCharacter)
 
 	SDL_Color color = { 0,0,0,255 };
 	// Titulo:
-	p->addButton(iManager->addButton<ButtonLine>(Vector2D(xs_, ys_ - espace_V * 1 / 3), ws_ * 3, hs_, c_->name(), Resources::Beaulieux, color));
-	
-	// cuadrantes ejemplo: (esto es sólo para ver las divisiones creadas para los botones, borra esto cuando esté listo!)
-	//for (size_t i = 0; i < nInfoButton_H; i++) // columnas: esta con un '1' para que se vean las stats! (la primera Columna)
-	//{
-	//	for (size_t j = 0; j < nInfoButton_V; j++) // filas: esta con un '1' para que se vea el titulo! (la primera fila)
-	//	{
-	//		p->addButton(iManager->addButton<ButtonSlott>(Vector2D(xs_ + i * espace_H, ys_ + j * espace_V), ws_, hs_, Resources::Joker));
-	//	}
-	//} // end ejemplo
+	p->addButton(iManager->addButton<ButtonLine>(Vector2D(xs_, ys_ - espace_V * 1 / 3), ws_ * 3, hs_, hero->name(), Resources::Beaulieux, color));
 
 	// icono heroe:
 	p->addButton(iManager->addButton<ButtonSlott>(Vector2D(xs_ + 1 * espace_H + (abs(ws_ - hs_) / 2), ys_ + 1 * espace_V), hs_, hs_, getHeroTxt((uint)nCharacter)));
 
-
 	string info = ""; // auxiliar para recopilar todo en caso de poder sacarlo en una sola linea.
 
 	// VIDA y MANA:
-	string text = "Health = " + to_string(c_->getMaxHealth()); info += text + "\n";		// Health
+	string text = "Health = " + to_string(hero_sheet->maxHitPoints()); info += text + "\n";		// Health
 	p->addButton(iManager->addButton<ButtonLine>(Vector2D(xs_ + 0 * espace_H, ys_ + 1 * espace_V + lineTam_V * 0), ws_, lineTam_V, text, Resources::Beaulieux, color));
-	text = "Mana = " + to_string(c_->getMaxMana()); info += text + "\n";				// Mana
+	text = "Mana = " + to_string(hero_sheet->maxManaPoints()); info += text + "\n";				// Mana
 	p->addButton(iManager->addButton<ButtonLine>(Vector2D(xs_ + 0 * espace_H, ys_ + 1 * espace_V + lineTam_V * 1), ws_, lineTam_V, text, Resources::Beaulieux, color));
 
 	// MAIN STATS:
-	text = "Strength = " + to_string(c_->getStat(STR)); info += text + "\n";		// Fuerza
+	text = "Strength = " + to_string(hero_sheet->getStat(STR).value); info += text + "\n";		// Fuerza
 	p->addButton(iManager->addButton<ButtonLine>(Vector2D(xs_ + 0 * espace_H, ys_ + 1 * espace_V + lineTam_V * 3), ws_, lineTam_V, text, Resources::Beaulieux, color));
-	text = "Constitution = " + to_string(c_->getStat(CON)); info += text + "\n";	// Constitution
+	text = "Constitution = " + to_string(hero_sheet->getStat(CON).value); info += text + "\n";	// Constitution
 	p->addButton(iManager->addButton<ButtonLine>(Vector2D(xs_ + 0 * espace_H, ys_ + 1 * espace_V + lineTam_V * 4), ws_, lineTam_V, text, Resources::Beaulieux, color));
-	text = "Dexterity = " + to_string(c_->getStat(DEX)); info += text + "\n";		// Destreza
+	text = "Dexterity = " + to_string(hero_sheet->getStat(DEX).value); info += text + "\n";		// Destreza
 	p->addButton(iManager->addButton<ButtonLine>(Vector2D(xs_ + 0 * espace_H, ys_ + 1 * espace_V + lineTam_V * 5), ws_, lineTam_V, text, Resources::Beaulieux, color));
-	text = "Intelect = " + to_string(c_->getStat(INT)); info += text + "\n";		// Intelecto
+	text = "Intelect = " + to_string(hero_sheet->getStat(INT).value); info += text + "\n";		// Intelecto
 	p->addButton(iManager->addButton<ButtonLine>(Vector2D(xs_ + 0 * espace_H, ys_ + 1 * espace_V + lineTam_V * 6), ws_, lineTam_V, text, Resources::Beaulieux, color));
 
 	// RESISTENCIAS:
-	text = "Fire = " + to_string(c_->getFireRes()); info += text + "\n";		// Fire
+	text = "Fire = " + to_string(hero_sheet->getResistance(FIRE)); info += text + "\n";			// Fire
 	color = { 255,0,0,255 };
 	p->addButton(iManager->addButton<ButtonLine>(Vector2D(xs_ + 2 * espace_H, ys_ + 1 * espace_V + lineTam_V * 0), ws_, lineTam_V, text, Resources::Beaulieux, color));
-	text = "Water = " + to_string(c_->getWaterRes()); info += text + "\n";		// Water
+	text = "Water = " + to_string(hero_sheet->getResistance(WATER)); info += text + "\n";		// Water
 	color = { 0,0,255,255 };
 	p->addButton(iManager->addButton<ButtonLine>(Vector2D(xs_ + 2 * espace_H, ys_ + 1 * espace_V + lineTam_V * 1), ws_, lineTam_V, text, Resources::Beaulieux, color));
-	text = "Ice = " + to_string(c_->getIceRes()); info += text + "\n";			// Ice
+	text = "Ice = " + to_string(hero_sheet->getResistance(ICE)); info += text + "\n";			// Ice
 	color = { 155,155,255,255 };
 	p->addButton(iManager->addButton<ButtonLine>(Vector2D(xs_ + 2 * espace_H, ys_ + 1 * espace_V + lineTam_V * 2), ws_, lineTam_V, text, Resources::Beaulieux, color));
-	text = "Earth = " + to_string(c_->getEarthRes()); info += text + "\n";		// Earth
+	text = "Earth = " + to_string(hero_sheet->getResistance(EARTH)); info += text + "\n";		// Earth
 	color = { 155,80,20,255 };
 	p->addButton(iManager->addButton<ButtonLine>(Vector2D(xs_ + 2 * espace_H, ys_ + 1 * espace_V + lineTam_V * 3), ws_, lineTam_V, text, Resources::Beaulieux, color));
-	text = "Wind = " + to_string(c_->getWindRes()); info += text + "\n";		// Wind
+	text = "Wind = " + to_string(hero_sheet->getResistance(WIND)); info += text + "\n";			// Wind
 	color = { 0, 150, 0,255 };
 	p->addButton(iManager->addButton<ButtonLine>(Vector2D(xs_ + 2 * espace_H, ys_ + 1 * espace_V + lineTam_V * 4), ws_, lineTam_V, text, Resources::Beaulieux, color));
-	text = "Light = " + to_string(c_->getLightRes()); info += text + "\n";		// Light
+	text = "Light = " + to_string(hero_sheet->getResistance(LIGHT)); info += text + "\n";		// Light
 	color = { 255,255,150,255 };
 	p->addButton(iManager->addButton<ButtonLine>(Vector2D(xs_ + 2 * espace_H, ys_ + 1 * espace_V + lineTam_V * 5), ws_, lineTam_V, text, Resources::Beaulieux, color));
-	text = "Dark = " + to_string(c_->getDarkRes()); info += text + "\n";		// Dark
+	text = "Dark = " + to_string(hero_sheet->getResistance(DARK)); info += text + "\n";			// Dark
 	color = { 50,50,50,255 };
 	p->addButton(iManager->addButton<ButtonLine>(Vector2D(xs_ + 2 * espace_H, ys_ + 1 * espace_V + lineTam_V * 6), ws_, lineTam_V, text, Resources::Beaulieux, color));
 
 	// ARMA & ARMADURA:
-	Hero* hero_ = dynamic_cast<Hero*>(c_);
+	Hero* hero_ = dynamic_cast<Hero*>(hero);
 	if (hero_ != nullptr)
 	{
 		Armor* armor_ = hero_->getArmor();		// Armadura
@@ -313,6 +308,7 @@ void Interfaz::createFichaDD(uint nCharacter)
 	//p->addButton(iManager->addButton<ButtonLine>(Vector2D(xs_ + 2 * espace_H, ys_ + 1 * espace_V + lineTam_V * 0), ws_, lineTam_V * 4, info, Resources::Beaulieux,color));
 }
 
+#include "CombatManager.h"
 void Interfaz::createTargets()
 {
 	CombatManager* c = GETCMP2(TheElementalMaze::instance(), CombatManager);
@@ -491,8 +487,11 @@ void Interfaz::checkActiveHeroButton(HeroNum nAct)
 #include "CombatManager.h"
 Resources::TextureId Interfaz::getHeroTxt(uint number)
 {
-	CombatManager* c = GETCMP2(entity_, CombatManager);
-	heroTemplate tem = static_cast<Hero*>(c->getCharacter((int)number, HERO))->getTemplate();
+	PartyManager* c = TheElementalMaze::instance()->getPartyManager();
+	std::vector<Hero*> heroes = c->getHeroes();
+	uint nHeros = heroes.size();
+
+	heroTemplate tem = heroes[number]->getTemplate();
 
 	Resources::TextureId id;
 

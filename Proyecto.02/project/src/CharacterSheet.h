@@ -39,7 +39,7 @@ public:
 	}
 
 	float getResistance(rpgLogic::damageType type) {
-		weaknesses.getWeakness(type);
+		return weaknesses.getWeakness(type);
 	}
 
 	void setStat(rpgLogic::mainStat st, int set) {
