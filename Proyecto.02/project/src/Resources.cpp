@@ -3,17 +3,40 @@
 
 vector<Resources::FontInfo> Resources::fonts_{
 	{ARIAL16, "resources/fonts/ARIAL.ttf", 16}, //
-	{ARIAL24, "resources/fonts/ARIAL.ttf", 24}	//
+	{ARIAL24, "resources/fonts/ARIAL.ttf", 24},	//
+	{HERMAN, "resources/fonts/ARHERMANN.ttf", 64},
+	{Fornite, "resources/fonts/Fortnite.ttf", 64},
+	{Quake, "resources/fonts/dpquake_.ttf", 64},
+	{KillerInst, "resources/fonts/kinifed_.ttf", 64},
+	{Sega, "resources/fonts/SEGA.ttf", 64},
+	{Beaulieux, "resources/fonts/t4cbeaulieux.ttf", 64},
+	{Triforce, "resources/fonts/Triforce.ttf", 64}
 };
 
 vector<Resources::ImageInfo> Resources::images_{
 	{posMiniMap, "resources/images/pasillos/posJugador.png"},			//
-	{camino_izq, "resources/images/pasillos/camino_izq.png"},			//
-	{camino_der, "resources/images/pasillos/camino_der.png"},			//
-	{camino_fr, "resources/images/pasillos/camino_del.png"},			//
-	{muro_izq, "resources/images/pasillos/muro_izq.png"},				//
-	{muro_der, "resources/images/pasillos/muro_der.png"},				//
-	{muro_fr, "resources/images/pasillos/muro_del.png"},				//
+	{camino_izq, "resources/images/pasillos/frente/giro_izquierda/frente_giro_izquierda_suelo.png"},			//
+	{camino_der, "resources/images/pasillos/frente/giro_derecha/frente_giro_derecha_suelo.png"},			//
+	{camino_fr, "resources/images/pasillos/frente/frente_suelo.png"},			//
+	{muro_izq, "resources/images/pasillos/frente/frente_pared_izquierda.png"},				//
+	{muro_der, "resources/images/pasillos/frente/frente_pared_derecha.png"},				//
+	{muro_fr, "resources/images/pasillos/frente/frente_pared.png"},				//
+	{muro_fr_izq, "resources/images/pasillos/frente/giro_izquierda/frente_giro_izquierda_pared.png"},				//
+	{muro_fr_der, "resources/images/pasillos/frente/giro_derecha/frente_giro_derecha_pared.png"},				//
+	{muro_del, "resources/images/pasillos/frente/muro_frontal.png"},				//
+
+
+
+	{camino_fondo_izq, "resources/images/pasillos/fondo/giro_izquierda/fondo_giro_izquierda_suelo.png"},			//
+	{camino_fondo_der, "resources/images/pasillos/fondo/giro_derecha/fondo_giro_derecha_suelo.png"},			//
+	{camino_fondo_fr, "resources/images/pasillos/fondo/fondo_suelo.png"},			//
+	{muro_fondo_izq, "resources/images/pasillos/fondo/fondo_pared_izquierda.png"},				//
+	{muro_fondo_der, "resources/images/pasillos/fondo/fondo_pared_derecha.png"},				//
+	{muro_fondo_fr, "resources/images/pasillos/fondo/fondo_pared.png"},				//
+	{muro_fondo_fr_izq, "resources/images/pasillos/fondo/giro_izquierda/fondo_giro_izquierda_pared.png"},				//
+	{muro_fondo_fr_der, "resources/images/pasillos/fondo/giro_derecha/fondo_giro_derecha_pared.png"},				//
+
+
 	{no_visitado, "resources/images/pasillos/pasillo_no_visitado.png"}, //
 	{no_entrado, "resources/images/pasillos/pasillo_no_entrado.png"},	//
 	{visitado, "resources/images/pasillos/pasillo_visitado.png"},		//
@@ -35,6 +58,8 @@ vector<Resources::ImageInfo> Resources::images_{
 	{GranArchimago, "resources/sprites/iconos personajes/heroe-mago.png"},
 
 	{Mouse, "resources/images/interfaz/cursor+sombras.png"},
+	{Fondo, "resources/sprites/fondos y marcos/Fondo_Interfaz_02.png"},
+	{Selected, "resources/sprites/fondos y marcos/selected.png"},
 	{Avanzar, "resources/sprites/iconos movimiento/movimientoAvanzar.png"},
 	{RotarD, "resources/sprites/iconos movimiento/movimientoRotarDerecha.png"},
 	{RotarI, "resources/sprites/iconos movimiento/movimientoRotarIzquierda.png"},
@@ -60,7 +85,8 @@ vector<Resources::ImageInfo> Resources::images_{
 	{WeaponSlot, "resources/sprites/iconos inventario/weapon_slot.png"},
 	{ArmorSlot, "resources/sprites/iconos inventario/armor_slot.png"},
 
-	// Armas clasicas �?
+	// Armas clasicas
+	{Joker, "resources/sprites/iconos armas/joker.png"}, ///TODO
 	{Desarmado, "resources/sprites/iconos armas/joker.png"}, ///TODO
 	{Baston, "resources/sprites/iconos armas/baston.png"},
 	{Daga, "resources/sprites/iconos armas/daga.png"},
@@ -98,9 +124,17 @@ vector<Resources::ImageInfo> Resources::images_{
 	{SemiPlacas, "resources/sprites/iconos armaduras/joker.png"},
 	{CotaMalla, "resources/sprites/iconos armaduras/cota_mallas.png"},
 	{Bandas, "resources/sprites/iconos armaduras/joker.png"},
-	{Placas, "resources/sprites/iconos armaduras/joker.png"}};
+	{Placas, "resources/sprites/iconos armaduras/joker.png"},
 
-//
+	// Enemigos
+	{Lich, "resources/sprites/iconos personajes/lich.PNG"},
+	{Necrofago, "resources/sprites/iconos personajes/necrofago.png" },
+	{ Monster, "resources/images/monster.png" },
+	{ Desconocido, "resources/images/desconocido.png" },
+
+	// Ficha DD
+	{Pergamino, "resources/sprites/iconos ficha/pergamino.png"}
+};
 
 vector<Resources::TextMsgInfo> Resources::messages_{
 	//

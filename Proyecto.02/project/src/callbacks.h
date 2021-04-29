@@ -4,6 +4,7 @@ class Interfaz;
 
 // MENU
 using namespace std;
+typedef unsigned int uint;
 
 class callbacks {
 public:
@@ -13,7 +14,8 @@ public:
 	static void pruebaGame2(Interfaz* app);
 	static void pruebaGame3(Interfaz* app);
 	// acceso a heroes
-	static void heroType(int numberHeroe);
+	static void heroType(uint numberHeroe);
+	static void createDDPan(bool activated, uint numberHeroe);
 	// acceso a movimiento
 	static void movCommand(int movType);
 	// acceso a informacion
@@ -25,7 +27,16 @@ public:
 	static void attackType(int attackType_);
 	static void defendType(int attackType_);
 	static void addTarget(int attackType_);
-	static void s_cast_hability(int attackType_);
+	static void set_hability(int attackType_);
 	// habilitar/deshabilitar paneles
 	static void createPanel(bool active, int panelType);
+	static void ataqueNormal(Interfaz* app);
+	static void ataqueMagico(Interfaz* app);
+	static void defensa(Interfaz* app);
+	static void huida(Interfaz* app);
+	// acceso por menu
+	static void startLobby(Interfaz* app);
+	static void options(Interfaz* app);
+	static void howToPlay(Interfaz* app);
+	static void quit(Interfaz* app);
 };

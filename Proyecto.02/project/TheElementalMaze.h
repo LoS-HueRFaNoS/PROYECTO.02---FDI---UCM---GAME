@@ -7,6 +7,7 @@ class Interfaz;
 class ItemManager;
 class Laberinto;
 class CharacterManager;
+class PartyManager;
 
 // A los componentes se pueden acceder mediante la entidad y se pueden comunicar entre s�
 // del mismo modo, mediante el puente que es la entidad.
@@ -24,14 +25,19 @@ private:
 	static TheElementalMaze* instance_;
 
 	CombatManager* combatManager_; // compt
-	Entity* laberinto_; // 
+	Laberinto* laberinto_; // 
 	Entity* player_; // 
 	Interfaz* uiManager_;
 	InterfazManager* iManager_; // compt
 	ItemManager* itemManager_; //
 	CharacterManager* characterManager_; // 
+	PartyManager* partyManager_;
+
+	GameState state_;
 
 	bool pause_ = false;
+
+	void onStateChanged();
 
 public:
 	TheElementalMaze(SDLGame* game, EntityManager* mngr, CharacterManager* chMngr, InterfazManager* iMngr) :
@@ -62,7 +68,7 @@ public:
 
 	void init();
 
-	Entity* getLaberinto() { return laberinto_; };
+	Laberinto* getLaberinto() { return laberinto_; };
 
 	Entity* getPlayer() { return player_; };
 
@@ -72,7 +78,16 @@ public:
 
 	ItemManager* getItemManager() { return itemManager_; }
 
+	CombatManager* getCombatManager() { return combatManager_; }
+
+	PartyManager* getPartyManager() { return partyManager_; }
+
+	GameState gameState() { return state_; }
+
+
 	bool isPause() { return pause_; }
 
 	void setPauseState(bool set) { pause_ = set; }
+
+	void changeState(GameState state);
 };

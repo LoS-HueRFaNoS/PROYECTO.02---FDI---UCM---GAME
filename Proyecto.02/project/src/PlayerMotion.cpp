@@ -1,9 +1,11 @@
 #include "PlayerMotion.h"
 #include "InputHandler.h"
+#include "CombatManager.h"
+#include "CharacterManager.h"
+#include "../TheElementalMaze.h"
 
-
-PlayerMotion::PlayerMotion(SDL_KeyCode avanzar, SDL_KeyCode izq, SDL_KeyCode der, Laberinto* lab_):Component(ecs::PlayerMotion), //
-	pos(nullptr), avance(avanzar), giraIzq(izq), giraDer(der), lab(lab_) //
+PlayerMotion::PlayerMotion(SDL_KeyCode avanzar, SDL_KeyCode izq, SDL_KeyCode der, Laberinto* lab_) :Component(ecs::PlayerMotion), //
+pos(nullptr), avance(avanzar), giraIzq(izq), giraDer(der), lab(lab_) //
 {
 
 }
@@ -24,13 +26,15 @@ void PlayerMotion::init()
 void PlayerMotion::update()
 {
 	InputHandler* ih = InputHandler::instance();
-	if (ih->isKeyDown(avance)) { avanzar();	}
+	if (ih->isKeyDown(avance)) { avanzar(); }
 	else if (ih->isKeyDown(giraIzq)) { rotarIzquierda(); }
-	else if (ih->isKeyDown(giraDer)) { rotarDerecha(); 	}
+	else if (ih->isKeyDown(giraDer)) { rotarDerecha(); }
 }
 
 void PlayerMotion::rotarDerecha()
 {
+	if (TheElementalMaze::instance()->gameState() != EXPLORING)
+		return;
 	x = int(pos->getPos().getX());
 	y = int(pos->getPos().getY());
 	Casilla* cas = lab->getCasillaInfo(x, y);
@@ -43,7 +47,7 @@ void PlayerMotion::rotarDerecha()
 		sent++;
 
 	pos->setLook(sent);
-	cas->setLook(sent*90);
+	cas->setLook(sent * 90);
 	switch (pos->getLook())
 	{
 	case Norte:
@@ -63,9 +67,11 @@ void PlayerMotion::rotarDerecha()
 
 void PlayerMotion::rotarIzquierda()
 {
+	if (TheElementalMaze::instance()->gameState() != EXPLORING)
+		return;
 	x = int(pos->getPos().getX());
 	y = int(pos->getPos().getY());
-	Casilla* cas = lab->getCasillaInfo(x, y) ;
+	Casilla* cas = lab->getCasillaInfo(x, y);
 	casillaActual = cas->checkCell();
 
 	auto sent = pos->getLook();
@@ -74,7 +80,7 @@ void PlayerMotion::rotarIzquierda()
 	else
 		sent--;
 	pos->setLook(sent);
-	cas->setLook(sent*90);
+	cas->setLook(sent * 90);
 	switch (pos->getLook())
 	{
 	case Norte:
@@ -94,10 +100,12 @@ void PlayerMotion::rotarIzquierda()
 
 void PlayerMotion::avanzar()
 {
+	if (TheElementalMaze::instance()->gameState() != EXPLORING)
+		return;
 	x = int(pos->getPos().getX());
 	y = int(pos->getPos().getY());
 	Casilla* cas = lab->getCasillaInfo(x, y);
-	casillaActual = cas ->checkCell();
+	casillaActual = cas->checkCell();
 
 	if (casillaActual[pos->getLook()])
 	{
@@ -108,25 +116,25 @@ void PlayerMotion::avanzar()
 			//if (y - 1 >= 0)
 			//{
 
-				pos->setPos(Vector2D(x, y - 1));
+			pos->setPos(Vector2D(x, y - 1));
 			//}
 			break;
 		case Este:
 			//if (x + 1 < lab->mazeWidth())
 			//{
-				pos->setPos(Vector2D(x + 1, y));
+			pos->setPos(Vector2D(x + 1, y));
 			//}
 			break;
 		case Sur:
 			//if (y + 1 < lab->mazeHeigh())
 			//{
-				pos->setPos(Vector2D(x, y + 1));
+			pos->setPos(Vector2D(x, y + 1));
 			//}
 			break;
 		case Oeste:
 			//if (x - 1 >= 0)
 			//{
-				pos->setPos(Vector2D(x - 1, y));
+			pos->setPos(Vector2D(x - 1, y));
 			//}
 			break;
 		}
@@ -139,7 +147,7 @@ void PlayerMotion::avanzar()
 			cout <<"Encuentras con el enemigo "<< enemigo[i]->name() << endl;
 		}*/
 		debugear();
-		
+
 	}
 }
 
@@ -147,11 +155,11 @@ void PlayerMotion::debugear()
 {
 	cout << "Estas en la casilla " << pos->getPos() << ".	\n";
 
-	
+
 	Casilla* cas = lab->getCasillaInfo(pos->getPos().getX(), pos->getPos().getY());
 	cas->setVisibilidad(Visibilidad::visitado);
 	cas->setPosActual(true);
-	cas->setLook(pos->getLook()*90);
+	cas->setLook(pos->getLook() * 90);
 
 	vector<bool> vecinos = cas->checkCell();
 	for (int k = 0; k < vecinos.size(); k++)
@@ -179,16 +187,30 @@ void PlayerMotion::debugear()
 			}
 		}
 	}
+
 	vector<enemyTemplate>* enemigo = cas->getEnemy();
 
-	for (int i = 0; i < enemigo->size(); i++)
-	{
-		cout << "Encuentras con el enemigo " << to_string((*enemigo)[i]) << endl;
+	if (enemigo->size()) {
+		CharacterManager* chaManager = TheElementalMaze::instance()->getCharacterManager();
+		CombatManager* comManager = TheElementalMaze::instance()->getCombatManager();
+		for (int i = 0; i < enemigo->size(); i++)
+		{
+			cout << "Encuentras con el enemigo " << to_string((*enemigo)[i]) << endl;
+
+			comManager->addCharacter(chaManager->addEnemyFromTemplate((*enemigo)[i]));
+		}
+		TheElementalMaze::instance()->changeState(COMBAT);
+		
+		return;
 	}
 
 	vector<Chest>* cofres = cas->getChest();
-	for (int i = 0; i < cofres->size(); i++)
-	{
-		cout << "Encuentras con un cofre con " << to_string((*cofres)[i].getType()) <<" de tipo " << to_string((*cofres)[i].getIdValue()) << endl;
+
+	if (cofres->size()) {
+		for (int i = 0; i < cofres->size(); i++)
+		{
+			cout << "Encuentras con un cofre con " << to_string((*cofres)[i].getType()) << " de tipo " << to_string((*cofres)[i].getIdValue()) << endl;
+		}
 	}
+
 }

@@ -42,6 +42,19 @@ public:
 	};
 };
 
+class ButtonLine : public Button
+{
+	// private: Item* i_;
+public:
+	ButtonLine(SDLGame* game, EntityManager* mngr) : Button(game, mngr) {};
+	~ButtonLine() {};
+	virtual void init(Vector2D pos, uint ancho, uint alto, string line, Resources::FontId font, const SDL_Color &color);
+
+	virtual void click() {
+		// if(i_ != nulptr) i_->use();
+	};
+};
+
 // ----------------------------------------------------
 
 enum class MovType { rotR, rotL, forward, touch };
@@ -66,29 +79,13 @@ public:
 };
 
 // ----------------------------------------------------
+#pragma ButtonHeroes
+#include "../TheElementalMaze.h"
 
-enum class HeroNum { hero1, hero2, hero3, hero4 };
-
-class ButtonHero : public Button {
-private:
-	HeroNum heroType_;
-public:
-	ButtonHero(SDLGame* game, EntityManager* mngr) : Button(game, mngr), heroType_(HeroNum::hero1) {};
-
-	~ButtonHero() {};
-
-	virtual void init(Vector2D pos, uint ancho, uint alto, Resources::TextureId imagen, HeroNum hero) {
-		heroType_ = hero;
-		Button::init(pos, ancho, alto, imagen);
-	};
-
-	virtual void click()
-	{
-		callbacks::heroType((int)heroType_);
-	}
-};
+#pragma endregion
 
 // ----------------------------------------------------
+
 
 enum class AtkType { normal, magic };
 
@@ -153,27 +150,27 @@ public:
 	}
 };
 
-enum class HbltType { hability1, hability2, hability3, hability4 };
 
-class ButtonHability : public Button {
+enum class accionMenu { start, how_to_play, options, quit};
+
+
+class ButtonMenu : public Button {
 private:
-	HbltType hability_;
+	
 public:
-	ButtonHability(SDLGame* game, EntityManager* mngr) : Button(game, mngr), hability_(HbltType::hability1) {};
+	ButtonMenu(SDLGame* game, EntityManager* mngr) : Button(game, mngr) {};
 
-	~ButtonHability() {};
+	~ButtonMenu() {};
 
-	virtual void init(Vector2D pos, uint ancho, uint alto, Resources::TextureId imagen, HbltType attack) {
-		hability_ = attack;
+	virtual void init(Vector2D pos, uint ancho, uint alto, Resources::TextureId imagen) {
 		Button::init(pos, ancho, alto, imagen);
 	};
 
 	virtual void click()
 	{
-		callbacks::defendType((int)hability_);
+		//callbacks::((int)heroType_);
 	}
 };
-
 // ----------------------------------------------------
 
 enum class PtnType { health, mana, resurrection };
@@ -202,6 +199,10 @@ public:
 #pragma region ButtonPanelResources
 #include "callbacks.h"
 #include "ecs_interfaz.h"
+#include "Sprite.h"
+#include "../TheElementalMaze.h"
+
+class Interfaz;
 class Panel;
 
 using namespace interfaz;
@@ -223,9 +224,9 @@ public:
 	virtual void click();
 };
 
-// crear / destruye en tiempo de ejecución los botones de un panel concreto
+// crear / destruye en tiempo de ejecuciï¿½n los botones de un panel concreto
 class ButtonPanel : public Button {
-private:
+protected:
 	bool activated;
 	idPanel pan_;
 public:
@@ -234,15 +235,74 @@ public:
 	~ButtonPanel() {};
 
 	virtual void init(Vector2D pos, uint ancho, uint alto, Resources::TextureId imagen, idPanel p, bool active) {
-		activated = active;
+		setActive(active);
 		pan_ = p;
 		Button::init(pos, ancho, alto, imagen);
+		addComponent<Sprite>(game_->getTextureMngr()->getTexture(Resources::Selected), 0, 0, true, true); // marco select
 	};
 
 	virtual void click()
 	{
 		callbacks::createPanel(activated, pan_);
+		if (!activated) turnON();
+		else turnOFF();
+	}
+
+	bool getActive() { return activated; };
+	void setActive(bool set);
+	void setHide(bool set);
+
+	void turnON() { setActive(true), setHide(false); }
+	void turnOFF() { setActive(false), setHide(true); }
+};
+
+enum class HeroNum { hero1, hero2, hero3, hero4 };
+
+class ButtonHero : public ButtonPanel {
+private:
+	HeroNum heroType_;
+public:
+	ButtonHero(SDLGame* game, EntityManager* mngr) : ButtonPanel(game, mngr), heroType_(HeroNum::hero1) {};
+
+	~ButtonHero() {};
+
+	virtual void init(Vector2D pos, uint ancho, uint alto, Resources::TextureId imagen, HeroNum hero, idPanel p, bool active) {
+		heroType_ = hero;
+		ButtonPanel::init(pos, ancho, alto, imagen, p, active);
+	};
+
+	virtual void click();
+
+	HeroNum getNumHero() { return heroType_; };
+};
+#pragma endregion
+
+// ----------------------------------------------------
+
+#pragma region ButtonCombateResources
+#include "callbacks.h"
+#include "ecs_interfaz.h"
+#include "Interfaz.h"
+
+enum class HbltType { hability1, hability2, hability3, hability4 };
+
+class ButtonHability : public Button {
+private:
+	HbltType hability_;
+	bool activated;
+	idPanel pan_;
+public:
+	ButtonHability(SDLGame* game, EntityManager* mngr) : Button(game, mngr), hability_(HbltType::hability1) {};
+
+	~ButtonHability() {};
+
+	virtual void init(Vector2D pos, uint ancho, uint alto, Resources::TextureId imagen, HbltType attack, idPanel panId, bool active, Panel* p_);
+
+	virtual void click()
+	{
+		callbacks::createPanel(activated, pan_);
 		activated = !activated;
+		callbacks::set_hability((int)hability_);
 	}
 };
 

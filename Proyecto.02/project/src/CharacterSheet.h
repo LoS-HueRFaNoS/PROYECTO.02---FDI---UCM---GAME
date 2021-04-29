@@ -1,17 +1,15 @@
 #ifndef _CHARACTER_SHEET_
 #define _CHARACTER_SHEET_
-#include "Component.h"
 #include "RPGLogic.h"
 #include "checkML.h"
 
-using namespace rpgLogic;
 
-class CharacterSheet : public Component
+class CharacterSheet
 {
 private:
 
 	//Caracteristicas 
-	vector<Stat> _stats;
+	std::vector<rpgLogic::Stat> _stats;
 
 	//Salud
 	int _hitPoints = 10;
@@ -23,23 +21,28 @@ private:
 public:
 
 	//Debilidades
-	Weaknesses weaknesses;
+	rpgLogic::Weaknesses weaknesses;
 
 	//Nombre del personaje ( o enemigo)
-	string name = "DefaultClass";
+	std::string name = "DefaultClass";
 
-	CharacterSheet() :Component(ecs::CharacterSheet),
-		weaknesses(), _stats(vector<Stat>(4, { 10 }))
+	CharacterSheet():
+		weaknesses(), 
+		_stats(std::vector<rpgLogic::Stat>(4, { 10 }))
 	{
 	}
 
 	~CharacterSheet(){}
 
-	Stat getStat(mainStat st) {
+	rpgLogic::Stat getStat(rpgLogic::mainStat st) {
 		return _stats[st];
 	}
 
-	void setStat(mainStat st, int set) {
+	float getResistance(rpgLogic::damageType type) {
+		return weaknesses.getWeakness(type);
+	}
+
+	void setStat(rpgLogic::mainStat st, int set) {
 		_stats[st].value = set;
 	}
 
@@ -79,7 +82,7 @@ public:
 		_manaPoints = set;
 	}
 
-	void changeStat(mainStat st, int change) {
+	void changeStat(rpgLogic::mainStat st, int change) {
 		_stats[st].value += change;
 	}
 

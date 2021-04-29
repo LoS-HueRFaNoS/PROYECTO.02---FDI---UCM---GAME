@@ -12,7 +12,8 @@ public:
 	Image(Texture* tex) :
 		Component(ecs::Image),
 		tr_(nullptr), //
-		tex_(tex) //
+		tex_(tex), //
+		hide(false)
 	{}
 	virtual ~Image() {
 	}
@@ -23,11 +24,16 @@ public:
 	}
 
 	void draw() override {
-		SDL_Rect dest = { int(tr_->getPos().getX()), int(tr_->getPos().getY()), int(tr_->getW()), int(tr_->getH()) };
-		tex_->render(dest, tr_->getRot());
+		if (!hide) {
+			SDL_Rect dest = { int(tr_->getPos().getX()), int(tr_->getPos().getY()), int(tr_->getW()), int(tr_->getH()) };
+			tex_->render(dest, tr_->getRot());
+		}
 	}
+
+	void setHide(bool set) { hide = set; };
 
 private:
 	Transform *tr_;
 	Texture *tex_;
+	bool hide;
 };

@@ -27,7 +27,7 @@ protected:
 	virtual void init() {
 		for (int i = 0; i < _lastConditionType_; i++)
 			_conditions[(ConditionType)i] = vector<Condition*>();
-		_sheet = addComponent<CharacterSheet>();
+		_sheet = new CharacterSheet();
 	}
 
 	virtual void loadFromJson(jute::jValue v, int t) = 0;
@@ -60,6 +60,8 @@ public:
 
 	bool checkHit(int hit);
 
+	CharacterSheet* getCharacterSheet() { return _sheet; }
+
 	int getMod(rpgLogic::mainStat stat) {
 		return _sheet->getStat(stat).getMod();
 	}
@@ -89,10 +91,10 @@ public:
 		}
 	}
 
-	template<typename T>
-	void addCondition(Character* caster) {
+	template<typename T, typename ... TArgs>
+	void addCondition(TArgs&& ...mArgs) {
 		if (!hasCondition(T::id())) {
-			T* c(new T(caster, this));
+			T* c(new T(this, std::forward<TArgs>(mArgs)...));
 			_conditions[c->getType()].push_back(c);
 			_conditonsArray[T::id()] = c;
 			c->init();
@@ -123,8 +125,6 @@ public:
 	bool isDead() {
 		return !_sheet->hitPoints();
 	}
-
-
 };
 
 #pragma endregion
@@ -140,18 +140,17 @@ private:
 
 	Armor* _armor;
 
+	heroTemplate template_;
+
 	bool _marcial;
 
 	int savingSuccess = 0, savingFailure = 0;
 
+	bool _deathGate = false;
+
 	virtual void loadFromJson(jute::jValue v, int t);
 
-	virtual void manageTurn(CombatManager* cm) {}
-
-	virtual void init() {
-		//_equipement = addComponent<Equipement>();
-		Character::init();
-	}
+	virtual void manageTurn(CombatManager* cm);
 
 public:
 	Hero(SDLGame* game, EntityManager* mngr) :Character(game, mngr, HERO) {
@@ -164,6 +163,8 @@ public:
 	void giveWeapon(Weapon* w) { _weapon = w; }
 
 	Armor* getArmor() { return _armor; }
+
+	heroTemplate getTemplate() { return template_; }
 
 	void giveArmor(Armor* a) { _armor = a; }
 
@@ -181,6 +182,8 @@ public:
 	void showSpellList();
 
 	void manageInput(CombatManager* cm, int input);
+
+	bool getDeathGate() { return _deathGate; }
 };
 
 #pragma endregion

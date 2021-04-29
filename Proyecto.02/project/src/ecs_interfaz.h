@@ -17,9 +17,14 @@ namespace interfaz {
 		Fight, 
 		Turns, 
 		HeroesStats, 
+		DDPan,
 		BigMap, 
 		Settings, 
 		Chat,
+		MenuPrincipal,
+		Lobby,
+		Options,
+		HowToPlay,
 		//
 		// don't touch the rest of this enum, it is to identify the max
 		// number of components

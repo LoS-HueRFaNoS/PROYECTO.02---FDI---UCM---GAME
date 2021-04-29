@@ -19,6 +19,7 @@
 #include "PlayerMotion.h"
 #include "PlayerViewer.h"
 #include "Cursor.h"
+#include "Fondo.h"
 #include "../TheElementalMaze.h"
 //
 
@@ -40,11 +41,11 @@ Game::~Game()
 void Game::initGame()
 {
 	int initTime = 0;
-	game_ = SDLGame::init("VAMOS A LLORAR CON SDL", _WINDOW_WIDTH_, _WINDOW_HEIGHT_);
+	game_ = SDLGame::init("THE ELEMENTAL MAZE", _WINDOW_WIDTH_, _WINDOW_HEIGHT_);
 
 	Texture *tex_ = new Texture(game_->getRenderer(), "resources/images/cargando.png");
 	SDL_Rect dest = {0, 0, int(game_->getWindowWidth()), int(game_->getWindowHeight())};
-	SDL_SetRenderDrawColor(game_->getRenderer(), COLOR(0x00AAAAFF));
+	SDL_SetRenderDrawColor(game_->getRenderer(), COLOR(0x00000000));
 	SDL_RenderClear(game_->getRenderer());
 	tex_->render(dest);
 	SDL_RenderPresent(game_->getRenderer());
@@ -52,6 +53,9 @@ void Game::initGame()
 	game_->initResources();
 
 	entityManager_ = new EntityManager(game_);
+
+	fondo = static_cast<Fondo*>(entityManager_->addEntity());
+	fondo->init(Vector2D(), game_->getWindowWidth(), game_->getWindowHeight(), Resources::Fondo);
 
 	characterManager_ = new CharacterManager(game_);
 
@@ -127,19 +131,20 @@ void Game::handleInput()
 
 void Game::update()
 {
-	entityManager_->update();
-	characterManager_->update();
-	interfazManager_->update();
+	interfazManager_->update(); // interfaz
+	entityManager_->update(); // laberinto
+	characterManager_->update(); // characters
 }
 
 void Game::render()
 {
-	SDL_SetRenderDrawColor(game_->getRenderer(), COLOR(0x00AAAAFF));
+	SDL_SetRenderDrawColor(game_->getRenderer(), COLOR(0x00000000));
 	SDL_RenderClear(game_->getRenderer());
 
+	fondo->draw();
 	entityManager_->draw();
-	characterManager_->draw();
 	interfazManager_->draw();
+	characterManager_->draw(); //
 	c_->draw();
 
 	SDL_RenderPresent(game_->getRenderer());

@@ -35,97 +35,114 @@ public:
 		sentido = pos->getLook();
 		cas = lab->getCasillaInfo(x, y);
 		casillaActual = cas->checkCell();
+		casillaSig = cas->checkCell();
 		if (casillaActual[sentido])
 		{
 			switch (sentido)
 			{
 			case Norte:
 				y -= 1;
+				if (y != 0)
+					casSigSig = lab->getCasillaInfo(x, y - 1);
 				break;
 			case Este:
 				x += 1;
+				if (x != lab->mazeWidth()-1)
+					casSigSig = lab->getCasillaInfo(x + 1, y);
 				break;
 			case Sur:
 				y += 1;
+				if (y != lab->mazeHeigh()-1)
+					casSigSig = lab->getCasillaInfo(x, y + 1);
 				break;
 			case Oeste:
 				x -= 1;
+				if (x != 0)
+					casSigSig = lab->getCasillaInfo(x - 1, y);
 				break;
 			}
 			casSig = lab->getCasillaInfo(x, y);
 			casillaSig = casSig->checkCell();
+			casillaSigSig = casSigSig->checkCell();
 		}
+		else casillaSigSig = cas->checkCell();
 	}
 
 	virtual void draw()
 	{
-		SDL_Rect dest = { 0, 0, 800, 600 };
-		Texture* texturaCasilla;
+		double _x = game_->setHorizontalScale(70);
+		double _y = game_->setVerticalScale(70);
+		double _w = game_->setHorizontalScale(1340);
+		double _h = game_->setVerticalScale(620);
+		SDL_Rect dest = { _x, _y, _w, _h };
+		/*Texture* texturaCasilla;
 		Texture* texturaIzquierda;
 		Texture* texturaDerecha;
-		/*Texture* texturaSigFr;
+		Texture* texturaSigFr;
 		Texture* texturaSigIzq;
 		Texture* texturaSigDer;*/
 
-		int izquierda;
+		int izquierda; // Variable que guarda que direccion hay a la izquierda
 		if (sentido == Norte) izquierda = Oeste;
 		else izquierda = sentido-1;
 
-		int derecha;
+		int derecha; // Variable que guarda que direccion hay a la derecha
 		if (sentido == Oeste) derecha = Norte;
 		else derecha = sentido+1;
 
-		
-
-		if (casillaActual[sentido]) // <-^->
+		auto manager = game_->getTextureMngr(); // Manager de texturas
+		if (casillaActual[sentido]) // <-^-> Si delante hay un camino, dibujaremos la informacion de la casilla siguiente
 		{
-			texturaCasilla = manager->getTexture(Resources::camino_fr);
+			manager->getTexture(Resources::camino_fondo_fr)->render(dest);
+			if (!casillaSigSig[sentido])
+			{
+				manager->getTexture(Resources::muro_fondo_fr)->render(dest);
+				
+			}
 
-			//if (casillaSig[sentido])
-			//{
-			//	texturaSigFr = manager->getTexture(Resources::sigcamino_fr);
-			//}
-			//else 
-			//	texturaSigFr = manager->getTexture(Resources::sigmuro_fr);
-			//if (casillaSig[izquierda])
-			//	texturaSigIzq = manager->getTexture(Resources::sigcamino_izq);
-			//else
-			//	texturaSigIzq = manager->getTexture(Resources::sigmuro_izq);
+			if (casillaSigSig[izquierda])
+			{
+				manager->getTexture(Resources::camino_fondo_izq)->render(dest);
+				manager->getTexture(Resources::muro_fondo_fr_izq)->render(dest);
+			}
+			else manager->getTexture(Resources::muro_fondo_izq)->render(dest);
+	
+			if (casillaSigSig[derecha]) // <-
+			{
+				manager->getTexture(Resources::camino_fondo_der)->render(dest);
+				manager->getTexture(Resources::muro_fondo_fr_der)->render(dest);
+			}
+			else manager->getTexture(Resources::muro_fondo_der)->render(dest);
+			manager->getTexture(Resources::camino_fr)->render(dest);
+			if (casillaSig[izquierda]) // <- Si hay un camino a la izquierda
+			{
+				manager->getTexture(Resources::camino_izq)->render(dest);
+				manager->getTexture(Resources::muro_fr_izq)->render(dest);
+			}
 
-			//if (casillaSig[derecha]) // <-
-			//	texturaSigDer = manager->getTexture(Resources::sigcamino_der);
-			//else
-			//	texturaSigDer = manager->getTexture(Resources::sigmuro_der);
+			else manager->getTexture(Resources::muro_izq)->render(dest);
 
+			if (casillaSig[derecha]) // -> Si hay un camino a la derecha
+			{
+				manager->getTexture(Resources::camino_der)->render(dest);
+				manager->getTexture(Resources::muro_fr_der)->render(dest);
+			}
+			else manager->getTexture(Resources::muro_der)->render(dest);
+
+			if (casillaSig[sentido])
+			{
+				manager->getTexture(Resources::camino_fr)->render(dest);
+				//renderEnemySig();
+				
+			}
+			else manager->getTexture(Resources::muro_fr)->render(dest);
+			
+			//manager->getTexture(Resources::camino_fr)->render(dest);
+			
 		}
-		else
-			texturaCasilla = manager->getTexture(Resources::muro_fr);
+		else manager->getTexture(Resources::muro_del)->render(dest);
 
-		if (casillaActual[izquierda])
-			texturaIzquierda = manager->getTexture(Resources::camino_izq);
-		else
-			texturaIzquierda = manager->getTexture(Resources::muro_izq);
-
-		if (casillaActual[derecha]) // <-
-			texturaDerecha = manager->getTexture(Resources::camino_der);
-		else
-			texturaDerecha = manager->getTexture(Resources::muro_der);
-
-		/*if (casillaActual[sentido])
-		{
-			texturaSigFr->render(dest);
-			texturaSigIzq->render(dest);
-			texturaSigDer->render(dest);
-
-			renderEnemySig();
-		}*/
-
-		texturaCasilla->render(dest);
-		texturaIzquierda->render(dest);
-		texturaDerecha->render(dest);
-
-		//renderEnemyActual();
-
+		renderEnemyActual();
 	}
 
 
@@ -134,9 +151,11 @@ private:
 	Laberinto* lab;
 	vector<bool> casillaActual;
 	vector<bool> casillaSig;
+	vector<bool> casillaSigSig;
 	int sentido = Norte;
 	Casilla* cas;
 	Casilla* casSig;
+	Casilla* casSigSig;
 	TexturesManager* manager;
 
 	void renderEnemyActual()
@@ -148,33 +167,38 @@ private:
 			int tam = enemyVector.size();
 			if ( tam == 1)
 			{
-				enemyViewer(enemyVector[0], 400 + 60, 400, 60, 60);
+				enemyViewer(enemyVector[0], 100 + 200, 200, 250, 250);
 			}
 			else
 			{
 
 				for (int i = 0; i < tam; i++)
 				{
-					enemyViewer(enemyVector[i], 400 + i * 60, 400, 60, 60);
+					enemyViewer(enemyVector[i], 100 + i * 200, 200, 250, 250);
 				}
 			}
 			
 		}
 	}
+
 	void renderEnemySig()
 	{
 		if (!casSig->getEnemy()->empty())
 		{
 			Texture* enemigo;
+			auto manager = game_->getTextureMngr();
 			//enemigo = manager->getTexture(Resources::EnemigoSombra);
-			SDL_Rect dest = { 400 + 60, 100, 60, 60 };
+			enemigo = manager->getTexture(Resources::Desconocido);
+			SDL_Rect dest = { 300 , 100, 300, 300 };
 			enemigo->render(dest);
 		}
 	}
 	void enemyViewer(enemyTemplate temp, int x, int y , int w, int h)
 	{
 		Texture* enemigo;
-		enemigo = manager->getTexture(Resources::Placas+temp);
+		auto manager = game_->getTextureMngr();
+		//enemigo = manager->getTexture(Resources::Placas+temp);
+		enemigo = manager->getTexture(Resources::Monster);
 		SDL_Rect dest = { x, y, w, h };
 		enemigo->render(dest);
 

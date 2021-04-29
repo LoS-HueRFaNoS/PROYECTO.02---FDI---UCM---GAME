@@ -3,6 +3,7 @@
 #include "Interfaz.h"
 #include "Transform.h"
 #include "Image.h"
+#include "Sprite.h"
 #include "ButtonCtrl.h"
 
 // todo el juego se une mediante GameMngr(entity_)
@@ -22,4 +23,47 @@ void ButtonPanelCte::click()
 	pan_->toggleButtons();
 }
 
+#include "Interfaz.h"
+void ButtonHero::click()
+{
+	Interfaz* i_ = TheElementalMaze::instance()->getComponent<Interfaz>(ecs::Interfaz);
+	i_->checkActiveHeroButton(heroType_);
+	callbacks::createDDPan(activated, (uint)heroType_);
+	if (!activated) 
+		turnON();
+	else 
+		turnOFF();
+}
+
 #pragma endregion
+
+#pragma region ButtonCombateResources
+
+void ButtonHability::init(Vector2D pos, uint ancho, uint alto, Resources::TextureId imagen, HbltType attack, idPanel panId, bool active, Panel* p_)
+{
+	hability_ = attack;
+	activated = active;
+	pan_ = panId;
+	p_->toggleButtons();
+	Button::init(pos, ancho, alto, imagen);
+}
+#pragma endregion
+
+void ButtonLine::init(Vector2D pos, uint ancho, uint alto, string line, Resources::FontId font, const SDL_Color& color = {(0),(0),(0),(255)})
+{
+	addComponent<Transform>(pos, Vector2D(), ancho, alto, 0);
+	Texture* t = new Texture(); 
+	if (t->loadFromText(game_->getRenderer(), line, game_->getFontMngr()->getFont(font), color))
+		addComponent<Image>(t);
+	addComponent<ButtonCtrl>(this);
+}
+
+void ButtonPanel::setActive(bool set)
+{
+	activated = set;
+}
+
+void ButtonPanel::setHide(bool set)
+{
+	GETCMP2(this, Sprite)->setHide(set);
+}

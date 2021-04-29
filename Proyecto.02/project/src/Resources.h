@@ -18,13 +18,26 @@ public:
 		muro_izq,
 		muro_der,
 		muro_fr,
+		muro_fr_izq,
+		muro_fr_der,
+		muro_del,
+		// Imagenes de la casilla siguiente a la actual
+		camino_fondo_izq,
+		camino_fondo_der,
+		camino_fondo_fr,
+		muro_fondo_izq,
+		muro_fondo_der,
+		muro_fondo_fr,
+		muro_fondo_fr_izq,
+		muro_fondo_fr_der,
+
 		no_visitado,
 		no_entrado,
 		visitado,
-		pared_N,
-		pared_E,
-		pared_S,
-		pared_O,
+		pared_N, // Pared norte minimapa
+		pared_E, // Pared este minimapa
+		pared_S, // Pared sur minimapa
+		pared_O, // Pared oeste minimapa
 		cargando,
 
 		// text
@@ -48,6 +61,8 @@ public:
 
 		// UI
 		Mouse,
+		Fondo,
+		Selected,
 
 		// movement
 		Avanzar,
@@ -90,6 +105,9 @@ public:
 		ArcoPequeno,
 		BallestaLigera,
 
+		// Comodin
+		Joker,
+
 		//Armas Marciales
 		Alabarda,
 		Atarraga,
@@ -115,7 +133,16 @@ public:
 		SemiPlacas,
 		CotaMalla,
 		Bandas,
-		Placas
+		Placas,
+
+		//Enemigos
+		Lich,
+		Necrofago,
+		Monster,
+		Desconocido,
+
+		//Ficha DD
+		Pergamino
 	};
 
 	enum AudioId : std::size_t {
@@ -128,7 +155,7 @@ public:
 	};
 
 	enum FontId : std::size_t {
-		ARIAL16, ARIAL24,
+		ARIAL16, ARIAL24, HERMAN, Fornite, Quake, KillerInst, Sega, Beaulieux, Triforce
 	};
 
 	enum JsonId : std::size_t {

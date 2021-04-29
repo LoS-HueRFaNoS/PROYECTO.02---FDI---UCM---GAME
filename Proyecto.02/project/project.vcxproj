@@ -32,6 +32,7 @@
     <ClCompile Include="src\Component.cpp" />
     <ClCompile Include="src\Cursor.cpp" />
     <ClCompile Include="src\Entity.cpp" />
+    <ClCompile Include="src\Fondo.cpp" />
     <ClCompile Include="src\Font.cpp" />
     <ClCompile Include="src\FontsManager.cpp" />
     <ClCompile Include="src\Game.cpp" />
@@ -47,6 +48,7 @@
     <ClCompile Include="src\MouseCtrl.cpp" />
     <ClCompile Include="src\ObjectPool.cpp" />
     <ClCompile Include="src\Panel.cpp" />
+    <ClCompile Include="src\PartyManager.cpp" />
     <ClCompile Include="src\PlayerMotion.cpp" />
     <ClCompile Include="src\RandomNumberGenerator.cpp" />
     <ClCompile Include="src\Rectangle.cpp" />
@@ -82,6 +84,7 @@
     <ClInclude Include="src\ecs.h" />
     <ClInclude Include="src\ecs_interfaz.h" />
     <ClInclude Include="src\Entity.h" />
+    <ClInclude Include="src\Fondo.h" />
     <ClInclude Include="src\Font.h" />
     <ClInclude Include="src\FontsManager.h" />
     <ClInclude Include="src\Game.h" />
@@ -99,7 +102,7 @@
     <ClInclude Include="src\MouseCtrl.h" />
     <ClInclude Include="src\ObjectPool.h" />
     <ClInclude Include="src\Panel.h" />
-    <ClInclude Include="src\PlayerData.h" />
+    <ClInclude Include="src\PartyManager.h" />
     <ClInclude Include="src\PlayerMotion.h" />
     <ClInclude Include="src\PlayerViewer.h" />
     <ClInclude Include="src\RandomNumberGenerator.h" />
