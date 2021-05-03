@@ -2,6 +2,7 @@
 #include "Character.h"
 
 
+
 #pragma region HABILITY
 
 void Fireball::throwHability(Character* obj, bool critical) const
@@ -173,6 +174,12 @@ void DarkVortex::throwHability(Character* obj, bool critical) const //hay que mi
 
 	obj->addCondition<BuffStats>(-3, DEX, _name, _description);						// ESTO COMO UN ESTADO
 }
+
+void FireArrow::throwHability(Character* obj, bool critical) const
+{
+																						// HACER FIRE ARROW
+}
+
 
 
 void Lighten::throwHability(Character* obj, bool critical) const
@@ -427,3 +434,4 @@ bool BuffStats::onTurnStarted()
 	return true;
 }
 #pragma endregion
+

@@ -184,7 +184,10 @@
       <Filter>Archivos de origen</Filter>
     </ClCompile>
     <ClCompile Include="src\PartyManager.cpp">
-       <Filter>Archivos de origen\Templates/Resources</Filter>
+      <Filter>Archivos de origen\Templates/Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="src\HabilityManager.cpp">
+      <Filter>Archivos de origen</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -352,6 +355,9 @@
     </ClInclude>
     <ClInclude Include="src\PartyManager.h">
       <Filter>Archivos de encabezado\Templates/Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="src\HabilityManager.h">
+      <Filter>Archivos de encabezado\Managers</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

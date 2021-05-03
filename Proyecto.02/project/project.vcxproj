@@ -36,6 +36,7 @@
     <ClCompile Include="src\Font.cpp" />
     <ClCompile Include="src\FontsManager.cpp" />
     <ClCompile Include="src\Game.cpp" />
+    <ClCompile Include="src\HabilityManager.cpp" />
     <ClCompile Include="src\HabilityResources.cpp" />
     <ClCompile Include="src\InputHandler.cpp" />
     <ClCompile Include="src\Item.cpp" />
@@ -88,6 +89,7 @@
     <ClInclude Include="src\Font.h" />
     <ClInclude Include="src\FontsManager.h" />
     <ClInclude Include="src\Game.h" />
+    <ClInclude Include="src\HabilityManager.h" />
     <ClInclude Include="src\Image.h" />
     <ClInclude Include="src\HabilityResources.h" />
     <ClInclude Include="src\InputHandler.h" />

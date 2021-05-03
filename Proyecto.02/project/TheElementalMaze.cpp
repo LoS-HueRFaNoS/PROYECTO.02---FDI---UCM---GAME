@@ -35,6 +35,8 @@ void TheElementalMaze::init()
 	// 3. Personajes
 	itemManager_ = new ItemManager();
 
+	HabilityManager::Init();
+
 	combatManager_ = addComponent<CombatManager>();
 
 	partyManager_ = new PartyManager();
@@ -44,21 +46,21 @@ void TheElementalMaze::init()
 	Hero* rogue = characterManager_->addHeroFromTemplate(ROGUE);
 	Hero* cleric = characterManager_->addHeroFromTemplate(CLERIC);;
 
-	wizard->addHability<Fireball>();
+	wizard->addHability(FIREBALL);
 	wizard->addHability<SingleTargetAttackExample>();
-	wizard->addHability<SelfHealExample>();
+	wizard->addHability(SELFHEALEXAMPLE);
 	wizard->addHability<AllyTeamAttackExample>();
 
-	warrior->addHability<SingleTargetAttackExample>();
+	warrior->addHability(SINGLETARGETATTACKEXAMPLE);
 	warrior->addHability<AllyTeamAttackExample>();
 
-	rogue->addHability<SingleTargetAttackExample>();
+	rogue->addHability(SINGLETARGETATTACKEXAMPLE);
 	rogue->addHability<AllyTeamAttackExample>();
 
-	cleric->addHability<SingleTargetHealxample>();
+	cleric->addHability(SINGLETARGETHEALXAMPLE);
 	cleric->addHability<SelfHealExample>();
 	cleric->addHability<AllyTeamHealExample>();
-	cleric->addHability<AllyTeamAttackExample>();
+	cleric->addHability(ALLYTEAMATTACKEXAMPLE);
 
 	partyManager_->addHero(wizard);
 	partyManager_->addHero(warrior);

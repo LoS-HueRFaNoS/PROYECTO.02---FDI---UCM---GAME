@@ -1,7 +1,6 @@
 #include "Component.h"
-#include "HabilityResources.h"
 #include "jute.h"
-
+#include "RPGLogic.h"
 #pragma once
 
 enum ItemType
@@ -43,7 +42,7 @@ class Weapon : public Item
 {
 private:
 
-	damageType _damageType;
+	rpgLogic::damageType _damageType;
 	bool marcial;
 	int damage;
 	int diceNumber;
@@ -62,20 +61,20 @@ public:
 
 	int getNDice() { return diceNumber; }
 
-	damageType getDamageType() { return _damageType; }
+	rpgLogic::damageType getDamageType() { return _damageType; }
 
 	bool isMarcial() { return marcial; }
 
-	void loadWeaponTemplate(jute::jValue v, weaponId t);
+	void loadWeaponTemplate(jute::jValue v, rpgLogic::weaponId t);
 };
 
 class Armor : public Item
 {
 private:
 
-	mainStat _statNeeded;
+	rpgLogic::mainStat _statNeeded;
 	int minStatNeeded;
-	Weaknesses _weaknesses;
+	rpgLogic::Weaknesses _weaknesses;
 
 public:
 
@@ -86,13 +85,13 @@ public:
 		buyValue = rand() % 100;
 	}
 
-	Weaknesses getWeaknesses() { return _weaknesses; }
+	rpgLogic::Weaknesses getWeaknesses() { return _weaknesses; }
 
-	mainStat getStatNeeded() { return _statNeeded; }
+	rpgLogic::mainStat getStatNeeded() { return _statNeeded; }
 
 	int getMinStatNeeded() { return minStatNeeded; }
 
-	void loadArmorTemplate(jute::jValue v, armorId t);
+	void loadArmorTemplate(jute::jValue v, rpgLogic::armorId t);
 };
 
 class HealthPotion : public Item

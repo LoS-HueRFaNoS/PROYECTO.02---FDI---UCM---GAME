@@ -9,7 +9,7 @@ public:
 		init();
 	}
 
-	Weapon* getWeaponFromId(weaponId id) {
+	Weapon* getWeaponFromId(rpgLogic::weaponId id) {
 		Weapon* _weapon = new Weapon();
 		_weapon->loadWeaponTemplate(weaponJson, id);
 		return _weapon;
@@ -21,7 +21,7 @@ public:
 		return _weapon;
 	};
 
-	Armor* getArmorFromId(armorId id) {
+	Armor* getArmorFromId(rpgLogic::armorId id) {
 		Armor* _armor = new Armor();
 		_armor->loadArmorTemplate(armorJson, id);
 		return _armor;

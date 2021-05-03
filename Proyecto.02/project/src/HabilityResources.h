@@ -3,6 +3,7 @@
 #include <vector>
 #include "RPGLogic.h"
 #include <string>
+#include <assert.h>
 
 using namespace rpgLogic;
 
@@ -66,6 +67,7 @@ enum HabilityType {
 	BUFF
 };
 
+
 class Hability {
 protected:
 	int level = 0;
@@ -93,6 +95,8 @@ public:
 
 	~Hability() {}
 
+	virtual void init() {}
+
 	int getMana() { return _mana; }
 
 	Character* getCaster() { return _caster; }
@@ -108,11 +112,15 @@ public:
 	ObjectiveType getObjectiveType() { return _obj; }
 
 	HabilityType getHabilityType() { return _habilityType; }
+
+	void setCaster(Character* caster) {
+		_caster = caster;
+	}
 };
 
 class LightAttack : public Hability {
 public:
-	LightAttack(Character* caster) :Hability(caster) {
+	LightAttack(Character* caster = nullptr) :Hability(caster) {
 		level = 0;
 		_mana = 0;
 		_name = "Light Attack";
@@ -128,7 +136,7 @@ public:
 
 class Fireball : public Hability {
 public:
-	Fireball(Character* caster) :Hability(caster) {
+	Fireball(Character* caster = nullptr) :Hability(caster) {
 
 		level = 4;
 		_mana = 0;
@@ -149,7 +157,7 @@ public:
 
 class SingleTargetAttackExample : public Hability {
 public:
-	SingleTargetAttackExample(Character* caster) :Hability(caster) {
+	SingleTargetAttackExample(Character* caster = nullptr) :Hability(caster) {
 
 		level = 0;
 		_mana = 0;
@@ -171,7 +179,7 @@ public:
 
 class SingleTargetHealxample : public Hability {
 public:
-	SingleTargetHealxample(Character* caster) :Hability(caster) {
+	SingleTargetHealxample(Character* caster = nullptr) :Hability(caster) {
 
 		level = 0;
 		_mana = 0;
@@ -192,7 +200,7 @@ public:
 
 class AllyTeamHealExample : public Hability {
 public:
-	AllyTeamHealExample(Character* caster) :Hability(caster) {
+	AllyTeamHealExample(Character* caster = nullptr) :Hability(caster) {
 
 		level = 0;
 		_mana = 0;
@@ -213,7 +221,7 @@ public:
 
 class SelfHealExample : public Hability {
 public:
-	SelfHealExample(Character* caster) :Hability(caster) {
+	SelfHealExample(Character* caster = nullptr) :Hability(caster) {
 
 		level = 0;
 		_mana = 0;
@@ -234,7 +242,7 @@ public:
 
 class AllyTeamAttackExample : public Hability {
 public:
-	AllyTeamAttackExample(Character* caster) :Hability(caster) {
+	AllyTeamAttackExample(Character* caster = nullptr) :Hability(caster) {
 
 		level = 0;
 		_mana = 0;
@@ -256,7 +264,7 @@ public:
 
 class WindBurst : public Hability {
 public:
-	WindBurst(Character* caster) :Hability(caster) {
+	WindBurst(Character* caster = nullptr) :Hability(caster) {
 
 		level = 4;
 		_mana = 0;
@@ -276,7 +284,7 @@ public:
 
 class WindSlash : public Hability {
 public:
-	WindSlash(Character* caster) :Hability(caster) {
+	WindSlash(Character* caster = nullptr) :Hability(caster) {
 
 		level = 4;
 		_mana = 0;
@@ -296,7 +304,7 @@ public:
 
 class RockPillar : public Hability {
 public:
-	RockPillar(Character* caster) :Hability(caster) {
+	RockPillar(Character* caster = nullptr) :Hability(caster) {
 
 		level = 4;
 		_mana = 0;
@@ -316,7 +324,7 @@ public:
 
 class ToxicShadow : public Hability {
 public:
-	ToxicShadow(Character* caster) :Hability(caster) {
+	ToxicShadow(Character* caster = nullptr) :Hability(caster) {
 
 		level = 4;
 		_mana = 0;
@@ -336,7 +344,7 @@ public:
 
 class Tsunami : public Hability {
 public:
-	Tsunami(Character* caster) :Hability(caster) {
+	Tsunami(Character* caster = nullptr) :Hability(caster) {
 
 		level = 4;
 		_mana = 0;
@@ -356,7 +364,7 @@ public:
 
 class DivineProtection : public Hability {
 public:
-	DivineProtection(Character* caster) :Hability(caster) {
+	DivineProtection(Character* caster = nullptr) :Hability(caster) {
 
 		level = 4;
 		_mana = 0;
@@ -376,7 +384,7 @@ public:
 
 class Flash : public Hability {
 public:
-	Flash(Character* caster) :Hability(caster) {
+	Flash(Character* caster = nullptr) :Hability(caster) {
 
 		level = 4;
 		_mana = 0;
@@ -396,7 +404,7 @@ public:
 
 class Freeze : public Hability {
 public:
-	Freeze(Character* caster) :Hability(caster) {
+	Freeze(Character* caster = nullptr) :Hability(caster) {
 
 		level = 4;
 		_mana = 0;
@@ -415,7 +423,7 @@ public:
 };
 class Whirlpool : public Hability {
 public:
-	Whirlpool(Character* caster) :Hability(caster) {
+	Whirlpool(Character* caster = nullptr) :Hability(caster) {
 
 		level = 4;
 		_mana = 0;
@@ -434,7 +442,7 @@ public:
 };
 class LightBeam : public Hability {
 public:
-	LightBeam(Character* caster) :Hability(caster) {
+	LightBeam(Character* caster = nullptr) :Hability(caster) {
 
 		level = 4;
 		_mana = 0;
@@ -453,7 +461,7 @@ public:
 };
 class DarkVortex : public Hability {
 public:
-	DarkVortex(Character* caster) :Hability(caster) {
+	DarkVortex(Character* caster = nullptr) :Hability(caster) {
 
 		level = 4;
 		_mana = 0;
@@ -473,7 +481,7 @@ public:
 
 class FireArrow : public Hability {
 public:
-	FireArrow(Character* caster) :Hability(caster) {
+	FireArrow(Character* caster = nullptr) :Hability(caster) {
 
 		level = 4;
 		_mana = 0;
@@ -494,7 +502,7 @@ public:
 
 class Lighten : public Hability {
 public:
-	Lighten(Character* caster) :Hability(caster) {
+	Lighten(Character* caster = nullptr) :Hability(caster) {
 
 		level = 4;
 		_mana = 0;
@@ -513,7 +521,7 @@ public:
 };
 class Strengthen : public Hability {
 public:
-	Strengthen(Character* caster) :Hability(caster) {
+	Strengthen(Character* caster = nullptr) :Hability(caster) {
 
 		level = 4;
 		_mana = 0;
@@ -532,7 +540,7 @@ public:
 };
 class Toughen : public Hability {
 public:
-	Toughen(Character* caster) :Hability(caster) {
+	Toughen(Character* caster = nullptr) :Hability(caster) {
 
 		level = 4;
 		_mana = 0;
@@ -551,7 +559,7 @@ public:
 };
 class Meditate : public Hability {
 public:
-	Meditate(Character* caster) :Hability(caster) {
+	Meditate(Character* caster = nullptr) :Hability(caster) {
 
 		level = 4;
 		_mana = 0;
@@ -571,7 +579,7 @@ public:
 
 class BloodThirst : public Hability {
 public:
-	BloodThirst(Character* caster) :Hability(caster) {
+	BloodThirst(Character* caster = nullptr) :Hability(caster) {
 
 		level = 4;
 		_mana = 0;
@@ -591,7 +599,7 @@ public:
 
 class Sacrifice : public Hability {
 public:
-	Sacrifice(Character* caster) :Hability(caster) {
+	Sacrifice(Character* caster = nullptr) :Hability(caster) {
 
 		level = 4;
 		_mana = 0;
@@ -611,7 +619,7 @@ public:
 
 class DoubleShot : public Hability {
 public:
-	DoubleShot(Character* caster) :Hability(caster) {
+	DoubleShot(Character* caster = nullptr) :Hability(caster) {
 
 		level = 4;
 		_mana = 0;
@@ -631,7 +639,7 @@ public:
 
 class ThrowingAxes : public Hability { //revisar los modificadores
 public:
-	ThrowingAxes(Character* caster) :Hability(caster) {
+	ThrowingAxes(Character* caster = nullptr) :Hability(caster) {
 
 		level = 4;
 		_mana = 0;
@@ -653,7 +661,7 @@ public:
 
 class HeavyStrike : public Hability { //modificar la descripcion cuando lo ajustemos, pero de momento solo hace +3 de daño el ataque
 public:
-	HeavyStrike(Character* caster) :Hability(caster) {
+	HeavyStrike(Character* caster = nullptr) :Hability(caster) {
 
 		level = 4;
 		_mana = 0;
@@ -673,7 +681,7 @@ public:
 
 class SmokeArrow : public Hability {
 public:
-	SmokeArrow(Character* caster) :Hability(caster) {
+	SmokeArrow(Character* caster = nullptr) :Hability(caster) {
 
 		level = 4;
 		_mana = 0;
@@ -693,7 +701,7 @@ public:
 
 class Morph : public Hability {
 public:
-	Morph(Character* caster) :Hability(caster) {
+	Morph(Character* caster = nullptr) :Hability(caster) {
 
 		level = 4;
 		_mana = 0;
@@ -712,7 +720,7 @@ public:
 };
 class ReverseMorph : public Hability {
 public:
-	ReverseMorph(Character* caster) :Hability(caster) {
+	ReverseMorph(Character* caster = nullptr) :Hability(caster) {
 
 		level = 4;
 		_mana = 0;
@@ -732,7 +740,7 @@ public:
 
 class RainOfDaggers : public Hability { //revisar los modificadores
 public:
-	RainOfDaggers(Character* caster) :Hability(caster) {
+	RainOfDaggers(Character* caster = nullptr) :Hability(caster) {
 
 		level = 4;
 		_mana = 0;
@@ -752,7 +760,7 @@ public:
 
 class RockProjectiles : public Hability {
 public:
-	RockProjectiles(Character* caster) :Hability(caster) {
+	RockProjectiles(Character* caster = nullptr) :Hability(caster) {
 
 		level = 4;
 		_mana = 0;
@@ -772,7 +780,7 @@ public:
 
 class TrickShot : public Hability {
 public:
-	TrickShot(Character* caster) :Hability(caster) { //cambiar la descripcion si al final se hace lo de hacer 2 tiradas de ataque para confirmar que acierta
+	TrickShot(Character* caster = nullptr) :Hability(caster) { //cambiar la descripcion si al final se hace lo de hacer 2 tiradas de ataque para confirmar que acierta
 
 		level = 4;
 		_mana = 0;
@@ -792,7 +800,7 @@ public:
 
 class GladiatorBallad : public Hability {
 public:
-	GladiatorBallad(Character* caster) :Hability(caster) {
+	GladiatorBallad(Character* caster = nullptr) :Hability(caster) {
 
 		level = 0;
 		_mana = 0;
@@ -812,7 +820,7 @@ public:
 
 class WindSong : public Hability {
 public:
-	WindSong(Character* caster) :Hability(caster) {
+	WindSong(Character* caster = nullptr) :Hability(caster) {
 
 		level = 0;
 		_mana = 0;
@@ -978,7 +986,7 @@ public:
 class BuffStats : public Condition {
 public:
 
-	BuffStats(Character* objective, int val, mainStat stat, std::string name, std::string description) :statMod(stat), value(val),Condition(objective) {
+	BuffStats(Character* objective, int val, mainStat stat, std::string name, std::string description) :statMod(stat), value(val), Condition(objective) {
 		_name = name;
 		_description = description;
 		_type = ON_TURN_STARTED;
@@ -1000,6 +1008,3 @@ private:
 
 
 #pragma endregion
-
-
-

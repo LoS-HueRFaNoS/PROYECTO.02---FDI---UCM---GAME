@@ -3,6 +3,7 @@
 
 #include "CharacterSheet.h"
 #include "Entity.h"
+#include "HabilityManager.h"
 #include "Item.h"
 
 #pragma region CHARACTER
@@ -39,7 +40,7 @@ public:
 	Character(SDLGame* game, EntityManager* mngr, characterType type) : _type(type), Entity(game, mngr) {
 		init();
 	}
-	
+
 	~Character();
 
 	void loadFromTemplate(jute::jValue v, heroTemplate t);
@@ -80,6 +81,15 @@ public:
 
 	string name() {
 		return _sheet->name;
+	}
+
+	void addHability(Hability_Id id) {
+		if (!hasHability(id)) {
+			Hability* c = HabilityManager::instance()->getHability(id);
+			c->setCaster(this);
+			_habilities.push_back(c);
+			_habilitiesArray[id] = c;
+		}
 	}
 
 	template<typename T>
