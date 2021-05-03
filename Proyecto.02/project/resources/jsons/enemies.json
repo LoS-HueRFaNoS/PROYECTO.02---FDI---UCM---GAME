@@ -71,6 +71,13 @@
           "Value": 0.0
         }
       ]
+
+      "ListHabilities": [
+        10,
+        17,
+        22,
+        24
+      ]
     },
 
     {
@@ -142,6 +149,13 @@
           "Key": "Dark",
           "Value": 0.0
         }
+      ],
+
+      "ListHabilities": [
+        9,
+        21,
+        23,
+        29
       ]
     },
 
@@ -214,6 +228,12 @@
           "Key": "Dark",
           "Value": 0.0
         }
+      ],
+
+      "ListHabilities": [
+        14,
+        20,
+        32
       ]
     },
 
@@ -286,6 +306,13 @@
           "Key": "Dark",
           "Value": 0.0
         }
+      ],
+
+      "ListHabilities": [
+        1,
+        16,
+        20,
+        23
       ]
     },
 
@@ -358,6 +385,13 @@
           "Key": "Dark",
           "Value": 1.0
         }
+      ],
+
+      "ListHabilities": [
+        5,
+        7,
+        8,
+        19
       ]
     },
 
@@ -430,6 +464,13 @@
           "Key": "Dark",
           "Value": 0.0
         }
+      ],
+
+      "ListHabilities": [
+        25,
+        31,
+        32,
+        33
       ]
     },
 
@@ -502,6 +543,13 @@
           "Key": "Dark",
           "Value": 1.0
         }
+      ],
+
+      "ListHabilities": [
+        12,
+        21,
+        24,
+        34
       ]
     },
 
@@ -574,6 +622,13 @@
           "Key": "Dark",
           "Value": 0.0
         }
+      ],
+
+      "ListHabilities": [
+        11,
+        15
+        22,
+        24
       ]
     },
 
@@ -646,6 +701,14 @@
           "Key": "Dark",
           "Value": 0.0
         }
+      ],
+
+      "ListHabilities": [
+        1,
+        4,
+        8,
+        9,
+        11
       ]
     },
 
@@ -718,6 +781,13 @@
           "Key": "Dark",
           "Value": 1.0
         }
+      ],
+
+      "ListHabilities": [
+        10,
+        23,
+        26,
+        32
       ]
     },
 
@@ -790,6 +860,13 @@
           "Key": "Dark",
           "Value": 1.0
         }
+      ],
+
+      "ListHabilities": [
+        1,
+        16,
+        21,
+        22
       ]
     },
 
@@ -862,6 +939,13 @@
           "Key": "Dark",
           "Value": 0.0
         }
+      ],
+
+      "ListHabilities": [
+        9,
+        15,
+        22,
+        32
       ]
     },
 
@@ -934,6 +1018,13 @@
           "Key": "Dark",
           "Value": 1.0
         }
+      ],
+
+      "ListHabilities": [
+        5,
+        7,
+        8,
+        19
       ]
     }
 
