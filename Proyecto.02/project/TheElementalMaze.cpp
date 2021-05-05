@@ -8,7 +8,7 @@
 #include "src/ItemManager.h"
 #include "src/Image.h"
 #include "src/PartyManager.h"
-
+#include "src/LobbyManager.h"
 
 TheElementalMaze* TheElementalMaze::instance_ = nullptr;
 
@@ -36,10 +36,12 @@ void TheElementalMaze::init()
 	itemManager_ = new ItemManager();
 
 	HabilityManager::Init();
-
-	combatManager_ = addComponent<CombatManager>();
-
+	
 	partyManager_ = new PartyManager();
+
+	lobbyManager_ = new LobbyManager();
+	
+	combatManager_ = addComponent<CombatManager>();
 
 	Hero* wizard = characterManager_->addHeroFromTemplate(WIZARD);
 	Hero* warrior = characterManager_->addHeroFromTemplate(WARRIOR);
