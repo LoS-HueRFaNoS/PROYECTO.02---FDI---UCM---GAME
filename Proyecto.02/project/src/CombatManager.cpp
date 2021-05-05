@@ -59,7 +59,7 @@ void CombatManager::showQ()
 
 void CombatManager::showTargets()
 {
-	cout << "TARGETS" << endl;
+	cout << "TARGETS (Press enter to cancel spell): " << endl;
 	maxTargets = 0;
 
 	if (targetList) {
@@ -311,6 +311,11 @@ void CombatManager::sendKeyEvent(int key)
 			static_cast<Hero*>(currentCharacter)->manageInput(this, key);
 		break;
 	case ACTION_PHASE_TARGET:
+		if (key == -1) {
+			_habilityToCast = nullptr;
+			changeState(ACTION_PHASE_SPELL);
+			break;
+		}
 		if (!currentCharacter->getType())
 			castToSingleTarget(key);
 		break;
