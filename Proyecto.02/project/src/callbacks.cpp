@@ -210,19 +210,18 @@ void callbacks::startLobby(Interfaz* app)
 	app->togglePanel(Movement);
 	app->togglePanel(Heroes);
 	app->togglePanel(Info);
-	//app->togglePanel(Minimap); //no existe
-	//app->togglePanel(Fight);
 	std::cout << "startLobby se ha activado\n";
 }
 void callbacks::options(Interfaz* app)
 {
-	//app->createPanel(Options);
+	app->togglePanel(Options);
+	app->togglePanel(MenuPrincipal);
 	std::cout << "options se ha activado\n";
 }
 void callbacks::howToPlay(Interfaz* app)
 {
-	
-	std::cout << "howToPlay se ha activado\n";
+	app->togglePanel(HowToPlay);
+	app->togglePanel(MenuPrincipal);
 }
 void callbacks::quit(Interfaz* app)
 {

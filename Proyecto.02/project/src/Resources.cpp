@@ -49,7 +49,9 @@ vector<Resources::ImageInfo> Resources::images_{
 	{options, "resources/images/Menu/options.png"},
 	{quit, "resources/images/Menu/quit.png"},
 	{howToPlay, "resources/images/Menu/howtoplay.png"},
+
 	{mFondo, "resources/images/Menu/menufondo.jpg"},
+	{close, "resources/images/Menu/close.png"},
 
 	{Bardo, "resources/sprites/iconos personajes/bardo.png"},
 	{Brujo, "resources/sprites/iconos personajes/brujo.png"},
