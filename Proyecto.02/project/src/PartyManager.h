@@ -29,7 +29,11 @@ public:
 	// Añade un heroe en la posición que pides y devuelve el que ya se encontraba en esa posición
 	Hero* addHero(Hero* h, int pos);
 
-	void addHero(Hero* h);
+	bool addHero(Hero* h);
+	
+	void removeHero(Hero* h);
+
+	void removeHero(int h);
 
 	Item* addItem(Item* i, int pos);
 

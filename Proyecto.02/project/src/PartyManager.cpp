@@ -37,14 +37,31 @@ Hero* PartyManager::addHero(Hero* h, int pos)
 	}
 }
 
-void PartyManager::addHero(Hero* h)
+bool PartyManager::addHero(Hero* h)
 {
 	for (int i = 0; i < heroes_.size(); i++) {
 		if (!heroes_[i]) {
 			heroes_[i] = h;
-			return;
+			return true;
 		}
 	}
+	return false;
+}
+
+void PartyManager::removeHero(Hero* h)
+{
+	for (auto it = heroes_.begin(); it != heroes_.end(); it++) {
+		if ((*it) == h) {
+			(*it)->disable();
+			(*it) = nullptr;
+		}
+	}
+}
+
+void PartyManager::removeHero(int h)
+{
+	heroes_[h]->disable();
+	heroes_[h] = nullptr;
 }
 
 Item* PartyManager::addItem(Item* i, int pos)
