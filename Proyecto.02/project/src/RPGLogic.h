@@ -108,6 +108,10 @@ namespace rpgLogic {
 		DRACOLICH, //Miniboss
 		GIANTWORM,
 		BANSHEE,
+		LICH,
+		MONSTER,
+		NECROFAGO,
+		DESCONOCIDO,
 		// Escribir encima de estecomentario
 		_LastEnemyTemplateId_
 	};

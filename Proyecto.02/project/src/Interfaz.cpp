@@ -530,7 +530,81 @@ Resources::TextureId Interfaz::getHeroTxt(uint number)
 	}
 
 	return id;
-} // hace falta un metodo como este para los enemigos y otro para las habilidades (tambien estan armas, armaduras y objetos, pero urgen menos)
+} 
+
+// hace falta un metodo como este para los enemigos y otro para las habilidades (tambien estan armas, armaduras y objetos, pero urgen menos)
+
+Resources::TextureId Interfaz::getEnemyTxt(uint number)
+{
+	CombatManager* c = TheElementalMaze::instance()->getCombatManager();
+	std::vector<Enemy*> enemies = c->getEnemiesTeam();
+	uint nEnemies = enemies.size();
+
+	enemyTemplate tem = enemies[number]->getTemplate();
+
+	Resources::TextureId id;
+
+	switch (tem)
+	{
+	case rpgLogic::ZOMBIE:
+		id = src::Zombie;
+		break;
+	case rpgLogic::TROLL:
+		id = src::Troll;
+		break;
+	case rpgLogic::SKELETON:
+		id = src::Skeleton;
+		break;
+	case rpgLogic::HELLHOUND:
+		id = src::Hellhound;
+		break;
+	case rpgLogic::SPECTER:
+		id = src::Specter;
+		break;
+	case rpgLogic::GOBLIN:
+		id = src::Goblin;
+		break;
+	case rpgLogic::DEATHKNIGHT:
+		id = src::DeathKnight;
+		break;
+	case rpgLogic::MIMIC:
+		id = src::Mimic;
+		break;
+	case rpgLogic::PIXIE:
+		id = src::Pixie;
+		break;
+	case rpgLogic::GHOUL:
+		id = src::Ghoul;
+		break;
+	case rpgLogic::DRACOLICH:
+		id = src::Dracolich;
+		break;
+	case rpgLogic::GIANTWORM:
+		id = src::GiantWorm;
+		break;
+	case rpgLogic::BANSHEE:
+		id = src::Banshee;
+		break;
+	case rpgLogic::LICH:
+		id = src::Lich;
+		break;
+	case rpgLogic::NECROFAGO:
+		id = src::Necrofago;
+		break;
+	case rpgLogic::MONSTER:
+		id = src::Monster;
+		break;
+	case rpgLogic::DESCONOCIDO:
+		id = src::Desconocido;
+		break;
+
+	default:
+		id = Resources::TextureId();
+		break;
+	}
+
+	return id;
+}
 
 void Interfaz::initialize()
 {
