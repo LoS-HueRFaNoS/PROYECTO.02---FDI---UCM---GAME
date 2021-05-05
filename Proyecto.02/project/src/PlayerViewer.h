@@ -137,7 +137,7 @@ public:
 			}
 			else manager->getTexture(Resources::muro_fr)->render(dest);
 			
-			//manager->getTexture(Resources::camino_fr)->render(dest);
+
 			
 		}
 		else manager->getTexture(Resources::muro_del)->render(dest);

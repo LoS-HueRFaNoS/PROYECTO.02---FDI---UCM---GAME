@@ -45,6 +45,12 @@ vector<Resources::ImageInfo> Resources::images_{
 	{pared_S, "resources/images/pasillos/pared_sur.png"},				//
 	{pared_O, "resources/images/pasillos/pared_oeste.png"},				//
 
+	{start, "resources/images/Menu/StartBoton.png"},
+	{options, "resources/images/Menu/options.png"},
+	{quit, "resources/images/Menu/quit.png"},
+	{howToPlay, "resources/images/Menu/howtoplay.png"},
+	{mFondo, "resources/images/Menu/menufondo.jpg"},
+
 	{Bardo, "resources/sprites/iconos personajes/bardo.png"},
 	{Brujo, "resources/sprites/iconos personajes/brujo.png"},
 	{Clerigo, "resources/sprites/iconos personajes/clerigo.png"},

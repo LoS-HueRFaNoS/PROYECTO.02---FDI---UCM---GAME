@@ -204,8 +204,14 @@ void callbacks::set_hability(int hability_)
 #pragma region MenuPrincipal
 void callbacks::startLobby(Interfaz* app)
 {
-	//app->destroyPanel(MenuPrincipal);
+	TheElementalMaze::instance()->changeState(EXPLORING);
+	app->togglePanel(MenuPrincipal);
 	//app->createPanel(Lobby);
+	app->togglePanel(Movement);
+	app->togglePanel(Heroes);
+	app->togglePanel(Info);
+	//app->togglePanel(Minimap); //no existe
+	//app->togglePanel(Fight);
 	std::cout << "startLobby se ha activado\n";
 }
 void callbacks::options(Interfaz* app)
@@ -215,7 +221,7 @@ void callbacks::options(Interfaz* app)
 }
 void callbacks::howToPlay(Interfaz* app)
 {
-	//app->createPanel(HowToPlay);
+	
 	std::cout << "howToPlay se ha activado\n";
 }
 void callbacks::quit(Interfaz* app)
