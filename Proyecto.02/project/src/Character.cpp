@@ -210,10 +210,13 @@ void Hero::loadFromJson(jute::jValue v, int t)
 	_armor = TheElementalMaze::instance()->getItemManager()->getArmorFromId(armorId(idRArmor));
 }
 
-void Hero::endCombat()
+void Hero::endCombat(int exp)
 {
-	if (!_deathGate && !isDead())
-		recieveHealing(5);
+	if (!_deathGate)
+	{
+		recieveHealing(2);
+		levelUp(exp);
+	}
 }
 
 #include <iomanip>
@@ -278,6 +281,43 @@ void Hero::resetThrows()
 	savingSuccess = 0;
 }
 
+void Hero::levelUp(int exp)
+{
+	int expObtain = exp;
+
+	if (expNeed - expObtain <= 0)
+	{
+		expMax += 100;
+
+		int hp = _sheet->maxHitPoints();
+		int pm = _sheet->maxManaPoints();
+
+		int hpMax, pmMax;
+
+		if (getMod(CON) >= 0)
+			hpMax = hp + throwStat(CON) + getMod(CON);
+
+		else
+			hpMax = hp + throwDice(1, 10, false);
+
+		if (getMod(INT) >= 0)
+			pmMax = pm + throwStat(INT) + getMod(INT);
+
+		else
+			pmMax = pm + throwDice(1, 10, false);
+
+		_sheet->setMaxHitPoints(hpMax);
+		_sheet->setHitPoints(hpMax);
+		_sheet->setMaxManaPoints(pmMax);
+		_sheet->setManaPoints(pmMax);
+
+		expNeed = expMax;
+	}
+
+	else
+		expNeed -= expObtain;
+}
+
 void Hero::manageInput(CombatManager* cm, int input)
 {
 	if (input >= _habilities.size())
@@ -287,7 +327,7 @@ void Hero::manageInput(CombatManager* cm, int input)
 	else
 	{
 		cm->castHability(_habilities[input]);
-		//_sheet->setManaPoints(_sheet->manaPoints() - _habilities[spell]->getMana());
+		_sheet->setManaPoints(_sheet->manaPoints() - _habilities[input]->getMana());
 	}
 }
 

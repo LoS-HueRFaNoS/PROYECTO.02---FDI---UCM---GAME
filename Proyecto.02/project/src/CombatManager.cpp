@@ -128,6 +128,9 @@ void CombatManager::endCombat()
 {
 	if (_win) {
 		cout << "GANASTE, ERES BUENISIMO NO ?" << endl << _exp << " DE EXPERIENCIA GANADA" << endl;
+
+		for (Hero* h : _heroes)
+			h->endCombat(_exp);
 	}
 	else
 		cout << "PERDISTE, ASI ES LA VIDA" << endl;
@@ -136,6 +139,7 @@ void CombatManager::endCombat()
 	for (Enemy* e : _enemies) {
 		e->disable();
 	}
+
 	_enemies.clear();
 	
 	_turnQueue.clear();
@@ -237,10 +241,12 @@ void CombatManager::calculateTurns()
 	currentCharacter = _turnQueue[0];
 }
 
-void CombatManager::calculateExp()
+int CombatManager::calculateExp()
 {
 	for (Enemy* e : _enemies)
 		_exp += e->getExp();
+
+	return _exp;
 }
 
 

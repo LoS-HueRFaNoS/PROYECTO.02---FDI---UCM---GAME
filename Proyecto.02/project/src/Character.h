@@ -156,6 +156,8 @@ private:
 
 	int savingSuccess = 0, savingFailure = 0;
 
+	int expNeed = 100, expMax = 100;
+
 	bool _deathGate = false;
 
 	virtual void loadFromJson(jute::jValue v, int t);
@@ -187,7 +189,9 @@ public:
 
 	void resetThrows();
 
-	void endCombat();
+	void levelUp(int exp);
+
+	void endCombat(int exp);
 
 	void showSpellList();
 

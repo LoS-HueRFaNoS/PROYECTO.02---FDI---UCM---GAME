@@ -66,8 +66,6 @@ private:
 
 	void calculateTurns();
 
-	void calculateExp();
-
 	void passTurn();
 
 	bool checkEnd();
@@ -128,6 +126,7 @@ public:
 
 	void startCombat();
 
+	int calculateExp();
 
 	void throwHability(Character* objective, Hability* hability);
 
