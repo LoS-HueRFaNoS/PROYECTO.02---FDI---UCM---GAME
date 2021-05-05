@@ -44,6 +44,7 @@
     <ClCompile Include="src\Interfaz.cpp" />
     <ClCompile Include="src\jute.cpp" />
     <ClCompile Include="src\Laberinto.cpp" />
+    <ClCompile Include="src\LobbyManager.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\Manager.cpp" />
     <ClCompile Include="src\MouseCtrl.cpp" />
@@ -99,6 +100,7 @@
     <ClInclude Include="src\InterfazManager.h" />
     <ClInclude Include="src\jute.h" />
     <ClInclude Include="src\Laberinto.h" />
+    <ClInclude Include="src\LobbyManager.h" />
     <ClInclude Include="src\Manager.h" />
     <ClInclude Include="src\MazePos.h" />
     <ClInclude Include="src\MouseCtrl.h" />

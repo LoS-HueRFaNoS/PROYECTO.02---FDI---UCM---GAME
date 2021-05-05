@@ -204,6 +204,8 @@ public:
 class Enemy : public Character {
 private:
 
+	enemyTemplate template_;
+
 	string description = "Un enemigo muy chungo";
 
 	int exp = 0;
@@ -219,6 +221,8 @@ public:
 	}
 
 	int getExp() { return exp; }
+
+	enemyTemplate getTemplate() { return template_; }
 };
 
 

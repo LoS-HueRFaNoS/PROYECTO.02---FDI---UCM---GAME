@@ -189,6 +189,9 @@
     <ClCompile Include="src\HabilityManager.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
+    <ClCompile Include="src\LobbyManager.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\ecs.h">
@@ -357,6 +360,9 @@
       <Filter>Archivos de encabezado\Templates/Resources</Filter>
     </ClInclude>
     <ClInclude Include="src\HabilityManager.h">
+      <Filter>Archivos de encabezado\Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="src\LobbyManager.h">
       <Filter>Archivos de encabezado\Managers</Filter>
     </ClInclude>
   </ItemGroup>

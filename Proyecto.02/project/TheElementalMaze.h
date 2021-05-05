@@ -8,6 +8,7 @@ class ItemManager;
 class Laberinto;
 class CharacterManager;
 class PartyManager;
+class LobbyManager;
 
 // A los componentes se pueden acceder mediante la entidad y se pueden comunicar entre s�
 // del mismo modo, mediante el puente que es la entidad.
@@ -32,6 +33,7 @@ private:
 	ItemManager* itemManager_; //
 	CharacterManager* characterManager_; // 
 	PartyManager* partyManager_;
+	LobbyManager* lobbyManager_;
 
 	GameState state_;
 
@@ -81,6 +83,8 @@ public:
 	CombatManager* getCombatManager() { return combatManager_; }
 
 	PartyManager* getPartyManager() { return partyManager_; }
+
+	LobbyManager* getLobbyManager() { return lobbyManager_; }
 
 	GameState gameState() { return state_; }
 
