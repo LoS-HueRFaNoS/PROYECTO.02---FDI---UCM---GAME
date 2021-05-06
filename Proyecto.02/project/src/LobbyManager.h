@@ -6,35 +6,31 @@
 
 class Hero;
 class Item;
+class PartyManager;
 
 struct HeroContract
 {
 public:
-	HeroContract(Hero* h, int p, int i) :
+	HeroContract(Hero* h, int p) :
 		hero(h),
 		sold(false),
-		price(p),
-		index(i)
+		price(p)
 	{}
-	~HeroContract() {
-		hero->disable();
-	}
+	~HeroContract();
 	Hero* hero;
 	int price;
-	int index;
 	bool sold;
 };
 
 struct ItemToBuy
 {
 public:
-	ItemToBuy(Item* it, int i) :
+	ItemToBuy(Item* it) :
 		item(it),
-		index(i),
 		sold(false)
 	{}
+	~ItemToBuy();
 	Item* item;
-	int index;
 	bool sold;
 };
 
@@ -70,26 +66,14 @@ struct Stash {
 public:
 	Stash() :
 		heroes(std::vector< Hero*>()),
-		items(std::vector<Item*>())
+		items(std::vector<Item*>()),
+		gold(0)
 	{
 	}
-	~Stash() {
-		heroes.clear();
-		items.clear();
-
-		for (Item* i : items)
-		{
-			delete i; i = nullptr;
-		}
-		items.clear();
-		for (Hero* i : heroes)
-		{
-			i->disable();
-		}
-		heroes.clear();
-	}
+	~Stash();
 	std::vector<Hero*> heroes;
 	std::vector<Item*> items;
+	int gold;
 };
 
 class LobbyManager // : public Component  //  NO SE SI SERÍA UN COMPONENTE O NO
@@ -100,6 +84,8 @@ private:
 
 	Store* lobbyStore_;
 
+	PartyManager* party_;
+
 	void startExploring();
 
 	void clearLobby();
@@ -108,9 +94,11 @@ private:
 
 	void generateItemStash();
 
+	void removeItemFromStash(Item* i);
+
 public:
 
-	LobbyManager();
+	LobbyManager(PartyManager* party);
 	~LobbyManager();
 
 	Stash* getPlayerStash();
@@ -126,6 +114,10 @@ public:
 	void buyItem(int item);
 
 	void buyHero(int hero);
+
+	void sellItem(Item* item);
+
+	void backFromDungeon();
 
 };
 #endif // !_LOBBY_MANAGER_

@@ -12,8 +12,6 @@ class PartyManager
 {
 private:
 
-	int gold_;
-
 	std::vector<Hero*> heroes_;
 
 	std::vector<Item*> items_;
@@ -25,6 +23,8 @@ public:
 	PartyManager(std::vector<Hero*> heroes, std::vector<Item*> items, int gold);
 
 	~PartyManager();
+
+	int gold;
 
 	// Añade un heroe en la posición que pides y devuelve el que ya se encontraba en esa posición
 	Hero* addHero(Hero* h, int pos);

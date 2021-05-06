@@ -3,14 +3,14 @@
 #include "Character.h"
 
 PartyManager::PartyManager() :
-	gold_(0),
+	gold(0),
 	items_(std::vector<Item*>(30)),
 	heroes_(std::vector<Hero*>(4))
 {
 }
 
 PartyManager::PartyManager(std::vector<Hero*> heroes, std::vector<Item*> items, int gold) :
-	heroes_(heroes), items_(items), gold_(gold)
+	heroes_(heroes), items_(items), gold(gold)
 {
 }
 
