@@ -146,6 +146,8 @@ public:
 
 	void castHability(Hability* hability);
 
+	characterType getCurrentTarget() { return targetList; }
+
 	// ----------------------------------------------------
 };
 
