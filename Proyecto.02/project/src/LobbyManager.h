@@ -8,6 +8,8 @@ class Hero;
 class Item;
 class PartyManager;
 
+enum PotionType;
+
 struct HeroContract
 {
 public:
@@ -43,9 +45,6 @@ public:
 	{
 	}
 	~Store() {
-		heroes.clear();
-		items.clear();
-
 		for (ItemToBuy* i : items)
 		{
 			delete i; i = nullptr;
@@ -74,6 +73,8 @@ public:
 	std::vector<Hero*> heroes;
 	std::vector<Item*> items;
 	int gold;
+	int manaPotions;
+	int healthPotions;
 };
 
 class LobbyManager // : public Component  //  NO SE SI SERÍA UN COMPONENTE O NO
@@ -110,6 +111,10 @@ public:
 	void addItemToStash(Item* item);
 
 	Store* getLobbyStore();
+	
+	void buyPotion(PotionType type);
+
+	void swapPotions(bool fromParty, PotionType type);
 
 	void buyItem(int item);
 

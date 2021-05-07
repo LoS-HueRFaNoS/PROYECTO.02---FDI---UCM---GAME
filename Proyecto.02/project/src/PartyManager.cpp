@@ -4,13 +4,19 @@
 
 PartyManager::PartyManager() :
 	gold(0),
+	manaPotions(5),
+	healthPotions(5),
 	items_(std::vector<Item*>(30)),
 	heroes_(std::vector<Hero*>(4))
 {
 }
 
-PartyManager::PartyManager(std::vector<Hero*> heroes, std::vector<Item*> items, int gold) :
-	heroes_(heroes), items_(items), gold(gold)
+PartyManager::PartyManager(std::vector<Hero*> heroes, std::vector<Item*> items, int gold, int manaP, int healthP) :
+	heroes_(heroes), 
+	items_(items), 
+	gold(gold),
+	manaPotions(manaP),
+	healthPotions(healthP)
 {
 }
 

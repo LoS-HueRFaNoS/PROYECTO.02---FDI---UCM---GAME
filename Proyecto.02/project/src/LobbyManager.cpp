@@ -9,7 +9,6 @@ LobbyManager::LobbyManager(PartyManager* party)
 	: party_(party)
 {
 	playerStash_ = new Stash();
-	lobbyStore_ = new Store();
 }
 
 LobbyManager::~LobbyManager()
@@ -29,9 +28,31 @@ void LobbyManager::clearLobby()
 	delete lobbyStore_;
 }
 
+
+void LobbyManager::backFromDungeon()
+{
+	playerStash_->gold += party_->gold;
+	party_->gold = 0;
+
+	for (Item* i : party_->getItems())
+	{
+		addItemToStash(i);
+	}
+	party_->getItems().clear();
+
+	lobbyStore_ = new Store();
+	generateHeroStash();
+	generateItemStash();
+}
+
 void LobbyManager::generateHeroStash()
 {
-
+	CharacterManager* cm = TheElementalMaze::instance()->getCharacterManager();
+	for (int i = 0; i < 10; i++) {
+		Hero* hero = cm->addRandomHero();
+		int price = SDLGame::instance()->getRandGen()->nextInt(50, 301);
+		HeroContract* contract = new HeroContract(hero, price);
+	}
 }
 
 void LobbyManager::generateItemStash()
@@ -93,13 +114,50 @@ Store* LobbyManager::getLobbyStore()
 	return lobbyStore_;
 }
 
+void LobbyManager::buyPotion(PotionType type)
+{
+	if (playerStash_->gold < PRICE_OF_POTION)
+		return;
+
+	playerStash_->gold -= PRICE_OF_POTION;
+
+	(type) ? playerStash_->manaPotions++ : playerStash_->healthPotions++;
+
+	std::cout << "Potion purchased" << std::endl;
+}
+
+void LobbyManager::swapPotions(bool fromParty, PotionType type)
+{
+	if (fromParty) {
+		if (type) {
+			party_->manaPotions--;
+			playerStash_->manaPotions++;
+		}
+		else {
+			party_->healthPotions--;
+			playerStash_->healthPotions++;
+		}
+	}
+	else {
+		if (type) {
+			party_->manaPotions++;
+			playerStash_->manaPotions--;
+		}
+		else {
+			party_->healthPotions++;
+			playerStash_->healthPotions--;
+		}
+	}
+}
+
+
 void LobbyManager::buyItem(int item)
 {
 	ItemToBuy* itemToBuy = lobbyStore_->items[item];
-	if (itemToBuy->sold || party_->gold < itemToBuy->item->getBuyValue())
+	if (itemToBuy->sold || playerStash_->gold < itemToBuy->item->getBuyValue())
 		return;
 
-	party_->gold -= itemToBuy->item->getBuyValue();
+	playerStash_->gold -= itemToBuy->item->getBuyValue();
 	playerStash_->items.push_back(itemToBuy->item);
 	itemToBuy->sold = true;
 
@@ -109,10 +167,10 @@ void LobbyManager::buyItem(int item)
 void LobbyManager::buyHero(int hero)
 {
 	HeroContract* contract = lobbyStore_->heroes[hero];
-	if (contract->sold || party_->gold < contract->price)
+	if (contract->sold || playerStash_->gold < contract->price)
 		return;
 
-	party_->gold -= contract->price;
+	playerStash_->gold -= contract->price;
 	playerStash_->heroes.push_back(contract->hero);
 	contract->sold = true;
 
@@ -128,18 +186,6 @@ void LobbyManager::sellItem(Item* item)
 	ItemToBuy* it = new ItemToBuy(item);
 
 	lobbyStore_->items.push_back(it);
-}
-
-void LobbyManager::backFromDungeon()
-{
-	playerStash_->gold += party_->gold;
-	party_->gold = 0;
-
-	for(Item* i : party_->getItems())
-	{
-		addItemToStash(i);
-	}
-	party_->getItems().clear();
 }
 
 Stash::~Stash()

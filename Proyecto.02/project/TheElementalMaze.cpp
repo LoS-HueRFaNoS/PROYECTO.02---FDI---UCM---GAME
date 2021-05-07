@@ -18,6 +18,8 @@ TheElementalMaze::~TheElementalMaze()
 	itemManager_ = nullptr;
 	delete partyManager_;
 	partyManager_ = nullptr;
+	delete lobbyManager_;
+	lobbyManager_ = nullptr;
 }
 
 void TheElementalMaze::init()
