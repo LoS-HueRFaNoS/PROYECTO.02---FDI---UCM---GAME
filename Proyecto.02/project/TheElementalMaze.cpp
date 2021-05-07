@@ -89,6 +89,7 @@ void TheElementalMaze::onStateChanged()
 		player_->addComponent<MazePos>(Vector2D(0, 0));
 		player_->addComponent<PlayerMotion>(SDLK_UP, SDLK_LEFT, SDLK_RIGHT, laberinto_);
 		player_->addComponent<PlayerViewer>(laberinto_);
+		changeState(EXPLORING);
 		break;
 	case EXPLORING:
 		cout << "EXPLORING STARTED" << endl;
