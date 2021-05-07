@@ -77,6 +77,8 @@ vector<Resources::ImageInfo> Resources::images_{
 	{Defensa, "resources/sprites/iconos combate/defensa.png"},
 	{Huida, "resources/sprites/iconos combate/huir.png"},
 	{Marco, "resources/sprites/iconos combate/marco.png"},
+	{Target, "resources/sprites/iconos combate/target.png"},
+	{Hability, "resources/sprites/iconos combate/hability.png"},
 
 	//Inventario
 	{Slot, "resources/sprites/iconos inventario/inventorySlot.png"},
@@ -87,32 +89,32 @@ vector<Resources::ImageInfo> Resources::images_{
 
 	// Armas clasicas
 	{Joker, "resources/sprites/iconos armas/joker.png"}, ///TODO
-	{Desarmado, "resources/sprites/iconos armas/joker.png"}, ///TODO
+	{Desarmado, "resources/sprites/iconos armas/desarmado.png"},
 	{Baston, "resources/sprites/iconos armas/baston.png"},
 	{Daga, "resources/sprites/iconos armas/daga.png"},
 	{Clava, "resources/sprites/iconos armas/clava.png"},
 	{HachaPequena, "resources/sprites/iconos armas/hacha.png"},
-	{Hoz, "resources/sprites/iconos armas/joker.png"}, ///TODO
+	{Hoz, "resources/sprites/iconos armas/hoz.png"},
 	{Lanza, "resources/sprites/iconos armas/lanza.png"},
-	{MartilloPequeno, "resources/sprites/iconos armas/joker.png"}, ///TODO
+	{MartilloPequeno, "resources/sprites/iconos armas/martillo_peque.png"}, 
 	{Maza, "resources/sprites/iconos armas/maza.png"},
 	{ArcoPequeno, "resources/sprites/iconos armas/arco_ligero.png"},
 	{BallestaLigera, "resources/sprites/iconos armas/ballesta_ligera.png"},
 
 	// Armas marciales
 	{Alabarda, "resources/sprites/iconos armas/alabarda.png"},
-	{Atarraga, "resources/sprites/iconos armas/joker.png"}, ///TODO
+	{Atarraga, "resources/sprites/iconos armas/atarraga.png"}, 
 	{EspadaCorta, "resources/sprites/iconos armas/espada_corta.png"},
 	{EspadaLarga, "resources/sprites/iconos armas/espada_larga.png"},
-	{Espadon, "resources/sprites/iconos armas/joker.png"},		///TODO
-	{EspadaRopera, "resources/sprites/iconos armas/joker.png"}, ///TODO
-	{HachaBatalla, "resources/sprites/iconos armas/joker.png"}, ///TODO
-	{Guja, "resources/sprites/iconos armas/joker.png"},			///TODO
-	{Latigo, "resources/sprites/iconos armas/joker.png"},		///TODO
-	{LuceroAlba, "resources/sprites/iconos armas/lucero.png"},	///TODO
+	{Espadon, "resources/sprites/iconos armas/espadon.png"},
+	{EspadaRopera, "resources/sprites/iconos armas/espada_ropera.png"},
+	{HachaBatalla, "resources/sprites/iconos armas/hacha_batalla.png"}, 
+	{Guja, "resources/sprites/iconos armas/guja.png"},	
+	{Latigo, "resources/sprites/iconos armas/latigo.png"},	
+	{LuceroAlba, "resources/sprites/iconos armas/lucero.png"},
 	{MartilloGuerra, "resources/sprites/iconos armas/martillo.png"},
-	{Pica, "resources/sprites/iconos armas/joker.png"},		///TODO
-	{Tridente, "resources/sprites/iconos armas/joker.png"}, ///TODO
+	{Pica, "resources/sprites/iconos armas/pica.png"}, 
+	{Tridente, "resources/sprites/iconos armas/tridente.png"},
 	{ArcoLargo, "resources/sprites/iconos armas/arco_largo.png"},
 	{BallestaPesada, "resources/sprites/iconos armas/ballesta_pesada.png"},
 

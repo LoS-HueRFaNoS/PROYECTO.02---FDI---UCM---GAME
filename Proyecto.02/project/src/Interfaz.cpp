@@ -43,10 +43,10 @@ void Interfaz::createFight()
 	allPanels[Fight] = p;
 
 	// BOTONES: normal, magic, defend, escape
-	p->addButton(iManager->addButton<ButtonPanel>(Vector2D(x_ + 0, y_), w_, h_, src::AtaqueNormal, Targets, false));
-	p->addButton(iManager->addButton<ButtonPanel>(Vector2D(x_ + espace, y_), w_, h_, src::AtaqueMagico, Habilities, false));
-	p->addButton(iManager->addButton<ButtonDefend>(Vector2D(x_ + espace * 2, y_), w_, h_, src::Defensa, DfndType::defend));
-	p->addButton(iManager->addButton<ButtonDefend>(Vector2D(x_ + espace * 3, y_), w_, h_, src::Huida, DfndType::escape));
+	p->addButton(iManager->addButton<ButtonCombate>(Vector2D(x_ + 0, y_), w_, h_, src::AtaqueNormal, CmbtType::attack));
+	p->addButton(iManager->addButton<ButtonCombate>(Vector2D(x_ + espace, y_), w_, h_, src::AtaqueMagico, CmbtType::magic));
+	p->addButton(iManager->addButton<ButtonCombate>(Vector2D(x_ + espace * 2, y_), w_, h_, src::Defensa, CmbtType::defend));
+	p->addButton(iManager->addButton<ButtonCombate>(Vector2D(x_ + espace * 3, y_), w_, h_, src::Huida, CmbtType::escape));
 }
 
 void Interfaz::createMovement()
@@ -337,8 +337,8 @@ void Interfaz::createTargets()
 	allPanels[Targets] = p;
 
 	// BOTONES:
-	for (int i = 0; i < nEnemys; i++) {
-		p->addButton(iManager->addButton<ButtonTarget>(Vector2D(x_ + espace * i, y_), w_, h_, getHeroTxt(i), (target)i));
+	for (int i = 0; i < 4/*nEnemys*/; i++) {
+		p->addButton(iManager->addButton<ButtonTarget>(Vector2D(x_ + espace * i, y_), w_, h_, src::Target, (target)i));
 	}
 }
 
@@ -371,8 +371,9 @@ void Interfaz::createHabilities()
 
 	// BOTONES:
 	for (int i = 0; i < nEnemys; i++) {
-		p->addButton(iManager->addButton<ButtonHability>(Vector2D(x_ + espace * i, y_), w_, h_, getHeroTxt(i), (HbltType)i, Targets, false, allPanels[Fight]));
+		p->addButton(iManager->addButton<ButtonHability>(Vector2D(x_ + espace * i, y_), w_, h_, src::Hability, (HbltType)i));
 	}
+	togglePanel(Fight); // oculta el panel fight
 }
 
 
@@ -421,9 +422,10 @@ void Interfaz::createPanel(idPanel panelID)
 	}
 }
 
-void Interfaz::removePanel(idPanel panelID)
+void Interfaz::removePanel(idPanel panID)
 {
-	allPanels[panelID]->removeButtons();
+	allPanels[panID]->removeButtons();
+	allPanels[panID] = nullptr;
 }
 
 void Interfaz::destroyPanel(idPanel panelID)
@@ -434,7 +436,13 @@ void Interfaz::destroyPanel(idPanel panelID)
 
 void Interfaz::togglePanel(Panel* pan)
 {
-	pan->toggleButtons();
+	pan->toggleEnable();
+}
+
+bool Interfaz::getEnablePan(idPanel panID)
+{
+	if (getActivePan(panID)) return allPanels[panID]->getEnable();
+	else return false;
 }
 
 void Interfaz::toggleCombat_Movement()
@@ -454,8 +462,6 @@ void Interfaz::init()
 	createPanel(Heroes);
 	createPanel(Info);
 	createPanel(Minimap);
-	createPanel(Fight);
-	togglePanel(Fight);
 }
 
 void Interfaz::update()
@@ -464,6 +470,14 @@ void Interfaz::update()
 	if (ih_->isKeyDown(SDLK_t)) {
 		// mouse event
 		toggleCombat_Movement();
+	}
+	//COMBATE
+	if (TheElementalMaze::instance()->gameState() == COMBAT && !getActivePan(Fight)) {
+		togglePanel(Movement);
+		createPanel(Fight);
+	} else if (TheElementalMaze::instance()->gameState() == EXPLORING && !getEnablePan(Movement)) {
+		togglePanel(Movement);
+		if (getActivePan(Fight)) removePanel(Fight);
 	}
 }
 

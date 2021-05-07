@@ -30,10 +30,10 @@ private:
 	void createTargets(); //
 	void createHabilities(); //
 
-	void createMenuPrincipal() ; //
-	void createLobby() ; //
-	void createOptions(); //
-	void createGuide(); //
+	void createMenuPrincipal() {}; //
+	void createLobby() {}; //
+	void createOptions() {}; //
+	void createGuide() {}; //
 
 public:
 	Interfaz(InterfazManager* i) :
@@ -49,6 +49,7 @@ public:
 
 	void togglePanel(Panel* pan);
 	void togglePanel(idPanel panID) { togglePanel(allPanels[panID]); };
+	bool getEnablePan(idPanel panID);
 
 	void toggleCombat_Movement();
 

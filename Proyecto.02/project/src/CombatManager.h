@@ -10,8 +10,8 @@ enum CombatState {
 	PASS_TURN,
 	START_TURN,
 	ACTION_PHASE_SPELL,
-	ACTION_PHASE_TARGET,
-	END_TURN,
+	ACTION_PHASE_TARGET, // target concreto
+	END_TURN, // multitarget
 	COMBAT_END,
 	NO_COMBAT
 };

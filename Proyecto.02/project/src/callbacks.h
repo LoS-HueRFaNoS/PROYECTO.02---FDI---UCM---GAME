@@ -24,16 +24,11 @@ public:
 	static void configuracion(Interfaz* app);
 	static void potionType(int potionType_);
 	// acceso a combate
-	static void attackType(int attackType_);
-	static void defendType(int attackType_);
+	static void combatType(int combatType_);
 	static void addTarget(int attackType_);
 	static void set_hability(int attackType_);
 	// habilitar/deshabilitar paneles
 	static void createPanel(bool active, int panelType);
-	static void ataqueNormal(Interfaz* app);
-	static void ataqueMagico(Interfaz* app);
-	static void defensa(Interfaz* app);
-	static void huida(Interfaz* app);
 	// acceso por menu
 	static void startLobby(Interfaz* app);
 	static void options(Interfaz* app);

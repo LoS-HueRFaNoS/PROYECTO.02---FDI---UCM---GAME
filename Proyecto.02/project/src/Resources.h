@@ -84,6 +84,8 @@ public:
 		Defensa,
 		Huida,
 		Marco,
+		Target,
+		Hability,
 
 		//Inventario
 		Slot,

@@ -21,7 +21,7 @@ protected:
 
 	std::array<Hability*, _lasHabilityId_> _habilitiesArray = {};
 
-	std::map < ConditionType, vector<Condition*>> _conditions;
+	std::map <ConditionType, vector<Condition*>> _conditions;
 
 	std::array<Condition*, _lastConditionId_> _conditonsArray = {};
 

@@ -8,11 +8,12 @@ using namespace interfaz;
 class Panel
 {
 protected:
+	bool enable;
 	idPanel id;
 	list<Button*> buttonList;
 	
 public:
-	Panel(idPanel idPan) : id(idPan) {};
+	Panel(idPanel idPan) : id(idPan), enable(true) {};
 
 	~Panel(){
 		removeButtons();
@@ -24,11 +25,13 @@ public:
 		buttonList.push_back(b);
 	}
 
-	void toggleButtons() {
+	void toggleEnable() {
+		enable = !enable;
 		for (Entity* var : buttonList) var->toggleEnabled();
 	}
 
 	ButtonPanel* getButtonActive();
 	idPanel GetID() { return id; };
+	bool getEnable() { return enable; };
 };
 

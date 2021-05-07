@@ -86,46 +86,24 @@ public:
 
 // ----------------------------------------------------
 
+enum class CmbtType { attack, magic, defend, escape };
 
-enum class AtkType { normal, magic };
-
-class ButtonAttack : public Button {
+class ButtonCombate : public Button {
 private:
-	AtkType attackType_;
+	CmbtType combatType_;
 public:
-	ButtonAttack(SDLGame* game, EntityManager* mngr) : Button(game, mngr), attackType_(AtkType::normal) {};
+	ButtonCombate(SDLGame* game, EntityManager* mngr) : Button(game, mngr), combatType_(CmbtType::attack) {};
 
-	~ButtonAttack() {};
+	~ButtonCombate() {};
 
-	virtual void init(Vector2D pos, uint ancho, uint alto, Resources::TextureId imagen, AtkType attack) {
-		attackType_ = attack;
+	virtual void init(Vector2D pos, uint ancho, uint alto, Resources::TextureId imagen, CmbtType combate) {
+		combatType_ = combate;
 		Button::init(pos, ancho, alto, imagen);
 	};
 
 	virtual void click()
 	{
-		callbacks::attackType((int)attackType_);
-	}
-};
-
-enum class DfndType { defend, escape };
-
-class ButtonDefend : public Button {
-private:
-	DfndType defendType_;
-public:
-	ButtonDefend(SDLGame* game, EntityManager* mngr) : Button(game, mngr), defendType_(DfndType::defend) {};
-
-	~ButtonDefend() {};
-
-	virtual void init(Vector2D pos, uint ancho, uint alto, Resources::TextureId imagen, DfndType attack) {
-		defendType_ = attack;
-		Button::init(pos, ancho, alto, imagen);
-	};
-
-	virtual void click()
-	{
-		callbacks::defendType((int)defendType_);
+		callbacks::combatType((int)combatType_);
 	}
 };
 
@@ -139,8 +117,8 @@ public:
 
 	~ButtonTarget() {};
 
-	virtual void init(Vector2D pos, uint ancho, uint alto, Resources::TextureId imagen, target attack) {
-		target_ = attack;
+	virtual void init(Vector2D pos, uint ancho, uint alto, Resources::TextureId imagen, target objetive) {
+		target_ = objetive;
 		Button::init(pos, ancho, alto, imagen);
 	};
 
@@ -229,6 +207,10 @@ class ButtonPanel : public Button {
 protected:
 	bool activated;
 	idPanel pan_;
+
+	void setActive(bool set);
+	void setHide(bool set);
+
 public:
 	ButtonPanel(SDLGame* game, EntityManager* mngr) : Button(game, mngr), activated(true), pan_(Fight) {};
 
@@ -248,12 +230,10 @@ public:
 		else turnOFF();
 	}
 
-	bool getActive() { return activated; };
-	void setActive(bool set);
-	void setHide(bool set);
+	virtual bool getActive() { return activated; };
+	virtual void turnON() { setActive(true), setHide(false); }
+	virtual void turnOFF() { setActive(false), setHide(true); }
 
-	void turnON() { setActive(true), setHide(false); }
-	void turnOFF() { setActive(false), setHide(true); }
 };
 
 enum class HeroNum { hero1, hero2, hero3, hero4 };
@@ -281,7 +261,6 @@ public:
 
 #pragma region ButtonCombateResources
 #include "callbacks.h"
-#include "ecs_interfaz.h"
 #include "Interfaz.h"
 
 enum class HbltType { hability1, hability2, hability3, hability4 };
@@ -289,21 +268,16 @@ enum class HbltType { hability1, hability2, hability3, hability4 };
 class ButtonHability : public Button {
 private:
 	HbltType hability_;
-	bool activated;
-	idPanel pan_;
+
 public:
 	ButtonHability(SDLGame* game, EntityManager* mngr) : Button(game, mngr), hability_(HbltType::hability1) {};
 
 	~ButtonHability() {};
 
-	virtual void init(Vector2D pos, uint ancho, uint alto, Resources::TextureId imagen, HbltType attack, idPanel panId, bool active, Panel* p_);
+	virtual void init(Vector2D pos, uint ancho, uint alto, Resources::TextureId imagen, HbltType attack);
 
-	virtual void click()
-	{
-		callbacks::createPanel(activated, pan_);
-		activated = !activated;
-		callbacks::set_hability((int)hability_);
-	}
+	virtual void click();
+	
 };
 
 #pragma endregion

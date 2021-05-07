@@ -20,7 +20,7 @@ void Button::initComponents(Vector2D pos, uint ancho, uint alto, Resources::Text
 
 void ButtonPanelCte::click()
 {
-	pan_->toggleButtons();
+	pan_->toggleEnable();
 }
 
 #include "Interfaz.h"
@@ -38,15 +38,21 @@ void ButtonHero::click()
 #pragma endregion
 
 #pragma region ButtonCombateResources
-
-void ButtonHability::init(Vector2D pos, uint ancho, uint alto, Resources::TextureId imagen, HbltType attack, idPanel panId, bool active, Panel* p_)
+#include "../TheElementalMaze.h"
+#include "CombatManager.h"
+#include "ecs.h"
+#include "ecs_interfaz.h"
+void ButtonHability::init(Vector2D pos, uint ancho, uint alto, Resources::TextureId imagen, HbltType attack)
 {
 	hability_ = attack;
-	activated = active;
-	pan_ = panId;
-	p_->toggleButtons();
 	Button::init(pos, ancho, alto, imagen);
 }
+
+void ButtonHability::click()
+{
+	callbacks::set_hability((int)hability_);	
+}
+
 #pragma endregion
 
 void ButtonLine::init(Vector2D pos, uint ancho, uint alto, string line, Resources::FontId font, const SDL_Color& color = {(0),(0),(0),(255)})

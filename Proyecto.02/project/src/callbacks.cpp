@@ -150,52 +150,67 @@ void callbacks::chat(Interfaz* app)
 #include "../TheElementalMaze.h"
 #include "CombatManager.h"
 
-void callbacks::attackType(int attackType_)
+void callbacks::combatType(int combatType_)
 {
+	Interfaz* i = GETCMP2(TheElementalMaze::instance(), Interfaz);
 	CombatManager* c = GETCMP2(TheElementalMaze::instance(), CombatManager);
-	switch (attackType_)
+	switch (combatType_)
 	{
 	case 0:
-		std::cout << "ataque cuerpo a cuerpo" << std::endl;
+		if (c->getState() == ACTION_PHASE_SPELL) {
+			std::cout << "ataque cuerpo a cuerpo" << std::endl;
+			callbacks::set_hability(-1);
+		}
+		else
+			std::cout << "ERROR: aun no has comenzado tu turno" << std::endl;
 		break;
 	case 1:
-		std::cout << "ataque magico" << std::endl;
+		if (c->getState() == ACTION_PHASE_SPELL) {
+			std::cout << "has seleccionado una habilidad" << std::endl;
+			if (!i->getActivePan(Habilities)) callbacks::createPanel(false, Habilities);
+			if (i->getEnablePan(Fight)) i->togglePanel(Fight);
+		}
+		else
+			std::cout << "ERROR: aun no has comenzado tu turno" << std::endl;
+		break;
+	case 2:
+		std::cout << "actitud defensiva" << std::endl;
+		break;
+	case 3:
+		std::cout << "huir del combate" << std::endl;
 		break;
 	default:
 		break;
 	}
 }
 
-void callbacks::defendType(int attackType_)
+void callbacks::addTarget(int objetive_) // -1 para volver atrás
 {
 	CombatManager* c = GETCMP2(TheElementalMaze::instance(), CombatManager);
-	switch (attackType_)
-	{
-	case 0:
-		//c->defend();
-		std::cout << "te has defendido" << std::endl;
-		break;
-	case 1:
-		//c->escape();
-		std::cout << "escapaste" << std::endl;
-		break;
-	default:
-		break;
-	}
-}
-
-void callbacks::addTarget(int objetive_)
-{
-	CombatManager* c = GETCMP2(TheElementalMaze::instance(), CombatManager);
-	//c->castToSingleTarget(objetive_);
+	c->sendKeyEvent(objetive_); // sólo uno
+	Interfaz* i = GETCMP2(TheElementalMaze::instance(), Interfaz);
+	// cambia a combate
+	if (i->getActivePan(Targets)) i->removePanel(Targets);
+	if (!i->getEnablePan(Fight)) i->togglePanel(Fight);
 	std::cout << "has fijado tu objetivo" << std::endl;
 }
 
 void callbacks::set_hability(int hability_)
 {
 	CombatManager* c = GETCMP2(TheElementalMaze::instance(), CombatManager); // falta paso intermedio para guardar la habilidad y seleccionar enemigos
-	//c->sendKeyEvent(hability_);
-	std::cout << "has seleccionado una habilidad" << std::endl;
+	c->sendKeyEvent(hability_); //indice de la habilidad
+	
+	Interfaz* i = GETCMP2(TheElementalMaze::instance(), Interfaz);
+	if (i->getActivePan(Habilities)) i->removePanel(Habilities);
+
+	// team or single target
+	if (c->getState() != END_TURN) {
+		// abre panel selecionar objetivo
+		callbacks::createPanel(false, Targets);
+	}
+	else { 
+		if (!i->getEnablePan(Fight)) i->togglePanel(Fight); 
+	}
 }
 
 #pragma endregion
