@@ -510,7 +510,6 @@ Resources::TextureId Interfaz::getHeroTxt(uint number)
 {
 	PartyManager* c = TheElementalMaze::instance()->getPartyManager();
 	std::vector<Hero*> heroes = c->getHeroes();
-	uint nHeros = heroes.size();
 
 	heroTemplate tem = heroes[number]->getTemplate();
 
@@ -559,7 +558,6 @@ Resources::TextureId Interfaz::getEnemyTxt(uint number)
 {
 	CombatManager* c = TheElementalMaze::instance()->getCombatManager();
 	std::vector<Enemy*> enemies = c->getEnemiesTeam();
-	uint nEnemies = enemies.size();
 
 	enemyTemplate tem = enemies[number]->getTemplate();
 
@@ -623,6 +621,146 @@ Resources::TextureId Interfaz::getEnemyTxt(uint number)
 		id = Resources::TextureId();
 		break;
 	}
+
+	return id;
+}
+
+Resources::TextureId Interfaz::getItemTxt(uint number)
+{
+	PartyManager* c = TheElementalMaze::instance()->getPartyManager();
+	std::vector<Item*> items = c->getItems();
+
+	Resources::TextureId id;
+
+	ItemType itemType = items[number]->getItemType();
+
+	if (itemType == ItemType::ARMOR) {
+		Armor* armor = static_cast<Armor*>(items[number]);
+		rpgLogic::armorId aId = armor->getArmorId();
+
+		switch (aId)
+		{
+		case rpgLogic::ACOLCHADA:
+			id = src::Acolchada;
+			break;
+		case rpgLogic::CUEROTACHONADO:
+			id = src::CueroTachonado;
+			break;
+		case rpgLogic::COTADEESCAMAS:
+			id = src::CotaEscamas;
+			break;
+		case rpgLogic::CORAZA:
+			id = src::Coraza;
+			break;
+		case rpgLogic::SEMIPLACAS:
+			id = src::SemiPlacas;
+			break;
+		case rpgLogic::COTADEMALLA:
+			id = src::CotaMalla;
+			break;
+		case rpgLogic::BANDAS:
+			id = src::Bandas;
+			break;
+		case rpgLogic::PLACAS:
+			id = src::Placas;
+			break;
+		default:
+			id = Resources::TextureId();
+			break;
+		}
+	}
+
+	
+	else if (itemType == ItemType::WEAPON) {
+		Weapon* weapon = static_cast<Weapon*>(items[number]);
+		rpgLogic::weaponId wId = weapon->getWeaponId();
+
+		switch (wId)
+		{
+		case rpgLogic::DESARMADO:
+			id = src::Desarmado;
+			break;
+		case rpgLogic::BASTON:
+			id = src::Baston;
+			break;
+		case rpgLogic::DAGA:
+			id = src::Daga;
+			break;
+		case rpgLogic::CLAVA:
+			id = src::Clava;
+			break;
+		case rpgLogic::HACHAPEQUENA:
+			id = src::HachaPequena;
+			break;
+		case rpgLogic::HOZ:
+			id = src::Hoz;
+			break;
+		case rpgLogic::LANZA:
+			id = src::Lanza;
+			break;
+		case rpgLogic::MARTILLOPEQUENO:
+			id = src::MartilloPequeno;
+			break;
+		case rpgLogic::MAZA:
+			id = src::Maza;
+			break;
+		case rpgLogic::ARCOPEQUENO:
+			id = src::ArcoPequeno;
+			break;
+		case rpgLogic::BALLESTALIGERA:
+			id = src::BallestaLigera;
+			break;
+		case rpgLogic::ALABARDA:
+			id = src::Alabarda;
+			break;
+		case rpgLogic::ATARRAGA:
+			id = src::Atarraga;
+			break;
+		case rpgLogic::ESPADACORTA:
+			id = src::EspadaCorta;
+			break;
+		case rpgLogic::ESPADALARGA:
+			id = src::EspadaLarga;
+			break;
+		case rpgLogic::ESPADON:
+			id = src::Espadon;
+			break;
+		case rpgLogic::ESPADAROPERA:
+			id = src::EspadaRopera;
+			break;
+		case rpgLogic::HACHADEBATALLA:
+			id = src::HachaBatalla;
+			break;
+		case rpgLogic::GUJA:
+			id = src::Guja;
+			break;
+		case rpgLogic::LATIGO:
+			id = src::Latigo;
+			break;
+		case rpgLogic::LUCERODELALBA:
+			id = src::LuceroAlba;
+			break;
+		case rpgLogic::MARTILLODEGUERRA:
+			id = src::MartilloGuerra;
+			break;
+		case rpgLogic::PICA:
+			id = src::Pica;
+			break;
+		case rpgLogic::TRIDENTE:
+			id = src::Tridente;
+			break;
+		case rpgLogic::ARCOLARGO:
+			id = src::ArcoLargo;
+			break;
+		case rpgLogic::BALLESTAPESADA:
+			id = src::BallestaPesada;
+			break;
+		default:
+			id = Resources::TextureId();
+			break;
+		}
+	}
+
 
 	return id;
 }

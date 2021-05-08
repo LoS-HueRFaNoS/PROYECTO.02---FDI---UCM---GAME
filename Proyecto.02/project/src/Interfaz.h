@@ -65,5 +65,6 @@ public:
 private:
 	Resources::TextureId getHeroTxt(uint number);
 	Resources::TextureId getEnemyTxt(uint number);
+	Resources::TextureId getItemTxt(uint number);
 	void initialize();
 };

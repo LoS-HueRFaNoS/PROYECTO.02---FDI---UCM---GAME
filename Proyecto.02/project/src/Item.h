@@ -47,6 +47,7 @@ private:
 	int damage;
 	int diceNumber;
 	int hands;
+	rpgLogic::weaponId weapId;
 public:
 
 	Weapon() {
@@ -66,6 +67,8 @@ public:
 	bool isMarcial() { return marcial; }
 
 	void loadWeaponTemplate(jute::jValue v, rpgLogic::weaponId t);
+
+	rpgLogic::weaponId getWeaponId() { return weapId; }
 };
 
 class Armor : public Item
@@ -75,6 +78,7 @@ private:
 	rpgLogic::mainStat _statNeeded;
 	int minStatNeeded;
 	rpgLogic::Weaknesses _weaknesses;
+	rpgLogic::armorId armId;
 
 public:
 
@@ -92,6 +96,8 @@ public:
 	int getMinStatNeeded() { return minStatNeeded; }
 
 	void loadArmorTemplate(jute::jValue v, rpgLogic::armorId t);
+
+	rpgLogic::armorId getArmorId() { return armId; }
 };
 
 class HealthPotion : public Item

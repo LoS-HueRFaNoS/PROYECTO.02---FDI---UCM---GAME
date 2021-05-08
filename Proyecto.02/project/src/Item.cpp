@@ -20,6 +20,8 @@ void Weapon::loadWeaponTemplate(jute::jValue v, weaponId t)
 	diceNumber = v["Armas"][t]["Ndice"].as_int();
 
 	hands = v["Armas"][t]["Damage"].as_int();
+
+	weapId = t;
 }
 
 void Armor::loadArmorTemplate(jute::jValue v, armorId t)
@@ -40,4 +42,6 @@ void Armor::loadArmorTemplate(jute::jValue v, armorId t)
 	_statNeeded = mainStat(statNeed);
 
 	minStatNeeded = v["Armaduras"][t]["MinNeed"].as_int();
+
+	armId = t;
 }
