@@ -156,7 +156,7 @@ private:
 
 	int savingSuccess = 0, savingFailure = 0;
 
-	int expNeed = 100, expMax = 100;
+	int expNeed = 90, expMax = 100;
 
 	bool _deathGate = false;
 
@@ -198,6 +198,9 @@ public:
 	void manageInput(CombatManager* cm, int input);
 
 	bool getDeathGate() { return _deathGate; }
+
+	int getExp() { return expMax - expNeed; };
+	int getExpMax() { return expMax; };
 };
 
 #pragma endregion

@@ -5,6 +5,8 @@
 #include "callbacks.h"
 #include "Image.h"
 #include "Transform.h"
+#include "StateBar.h"
+#include "SDL_macros.h"
 
 using cb = callbacks;
 using src = Resources;
@@ -114,7 +116,12 @@ void Interfaz::createHeroes()
 
 	// BOTONES: hero1, hero2, hero3, hero4
 	for (int i = 0; i < nHeros; i++) {
-		p->addButton(iManager->addButton<ButtonHero>(Vector2D(x_, y_ + i * espace), w_, h_, getHeroTxt(i), (HeroNum)i, DDPan, false));
+		ButtonHero* b_ = iManager->addButton<ButtonHero>(Vector2D(x_, y_ + i * espace), w_, h_, getHeroTxt(i), (HeroNum)i, DDPan, false);
+		uint k = 3;
+		b_->addComponent<StateBar>(health, i, SDL_Rect(RECT( (x_ + w_ + n), (y_ + i * espace + h_ * 0 / k), w_ * 2, h_ / k )));
+		b_->addComponent<StateBar>(mana, i, SDL_Rect(RECT( (x_ + w_ + n), (y_ + i * espace + h_ * 1 / k), w_ * 2, h_ / k )));
+		b_->addComponent<StateBar>(experience, i, SDL_Rect(RECT( (x_ + w_ + n), (y_ + i * espace + h_ * 2 / k), w_ * 2, h_ / k )));
+		p->addButton(b_);
 	}
 }
 

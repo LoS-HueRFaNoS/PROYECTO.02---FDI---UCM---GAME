@@ -27,3 +27,8 @@ void Rectangle::draw() {
 	SDL_RenderFillRect(game_->getRenderer(), &rect);
 }
 
+void Rectangle::setColor(SDL_Color color)
+{
+	color_ = color;
+}
+

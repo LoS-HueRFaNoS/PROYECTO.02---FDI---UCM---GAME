@@ -120,6 +120,7 @@
     <ClInclude Include="src\SDL_macros.h" />
     <ClInclude Include="src\Sprite.h" />
     <ClInclude Include="src\SRandBasedGenerator.h" />
+    <ClInclude Include="src\StateBar.h" />
     <ClInclude Include="src\Texture.h" />
     <ClInclude Include="src\TexturesManager.h" />
     <ClInclude Include="src\Transform.h" />

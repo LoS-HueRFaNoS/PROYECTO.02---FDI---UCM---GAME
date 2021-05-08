@@ -13,6 +13,7 @@ public:
 	virtual ~Rectangle();
 	void init() override;
 	void draw() override;
+	void setColor(SDL_Color color);
 private:
 	SDL_Color color_;
 	Transform *tr_;
