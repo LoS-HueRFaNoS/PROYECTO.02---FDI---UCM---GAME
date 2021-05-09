@@ -3,14 +3,20 @@
 #include "Character.h"
 
 PartyManager::PartyManager() :
-	gold_(0),
+	gold(0),
+	manaPotions(5),
+	healthPotions(5),
 	items_(std::vector<Item*>(30)),
 	heroes_(std::vector<Hero*>(4))
 {
 }
 
-PartyManager::PartyManager(std::vector<Hero*> heroes, std::vector<Item*> items, int gold) :
-	heroes_(heroes), items_(items), gold_(gold)
+PartyManager::PartyManager(std::vector<Hero*> heroes, std::vector<Item*> items, int gold, int manaP, int healthP) :
+	heroes_(heroes), 
+	items_(items), 
+	gold(gold),
+	manaPotions(manaP),
+	healthPotions(healthP)
 {
 }
 
@@ -37,14 +43,31 @@ Hero* PartyManager::addHero(Hero* h, int pos)
 	}
 }
 
-void PartyManager::addHero(Hero* h)
+bool PartyManager::addHero(Hero* h)
 {
 	for (int i = 0; i < heroes_.size(); i++) {
 		if (!heroes_[i]) {
 			heroes_[i] = h;
-			return;
+			return true;
 		}
 	}
+	return false;
+}
+
+void PartyManager::removeHero(Hero* h)
+{
+	for (auto it = heroes_.begin(); it != heroes_.end(); it++) {
+		if ((*it) == h) {
+			(*it)->disable();
+			(*it) = nullptr;
+		}
+	}
+}
+
+void PartyManager::removeHero(int h)
+{
+	heroes_[h]->disable();
+	heroes_[h] = nullptr;
 }
 
 Item* PartyManager::addItem(Item* i, int pos)

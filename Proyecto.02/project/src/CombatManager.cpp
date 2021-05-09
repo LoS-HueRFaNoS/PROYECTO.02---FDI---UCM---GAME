@@ -1,6 +1,7 @@
 #include "CombatManager.h"
 #include "RPGLogic.h"
 #include "CharacterManager.h"
+#include "PartyManager.h"
 #include "../TheElementalMaze.h"
 
 
@@ -135,13 +136,18 @@ void CombatManager::endCombat()
 	else
 		cout << "PERDISTE, ASI ES LA VIDA" << endl;
 
+	for (Hero* h : _heroes) {
+		if (h->getDeathGate()) {
+			TheElementalMaze::instance()->getPartyManager()->removeHero(h);
+		}
+	}
 	_heroes.clear();
 	for (Enemy* e : _enemies) {
 		e->disable();
 	}
 
 	_enemies.clear();
-	
+
 	_turnQueue.clear();
 }
 

@@ -12,8 +12,6 @@ class PartyManager
 {
 private:
 
-	int gold_;
-
 	std::vector<Hero*> heroes_;
 
 	std::vector<Item*> items_;
@@ -22,14 +20,24 @@ public:
 
 	PartyManager();
 
-	PartyManager(std::vector<Hero*> heroes, std::vector<Item*> items, int gold);
+	PartyManager(std::vector<Hero*> heroes, std::vector<Item*> items, int gold, int manaP, int healthP);
 
 	~PartyManager();
+
+	int gold;
+
+	int manaPotions;
+
+	int healthPotions;
 
 	// Añade un heroe en la posición que pides y devuelve el que ya se encontraba en esa posición
 	Hero* addHero(Hero* h, int pos);
 
-	void addHero(Hero* h);
+	bool addHero(Hero* h);
+	
+	void removeHero(Hero* h);
+
+	void removeHero(int h);
 
 	Item* addItem(Item* i, int pos);
 

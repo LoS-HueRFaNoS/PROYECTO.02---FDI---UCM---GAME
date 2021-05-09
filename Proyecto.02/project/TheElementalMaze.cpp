@@ -18,20 +18,12 @@ TheElementalMaze::~TheElementalMaze()
 	itemManager_ = nullptr;
 	delete partyManager_;
 	partyManager_ = nullptr;
+	delete lobbyManager_;
+	lobbyManager_ = nullptr;
 }
 
 void TheElementalMaze::init()
 {
-	// 1. Laberinto
-	laberinto_ = this->addComponent<Laberinto>(10, 10);
-	laberinto_->createRandomMaze(Vector2D(0, 0));
-
-	// 2. Player
-	player_ = mngr_->addEntity(); // lo primero en crearse deber�a ser el player �?
-	player_->addComponent<MazePos>(Vector2D(0, 0));
-	player_->addComponent<PlayerMotion>(SDLK_UP, SDLK_LEFT, SDLK_RIGHT, laberinto_);
-	player_->addComponent<PlayerViewer>(laberinto_);
-
 	// 3. Personajes
 	itemManager_ = new ItemManager();
 
@@ -39,7 +31,7 @@ void TheElementalMaze::init()
 	
 	partyManager_ = new PartyManager();
 
-	lobbyManager_ = new LobbyManager();
+	lobbyManager_ = new LobbyManager(partyManager_);
 	
 	combatManager_ = addComponent<CombatManager>();
 
@@ -74,23 +66,42 @@ void TheElementalMaze::init()
 	// 4. Interfaz
 	uiManager_ = addComponent<Interfaz>(iManager_);
 
-	changeState(EXPLORING);
+	changeState(LOBBY);
 }
 
 void TheElementalMaze::onStateChanged()
 {
+
 	switch (state_)
 	{
-	case COMBAT:
-		combatManager_->addHeroesTeam(partyManager_->getHeroes());
-		combatManager_->startCombat();
+	case LOBBY:
+		cout << "LOBBY REACHED" << endl;
+		lobbyManager_->backFromDungeon();
+		break;
+	case START_EXPLORING:
+		cout << "EXPLORATION STARTED" << endl;
+		// 1. Laberinto
+		laberinto_ = addComponent<Laberinto>(10, 10);
+		laberinto_->createRandomMaze(Vector2D(0, 0));
+
+		// 2. Player
+		player_ = mngr_->addEntity(); // lo primero en crearse deber�a ser el player �?
+		player_->addComponent<MazePos>(Vector2D(0, 0));
+		player_->addComponent<PlayerMotion>(SDLK_UP, SDLK_LEFT, SDLK_RIGHT, laberinto_);
+		player_->addComponent<PlayerViewer>(laberinto_);
+		changeState(EXPLORING);
 		break;
 	case EXPLORING:
 		cout << "EXPLORING STARTED" << endl;
 		laberinto_->getCasillaInfo(player_->getComponent<MazePos>(ecs::MazePos)->getPos().getX(), player_->getComponent<MazePos>(ecs::MazePos)->getPos().getY())->getEnemy()->clear();
 		break;
-	case LOBBY:
-		cout << "LOBBY REACHED" << endl;
+	case COMBAT:
+		combatManager_->addHeroesTeam(partyManager_->getHeroes());
+		combatManager_->startCombat();
+		break;
+	case END_EXPLORING:
+		removeComponent(ecs::Laberinto);
+		delete player_;
 		break;
 	default:
 		break;

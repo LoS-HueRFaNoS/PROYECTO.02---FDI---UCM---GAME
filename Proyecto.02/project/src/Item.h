@@ -3,12 +3,18 @@
 #include "RPGLogic.h"
 #pragma once
 
+const int PRICE_OF_POTION = 5;
+
+enum PotionType {
+	HEALTH,
+	MANA
+};
+
 enum ItemType
 {
 	WEAPON,
 	ARMOR,
-	POTION,
-	TREASURE
+	RUNE
 };
 
 class Item
@@ -18,7 +24,7 @@ protected:
 	int sellValue = 0;
 	int buyValue = 0;
 
-	bool equipment;
+	bool equipanble_;
 
 	std::string _name = "DefaultName";
 	std::string _description = "DefaultDescription";
@@ -32,7 +38,7 @@ public:
 
 	int getSellValue() { return sellValue; }
 	int getBuyValue() { return buyValue; }
-	bool isEquipment() { return equipment; }
+	bool isEquipable() { return equipanble_; }
 	std::string getName() { return _name; }
 	std::string getDescription() { return _description; }
 	ItemType getItemType() { return _ItemType; }
@@ -51,11 +57,10 @@ private:
 public:
 
 	Weapon() {
-
-		equipment = true;
 		_ItemType = WEAPON;
 		sellValue = rand() % 100;
 		buyValue = rand() % 100;
+		equipanble_ = true;
 	}
 
 	int getDamage() { return damage; }
@@ -83,10 +88,10 @@ private:
 public:
 
 	Armor() {
-		equipment = true;
 		_ItemType = ARMOR;
 		sellValue = rand() % 100;
 		buyValue = rand() % 100;
+		equipanble_ = true;
 	}
 
 	rpgLogic::Weaknesses getWeaknesses() { return _weaknesses; }
@@ -100,48 +105,6 @@ public:
 	rpgLogic::armorId getArmorId() { return armId; }
 };
 
-class HealthPotion : public Item
-{
-public:
-
-	HealthPotion() {
-		_name = "Pocion de salud";
-		_description = "Pocion que te cura 10 puntos de vida";
-		sellValue = 10;
-		buyValue = 20;
-		equipment = false;
-		_ItemType = POTION;
-	}
-};
-
-class ManaPotion : public Item
-{
-public:
-
-	ManaPotion() {
-		_name = "Pocion de mana";
-		_description = "Pocion que te cura 8 puntos de mana";
-		sellValue = 10;
-		buyValue = 20;
-		equipment = false;
-		_ItemType = POTION;
-	}
-};
-
-class RevivePotion : public Item
-{
-public:
-
-	RevivePotion() {
-		_name = "Pocion de resurrección";
-		_description = "Pocion que revive a un aliado";
-		sellValue = 50;
-		buyValue = 100;
-		equipment = false;
-		_ItemType = POTION;
-	}
-};
-
 class Runes : public Item
 {
 public:
@@ -151,23 +114,21 @@ public:
 		_description = "Objeto intercambiable por objetos";
 		sellValue = NULL;
 		buyValue = NULL;
-		equipment = false;
-		_ItemType = TREASURE;
+		equipanble_ = false;
+		_ItemType = RUNE;
 	}
 };
-
-
-
-
-
 
 class Chest
 {
 private:
 	ItemType item;
 	int itemId;
+	int manaPotions;
+	int healthPotions;
+	int gold; 
 public:
-	Chest(ItemType it, int value) : item(it), itemId(value){}
+	Chest(ItemType it, int value) : item(it), itemId(value) {}
 	ItemType getType() { return item; }
 	int getIdValue() { return itemId; }
 

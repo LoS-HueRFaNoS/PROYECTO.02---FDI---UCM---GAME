@@ -14,9 +14,11 @@ class LobbyManager;
 // del mismo modo, mediante el puente que es la entidad.
 
 enum GameState {
-	COMBAT,
+	LOBBY,
+	START_EXPLORING,
 	EXPLORING,
-	LOBBY
+	COMBAT,
+	END_EXPLORING
 };
 
 class TheElementalMaze : public Entity
