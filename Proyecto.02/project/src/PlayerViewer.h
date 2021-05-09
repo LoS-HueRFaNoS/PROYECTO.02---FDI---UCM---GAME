@@ -142,7 +142,7 @@ public:
 		}
 		else manager->getTexture(Resources::muro_del)->render(dest);
 
-		renderEnemyActual();
+		renderEnemyActual(); // enemigo en pantalla
 	}
 
 

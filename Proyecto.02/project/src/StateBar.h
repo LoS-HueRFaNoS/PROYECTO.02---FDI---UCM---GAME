@@ -54,11 +54,11 @@ public:
             break;
         case mana:
             stAct_ = heroes[numHero_]->getCharacterSheet()->manaPoints();
-            color_ = hex2sdlcolor("#BBBB00FF"); //5500AAFF
+            color_ = hex2sdlcolor("#0055FFFF"); //5500AAFF
             break;
         case experience:
             stAct_ = heroes[numHero_]->getExp();
-            color_ = hex2sdlcolor("#00EEFFFF");
+            color_ = hex2sdlcolor("#BBBB00FF"); //00EEFFFF
             break;
         default:
             break;
