@@ -13,6 +13,9 @@ class CombatManager;
 class Character : public Entity
 {
 protected:
+
+	Weapon* _weapon;
+
 	characterType _type;
 
 	CharacterSheet* _sheet;
@@ -145,8 +148,6 @@ public:
 class Hero : public Character {
 
 private:
-
-	Weapon* _weapon;
 
 	Armor* _armor;
 

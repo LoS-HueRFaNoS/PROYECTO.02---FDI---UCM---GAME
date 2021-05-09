@@ -41,3 +41,4 @@ bld/
 
 # Visual Studio 2017 auto generated files
 Generated\ Files/
+*.user

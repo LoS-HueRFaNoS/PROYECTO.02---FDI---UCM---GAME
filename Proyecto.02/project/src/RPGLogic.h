@@ -118,6 +118,9 @@ namespace rpgLogic {
 
 	struct  Stat
 	{
+		Stat(int v) {
+			value = v;
+		}
 		int value;
 
 		int getMod() {

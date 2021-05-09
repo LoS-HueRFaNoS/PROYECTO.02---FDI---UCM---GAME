@@ -23,6 +23,8 @@ Character::~Character()
 		delete c;
 		c = nullptr;
 	}
+	delete _weapon;
+	_weapon = nullptr;
 }
 
 void Character::startTurn(CombatManager* cm)
@@ -162,8 +164,6 @@ bool Character::checkHit(int hit)
 
 Hero::~Hero()
 {
-	delete _weapon;
-	_weapon = nullptr;
 	delete _armor;
 	_armor = nullptr;
 }
@@ -369,11 +369,15 @@ void Enemy::loadFromJson(jute::jValue v, int t)
 		weak.push_back((float)v["Characters"][t]["Weaknesses"][i]["Value"].as_double());
 	}
 
-	addHability<AllyTeamHealExample>();
-	addHability<SingleTargetHealxample>();
-	addHability<SingleTargetAttackExample>();
+	for (int i = 0; i < v["Characters"][t]["ListHabilities"].size(); i++)
+	{
+		int h = v["Characters"][t]["ListHabilities"][i].as_int();
+		addHability((Hability_Id)h);
+	}
 
 	_sheet->weaknesses = Weaknesses(weak);
+
+	_weapon = TheElementalMaze::instance()->getItemManager()->getWeaponFromId(DESARMADO);
 }
 
 void Enemy::manageTurn(CombatManager* cm)

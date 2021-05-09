@@ -4,8 +4,8 @@
     {
       "Name": "Desarmado",
       "Hands": 0,
-      "Ndice": 0,
-      "Damage": 1,
+      "Ndice": 1,
+      "Damage": 3,
       "Type": 0,
       "Marcial": false
     },

@@ -35,7 +35,7 @@ public:
 	~CharacterSheet(){}
 
 	rpgLogic::Stat getStat(rpgLogic::mainStat st) {
-		return _stats[st];
+		return (_stats[st].value <= 0) ? rpgLogic::Stat(1) : _stats[st];
 	}
 
 	float getResistance(rpgLogic::damageType type) {
