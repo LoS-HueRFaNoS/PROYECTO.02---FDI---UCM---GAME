@@ -180,9 +180,6 @@
     <ClCompile Include="src\Interfaz.cpp">
       <Filter>Archivos de origen\Components</Filter>
     </ClCompile>
-    <ClCompile Include="src\Fondo.cpp">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
     <ClCompile Include="src\PartyManager.cpp">
       <Filter>Archivos de origen\Templates/Resources</Filter>
     </ClCompile>
@@ -190,6 +187,12 @@
       <Filter>Archivos de origen</Filter>
     </ClCompile>
     <ClCompile Include="src\LobbyManager.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="src\PlayerViewer.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="src\SDL_Objects.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
   </ItemGroup>
@@ -350,9 +353,6 @@
     <ClInclude Include="src\InterfazManager.h">
       <Filter>Archivos de encabezado\Managers</Filter>
     </ClInclude>
-    <ClInclude Include="src\Fondo.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
     <ClInclude Include="src\CharacterSheet.h">
       <Filter>Archivos de encabezado\Templates/Resources</Filter>
     </ClInclude>
@@ -366,6 +366,9 @@
       <Filter>Archivos de encabezado\Managers</Filter>
     </ClInclude>
     <ClInclude Include="src\StateBar.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="src\SDL_Objects.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
   </ItemGroup>

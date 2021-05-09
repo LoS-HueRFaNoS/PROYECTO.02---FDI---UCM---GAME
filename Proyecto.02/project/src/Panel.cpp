@@ -17,7 +17,7 @@ void Panel::removeButtons()
 
 ButtonPanel* Panel::getButtonActive()
 {
-	for (Button* b : buttonList) {
+	for (Entity* b : buttonList) {
 		ButtonPanel* b_ = dynamic_cast<ButtonPanel*>(b);
 		if (b_ != nullptr) {
 			if (b_->getActive()) {

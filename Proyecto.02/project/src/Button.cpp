@@ -7,12 +7,7 @@
 #include "ButtonCtrl.h"
 
 // todo el juego se une mediante GameMngr(entity_)
-void Button::initComponents(Vector2D pos, uint ancho, uint alto, Resources::TextureId imagen)
-{
-	addComponent<Transform>(pos, Vector2D(), ancho, alto, 0);
-	addComponent<Image>(game_->getTextureMngr()->getTexture(imagen));
-	addComponent<ButtonCtrl>(this);
-}
+
 
 // ----------------------------------------------------
 
@@ -55,14 +50,7 @@ void ButtonHability::click()
 
 #pragma endregion
 
-void ButtonLine::init(Vector2D pos, uint ancho, uint alto, string line, Resources::FontId font, const SDL_Color& color = {(0),(0),(0),(255)})
-{
-	addComponent<Transform>(pos, Vector2D(), ancho, alto, 0);
-	Texture* t = new Texture(); 
-	if (t->loadFromText(game_->getRenderer(), line, game_->getFontMngr()->getFont(font), color))
-		addComponent<Image>(t);
-	addComponent<ButtonCtrl>(this);
-}
+
 
 void ButtonPanel::setActive(bool set)
 {
@@ -73,3 +61,9 @@ void ButtonPanel::setHide(bool set)
 {
 	GETCMP2(this, Sprite)->setHide(set);
 }
+
+void Button::init(Vector2D pos, uint ancho, uint alto, Resources::TextureId imagen)
+{
+	SDL_Object::init(pos, ancho, alto, imagen);
+	addComponent<ButtonCtrl>(this);
+};

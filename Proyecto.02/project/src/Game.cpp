@@ -19,7 +19,7 @@
 #include "PlayerMotion.h"
 #include "PlayerViewer.h"
 #include "Cursor.h"
-#include "Fondo.h"
+#include "SDL_Objects.h"
 #include "../TheElementalMaze.h"
 //
 

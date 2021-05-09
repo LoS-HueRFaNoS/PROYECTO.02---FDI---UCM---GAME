@@ -1,26 +1,18 @@
 #pragma once
-#include "Entity.h"
-#include "Resources.h"
+#include "SDL_Objects.h"
 #include "callbacks.h"
 #include <cassert>
 
-typedef unsigned int uint;
+// ----------------------------------------------------
 
-//class InterfazManager;
-class Button : public Entity
+class Button : public SDL_Object
 {
-protected:
-
-	void initComponents(Vector2D pos, uint ancho, uint alto, Resources::TextureId imagen);
-
 public:
 	Button(SDLGame* game, EntityManager* mngr) :
-		Entity(game, mngr)
+		SDL_Object(game, mngr)
 	{};
-	~Button() {};
-	virtual void init(Vector2D pos, uint ancho, uint alto, Resources::TextureId imagen) {
-		initComponents(pos, ancho, alto, imagen);
-	};
+	virtual ~Button() {};
+	virtual void init(Vector2D pos, uint ancho, uint alto, Resources::TextureId imagen);
 
 	virtual void click() = 0;
 };
@@ -36,19 +28,6 @@ public:
 	virtual void init(Vector2D pos, uint ancho, uint alto, Resources::TextureId imagen) {
 		Button::init(pos, ancho, alto, imagen);
 	};
-
-	virtual void click() {
-		// if(i_ != nulptr) i_->use();
-	};
-};
-
-class ButtonLine : public Button
-{
-	// private: Item* i_;
-public:
-	ButtonLine(SDLGame* game, EntityManager* mngr) : Button(game, mngr) {};
-	~ButtonLine() {};
-	virtual void init(Vector2D pos, uint ancho, uint alto, string line, Resources::FontId font, const SDL_Color &color);
 
 	virtual void click() {
 		// if(i_ != nulptr) i_->use();

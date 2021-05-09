@@ -10,7 +10,7 @@ class Panel
 protected:
 	bool enable;
 	idPanel id;
-	list<Button*> buttonList;
+	list<Entity*> buttonList;
 	
 public:
 	Panel(idPanel idPan) : id(idPan), enable(true) {};
@@ -21,7 +21,7 @@ public:
 
 	void removeButtons();
 
-	void addButton(Button* b) {
+	void addButton(Entity* b) {
 		buttonList.push_back(b);
 	}
 
