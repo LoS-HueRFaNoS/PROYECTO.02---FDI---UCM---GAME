@@ -319,6 +319,10 @@ void CombatManager::sendKeyEvent(int key)
 			changeState(END_TURN);
 			break;
 		}
+		else if (key == -4) {
+			//tryEscape();
+			break;
+		}
 		if (!currentCharacter->getType())
 			static_cast<Hero*>(currentCharacter)->manageInput(this, key);
 		break;
@@ -362,5 +366,6 @@ void CombatManager::update()
 		else if (ih->isKeyDown(SDLK_RETURN)) sendKeyEvent(-1);
 		else if (ih->isKeyDown(SDLK_l)) sendKeyEvent(-2);
 		else if (ih->isKeyDown(SDLK_h)) sendKeyEvent(-3);
+		else if (ih->isKeyDown(SDLK_x)) sendKeyEvent(-4);
 	}
 }

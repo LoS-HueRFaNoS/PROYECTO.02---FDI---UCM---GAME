@@ -14,8 +14,8 @@ class Character;
 enum Hability_Id {
 	LIGHTATTACK, //0
 	FIREBALL, //1
-	SINGLETARGETATTACKEXAMPLE, //2
-	SINGLETARGETHEALXAMPLE, //3
+	BLOODYSTRIKE, //2
+	HEALINGWORD, //3
 	ALLYTEAMHEALEXAMPLE, //4
 	SELFHEALEXAMPLE, //5
 	ALLYTEAMATTACKEXAMPLE, //6
@@ -158,13 +158,13 @@ public:
 };
 
 
-class SingleTargetAttackExample : public Hability {
+class BloodyStrike : public Hability {
 public:
-	SingleTargetAttackExample(Character* caster = nullptr) :Hability(caster) {
+	BloodyStrike(Character* caster = nullptr) :Hability(caster) {
 
 		level = 0;
 		_mana = 0;
-		_name = "SingleTargetAttackExample";
+		_name = "BloodyStrike";
 		_description = "Esto es un ejemplo, hace 1d5 de daño";
 
 		_damageType = ICE;
@@ -173,20 +173,20 @@ public:
 		_obj = SINGLEENEMY;
 	}
 
-	static Hability_Id id() { return SINGLETARGETATTACKEXAMPLE; }
+	static Hability_Id id() { return BLOODYSTRIKE; }
 
 	virtual void throwHability(Character* obj, bool critical)const;
 };
 
 
 
-class SingleTargetHealxample : public Hability {
+class HealingWord : public Hability {
 public:
-	SingleTargetHealxample(Character* caster = nullptr) :Hability(caster) {
+	HealingWord(Character* caster = nullptr) :Hability(caster) {
 
 		level = 0;
 		_mana = 0;
-		_name = "SingleTargetHealxample";
+		_name = "HealingWord";
 		_description = "Esto es un ejemplo, cura 2d5 de vida a un aliado";
 
 		_damageType = LIGHT;
@@ -195,7 +195,7 @@ public:
 		_obj = SINGLEALLY;
 	}
 
-	static Hability_Id id() { return SINGLETARGETHEALXAMPLE; }
+	static Hability_Id id() { return HEALINGWORD; }
 
 	virtual void throwHability(Character* obj, bool critical)const;
 };
@@ -866,7 +866,7 @@ public:
 #pragma region CONDITION
 
 enum Conditions_Id {
-	EJEMPLODAÑOPORTURNOBEGIN,
+	BLEEDING,
 	EJEMPLOCURACIONFINALTURNO,
 	EJEMPLOREDUCCIONATAQUE,
 	EJEMPLOREVIVIRMUERTE,
@@ -932,14 +932,14 @@ public:
 	static Conditions_Id id() { return _lastConditionId_; }
 };
 
-class EjemploDanyoPorTurnoBegin : public Condition {
+class Bleeding : public Condition {
 public:
-	EjemploDanyoPorTurnoBegin(Character* objective) : Condition(objective) {
+	Bleeding(Character* objective) : Condition(objective) {
 		_name = "Ejemplo de daño cada turno";
 		_description = "Hace 1d3 de daño cada turno, durante 3 turnos";
 		_turns = 3;
 		_type = ON_TURN_STARTED;
-		_id = EJEMPLODAÑOPORTURNOBEGIN;
+		_id = BLEEDING;
 		resetTurns();
 	}
 
@@ -947,7 +947,7 @@ public:
 
 	virtual bool onTurnStarted();
 
-	static Conditions_Id id() { return EJEMPLODAÑOPORTURNOBEGIN; }
+	static Conditions_Id id() { return BLEEDING; }
 };
 
 

@@ -41,17 +41,17 @@ void TheElementalMaze::init()
 	Hero* cleric = characterManager_->addHeroFromTemplate(CLERIC);;
 
 	wizard->addHability(FIREBALL);
-	wizard->addHability<SingleTargetAttackExample>();
+	wizard->addHability<BloodyStrike>();
 	wizard->addHability(SELFHEALEXAMPLE);
 	wizard->addHability<AllyTeamAttackExample>();
 
-	warrior->addHability(SINGLETARGETATTACKEXAMPLE);
+	warrior->addHability(BLOODYSTRIKE);
 	warrior->addHability<AllyTeamAttackExample>();
 
-	rogue->addHability(SINGLETARGETATTACKEXAMPLE);
+	rogue->addHability(BLOODYSTRIKE);
 	rogue->addHability<AllyTeamAttackExample>();
 
-	cleric->addHability(SINGLETARGETHEALXAMPLE);
+	cleric->addHability(HEALINGWORD);
 	cleric->addHability<SelfHealExample>();
 	cleric->addHability<AllyTeamHealExample>();
 	cleric->addHability(ALLYTEAMATTACKEXAMPLE);
