@@ -132,6 +132,8 @@ public:
 		_obj = SINGLEENEMY;
 	}
 
+	static Hability_Id id() { return LIGHTATTACK; }
+
 	virtual void throwHability(Character* obj, bool critical)const;
 };
 
@@ -667,7 +669,7 @@ public:
 		level = 4;
 		_mana = 0;
 		_name = "Heavy Strike";
-		_description = "El ataque hace +3 de daño";
+		_description = "El ataque hace el doble de daño con una gran probabilidad de fallar";
 
 		_damageType = LIGHT;
 		_habilityType = ATTACK;
@@ -896,6 +898,8 @@ protected:
 
 	Character* _objective;
 
+	bool _positive;
+
 public:
 
 	Condition() :_objective(nullptr) {}
@@ -912,6 +916,8 @@ public:
 	virtual bool onAttackRecieved(int& damage) { return false; };
 
 	virtual bool onDeath() { return false; };
+
+	bool isPositive() { return _positive; }
 
 	int getTurnsLeft() { return _counter; }
 
@@ -1013,6 +1019,7 @@ public:
 		_description = description;
 		_type = ON_TURN_STARTED;
 		_id = BUFFSTATS;
+		(val > 0) ? _positive = true : _positive = false;
 
 		resetTurns();
 	}

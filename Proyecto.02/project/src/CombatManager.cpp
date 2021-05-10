@@ -328,7 +328,7 @@ void CombatManager::sendKeyEvent(int key)
 			changeState(ACTION_PHASE_SPELL);
 			break;
 		}
-		if (!currentCharacter->getType())
+		if (!currentCharacter->getType() && key >= 0)
 			castToSingleTarget(key);
 		break;
 	case COMBAT_END:
@@ -360,5 +360,7 @@ void CombatManager::update()
 		else if (ih->isKeyDown(SDLK_8)) sendKeyEvent(8);
 		else if (ih->isKeyDown(SDLK_9)) sendKeyEvent(9);
 		else if (ih->isKeyDown(SDLK_RETURN)) sendKeyEvent(-1);
+		else if (ih->isKeyDown(SDLK_l)) sendKeyEvent(-2);
+		else if (ih->isKeyDown(SDLK_h)) sendKeyEvent(-3);
 	}
 }
