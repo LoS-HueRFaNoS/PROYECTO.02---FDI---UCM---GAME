@@ -160,7 +160,7 @@ void Laberinto::createRandomMaze(Vector2D entrada)
 			if (hayEnemy < 3)
 			{
 				int enemyType = game_->getRandGen()->nextInt(0, enemyTemplate::ZOMBIE+1);
-				cout << "En la casilla [" << x << " , " << y << " ]" << endl;
+				//cout << "En la casilla [" << x << " , " << y << " ]" << endl;
 				generaObjeto(0, enemyType, laberinto[x][y], 1,0);
 				
 			}
@@ -171,7 +171,7 @@ void Laberinto::createRandomMaze(Vector2D entrada)
 				{
 					int totalItem = weaponId::_LastWeaponId_ + armorId::_LastArmorId_ + 4;
 					int chestType = game_->getRandGen()->nextInt(0, totalItem );
-					cout << "En la casilla [" << x << " , " << y << " ]" << " hay un cofre con :" << endl;
+					//cout << "En la casilla [" << x << " , " << y << " ]" << " hay un cofre con :" << endl;
 					generaObjeto(1, chestType, laberinto[x][y], 2, 0);
 				}
 
@@ -218,7 +218,7 @@ void Laberinto::generaObjeto(int object, int type, Casilla* casilla, int maxObje
 	if (object == 0) {
 
 		casilla->addEnemy((static_cast<enemyTemplate>(type)));
-		cout << "generado " << (cant+1) << " enemigo"<<endl;
+		//cout << "generado " << (cant+1) << " enemigo"<<endl;
 	}
 	else if (object ==1)
 	{
@@ -228,20 +228,20 @@ void Laberinto::generaObjeto(int object, int type, Casilla* casilla, int maxObje
 		if (type < weaponId::_LastWeaponId_)
 		{
 			casilla->addChest(static_cast<ItemType>(0), type);
-			cout << "weapon de " << static_cast<weaponId>(type) <<endl;
+			//cout << "weapon de " << static_cast<weaponId>(type) <<endl;
 		}
 		else if (type < weaponId::_LastWeaponId_ + armorId::_LastArmorId_)
 		{
 			type -= weaponId::_LastWeaponId_;
-			cout << "armor de " << static_cast<armorId>(type) <<endl;
+			//cout << "armor de " << static_cast<armorId>(type) <<endl;
 			casilla->addChest(static_cast<ItemType>(1),type);
 		}
 		else if ((type < weaponId::_LastWeaponId_ + armorId::_LastArmorId_ + 3))
 		{
 			type -= weaponId::_LastWeaponId_;
 			type -= armorId::_LastArmorId_;
-			cout << "potion de ";
-			switch (type)
+			//cout << "potion de ";
+		/*	switch (type)
 			{
 			case 0:
 				cout <<"Health" <<"Potion" << endl;
@@ -254,7 +254,7 @@ void Laberinto::generaObjeto(int object, int type, Casilla* casilla, int maxObje
 				break;
 			default:
 				break;
-			}
+			}*/
 			
 			casilla->addChest(static_cast<ItemType>(2), type );
 
@@ -263,7 +263,7 @@ void Laberinto::generaObjeto(int object, int type, Casilla* casilla, int maxObje
 		else
 		{
 			int dinero = game_->getRandGen()->nextInt(5, 21); // 5 a 21 runas
-			cout << dinero << " Runas" <<endl;
+		//	cout << dinero << " Runas" <<endl;
 			casilla->addChest(static_cast<ItemType>(3), dinero);
 		}
 

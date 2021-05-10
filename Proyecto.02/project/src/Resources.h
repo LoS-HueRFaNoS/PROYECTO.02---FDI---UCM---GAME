@@ -38,6 +38,15 @@ public:
 		pared_E, // Pared este minimapa
 		pared_S, // Pared sur minimapa
 		pared_O, // Pared oeste minimapa
+		
+		mFondo,
+		close,
+
+		start,
+		options,
+		howToPlay,
+		quit,
+
 		cargando,
 
 		// text

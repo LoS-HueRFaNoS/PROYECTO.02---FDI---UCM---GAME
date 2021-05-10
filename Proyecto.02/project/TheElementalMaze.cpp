@@ -66,6 +66,7 @@ void TheElementalMaze::init()
 	// 4. Interfaz
 	uiManager_ = addComponent<Interfaz>(iManager_);
 
+	//changeState(EXPLORING);
 	changeState(LOBBY);
 }
 

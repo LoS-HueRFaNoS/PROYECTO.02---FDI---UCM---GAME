@@ -113,20 +113,78 @@ enum class accionMenu { start, how_to_play, options, quit};
 
 class ButtonMenu : public Button {
 private:
-	
+	accionMenu tipo;
+	Interfaz* app;
 public:
 	ButtonMenu(SDLGame* game, EntityManager* mngr) : Button(game, mngr) {};
 
 	~ButtonMenu() {};
 
-	virtual void init(Vector2D pos, uint ancho, uint alto, Resources::TextureId imagen) {
+	virtual void init(Vector2D pos, uint ancho, uint alto, Resources::TextureId imagen, accionMenu type, Interfaz* app_) {
+		tipo = type;
+		app = app_;
 		Button::init(pos, ancho, alto, imagen);
 	};
 
 	virtual void click()
 	{
-		//callbacks::((int)heroType_);
+		switch (tipo)
+		{
+		case accionMenu::start:
+			callbacks::startLobby(app);
+			break;
+		case accionMenu::how_to_play:
+			callbacks::howToPlay(app);
+			break;
+		case accionMenu::options:
+			callbacks::options(app);
+			break;
+		case accionMenu::quit:
+			callbacks::quit(app);
+			break;
+		default:
+			break;
+		}
+		
 	}
+};
+// ----------------------------------------------------
+
+enum class accionOption {volumen, velocidad  };
+
+
+class ButtonOption : public Button {
+private:
+	accionOption tipo;
+	Interfaz* app;
+	int value;
+public:
+	ButtonOption(SDLGame* game, EntityManager* mngr) : Button(game, mngr) {};
+
+	~ButtonOption() {};
+
+	virtual void init(Vector2D pos, uint ancho, uint alto, Resources::TextureId imagen, accionOption type, Interfaz* app_) {
+		tipo = type;
+		app = app_;
+		Button::init(pos, ancho, alto, imagen);
+	};
+
+	virtual void click()
+	{
+		switch (tipo)
+		{
+		case accionOption::volumen:
+
+			break;
+		case accionOption::velocidad:
+
+			break;
+		default:
+			break;
+		}
+
+	}
+
 };
 // ----------------------------------------------------
 

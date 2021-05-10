@@ -383,6 +383,139 @@ void Interfaz::createHabilities()
 	togglePanel(Fight); // oculta el panel fight
 }
 
+void Interfaz::createMenuPrincipal()
+{
+	Panel* p = new Panel(MenuPrincipal);
+	allPanels[MenuPrincipal] = p;
+	int w,  h;
+	w = game_->getWindowWidth();
+	h = game_->getWindowHeight();
+	p->addButton(iManager->addButton<ButtonSlott>(Vector2D(0, 0), w, h, src::mFondo));
+
+	int x, y;
+	x = w / 2 - 150;	y = h / 2 - 50;
+	p->addButton(iManager->addButton<ButtonMenu>(Vector2D(x,y ),300,100 , src::start , accionMenu::start, this));
+	y += 120;
+	p->addButton(iManager->addButton<ButtonMenu>(Vector2D(x,y), 300, 100, src::options, accionMenu::options, this));
+	y += 120;
+	p->addButton(iManager->addButton<ButtonMenu>(Vector2D(x,y), 300, 100, src::howToPlay, accionMenu::how_to_play, this));
+	y += 120;
+	p->addButton(iManager->addButton<ButtonMenu>(Vector2D(x,y), 300, 100, src::quit, accionMenu::quit, this));
+}
+
+void Interfaz::createLobby()
+{
+	Panel* p = new Panel(Lobby);
+	allPanels[Lobby] = p;
+	int w, h;
+	w = game_->getWindowWidth();
+	h = game_->getWindowHeight();
+	//p->addButton(iManager->addButton<ButtonSlott>(Vector2D(0, 0), w, h, src::mFondo));
+
+	int x, y;
+	x = w / 2 - 150;	y = h / 2 - 50;
+	
+
+}
+
+void Interfaz::createOptions()
+{
+	Panel* p = new Panel(Options);
+	allPanels[Options] = p;
+	int w, h;
+	int x, y;
+	int ancho;
+	string text;
+	SDL_Color color;
+
+	w = game_->getWindowWidth();
+	h = game_->getWindowHeight();
+	p->addButton(iManager->addButton<ButtonSlott>(Vector2D(0, 0), w, h, src::mFondo));
+
+	
+	x = w / 2 - 200; y = 100;
+	color = { 0,0,0,255 };
+	text = "Options";
+	p->addButton(iManager->addButton<ButtonLine>(Vector2D(x, y), 400, 200, text, Resources::FontId::HERMAN, color));
+
+	x = w / 2 - 75;
+	y += 75;
+	text = "Volume"; //Volumen con 4 botones
+	p->addButton(iManager->addButton<ButtonLine>(Vector2D(x, y), 150, 40, text, Resources::FontId::HERMAN, color));
+	//
+	//p->addButton(iManager->addButton<ButtonOption>(Vector2D(w - 100, 36), 64, 64, src::close, accionOption::volumen, 1, this));
+	//p->addButton(iManager->addButton<ButtonOption>(Vector2D(w - 100, 36), 64, 64, src::close, accionOption::volumen, 2,this));
+	//p->addButton(iManager->addButton<ButtonOption>(Vector2D(w - 100, 36), 64, 64, src::close, accionOption::volumen, 3,this));
+	//p->addButton(iManager->addButton<ButtonOption>(Vector2D(w - 100, 36), 64, 64, src::close, accionOption::volumen, 4,this));
+	
+	x = w / 2 - 100;
+	y += 50;
+	text = "Animation speed";
+	p->addButton(iManager->addButton<ButtonLine>(Vector2D(x, y), 200, 40, text, Resources::FontId::HERMAN, color));
+	//x0.5 x1 x2 x4
+	//p->addButton(iManager->addButton<ButtonOption>(Vector2D(w - 100, 36), 64, 64, src::close, accionOption::velocidad,1 , this));
+	//p->addButton(iManager->addButton<ButtonOption>(Vector2D(w - 100, 36), 64, 64, src::close, accionOption::velocidad,2,this));
+	//p->addButton(iManager->addButton<ButtonOption>(Vector2D(w - 100, 36), 64, 64, src::close, accionOption::velocidad,3, this));
+	//p->addButton(iManager->addButton<ButtonOption>(Vector2D(w - 100, 36), 64, 64, src::close, accionOption::velocidad,4,this));
+
+
+	p->addButton(iManager->addButton<ButtonMenu>(Vector2D(w - 100, 36), 64, 64, src::close, accionMenu::options, this));
+
+}
+
+void Interfaz::createGuide()
+{
+	Panel* p = new Panel(HowToPlay);
+	allPanels[HowToPlay] = p;
+	int w, h;
+	int x, y;
+	int ancho;
+	string text;
+	SDL_Color color;
+
+	w = game_->getWindowWidth();
+	h = game_->getWindowHeight();
+	p->addButton(iManager->addButton<ButtonSlott>(Vector2D(0, 0), w, h, src::mFondo));
+
+	p->addButton(iManager->addButton<ButtonSlott>(Vector2D(100, 100), w-200, h-200, src::Pergamino));
+
+	x = w / 2 - 200; y = 250;
+	color = {0,0,0,255};
+	text = "How To Play";
+	p->addButton(iManager->addButton<ButtonLine>(Vector2D(x,y),400,100, text, Resources::FontId::HERMAN, color));
+
+	color = { 100,50,0,255 };
+	x = 250; y = 370;
+	text = "Click on the virtual buttons to play the game";
+	ancho = text.size() * 15 - 100;
+	p->addButton(iManager->addButton<ButtonLine>(Vector2D(x, y), ancho, 30, text, Resources::Fornite, color));
+
+	color = { 150,150,0,255 };
+	y += 50;
+	text = "Special Keyboards";
+	ancho = text.size() * 20;
+	p->addButton(iManager->addButton<ButtonLine>(Vector2D(x+150, y), ancho, 40, text, Resources::Fornite, color));
+
+	color = { 100,50,0,255 };
+	y += 50;
+	text = "Press left-right arrows or A-D keys to rotate the view";
+	ancho = text.size() * 15 -100;
+	p->addButton(iManager->addButton<ButtonLine>(Vector2D(x, y), ancho, 30, text, Resources::Fornite, color));
+
+	y += 30;
+	text = "Press up arrows or W keys to advance";
+	ancho = text.size() * 15 -30;
+	p->addButton(iManager->addButton<ButtonLine>(Vector2D(x, y), ancho , 30, text, Resources::Fornite, color));
+
+	y += 30;
+	text = "Press spacebar or E keys to interact";
+	ancho = text.size() * 15 - 50;
+	p->addButton(iManager->addButton<ButtonLine>(Vector2D(x, y), ancho, 30, text, Resources::Fornite, color));	
+
+	p->addButton(iManager->addButton<ButtonMenu>(Vector2D(w - 225, 120), 64, 64, src::close, accionMenu::how_to_play, this));
+
+}
+
 
 void Interfaz::createPanel(idPanel panelID)
 {
@@ -426,6 +559,15 @@ void Interfaz::createPanel(idPanel panelID)
 	case Habilities:
 		createHabilities();
 		break;
+	case MenuPrincipal:
+		createMenuPrincipal();
+		break;
+	case HowToPlay:
+		createGuide();
+		break;
+	case Options:
+		createOptions();
+		break;
 	}
 }
 
@@ -465,10 +607,27 @@ void Interfaz::init()
 	// Fondo de todo la interfaz, para delimitar claramente los paneles: 
 	// (mejor que ButtonSlott ser�a crear unaclase foto/image y que button herede de ella)
 	//iManager->addButton<ButtonSlott>(Vector2D(), game_->getWindowWidth(), game_->getWindowHeight(), src::Fondo); 
+	createPanel(MenuPrincipal);
+	createPanel(HowToPlay);
+	createPanel(Options);
+
+	togglePanel(HowToPlay);
+	togglePanel(Options);
+
+
 	createPanel(Movement);
 	createPanel(Heroes);
 	createPanel(Info);
-	createPanel(Minimap);
+	//createPanel(Minimap);
+	createPanel(Fight);
+
+	togglePanel(Movement);
+	togglePanel(Heroes);
+	togglePanel(Info);
+//	togglePanel(Minimap);
+	togglePanel(Fight);
+
+	
 }
 
 void Interfaz::update()
