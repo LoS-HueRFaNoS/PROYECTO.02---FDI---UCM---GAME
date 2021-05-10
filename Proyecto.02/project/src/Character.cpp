@@ -261,6 +261,11 @@ void Hero::showSpellList()
 	cout << "Choose a spell to cast (Enter to skip turn): \n";
 }
 
+void Hero::killHero()
+{
+	_deathGate = true;
+}
+
 
 void Hero::manageTurn(CombatManager* cm)
 {

@@ -32,6 +32,8 @@ private:
 
 	bool _win = true;
 
+	bool _boss = false;
+
 	CombatState _state;
 
 	bool stateChanged = false;
@@ -73,6 +75,8 @@ private:
 	void endCombat();
 
 	void castToTeam();
+
+	void tryEscape();
 
 	/*void castToSingleTarget(int input);*/
 
@@ -124,7 +128,7 @@ public:
 		_enemies = enemies;
 	}
 
-	void startCombat();
+	void startCombat(bool boss = false);
 
 	int calculateExp();
 

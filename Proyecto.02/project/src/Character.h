@@ -212,6 +212,8 @@ public:
 
 	void showSpellList();
 
+	void killHero();
+
 	void manageInput(CombatManager* cm, int input);
 
 	bool getDeathGate() { return _deathGate; }

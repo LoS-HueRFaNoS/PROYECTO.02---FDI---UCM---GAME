@@ -2,12 +2,13 @@
 #include "Item.h"
 #include "Character.h"
 
+
 PartyManager::PartyManager() :
 	gold(0),
 	manaPotions(5),
 	healthPotions(5),
 	items_(std::vector<Item*>(30)),
-	heroes_(std::vector<Hero*>(4))
+	heroes_(std::vector<Hero*>())
 {
 }
 
@@ -28,12 +29,22 @@ PartyManager::~PartyManager()
 	}
 }
 
+void PartyManager::reorderVector()
+{
+	for (auto it = heroes_.begin(); it != heroes_.end();) {
+		if (!(*it))
+			it = heroes_.erase(it);
+		else
+			it++;
+	}
+}
+
 Hero* PartyManager::addHero(Hero* h, int pos)
 {
 	assert(pos < 4 && pos >= 0);
 
-	if (heroes_[pos] == nullptr) {
-		heroes_[pos] = h;
+	if (pos < 4 && pos >= heroes_.size()) {
+		heroes_.push_back(h);
 		return nullptr;
 	}
 	else {
@@ -45,21 +56,21 @@ Hero* PartyManager::addHero(Hero* h, int pos)
 
 bool PartyManager::addHero(Hero* h)
 {
-	for (int i = 0; i < heroes_.size(); i++) {
-		if (!heroes_[i]) {
-			heroes_[i] = h;
-			return true;
-		}
+	if (heroes_.size() < 4) {
+		heroes_.push_back(h);
+		return true;
 	}
 	return false;
 }
 
 void PartyManager::removeHero(Hero* h)
 {
-	for (auto it = heroes_.begin(); it != heroes_.end(); it++) {
+	for (auto it = heroes_.begin(); it != heroes_.end();) {
 		if ((*it) == h) {
 			(*it)->disable();
 			(*it) = nullptr;
+			heroes_.erase(it);
+			return;
 		}
 	}
 }
@@ -68,6 +79,31 @@ void PartyManager::removeHero(int h)
 {
 	heroes_[h]->disable();
 	heroes_[h] = nullptr;
+}
+
+void PartyManager::swapHeroes(int first, int second)
+{
+	if (!heroes_[first] || !heroes_[second])
+		return;
+	
+	Hero* aux = heroes_[first];
+	heroes_[first] = heroes_[second];
+	heroes_[second] = aux;
+
+	aux = nullptr;
+}
+
+void PartyManager::partyLost()
+{
+	for (Hero* h : heroes_)
+		h->disable();
+	heroes_.clear();
+	for (Item* i : items_)
+		delete i;
+	items_.clear();
+	gold = 0;
+	manaPotions = 0;
+	healthPotions = 0;
 }
 
 Item* PartyManager::addItem(Item* i, int pos)
