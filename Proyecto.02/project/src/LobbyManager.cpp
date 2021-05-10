@@ -27,9 +27,9 @@ void LobbyManager::startExploring()
 
 void LobbyManager::clearLobby()
 {
-	if (lobbyStore_)
-		delete lobbyStore_;
-	lobbyStore_ = nullptr;
+	//if (lobbyStore_)
+	//	delete lobbyStore_;
+	//lobbyStore_ = nullptr;
 }
 
 

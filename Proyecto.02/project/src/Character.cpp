@@ -173,7 +173,7 @@ void Character::removeConditions()
 void Character::removeGoodConditions()
 {
 	for (int i = 0; i < _lastConditionType_; i++) {
-		for (auto it = _conditions[(ConditionType)i].begin(); it != _conditions[(ConditionType)i].end())
+		for (auto it = _conditions[(ConditionType)i].begin(); it != _conditions[(ConditionType)i].end();)
 		{
 			if ((*it)->isPositive())
 				it = _conditions[(ConditionType)i].erase(it);

@@ -31,7 +31,7 @@ void SingleTargetAttackExample::throwHability(Character* obj, bool critical) con
 
 	obj->recieveDamage(damage, _damageType);
 
-	obj->addCondition<EjemploDañoPorTurnoBegin>();
+	obj->addCondition<EjemploDanyoPorTurnoBegin>();
 }
 
 void SingleTargetHealxample::throwHability(Character* obj, bool critical) const
@@ -360,13 +360,13 @@ void Determination::throwHability(Character* obj, bool critical) const
 
 #pragma region CONDITION
 
-void EjemploDañoPorTurnoBegin::init()
+void EjemploDanyoPorTurnoBegin::init()
 {
 	cout << _objective->name() << " tiene sangrado!!!" << endl;
 	_objective->recieveDamage(throwDice(1, 3, true), PIERCE);
 }
 
-bool EjemploDañoPorTurnoBegin::onTurnStarted()
+bool EjemploDanyoPorTurnoBegin::onTurnStarted()
 {
 	cout << "Sangrado: ";
 	_objective->recieveDamage(throwDice(_stack, 3, true), PIERCE);

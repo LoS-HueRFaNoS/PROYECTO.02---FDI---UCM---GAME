@@ -932,9 +932,9 @@ public:
 	static Conditions_Id id() { return _lastConditionId_; }
 };
 
-class EjemploDañoPorTurnoBegin : public Condition {
+class EjemploDanyoPorTurnoBegin : public Condition {
 public:
-	EjemploDañoPorTurnoBegin(Character* objective) : Condition(objective) {
+	EjemploDanyoPorTurnoBegin(Character* objective) : Condition(objective) {
 		_name = "Ejemplo de daño cada turno";
 		_description = "Hace 1d3 de daño cada turno, durante 3 turnos";
 		_turns = 3;
