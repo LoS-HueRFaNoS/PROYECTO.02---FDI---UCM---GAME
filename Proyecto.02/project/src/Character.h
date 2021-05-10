@@ -175,6 +175,8 @@ private:
 
 	int expNeed = 90, expMax = 100;
 
+	int level = 0;
+
 	bool _deathGate = false;
 
 	virtual void loadFromJson(jute::jValue v, int t);

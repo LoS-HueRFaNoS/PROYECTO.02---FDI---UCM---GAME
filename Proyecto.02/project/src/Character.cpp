@@ -318,6 +318,17 @@ void Hero::levelUp(int exp)
 	{
 		expMax += 100;
 
+		level++;
+
+		if (level % 4 == 0)
+		{
+			for (int i = 0; i < _LastStatId_; i++)
+			{
+				if (_sheet->getStatValue(i) < 19)
+					_sheet->changeStat(mainStat(i), 2);		
+			}
+		}
+
 		int hp = _sheet->maxHitPoints();
 		int pm = _sheet->maxManaPoints();
 

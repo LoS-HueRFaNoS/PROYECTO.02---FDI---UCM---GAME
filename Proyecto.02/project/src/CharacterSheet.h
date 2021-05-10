@@ -50,6 +50,11 @@ public:
 		_stats[st].value = set;
 	}
 
+	int getStatValue(int st)
+	{
+		return _stats[st].value;
+	}
+
 	int maxHitPoints() {
 		return _maxHitPoints;
 	}
