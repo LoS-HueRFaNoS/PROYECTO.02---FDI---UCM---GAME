@@ -436,12 +436,12 @@ void Interfaz::createOptions()
 	x = w / 2 - 200; y = 100;
 	color = { 0,0,0,255 };
 	text = "Options";
-	p->addButton(iManager->addButton<ButtonLine>(Vector2D(x, y), 400, 200, text, Resources::FontId::HERMAN, color));
+	p->addButton(iManager->addButton<Line>(Vector2D(x, y), 400, 200, text, Resources::FontId::HERMAN, color));
 
 	x = w / 2 - 75;
 	y += 75;
 	text = "Volume"; //Volumen con 4 botones
-	p->addButton(iManager->addButton<ButtonLine>(Vector2D(x, y), 150, 40, text, Resources::FontId::HERMAN, color));
+	p->addButton(iManager->addButton<Line>(Vector2D(x, y), 150, 40, text, Resources::FontId::HERMAN, color));
 	//
 	//p->addButton(iManager->addButton<ButtonOption>(Vector2D(w - 100, 36), 64, 64, src::close, accionOption::volumen, 1, this));
 	//p->addButton(iManager->addButton<ButtonOption>(Vector2D(w - 100, 36), 64, 64, src::close, accionOption::volumen, 2,this));
@@ -451,7 +451,7 @@ void Interfaz::createOptions()
 	x = w / 2 - 100;
 	y += 50;
 	text = "Animation speed";
-	p->addButton(iManager->addButton<ButtonLine>(Vector2D(x, y), 200, 40, text, Resources::FontId::HERMAN, color));
+	p->addButton(iManager->addButton<Line>(Vector2D(x, y), 200, 40, text, Resources::FontId::HERMAN, color));
 	//x0.5 x1 x2 x4
 	//p->addButton(iManager->addButton<ButtonOption>(Vector2D(w - 100, 36), 64, 64, src::close, accionOption::velocidad,1 , this));
 	//p->addButton(iManager->addButton<ButtonOption>(Vector2D(w - 100, 36), 64, 64, src::close, accionOption::velocidad,2,this));
@@ -482,35 +482,35 @@ void Interfaz::createGuide()
 	x = w / 2 - 200; y = 250;
 	color = {0,0,0,255};
 	text = "How To Play";
-	p->addButton(iManager->addButton<ButtonLine>(Vector2D(x,y),400,100, text, Resources::FontId::HERMAN, color));
+	p->addButton(iManager->addButton<Line>(Vector2D(x,y),400,100, text, Resources::FontId::HERMAN, color));
 
 	color = { 100,50,0,255 };
 	x = 250; y = 370;
 	text = "Click on the virtual buttons to play the game";
 	ancho = text.size() * 15 - 100;
-	p->addButton(iManager->addButton<ButtonLine>(Vector2D(x, y), ancho, 30, text, Resources::Fornite, color));
+	p->addButton(iManager->addButton<Line>(Vector2D(x, y), ancho, 30, text, Resources::Fornite, color));
 
 	color = { 150,150,0,255 };
 	y += 50;
 	text = "Special Keyboards";
 	ancho = text.size() * 20;
-	p->addButton(iManager->addButton<ButtonLine>(Vector2D(x+150, y), ancho, 40, text, Resources::Fornite, color));
+	p->addButton(iManager->addButton<Line>(Vector2D(x+150, y), ancho, 40, text, Resources::Fornite, color));
 
 	color = { 100,50,0,255 };
 	y += 50;
 	text = "Press left-right arrows or A-D keys to rotate the view";
 	ancho = text.size() * 15 -100;
-	p->addButton(iManager->addButton<ButtonLine>(Vector2D(x, y), ancho, 30, text, Resources::Fornite, color));
+	p->addButton(iManager->addButton<Line>(Vector2D(x, y), ancho, 30, text, Resources::Fornite, color));
 
 	y += 30;
 	text = "Press up arrows or W keys to advance";
 	ancho = text.size() * 15 -30;
-	p->addButton(iManager->addButton<ButtonLine>(Vector2D(x, y), ancho , 30, text, Resources::Fornite, color));
+	p->addButton(iManager->addButton<Line>(Vector2D(x, y), ancho , 30, text, Resources::Fornite, color));
 
 	y += 30;
 	text = "Press spacebar or E keys to interact";
 	ancho = text.size() * 15 - 50;
-	p->addButton(iManager->addButton<ButtonLine>(Vector2D(x, y), ancho, 30, text, Resources::Fornite, color));	
+	p->addButton(iManager->addButton<Line>(Vector2D(x, y), ancho, 30, text, Resources::Fornite, color));	
 
 	p->addButton(iManager->addButton<ButtonMenu>(Vector2D(w - 225, 120), 64, 64, src::close, accionMenu::how_to_play, this));
 
