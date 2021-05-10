@@ -491,7 +491,7 @@ public:
 
 		_damageType = FIRE;
 		_habilityType = ATTACK;
-		_mod = INT;
+		_mod = DEX;
 		_obj = SINGLEENEMY;
 	}
 
