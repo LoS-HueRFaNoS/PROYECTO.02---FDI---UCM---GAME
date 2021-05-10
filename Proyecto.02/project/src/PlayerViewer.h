@@ -34,6 +34,7 @@ public:
 		int y = int(pos->getPos().getY());
 		sentido = pos->getLook();
 		cas = lab->getCasillaInfo(x, y);
+
 		casillaActual = cas->checkCell();
 		casillaSig = cas->checkCell();
 		if (casillaActual[sentido])
@@ -47,12 +48,12 @@ public:
 				break;
 			case Este:
 				x += 1;
-				if (x != lab->mazeWidth()-1)
+				if (x != lab->mazeWidth() - 1)
 					casSigSig = lab->getCasillaInfo(x + 1, y);
 				break;
 			case Sur:
 				y += 1;
-				if (y != lab->mazeHeigh()-1)
+				if (y != lab->mazeHeigh() - 1)
 					casSigSig = lab->getCasillaInfo(x, y + 1);
 				break;
 			case Oeste:
@@ -66,6 +67,7 @@ public:
 			casillaSigSig = casSigSig->checkCell();
 		}
 		else casillaSigSig = cas->checkCell();
+
 	}
 
 	virtual void draw()
@@ -91,6 +93,7 @@ public:
 		else derecha = sentido+1;
 
 		auto manager = game_->getTextureMngr(); // Manager de texturas
+		
 		if (casillaActual[sentido]) // <-^-> Si delante hay un camino, dibujaremos la informacion de la casilla siguiente
 		{
 			manager->getTexture(Resources::camino_fondo_fr)->render(dest);
@@ -132,7 +135,7 @@ public:
 			if (casillaSig[sentido])
 			{
 				manager->getTexture(Resources::camino_fr)->render(dest);
-				//renderEnemySig();
+				
 				
 			}
 			else manager->getTexture(Resources::muro_fr)->render(dest);
@@ -143,6 +146,8 @@ public:
 		else manager->getTexture(Resources::muro_del)->render(dest);
 
 		renderEnemyActual();
+		//if (cas->isExit()) //Photoshop poniendo que tienes que clickear tecla E para acabar este lab o sudar y seguir
+			//manager->getTexture(Resources::guiaSalida)->render(SDL_Rect{game_->getWindowWidth()/2-50, 100, 100,50});
 	}
 
 
@@ -181,18 +186,7 @@ private:
 		}
 	}
 
-	void renderEnemySig()
-	{
-		if (!casSig->getEnemy()->empty())
-		{
-			Texture* enemigo;
-			auto manager = game_->getTextureMngr();
-			//enemigo = manager->getTexture(Resources::EnemigoSombra);
-			enemigo = manager->getTexture(Resources::Desconocido);
-			SDL_Rect dest = { 300 , 100, 300, 300 };
-			enemigo->render(dest);
-		}
-	}
+	
 	void enemyViewer(enemyTemplate temp, int x, int y , int w, int h)
 	{
 		Texture* enemigo;
@@ -203,5 +197,7 @@ private:
 		enemigo->render(dest);
 
 	}
+
+	
 };
 

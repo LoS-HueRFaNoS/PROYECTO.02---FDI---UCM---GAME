@@ -397,6 +397,16 @@ void Interfaz::createMenuPrincipal()
 
 void Interfaz::createLobby()
 {
+	Panel* p = new Panel(Lobby);
+	allPanels[Lobby] = p;
+	int w, h;
+	w = game_->getWindowWidth();
+	h = game_->getWindowHeight();
+	//p->addButton(iManager->addButton<ButtonSlott>(Vector2D(0, 0), w, h, src::mFondo));
+
+	int x, y;
+	x = w / 2 - 150;	y = h / 2 - 50;
+	
 
 }
 
@@ -420,8 +430,29 @@ void Interfaz::createOptions()
 	text = "Options";
 	p->addButton(iManager->addButton<ButtonLine>(Vector2D(x, y), 400, 200, text, Resources::FontId::HERMAN, color));
 
+	x = w / 2 - 75;
+	y += 75;
+	text = "Volume"; //Volumen con 4 botones
+	p->addButton(iManager->addButton<ButtonLine>(Vector2D(x, y), 150, 40, text, Resources::FontId::HERMAN, color));
+	//
+	//p->addButton(iManager->addButton<ButtonOption>(Vector2D(w - 100, 36), 64, 64, src::close, accionOption::volumen, 1, this));
+	//p->addButton(iManager->addButton<ButtonOption>(Vector2D(w - 100, 36), 64, 64, src::close, accionOption::volumen, 2,this));
+	//p->addButton(iManager->addButton<ButtonOption>(Vector2D(w - 100, 36), 64, 64, src::close, accionOption::volumen, 3,this));
+	//p->addButton(iManager->addButton<ButtonOption>(Vector2D(w - 100, 36), 64, 64, src::close, accionOption::volumen, 4,this));
+	
+	x = w / 2 - 100;
+	y += 50;
+	text = "Animation speed";
+	p->addButton(iManager->addButton<ButtonLine>(Vector2D(x, y), 200, 40, text, Resources::FontId::HERMAN, color));
+	//x0.5 x1 x2 x4
+	//p->addButton(iManager->addButton<ButtonOption>(Vector2D(w - 100, 36), 64, 64, src::close, accionOption::velocidad,1 , this));
+	//p->addButton(iManager->addButton<ButtonOption>(Vector2D(w - 100, 36), 64, 64, src::close, accionOption::velocidad,2,this));
+	//p->addButton(iManager->addButton<ButtonOption>(Vector2D(w - 100, 36), 64, 64, src::close, accionOption::velocidad,3, this));
+	//p->addButton(iManager->addButton<ButtonOption>(Vector2D(w - 100, 36), 64, 64, src::close, accionOption::velocidad,4,this));
+
 
 	p->addButton(iManager->addButton<ButtonMenu>(Vector2D(w - 100, 36), 64, 64, src::close, accionMenu::options, this));
+
 }
 
 void Interfaz::createGuide()

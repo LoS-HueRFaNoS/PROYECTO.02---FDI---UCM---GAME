@@ -38,6 +38,7 @@ void Casilla::casillaRender(int x, int y)
 	SDL_Rect dest = { x, y, w, h };
 	Texture* texturaSuelo;
 	Texture* texturaPosActual;
+	Texture* texturaSalida;
 	Texture* texturaPared = nullptr;
 	auto manager = game_->getTextureMngr();
 
@@ -53,7 +54,13 @@ void Casilla::casillaRender(int x, int y)
 	}
 	else if (visib == visitado)
 	{
-		texturaSuelo = manager->getTexture(Resources::visitado);
+		//if (isExit())
+		//{
+			//Photoshop : un sprite de x forma de un color de salida
+			//texturaSuelo = manager->getTexture(Resources::sueloSalida);
+		//}
+		//else
+			texturaSuelo = manager->getTexture(Resources::visitado);
 		texturaSuelo->render(dest);
 
 		for (int i = 0; i < direcciones.size(); ++i)
@@ -83,13 +90,14 @@ void Casilla::casillaRender(int x, int y)
 		}
 
 	}
-
 	if (esPosActual)
 	{
+		
 		texturaPosActual = manager->getTexture(Resources::posMiniMap);
 		texturaPosActual->render(dest,angulo);
 
 	}
+
 	
 
 	

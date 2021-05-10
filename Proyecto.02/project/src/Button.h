@@ -193,6 +193,44 @@ public:
 };
 // ----------------------------------------------------
 
+enum class accionOption {volumen, velocidad  };
+
+
+class ButtonOption : public Button {
+private:
+	accionOption tipo;
+	Interfaz* app;
+	int value;
+public:
+	ButtonOption(SDLGame* game, EntityManager* mngr) : Button(game, mngr) {};
+
+	~ButtonOption() {};
+
+	virtual void init(Vector2D pos, uint ancho, uint alto, Resources::TextureId imagen, accionOption type, Interfaz* app_) {
+		tipo = type;
+		app = app_;
+		Button::init(pos, ancho, alto, imagen);
+	};
+
+	virtual void click()
+	{
+		switch (tipo)
+		{
+		case accionOption::volumen:
+
+			break;
+		case accionOption::velocidad:
+
+			break;
+		default:
+			break;
+		}
+
+	}
+
+};
+// ----------------------------------------------------
+
 enum class PtnType { health, mana, resurrection };
 
 class ButtonPotion : public Button {

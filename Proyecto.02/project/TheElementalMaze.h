@@ -15,6 +15,7 @@ class PartyManager;
 enum GameState {
 	COMBAT,
 	EXPLORING,
+	EXIT,
 	LOBBY
 };
 
