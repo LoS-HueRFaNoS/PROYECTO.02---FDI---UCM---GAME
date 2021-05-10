@@ -24,8 +24,6 @@ protected:
 	int sellValue = 0;
 	int buyValue = 0;
 
-	bool equipanble_;
-
 	std::string _name = "DefaultName";
 	std::string _description = "DefaultDescription";
 
@@ -38,7 +36,6 @@ public:
 
 	int getSellValue() { return sellValue; }
 	int getBuyValue() { return buyValue; }
-	bool isEquipable() { return equipanble_; }
 	std::string getName() { return _name; }
 	std::string getDescription() { return _description; }
 	ItemType getItemType() { return _ItemType; }
@@ -60,7 +57,6 @@ public:
 		_ItemType = WEAPON;
 		sellValue = rand() % 100;
 		buyValue = rand() % 100;
-		equipanble_ = true;
 	}
 
 	int getDamage() { return damage; }
@@ -91,7 +87,6 @@ public:
 		_ItemType = ARMOR;
 		sellValue = rand() % 100;
 		buyValue = rand() % 100;
-		equipanble_ = true;
 	}
 
 	rpgLogic::Weaknesses getWeaknesses() { return _weaknesses; }
@@ -105,20 +100,20 @@ public:
 	rpgLogic::armorId getArmorId() { return armId; }
 };
 
-class Runes : public Item
-{
-public:
-
-	Runes() {
-		_name = "Runas";
-		_description = "Objeto intercambiable por objetos";
-		sellValue = NULL;
-		buyValue = NULL;
-		equipanble_ = false;
-		_ItemType = RUNE;
-	}
-};
-
+//class Runes : public Item
+//{
+//public:
+//
+//	Runes() {
+//		_name = "Runas";
+//		_description = "Objeto intercambiable por objetos";
+//		sellValue = NULL;
+//		buyValue = NULL;
+//		equipanble_ = false;
+//		_ItemType = RUNE;
+//	}
+//};
+//
 class Chest
 {
 private:

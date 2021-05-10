@@ -1,6 +1,7 @@
 #include "LobbyManager.h"
 #include "Character.h"
 #include "CharacterManager.h"
+#include "ItemManager.h"
 #include "PartyManager.h"
 #include "../TheElementalMaze.h"
 
@@ -14,18 +15,21 @@ LobbyManager::LobbyManager(PartyManager* party)
 LobbyManager::~LobbyManager()
 {
 	delete playerStash_;
-	delete lobbyStore_;
+	playerStash_ = nullptr;
+	clearLobby();
 }
 
 void LobbyManager::startExploring()
 {
-	delete lobbyStore_;
+	clearLobby();
 	TheElementalMaze::instance()->changeState(START_EXPLORING);
 }
 
 void LobbyManager::clearLobby()
 {
-	delete lobbyStore_;
+	if (lobbyStore_)
+		delete lobbyStore_;
+	lobbyStore_ = nullptr;
 }
 
 
@@ -43,6 +47,7 @@ void LobbyManager::backFromDungeon()
 	lobbyStore_ = new Store();
 	generateHeroStash();
 	generateItemStash();
+	startExploring();
 }
 
 void LobbyManager::generateHeroStash()
@@ -52,12 +57,22 @@ void LobbyManager::generateHeroStash()
 		Hero* hero = cm->addRandomHero();
 		int price = SDLGame::instance()->getRandGen()->nextInt(50, 301);
 		HeroContract* contract = new HeroContract(hero, price);
+		lobbyStore_->heroes.push_back(contract);
 	}
 }
 
 void LobbyManager::generateItemStash()
 {
-
+	ItemManager* im = TheElementalMaze::instance()->getItemManager();
+	for (int i = 0; i < 10; i++) {
+		Item* item;
+		if (rpgLogic::throwDice(1, 100) < 51)
+			item = im->getRandomArmor();
+		else
+			item = im->getRandomWeapon();
+		ItemToBuy* it = new ItemToBuy(item);
+		lobbyStore_->items.push_back(it);
+	}
 }
 
 void LobbyManager::removeItemFromStash(Item* i)
@@ -207,7 +222,8 @@ Stash::~Stash()
 
 HeroContract::~HeroContract()
 {
-	hero->disable();
+	if (hero)
+		hero->disable();
 	hero = nullptr;
 }
 
