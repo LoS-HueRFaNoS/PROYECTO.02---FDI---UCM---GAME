@@ -869,6 +869,7 @@ enum Conditions_Id {
 	EJEMPLOREDUCCIONATAQUE,
 	EJEMPLOREVIVIRMUERTE,
 	BUFFSTATS,
+	DETERMINATIONCOND,
 	_lastConditionId_
 };
 
@@ -1027,5 +1028,23 @@ private:
 	mainStat statMod;
 };
 
+
+class DeterminationCond : public Condition {
+public:
+
+	DeterminationCond(Character* objective) : Condition(objective) {
+		_name = "Determination condition";
+		_description = "Cuando muera el personaje este revivira con 1 punto de vida";
+		_type = ON_DEATH;
+		_id = DETERMINATIONCOND;
+		resetTurns();
+	}
+
+	virtual void init();
+
+	virtual bool onDeath();
+
+	static Conditions_Id id() { return DETERMINATIONCOND; }
+};
 
 #pragma endregion

@@ -354,7 +354,7 @@ void WindSong::throwHability(Character* obj, bool critical) const
 
 void Determination::throwHability(Character* obj, bool critical) const
 {
-	obj->addCondition<EjemploRevivirMuerte>();
+	obj->addCondition<DeterminationCond>();
 }
 
 #pragma endregion
@@ -438,5 +438,18 @@ bool BuffStats::onTurnStarted()
 	cout << "TURNOS RESTANTES: " << _counter << endl;
 	return true;
 }
+
+void DeterminationCond::init()
+{
+	cout << _objective->name() << " revivira con 1 de vida al morir" << endl;
+}
+
+bool DeterminationCond::onDeath()
+{
+	cout << _objective->name() << " revives!!" << endl;
+	_objective->recieveHealing(1);
+	return false;
+}
+
 #pragma endregion
 
