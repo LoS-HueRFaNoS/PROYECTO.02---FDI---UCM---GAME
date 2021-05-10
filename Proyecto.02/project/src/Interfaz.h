@@ -30,10 +30,10 @@ private:
 	void createTargets(); //
 	void createHabilities(); //
 
-	void createMenuPrincipal() {}; //
-	void createLobby() {}; //
-	void createOptions() {}; //
-	void createGuide() {}; //
+	void createMenuPrincipal();
+	void createLobby();
+	void createOptions();
+	void createGuide();
 
 public:
 	Interfaz(InterfazManager* i) :
