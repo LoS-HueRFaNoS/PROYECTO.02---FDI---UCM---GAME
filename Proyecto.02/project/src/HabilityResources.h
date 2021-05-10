@@ -48,6 +48,7 @@ enum Hability_Id {
 	TRICKSHOT, //33
 	GLADIATORBALLAD, //34
 	WINDSONG, //35
+	DETERMINATION, //36
 	_lasHabilityId_
 };
 
@@ -824,8 +825,8 @@ public:
 
 		level = 0;
 		_mana = 0;
-		_name = "Gladiator's Ballad";
-		_description = "Aumenta la fuerza del equipo durante 3 turnos";
+		_name = "Wind Song";
+		_description = "Aumenta la velocidad del equipo durante 3 turnos";
 
 		_damageType = LIGHT;
 		_habilityType = BUFF;
@@ -834,6 +835,26 @@ public:
 	}
 
 	static Hability_Id id() { return WINDSONG; }
+
+	virtual void throwHability(Character* obj, bool critical)const;
+};
+
+class Determination : public Hability {
+public:
+	Determination(Character* caster = nullptr) :Hability(caster) {
+
+		level = 0;
+		_mana = 0;
+		_name = "Determination";
+		_description = "El proximo golpe letal que reciba el personaje le dejara con 1 de vida en vez de matarle";
+
+		_damageType = LIGHT;
+		_habilityType = BUFF;
+		_mod = CON;
+		_obj = CASTER;
+	}
+
+	static Hability_Id id() { return DETERMINATION; }
 
 	virtual void throwHability(Character* obj, bool critical)const;
 };

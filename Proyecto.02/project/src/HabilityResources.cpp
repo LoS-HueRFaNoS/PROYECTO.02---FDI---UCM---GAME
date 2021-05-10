@@ -349,7 +349,12 @@ void WindSong::throwHability(Character* obj, bool critical) const
 {
 	int velUp = 3;
 
-	obj->addCondition<BuffStats>(velUp, STR, _name, _description);
+	obj->addCondition<BuffStats>(velUp, DEX, _name, _description);
+}
+
+void Determination::throwHability(Character* obj, bool critical) const
+{
+	obj->addCondition<EjemploRevivirMuerte>();
 }
 
 #pragma endregion
