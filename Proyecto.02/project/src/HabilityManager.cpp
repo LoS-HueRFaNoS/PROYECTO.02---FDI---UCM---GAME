@@ -7,8 +7,8 @@ void HabilityManager::init()
 {
 	habilityMap_[LIGHTATTACK] = &HabilityManager::createHability<LightAttack>;
 	habilityMap_[FIREBALL] = &HabilityManager::createHability<Fireball>;
-	habilityMap_[SINGLETARGETATTACKEXAMPLE] = &HabilityManager::createHability<SingleTargetAttackExample>;
-	habilityMap_[SINGLETARGETHEALXAMPLE] = &HabilityManager::createHability<SingleTargetHealxample>;
+	habilityMap_[BLOODYSTRIKE] = &HabilityManager::createHability<BloodyStrike>;
+	habilityMap_[HEALINGWORD] = &HabilityManager::createHability<HealingWord>;
 	habilityMap_[ALLYTEAMHEALEXAMPLE] = &HabilityManager::createHability<AllyTeamHealExample>;
 	habilityMap_[SELFHEALEXAMPLE] = &HabilityManager::createHability<SelfHealExample>;
 	habilityMap_[ALLYTEAMATTACKEXAMPLE] = &HabilityManager::createHability<AllyTeamAttackExample>;

@@ -25,16 +25,16 @@ void LightAttack::throwHability(Character* obj, bool critical) const
 }
 
 
-void SingleTargetAttackExample::throwHability(Character* obj, bool critical) const
+void BloodyStrike::throwHability(Character* obj, bool critical) const
 {
 	int damage = throwDice(1 + critical, 5, true);
 
 	obj->recieveDamage(damage, _damageType);
 
-	obj->addCondition<EjemploDanyoPorTurnoBegin>();
+	obj->addCondition<Bleeding>();
 }
 
-void SingleTargetHealxample::throwHability(Character* obj, bool critical) const
+void HealingWord::throwHability(Character* obj, bool critical) const
 {
 	int healing = throwDice(2 + (2 * critical), 5, true);
 
@@ -360,13 +360,13 @@ void Determination::throwHability(Character* obj, bool critical) const
 
 #pragma region CONDITION
 
-void EjemploDanyoPorTurnoBegin::init()
+void Bleeding::init()
 {
 	cout << _objective->name() << " tiene sangrado!!!" << endl;
 	_objective->recieveDamage(throwDice(1, 3, true), PIERCE);
 }
 
-bool EjemploDanyoPorTurnoBegin::onTurnStarted()
+bool Bleeding::onTurnStarted()
 {
 	cout << "Sangrado: ";
 	_objective->recieveDamage(throwDice(_stack, 3, true), PIERCE);
