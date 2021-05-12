@@ -21,6 +21,8 @@
 #include "Cursor.h"
 #include "SDL_Objects.h"
 #include "../TheElementalMaze.h"
+
+#include "Resources.h"
 //
 
 using namespace std;

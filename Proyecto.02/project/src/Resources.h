@@ -172,10 +172,13 @@ public:
 	enum AudioId : std::size_t {
 		// music
 		ImperialMarch,
+		Mystery,
+		Tension,
 
 		// sound effects
 		Explosion,
-		GunShot
+		Notification,
+		GameOver
 	};
 
 	enum FontId : std::size_t {

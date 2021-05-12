@@ -169,13 +169,16 @@ vector<Resources::TextMsgInfo> Resources::messages_{
 
 vector<Resources::MusicInfo> Resources::musics_{
 	//
-	{ImperialMarch, "resources/sound/imperial_march.wav"} //
+	{ImperialMarch, "resources/sound/imperial_march.wav"}, //
+	{Mystery, "resources/sound/mystery.mp3"}, //
+	{Tension, "resources/sound/tension.mp3"} //
 };
 
 vector<Resources::SoundInfo> Resources::sounds_{
 	//
 	{Explosion, "resources/sound/explosion.wav"}, //
-	{GunShot, "resources/sound/GunShot.wav"}	  //
+	{Notification, "resources/sound/notification.wav"},	  //
+	{GameOver, "resources/sound/gameover.wav"}	  //
 };
 
 vector<Resources::JsonInfo> Resources::jsons_{
