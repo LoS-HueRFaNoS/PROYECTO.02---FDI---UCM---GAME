@@ -21,8 +21,6 @@
 #include "Cursor.h"
 #include "SDL_Objects.h"
 #include "../TheElementalMaze.h"
-
-#include "Resources.h"
 //
 
 using namespace std;
@@ -33,6 +31,16 @@ Game::Game() : game_(nullptr),			   //
 			   exit_(false)
 {
 	initGame();
+
+	/*
+		this->getSDLGame()->getAudioMngr()->playChannel(Resources::AudioId::Notification, 2, 0);
+		this->getSDLGame()->getAudioMngr()->setChannelVolume(100, 0);
+		this->getSDLGame()->getAudioMngr()->haltChannel(0);
+
+		this->getSDLGame()->getAudioMngr()->playMusic(Resources::AudioId::Mystery, 5);
+		this->getSDLGame()->getAudioMngr()->setMusicVolume(50);
+		this->getSDLGame()->getAudioMngr()->haltMusic();
+	*/
 }
 
 Game::~Game()
