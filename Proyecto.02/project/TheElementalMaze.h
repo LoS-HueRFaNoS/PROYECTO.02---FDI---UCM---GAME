@@ -14,6 +14,7 @@ class LobbyManager;
 // del mismo modo, mediante el puente que es la entidad.
 
 enum GameState {
+	MainMenu,
 	LOBBY,
 	START_EXPLORING,
 	EXPLORING,
