@@ -329,13 +329,7 @@ void Hero::levelUp(int exp)
 		level++;
 
 		if (level % 4 == 0)
-		{
-			for (int i = 0; i < _LastStatId_; i++)
-			{
-				if (_sheet->getStatValue(i) < 19)
-					_sheet->changeStat(mainStat(i), 2);
-			}
-		}
+			pointsPerLevel += 4;
 
 		int hp = _sheet->maxHitPoints();
 		int pm = _sheet->maxManaPoints();
@@ -364,6 +358,15 @@ void Hero::levelUp(int exp)
 
 	else
 		expNeed -= expObtain;
+}
+
+void Hero::changeHeroStat(rpgLogic::mainStat stat)
+{
+	if (pointsPerLevel > 0)
+	{
+		_sheet->changeStat(stat, 1);
+		pointsPerLevel--;
+	}
 }
 
 void Hero::manageInput(CombatManager* cm, int input)
