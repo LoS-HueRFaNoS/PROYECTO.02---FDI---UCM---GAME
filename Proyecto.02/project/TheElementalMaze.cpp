@@ -67,7 +67,7 @@ void TheElementalMaze::init()
 	uiManager_ = addComponent<Interfaz>(iManager_);
 
 	//changeState(EXPLORING);
-	changeState(LOBBY);
+	changeState(MainMenu);
 }
 
 void TheElementalMaze::onStateChanged()
@@ -75,6 +75,8 @@ void TheElementalMaze::onStateChanged()
 
 	switch (state_)
 	{
+	case MainMenu:
+		cout << "MAIN MENU" << endl;
 	case LOBBY:
 		cout << "LOBBY REACHED" << endl;
 		lobbyManager_->backFromDungeon();
