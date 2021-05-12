@@ -4,6 +4,7 @@
 #include <iostream>
 #include "Interfaz.h"
 #include "ecs.h"
+#include "Game.h"
 
 // ----------------------------------------------------
 
@@ -221,9 +222,10 @@ void callbacks::startLobby(Interfaz* app)
 {
 	TheElementalMaze::instance()->changeState(LOBBY);
 	app->togglePanel(MenuPrincipal);
-	app->createPanel(Lobby);
-	app->togglePanel(Heroes);
-	app->togglePanel(Info);
+	//app->createPanel(Lobby);
+	//app->togglePanel(Movement);
+	//app->togglePanel(Heroes);
+	//app->togglePanel(Info);
 	std::cout << "startLobby se ha activado\n";
 }
 void callbacks::options(Interfaz* app)
@@ -239,7 +241,7 @@ void callbacks::howToPlay(Interfaz* app)
 }
 void callbacks::quit(Interfaz* app)
 {
-	
+	Game::Instance()->exitGame();
 	std::cout << "quit se ha activado\n";
 }
 #pragma endregion

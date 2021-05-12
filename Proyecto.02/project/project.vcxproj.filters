@@ -371,6 +371,9 @@
     <ClInclude Include="src\SDL_Objects.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
+    <ClInclude Include="src\CasillaRender.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="resources\jsons\pruebasArmaduras.json">
