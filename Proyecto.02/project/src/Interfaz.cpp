@@ -783,18 +783,18 @@ Resources::TextureId Interfaz::getEnemyTxt(uint number)
 	case rpgLogic::BANSHEE:
 		id = src::Banshee;
 		break;
-	case rpgLogic::LICH:
-		id = src::Lich;
-		break;
-	case rpgLogic::NECROFAGO:
-		id = src::Necrofago;
-		break;
-	case rpgLogic::MONSTER:
-		id = src::Monster;
-		break;
-	case rpgLogic::DESCONOCIDO:
-		id = src::Desconocido;
-		break;
+	//case rpgLogic::LICH:
+	//	id = src::Lich;
+	//	break;
+	//case rpgLogic::NECROFAGO:
+	//	id = src::Necrofago;
+	//	break;
+	//case rpgLogic::MONSTER:
+	//	id = src::Monster;
+	//	break;
+	//case rpgLogic::DESCONOCIDO:
+	//	id = src::Desconocido;
+	//	break;
 
 	default:
 		id = Resources::TextureId();
