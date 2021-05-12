@@ -54,12 +54,11 @@ void Casilla::casillaRender(int x, int y)
 	}
 	else if (visib == visitado)
 	{
-		//if (isExit())
-		//{
-			//Photoshop : un sprite de x forma de un color de salida
-			//texturaSuelo = manager->getTexture(Resources::sueloSalida);
-		//}
-		//else
+		if (isExit())
+		{
+			texturaSuelo = manager->getTexture(Resources::salidaMiniMap);
+		}
+		else
 			texturaSuelo = manager->getTexture(Resources::visitado);
 		texturaSuelo->render(dest);
 
