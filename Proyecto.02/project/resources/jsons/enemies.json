@@ -2,400 +2,6 @@
   "Characters": [
 
     {
-      "Name": "Zombie",
-      "Description": "Un muerto viviente, sin mucha vida o poder. Un enemigo relativamente sencillo",
-
-      "Stats": [
-        {
-          "Key": "Strength",
-          "Value": 13
-        },
-        {
-          "Key": "Constitution",
-          "Value": 16
-        },
-        {
-          "Key": "Dexterity",
-          "Value": 6
-        },
-        {
-          "Key": "Intelligence",
-          "Value": 3
-        }
-      ],
-
-      "HitPoints": 22,
-      "ManaPoints": 10,
-      "Experience": 50,
-      "Coins":  25,
-
-      "Weaknesses": [
-        {
-          "Key": "Blunt",
-          "Value": 0.0
-        },
-        {
-          "Key": "Pierce",
-          "Value": 0.0
-        },
-        {
-          "Key": "Slash",
-          "Value": 0.0
-        },
-        {
-          "Key": "Fire",
-          "Value": 0.0
-        },
-        {
-          "Key": "Water",
-          "Value": 0.0
-        },
-        {
-          "Key": "Ice",
-          "Value": 0.0
-        },
-        {
-          "Key": "Earth",
-          "Value": 0.0
-        },
-        {
-          "Key": "Wind",
-          "Value": 0.0
-        },
-        {
-          "Key": "Light",
-          "Value": 0.0
-        },
-        {
-          "Key": "Dark",
-          "Value": 0.0
-        }
-      ]
-
-      "ListHabilities": [
-        10,
-        17,
-        22,
-        24
-      ]
-    },
-
-    {
-      "Name": "Troll",
-      "Description": "Una criatura bastante estúpida de gran tamaño. Un enemigo peligroso, pero solo si no tienes cuidado",
-
-      "Stats": [
-        {
-          "Key": "Strength",
-          "Value": 20
-        },
-        {
-          "Key": "Constitution",
-          "Value": 14
-        },
-        {
-          "Key": "Dexterity",
-          "Value": 7
-        },
-        {
-          "Key": "Intelligence",
-          "Value": 3
-        }
-      ],
-
-      "HitPoints": 40,
-      "ManaPoints": 10,
-      "Experience": 100,
-      "Coins": 50,
-
-      "Weaknesses": [
-        {
-          "Key": "Blunt",
-          "Value": 0.0
-        },
-        {
-          "Key": "Pierce",
-          "Value": 0.0
-        },
-        {
-          "Key": "Slash",
-          "Value": 0.0
-        },
-        {
-          "Key": "Fire",
-          "Value": 0.0
-        },
-        {
-          "Key": "Water",
-          "Value": 0.0
-        },
-        {
-          "Key": "Ice",
-          "Value": 0.0
-        },
-        {
-          "Key": "Earth",
-          "Value": 0.0
-        },
-        {
-          "Key": "Wind",
-          "Value": 0.0
-        },
-        {
-          "Key": "Light",
-          "Value": 0.0
-        },
-        {
-          "Key": "Dark",
-          "Value": 0.0
-        }
-      ],
-
-      "ListHabilities": [
-        9,
-        21,
-        23,
-        29
-      ]
-    },
-
-    {
-      "Name": "Skeleton",
-      "Description": "Un muerto viviente bastante esquivo, pero también muy débil",
-
-      "Stats": [
-        {
-          "Key": "Strength",
-          "Value": 10
-        },
-        {
-          "Key": "Constitution",
-          "Value": 14
-        },
-        {
-          "Key": "Dexterity",
-          "Value": 15
-        },
-        {
-          "Key": "Intelligence",
-          "Value": 6
-        }
-      ],
-
-      "HitPoints": 13,
-      "ManaPoints": 12,
-      "Experience": 50,
-      "Coins": 25,
-
-      "Weaknesses": [
-        {
-          "Key": "Blunt",
-          "Value": 0.0
-        },
-        {
-          "Key": "Pierce",
-          "Value": 0.0
-        },
-        {
-          "Key": "Slash",
-          "Value": 0.0
-        },
-        {
-          "Key": "Fire",
-          "Value": 0.0
-        },
-        {
-          "Key": "Water",
-          "Value": 0.0
-        },
-        {
-          "Key": "Ice",
-          "Value": 0.0
-        },
-        {
-          "Key": "Earth",
-          "Value": 0.0
-        },
-        {
-          "Key": "Wind",
-          "Value": 0.0
-        },
-        {
-          "Key": "Light",
-          "Value": 0.0
-        },
-        {
-          "Key": "Dark",
-          "Value": 0.0
-        }
-      ],
-
-      "ListHabilities": [
-        14,
-        20,
-        32
-      ]
-    },
-
-    {
-      "Name": "Hellhound",
-      "Description": "Un perro infernal, bastante más fuerte que los enemigos comunes",
-
-      "Stats": [
-        {
-          "Key": "Strength",
-          "Value": 17
-        },
-        {
-          "Key": "Constitution",
-          "Value": 14
-        },
-        {
-          "Key": "Dexterity",
-          "Value": 12
-        },
-        {
-          "Key": "Intelligence",
-          "Value": 6
-        }
-      ],
-
-      "HitPoints": 45,
-      "ManaPoints": 12,
-      "Experience": 120,
-      "Coins": 80,
-
-      "Weaknesses": [
-        {
-          "Key": "Blunt",
-          "Value": 0.0
-        },
-        {
-          "Key": "Pierce",
-          "Value": 0.0
-        },
-        {
-          "Key": "Slash",
-          "Value": 0.0
-        },
-        {
-          "Key": "Fire",
-          "Value": 1.0
-        },
-        {
-          "Key": "Water",
-          "Value": -0.5
-        },
-        {
-          "Key": "Ice",
-          "Value": 0.0
-        },
-        {
-          "Key": "Earth",
-          "Value": 0.0
-        },
-        {
-          "Key": "Wind",
-          "Value": 0.0
-        },
-        {
-          "Key": "Light",
-          "Value": 0.0
-        },
-        {
-          "Key": "Dark",
-          "Value": 0.0
-        }
-      ],
-
-      "ListHabilities": [
-        1,
-        16,
-        20,
-        23
-      ]
-    },
-
-    {
-      "Name": "Specter",
-      "Description": "Un alma en pena, con ataques bastante débiles pero siendo una criatura extremadamente resistente",
-
-      "Stats": [
-        {
-          "Key": "Strength",
-          "Value": 1
-        },
-        {
-          "Key": "Constitution",
-          "Value": 14
-        },
-        {
-          "Key": "Dexterity",
-          "Value": 11
-        },
-        {
-          "Key": "Intelligence",
-          "Value": 10
-        }
-      ],
-
-      "HitPoints": 22,
-      "ManaPoints": 20,
-      "Experience": 50,
-      "Coins": 25,
-
-      "Weaknesses": [
-        {
-          "Key": "Blunt",
-          "Value": 0.5
-        },
-        {
-          "Key": "Pierce",
-          "Value": 0.5
-        },
-        {
-          "Key": "Slash",
-          "Value": 0.5
-        },
-        {
-          "Key": "Fire",
-          "Value": 0.5
-        },
-        {
-          "Key": "Water",
-          "Value": 0.0
-        },
-        {
-          "Key": "Ice",
-          "Value": 0.5
-        },
-        {
-          "Key": "Earth",
-          "Value": 0.5
-        },
-        {
-          "Key": "Wind",
-          "Value": 0.0
-        },
-        {
-          "Key": "Light",
-          "Value": 0.0
-        },
-        {
-          "Key": "Dark",
-          "Value": 1.0
-        }
-      ],
-
-      "ListHabilities": [
-        5,
-        7,
-        8,
-        19
-      ]
-    },
-
-    {
       "Name": "Goblin",
       "Description": "Una criatura desagradable, de pequeño tamaño y que disfruta torturando a los aventureros",
 
@@ -471,164 +77,6 @@
         31,
         32,
         33
-      ]
-    },
-
-    {
-      "Name": "Death Knight",
-      "Description": "El alma de un aventurero caído, muy poderoso y peligroso",
-
-      "Stats": [
-        {
-          "Key": "Strength",
-          "Value": 20
-        },
-        {
-          "Key": "Constitution",
-          "Value": 20
-        },
-        {
-          "Key": "Dexterity",
-          "Value": 11
-        },
-        {
-          "Key": "Intelligence",
-          "Value": 12
-        }
-      ],
-
-      "HitPoints": 90,
-      "ManaPoints": 24,
-      "Experience": 500,
-      "Coins": 500,
-
-      "Weaknesses": [
-        {
-          "Key": "Blunt",
-          "Value": 0.0
-        },
-        {
-          "Key": "Pierce",
-          "Value": 0.5
-        },
-        {
-          "Key": "Slash",
-          "Value": 0.5
-        },
-        {
-          "Key": "Fire",
-          "Value": 0.0
-        },
-        {
-          "Key": "Water",
-          "Value": 0.0
-        },
-        {
-          "Key": "Ice",
-          "Value": 0.0
-        },
-        {
-          "Key": "Earth",
-          "Value": 0.0
-        },
-        {
-          "Key": "Wind",
-          "Value": 0.0
-        },
-        {
-          "Key": "Light",
-          "Value": -0.5
-        },
-        {
-          "Key": "Dark",
-          "Value": 1.0
-        }
-      ],
-
-      "ListHabilities": [
-        12,
-        21,
-        24,
-        34
-      ]
-    },
-
-    {
-      "Name": "Mimic",
-      "Description": "Una criatura cambiante, que se camufla en objetos mundanos para poder devorar a los incautos",
-
-      "Stats": [
-        {
-          "Key": "Strength",
-          "Value": 17
-        },
-        {
-          "Key": "Constitution",
-          "Value": 15
-        },
-        {
-          "Key": "Dexterity",
-          "Value": 12
-        },
-        {
-          "Key": "Intelligence",
-          "Value": 5
-        }
-      ],
-
-      "HitPoints": 58,
-      "ManaPoints": 10,
-      "Experience": 100,
-      "Coins": 50,
-
-      "Weaknesses": [
-        {
-          "Key": "Blunt",
-          "Value": 0.0
-        },
-        {
-          "Key": "Pierce",
-          "Value": 0.0
-        },
-        {
-          "Key": "Slash",
-          "Value": 0.0
-        },
-        {
-          "Key": "Fire",
-          "Value": 0.0
-        },
-        {
-          "Key": "Water",
-          "Value": 0.0
-        },
-        {
-          "Key": "Ice",
-          "Value": 0.0
-        },
-        {
-          "Key": "Earth",
-          "Value": 0.0
-        },
-        {
-          "Key": "Wind",
-          "Value": 0.0
-        },
-        {
-          "Key": "Light",
-          "Value": 0.0
-        },
-        {
-          "Key": "Dark",
-          "Value": 0.0
-        }
-      ],
-
-      "ListHabilities": [
-        11,
-        15
-        22,
-        24
       ]
     },
 
@@ -713,6 +161,481 @@
     },
 
     {
+      "Name": "Zombie",
+      "Description": "Un muerto viviente, sin mucha vida o poder. Un enemigo relativamente sencillo",
+
+      "Stats": [
+        {
+          "Key": "Strength",
+          "Value": 13
+        },
+        {
+          "Key": "Constitution",
+          "Value": 16
+        },
+        {
+          "Key": "Dexterity",
+          "Value": 6
+        },
+        {
+          "Key": "Intelligence",
+          "Value": 3
+        }
+      ],
+
+      "HitPoints": 22,
+      "ManaPoints": 10,
+      "Experience": 50,
+      "Coins": 25,
+
+      "Weaknesses": [
+        {
+          "Key": "Blunt",
+          "Value": 0.0
+        },
+        {
+          "Key": "Pierce",
+          "Value": 0.0
+        },
+        {
+          "Key": "Slash",
+          "Value": 0.0
+        },
+        {
+          "Key": "Fire",
+          "Value": 0.0
+        },
+        {
+          "Key": "Water",
+          "Value": 0.0
+        },
+        {
+          "Key": "Ice",
+          "Value": 0.0
+        },
+        {
+          "Key": "Earth",
+          "Value": 0.0
+        },
+        {
+          "Key": "Wind",
+          "Value": 0.0
+        },
+        {
+          "Key": "Light",
+          "Value": 0.0
+        },
+        {
+          "Key": "Dark",
+          "Value": 0.0
+        }
+      ],
+
+      "ListHabilities": [
+        10,
+        17,
+        22,
+        24
+      ]
+    },
+
+    {
+      "Name": "Skeleton",
+      "Description": "Un muerto viviente bastante esquivo, pero también muy débil",
+
+      "Stats": [
+        {
+          "Key": "Strength",
+          "Value": 10
+        },
+        {
+          "Key": "Constitution",
+          "Value": 14
+        },
+        {
+          "Key": "Dexterity",
+          "Value": 15
+        },
+        {
+          "Key": "Intelligence",
+          "Value": 6
+        }
+      ],
+
+      "HitPoints": 13,
+      "ManaPoints": 12,
+      "Experience": 50,
+      "Coins": 25,
+
+      "Weaknesses": [
+        {
+          "Key": "Blunt",
+          "Value": 0.0
+        },
+        {
+          "Key": "Pierce",
+          "Value": 0.0
+        },
+        {
+          "Key": "Slash",
+          "Value": 0.0
+        },
+        {
+          "Key": "Fire",
+          "Value": 0.0
+        },
+        {
+          "Key": "Water",
+          "Value": 0.0
+        },
+        {
+          "Key": "Ice",
+          "Value": 0.0
+        },
+        {
+          "Key": "Earth",
+          "Value": 0.0
+        },
+        {
+          "Key": "Wind",
+          "Value": 0.0
+        },
+        {
+          "Key": "Light",
+          "Value": 0.0
+        },
+        {
+          "Key": "Dark",
+          "Value": 0.0
+        }
+      ],
+
+      "ListHabilities": [
+        14,
+        20,
+        32
+      ]
+    },
+
+    {
+      "Name": "Specter",
+      "Description": "Un alma en pena, con ataques bastante débiles pero siendo una criatura extremadamente resistente",
+
+      "Stats": [
+        {
+          "Key": "Strength",
+          "Value": 1
+        },
+        {
+          "Key": "Constitution",
+          "Value": 14
+        },
+        {
+          "Key": "Dexterity",
+          "Value": 11
+        },
+        {
+          "Key": "Intelligence",
+          "Value": 10
+        }
+      ],
+
+      "HitPoints": 22,
+      "ManaPoints": 20,
+      "Experience": 50,
+      "Coins": 25,
+
+      "Weaknesses": [
+        {
+          "Key": "Blunt",
+          "Value": 0.5
+        },
+        {
+          "Key": "Pierce",
+          "Value": 0.5
+        },
+        {
+          "Key": "Slash",
+          "Value": 0.5
+        },
+        {
+          "Key": "Fire",
+          "Value": 0.5
+        },
+        {
+          "Key": "Water",
+          "Value": 0.0
+        },
+        {
+          "Key": "Ice",
+          "Value": 0.5
+        },
+        {
+          "Key": "Earth",
+          "Value": 0.5
+        },
+        {
+          "Key": "Wind",
+          "Value": 0.0
+        },
+        {
+          "Key": "Light",
+          "Value": 0.0
+        },
+        {
+          "Key": "Dark",
+          "Value": 1.0
+        }
+      ],
+
+      "ListHabilities": [
+        5,
+        7,
+        8,
+        19
+      ]
+    },
+
+    {
+      "Name": "Troll",
+      "Description": "Una criatura bastante estúpida de gran tamaño. Un enemigo peligroso, pero solo si no tienes cuidado",
+
+      "Stats": [
+        {
+          "Key": "Strength",
+          "Value": 20
+        },
+        {
+          "Key": "Constitution",
+          "Value": 14
+        },
+        {
+          "Key": "Dexterity",
+          "Value": 7
+        },
+        {
+          "Key": "Intelligence",
+          "Value": 3
+        }
+      ],
+
+      "HitPoints": 40,
+      "ManaPoints": 10,
+      "Experience": 100,
+      "Coins": 50,
+
+      "Weaknesses": [
+        {
+          "Key": "Blunt",
+          "Value": 0.0
+        },
+        {
+          "Key": "Pierce",
+          "Value": 0.0
+        },
+        {
+          "Key": "Slash",
+          "Value": 0.0
+        },
+        {
+          "Key": "Fire",
+          "Value": 0.0
+        },
+        {
+          "Key": "Water",
+          "Value": 0.0
+        },
+        {
+          "Key": "Ice",
+          "Value": 0.0
+        },
+        {
+          "Key": "Earth",
+          "Value": 0.0
+        },
+        {
+          "Key": "Wind",
+          "Value": 0.0
+        },
+        {
+          "Key": "Light",
+          "Value": 0.0
+        },
+        {
+          "Key": "Dark",
+          "Value": 0.0
+        }
+      ],
+
+      "ListHabilities": [
+        9,
+        21,
+        23,
+        29
+      ]
+    },
+
+    {
+      "Name": "Hellhound",
+      "Description": "Un perro infernal, bastante más fuerte que los enemigos comunes",
+
+      "Stats": [
+        {
+          "Key": "Strength",
+          "Value": 17
+        },
+        {
+          "Key": "Constitution",
+          "Value": 14
+        },
+        {
+          "Key": "Dexterity",
+          "Value": 12
+        },
+        {
+          "Key": "Intelligence",
+          "Value": 6
+        }
+      ],
+
+      "HitPoints": 45,
+      "ManaPoints": 12,
+      "Experience": 120,
+      "Coins": 80,
+
+      "Weaknesses": [
+        {
+          "Key": "Blunt",
+          "Value": 0.0
+        },
+        {
+          "Key": "Pierce",
+          "Value": 0.0
+        },
+        {
+          "Key": "Slash",
+          "Value": 0.0
+        },
+        {
+          "Key": "Fire",
+          "Value": 1.0
+        },
+        {
+          "Key": "Water",
+          "Value": -0.5
+        },
+        {
+          "Key": "Ice",
+          "Value": 0.0
+        },
+        {
+          "Key": "Earth",
+          "Value": 0.0
+        },
+        {
+          "Key": "Wind",
+          "Value": 0.0
+        },
+        {
+          "Key": "Light",
+          "Value": 0.0
+        },
+        {
+          "Key": "Dark",
+          "Value": 0.0
+        }
+      ],
+
+      "ListHabilities": [
+        1,
+        16,
+        20,
+        23
+      ]
+    },
+
+    {
+      "Name": "Mimic",
+      "Description": "Una criatura cambiante, que se camufla en objetos mundanos para poder devorar a los incautos",
+
+      "Stats": [
+        {
+          "Key": "Strength",
+          "Value": 17
+        },
+        {
+          "Key": "Constitution",
+          "Value": 15
+        },
+        {
+          "Key": "Dexterity",
+          "Value": 12
+        },
+        {
+          "Key": "Intelligence",
+          "Value": 5
+        }
+      ],
+
+      "HitPoints": 58,
+      "ManaPoints": 10,
+      "Experience": 100,
+      "Coins": 50,
+
+      "Weaknesses": [
+        {
+          "Key": "Blunt",
+          "Value": 0.0
+        },
+        {
+          "Key": "Pierce",
+          "Value": 0.0
+        },
+        {
+          "Key": "Slash",
+          "Value": 0.0
+        },
+        {
+          "Key": "Fire",
+          "Value": 0.0
+        },
+        {
+          "Key": "Water",
+          "Value": 0.0
+        },
+        {
+          "Key": "Ice",
+          "Value": 0.0
+        },
+        {
+          "Key": "Earth",
+          "Value": 0.0
+        },
+        {
+          "Key": "Wind",
+          "Value": 0.0
+        },
+        {
+          "Key": "Light",
+          "Value": 0.0
+        },
+        {
+          "Key": "Dark",
+          "Value": 0.0
+        }
+      ],
+
+      "ListHabilities": [
+        11,
+        15,
+        22,
+        24
+      ]
+    },
+
+
+
+    {
       "Name": "Ghoul",
       "Description": "Necrófagos, pero aún así bastante peligrosos para los vivos",
 
@@ -791,84 +714,7 @@
       ]
     },
 
-    {
-      "Name": "Dracolich",
-      "Description": "Un poderoso dragón resucitado gracias a los poderes del Lich",
 
-      "Stats": [
-        {
-          "Key": "Strength",
-          "Value": 20
-        },
-        {
-          "Key": "Constitution",
-          "Value": 20
-        },
-        {
-          "Key": "Dexterity",
-          "Value": 10
-        },
-        {
-          "Key": "Intelligence",
-          "Value": 16
-        }
-      ],
-
-      "HitPoints": 112,
-      "ManaPoints": 32,
-      "Experience": 500,
-      "Coins": 500,
-
-      "Weaknesses": [
-        {
-          "Key": "Blunt",
-          "Value": 0.0
-        },
-        {
-          "Key": "Pierce",
-          "Value": 0.5
-        },
-        {
-          "Key": "Slash",
-          "Value": 0.5
-        },
-        {
-          "Key": "Fire",
-          "Value": 0.0
-        },
-        {
-          "Key": "Water",
-          "Value": 0.0
-        },
-        {
-          "Key": "Ice",
-          "Value": 0.0
-        },
-        {
-          "Key": "Earth",
-          "Value": 0.0
-        },
-        {
-          "Key": "Wind",
-          "Value": 0.0
-        },
-        {
-          "Key": "Light",
-          "Value": -1.0
-        },
-        {
-          "Key": "Dark",
-          "Value": 1.0
-        }
-      ],
-
-      "ListHabilities": [
-        1,
-        16,
-        21,
-        22
-      ]
-    },
 
     {
       "Name": "Giant worm",
@@ -1025,6 +871,164 @@
         7,
         8,
         19
+      ]
+    },
+
+    {
+      "Name": "Death Knight",
+      "Description": "El alma de un aventurero caído, muy poderoso y peligroso",
+
+      "Stats": [
+        {
+          "Key": "Strength",
+          "Value": 20
+        },
+        {
+          "Key": "Constitution",
+          "Value": 20
+        },
+        {
+          "Key": "Dexterity",
+          "Value": 11
+        },
+        {
+          "Key": "Intelligence",
+          "Value": 12
+        }
+      ],
+
+      "HitPoints": 90,
+      "ManaPoints": 24,
+      "Experience": 500,
+      "Coins": 500,
+
+      "Weaknesses": [
+        {
+          "Key": "Blunt",
+          "Value": 0.0
+        },
+        {
+          "Key": "Pierce",
+          "Value": 0.5
+        },
+        {
+          "Key": "Slash",
+          "Value": 0.5
+        },
+        {
+          "Key": "Fire",
+          "Value": 0.0
+        },
+        {
+          "Key": "Water",
+          "Value": 0.0
+        },
+        {
+          "Key": "Ice",
+          "Value": 0.0
+        },
+        {
+          "Key": "Earth",
+          "Value": 0.0
+        },
+        {
+          "Key": "Wind",
+          "Value": 0.0
+        },
+        {
+          "Key": "Light",
+          "Value": -0.5
+        },
+        {
+          "Key": "Dark",
+          "Value": 1.0
+        }
+      ],
+
+      "ListHabilities": [
+        12,
+        21,
+        24,
+        34
+      ]
+    },
+
+    {
+      "Name": "Dracolich",
+      "Description": "Un poderoso dragón resucitado gracias a los poderes del Lich",
+
+      "Stats": [
+        {
+          "Key": "Strength",
+          "Value": 20
+        },
+        {
+          "Key": "Constitution",
+          "Value": 20
+        },
+        {
+          "Key": "Dexterity",
+          "Value": 10
+        },
+        {
+          "Key": "Intelligence",
+          "Value": 16
+        }
+      ],
+
+      "HitPoints": 112,
+      "ManaPoints": 32,
+      "Experience": 500,
+      "Coins": 500,
+
+      "Weaknesses": [
+        {
+          "Key": "Blunt",
+          "Value": 0.0
+        },
+        {
+          "Key": "Pierce",
+          "Value": 0.5
+        },
+        {
+          "Key": "Slash",
+          "Value": 0.5
+        },
+        {
+          "Key": "Fire",
+          "Value": 0.0
+        },
+        {
+          "Key": "Water",
+          "Value": 0.0
+        },
+        {
+          "Key": "Ice",
+          "Value": 0.0
+        },
+        {
+          "Key": "Earth",
+          "Value": 0.0
+        },
+        {
+          "Key": "Wind",
+          "Value": 0.0
+        },
+        {
+          "Key": "Light",
+          "Value": -1.0
+        },
+        {
+          "Key": "Dark",
+          "Value": 1.0
+        }
+      ],
+
+      "ListHabilities": [
+        1,
+        16,
+        21,
+        22
       ]
     }
 

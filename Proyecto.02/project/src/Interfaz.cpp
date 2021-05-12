@@ -644,6 +644,8 @@ void Interfaz::update()
 	} else if (TheElementalMaze::instance()->gameState() == EXPLORING && !getEnablePan(Movement)) {
 		togglePanel(Movement);
 		if (getActivePan(Fight)) removePanel(Fight);
+		// PARTY
+		checkHerosParty();
 	}
 }
 
@@ -662,6 +664,24 @@ void Interfaz::checkActiveHeroButton(HeroNum nAct)
 			removePanel(DDPan);
 		}
 	}
+}
+
+void Interfaz::checkHerosParty()
+{
+	bool changed = false;
+	vector<Entity*> savedHeroes;
+	PartyManager* c = TheElementalMaze::instance()->getPartyManager();
+	std::vector<Hero*> heroes = c->getHeroes();
+	auto n = heroes.size(); // max number of heros
+	for (auto i = 0u; i < n; i++)
+		if (heroes[i]->getDeathGate()) {
+			allPanels[Heroes]->removeButton(i);
+			changed = true;
+		}
+		else {
+			savedHeroes.push_back(allPanels[Heroes]->getButton(i));
+		}
+	if (changed) allPanels[Heroes]->swapButtonList(savedHeroes);
 }
 
 #include "CombatManager.h"

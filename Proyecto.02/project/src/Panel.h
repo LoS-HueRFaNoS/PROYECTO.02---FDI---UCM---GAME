@@ -1,7 +1,7 @@
 #pragma once
 #include "Button.h"
 #include "ecs_interfaz.h"
-#include <list>
+#include <vector>
 
 using namespace interfaz;
 
@@ -10,7 +10,7 @@ class Panel
 protected:
 	bool enable;
 	idPanel id;
-	list<Entity*> buttonList;
+	vector<Entity*> buttonList;
 	
 public:
 	Panel(idPanel idPan) : id(idPan), enable(true) {};
@@ -20,6 +20,11 @@ public:
 	}
 
 	void removeButtons();
+	void removeButton(uint n);
+	void swapButtonList(vector<Entity*> savedHeroes);
+	Entity* getButton(uint n) {
+		return buttonList[n];
+	};
 
 	void addButton(Entity* b) {
 		buttonList.push_back(b);

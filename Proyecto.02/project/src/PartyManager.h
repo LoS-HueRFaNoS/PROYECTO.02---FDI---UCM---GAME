@@ -16,6 +16,8 @@ private:
 
 	std::vector<Item*> items_;
 
+	void reorderVector();
+
 public:
 
 	PartyManager();
@@ -38,6 +40,10 @@ public:
 	void removeHero(Hero* h);
 
 	void removeHero(int h);
+
+	void swapHeroes(int first, int second);
+
+	void partyLost();
 
 	Item* addItem(Item* i, int pos);
 

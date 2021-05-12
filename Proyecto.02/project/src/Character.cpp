@@ -13,16 +13,16 @@ Character::~Character()
 {
 	delete _sheet;
 	_sheet = nullptr;
-	for (Hability* h : _habilitiesArray)
+	for (Hability* h : _habilities)
 	{
 		delete h;
 		h = nullptr;
 	}
-	for (Condition* c : _conditonsArray)
-	{
-		delete c;
-		c = nullptr;
-	}
+	delete lightAttack_;
+	lightAttack_ = nullptr;
+	delete heavyAttack_;
+	heavyAttack_ = nullptr;
+	removeConditions();
 	delete _weapon;
 	_weapon = nullptr;
 }
@@ -158,6 +158,35 @@ bool Character::checkHit(int hit)
 	return hit > throwStat(DEX);
 }
 
+void Character::removeConditions()
+{
+	for (int i = 0; i < _lastConditionType_; i++) {
+		for (Condition* c : _conditions[(ConditionType)i])
+		{
+			delete c;
+			c = nullptr;
+		}
+		_conditions[(ConditionType)i].clear();
+	}
+}
+
+void Character::removeGoodConditions()
+{
+	for (int i = 0; i < _lastConditionType_; i++) {
+		for (auto it = _conditions[(ConditionType)i].begin(); it != _conditions[(ConditionType)i].end();)
+		{
+			if ((*it)->isPositive())
+				it = _conditions[(ConditionType)i].erase(it);
+			else
+				it++;
+		}
+	}
+}
+
+void Character::removeBadConditions()
+{
+}
+
 #pragma endregion
 
 #pragma region HERO
@@ -232,6 +261,11 @@ void Hero::showSpellList()
 	cout << "Choose a spell to cast (Enter to skip turn): \n";
 }
 
+void Hero::killHero()
+{
+	_deathGate = true;
+}
+
 
 void Hero::manageTurn(CombatManager* cm)
 {
@@ -289,6 +323,17 @@ void Hero::levelUp(int exp)
 	{
 		expMax += 100;
 
+		level++;
+
+		if (level % 4 == 0)
+		{
+			for (int i = 0; i < _LastStatId_; i++)
+			{
+				if (_sheet->getStatValue(i) < 19)
+					_sheet->changeStat(mainStat(i), 2);		
+			}
+		}
+
 		int hp = _sheet->maxHitPoints();
 		int pm = _sheet->maxManaPoints();
 
@@ -320,7 +365,14 @@ void Hero::levelUp(int exp)
 
 void Hero::manageInput(CombatManager* cm, int input)
 {
-	if (input >= _habilities.size())
+	if (input < 0) {
+		if (input == -2)
+			cm->castHability(lightAttack_);
+		else if (input == -3)
+			cm->castHability(heavyAttack_);
+		return;
+	}
+	else if (input >= _habilities.size())
 		cout << "Use a valid index please:\n";
 	else if (_habilities[input]->getMana() > _sheet->manaPoints())
 		cout << "Not enough mana, try again:\n";
@@ -389,7 +441,7 @@ void Enemy::manageTurn(CombatManager* cm)
 	if (hab->getObjectiveType() == ENEMYTEAM || hab->getObjectiveType() == ALLYTEAM
 		|| hab->getObjectiveType() == CASTER)
 		cm->castHability(hab);
-		
+
 	else
 	{
 		if (hab->getObjectiveType() == SINGLEENEMY)

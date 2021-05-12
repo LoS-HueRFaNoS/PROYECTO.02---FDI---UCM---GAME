@@ -17,7 +17,7 @@ void Fireball::throwHability(Character* obj, bool critical) const
 
 void LightAttack::throwHability(Character* obj, bool critical) const
 {
-	Weapon* w = static_cast<Hero*>(_caster)->getWeapon();
+	Weapon* w = _caster->getWeapon();
 
 	int damage = throwDice(w->getNDice(), w->getDamage(), true);
 
@@ -25,16 +25,16 @@ void LightAttack::throwHability(Character* obj, bool critical) const
 }
 
 
-void SingleTargetAttackExample::throwHability(Character* obj, bool critical) const
+void BloodyStrike::throwHability(Character* obj, bool critical) const
 {
 	int damage = throwDice(1 + critical, 5, true);
 
 	obj->recieveDamage(damage, _damageType);
 
-	obj->addCondition<EjemploDañoPorTurnoBegin>();
+	obj->addCondition<Bleeding>();
 }
 
-void SingleTargetHealxample::throwHability(Character* obj, bool critical) const
+void HealingWord::throwHability(Character* obj, bool critical) const
 {
 	int healing = throwDice(2 + (2 * critical), 5, true);
 
@@ -150,7 +150,7 @@ void Whirlpool::throwHability(Character* obj, bool critical) const //hay que mir
 
 	obj->recieveDamage(damage, _damageType);
 
-    obj->addCondition<BuffStats>(-3, STR, _name, _description);						// ESTO COMO UN ESTADO
+	obj->addCondition<BuffStats>(-3, STR, _name, _description);						// ESTO COMO UN ESTADO
 }
 
 void LightBeam::throwHability(Character* obj, bool critical) const //hay que mirar que hacer con el debuff y ajustar el ataque
@@ -177,10 +177,8 @@ void DarkVortex::throwHability(Character* obj, bool critical) const //hay que mi
 
 void FireArrow::throwHability(Character* obj, bool critical) const
 {
-																						// HACER FIRE ARROW
+	// HACER FIRE ARROW
 }
-
-
 
 void Lighten::throwHability(Character* obj, bool critical) const
 {
@@ -205,7 +203,7 @@ void Meditate::throwHability(Character* obj, bool critical) const
 
 void BloodThirst::throwHability(Character* obj, bool critical) const //hay que mirar que hacer con el debuff y ajustar el ataque
 {
-	Weapon* w = static_cast<Hero*>(_caster)->getWeapon();
+	Weapon* w = _caster->getWeapon();
 
 	int damage = throwDice(w->getNDice(), w->getDamage(), true);
 
@@ -220,7 +218,7 @@ void BloodThirst::throwHability(Character* obj, bool critical) const //hay que m
 
 void Sacrifice::throwHability(Character* obj, bool critical) const //hay que mirar que hacer con el debuff y ajustar el ataque
 {
-	Weapon* w = static_cast<Hero*>(_caster)->getWeapon();
+	Weapon* w = _caster->getWeapon();
 
 	int damage = throwDice(w->getNDice(), w->getDamage(), true);
 
@@ -235,7 +233,7 @@ void Sacrifice::throwHability(Character* obj, bool critical) const //hay que mir
 
 void DoubleShot::throwHability(Character* obj, bool critical) const
 {
-	Weapon* w = static_cast<Hero*>(_caster)->getWeapon();
+	Weapon* w =_caster->getWeapon();
 
 	int damage = throwDice(w->getNDice(), w->getDamage(), true);
 
@@ -248,7 +246,7 @@ void DoubleShot::throwHability(Character* obj, bool critical) const
 
 void ThrowingAxes::throwHability(Character* obj, bool critical) const //revisar que se tiran el numero correcto de dados
 {
-	Weapon* w = static_cast<Hero*>(_caster)->getWeapon();
+	Weapon* w = _caster->getWeapon();
 
 	int damage = throwDice(3, w->getDamage(), true);
 
@@ -260,13 +258,14 @@ void ThrowingAxes::throwHability(Character* obj, bool critical) const //revisar 
 
 void HeavyStrike::throwHability(Character* obj, bool critical) const
 {
-	Weapon* w = static_cast<Hero*>(_caster)->getWeapon();
+	Weapon* w = _caster->getWeapon();
 
-	int damage = throwDice(w->getNDice(), w->getDamage(), true);
+	int damage = throwDice(w->getNDice(), w->getDamage(), true) * 2;
 
-	damage = obj->savingThrow(10 + _caster->getMod(_mod), DEX) ? damage / 2 : damage;
-
-	obj->recieveDamage(damage + 3, _damageType);
+	if (obj->savingThrow(5 + _caster->getMod(_mod), DEX))
+		cout << "You missed your heavy hit" << endl;
+	else
+		obj->recieveDamage(damage, _damageType);
 
 }
 
@@ -299,9 +298,9 @@ void ReverseMorph::throwHability(Character* obj, bool critical) const //hay que 
 	obj->recieveBuff(15, STR);
 }
 
-void RainOfDaggers::throwHability(Character* obj, bool critical) const //testear si esta bien el daño
+void RainOfDaggers::throwHability(Character* obj, bool critical) const //testear si esta bien el daÃ±o
 {
-	Weapon* w = static_cast<Hero*>(_caster)->getWeapon();
+	Weapon* w = _caster->getWeapon();
 
 	int numDaggers = throwDice(1, 10, true);
 
@@ -315,7 +314,7 @@ void RainOfDaggers::throwHability(Character* obj, bool critical) const //testear
 
 void RockProjectiles::throwHability(Character* obj, bool critical) const //testear si funcionan correctamente los 3 proyectiles
 {
-	Weapon* w = static_cast<Hero*>(_caster)->getWeapon();
+	Weapon* w = _caster->getWeapon();
 
 	int damage = throwDice(w->getNDice(), w->getDamage(), true);
 	for (int i = 0; i < 3; i++) {
@@ -327,7 +326,7 @@ void RockProjectiles::throwHability(Character* obj, bool critical) const //teste
 
 void TrickShot::throwHability(Character* obj, bool critical) const //cambiarlo si al final hacemos lo de comprobar 2 tiradas de ataque para que acierte
 {
-	Weapon* w = static_cast<Hero*>(_caster)->getWeapon();
+	Weapon* w = _caster->getWeapon();
 
 	int damage = throwDice(w->getNDice(), w->getDamage(), true);
 
@@ -361,13 +360,13 @@ void Determination::throwHability(Character* obj, bool critical) const
 
 #pragma region CONDITION
 
-void EjemploDañoPorTurnoBegin::init()
+void Bleeding::init()
 {
 	cout << _objective->name() << " tiene sangrado!!!" << endl;
 	_objective->recieveDamage(throwDice(1, 3, true), PIERCE);
 }
 
-bool EjemploDañoPorTurnoBegin::onTurnStarted()
+bool Bleeding::onTurnStarted()
 {
 	cout << "Sangrado: ";
 	_objective->recieveDamage(throwDice(_stack, 3, true), PIERCE);
@@ -381,12 +380,12 @@ bool EjemploDañoPorTurnoBegin::onTurnStarted()
 
 void EjemploCuracionFinalTurno::init()
 {
-	cout << _objective->name() << " se curará cada final de turno!!!" << endl;
+	cout << _objective->name() << " se curarÃ¡ cada final de turno!!!" << endl;
 }
 
 bool EjemploCuracionFinalTurno::onTurnEnd()
 {
-	cout << "Curación: ";
+	cout << "CuraciÃ³n: ";
 	_objective->recieveHealing(throwDice(_stack, 3, true));
 	if (!--_counter) {
 		cout << "SE ACABO LA CURASAO" << endl;
@@ -398,7 +397,7 @@ bool EjemploCuracionFinalTurno::onTurnEnd()
 
 void EjemploReduccionAtaque::init()
 {
-	cout << _objective->name() << " recivirá la mitad del danyo el siguiente ataque" << endl;
+	cout << _objective->name() << " recivirÃ¡ la mitad del danyo el siguiente ataque" << endl;
 }
 
 bool EjemploReduccionAtaque::onAttackRecieved(int& damage)
@@ -431,7 +430,7 @@ bool BuffStats::onTurnStarted()
 	cout << "Buffo activo: ";
 
 	if (!--_counter) {
-		cout << "Se acabó el bufo" << endl;
+		cout << "Se acabÃ³ el bufo" << endl;
 		_objective->recieveBuff(-value, statMod);
 		return false;
 	}

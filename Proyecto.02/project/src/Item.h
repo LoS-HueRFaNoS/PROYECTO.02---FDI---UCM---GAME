@@ -50,7 +50,9 @@ private:
 	int damage;
 	int diceNumber;
 	int hands;
+	rpgLogic::Weaknesses _elementalDamage;
 	rpgLogic::weaponId weapId;
+
 public:
 
 	Weapon() {
@@ -68,6 +70,10 @@ public:
 	bool isMarcial() { return marcial; }
 
 	void loadWeaponTemplate(jute::jValue v, rpgLogic::weaponId t);
+
+	rpgLogic::Weaknesses getWeaknesses() { return _elementalDamage; }
+
+	void elementalAfinity(rpgLogic::weaponId t);
 
 	rpgLogic::weaponId getWeaponId() { return weapId; }
 };
@@ -97,6 +103,8 @@ public:
 
 	void loadArmorTemplate(jute::jValue v, rpgLogic::armorId t);
 
+	void elementalAfinity(rpgLogic::armorId t);
+
 	rpgLogic::armorId getArmorId() { return armId; }
 };
 
@@ -114,6 +122,7 @@ public:
 //	}
 //};
 //
+
 class Chest
 {
 private:

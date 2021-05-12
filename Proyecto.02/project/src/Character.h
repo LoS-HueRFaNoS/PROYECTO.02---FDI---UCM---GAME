@@ -22,6 +22,9 @@ protected:
 
 	vector<Hability*> _habilities;
 
+	Hability* lightAttack_;
+	Hability* heavyAttack_;
+
 	std::array<Hability*, _lasHabilityId_> _habilitiesArray = {};
 
 	std::map <ConditionType, vector<Condition*>> _conditions;
@@ -32,6 +35,12 @@ protected:
 		for (int i = 0; i < _lastConditionType_; i++)
 			_conditions[(ConditionType)i] = vector<Condition*>();
 		_sheet = new CharacterSheet();
+
+		lightAttack_ = new LightAttack(this);
+		heavyAttack_ = new HeavyStrike(this);
+
+		_habilitiesArray[LightAttack::id()] = lightAttack_;
+		_habilitiesArray[HeavyStrike::id()] = lightAttack_;
 	}
 
 	virtual void loadFromJson(jute::jValue v, int t) = 0;
@@ -45,6 +54,8 @@ public:
 	}
 
 	~Character();
+
+	Weapon* getWeapon() { return _weapon; }
 
 	void loadFromTemplate(jute::jValue v, heroTemplate t);
 
@@ -63,6 +74,12 @@ public:
 	int throwStat(mainStat stat);
 
 	bool checkHit(int hit);
+
+	void removeConditions();
+
+	void removeGoodConditions();
+
+	void removeBadConditions();
 
 	CharacterSheet* getCharacterSheet() { return _sheet; }
 
@@ -134,7 +151,6 @@ public:
 		return _habilities;
 	}
 
-
 	bool isDead() {
 		return !_sheet->hitPoints();
 	}
@@ -159,6 +175,8 @@ private:
 
 	int expNeed = 90, expMax = 100;
 
+	int level = 0;
+
 	bool _deathGate = false;
 
 	virtual void loadFromJson(jute::jValue v, int t);
@@ -170,8 +188,6 @@ public:
 	}
 
 	~Hero();
-
-	Weapon* getWeapon() { return _weapon; }
 
 	void giveWeapon(Weapon* w) { _weapon = w; }
 
@@ -195,6 +211,8 @@ public:
 	void endCombat(int exp);
 
 	void showSpellList();
+
+	void killHero();
 
 	void manageInput(CombatManager* cm, int input);
 

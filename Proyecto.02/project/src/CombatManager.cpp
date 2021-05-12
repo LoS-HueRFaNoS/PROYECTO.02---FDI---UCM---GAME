@@ -83,8 +83,9 @@ void CombatManager::showTargets()
 #pragma endregion
 
 
-void CombatManager::startCombat()
+void CombatManager::startCombat(bool boss)
 {
+	_boss = boss;
 	changeState(COMBAT_START);
 }
 
@@ -125,27 +126,72 @@ bool CombatManager::checkEnd()
 	return end;
 }
 
+void CombatManager::tryEscape()
+{
+	if (_boss) {
+		cout << "YOU CAN'T ESCAPE FROM THIS COMBAT\n";
+		return;
+	}
+
+	cout << "YOU TRY TO ESCAPE\n";
+
+	int tiradasH = 0;
+	int tiradasE = 0;
+
+	for (Hero* h : _heroes) {
+		if (!h->isDead())
+			tiradasH += h->throwStat(DEX) + h->getMod(DEX);
+	}
+	for (Enemy* e : _enemies) {
+		if (!e->isDead())
+			tiradasE += e->throwStat(DEX) + e->getMod(DEX);
+	}
+
+	cout << "Heroes: " << tiradasH << "\n";
+	cout << "Enemies: " << tiradasE << "\n";
+
+	if (tiradasH > tiradasE) {
+		cout << "YOU ESCAPED \n";
+		bool leftBehind = false;
+		_exp = 0;
+
+		for (Hero* h : _heroes)
+			if (h->isDead()) {
+				h->killHero();
+				leftBehind = true;
+				cout << "You just left " << h->name() << " behind !!! \n";
+			}
+		if (!leftBehind)
+			cout << "No one was left behind\n";
+		changeState(COMBAT_END);
+		_win = true;
+	}
+	else {
+		cout << "YOU FAILED TO ESCAPE \n";
+	}
+}
+
 void CombatManager::endCombat()
 {
 	if (_win) {
 		cout << "GANASTE, ERES BUENISIMO NO ?" << endl << _exp << " DE EXPERIENCIA GANADA" << endl;
 
-		for (Hero* h : _heroes)
-			h->endCombat(_exp);
-	}
-	else
-		cout << "PERDISTE, ASI ES LA VIDA" << endl;
-
-	for (Hero* h : _heroes) {
-		if (h->getDeathGate()) {
-			TheElementalMaze::instance()->getPartyManager()->removeHero(h);
+		for (Hero* h : _heroes) {
+			if (h->getDeathGate())
+				TheElementalMaze::instance()->getPartyManager()->removeHero(h);
+			else
+				h->endCombat(_exp);
 		}
 	}
+	else {
+		cout << "PERDISTE, ASI ES LA VIDA" << endl;
+		TheElementalMaze::instance()->getPartyManager()->partyLost();
+	}
+
 	_heroes.clear();
 	for (Enemy* e : _enemies) {
 		e->disable();
 	}
-
 	_enemies.clear();
 
 	_turnQueue.clear();
@@ -197,6 +243,7 @@ void CombatManager::castToTeam()
 	}
 
 }
+
 
 void CombatManager::castToSingleTarget(int input)
 {
@@ -294,7 +341,11 @@ void CombatManager::onStateChanged()
 		cout << "---------- PRESS ENTER TO END COMBAT ----------" << endl;
 		break;
 	case NO_COMBAT:
-		TheElementalMaze::instance()->changeState(EXPLORING);
+		if (_win)
+			TheElementalMaze::instance()->changeState(EXPLORING);
+		else
+			TheElementalMaze::instance()->changeState(LOBBY);
+
 		break;
 	default:
 		break;
@@ -319,6 +370,10 @@ void CombatManager::sendKeyEvent(int key)
 			changeState(END_TURN);
 			break;
 		}
+		else if (key == -4) {
+			tryEscape();
+			break;
+		}
 		if (!currentCharacter->getType())
 			static_cast<Hero*>(currentCharacter)->manageInput(this, key);
 		break;
@@ -328,7 +383,7 @@ void CombatManager::sendKeyEvent(int key)
 			changeState(ACTION_PHASE_SPELL);
 			break;
 		}
-		if (!currentCharacter->getType())
+		if (!currentCharacter->getType() && key >= 0)
 			castToSingleTarget(key);
 		break;
 	case COMBAT_END:
@@ -360,5 +415,8 @@ void CombatManager::update()
 		else if (ih->isKeyDown(SDLK_8)) sendKeyEvent(8);
 		else if (ih->isKeyDown(SDLK_9)) sendKeyEvent(9);
 		else if (ih->isKeyDown(SDLK_RETURN)) sendKeyEvent(-1);
+		else if (ih->isKeyDown(SDLK_l)) sendKeyEvent(-2);
+		else if (ih->isKeyDown(SDLK_h)) sendKeyEvent(-3);
+		else if (ih->isKeyDown(SDLK_x)) sendKeyEvent(-4);
 	}
 }
