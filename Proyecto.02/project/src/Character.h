@@ -174,7 +174,7 @@ private:
 
 	int expNeed = 90, expMax = 100;
 
-	int level = 0;
+	int level = 0, pointsPerLevel = 0;
 
 	bool _deathGate = false;
 
@@ -206,6 +206,8 @@ public:
 	void resetThrows();
 
 	void levelUp(int exp);
+
+	void changeHeroStat(rpgLogic::mainStat stat);
 
 	void endCombat(int exp);
 

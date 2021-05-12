@@ -25,6 +25,21 @@
 
 using namespace std;
 
+unique_ptr<Game> Game::instance_;
+
+Game* Game::Init()
+{
+	assert(instance_.get() == nullptr);
+	instance_.reset(new Game());
+	return instance_.get();
+}
+
+Game* Game::Instance()
+{
+	assert(instance_.get() != nullptr);
+	return instance_.get();
+}
+
 Game::Game() : game_(nullptr),			   //
 			   entityManager_(nullptr),	   //
 			   characterManager_(nullptr), //
@@ -110,6 +125,7 @@ void Game::stop()
 {
 	exit_ = true;
 }
+
 
 void Game::handleInput()
 {

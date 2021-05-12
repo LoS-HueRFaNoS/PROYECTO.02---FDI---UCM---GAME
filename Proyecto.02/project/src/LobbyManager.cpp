@@ -7,7 +7,7 @@
 
 
 LobbyManager::LobbyManager(PartyManager* party)
-	: party_(party)
+	: party_(party), lobbyStore_(nullptr)
 {
 	playerStash_ = new Stash();
 }
