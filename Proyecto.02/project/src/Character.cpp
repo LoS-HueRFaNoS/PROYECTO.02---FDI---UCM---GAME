@@ -33,13 +33,13 @@ void Character::startTurn(CombatManager* cm)
 	// Manejar estados y cambios que ocurren al pasar de turnos
 	cout << name() << " TURN" << endl;
 
-	for (std::vector<Condition*>::iterator it = _conditions[ON_TURN_STARTED].begin(); it != _conditions[ON_TURN_STARTED].end();)
+	for (std::vector<Condition*>::iterator it = _conditions.begin(); it != _conditions.end();)
 	{
 		if (!(*it)->onTurnStarted())
 		{
 			Condition* temp = (*it);
 			removeCondition((*it)->getId());
-			it = _conditions[ON_TURN_STARTED].erase(it);
+			it = _conditions.erase(it);
 			delete temp;
 		}
 		else
@@ -53,13 +53,13 @@ void Character::startTurn(CombatManager* cm)
 
 void Character::endTurn()
 {
-	for (std::vector<Condition*>::iterator it = _conditions[ON_TURN_ENDED].begin(); it != _conditions[ON_TURN_ENDED].end();)
+	for (std::vector<Condition*>::iterator it = _conditions.begin(); it != _conditions.end();)
 	{
 		if (!(*it)->onTurnEnd())
 		{
 			Condition* temp = (*it);
 			removeCondition((*it)->getId());
-			it = _conditions[ON_TURN_ENDED].erase(it);
+			it = _conditions.erase(it);
 			delete temp;
 		}
 		else
@@ -79,15 +79,15 @@ void Character::loadFromTemplate(jute::jValue v, enemyTemplate t)
 	loadFromJson(v, t);
 }
 
-void Character::recieveDamage(int damage, rpgLogic::damageType type)
+void Character::recieveDamage(int damage, rpgLogic::damageType type, Character* attacker)
 {
-	for (std::vector<Condition*>::iterator it = _conditions[ON_ATTACK_RECIEVED].begin(); it != _conditions[ON_ATTACK_RECIEVED].end();)
+	for (std::vector<Condition*>::iterator it = _conditions.begin(); it != _conditions.end();)
 	{
-		if (!(*it)->onAttackRecieved(damage))
+		if (!(*it)->onAttackRecieved(damage, attacker))
 		{
 			Condition* temp = (*it);
 			removeCondition((*it)->getId());
-			it = _conditions[ON_ATTACK_RECIEVED].erase(it);
+			it = _conditions.erase(it);
 			delete temp;
 		}
 		else
@@ -98,13 +98,13 @@ void Character::recieveDamage(int damage, rpgLogic::damageType type)
 	if (_sheet->recieveDamage(damage, type))
 	{
 		cout << name() << " has fainted" << endl;
-		for (std::vector<Condition*>::iterator it = _conditions[ON_DEATH].begin(); it != _conditions[ON_DEATH].end();)
+		for (std::vector<Condition*>::iterator it = _conditions.begin(); it != _conditions.end();)
 		{
-			if (!(*it)->onDeath())
+			if (!(*it)->onDeath(attacker))
 			{
 				Condition* temp = (*it);
 				removeCondition((*it)->getId());
-				it = _conditions[ON_DEATH].erase(it);
+				it = _conditions.erase(it);
 				delete temp;
 			}
 			else
@@ -160,31 +160,34 @@ bool Character::checkHit(int hit)
 
 void Character::removeConditions()
 {
-	for (int i = 0; i < _lastConditionType_; i++) {
-		for (Condition* c : _conditions[(ConditionType)i])
-		{
-			delete c;
-			c = nullptr;
-		}
-		_conditions[(ConditionType)i].clear();
+	for (Condition* c : _conditions)
+	{
+		delete c;
+		c = nullptr;
 	}
+	_conditions.clear();
 }
 
 void Character::removeGoodConditions()
 {
-	for (int i = 0; i < _lastConditionType_; i++) {
-		for (auto it = _conditions[(ConditionType)i].begin(); it != _conditions[(ConditionType)i].end();)
-		{
-			if ((*it)->isPositive())
-				it = _conditions[(ConditionType)i].erase(it);
-			else
-				it++;
-		}
+	for (auto it = _conditions.begin(); it != _conditions.end();)
+	{
+		if ((*it)->isPositive())
+			it = _conditions.erase(it);
+		else
+			it++;
 	}
 }
 
 void Character::removeBadConditions()
 {
+	for (auto it = _conditions.begin(); it != _conditions.end();)
+	{
+		if (!(*it)->isPositive())
+			it = _conditions.erase(it);
+		else
+			it++;
+	}
 }
 
 #pragma endregion
@@ -330,7 +333,7 @@ void Hero::levelUp(int exp)
 			for (int i = 0; i < _LastStatId_; i++)
 			{
 				if (_sheet->getStatValue(i) < 19)
-					_sheet->changeStat(mainStat(i), 2);		
+					_sheet->changeStat(mainStat(i), 2);
 			}
 		}
 

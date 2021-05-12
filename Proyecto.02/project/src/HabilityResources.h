@@ -875,15 +875,6 @@ enum Conditions_Id {
 	_lastConditionId_
 };
 
-
-enum ConditionType {
-	ON_TURN_STARTED,
-	ON_TURN_ENDED,
-	ON_ATTACK_RECIEVED,
-	ON_DEATH,
-	_lastConditionType_
-};
-
 class Condition {
 protected:
 	std::string _name = "DefaultName";
@@ -893,8 +884,9 @@ protected:
 	int _turns = 0;
 	int _stack = 1;
 
-	ConditionType _type;
 	Conditions_Id _id;
+
+	Character* _caster;
 
 	Character* _objective;
 
@@ -904,18 +896,18 @@ public:
 
 	Condition() :_objective(nullptr) {}
 
-	Condition(Character* objective) :_objective(objective) {
+	Condition(Character* objective, Character* caster) :_objective(objective), _caster(caster) {
 	}
 
 	virtual void init() = 0;
 
-	virtual bool onTurnStarted() { return false; };
+	virtual bool onTurnStarted() { return true; };
 
-	virtual bool onTurnEnd() { return false; };
+	virtual bool onTurnEnd() { return true; };
 
-	virtual bool onAttackRecieved(int& damage) { return false; };
+	virtual bool onAttackRecieved(int& damage, Character* attacker) { return true; };
 
-	virtual bool onDeath() { return false; };
+	virtual bool onDeath(Character* attacker) { return true; };
 
 	bool isPositive() { return _positive; }
 
@@ -927,18 +919,15 @@ public:
 
 	Conditions_Id getId() { return _id; }
 
-	ConditionType getType() { return _type; }
-
 	static Conditions_Id id() { return _lastConditionId_; }
 };
 
 class Bleeding : public Condition {
 public:
-	Bleeding(Character* objective) : Condition(objective) {
+	Bleeding(Character* objective, Character* caster) : Condition(objective, caster) {
 		_name = "Ejemplo de daño cada turno";
 		_description = "Hace 1d3 de daño cada turno, durante 3 turnos";
 		_turns = 3;
-		_type = ON_TURN_STARTED;
 		_id = BLEEDING;
 		resetTurns();
 	}
@@ -954,11 +943,10 @@ public:
 class EjemploCuracionFinalTurno : public Condition {
 public:
 
-	EjemploCuracionFinalTurno(Character* objective) : Condition(objective) {
+	EjemploCuracionFinalTurno(Character* objective, Character* caster) : Condition(objective, caster) {
 		_name = "Ejemplo de daño cada turno";
 		_description = "Cura 1d3 cada final de turno, durante 3 turnos";
 		_turns = 3;
-		_type = ON_TURN_ENDED;
 		_id = EJEMPLOCURACIONFINALTURNO;
 		resetTurns();
 	}
@@ -973,17 +961,16 @@ public:
 class EjemploReduccionAtaque : public Condition {
 public:
 
-	EjemploReduccionAtaque(Character* objective) : Condition(objective) {
+	EjemploReduccionAtaque(Character* objective, Character* caster) : Condition(objective, caster) {
 		_name = "Ejemplo de daño cada turno";
 		_description = "Reduce el daño el siguiente ataque a la mitad";
-		_type = ON_ATTACK_RECIEVED;
 		_id = EJEMPLOREDUCCIONATAQUE;
 		resetTurns();
 	}
 
 	virtual void init();
 
-	virtual bool onAttackRecieved(int& damage);
+	virtual bool onAttackRecieved(int& damage, Character* attacker);
 
 	static Conditions_Id id() { return EJEMPLOREDUCCIONATAQUE; }
 };
@@ -992,17 +979,16 @@ public:
 class EjemploRevivirMuerte : public Condition {
 public:
 
-	EjemploRevivirMuerte(Character* objective) : Condition(objective) {
+	EjemploRevivirMuerte(Character* objective, Character* caster) : Condition(objective, caster) {
 		_name = "Ejemplo de daño cada turno";
 		_description = "Revivira con 5 de vida al morir";
-		_type = ON_DEATH;
 		_id = EJEMPLOREVIVIRMUERTE;
 		resetTurns();
 	}
 
 	virtual void init();
 
-	virtual bool onDeath();
+	virtual bool onDeath(Character* attacker);
 
 	static Conditions_Id id() { return EJEMPLOREVIVIRMUERTE; }
 };
@@ -1014,10 +1000,9 @@ public:
 class BuffStats : public Condition {
 public:
 
-	BuffStats(Character* objective, int val, mainStat stat, std::string name, std::string description) :statMod(stat), value(val), Condition(objective) {
+	BuffStats(Character* objective, Character* caster, int val, mainStat stat, std::string name, std::string description) :statMod(stat), value(val), Condition(objective, caster) {
 		_name = name;
 		_description = description;
-		_type = ON_TURN_STARTED;
 		_id = BUFFSTATS;
 		(val > 0) ? _positive = true : _positive = false;
 
@@ -1039,17 +1024,16 @@ private:
 class DeterminationCond : public Condition {
 public:
 
-	DeterminationCond(Character* objective) : Condition(objective) {
+	DeterminationCond(Character* objective, Character* caster) : Condition(objective, caster) {
 		_name = "Determination condition";
 		_description = "Cuando muera el personaje este revivira con 1 punto de vida";
-		_type = ON_DEATH;
 		_id = DETERMINATIONCOND;
 		resetTurns();
 	}
 
 	virtual void init();
 
-	virtual bool onDeath();
+	virtual bool onDeath(Character* attacker);
 
 	static Conditions_Id id() { return DETERMINATIONCOND; }
 };

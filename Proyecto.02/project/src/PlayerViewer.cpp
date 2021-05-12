@@ -111,14 +111,12 @@ void PlayerViewer::draw()
 
 		}
 		else manager->getTexture(Resources::muro_fr)->render(dest);
-
-
-
 	}
 	else manager->getTexture(Resources::muro_del)->render(dest);
-
 	renderEnemyActual();
-	//if (cas->isExit()) //Photoshop poniendo que tienes que clickear tecla E para acabar este lab o sudar y seguir
+	if (cas->isExit()) {
+		manager->getTexture(Resources::texto_salida)->render(dest);
+	}
 		//manager->getTexture(Resources::guiaSalida)->render(SDL_Rect{game_->getWindowWidth()/2-50, 100, 100,50});
 }
 

@@ -44,6 +44,8 @@ vector<Resources::ImageInfo> Resources::images_{
 	{pared_E, "resources/images/pasillos/pared_este.png"},				//
 	{pared_S, "resources/images/pasillos/pared_sur.png"},				//
 	{pared_O, "resources/images/pasillos/pared_oeste.png"},				//
+	{salidaMiniMap, "resources/images/pasillos/salida.png"},				//
+	{texto_salida, "resources/images/texto_salida.png"},				//
 
 	{start, "resources/images/Menu/StartBoton.png"},
 	{options, "resources/images/Menu/options.png"},
