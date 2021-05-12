@@ -644,9 +644,9 @@ void Interfaz::update()
 	} else if (TheElementalMaze::instance()->gameState() == EXPLORING && !getEnablePan(Movement)) {
 		togglePanel(Movement);
 		if (getActivePan(Fight)) removePanel(Fight);
+		// PARTY
+		checkHerosParty();
 	}
-	// PARTY
-	checkHerosParty();
 }
 
 Entity* Interfaz::getEntity()
