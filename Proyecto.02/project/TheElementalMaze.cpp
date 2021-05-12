@@ -77,6 +77,7 @@ void TheElementalMaze::onStateChanged()
 	{
 	case MainMenu:
 		cout << "MAIN MENU" << endl;
+		break;
 	case LOBBY:
 		cout << "LOBBY REACHED" << endl;
 		lobbyManager_->backFromDungeon();

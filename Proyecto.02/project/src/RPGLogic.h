@@ -96,19 +96,23 @@ namespace rpgLogic {
 
 	enum enemyTemplate {
 		//Nivel 0
-		GOBLIN, 
+		GOBLIN,
 		PIXIE,
 		//Nivel 1
 		ZOMBIE,
 		SKELETON,
 		SPECTER,
-		TROLL, 
+		TROLL,
 		//Nivel 2
 		HELLHOUND,
 		MIMIC,
 		GHOUL,
 		GIANTWORM,
-		BANSHEE, 
+		BANSHEE,
+		LICH,
+		NECROFAGO,
+		MONSTER,
+		DESCONOCIDO,
 		//Minibosses
 		DEATHKNIGHT, 
 		DRACOLICH, 
