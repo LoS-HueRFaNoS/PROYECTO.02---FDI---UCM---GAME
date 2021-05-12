@@ -222,10 +222,10 @@ void callbacks::startLobby(Interfaz* app)
 {
 	TheElementalMaze::instance()->changeState(LOBBY);
 	app->togglePanel(MenuPrincipal);
-	//app->createPanel(Lobby);
-	//app->togglePanel(Movement);
-	//app->togglePanel(Heroes);
-	//app->togglePanel(Info);
+	app->createPanel(Lobby);
+	app->togglePanel(Movement);
+	app->togglePanel(Heroes);
+	app->togglePanel(Info);
 	std::cout << "startLobby se ha activado\n";
 }
 void callbacks::options(Interfaz* app)
