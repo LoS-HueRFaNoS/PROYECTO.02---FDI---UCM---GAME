@@ -87,7 +87,7 @@ protected:
 public:
 
 	static Hability_Id id() {
-		return _lasHabilityId_;;
+		return _lasHabilityId_;
 	}
 
 	Hability() :_caster(nullptr) {}
@@ -121,7 +121,7 @@ public:
 
 class LightAttack : public Hability {
 public:
-	LightAttack(Character* caster = nullptr) :Hability(caster) {
+	LightAttack(Character* caster = nullptr) : Hability(caster) {
 		level = 0;
 		_mana = 0;
 		_name = "Light Attack";

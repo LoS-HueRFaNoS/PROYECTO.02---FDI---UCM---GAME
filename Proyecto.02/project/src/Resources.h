@@ -81,31 +81,31 @@ public:
 		RotarI,
 		Interactuar,
 
-		//Info
+//Info
 		Inventario,
 		PocionVida,
 		PocionMana,
 		PocionRess,
 		Chat,
-		Configuracion, 
+		Configuracion,
 
-		//Combate
+//Combate
 		AtaqueNormal,
-		AtaqueMagico, 
+		AtaqueMagico,
 		Defensa,
 		Huida,
 		Marco,
 		Target,
 		Hability,
 
-		//Inventario
+//Inventario
 		Slot,
 		EmptySword,
 		EmptyArmor,
 		WeaponSlot,
 		ArmorSlot,
 
-		//Objetos
+//Objetos
 		Desarmado,
 		Baston,
 		Daga,
@@ -118,10 +118,10 @@ public:
 		ArcoPequeno,
 		BallestaLigera,
 
-		// Comodin
+// Comodin
 		Joker,
 
-		//Armas Marciales
+//Armas Marciales
 		Alabarda,
 		Atarraga,
 		EspadaCorta,
@@ -168,7 +168,46 @@ public:
 		Desconocido,
 
 		//Ficha DD
-		Pergamino
+		Pergamino,
+
+		//Habilidades
+		Aligerar,
+		Bendicion,
+		Bloody_strike,
+		Bola_fuego,
+		Congelar,
+		Cuchilla_aerea,
+		Curacion_en_masa,
+		Curacion,
+		Destello,
+		Determinacion,		
+		DisparoDoble,
+		Endurecer,
+		Espinas,
+		FlechaDeFuego,
+		FlechaDeHumo,
+		Fortalecer,
+		GolpeDuro,
+		HachaArrojadiza,
+		LightAttack,
+		LluviaDeDagas,
+		Meditacion,
+		OdaDeLosGladiadores,
+		OdaDeViento,
+		PilarDeTierra,
+		ProyectilesDeRoca,
+		RafagaDeViento,
+		RayoLuminoso,
+		Sacrificio,
+		SedDeSangre,
+		SelfHeal,
+		Sombra_toxica,
+		Proteccion_divina,
+		TorrenteAcuatico,
+		Trickshot,
+		Tsunami,
+		VorticeDeOscuridad,
+		Morph
 	};
 
 	enum AudioId : std::size_t {

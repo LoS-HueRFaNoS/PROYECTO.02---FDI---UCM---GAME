@@ -908,6 +908,140 @@ Resources::TextureId Interfaz::getItemTxt(uint number)
 		}
 	}
 
+	return id;
+}
+
+Resources::TextureId Interfaz::getHabilityTxt(uint hero, uint number) 
+{
+	PartyManager* c = TheElementalMaze::instance()->getPartyManager();
+	std::vector<Hero*> heroes = c->getHeroes();
+	std::vector<Hability*> habilities = heroes[number]->getHabilities();
+
+	Resources::TextureId id;
+
+	Hability_Id idHability = habilities[number]->id();
+	switch (idHability)
+	{
+		//-----------------------
+	case LIGHTATTACK:
+		id = src::LightAttack;
+		break;
+	case FIREBALL:
+		id = src::Bola_fuego;
+		break;
+	case BLOODYSTRIKE:
+		id = src::Bloody_strike;
+		break;
+	case HEALINGWORD:
+		id = src::Curacion;
+		break;
+	case ALLYTEAMHEALEXAMPLE:
+		id = src::Curacion_en_masa;
+		break;
+	case SELFHEALEXAMPLE:
+		id = src::SelfHeal;
+		break;
+	case ALLYTEAMATTACKEXAMPLE:
+		id = src::LightAttack;
+		break;
+	case WINDBURST:
+		id = src::RafagaDeViento;
+		break;
+	case WINDSLASH:
+		id = src::Cuchilla_aerea;
+		break;
+	case ROCKPILLAR:
+		id = src::PilarDeTierra;
+		break;
+	case TOXICSHADOW:
+		id = src::Sombra_toxica;
+		break;
+	case TSUNAMI:
+		id = src::Tsunami;
+		break;
+		//-----------------------
+	case DIVINEPROTECTION:
+		id = src::Proteccion_divina;
+		break;
+	case FLASH:
+		id = src::Destello;
+		break;
+	case FREEZE:
+		id = src::Congelar;
+		break;
+	case WHIRLPOOL:
+		id = src::TorrenteAcuatico;
+		break;
+	case LIGHTBEAM:
+		id = src::RayoLuminoso;
+		break;
+	case DARKVORTEX:
+		id = src::VorticeDeOscuridad;
+		break;
+	case FIREARROW:
+		id = src::FlechaDeFuego;
+		break;
+	case MEDITATE:
+		id = src::Meditacion;
+		break;
+	case LIGHTEN:
+		id = src::Aligerar;
+		break;
+	case STRENGTHEN:
+		id = src::Fortalecer;
+		break;
+	case TOUGHEN:
+		id = src::Endurecer;
+		break;
+	case BLOODTHIRST:
+		id = src::SedDeSangre;
+		break;
+		//-------------------
+	case SACRIFICE:
+		id = src::Sacrificio;
+		break;
+	case DOUBLESHOT:
+		id = src::DisparoDoble;
+		break;
+	case THROWINGAXES:
+		id = src::HachaArrojadiza;
+		break;
+	case MORPH:
+		id = src::Morph;
+		break;
+	case REVERSEMORPH:
+		id = src::Morph;
+		break;
+	case HEAVYSTRIKE:
+		id = src::GolpeDuro;
+		break;
+	case SMOKEARROW:
+		id = src::FlechaDeHumo;
+		break;
+	case RAINOFDAGGERS:
+		id = src::LluviaDeDagas;
+		break;
+	case ROCKPROJECTILES:
+		id = src::ProyectilesDeRoca;
+		break;
+	case TRICKSHOT:
+		id = src::Trickshot;
+		break;
+	case GLADIATORBALLAD:
+		id = src::OdaDeLosGladiadores;
+		break;
+	case WINDSONG:
+		id = src::OdaDeViento;
+		break;
+		//-----------------------
+	case DETERMINATION:
+		id = src::Determinacion;
+		break;
+	case _lasHabilityId_:
+		break;
+	default:
+		break;
+	}
 
 	return id;
 }
