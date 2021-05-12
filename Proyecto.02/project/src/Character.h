@@ -27,13 +27,12 @@ protected:
 
 	std::array<Hability*, _lasHabilityId_> _habilitiesArray = {};
 
-	std::map <ConditionType, vector<Condition*>> _conditions;
+	std::vector<Condition*> _conditions;
 
 	std::array<Condition*, _lastConditionId_> _conditonsArray = {};
 
 	virtual void init() {
-		for (int i = 0; i < _lastConditionType_; i++)
-			_conditions[(ConditionType)i] = vector<Condition*>();
+			_conditions = vector<Condition*>();
 		_sheet = new CharacterSheet();
 
 		lightAttack_ = new LightAttack(this);
@@ -61,7 +60,7 @@ public:
 
 	void loadFromTemplate(jute::jValue v, enemyTemplate t);
 
-	void recieveDamage(int damage, damageType type);
+	void recieveDamage(int damage, damageType type, Character* attacker = nullptr);
 
 	virtual void recieveHealing(int healing);
 
@@ -125,7 +124,7 @@ public:
 	void addCondition(TArgs&& ...mArgs) {
 		if (!hasCondition(T::id())) {
 			T* c(new T(this, std::forward<TArgs>(mArgs)...));
-			_conditions[c->getType()].push_back(c);
+			_conditions.push_back(c);
 			_conditonsArray[T::id()] = c;
 			c->init();
 		}
