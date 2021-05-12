@@ -25,6 +25,11 @@ TheElementalMaze::~TheElementalMaze()
 void TheElementalMaze::init()
 {
 	// 3. Personajes
+	laberinto_ = addComponent<Laberinto>(10, 10);
+	player_ = mngr_->addEntity();
+	player_->addComponent<MazePos>(Vector2D(0, 0));
+	player_->addComponent<PlayerMotion>(SDLK_UP, SDLK_LEFT, SDLK_RIGHT, laberinto_);
+	player_->addComponent<PlayerViewer>(laberinto_);
 	itemManager_ = new ItemManager();
 
 	HabilityManager::Init();
@@ -80,19 +85,19 @@ void TheElementalMaze::onStateChanged()
 		break;
 	case LOBBY:
 		cout << "LOBBY REACHED" << endl;
+		//removeComponent()
+		//delete player_;
 		lobbyManager_->backFromDungeon();
 		break;
 	case START_EXPLORING:
 		cout << "EXPLORATION STARTED" << endl;
 		// 1. Laberinto
-		laberinto_ = addComponent<Laberinto>(10, 10);
+		
 		laberinto_->createRandomMaze(Vector2D(0, 0));
 
 		// 2. Player
-		player_ = mngr_->addEntity(); // lo primero en crearse deber�a ser el player �?
-		player_->addComponent<MazePos>(Vector2D(0, 0));
-		player_->addComponent<PlayerMotion>(SDLK_UP, SDLK_LEFT, SDLK_RIGHT, laberinto_);
-		player_->addComponent<PlayerViewer>(laberinto_);
+		 // lo primero en crearse deber�a ser el player �?
+		
 		changeState(EXPLORING);
 		break;
 	case EXPLORING:
@@ -104,8 +109,8 @@ void TheElementalMaze::onStateChanged()
 		combatManager_->startCombat();
 		break;
 	case END_EXPLORING:
-		removeComponent(ecs::Laberinto);
-		delete player_;
+		//removeComponent(ecs::Laberinto);
+		//delete player_;
 		break;
 	default:
 		break;

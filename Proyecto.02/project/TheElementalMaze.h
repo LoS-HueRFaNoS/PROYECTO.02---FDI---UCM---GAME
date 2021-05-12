@@ -48,7 +48,9 @@ public:
 	TheElementalMaze(SDLGame* game, EntityManager* mngr, CharacterManager* chMngr, InterfazManager* iMngr) :
 		characterManager_(chMngr),
 		iManager_(iMngr),
-		Entity(game, mngr)
+		Entity(game, mngr),
+		player_(nullptr),
+		laberinto_(nullptr)
 	{};
 
 public:

@@ -29,6 +29,7 @@ void PlayerMotion::update()
 	if (ih->isKeyDown(avance)) { avanzar(); }
 	else if (ih->isKeyDown(giraIzq)) { rotarIzquierda(); }
 	else if (ih->isKeyDown(giraDer)) { rotarDerecha(); }
+	else if (ih->isKeyDown(SDLK_e) && lab->getCasillaInfo(x, y)->isExit()) { TheElementalMaze::instance()->changeState(LOBBY); }
 }
 
 void PlayerMotion::rotarDerecha()

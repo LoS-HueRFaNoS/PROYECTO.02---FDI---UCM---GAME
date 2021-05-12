@@ -72,7 +72,8 @@ void Laberinto::createRandomMaze(Vector2D entrada)
 
 	x = game_->getRandGen()->nextInt((w / 2), w);
 	y = game_->getRandGen()->nextInt((h / 2), h);
-	salida = Vector2D(x, y);
+	//salida = Vector2D(x, y);
+	salida = Vector2D(0, 1);
 	laberinto.resize(h);
 	for (int i = 0; i < h; ++i)
 		laberinto[i].resize(w);
