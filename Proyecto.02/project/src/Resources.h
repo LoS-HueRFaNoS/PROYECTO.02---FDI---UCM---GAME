@@ -9,9 +9,9 @@ using namespace std;
 class Resources {
 public:
 
-	enum TextureId : std::size_t {
+	enum TextureId {
 		// images
-		posMiniMap,
+		posMiniMap = 0,
 		camino_izq,
 		camino_der,
 		camino_fr,
@@ -57,13 +57,14 @@ public:
 		GameOverLost,
 
 		// heroes
-		Bardo,
-		Brujo,
-		Clerigo,
+		_firstHeroRId_,
 		Guerrero,
+		Brujo,
+		Explorador,
+		Bardo,
+		Clerigo,
 		Paladin,
 		Barbaro,
-		Explorador,
 		Picaro,
 		Druida,
 		Bestia,

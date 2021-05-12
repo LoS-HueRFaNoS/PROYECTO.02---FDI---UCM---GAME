@@ -692,41 +692,9 @@ Resources::TextureId Interfaz::getHeroTxt(uint number)
 
 	heroTemplate tem = heroes[number]->getTemplate();
 
-	Resources::TextureId id;
+	uint pivot = src::_firstHeroRId_;
 
-	switch (tem)
-	{
-	case rpgLogic::WARRIOR:
-		id = src::Guerrero;
-		break;
-	case rpgLogic::WIZARD:
-		id = src::Brujo;
-		break;
-	case rpgLogic::RANGER:
-		id = src::Explorador;
-		break;
-	case rpgLogic::BARD:
-		id = src::Bardo;
-		break;
-	case rpgLogic::CLERIC:
-		id = src::Clerigo;
-		break;
-	case rpgLogic::PALADIN:
-		id = src::Paladin;
-		break;
-	case rpgLogic::BARBARIAN:
-		id = src::Barbaro;
-		break;
-	case rpgLogic::ROGUE:
-		id = src::Picaro;
-		break;
-	case rpgLogic::DRUID:
-		id = src::Druida;
-		break;
-	default:
-		id = Resources::TextureId();
-		break;
-	}
+	Resources::TextureId id = (Resources::TextureId)(pivot + tem + 1);
 
 	return id;
 } 

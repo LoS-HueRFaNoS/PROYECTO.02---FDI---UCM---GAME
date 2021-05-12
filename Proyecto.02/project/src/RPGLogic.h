@@ -109,10 +109,6 @@ namespace rpgLogic {
 		GHOUL,
 		GIANTWORM,
 		BANSHEE,
-		LICH,
-		NECROFAGO,
-		MONSTER,
-		DESCONOCIDO,
 		//Minibosses
 		DEATHKNIGHT, 
 		DRACOLICH, 
