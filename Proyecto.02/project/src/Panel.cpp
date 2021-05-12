@@ -1,8 +1,6 @@
 #include "Panel.h"
 #include "../TheElementalMaze.h"
 #include "InterfazManager.h"
-#include <vector>
-#include "Entity.h"
 
 void Panel::removeButtons()
 {
@@ -15,7 +13,6 @@ void Panel::removeButtons()
 
 void Panel::removeButton(uint n)
 {
-	list<Entity*> savedHeroes;
 	uint k = 0;
 	auto nHeros = buttonList.size();
 	for (auto it = buttonList.begin(); it != buttonList.end(); it++) {
@@ -23,12 +20,13 @@ void Panel::removeButton(uint n)
 			if (k == n) {
 				(*it)->disable();
 			}
-			else {
-				savedHeroes.push_back(*it);
-			}
 			k++;
 		}
 	}
+}
+
+void Panel::swapButtonList(vector<Entity*> savedHeroes)
+{
 	buttonList.swap(savedHeroes);
 }
 
