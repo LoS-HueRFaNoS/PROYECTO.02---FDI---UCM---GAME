@@ -4,6 +4,7 @@
 #include <iostream>
 #include "Interfaz.h"
 #include "ecs.h"
+#include "Game.h"
 
 // ----------------------------------------------------
 
@@ -240,7 +241,7 @@ void callbacks::howToPlay(Interfaz* app)
 }
 void callbacks::quit(Interfaz* app)
 {
-	
+	Game::Instance()->exitGame();
 	std::cout << "quit se ha activado\n";
 }
 #pragma endregion

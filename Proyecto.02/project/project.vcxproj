@@ -76,6 +76,7 @@
     <ClInclude Include="src\ButtonCtrl.h" />
     <ClInclude Include="src\callbacks.h" />
     <ClInclude Include="src\Casilla.h" />
+    <ClInclude Include="src\CasillaRender.h" />
     <ClInclude Include="src\Character.h" />
     <ClInclude Include="src\CharacterManager.h" />
     <ClInclude Include="src\CharacterSheet.h" />

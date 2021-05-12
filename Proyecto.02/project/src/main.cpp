@@ -6,10 +6,8 @@
 using namespace std;
 
 void start() {
-	Game* g = new Game();
+	Game* g = Game::Init();
 	g->start();
-
-	delete g;
 }
 
 int main(int ac, char **av) {
