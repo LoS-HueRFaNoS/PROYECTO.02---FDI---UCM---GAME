@@ -20,6 +20,7 @@ public:
 	}
 
 	void removeButtons();
+	void removeButton(uint n);
 
 	void addButton(Entity* b) {
 		buttonList.push_back(b);

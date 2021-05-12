@@ -1,18 +1,35 @@
 #include "Panel.h"
 #include "../TheElementalMaze.h"
 #include "InterfazManager.h"
+#include <vector>
+#include "Entity.h"
 
 void Panel::removeButtons()
 {
-	//for (auto it = buttonList.begin(); it != buttonList.end(); ++it)
 	for (auto it = buttonList.begin(); it != buttonList.end(); it++)
 	{
 		(*it)->disable();
-	}/*
-	for (auto& b : buttonList) {
-		TheElementalMaze::instance()->getUIManager()->removeEntity(b);
-	}*/
+	}
 	buttonList.clear();
+}
+
+void Panel::removeButton(uint n)
+{
+	list<Entity*> savedHeroes;
+	uint k = 0;
+	auto nHeros = buttonList.size();
+	for (auto it = buttonList.begin(); it != buttonList.end(); it++) {
+		{
+			if (k == n) {
+				(*it)->disable();
+			}
+			else {
+				savedHeroes.push_back(*it);
+			}
+			k++;
+		}
+	}
+	buttonList.swap(savedHeroes);
 }
 
 ButtonPanel* Panel::getButtonActive()
