@@ -27,36 +27,23 @@ public:
         PartyManager* p = TheElementalMaze::instance()->getPartyManager();
         assert(p != nullptr);
         heroes = p->getHeroes();
-
-        switch (type_)
-        {
-        case health:
-            maxStat_ = heroes[numHero_]->getCharacterSheet()->maxHitPoints();
-            break;
-        case mana:
-            maxStat_ = heroes[numHero_]->getCharacterSheet()->maxManaPoints();
-            break;
-        case experience:
-            maxStat_ = heroes[numHero_]->getExpMax();
-            break;
-        default:
-            break;
-        }
-
     }
 
     void update() override {
         switch (type_)
         {
         case health:
+            maxStat_ = heroes[numHero_]->getCharacterSheet()->maxHitPoints();
             stAct_ = heroes[numHero_]->getCharacterSheet()->hitPoints();
             color_ = hex2sdlcolor("#DD0000FF");
             break;
         case mana:
+            maxStat_ = heroes[numHero_]->getCharacterSheet()->maxManaPoints();
             stAct_ = heroes[numHero_]->getCharacterSheet()->manaPoints();
             color_ = hex2sdlcolor("#0055FFFF"); //5500AAFF
             break;
         case experience:
+            maxStat_ = heroes[numHero_]->getExpMax();
             stAct_ = heroes[numHero_]->getExp();
             color_ = hex2sdlcolor("#BBBB00FF"); //00EEFFFF
             break;
