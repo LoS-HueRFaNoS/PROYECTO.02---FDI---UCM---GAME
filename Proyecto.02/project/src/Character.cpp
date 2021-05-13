@@ -240,6 +240,14 @@ void Hero::loadFromJson(jute::jValue v, int t)
 	int r2 = v["Characters"][t]["Equipement"]["ListArmors"].size();
 	int idRArmor = v["Characters"][t]["Equipement"]["ListArmors"][game_->getRandGen()->nextInt(0, r2)].as_int();
 	_armor = TheElementalMaze::instance()->getItemManager()->getArmorFromId(armorId(idRArmor));
+
+	int size = v["Characters"][t]["ListHabilities"].size();
+
+	for (int i = 0; i < 2; i++)
+	{
+		int h = v["Characters"][t]["ListHabilities"][throwDice(1,size) - 1].as_int();
+		addHability((Hability_Id)h);
+	}
 }
 
 void Hero::endCombat(int exp)

@@ -86,11 +86,14 @@ void Game::initGame()
 
 	interfazManager_ = new InterfazManager(game_);
 
+	system("cls");
+
 	gameManager_ = TheElementalMaze::initInstace(game_, entityManager_, characterManager_, interfazManager_);
 
 	entityManager_->addEntity(gameManager_);
 
 	c_ = createCursor(Vector2D(200, 200), 50, 50, Resources::Mouse);
+
 
 	int endTime = 0;
 	delete tex_;
