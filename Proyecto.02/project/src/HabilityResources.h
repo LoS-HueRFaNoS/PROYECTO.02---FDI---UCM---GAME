@@ -142,7 +142,7 @@ public:
 	Fireball(Character* caster = nullptr) :Hability(caster) {
 
 		level = 4;
-		_mana = 0;
+		_mana = 4;
 		_name = "Fireball";
 		_description = "Bola de fuego to guapa, a hace 8d6 a todos los enemigos frente a salvacion DEX";
 
@@ -270,7 +270,7 @@ public:
 	WindBurst(Character* caster = nullptr) :Hability(caster) {
 
 		level = 4;
-		_mana = 0;
+		_mana = 3;
 		_name = "WindBurst";
 		_description = "Sal a que te de el aire, hace 8d6 a todos los enemigos frente a salvacion DEX (reduce DEX)";
 
@@ -289,8 +289,8 @@ class WindSlash : public Hability {
 public:
 	WindSlash(Character* caster = nullptr) :Hability(caster) {
 
-		level = 4;
-		_mana = 0;
+		level = 2;
+		_mana = 2;
 		_name = "Wind Slash";
 		_description = "Menuda brisa, a hace 1d8 a un enemigo frente a salvacion DEX";
 
@@ -309,8 +309,8 @@ class RockPillar : public Hability {
 public:
 	RockPillar(Character* caster = nullptr) :Hability(caster) {
 
-		level = 4;
-		_mana = 0;
+		level = 3;
+		_mana = 3;
 		_name = "Rock Pillar";
 		_description = "Mejorando la estructura, a hace 1d8 a un enemigo frente a salvacion DEX (reduce CON)";
 
@@ -329,8 +329,8 @@ class ToxicShadow : public Hability {
 public:
 	ToxicShadow(Character* caster = nullptr) :Hability(caster) {
 
-		level = 4;
-		_mana = 0;
+		level = 3;
+		_mana = 3;
 		_name = "Toxic Shadow";
 		_description = "Sientes cosquillas, a hace 1d8 a un enemigo frente a salvacion DEX (puede causar envenenamiento)";
 
@@ -350,7 +350,7 @@ public:
 	Tsunami(Character* caster = nullptr) :Hability(caster) {
 
 		level = 4;
-		_mana = 0;
+		_mana = 4;
 		_name = "Tsunami";
 		_description = "Avisaron de bandera roja, a hace 8d6 a todos los enemigos frente a salvacion DEX (y reduce STR)";
 
@@ -369,8 +369,8 @@ class DivineProtection : public Hability {
 public:
 	DivineProtection(Character* caster = nullptr) :Hability(caster) {
 
-		level = 4;
-		_mana = 0;
+		level = 3;
+		_mana = 2;
 		_name = "Divine protection";
 		_description = "Reduce el daño recibido en el proximo ataque";
 
@@ -389,8 +389,8 @@ class Flash : public Hability {
 public:
 	Flash(Character* caster = nullptr) :Hability(caster) {
 
-		level = 4;
-		_mana = 0;
+		level = 2;
+		_mana = 2;
 		_name = "Flash";
 		_description = "Sonrie, a hace 1d8 a un enemigo frente a salvacion DEX(reduce DEX)";
 
@@ -409,8 +409,8 @@ class Freeze : public Hability {
 public:
 	Freeze(Character* caster = nullptr) :Hability(caster) {
 
-		level = 4;
-		_mana = 0;
+		level = 3;
+		_mana = 3;
 		_name = "Freeze";
 		_description = "Winter is coming FOR THEM, a hace 1d8 a un enemigo frente a salvacion DEX (y reduce DEX)";
 
@@ -428,8 +428,8 @@ class Whirlpool : public Hability {
 public:
 	Whirlpool(Character* caster = nullptr) :Hability(caster) {
 
-		level = 4;
-		_mana = 0;
+		level = 1;
+		_mana = 2;
 		_name = "Whirlpool";
 		_description = "Mas agua, a hace 1d8 a un enemigo frente a salvacion DEX (y reduce DEX)";
 
@@ -447,8 +447,8 @@ class LightBeam : public Hability {
 public:
 	LightBeam(Character* caster = nullptr) :Hability(caster) {
 
-		level = 4;
-		_mana = 0;
+		level = 3;
+		_mana = 3;
 		_name = "Light Beam";
 		_description = "Muy bonito, pero doloroso, a hace 1d8 a un enemigo frente a salvacion DEX (y reduce DEX)";
 
@@ -466,8 +466,8 @@ class DarkVortex : public Hability {
 public:
 	DarkVortex(Character* caster = nullptr) :Hability(caster) {
 
-		level = 4;
-		_mana = 0;
+		level = 1;
+		_mana = 2;
 		_name = "Dark Vortex";
 		_description = "No veo, a hace 1d8 a un enemigo frente a salvacion DEX (y reduce DEX)";
 
@@ -486,8 +486,8 @@ class FireArrow : public Hability {
 public:
 	FireArrow(Character* caster = nullptr) :Hability(caster) {
 
-		level = 4;
-		_mana = 0;
+		level = 1;
+		_mana = 3;
 		_name = "Fire Arrow";
 		_description = "Quema, a hace 1d8 a un enemigo frente a salvacion DEX (y reduce DEX)";
 
@@ -507,8 +507,8 @@ class Lighten : public Hability {
 public:
 	Lighten(Character* caster = nullptr) :Hability(caster) {
 
-		level = 4;
-		_mana = 0;
+		level = 1;
+		_mana = 1;
 		_name = "Lighten";
 		_description = "Aumenta la destreza";
 
@@ -526,8 +526,8 @@ class Strengthen : public Hability {
 public:
 	Strengthen(Character* caster = nullptr) :Hability(caster) {
 
-		level = 4;
-		_mana = 0;
+		level = 1;
+		_mana = 1;
 		_name = "Strengthen";
 		_description = "Aumenta la fuerza";
 
@@ -545,8 +545,8 @@ class Toughen : public Hability {
 public:
 	Toughen(Character* caster = nullptr) :Hability(caster) {
 
-		level = 4;
-		_mana = 0;
+		level = 1;
+		_mana = 1;
 		_name = "Toughen";
 		_description = "Aumenta la constitucion";
 
@@ -564,8 +564,8 @@ class Meditate : public Hability {
 public:
 	Meditate(Character* caster = nullptr) :Hability(caster) {
 
-		level = 4;
-		_mana = 0;
+		level = 1;
+		_mana = 1;
 		_name = "Meditate";
 		_description = "Aumenta la inteligencia";
 
@@ -584,8 +584,8 @@ class BloodThirst : public Hability {
 public:
 	BloodThirst(Character* caster = nullptr) :Hability(caster) {
 
-		level = 4;
-		_mana = 0;
+		level = 2;
+		_mana = 3;
 		_name = "Blood Thirst";
 		_description = "Dame tu vida, a hace 1d8 a un enemigo frente a salvacion DEX y cura al usuario";
 
@@ -604,8 +604,8 @@ class Sacrifice : public Hability {
 public:
 	Sacrifice(Character* caster = nullptr) :Hability(caster) {
 
-		level = 4;
-		_mana = 0;
+		level = 2;
+		_mana = 2;
 		_name = "Sacrifice";
 		_description = "Dame tu vida, a hace 1d8 a un enemigo frente a salvacion DEX x1.5 ,pero recibe daño de retroceso";
 
@@ -624,8 +624,8 @@ class DoubleShot : public Hability {
 public:
 	DoubleShot(Character* caster = nullptr) :Hability(caster) {
 
-		level = 4;
-		_mana = 0;
+		level = 2;
+		_mana = 2;
 		_name = "Double Shot";
 		_description = "Dispara 2 flechas a la vez, la segunda flecha hace la mitad de daño de la primera";
 
@@ -645,7 +645,7 @@ public:
 	ThrowingAxes(Character* caster = nullptr) :Hability(caster) {
 
 		level = 4;
-		_mana = 0;
+		_mana = 3;
 		_name = "Throwing Axes";
 		_description = "Lanza 3 hachas";
 
@@ -666,8 +666,8 @@ class HeavyStrike : public Hability { //modificar la descripcion cuando lo ajust
 public:
 	HeavyStrike(Character* caster = nullptr) :Hability(caster) {
 
-		level = 4;
-		_mana = 0;
+		level = 3;
+		_mana = 3;
 		_name = "Heavy Strike";
 		_description = "El ataque hace el doble de daño con una gran probabilidad de fallar";
 
@@ -686,8 +686,8 @@ class SmokeArrow : public Hability {
 public:
 	SmokeArrow(Character* caster = nullptr) :Hability(caster) {
 
-		level = 4;
-		_mana = 0;
+		level = 2;
+		_mana = 2;
 		_name = "Smoke arrow";
 		_description = "Dispara una flecha de humo que desorienta a los enemigos y les reduce la destreza durante 3 turnos";
 
@@ -706,8 +706,8 @@ class Morph : public Hability {
 public:
 	Morph(Character* caster = nullptr) :Hability(caster) {
 
-		level = 4;
-		_mana = 0;
+		level = 0;
+		_mana = 4;
 		_name = "Morph";
 		_description = "Conviertete en una bestia alterando las estadisticas";
 
@@ -725,7 +725,7 @@ class ReverseMorph : public Hability {
 public:
 	ReverseMorph(Character* caster = nullptr) :Hability(caster) {
 
-		level = 4;
+		level = 0;
 		_mana = 0;
 		_name = "Reverse Morph";
 		_description = "Vuelve al estado anterior";
@@ -745,8 +745,8 @@ class RainOfDaggers : public Hability { //revisar los modificadores
 public:
 	RainOfDaggers(Character* caster = nullptr) :Hability(caster) {
 
-		level = 4;
-		_mana = 0;
+		level = 3;
+		_mana = 4;
 		_name = "Rain of Daggers";
 		_description = "Lanza un numero aleatorio de dagas entre 1 y 10 que hacen cada una un 20% del daño del personaje";
 
@@ -765,8 +765,8 @@ class RockProjectiles : public Hability {
 public:
 	RockProjectiles(Character* caster = nullptr) :Hability(caster) {
 
-		level = 4;
-		_mana = 0;
+		level = 3;
+		_mana = 3;
 		_name = "Rock Projectiles";
 		_description = "Dispara tres rocas que tiene cada una su propia probabilidad de fallar";
 
@@ -786,7 +786,7 @@ public:
 	TrickShot(Character* caster = nullptr) :Hability(caster) { //cambiar la descripcion si al final se hace lo de hacer 2 tiradas de ataque para confirmar que acierta
 
 		level = 4;
-		_mana = 0;
+		_mana = 3;
 		_name = "Trick Shot";
 		_description = "Dispara una flecha que hace el triple de daño";
 
@@ -806,7 +806,7 @@ public:
 	GladiatorBallad(Character* caster = nullptr) :Hability(caster) {
 
 		level = 0;
-		_mana = 0;
+		_mana = 3;
 		_name = "Gladiator's Ballad";
 		_description = "Aumenta la fuerza del equipo durante 3 turnos";
 
@@ -826,7 +826,7 @@ public:
 	WindSong(Character* caster = nullptr) :Hability(caster) {
 
 		level = 0;
-		_mana = 0;
+		_mana = 3;
 		_name = "Wind Song";
 		_description = "Aumenta la velocidad del equipo durante 3 turnos";
 
@@ -845,8 +845,8 @@ class Determination : public Hability {
 public:
 	Determination(Character* caster = nullptr) :Hability(caster) {
 
-		level = 0;
-		_mana = 0;
+		level = 3;
+		_mana = 4;
 		_name = "Determination";
 		_description = "El proximo golpe letal que reciba el personaje le dejara con 1 de vida en vez de matarle";
 
