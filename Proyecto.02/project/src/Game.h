@@ -2,8 +2,8 @@
 
 #include <vector>
 
-#include "SDLGame.h"
-#include "checkML.h"
+#include "Managers/SDLGame.h"
+#include "Utilities/checkML.h"
 
 class InterfazManager;
 class CharacterManager;
