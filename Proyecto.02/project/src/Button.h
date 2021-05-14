@@ -53,6 +53,7 @@ public:
 
 	virtual void click() 
 	{
+		game_->getAudioMngr()->playChannel(Resources::AudioId::Notification, 0, 0);
 		callbacks::movCommand((int)movementType_);
 	}
 };
@@ -205,6 +206,10 @@ public:
 
 	virtual void click()
 	{
+		game_->getAudioMngr()->haltMusic();
+		game_->getAudioMngr()->setChannelVolume(30, 0);
+		//game_->getAudioMngr()->haltChannel(0);
+
 		callbacks::potionType((int)potionType_);
 	}
 };
@@ -262,6 +267,9 @@ public:
 
 	virtual void click()
 	{
+		game_->getAudioMngr()->playMusic(Resources::Mystery, -1);
+		game_->getAudioMngr()->setMusicVolume(50);
+
 		callbacks::createPanel(activated, pan_);
 		if (!activated) turnON();
 		else turnOFF();
