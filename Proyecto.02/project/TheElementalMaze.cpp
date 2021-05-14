@@ -40,28 +40,10 @@ void TheElementalMaze::init()
 	Hero* rogue = characterManager_->addHeroFromTemplate(ROGUE);
 	Hero* cleric = characterManager_->addHeroFromTemplate(CLERIC);;
 
-	wizard->addHability(FIREBALL);
-	wizard->addHability<BloodyStrike>();
-	wizard->addHability(SELFHEALEXAMPLE);
-	wizard->addHability<AllyTeamAttackExample>();
-
-	warrior->addHability(BLOODYSTRIKE);
-	warrior->addHability<AllyTeamAttackExample>();
-
-	rogue->addHability(BLOODYSTRIKE);
-	rogue->addHability<AllyTeamAttackExample>();
-
-	cleric->addHability(HEALINGWORD);
-	cleric->addHability<SelfHealExample>();
-	cleric->addHability<AllyTeamHealExample>();
-	cleric->addHability(ALLYTEAMATTACKEXAMPLE);
-
 	partyManager_->addHero(wizard);
 	partyManager_->addHero(warrior);
 	partyManager_->addHero(rogue);
 	partyManager_->addHero(cleric);
-
-	cout << "Characters Loaded" << endl;
 
 	// 4. Interfaz
 	uiManager_ = addComponent<Interfaz>(iManager_);
