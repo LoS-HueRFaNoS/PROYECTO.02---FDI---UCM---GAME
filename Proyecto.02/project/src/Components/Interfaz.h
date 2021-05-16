@@ -64,9 +64,5 @@ public:
 	void createFichaDD(uint nCharacter);
 
 private:
-	Resources::TextureId getHeroTxt(uint number);
-	Resources::TextureId getEnemyTxt(uint number);
-	Resources::TextureId getItemTxt(uint number);
-	Resources::TextureId getHabilityTxt(uint hero, uint number);
 	void initialize();
 };
