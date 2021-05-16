@@ -60,21 +60,12 @@ void CombatManager::showQ()
 void CombatManager::showTargets()
 {
 	cout << "TARGETS (Press enter to cancel spell): " << endl;
-	maxTargets = 0;
 
-	if (targetList) {
-		maxTargets = int(_enemies.size());
-		for (int i = 0; i < _enemies.size(); i++) {
-			CharacterSheet* c = _enemies[i]->getCharacterSheet();
-			cout << i << ". " << std::setfill(' ') << std::left << setw(12) << c->name << setw(15) << "HP " + to_string(c->hitPoints()) + "/" + to_string(c->maxHitPoints()) << endl;
-		}
-	}
-	else {
-		maxTargets = int(_heroes.size());
-		for (int i = 0; i < _heroes.size(); i++) {
-			CharacterSheet* c = _heroes[i]->getCharacterSheet();
-			cout << i << ". " << std::setfill(' ') << std::left << setw(12) << c->name << setw(15) << "HP " + to_string(c->hitPoints()) + "/" + to_string(c->maxHitPoints()) << endl;
-		}
+	maxTargets = 0;
+	for (Character* ch : getCurrentTargetList()) {
+		CharacterSheet* c = ch->getCharacterSheet();
+		cout << maxTargets << ". " << std::setfill(' ') << std::left << setw(12) << c->name << setw(15) << "HP " + to_string(c->hitPoints()) + "/" + to_string(c->maxHitPoints()) << endl;
+		maxTargets++;
 	}
 	cout << "Choose target: ";
 }

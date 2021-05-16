@@ -152,6 +152,13 @@ public:
 
 	characterType getCurrentTarget() { return targetList; }
 
+	vector<Character*> getCurrentTargetList() {
+		if (targetList) {
+			std::vector<Character*> ret = targetList ? std::vector<Character*>(_enemies.begin(), _enemies.end()) : std::vector<Character*>(_heroes.begin(), _heroes.end());
+			return ret;
+		}
+	}
+
 	// ----------------------------------------------------
 };
 
