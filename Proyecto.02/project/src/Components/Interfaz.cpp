@@ -708,9 +708,11 @@ Resources::TextureId Interfaz::getEnemyTxt(uint number)
 
 	enemyTemplate tem = enemies[number]->getTemplate();
 
-	Resources::TextureId id;
+	uint pivot = src::_firstEnemyId_;
 
-	switch (tem)
+	Resources::TextureId id = (Resources::TextureId)(pivot + tem + 1);
+
+	/*switch (tem)
 	{
 	case rpgLogic::ZOMBIE:
 		id = src::Zombie;
@@ -767,7 +769,7 @@ Resources::TextureId Interfaz::getEnemyTxt(uint number)
 	default:
 		id = Resources::TextureId();
 		break;
-	}
+	}*/
 
 	return id;
 }
@@ -777,11 +779,31 @@ Resources::TextureId Interfaz::getItemTxt(uint number)
 	PartyManager* c = TheElementalMaze::instance()->getPartyManager();
 	std::vector<Item*> items = c->getItems();
 
-	Resources::TextureId id;
+	Resources::TextureId id = Resources::TextureId();
 
 	ItemType itemType = items[number]->getItemType();
 
+	uint pivot;
+
 	if (itemType == ItemType::ARMOR) {
+		Armor* armor = static_cast<Armor*>(items[number]);
+		rpgLogic::armorId aId = armor->getArmorId();
+
+		pivot = src::_firstArmorId_;
+
+		id = (Resources::TextureId)(pivot + aId + 1);
+	}
+
+	else if (itemType == ItemType::WEAPON) {
+		Weapon* weapon = static_cast<Weapon*>(items[number]);
+		rpgLogic::weaponId wId = weapon->getWeaponId();
+
+		pivot = src::_firstWeaponId_;
+
+		id = (Resources::TextureId)(pivot + wId + 1);
+
+	}
+	/*if (itemType == ItemType::ARMOR) {
 		Armor* armor = static_cast<Armor*>(items[number]);
 		rpgLogic::armorId aId = armor->getArmorId();
 
@@ -906,7 +928,7 @@ Resources::TextureId Interfaz::getItemTxt(uint number)
 			id = Resources::TextureId();
 			break;
 		}
-	}
+	}*/
 
 	return id;
 }
@@ -917,10 +939,15 @@ Resources::TextureId Interfaz::getHabilityTxt(uint hero, uint number)
 	std::vector<Hero*> heroes = c->getHeroes();
 	std::vector<Hability*> habilities = heroes[number]->getHabilities();
 
-	Resources::TextureId id;
+	uint pivot = src::_firstSkillId_;
 
 	Hability_Id idHability = habilities[number]->id();
-	switch (idHability)
+
+	Resources::TextureId id = (Resources::TextureId)(pivot + idHability + 1);
+
+	
+	
+	/*switch (idHability)
 	{
 		//-----------------------
 	case LIGHTATTACK:
@@ -1037,8 +1064,9 @@ Resources::TextureId Interfaz::getHabilityTxt(uint hero, uint number)
 	case _lasHabilityId_:
 		break;
 	default:
+		id = Resources::TextureId();
 		break;
-	}
+	}*/
 
 	return id;
 }
