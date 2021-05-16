@@ -195,6 +195,9 @@
     <ClCompile Include="src\Structures\Item.cpp">
       <Filter>Archivos de origen\Templates/Resources</Filter>
     </ClCompile>
+    <ClCompile Include="src\Utilities\textures_box.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Managers\SDL\AudioManager.h">
@@ -370,6 +373,9 @@
     </ClInclude>
     <ClInclude Include="src\Structures\Item.h">
       <Filter>Archivos de encabezado\Templates/Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Utilities\textures_box.h">
+      <Filter>Archivos de encabezado</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

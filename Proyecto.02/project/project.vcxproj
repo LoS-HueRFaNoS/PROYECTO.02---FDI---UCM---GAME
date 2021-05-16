@@ -69,6 +69,7 @@
     <ClCompile Include="src\Components\Transform.cpp" />
     <ClCompile Include="src\Structures\Vector2D.cpp" />
     <ClCompile Include="src\Managers\TheElementalMaze.cpp" />
+    <ClCompile Include="src\Utilities\textures_box.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Managers\SDL\AudioManager.h" />
@@ -126,6 +127,7 @@
     <ClInclude Include="src\Structures\Texture.h" />
     <ClInclude Include="src\Managers\SDL\TexturesManager.h" />
     <ClInclude Include="src\Components\Transform.h" />
+    <ClInclude Include="src\Utilities\textures_box.h" />
     <ClInclude Include="src\Utilities\usings.h" />
     <ClInclude Include="src\Structures\Vector2D.h" />
     <ClInclude Include="src\Managers\TheElementalMaze.h" />
