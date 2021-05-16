@@ -1,13 +1,16 @@
 #include "Interfaz.h"
+#include "../ecs/ecs.h"
 #include "../GameObjects/Button.h"
-#include "../Managers/SDLGame.h"
-#include "../Managers/game/InterfazManager.h"
 #include "../Templates/callbacks.h"
 #include "Image.h"
 #include "Transform.h"
 #include "StateBar.h"
 #include "../Utilities/SDL_macros.h"
 #include "../Utilities/textures_box.h"
+#include "../Managers/SDLGame.h"
+#include "../Managers/TheElementalMaze.h"
+#include "../Managers/game/PartyManager.h"
+#include "../Managers/game/InterfazManager.h"
 
 using cb = callbacks;
 using src = Resources;
@@ -85,9 +88,6 @@ void Interfaz::createMovement()
 	p->addButton(iManager->addButton<ButtonMovimiento>(Vector2D(x_ + espace * 3, y_), w_, h_, src::Interactuar, MovType::touch));
 }
 
-#include "../ecs/ecs.h"
-#include "../Managers/TheElementalMaze.h"
-#include "../Managers/game/PartyManager.h"
 void Interfaz::createHeroes()
 {
 	PartyManager* c = TheElementalMaze::instance()->getPartyManager();
@@ -620,14 +620,10 @@ void Interfaz::init()
 	createPanel(Movement);
 	createPanel(Heroes);
 	createPanel(Info);
-	//createPanel(Minimap);
-	createPanel(Fight);
 
 	togglePanel(Movement);
 	togglePanel(Heroes);
 	togglePanel(Info);
-//	togglePanel(Minimap);
-	togglePanel(Fight);
 
 	
 }
@@ -639,15 +635,44 @@ void Interfaz::update()
 		// mouse event
 		toggleCombat_Movement();
 	}
-	//COMBATE
-	if (TheElementalMaze::instance()->gameState() == COMBAT && !getActivePan(Fight)) {
-		togglePanel(Movement);
-		createPanel(Fight);
-	} else if (TheElementalMaze::instance()->gameState() == EXPLORING && !getEnablePan(Movement)) {
-		togglePanel(Movement);
-		if (getActivePan(Fight)) removePanel(Fight);
-		// PARTY
-		checkHerosParty();
+	GameState state_ = TheElementalMaze::instance()->gameState();
+	switch (state_)
+	{
+	case MainMenu:
+		break;
+	case LOBBY:
+		break;
+	case START_EXPLORING:
+		if (!getActivePan(Movement))
+		{
+			createPanel(Movement);
+			createPanel(Heroes);
+			createPanel(Info);
+		}
+		break;
+	case EXPLORING:
+		if (!getEnablePan(Movement))
+		{
+			togglePanel(Movement);
+			if (getActivePan(Fight)) removePanel(Fight);
+			// PARTY
+			checkHerosParty(); // check de puertas de la muerte
+		}
+		break;
+	case COMBAT:
+		if (!getActivePan(Fight))
+		{
+			togglePanel(Movement);
+			createPanel(Fight);
+		}
+		break;
+	case END_EXPLORING:
+		removePanel(Movement);
+		removePanel(Heroes);
+		removePanel(Info);
+		break;
+	default:
+		break;
 	}
 }
 
