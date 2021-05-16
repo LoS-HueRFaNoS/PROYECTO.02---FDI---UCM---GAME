@@ -61,14 +61,6 @@ void SelfHealExample::throwHability(Character* obj, bool critical) const
 	obj->addCondition<EjemploReduccionAtaque>(_caster);
 }
 
-void AllyTeamAttackExample::throwHability(Character* obj, bool critical) const
-{
-	int damage = throwDice(2 + 2 * critical, 4, true);
-
-	obj->recieveDamage(damage, _damageType, _caster);
-}
-
-
 void WindBurst::throwHability(Character* obj, bool critical) const
 {
 	int damage = throwDice(8 + 8 * critical, 6, true);

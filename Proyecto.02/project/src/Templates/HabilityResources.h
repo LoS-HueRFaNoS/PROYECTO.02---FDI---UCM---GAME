@@ -18,37 +18,36 @@ enum Hability_Id {
 	HEALINGWORD, //3
 	ALLYTEAMHEALEXAMPLE, //4
 	SELFHEALEXAMPLE, //5
-	ALLYTEAMATTACKEXAMPLE, //6
-	WINDBURST, //7
-	WINDSLASH, //8
-	ROCKPILLAR, //9
-	TOXICSHADOW, //10
-	TSUNAMI, //11
-	DIVINEPROTECTION, //12
-	FLASH, //13
-	FREEZE, //14
-	WHIRLPOOL, //15
-	LIGHTBEAM, //16
-	DARKVORTEX, //17
-	FIREARROW, //18
-	MEDITATE, //19
-	LIGHTEN, //20
-	STRENGTHEN, //21
-	TOUGHEN, //22
-	BLOODTHIRST, //23
-	SACRIFICE, //24
-	DOUBLESHOT, //25
-	THROWINGAXES, //26
-	MORPH, //27
-	REVERSEMORPH, //28
-	HEAVYSTRIKE, //29
-	SMOKEARROW,	//30
-	RAINOFDAGGERS,	//31
-	ROCKPROJECTILES, //32
-	TRICKSHOT, //33
-	GLADIATORBALLAD, //34
-	WINDSONG, //35
-	DETERMINATION, //36
+	WINDBURST, //6
+	WINDSLASH, //7
+	ROCKPILLAR, //8
+	TOXICSHADOW, //9
+	TSUNAMI, //10
+	DIVINEPROTECTION, //11
+	FLASH, //12
+	FREEZE, //13
+	WHIRLPOOL, //14
+	LIGHTBEAM, //15
+	DARKVORTEX, //16
+	FIREARROW, //17
+	MEDITATE, //18
+	LIGHTEN, //19
+	STRENGTHEN, //20
+	TOUGHEN, //21
+	BLOODTHIRST, //22
+	SACRIFICE, //23
+	DOUBLESHOT, //24
+	THROWINGAXES, //25
+	MORPH, //26
+	REVERSEMORPH, //27
+	HEAVYSTRIKE, //28
+	SMOKEARROW,	//29
+	RAINOFDAGGERS,	//30
+	ROCKPROJECTILES, //31
+	TRICKSHOT, //32
+	GLADIATORBALLAD, //33
+	WINDSONG, //34
+	DETERMINATION, //35
 	_lasHabilityId_
 };
 
@@ -243,27 +242,6 @@ public:
 };
 
 
-class AllyTeamAttackExample : public Hability {
-public:
-	AllyTeamAttackExample(Character* caster = nullptr) :Hability(caster) {
-
-		level = 0;
-		_mana = 0;
-		_name = "AllyTeamAttackExample";
-		_description = "Esto es un ejemplo, se te va la cabeza y haces 2d4 de daño a tu equipo";
-
-		_damageType = DARK;
-		_habilityType = ATTACK;
-		_mod = INT;
-		_obj = ALLYTEAM;
-	}
-
-	static Hability_Id id() { return ALLYTEAMATTACKEXAMPLE; }
-
-	virtual void throwHability(Character* obj, bool critical)const;
-};
-
-//-----------------------------------------------------------------------------
 
 class WindBurst : public Hability {
 public:

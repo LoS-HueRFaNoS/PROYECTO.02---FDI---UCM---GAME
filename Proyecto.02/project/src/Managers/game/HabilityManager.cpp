@@ -11,7 +11,6 @@ void HabilityManager::init()
 	habilityMap_[HEALINGWORD] = &HabilityManager::createHability<HealingWord>;
 	habilityMap_[ALLYTEAMHEALEXAMPLE] = &HabilityManager::createHability<AllyTeamHealExample>;
 	habilityMap_[SELFHEALEXAMPLE] = &HabilityManager::createHability<SelfHealExample>;
-	habilityMap_[ALLYTEAMATTACKEXAMPLE] = &HabilityManager::createHability<AllyTeamAttackExample>;
 	habilityMap_[WINDBURST] = &HabilityManager::createHability<WindBurst>;
 	habilityMap_[WINDSLASH] = &HabilityManager::createHability<WindSlash>;
 	habilityMap_[ROCKPILLAR] = &HabilityManager::createHability<RockPillar>;
