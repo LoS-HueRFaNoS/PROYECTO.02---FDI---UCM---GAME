@@ -114,43 +114,43 @@ void PlayerViewer::draw()
 		else manager->getTexture(Resources::muro_fr)->render(dest);
 	}
 	else manager->getTexture(Resources::muro_del)->render(dest);
-	renderEnemyActual();
+	//renderEnemyActual();
 	if (cas->isExit()) {
 		manager->getTexture(Resources::texto_salida)->render(dest);
 	}
 		//manager->getTexture(Resources::guiaSalida)->render(SDL_Rect{game_->getWindowWidth()/2-50, 100, 100,50});
 }
 
-void PlayerViewer::renderEnemyActual()
-{
-
-	if (!cas->getEnemy()->empty())
-	{
-		auto enemyVector = *cas->getEnemy();
-		int tam = enemyVector.size();
-		if (tam == 1)
-		{
-			enemyViewer(enemyVector[0], 100 + 200, 200, 250, 250);
-		}
-		else
-		{
-
-			for (int i = 0; i < tam; i++)
-			{
-				enemyViewer(enemyVector[i], 100 + i * 200, 200, 250, 250);
-			}
-		}
-
-	}
-}
-
-void PlayerViewer::enemyViewer(enemyTemplate temp, int x, int y, int w, int h)
-{
-	Texture* enemigo;
-	auto manager = game_->getTextureMngr();
-	//enemigo = manager->getTexture(Resources::Placas+temp);
-	enemigo = manager->getTexture(Resources::Monster);
-	SDL_Rect dest = { x, y, w, h };
-	enemigo->render(dest);
-
-}
+//void PlayerViewer::renderEnemyActual()
+//{
+//
+//	if (!cas->getEnemy()->empty())
+//	{
+//		auto enemyVector = *cas->getEnemy();
+//		int tam = enemyVector.size();
+//		if (tam == 1)
+//		{
+//			enemyViewer(enemyVector[0], 100 + 200, 200, 250, 250);
+//		}
+//		else
+//		{
+//
+//			for (int i = 0; i < tam; i++)
+//			{
+//				enemyViewer(enemyVector[i], 100 + i * 200, 200, 250, 250);
+//			}
+//		}
+//
+//	}
+//}
+//
+//void PlayerViewer::enemyViewer(enemyTemplate temp, int x, int y, int w, int h)
+//{
+//	Texture* enemigo;
+//	auto manager = game_->getTextureMngr();
+//	//enemigo = manager->getTexture(Resources::Placas+temp);
+//	enemigo = manager->getTexture(Resources::Monster);
+//	SDL_Rect dest = { x, y, w, h };
+//	enemigo->render(dest);
+//
+//}

@@ -22,7 +22,7 @@ LobbyManager::~LobbyManager()
 void LobbyManager::startExploring()
 {
 	clearLobby();
-	TheElementalMaze::instance()->changeState(START_EXPLORING);
+	TheElementalMaze::instance()->changeState(gameST::START_EXPLORING);
 }
 
 void LobbyManager::clearLobby()
@@ -47,7 +47,7 @@ void LobbyManager::backFromDungeon()
 	lobbyStore_ = new Store();
 	generateHeroStash();
 	generateItemStash();
-	startExploring();
+	//startExploring();
 }
 
 void LobbyManager::generateHeroStash()

@@ -183,8 +183,7 @@ private:
 	virtual void manageTurn(CombatManager* cm);
 
 public:
-	Hero(SDLGame* game, EntityManager* mngr) :Character(game, mngr, HERO) {
-	}
+	Hero(SDLGame* game, EntityManager* mngr) : Character(game, mngr, HERO) {};
 
 	~Hero();
 

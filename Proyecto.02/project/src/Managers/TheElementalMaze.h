@@ -9,18 +9,19 @@ class Laberinto;
 class CharacterManager;
 class PartyManager;
 class LobbyManager;
+class GameStateManager;
 
-// A los componentes se pueden acceder mediante la entidad y se pueden comunicar entre s�
-// del mismo modo, mediante el puente que es la entidad.
-
-enum GameState {
+enum class GameState {
 	MainMenu,
 	LOBBY,
 	START_EXPLORING,
 	EXPLORING,
+	START_COMBAT,
 	COMBAT,
+	END_COMBAT,
 	END_EXPLORING
 };
+using gameST = GameState;
 
 class TheElementalMaze : public Entity
 {
@@ -31,18 +32,16 @@ private:
 	CombatManager* combatManager_; // compt
 	Laberinto* laberinto_; // 
 	Entity* player_; // 
-	Interfaz* uiManager_;
-	InterfazManager* iManager_; // compt
+	Entity* lab_; // 
+	Interfaz* uiManager_; // compt
+	InterfazManager* iManager_; // 
 	ItemManager* itemManager_; //
 	CharacterManager* characterManager_; // 
 	PartyManager* partyManager_;
 	LobbyManager* lobbyManager_;
-
-	GameState state_;
+	GameStateManager* stManager_; // compt
 
 	bool pause_ = false;
-
-	void onStateChanged();
 
 public:
 	TheElementalMaze(SDLGame* game, EntityManager* mngr, CharacterManager* chMngr, InterfazManager* iMngr) :
@@ -74,6 +73,12 @@ public:
 	~TheElementalMaze();
 
 	void init();
+	void startExploring();
+	void createLaberinto();
+	void backFromDungeon();
+	void checkOutNoInitialEnemy();
+	void startCombat();
+	void onExitLaberinto();
 
 	Laberinto* getLaberinto() { return laberinto_; };
 
@@ -91,8 +96,7 @@ public:
 
 	LobbyManager* getLobbyManager() { return lobbyManager_; }
 
-	GameState gameState() { return state_; }
-
+	GameState gameState();
 
 	bool isPause() { return pause_; }
 

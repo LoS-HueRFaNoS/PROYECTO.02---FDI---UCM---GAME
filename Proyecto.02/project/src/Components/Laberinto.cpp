@@ -73,8 +73,8 @@ void Laberinto::createRandomMaze(Vector2D entrada)
 
 	x = game_->getRandGen()->nextInt((w / 2), w);
 	y = game_->getRandGen()->nextInt((h / 2), h);
-	//salida = Vector2D(x, y);
-	salida = Vector2D(0, 1);
+	salida = Vector2D(x, y);
+	//salida = Vector2D(0, 1);
 	laberinto.resize(h);
 	for (int i = 0; i < h; ++i)
 		laberinto[i].resize(w);
@@ -161,7 +161,7 @@ void Laberinto::createRandomMaze(Vector2D entrada)
 			
 			if (hayEnemy < 3)
 			{
-				//int enemyType = game_->getRandGen()->nextInt(0, enemyTemplate::ZOMBIE+1);
+				//int enemyType = game_->getRandGen()->nextInt(0, enemyTemplate::_LastEnemyTemplateId_);
 				int enemyType = enemyTemplate::ZOMBIE;
 				//cout << "En la casilla [" << x << " , " << y << " ]" << endl;
 				generaObjeto(0, enemyType, laberinto[x][y], 1,0);
@@ -220,13 +220,11 @@ void Laberinto::generaObjeto(int object, int type, Casilla* casilla, int maxObje
 
 	if (object == 0) {
 
-		//casilla->addEnemy((static_cast<enemyTemplate>(type)));
+		casilla->addEnemy((static_cast<enemyTemplate>(type)));
 		//cout << "generado " << (cant+1) << " enemigo"<<endl;
 	}
-	else if (object ==1)
+	else if (object == 1)
 	{
-
-		
 		//Generacion de tipo de cofre
 		if (type < weaponId::_LastWeaponId_)
 		{

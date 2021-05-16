@@ -42,11 +42,7 @@ private:
 	Casilla* casSigSig;
 	TexturesManager* manager;
 
-	void renderEnemyActual();	
-
-	
-	void enemyViewer(enemyTemplate temp, int x, int y, int w, int h);
-
-	
+	/*void renderEnemyActual();		
+	void enemyViewer(enemyTemplate temp, int x, int y, int w, int h);*/	
 };
 

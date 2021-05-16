@@ -70,7 +70,7 @@ void Game::initGame()
 	entityManager_ = new EntityManager(game_);
 
 	fondo = static_cast<Fondo*>(entityManager_->addEntity());
-	fondo->init(Vector2D(), game_->getWindowWidth(), game_->getWindowHeight(), Resources::Fondo);
+	fondo->init(Vector2D(), game_->getWindowWidth(), game_->getWindowHeight());
 
 	characterManager_ = new CharacterManager(game_);
 

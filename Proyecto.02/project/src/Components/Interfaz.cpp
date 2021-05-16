@@ -1,7 +1,8 @@
 #include "Interfaz.h"
 #include "../ecs/ecs.h"
-#include "../GameObjects/Button.h"
 #include "../Templates/callbacks.h"
+#include "../GameObjects/Button.h"
+#include "../GameObjects/Character.h"
 #include "Image.h"
 #include "Transform.h"
 #include "StateBar.h"
@@ -11,6 +12,7 @@
 #include "../Managers/TheElementalMaze.h"
 #include "../Managers/game/PartyManager.h"
 #include "../Managers/game/InterfazManager.h"
+#include "../Managers/game/CombatManager.h"
 
 using cb = callbacks;
 using src = Resources;
@@ -40,8 +42,10 @@ void Interfaz::createFight()
 	x_ = game_->setHorizontalScale(x_ + n);
 	y_ = game_->setVerticalScale(y_ + n);
 
+	// espacios entre objetos
 	double espace = game_->setHorizontalScale((w_ - n) / 4);
 
+	// ancho y alto de cada objeto
 	w_ = espace - game_->setHorizontalScale(n);
 	h_ = game_->setVerticalScale(h_ - n * 2);
 
@@ -54,6 +58,45 @@ void Interfaz::createFight()
 	p->addButton(iManager->addButton<ButtonCombate>(Vector2D(x_ + espace, y_), w_, h_, src::AtaqueMagico, CmbtType::magic));
 	p->addButton(iManager->addButton<ButtonCombate>(Vector2D(x_ + espace * 2, y_), w_, h_, src::Defensa, CmbtType::defend));
 	p->addButton(iManager->addButton<ButtonCombate>(Vector2D(x_ + espace * 3, y_), w_, h_, src::Huida, CmbtType::escape));
+}
+
+void Interfaz::createEnemies()
+{
+	CombatManager* c = GETCMP2(TheElementalMaze::instance(), CombatManager);
+	std::vector<Enemy*> enemies = c->getEnemiesTeam();
+	uint nEnemies = c->getEnemysTam();
+
+	// posicion en pixeles del 'fondo'
+	double x_ = 70;
+	double y_ = 70;
+	// tamano en pixeles del 'fondo'
+	double w_ = 1340;
+	double h_ = 620;
+	// tamano de los margenes
+	double n = 50;
+
+	// posicion del panel respecto a la ventana
+	x_ = game_->setHorizontalScale(x_ + n);
+	y_ = game_->setVerticalScale(y_ + n);
+
+	// espacios entre objetos
+	double espace = game_->setHorizontalScale((w_ - n) / 4);
+
+	// ancho y alto de cada objeto
+	w_ = espace - game_->setHorizontalScale(n);
+	h_ = game_->setVerticalScale(h_ - n * 2);
+
+	// construccion y asignacion del panel:
+	Panel* p = new Panel(Enemies);
+	allPanels[Enemies] = p;
+
+	for (int i = 0; i < nEnemies; i++) {
+		SDL_Object* b_ = iManager->addButton<SDL_Object>(Vector2D(x_ + i * espace, y_), w_, h_, getEnemyTxt(i));
+		uint k = 6;
+		b_->addComponent<StateBar>(enemies[i], health, SDL_Rect(RECT((x_ + i * espace), (y_ + h_ * 1 / k), w_ * 2, h_ / k)));
+		//b_->addComponent<StateBar>(enemies[i], mana, SDL_Rect(RECT((x_ + i * espace), (y_ + h_ * 2.5 / k), w_ * 2, h_ / k)));
+		p->addButton(b_);
+	}
 }
 
 void Interfaz::createMovement()
@@ -120,9 +163,9 @@ void Interfaz::createHeroes()
 	for (int i = 0; i < nHeros; i++) {
 		ButtonHero* b_ = iManager->addButton<ButtonHero>(Vector2D(x_, y_ + i * espace), w_, h_, getHeroTxt(i), (HeroNum)i, DDPan, false);
 		uint k = 6;
-		b_->addComponent<StateBar>(health, i, SDL_Rect(RECT( (x_ + w_ + n), (y_ + i * espace + h_ * 1 / k), w_ * 2, h_ / k )));
-		b_->addComponent<StateBar>(mana, i, SDL_Rect(RECT( (x_ + w_ + n), (y_ + i * espace + h_ * 2.5 / k), w_ * 2, h_ / k )));
-		b_->addComponent<StateBar>(experience, i, SDL_Rect(RECT( (x_ + w_ + n), (y_ + i * espace + h_ * 4 / k), w_ * 2, h_ / k )));
+		b_->addComponent<StateBar>(heroes[i], health, SDL_Rect(RECT((x_ + w_ + n), (y_ + i * espace + h_ * 1 / k), w_ * 2, h_ / k)));
+		b_->addComponent<StateBar>(heroes[i], mana, SDL_Rect(RECT( (x_ + w_ + n), (y_ + i * espace + h_ * 2.5 / k), w_ * 2, h_ / k )));
+		b_->addComponent<StateBar>(heroes[i], experience, SDL_Rect(RECT( (x_ + w_ + n), (y_ + i * espace + h_ * 4 / k), w_ * 2, h_ / k )));
 		p->addButton(b_);
 	}
 }
@@ -204,7 +247,6 @@ void Interfaz::createInventory()
 	}
 }
 
-#include "../GameObjects/Character.h"
 void Interfaz::createFichaDD(uint nCharacter)
 {
 	PartyManager* c = TheElementalMaze::instance()->getPartyManager();
@@ -317,7 +359,6 @@ void Interfaz::createFichaDD(uint nCharacter)
 	//p->addButton(iManager->addButton<Line>(Vector2D(xs_ + 2 * espace_H, ys_ + 1 * espace_V + lineTam_V * 0), ws_, lineTam_V * 4, info, Resources::Beaulieux,color));
 }
 
-#include "../Managers/game/CombatManager.h"
 void Interfaz::createTargets()
 {
 	CombatManager* c = GETCMP2(TheElementalMaze::instance(), CombatManager);
@@ -396,7 +437,7 @@ void Interfaz::createMenuPrincipal()
 
 	int x, y;
 	x = w / 2 - 150;	y = h / 2 - 50;
-	p->addButton(iManager->addButton<ButtonMenu>(Vector2D(x,y ),300,100 , src::start , accionMenu::start, this));
+	p->addButton(iManager->addButton<ButtonMenu>(Vector2D(x,y ), 300, 100, src::start, accionMenu::start, this));
 	y += 120;
 	p->addButton(iManager->addButton<ButtonMenu>(Vector2D(x,y), 300, 100, src::options, accionMenu::options, this));
 	y += 120;
@@ -570,6 +611,11 @@ void Interfaz::createPanel(idPanel panelID)
 	case Options:
 		createOptions();
 		break;
+	case Enemies:
+		createEnemies();
+		break;
+	default:
+		break;
 	}
 }
 
@@ -616,14 +662,13 @@ void Interfaz::init()
 	togglePanel(HowToPlay);
 	togglePanel(Options);
 
-
-	createPanel(Movement);
+	/*createPanel(Movement);
 	createPanel(Heroes);
 	createPanel(Info);
 
 	togglePanel(Movement);
 	togglePanel(Heroes);
-	togglePanel(Info);
+	togglePanel(Info);*/
 
 	
 }
@@ -638,11 +683,11 @@ void Interfaz::update()
 	GameState state_ = TheElementalMaze::instance()->gameState();
 	switch (state_)
 	{
-	case MainMenu:
+	case gameST::MainMenu:
 		break;
-	case LOBBY:
+	case gameST::LOBBY:
 		break;
-	case START_EXPLORING:
+	case gameST::START_EXPLORING:
 		if (!getActivePan(Movement))
 		{
 			createPanel(Movement);
@@ -650,23 +695,33 @@ void Interfaz::update()
 			createPanel(Info);
 		}
 		break;
-	case EXPLORING:
+	case gameST::EXPLORING:
 		if (!getEnablePan(Movement))
 		{
 			togglePanel(Movement);
-			if (getActivePan(Fight)) removePanel(Fight);
+			if (getActivePan(Fight)) {
+				removePanel(Fight);
+			}
 			// PARTY
 			checkHerosParty(); // check de puertas de la muerte
 		}
 		break;
-	case COMBAT:
+	case gameST::COMBAT:
 		if (!getActivePan(Fight))
 		{
 			togglePanel(Movement);
 			createPanel(Fight);
+			createPanel(Enemies);
 		}
 		break;
-	case END_EXPLORING:
+	case gameST::END_COMBAT:
+		if (getActivePan(Enemies))
+		{
+			removePanel(Enemies);
+			TheElementalMaze::instance()->changeState(gameST::COMBAT);
+		}
+		break;
+	case gameST::END_EXPLORING:
 		removePanel(Movement);
 		removePanel(Heroes);
 		removePanel(Info);

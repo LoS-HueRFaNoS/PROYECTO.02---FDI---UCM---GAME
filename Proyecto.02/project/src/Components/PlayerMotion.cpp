@@ -25,19 +25,19 @@ void PlayerMotion::init()
 
 void PlayerMotion::update()
 {
-	if (TheElementalMaze::instance()->gameState() != EXPLORING) return;
+	if (TheElementalMaze::instance()->gameState() != gameST::EXPLORING) return;
 	InputHandler* ih = InputHandler::instance();
 	x = int(pos->getPos().getX());
 	y = int(pos->getPos().getY());
 	if (ih->isKeyDown(avance)) { avanzar(); }
 	else if (ih->isKeyDown(giraIzq)) { rotarIzquierda(); }
 	else if (ih->isKeyDown(giraDer)) { rotarDerecha(); }
-	else if (ih->isKeyDown(SDLK_e) && lab->getCasillaInfo(x, y)->isExit()) { TheElementalMaze::instance()->changeState(END_EXPLORING); }
+	else if (ih->isKeyDown(SDLK_e) && lab->getCasillaInfo(x, y)->isExit()) { TheElementalMaze::instance()->changeState(gameST::END_EXPLORING); }
 }
 
 void PlayerMotion::rotarDerecha()
 {
-	if (TheElementalMaze::instance()->gameState() != EXPLORING)
+	if (TheElementalMaze::instance()->gameState() != gameST::EXPLORING)
 		return;
 	
 	Casilla* cas = lab->getCasillaInfo(x, y);
@@ -70,7 +70,7 @@ void PlayerMotion::rotarDerecha()
 
 void PlayerMotion::rotarIzquierda()
 {
-	if (TheElementalMaze::instance()->gameState() != EXPLORING)
+	if (TheElementalMaze::instance()->gameState() != gameST::EXPLORING)
 		return;
 	/*x = int(pos->getPos().getX());
 	y = int(pos->getPos().getY());*/
@@ -103,7 +103,7 @@ void PlayerMotion::rotarIzquierda()
 
 void PlayerMotion::avanzar()
 {
-	if (TheElementalMaze::instance()->gameState() != EXPLORING)
+	if (TheElementalMaze::instance()->gameState() != gameST::EXPLORING)
 		return;
 	/*x = int(pos->getPos().getX());
 	y = int(pos->getPos().getY());*/
@@ -202,7 +202,7 @@ void PlayerMotion::debugear()
 
 			comManager->addCharacter(chaManager->addEnemyFromTemplate((*enemigo)[i]));
 		}
-		TheElementalMaze::instance()->changeState(COMBAT);
+		TheElementalMaze::instance()->changeState(gameST::START_COMBAT);
 		
 		return;
 	}

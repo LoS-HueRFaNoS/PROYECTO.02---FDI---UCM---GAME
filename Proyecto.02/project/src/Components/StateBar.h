@@ -18,34 +18,47 @@ enum BarType {
 class StateBar : public Component
 {
 public:
-    StateBar(BarType ty, uint n, SDL_Rect rct) :
-        Component(ecs::StateBar), type_(ty), numHero_(n), rect(rct), width_(rct.w), maxStat_(), stAct_(), color_(), heroes() {};
+    StateBar(Character* c, BarType ty, SDL_Rect rct) :
+        Component(ecs::StateBar), character_(c), type_(ty), rect(rct), width_(rct.w), maxStat_(), stAct_(), color_() {};
     virtual ~StateBar() {
     }
 
     void init() override {
-        PartyManager* p = TheElementalMaze::instance()->getPartyManager();
-        assert(p != nullptr);
-        heroes = p->getHeroes();
-    }
-
-    void update() override {
+        assert(character_ != nullptr);
         switch (type_)
         {
         case health:
-            maxStat_ = heroes[numHero_]->getCharacterSheet()->maxHitPoints();
-            stAct_ = heroes[numHero_]->getCharacterSheet()->hitPoints();
             color_ = hex2sdlcolor("#DD0000FF");
             break;
         case mana:
-            maxStat_ = heroes[numHero_]->getCharacterSheet()->maxManaPoints();
-            stAct_ = heroes[numHero_]->getCharacterSheet()->manaPoints();
-            color_ = hex2sdlcolor("#0055FFFF"); //5500AAFF
+            color_ = hex2sdlcolor("#0055FFFF");
             break;
         case experience:
-            maxStat_ = heroes[numHero_]->getExpMax();
-            stAct_ = heroes[numHero_]->getExp();
-            color_ = hex2sdlcolor("#BBBB00FF"); //00EEFFFF
+            color_ = hex2sdlcolor("#BBBB00FF");
+            break;
+        default:
+            break;
+        }
+    }
+
+    void update() override {
+        Hero* h_ = nullptr;
+        switch (type_)
+        {
+        case health:
+            maxStat_ = character_->getCharacterSheet()->maxHitPoints();
+            stAct_ = character_->getCharacterSheet()->hitPoints();
+            break;
+        case mana:
+            maxStat_ = character_->getCharacterSheet()->maxManaPoints();
+            stAct_ = character_->getCharacterSheet()->manaPoints();
+            break;
+        case experience:
+            h_ = dynamic_cast<Hero*>(character_);
+            if (h_ != nullptr) {
+                maxStat_ = h_->getExpMax();
+                stAct_ = h_->getExp();
+            }            
             break;
         default:
             break;
@@ -61,12 +74,12 @@ public:
     }
 
 private:
-    SDL_Rect rect;
-    uint width_;
-    std::vector<Hero*> heroes;
-    BarType type_;
-    uint numHero_;
-    uint maxStat_;
-    uint stAct_;
-    SDL_Color color_;
+    SDL_Rect rect;          // general position and size
+    uint width_;            // max width size
+    Character* character_;  // character reference
+    BarType type_;          // type of data
+
+    uint maxStat_;      // much amount of data
+    uint stAct_;        // actual amount of data
+    SDL_Color color_;   // data type color
 };

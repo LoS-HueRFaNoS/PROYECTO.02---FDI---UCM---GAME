@@ -18,6 +18,7 @@ private:
 	vector<Panel*> allPanels;
 
 	void createFight();
+	void createEnemies();
 	void createMovement();
 	void createHeroes();
 	void createInfo();

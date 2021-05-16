@@ -15,7 +15,7 @@ void SDL_Object::initComponents(Vector2D pos, uint ancho, uint alto, Texture* im
 	addComponent<Image>(imagen);
 }
 
-void Fondo::init(Vector2D pos, uint ancho, uint alto, Resources::TextureId imagen)
+void Fondo::init(Vector2D pos, uint ancho, uint alto)
 {
 	addComponent<Transform>(pos, Vector2D(), ancho, alto, 0);
 	addComponent<Image>(game_->getTextureMngr()->getTexture(Resources::Fondo));

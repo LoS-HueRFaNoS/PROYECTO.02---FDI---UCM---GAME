@@ -338,12 +338,13 @@ void CombatManager::onStateChanged()
 	case COMBAT_END:
 		endCombat();
 		cout << "---------- PRESS ENTER TO END COMBAT ----------" << endl;
+		TheElementalMaze::instance()->changeState(gameST::END_COMBAT);
 		break;
 	case NO_COMBAT:
 		if (_win)
-			TheElementalMaze::instance()->changeState(EXPLORING);
+			TheElementalMaze::instance()->changeState(gameST::EXPLORING);
 		else
-			TheElementalMaze::instance()->changeState(LOBBY);
+			TheElementalMaze::instance()->changeState(gameST::LOBBY);
 
 		break;
 	default:
@@ -402,7 +403,7 @@ void CombatManager::sendKeyEvent(int key)
 
 void CombatManager::update()
 {
-	if (TheElementalMaze::instance()->gameState() != COMBAT)
+	if (TheElementalMaze::instance()->gameState() != gameST::COMBAT)
 		return;
 	if (stateChanged)
 		onStateChanged();

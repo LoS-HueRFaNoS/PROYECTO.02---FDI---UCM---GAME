@@ -85,6 +85,9 @@ void callbacks::movCommand(int movType)
 // ----------------------------------------------------
 
 #pragma region PanelInformation
+#include "../Managers/TheElementalMaze.h"
+#include "../Managers/game/PartyManager.h"
+#include "../Managers/game/CombatManager.h"
 
 void callbacks::inventario(Interfaz* app)
 {
@@ -100,16 +103,21 @@ void callbacks::configuracion(Interfaz* app)
 
 void callbacks::potionType(int potionType_)
 {
+	CombatManager* c = GETCMP2(TheElementalMaze::instance(), CombatManager); // falta paso intermedio para guardar la habilidad y seleccionar enemigos
+	
 	switch (potionType_)
 	{
 	case 0:
 		std::cout << "has usado la pocion de vida" << std::endl;
+		c->sendKeyEvent(-6); //indice de la habilidad
 		break;
 	case 1:
 		std::cout << "has usado la pocion de mana" << std::endl;
+		c->sendKeyEvent(-5); //indice de la habilidad
 		break;
 	case 2:
 		std::cout << "has usado la pocion de resurreccion" << std::endl;
+		//c->sendKeyEvent(-7); //indice de la habilidad
 		break;
 	default:
 		break;
@@ -220,24 +228,21 @@ void callbacks::set_hability(int hability_)
 #pragma region MenuPrincipal
 void callbacks::startLobby(Interfaz* app)
 {
-	TheElementalMaze::instance()->changeState(LOBBY);
+	TheElementalMaze::instance()->changeState(gameST::LOBBY);
 	app->togglePanel(MenuPrincipal);
 	app->createPanel(Lobby);
-	app->togglePanel(Movement);
-	app->togglePanel(Heroes);
-	app->togglePanel(Info);
 	std::cout << "startLobby se ha activado\n";
 }
 void callbacks::options(Interfaz* app)
 {
-	app->togglePanel(Options);
 	app->togglePanel(MenuPrincipal);
+	app->togglePanel(Options);
 	std::cout << "options se ha activado\n";
 }
 void callbacks::howToPlay(Interfaz* app)
 {
-	app->togglePanel(HowToPlay);
 	app->togglePanel(MenuPrincipal);
+	app->togglePanel(HowToPlay);
 }
 void callbacks::quit(Interfaz* app)
 {

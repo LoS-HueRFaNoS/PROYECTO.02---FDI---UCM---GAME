@@ -87,8 +87,6 @@ private:
 
 	PartyManager* party_;
 
-	void startExploring();
-
 	void clearLobby();
 
 	void generateHeroStash();
@@ -103,6 +101,8 @@ public:
 	~LobbyManager();
 
 	Stash* getPlayerStash();
+
+	void startExploring();
 
 	void addHeroToParty(int index, int partyIndex = -1);
 

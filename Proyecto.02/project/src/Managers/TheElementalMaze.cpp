@@ -1,10 +1,11 @@
-#include "TheElementalMaze.h"
+﻿#include "TheElementalMaze.h"
 #include "../Managers/game/CombatManager.h"
 #include "../Managers/game/CharacterManager.h"
 #include "../Managers/game/PartyManager.h"
 #include "../Managers/game/LobbyManager.h"
 #include "../Managers/game/ItemManager.h"
 #include "../Managers/game/HabilityManager.h"
+#include "../Components/GameStateManager.h"
 #include "../Components/Interfaz.h"
 #include "../Components/Laberinto.h"
 #include "../Components/PlayerMotion.h"
@@ -50,63 +51,65 @@ void TheElementalMaze::init()
 	// 4. Interfaz
 	uiManager_ = addComponent<Interfaz>(iManager_);
 
-	changeState(MainMenu);
+	// 5. GameStateManager
+	stManager_ = addComponent<GameStateManager>();
+	stManager_->changeState(GameState::MainMenu);
 }
 
-void TheElementalMaze::onStateChanged()
+//--------------------------------------------------------
+
+void TheElementalMaze::startExploring()
 {
-
-	switch (state_)
-	{
-	case MainMenu:
-		cout << "MAIN MENU" << endl;
-		break;
-	case LOBBY:
-		cout << "LOBBY REACHED" << endl;
-		//removeComponent()
-		//delete player_;
-		lobbyManager_->backFromDungeon();
-		break;
-	case START_EXPLORING:
-		cout << "EXPLORATION STARTED" << endl;
-		// 1. Laberinto
-		laberinto_ = addComponent<Laberinto>(10, 10);
-		
-		laberinto_->createRandomMaze(Vector2D(0, 0));
-
-		// 2. Player
-		 // lo primero en crearse deber�a ser el player �?
-		player_ = mngr_->addEntity();
-		player_->addComponent<MazePos>(Vector2D(0, 0));
-		player_->addComponent<PlayerViewer>(laberinto_);
-		player_->addComponent<PlayerMotion>(SDLK_UP, SDLK_LEFT, SDLK_RIGHT, laberinto_);
-		changeState(EXPLORING);
-		break;
-	case EXPLORING:
-		cout << "EXPLORING STARTED" << endl;
-		laberinto_->getCasillaInfo(player_->getComponent<MazePos>(ecs::MazePos)->getPos().getX(), player_->getComponent<MazePos>(ecs::MazePos)->getPos().getY())->getEnemy()->clear();
-		break;
-	case COMBAT:
-		combatManager_->addHeroesTeam(partyManager_->getHeroes());
-		combatManager_->startCombat();
-		break;
-	case END_EXPLORING:
-		removeComponent(ecs::Laberinto);
-		//delete player_;
-		player_->disable();
-		player_ = nullptr;
-		changeState(LOBBY);
-		break;
-	default:
-		break;
-	}
+	lobbyManager_->startExploring();
 }
 
+void TheElementalMaze::createLaberinto()
+{
+	// 1. Laberinto
+	lab_ = mngr_->addEntity();
+	laberinto_ = lab_->addComponent<Laberinto>(10, 10);
+	laberinto_->createRandomMaze(Vector2D(0, 0));
+
+	// 2. Player
+	player_ = mngr_->addEntity();
+	player_->addComponent<MazePos>(Vector2D(0, 0));
+	player_->addComponent<PlayerViewer>(laberinto_);
+	player_->addComponent<PlayerMotion>(SDLK_UP, SDLK_LEFT, SDLK_RIGHT, laberinto_);
+}
+
+void TheElementalMaze::backFromDungeon()
+{
+	lobbyManager_->backFromDungeon();
+}
+
+void TheElementalMaze::checkOutNoInitialEnemy()
+{
+	laberinto_->getCasillaInfo(player_->getComponent<MazePos>(ecs::MazePos)->getPos().getX(), player_->getComponent<MazePos>(ecs::MazePos)->getPos().getY())->getEnemy()->clear();
+}
+
+void TheElementalMaze::startCombat()
+{
+	combatManager_->addHeroesTeam(partyManager_->getHeroes());
+	combatManager_->startCombat();
+}
+
+void TheElementalMaze::onExitLaberinto()
+{
+	//removeComponent(ecs::Laberinto);
+	lab_->disable();
+	//delete player_;
+	player_->disable();
+	player_ = nullptr;
+}
+
+//--------------------------------------------------------
+
+GameState TheElementalMaze::gameState()
+{
+	return stManager_->gameState();
+}
 
 void TheElementalMaze::changeState(GameState state)
 {
-	if (state_ != state) {
-		state_ = state;
-		onStateChanged();
-	}
+	stManager_->changeState(state);
 }

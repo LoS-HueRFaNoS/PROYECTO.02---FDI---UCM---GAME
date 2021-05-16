@@ -198,6 +198,9 @@
     <ClCompile Include="src\Utilities\textures_box.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
+    <ClCompile Include="src\Components\GameStateManager.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Managers\SDL\AudioManager.h">
@@ -375,6 +378,9 @@
       <Filter>Archivos de encabezado\Templates/Resources</Filter>
     </ClInclude>
     <ClInclude Include="src\Utilities\textures_box.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Components\GameStateManager.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
   </ItemGroup>

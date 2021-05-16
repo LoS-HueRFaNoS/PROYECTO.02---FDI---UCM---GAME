@@ -22,11 +22,12 @@ protected:
 
 };
 
-class Fondo : public Entity
+class Fondo : public SDL_Object
 {
 public:
-	Fondo(SDLGame* game, EntityManager* mngr) : Entity(game, mngr) {};
-	void init(Vector2D pos, uint ancho, uint alto, Resources::TextureId imagen);
+	Fondo(SDLGame* game, EntityManager* mngr) : SDL_Object(game, mngr) {};
+	~Fondo() {};
+	void init(Vector2D pos, uint ancho, uint alto);
 };
 
 class Line : public SDL_Object
