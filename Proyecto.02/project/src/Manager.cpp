@@ -14,7 +14,11 @@ EntityManager::~EntityManager() {
 void EntityManager::update() {
 	auto n = entities.size();
 	for (auto i = 0u; i < n; i++)
-		entities[i]->update();
+	{
+		if (entities[i]->isActive())
+			entities[i]->update();
+	}
+		
 	/*for (auto& e : entities)
 		e->update();*/
 	/*for (auto it = entities.begin(); it != entities.end();it++) {
@@ -35,8 +39,11 @@ void EntityManager::refresh() {
 }
 
 void EntityManager::draw() {
-	for (auto &e : entities) {
-		e->draw();
+	auto n = entities.size();
+	for (auto i = 0u; i < n; i++)
+	{
+		if (entities[i]->isActive())
+			entities[i]->draw();
 	}
 }
 

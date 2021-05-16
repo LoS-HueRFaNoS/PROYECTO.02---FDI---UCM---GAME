@@ -25,19 +25,21 @@ void PlayerMotion::init()
 
 void PlayerMotion::update()
 {
+	if (TheElementalMaze::instance()->gameState() != EXPLORING) return;
 	InputHandler* ih = InputHandler::instance();
+	x = int(pos->getPos().getX());
+	y = int(pos->getPos().getY());
 	if (ih->isKeyDown(avance)) { avanzar(); }
 	else if (ih->isKeyDown(giraIzq)) { rotarIzquierda(); }
 	else if (ih->isKeyDown(giraDer)) { rotarDerecha(); }
-	else if (ih->isKeyDown(SDLK_e) && lab->getCasillaInfo(x, y)->isExit()) { TheElementalMaze::instance()->changeState(LOBBY); }
+	else if (ih->isKeyDown(SDLK_e) && lab->getCasillaInfo(x, y)->isExit()) { TheElementalMaze::instance()->changeState(END_EXPLORING); }
 }
 
 void PlayerMotion::rotarDerecha()
 {
 	if (TheElementalMaze::instance()->gameState() != EXPLORING)
 		return;
-	x = int(pos->getPos().getX());
-	y = int(pos->getPos().getY());
+	
 	Casilla* cas = lab->getCasillaInfo(x, y);
 	casillaActual = cas->checkCell();
 
@@ -70,8 +72,8 @@ void PlayerMotion::rotarIzquierda()
 {
 	if (TheElementalMaze::instance()->gameState() != EXPLORING)
 		return;
-	x = int(pos->getPos().getX());
-	y = int(pos->getPos().getY());
+	/*x = int(pos->getPos().getX());
+	y = int(pos->getPos().getY());*/
 	Casilla* cas = lab->getCasillaInfo(x, y);
 	casillaActual = cas->checkCell();
 
@@ -103,8 +105,8 @@ void PlayerMotion::avanzar()
 {
 	if (TheElementalMaze::instance()->gameState() != EXPLORING)
 		return;
-	x = int(pos->getPos().getX());
-	y = int(pos->getPos().getY());
+	/*x = int(pos->getPos().getX());
+	y = int(pos->getPos().getY());*/
 	Casilla* cas = lab->getCasillaInfo(x, y);
 	casillaActual = cas->checkCell();
 

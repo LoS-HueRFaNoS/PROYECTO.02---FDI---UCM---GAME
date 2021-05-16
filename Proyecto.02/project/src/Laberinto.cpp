@@ -218,7 +218,7 @@ void Laberinto::generaObjeto(int object, int type, Casilla* casilla, int maxObje
 
 	if (object == 0) {
 
-		casilla->addEnemy((static_cast<enemyTemplate>(type)));
+		//casilla->addEnemy((static_cast<enemyTemplate>(type)));
 		//cout << "generado " << (cant+1) << " enemigo"<<endl;
 	}
 	else if (object ==1)

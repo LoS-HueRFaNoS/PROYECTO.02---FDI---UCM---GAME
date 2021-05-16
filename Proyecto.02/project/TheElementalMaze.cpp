@@ -25,11 +25,7 @@ TheElementalMaze::~TheElementalMaze()
 void TheElementalMaze::init()
 {
 	// 3. Personajes
-	laberinto_ = addComponent<Laberinto>(10, 10);
-	player_ = mngr_->addEntity();
-	player_->addComponent<MazePos>(Vector2D(0, 0));
-	player_->addComponent<PlayerMotion>(SDLK_UP, SDLK_LEFT, SDLK_RIGHT, laberinto_);
-	player_->addComponent<PlayerViewer>(laberinto_);
+	
 	itemManager_ = new ItemManager();
 
 	HabilityManager::Init();
@@ -92,12 +88,16 @@ void TheElementalMaze::onStateChanged()
 	case START_EXPLORING:
 		cout << "EXPLORATION STARTED" << endl;
 		// 1. Laberinto
+		laberinto_ = addComponent<Laberinto>(10, 10);
 		
 		laberinto_->createRandomMaze(Vector2D(0, 0));
 
 		// 2. Player
 		 // lo primero en crearse deber�a ser el player �?
-		
+		player_ = mngr_->addEntity();
+		player_->addComponent<MazePos>(Vector2D(0, 0));
+		player_->addComponent<PlayerViewer>(laberinto_);
+		player_->addComponent<PlayerMotion>(SDLK_UP, SDLK_LEFT, SDLK_RIGHT, laberinto_);
 		changeState(EXPLORING);
 		break;
 	case EXPLORING:
@@ -109,8 +109,11 @@ void TheElementalMaze::onStateChanged()
 		combatManager_->startCombat();
 		break;
 	case END_EXPLORING:
-		//removeComponent(ecs::Laberinto);
+		removeComponent(ecs::Laberinto);
 		//delete player_;
+		player_->disable();
+		player_ = nullptr;
+		changeState(LOBBY);
 		break;
 	default:
 		break;

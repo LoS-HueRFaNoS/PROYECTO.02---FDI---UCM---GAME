@@ -41,9 +41,9 @@ public:
 			}
 			else it++;
 		}		
-		Component* c = componentsArray_[id];
+		
 		componentsArray_[id] = nullptr;
-		delete c;
+		
 	}
 
 	template<typename T>
@@ -58,14 +58,16 @@ public:
 	void update() {
 		if (!enabled) return;
 		for (auto &c : components_) {
-			c->update();
+			if (isActive())
+				c->update();
 		}
 	}
 
 	void draw() {
 		if (!enabled) return;
 		for (auto &c : components_) {
-			c->draw();
+			if (isActive())
+				c->draw();
 		}
 	}
 

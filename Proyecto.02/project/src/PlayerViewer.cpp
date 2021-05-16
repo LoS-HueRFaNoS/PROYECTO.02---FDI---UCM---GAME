@@ -44,6 +44,7 @@ void PlayerViewer::update()
 
 void PlayerViewer::draw()
 {
+	if (cas == nullptr) return;
 	double _x = game_->setHorizontalScale(70);
 	double _y = game_->setVerticalScale(70);
 	double _w = game_->setHorizontalScale(1340);
