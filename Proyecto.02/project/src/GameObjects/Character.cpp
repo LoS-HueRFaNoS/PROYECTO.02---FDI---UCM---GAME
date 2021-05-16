@@ -112,6 +112,7 @@ void Character::recieveDamage(int damage, rpgLogic::damageType type, Character* 
 				it++;
 			}
 		}
+		removeConditions();
 	}
 }
 
@@ -318,6 +319,11 @@ void Hero::recieveHealing(int healing)
 {
 	Character::recieveHealing(healing);
 	resetThrows();
+}
+
+void Hero::recieveMana(int mana)
+{
+	_sheet->recieveMana(mana);
 }
 
 void Hero::resetThrows()

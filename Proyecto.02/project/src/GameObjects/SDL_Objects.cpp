@@ -26,4 +26,6 @@ void Line::init(Vector2D pos, uint ancho, uint alto, string line, Resources::Fon
 	Texture* text = new Texture();
 	if (text->loadFromText(game_->getRenderer(), line, game_->getFontMngr()->getFont(font), color))
 		SDL_Object::init(pos, ancho, alto, text);
+	else
+		delete text;
 }

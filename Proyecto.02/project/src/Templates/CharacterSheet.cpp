@@ -28,6 +28,16 @@ void CharacterSheet::recieveHealing(int healing)
 		_hitPoints = _maxHitPoints;
 }
 
+void CharacterSheet::recieveMana(int mana)
+{
+	_manaPoints += mana;
+
+	std::cout << name << " recovers " << mana << " mana points" << std::endl;
+
+	if (_manaPoints > _maxManaPoints)
+		_manaPoints = _maxManaPoints;
+}
+
 /*void CharacterSheet::recieveBuff(int buff,mainStat st)
 {
 	//cambiar el _hitPoints por el stat que aumenta

@@ -13,8 +13,8 @@ PartyManager::PartyManager() :
 }
 
 PartyManager::PartyManager(std::vector<Hero*> heroes, std::vector<Item*> items, int gold, int manaP, int healthP) :
-	heroes_(heroes), 
-	items_(items), 
+	heroes_(heroes),
+	items_(items),
 	gold(gold),
 	manaPotions(manaP),
 	healthPotions(healthP)
@@ -85,7 +85,7 @@ void PartyManager::swapHeroes(int first, int second)
 {
 	if (!heroes_[first] || !heroes_[second])
 		return;
-	
+
 	Hero* aux = heroes_[first];
 	heroes_[first] = heroes_[second];
 	heroes_[second] = aux;
@@ -118,5 +118,37 @@ Item* PartyManager::addItem(Item* i, int pos)
 		Item* oldItem = items_[pos];
 		items_[pos] = i;
 		return oldItem;
+	}
+}
+
+void PartyManager::usePotion(int hero, bool mana)
+{
+	if (mana) {
+		if (manaPotions > 0) {
+			heroes_[hero]->recieveMana(5);
+			manaPotions--;
+		}
+		else
+			cout << "Not enough mana potions\n";
+	}
+	else {
+		if (healthPotions > 0) {
+			heroes_[hero]->recieveHealing(5);
+			healthPotions--;
+		}
+		else
+			cout << "Not enough health potions\n";
+	}
+}
+
+void PartyManager::usePotion(Hero* hero, bool mana)
+{
+	int i = 0;
+	for (Hero* h : heroes_) {
+		if (h == hero) {
+			usePotion(i, mana);
+			return;
+		}
+		i++;
 	}
 }

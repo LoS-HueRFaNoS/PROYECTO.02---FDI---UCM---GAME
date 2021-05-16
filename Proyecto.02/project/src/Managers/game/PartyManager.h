@@ -50,6 +50,10 @@ public:
 	std::vector<Hero*> getHeroes() { return heroes_; }
 
 	std::vector<Item*> getItems() { return items_; }
+
+	void usePotion(int hero, bool mana);
+
+	void usePotion(Hero* hero, bool mana);
 };
 
 #endif // !_PARTY_MANAGER_

@@ -202,6 +202,8 @@ public:
 	void savingDeathThrow();
 
 	virtual void recieveHealing(int healing);
+	
+	virtual void recieveMana(int mana);
 
 	void resetThrows();
 

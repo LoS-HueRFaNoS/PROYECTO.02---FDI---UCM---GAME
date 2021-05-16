@@ -95,6 +95,8 @@ public:
 
 	void recieveHealing(int healing);
 
+	void recieveMana(int mana);
+
 	//void recieveBuff(int buff,mainStat st);
 };
 #endif

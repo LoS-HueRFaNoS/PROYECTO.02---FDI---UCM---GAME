@@ -365,16 +365,23 @@ void CombatManager::sendKeyEvent(int key)
 		if (key == -1) changeState(PASS_TURN);
 		break;
 	case ACTION_PHASE_SPELL:
-		if (key == -1) {
+
+		switch (key)
+		{
+		case -1:
 			changeState(END_TURN);
 			break;
-		}
-		else if (key == -4) {
+		case -4:
 			tryEscape();
 			break;
+		case -5: case -6:
+			TheElementalMaze::instance()->getPartyManager()->usePotion((Hero*)currentCharacter,(6+key));
+			break;
+		default:
+			if (!currentCharacter->getType())
+				static_cast<Hero*>(currentCharacter)->manageInput(this, key);
+			break;
 		}
-		if (!currentCharacter->getType())
-			static_cast<Hero*>(currentCharacter)->manageInput(this, key);
 		break;
 	case ACTION_PHASE_TARGET:
 		if (key == -1) {
@@ -413,9 +420,11 @@ void CombatManager::update()
 		else if (ih->isKeyDown(SDLK_7)) sendKeyEvent(7);
 		else if (ih->isKeyDown(SDLK_8)) sendKeyEvent(8);
 		else if (ih->isKeyDown(SDLK_9)) sendKeyEvent(9);
-		else if (ih->isKeyDown(SDLK_RETURN)) sendKeyEvent(-1);
-		else if (ih->isKeyDown(SDLK_l)) sendKeyEvent(-2);
-		else if (ih->isKeyDown(SDLK_h)) sendKeyEvent(-3);
-		else if (ih->isKeyDown(SDLK_x)) sendKeyEvent(-4);
+		else if (ih->isKeyDown(SDLK_RETURN)) sendKeyEvent(-1);		// Saltar turno , terminar turno
+		else if (ih->isKeyDown(SDLK_l)) sendKeyEvent(-2);			// Ataque ligero
+		else if (ih->isKeyDown(SDLK_h)) sendKeyEvent(-3);			// Ataque pesado
+		else if (ih->isKeyDown(SDLK_x)) sendKeyEvent(-4);			// Intentar Huir
+		else if (ih->isKeyDown(SDLK_q)) sendKeyEvent(-5);			// Poción de mana
+		else if (ih->isKeyDown(SDLK_e)) sendKeyEvent(-6);			// Poción de vida
 	}
 }
