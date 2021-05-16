@@ -162,6 +162,7 @@ vector<Resources::ImageInfo> Resources::images_{
 
 	//Habilidades
 	{Aligerar, "resources/sprites/iconos habilidades/ALIGERAR.PNG"},
+	{AllyTeamAttackExample, "resources/sprites/iconos habilidades/LightAttack.PNG"},
 	{Bendicion, "resources/sprites/iconos habilidades/BENDICION.png"},
 	{Bloody_strike, "resources/sprites/iconos habilidades/BLODDY_STRIKE.PNG"},
 	{Bola_fuego, "resources/sprites/iconos habilidades/BOLA_DE_FUEGO.PNG"},
@@ -197,7 +198,8 @@ vector<Resources::ImageInfo> Resources::images_{
 	{Trickshot, "resources/sprites/iconos habilidades/TRICKSHOT.png"},
 	{Tsunami, "resources/sprites/iconos habilidades/TSUNAMI.png"},
 	{VorticeDeOscuridad, "resources/sprites/iconos habilidades/VORTICE DE OSCURIDAD.PNG"},
-	{Morph, "resources/sprites/iconos habilidades/MORPH.png"}
+	{Morph, "resources/sprites/iconos habilidades/MORPH.png"},
+	{ReverseMorph, "resources/sprites/iconos habilidades/MORPH.png"}
 };
 
 vector<Resources::TextMsgInfo> Resources::messages_{

@@ -942,7 +942,7 @@ Resources::TextureId Interfaz::getHabilityTxt(uint hero, uint number)
 		id = src::SelfHeal;
 		break;
 	case ALLYTEAMATTACKEXAMPLE:
-		id = src::LightAttack;
+		id = src::AllyTeamAttackExample;
 		break;
 	case WINDBURST:
 		id = src::RafagaDeViento;
@@ -1010,7 +1010,7 @@ Resources::TextureId Interfaz::getHabilityTxt(uint hero, uint number)
 		id = src::Morph;
 		break;
 	case REVERSEMORPH:
-		id = src::Morph;
+		id = src::ReverseMorph;
 		break;
 	case HEAVYSTRIKE:
 		id = src::GolpeDuro;
