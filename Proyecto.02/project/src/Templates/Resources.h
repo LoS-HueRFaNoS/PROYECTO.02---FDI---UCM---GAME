@@ -106,6 +106,7 @@ public:
 		ArmorSlot,
 
 //Objetos
+		_firstWeaponId_,
 		Desarmado,
 		Baston,
 		Daga,
@@ -117,9 +118,6 @@ public:
 		Maza,
 		ArcoPequeno,
 		BallestaLigera,
-
-// Comodin
-		Joker,
 
 //Armas Marciales
 		Alabarda,
@@ -138,7 +136,11 @@ public:
 		ArcoLargo,
 		BallestaPesada,
 
+		// Comodin
+		Joker,
+
 		//Armaduras
+		_firstArmorId_,
 		Acolchada,
 		CueroTachonado,
 		CotaEscamas,
@@ -149,19 +151,22 @@ public:
 		Placas,
 
 		//Enemigos
-		Zombie,
-		Troll,
-		Skeleton,
-		Hellhound,
-		Specter,
+		_firstEnemyId_,
 		Goblin,
-		DeathKnight,
-		Mimic,
 		Pixie,
+		Zombie,
+		Skeleton,
+		Specter,
+		Troll,
+		Hellhound,
+		Mimic,
 		Ghoul,
-		Dracolich,
 		GiantWorm,
 		Banshee,
+		DeathKnight,
+		Dracolich,
+		
+		
 		Lich,
 		Necrofago,
 		Monster,
@@ -171,43 +176,49 @@ public:
 		Pergamino,
 
 		//Habilidades
-		Aligerar,
-		Bendicion,
-		Bloody_strike,
+		_firstSkillId_,
+		
+			LightAttack,
 		Bola_fuego,
-		Congelar,
-		Cuchilla_aerea,
-		Curacion_en_masa,
+		Bloody_strike,
 		Curacion,
+		Curacion_en_masa,
+		SelfHeal,
+		AllyTeamAttackExample,
+		RafagaDeViento,
+		Cuchilla_aerea,
+		PilarDeTierra,
+		Sombra_toxica,
+		Tsunami,
+		Proteccion_divina,
 		Destello,
-		Determinacion,		
-		DisparoDoble,
-		Endurecer,
-		Espinas,
+		Congelar,
+		TorrenteAcuatico,
+		RayoLuminoso,
+		VorticeDeOscuridad,
 		FlechaDeFuego,
-		FlechaDeHumo,
-		Fortalecer,
-		GolpeDuro,
-		HachaArrojadiza,
-		LightAttack,
-		LluviaDeDagas,
 		Meditacion,
+		Aligerar,
+		Fortalecer,
+		Endurecer,
+		SedDeSangre,
+		Sacrificio,
+		DisparoDoble,
+		HachaArrojadiza,
+		Morph,
+		ReverseMorph,
+		GolpeDuro,
+		FlechaDeHumo,
+		LluviaDeDagas,
+		ProyectilesDeRoca,
+		Trickshot,
 		OdaDeLosGladiadores,
 		OdaDeViento,
-		PilarDeTierra,
-		ProyectilesDeRoca,
-		RafagaDeViento,
-		RayoLuminoso,
-		Sacrificio,
-		SedDeSangre,
-		SelfHeal,
-		Sombra_toxica,
-		Proteccion_divina,
-		TorrenteAcuatico,
-		Trickshot,
-		Tsunami,
-		VorticeDeOscuridad,
-		Morph
+		Determinacion,
+
+
+		Bendicion,		
+		Espinas,		
 	};
 
 	enum AudioId : std::size_t {
