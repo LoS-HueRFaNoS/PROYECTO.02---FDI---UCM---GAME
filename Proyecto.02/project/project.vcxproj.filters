@@ -45,330 +45,336 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\Entity.cpp">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
     <ClCompile Include="src\Game.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
     <ClCompile Include="src\main.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
-    <ClCompile Include="src\SDLGame.cpp">
+    <ClCompile Include="src\Managers\SDL\AudioManager.cpp">
+      <Filter>Archivos de origen\Managers</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Managers\SDL\FontsManager.cpp">
+      <Filter>Archivos de origen\Managers</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Managers\SDL\SDLAudioManager.cpp">
+      <Filter>Archivos de origen\Managers</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Managers\SDL\SDLFontsManager.cpp">
+      <Filter>Archivos de origen\Managers</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Managers\SDL\SDLTexturesManager.cpp">
+      <Filter>Archivos de origen\Managers</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Managers\SDL\TexturesManager.cpp">
+      <Filter>Archivos de origen\Managers</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Managers\game\CharacterManager.cpp">
+      <Filter>Archivos de origen\Managers</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Managers\game\CombatManager.cpp">
+      <Filter>Archivos de origen\Managers</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Managers\game\HabilityManager.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
-    <ClCompile Include="src\TexturesManager.cpp">
-      <Filter>Archivos de origen\Managers</Filter>
+    <ClCompile Include="src\Managers\game\ItemManager.cpp">
+      <Filter>Archivos de origen</Filter>
     </ClCompile>
-    <ClCompile Include="src\SDLAudioManager.cpp">
-      <Filter>Archivos de origen\Managers</Filter>
+    <ClCompile Include="src\Managers\game\LobbyManager.cpp">
+      <Filter>Archivos de origen</Filter>
     </ClCompile>
-    <ClCompile Include="src\SDLFontsManager.cpp">
-      <Filter>Archivos de origen\Managers</Filter>
+    <ClCompile Include="src\Managers\game\PartyManager.cpp">
+      <Filter>Archivos de origen\Templates/Resources</Filter>
     </ClCompile>
-    <ClCompile Include="src\AudioManager.cpp">
-      <Filter>Archivos de origen\Managers</Filter>
+    <ClCompile Include="src\Managers\SDLGame.cpp">
+      <Filter>Archivos de origen</Filter>
     </ClCompile>
-    <ClCompile Include="src\FontsManager.cpp">
-      <Filter>Archivos de origen\Managers</Filter>
+    <ClCompile Include="src\Managers\TheElementalMaze.cpp">
+      <Filter>Archivos de origen</Filter>
     </ClCompile>
-    <ClCompile Include="src\SDLTexturesManager.cpp">
-      <Filter>Archivos de origen\Managers</Filter>
+    <ClCompile Include="src\GameObjects\Button.cpp">
+      <Filter>Archivos de origen</Filter>
     </ClCompile>
-    <ClCompile Include="src\Manager.cpp">
-      <Filter>Archivos de origen\Managers</Filter>
+    <ClCompile Include="src\GameObjects\Character.cpp">
+      <Filter>Archivos de origen\Templates/Resources</Filter>
     </ClCompile>
-    <ClCompile Include="src\Component.cpp">
+    <ClCompile Include="src\GameObjects\Cursor.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GameObjects\Rectangle.cpp">
       <Filter>Archivos de origen\Components</Filter>
     </ClCompile>
-    <ClCompile Include="src\Transform.cpp">
+    <ClCompile Include="src\Structures\Panel.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Components\Interfaz.cpp">
       <Filter>Archivos de origen\Components</Filter>
     </ClCompile>
-    <ClCompile Include="src\InputHandler.cpp">
-      <Filter>Archivos de origen\Managers</Filter>
+    <ClCompile Include="src\Components\ButtonCtrl.cpp">
+      <Filter>Archivos de origen</Filter>
     </ClCompile>
-    <ClCompile Include="src\sdl_macros.cpp">
-      <Filter>Archivos de origen\Tools/Utilities</Filter>
-    </ClCompile>
-    <ClCompile Include="src\SRandBasedGenerator.cpp">
-      <Filter>Archivos de origen\Tools/Utilities</Filter>
-    </ClCompile>
-    <ClCompile Include="src\RandomNumberGenerator.cpp">
-      <Filter>Archivos de origen\Tools/Utilities</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Font.cpp">
-      <Filter>Archivos de origen\Tools/Utilities</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Collisions.cpp">
-      <Filter>Archivos de origen\Tools/Utilities</Filter>
-    </ClCompile>
-    <ClCompile Include="src\jute.cpp">
-      <Filter>Archivos de origen\Tools/Utilities</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Rectangle.cpp">
+    <ClCompile Include="src\Components\Transform.cpp">
       <Filter>Archivos de origen\Components</Filter>
     </ClCompile>
-    <ClCompile Include="src\ObjectPool.cpp">
+    <ClCompile Include="src\Components\Sprite.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Components\PlayerViewer.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Components\PlayerMotion.cpp">
+      <Filter>Archivos de origen\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Components\MouseCtrl.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Templates\CharacterSheet.cpp">
+      <Filter>Archivos de origen\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Templates\callbacks.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Templates\HabilityResources.cpp">
+      <Filter>Archivos de origen\Templates/Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Templates\Resources.cpp">
+      <Filter>Archivos de origen\Templates/Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Templates\RPGLogic.cpp">
+      <Filter>Archivos de origen\Templates/Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Utilities\SRandBasedGenerator.cpp">
+      <Filter>Archivos de origen\Tools/Utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Utilities\sdl_macros.cpp">
+      <Filter>Archivos de origen\Tools/Utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Utilities\RandomNumberGenerator.cpp">
+      <Filter>Archivos de origen\Tools/Utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Utilities\jute.cpp">
+      <Filter>Archivos de origen\Tools/Utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Utilities\Collisions.cpp">
+      <Filter>Archivos de origen\Tools/Utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Structures\Vector2D.cpp">
+      <Filter>Archivos de origen\Tools/Utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Structures\Texture.cpp">
+      <Filter>Archivos de origen\Tools/Utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Structures\ObjectPool.cpp">
       <Filter>Archivos de origen\ObjectPools</Filter>
     </ClCompile>
-    <ClCompile Include="src\Resources.cpp">
-      <Filter>Archivos de origen\Templates/Resources</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Vector2D.cpp">
+    <ClCompile Include="src\Structures\Font.cpp">
       <Filter>Archivos de origen\Tools/Utilities</Filter>
     </ClCompile>
-    <ClCompile Include="src\Texture.cpp">
-      <Filter>Archivos de origen\Tools/Utilities</Filter>
-    </ClCompile>
-    <ClCompile Include="src\RPGLogic.cpp">
-      <Filter>Archivos de origen\Templates/Resources</Filter>
-    </ClCompile>
-    <ClCompile Include="src\ButtonCtrl.cpp">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
-    <ClCompile Include="TheElementalMaze.cpp">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
-    <ClCompile Include="src\CharacterSheet.cpp">
+    <ClCompile Include="src\ecs\Component.cpp">
       <Filter>Archivos de origen\Components</Filter>
     </ClCompile>
-    <ClCompile Include="src\HabilityResources.cpp">
-      <Filter>Archivos de origen\Templates/Resources</Filter>
+    <ClCompile Include="src\ecs\Entity.cpp">
+      <Filter>Archivos de origen</Filter>
     </ClCompile>
-    <ClCompile Include="src\Character.cpp">
-      <Filter>Archivos de origen\Templates/Resources</Filter>
-    </ClCompile>
-    <ClCompile Include="src\CombatManager.cpp">
+    <ClCompile Include="src\ecs\Manager.cpp">
       <Filter>Archivos de origen\Managers</Filter>
     </ClCompile>
-    <ClCompile Include="src\CharacterManager.cpp">
+    <ClCompile Include="src\Utilities\InputHandler.cpp">
       <Filter>Archivos de origen\Managers</Filter>
     </ClCompile>
-    <ClCompile Include="src\ItemManager.cpp">
+    <ClCompile Include="src\GameObjects\SDL_Objects.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
-    <ClCompile Include="src\Item.cpp">
+    <ClCompile Include="src\Components\Laberinto.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Structures\Casilla.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Structures\Item.cpp">
       <Filter>Archivos de origen\Templates/Resources</Filter>
     </ClCompile>
-    <ClCompile Include="src\Panel.cpp">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Button.cpp">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Casilla.cpp">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Laberinto.cpp">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
-    <ClCompile Include="src\callbacks.cpp">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Cursor.cpp">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
-    <ClCompile Include="src\MouseCtrl.cpp">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Sprite.cpp">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
-    <ClCompile Include="src\PlayerMotion.cpp">
-      <Filter>Archivos de origen\Components</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Interfaz.cpp">
-      <Filter>Archivos de origen\Components</Filter>
-    </ClCompile>
-    <ClCompile Include="src\PartyManager.cpp">
-      <Filter>Archivos de origen\Templates/Resources</Filter>
-    </ClCompile>
-    <ClCompile Include="src\HabilityManager.cpp">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
-    <ClCompile Include="src\LobbyManager.cpp">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
-    <ClCompile Include="src\PlayerViewer.cpp">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
-    <ClCompile Include="src\SDL_Objects.cpp">
+    <ClCompile Include="src\Utilities\textures_box.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\ecs.h">
+    <ClInclude Include="src\Managers\SDL\AudioManager.h">
+      <Filter>Archivos de encabezado\Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Managers\SDL\FontsManager.h">
+      <Filter>Archivos de encabezado\Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Managers\SDL\SDLAudioManager.h">
+      <Filter>Archivos de encabezado\Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Managers\SDL\SDLFontsManager.h">
+      <Filter>Archivos de encabezado\Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Managers\SDL\SDLTexturesManager.h">
+      <Filter>Archivos de encabezado\Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Managers\SDL\TexturesManager.h">
+      <Filter>Archivos de encabezado\Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Managers\game\CharacterManager.h">
+      <Filter>Archivos de encabezado\Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Managers\game\CombatManager.h">
+      <Filter>Archivos de encabezado\Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Managers\game\HabilityManager.h">
+      <Filter>Archivos de encabezado\Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Managers\game\InterfazManager.h">
+      <Filter>Archivos de encabezado\Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Managers\game\ItemManager.h">
+      <Filter>Archivos de encabezado\Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Managers\game\LobbyManager.h">
+      <Filter>Archivos de encabezado\Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Managers\game\PartyManager.h">
+      <Filter>Archivos de encabezado\Templates/Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Managers\SDLGame.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
-    <ClInclude Include="src\Entity.h">
+    <ClInclude Include="src\Managers\TheElementalMaze.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
     <ClInclude Include="src\Game.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
-    <ClInclude Include="src\SDLGame.h">
+    <ClInclude Include="src\GameObjects\Button.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
-    <ClInclude Include="src\TexturesManager.h">
-      <Filter>Archivos de encabezado\Managers</Filter>
+    <ClInclude Include="src\GameObjects\Character.h">
+      <Filter>Archivos de encabezado\Templates/Resources</Filter>
     </ClInclude>
-    <ClInclude Include="src\SDLTexturesManager.h">
-      <Filter>Archivos de encabezado\Managers</Filter>
+    <ClInclude Include="src\GameObjects\Cursor.h">
+      <Filter>Archivos de encabezado</Filter>
     </ClInclude>
-    <ClInclude Include="src\SDLAudioManager.h">
-      <Filter>Archivos de encabezado\Managers</Filter>
-    </ClInclude>
-    <ClInclude Include="src\SDLFontsManager.h">
-      <Filter>Archivos de encabezado\Managers</Filter>
-    </ClInclude>
-    <ClInclude Include="src\FontsManager.h">
-      <Filter>Archivos de encabezado\Managers</Filter>
-    </ClInclude>
-    <ClInclude Include="src\AudioManager.h">
-      <Filter>Archivos de encabezado\Managers</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Manager.h">
-      <Filter>Archivos de encabezado\Managers</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Component.h">
+    <ClInclude Include="src\GameObjects\Rectangle.h">
       <Filter>Archivos de encabezado\Components</Filter>
     </ClInclude>
-    <ClInclude Include="src\Transform.h">
+    <ClInclude Include="src\Structures\Panel.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Components\Interfaz.h">
       <Filter>Archivos de encabezado\Components</Filter>
     </ClInclude>
-    <ClInclude Include="src\InputHandler.h">
-      <Filter>Archivos de encabezado\Managers</Filter>
+    <ClInclude Include="src\Components\Image.h">
+      <Filter>Archivos de encabezado</Filter>
     </ClInclude>
-    <ClInclude Include="src\checkML.h">
-      <Filter>Archivos de encabezado\Tools/Utilities</Filter>
+    <ClInclude Include="src\Components\CasillaRender.h">
+      <Filter>Archivos de encabezado</Filter>
     </ClInclude>
-    <ClInclude Include="src\SDL_macros.h">
-      <Filter>Archivos de encabezado\Tools/Utilities</Filter>
+    <ClInclude Include="src\Components\ButtonCtrl.h">
+      <Filter>Archivos de encabezado</Filter>
     </ClInclude>
-    <ClInclude Include="src\SRandBasedGenerator.h">
-      <Filter>Archivos de encabezado\Tools/Utilities</Filter>
-    </ClInclude>
-    <ClInclude Include="src\RandomNumberGenerator.h">
-      <Filter>Archivos de encabezado\Tools/Utilities</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Font.h">
-      <Filter>Archivos de encabezado\Tools/Utilities</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Collisions.h">
-      <Filter>Archivos de encabezado\Tools/Utilities</Filter>
-    </ClInclude>
-    <ClInclude Include="src\jute.h">
-      <Filter>Archivos de encabezado\Tools/Utilities</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Rectangle.h">
+    <ClInclude Include="src\Components\Transform.h">
       <Filter>Archivos de encabezado\Components</Filter>
     </ClInclude>
-    <ClInclude Include="src\ObjectPool.h">
+    <ClInclude Include="src\Components\StateBar.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Components\Sprite.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Components\PlayerViewer.h">
+      <Filter>Archivos de encabezado\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Components\PlayerMotion.h">
+      <Filter>Archivos de encabezado\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Components\MouseCtrl.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Components\MazePos.h">
+      <Filter>Archivos de encabezado\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Templates\CharacterSheet.h">
+      <Filter>Archivos de encabezado\Templates/Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Templates\callbacks.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Templates\HabilityResources.h">
+      <Filter>Archivos de encabezado\Templates/Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Templates\Resources.h">
+      <Filter>Archivos de encabezado\Templates/Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Templates\RPGLogic.h">
+      <Filter>Archivos de encabezado\Templates/Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Utilities\usings.h">
+      <Filter>Archivos de encabezado\Tools/Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Utilities\SRandBasedGenerator.h">
+      <Filter>Archivos de encabezado\Tools/Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Utilities\SDL_macros.h">
+      <Filter>Archivos de encabezado\Tools/Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Utilities\RandomNumberGenerator.h">
+      <Filter>Archivos de encabezado\Tools/Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Utilities\jute.h">
+      <Filter>Archivos de encabezado\Tools/Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Utilities\Collisions.h">
+      <Filter>Archivos de encabezado\Tools/Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Utilities\checkML.h">
+      <Filter>Archivos de encabezado\Tools/Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Structures\Vector2D.h">
+      <Filter>Archivos de encabezado\Tools/Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Structures\Texture.h">
+      <Filter>Archivos de encabezado\Tools/Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Structures\ObjectPool.h">
       <Filter>Archivos de encabezado\ObjectPools</Filter>
     </ClInclude>
-    <ClInclude Include="src\Resources.h">
-      <Filter>Archivos de encabezado\Templates/Resources</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Vector2D.h">
+    <ClInclude Include="src\Structures\Font.h">
       <Filter>Archivos de encabezado\Tools/Utilities</Filter>
     </ClInclude>
-    <ClInclude Include="src\Texture.h">
-      <Filter>Archivos de encabezado\Tools/Utilities</Filter>
-    </ClInclude>
-    <ClInclude Include="src\RPGLogic.h">
-      <Filter>Archivos de encabezado\Templates/Resources</Filter>
-    </ClInclude>
-    <ClInclude Include="src\PlayerMotion.h">
+    <ClInclude Include="src\ecs\Component.h">
       <Filter>Archivos de encabezado\Components</Filter>
     </ClInclude>
-    <ClInclude Include="src\ButtonCtrl.h">
+    <ClInclude Include="src\ecs\ecs.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
-    <ClInclude Include="src\callbacks.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="src\ecs_interfaz.h">
+    <ClInclude Include="src\ecs\ecs_interfaz.h">
       <Filter>Archivos de encabezado\Components</Filter>
     </ClInclude>
-    <ClInclude Include="src\PlayerMotion.h">
-      <Filter>Archivos de encabezado\Components</Filter>
+    <ClInclude Include="src\ecs\Entity.h">
+      <Filter>Archivos de encabezado</Filter>
     </ClInclude>
-    <ClInclude Include="src\usings.h">
-      <Filter>Archivos de encabezado\Tools/Utilities</Filter>
+    <ClInclude Include="src\ecs\Manager.h">
+      <Filter>Archivos de encabezado\Managers</Filter>
     </ClInclude>
-    <ClInclude Include="src\MazePos.h">
-      <Filter>Archivos de encabezado\Components</Filter>
+    <ClInclude Include="src\Utilities\InputHandler.h">
+      <Filter>Archivos de encabezado\Managers</Filter>
     </ClInclude>
-    <ClInclude Include="src\Character.h">
+    <ClInclude Include="src\GameObjects\SDL_Objects.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Components\Laberinto.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Structures\Casilla.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Structures\Item.h">
       <Filter>Archivos de encabezado\Templates/Resources</Filter>
     </ClInclude>
-    <ClInclude Include="src\HabilityResources.h">
-      <Filter>Archivos de encabezado\Templates/Resources</Filter>
-    </ClInclude>
-    <ClInclude Include="src\PlayerViewer.h">
-      <Filter>Archivos de encabezado\Components</Filter>
-    </ClInclude>
-    <ClInclude Include="TheElementalMaze.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Panel.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Button.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Casilla.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Laberinto.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Cursor.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="src\MouseCtrl.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Sprite.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Image.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="src\CombatManager.h">
-      <Filter>Archivos de encabezado\Managers</Filter>
-    </ClInclude>
-    <ClInclude Include="src\CharacterManager.h">
-      <Filter>Archivos de encabezado\Managers</Filter>
-    </ClInclude>
-    <ClInclude Include="src\ItemManager.h">
-      <Filter>Archivos de encabezado\Managers</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Item.h">
-      <Filter>Archivos de encabezado\Templates/Resources</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Interfaz.h">
-      <Filter>Archivos de encabezado\Components</Filter>
-    </ClInclude>
-    <ClInclude Include="src\InterfazManager.h">
-      <Filter>Archivos de encabezado\Managers</Filter>
-    </ClInclude>
-    <ClInclude Include="src\CharacterSheet.h">
-      <Filter>Archivos de encabezado\Templates/Resources</Filter>
-    </ClInclude>
-    <ClInclude Include="src\PartyManager.h">
-      <Filter>Archivos de encabezado\Templates/Resources</Filter>
-    </ClInclude>
-    <ClInclude Include="src\HabilityManager.h">
-      <Filter>Archivos de encabezado\Managers</Filter>
-    </ClInclude>
-    <ClInclude Include="src\LobbyManager.h">
-      <Filter>Archivos de encabezado\Managers</Filter>
-    </ClInclude>
-    <ClInclude Include="src\StateBar.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="src\SDL_Objects.h">
+    <ClInclude Include="src\Utilities\textures_box.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
   </ItemGroup>

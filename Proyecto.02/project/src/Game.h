@@ -2,8 +2,8 @@
 
 #include <vector>
 
-#include "SDLGame.h"
-#include "checkML.h"
+#include "Managers/SDLGame.h"
+#include "Utilities/checkML.h"
 
 class InterfazManager;
 class CharacterManager;
@@ -17,6 +17,8 @@ typedef unsigned int uint;
 class Game {
 
 public:
+	static Game* Init();
+	static Game* Instance();
 	Game();
 	virtual ~Game();
 
@@ -24,8 +26,10 @@ public:
 	void start();
 	void stop();
 	SDLGame* getSDLGame() { return game_; };
+	void exitGame() { exit_ = true; };
 
 private:
+	static std::unique_ptr<Game> instance_;
 	void initGame();
 	//void createLaberinto();
 	void closeGame();

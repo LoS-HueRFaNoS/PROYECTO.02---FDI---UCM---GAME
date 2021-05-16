@@ -1,29 +1,44 @@
-#include "SDL_macros.h"
-#include "Game.h"
 #include <assert.h>
-#include "InputHandler.h"
-#include "Rectangle.h"
-#include "ecs.h"
-#include "Transform.h"
-#include "Image.h"
-#include "SDLGame.h"
-#include "SDL_macros.h"
-#include "MazePos.h"
-#include "Manager.h"
+#include "Game.h"
+#include "Utilities/SDL_macros.h"
+#include "Utilities/InputHandler.h"
+#include "Utilities/SDL_macros.h"
+#include "Components/Transform.h"
+#include "Components/Image.h"
+#include "Components/MazePos.h"
+#include "Components/Interfaz.h"
+#include "Components/PlayerMotion.h"
+#include "Components/PlayerViewer.h"
+#include "GameObjects/Rectangle.h"
+#include "GameObjects/Cursor.h"
+#include "GameObjects/SDL_Objects.h"
+#include "ecs/ecs.h"
+#include "ecs/Manager.h"
 
 // Nuestro includes
-#include "CharacterManager.h"
-#include "CombatManager.h"
-#include "Interfaz.h"
-#include "InterfazManager.h"
-#include "PlayerMotion.h"
-#include "PlayerViewer.h"
-#include "Cursor.h"
-#include "SDL_Objects.h"
-#include "../TheElementalMaze.h"
+#include "Managers/game/CharacterManager.h"
+#include "Managers/game/CombatManager.h"
+#include "Managers/game/InterfazManager.h"
+#include "Managers/TheElementalMaze.h"
+#include "Managers/SDLGame.h"
 //
 
 using namespace std;
+
+unique_ptr<Game> Game::instance_;
+
+Game* Game::Init()
+{
+	assert(instance_.get() == nullptr);
+	instance_.reset(new Game());
+	return instance_.get();
+}
+
+Game* Game::Instance()
+{
+	assert(instance_.get() != nullptr);
+	return instance_.get();
+}
 
 Game::Game() : game_(nullptr),			   //
 			   entityManager_(nullptr),	   //
@@ -61,11 +76,14 @@ void Game::initGame()
 
 	interfazManager_ = new InterfazManager(game_);
 
+	system("cls");
+
 	gameManager_ = TheElementalMaze::initInstace(game_, entityManager_, characterManager_, interfazManager_);
 
 	entityManager_->addEntity(gameManager_);
 
 	c_ = createCursor(Vector2D(200, 200), 50, 50, Resources::Mouse);
+
 
 	int endTime = 0;
 	delete tex_;
@@ -100,6 +118,7 @@ void Game::stop()
 {
 	exit_ = true;
 }
+
 
 void Game::handleInput()
 {
