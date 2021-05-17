@@ -211,7 +211,7 @@ void Interfaz::createInfo()
 void Interfaz::createInventory()
 {
 	SDLGame* game_ = entity_->getSDLGame();
-
+	vector<Item*> items = TheElementalMaze::instance()->getPartyManager()->getItems();
 	double slotTam = game_->getWindowWidth() / 16;
 	double posX;
 	double posY = slotTam * 1.8;
@@ -221,27 +221,76 @@ void Interfaz::createInventory()
 	allPanels[Inventory] = p;
 
 	// Cuadro de inventario 5x5
+	int margen = 0.1 * slotTam;
+	int itemTam = 0.8 * slotTam;
+	Resources::TextureId id;
+	uint pivot, auxId;
 	for (int i = 0; i < 5; ++i) {
 
 		posX = slotTam * 1.5; //Se resetea la coordenada X
 
 		for (int j = 0; j < 5; ++j) {
 			p->addButton(iManager->addButton<ButtonSlott>(Vector2D(posX, posY), slotTam, slotTam, src::Slot));
+
+			int indice = i * 5 + j;
+			Item* item = items[i];
+			if (item != nullptr) {
+				ItemType itemType = item->getItemType();
+
+				if (itemType == ItemType::ARMOR) {
+					pivot = src::_firstArmorId_;
+					auxId = (int) static_cast<Armor*>(item)->getArmorId();
+				}
+				else {
+					pivot = src::_firstWeaponId_;
+					auxId = (int) static_cast<Weapon*>(item)->getWeaponId();
+				}
+				id = (Resources::TextureId) (pivot + auxId + 1);
+				p->addButton(iManager->addButton<ButtonSlott>(Vector2D(posX + margen, posY + margen), itemTam, itemTam, id));
+			}
+
+
+			
 			posX += slotTam;
 		}
 
-		posY += slotTam; // Se suma la coordenada Y
+			posY += slotTam; // Se suma la coordenada Y
+		
 	}
 
 	posX += slotTam; // Se suma la coordenada X dejando un espacio.
 	posY = slotTam * 1.8;
-	int margen = 6;
+	
 
 	// Inventario personajes: clase + arma + armadura
+	PartyManager* c = TheElementalMaze::instance()->getPartyManager();
+	std::vector<Hero*> heroes = c->getHeroes();
 	for (int i = 0; i < 4; ++i) {
 		p->addButton(iManager->addButton<ButtonSlott>(Vector2D(posX, posY), slotTam, slotTam, getHeroTxt(i)));
-		p->addButton(iManager->addButton<ButtonSlott>(Vector2D(posX + slotTam, posY), slotTam, slotTam, src::WeaponSlot));
-		p->addButton(iManager->addButton<ButtonSlott>(Vector2D(posX + slotTam * 2, posY), slotTam, slotTam, src::ArmorSlot));
+
+		Weapon* weapon = heroes[i]->getWeapon();
+		if (weapon != nullptr) {
+			p->addButton(iManager->addButton<ButtonSlott>(Vector2D(posX + slotTam, posY), slotTam, slotTam, src::Slot));
+			pivot = src::_firstWeaponId_;
+			auxId = (int)weapon->getWeaponId();
+			id = (Resources::TextureId) (pivot + auxId + 1);
+			p->addButton(iManager->addButton<ButtonSlott>(Vector2D(posX + slotTam + margen, posY + margen), itemTam, itemTam, id));
+		}
+		else 	
+			p->addButton(iManager->addButton<ButtonSlott>(Vector2D(posX + slotTam, posY), slotTam, slotTam, src::WeaponSlot));
+
+		Armor* armor = heroes[i]->getArmor();
+		if (armor != nullptr) {
+			p->addButton(iManager->addButton<ButtonSlott>(Vector2D(posX + slotTam * 2, posY), slotTam, slotTam, src::Slot));
+			pivot = src::_firstArmorId_;
+			auxId = (int) armor->getArmorId();
+			id = (Resources::TextureId) (pivot + auxId + 1);
+			p->addButton(iManager->addButton<ButtonSlott>(Vector2D( posX + slotTam * 2 + margen, posY + margen), 0.8 * slotTam, 0.8 * slotTam, id));
+		}
+		else 
+			p->addButton(iManager->addButton<ButtonSlott>(Vector2D(posX + slotTam * 2, posY), slotTam, slotTam, src::ArmorSlot));
+
+		
 
 		posY += slotTam * 1.33;
 	}
