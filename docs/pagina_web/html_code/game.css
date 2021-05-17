@@ -73,9 +73,7 @@ body {
 }
 
 #video{
-	background-image: url("../html_imgs/marco.png");
-	background-repeat: no-repeat;;
-	background-size: 100% 100%;
+	background-color: steelblue;
 	margin: -400px 0 0 40px;
 	height: 500px;
 	width: 900px;
@@ -89,6 +87,7 @@ body {
 	-moz-hyphens: auto;
     -ms-hyphens: auto;
     hyphens: auto;
+	border-radius: 40px;
 	
 }
 #fotos1{
@@ -274,24 +273,15 @@ body {
 }
 
 #texto{
-	background-image: url("../html_imgs/marco.png");
-	background-repeat: no-repeat;;
-	background-size: 100% 100%;
-	margin: 90px 1.5em 0 auto;
+	background-color: steelblue;
+	margin: 40px auto 0 auto;
 	height: auto;
 	width: auto;
 	font-family: 'Monaco', monospace;
 	color:whitesmoke;
-	font-size: 40px;
-	display:flex;
-    align-items: center;
+	font-size: 25px;
 	text-align: center;
-    word-break: break-all;
-	word-break: break-word;
-	-webkit-hyphens: auto;
-	-moz-hyphens: auto;
-    -ms-hyphens: auto;
-    hyphens: auto;
+	border-radius: 40px;
 }
 			
 #header {
@@ -301,10 +291,9 @@ body {
 }
 
 #content{
-	background-image: url("../html_imgs/marco.png");
-	background-repeat: no-repeat;;
-	background-size: 100% 100%;
-	margin: 90px 1.5em 0 auto;
+	background-color: steelblue;
+	background-attachment:fixed;
+	margin: 90px 10px 0 0px;
 	height: auto;
 	width: auto;
 	display:flex;
@@ -317,6 +306,9 @@ body {
 	-moz-hyphens: auto;
     -ms-hyphens: auto;
     hyphens: auto;
+	border-radius: 40px;
+	border-color: goldenrod;
+
 }
 			
 ul, ol {
@@ -351,6 +343,8 @@ ul#rrss{
 #menu0{
 	width: 300px;
 	height: 90px;
+	background-repeat: no-repeat;;
+	background-size: 100% 100%;
 	background-image: url("../html_imgs/juego.png");
 }
 #menu0:hover{
@@ -359,11 +353,15 @@ ul#rrss{
 #menu1{
 	width: 300px;
 	height: 90px;
+	background-repeat: no-repeat;;
+	background-size: 100% 100%;
 	background-image: url("../html_imgs/historia.png");
 }
 #menu10{
 	width: 300px;
 	height: 90px;
+	background-repeat: no-repeat;;
+	background-size: 100% 100%;
 	background-image: url("../html_imgs/objetivos.png");
 }
 #menu10:hover{
@@ -372,6 +370,8 @@ ul#rrss{
 #menu11{
 	width: 300px;
 	height: 90px;
+	background-repeat: no-repeat;;
+	background-size: 100% 100%;
 	background-image: url("../html_imgs/personajes.png");
 }
 #menu11:hover{
@@ -380,6 +380,8 @@ ul#rrss{
 #menu12{
 	width: 300px;
 	height: 90px;
+	background-repeat: no-repeat;;
+	background-size: 100% 100%;
 	background-image: url("../html_imgs/armas.png");
 }
 #menu12:hover{
@@ -388,11 +390,15 @@ ul#rrss{
 #menu2{
 	width: 300px;
 	height: 90px;
+	background-repeat: no-repeat;;
+	background-size: 100% 100%;
 	background-image: url("../html_imgs/acerca.png");
 }
 #menu20{
 	width: 300px;
 	height: 90px;
+	background-repeat: no-repeat;;
+	background-size: 100% 100%;
 	background-image: url("../html_imgs/ajuego.png");
 }
 #menu20:hover{
@@ -401,6 +407,8 @@ ul#rrss{
 #menu21{
 	width: 300px;
 	height: 90px;
+	background-repeat: no-repeat;;
+	background-size: 100% 100%;
 	background-image: url("../html_imgs/nosotros.png");
 }
 #menu21:hover{
@@ -409,6 +417,8 @@ ul#rrss{
 #menu3{
 	width: 300px;
 	height: 90px;
+	background-repeat: no-repeat;;
+	background-size: 100% 100%;
 	background-image: url("../html_imgs/redes.png");
 }
 #menu3:hover{
@@ -417,7 +427,7 @@ ul#rrss{
 .Tablaplayers{
 	font-family: 'Monaco', monospace;
 	color:whitesmoke;
-	font-size: 40px;
+	font-size: 25px;
 	display:flex;
     align-items: center;
 	text-align: center;
@@ -426,14 +436,14 @@ ul#rrss{
 	background-color: steelblue;
 	table-layout: fixed;
 	padding: 20px;
-	border-radius: 10px;
+	border-radius: 40px;
 
 }
 
 .Tablaarmas{
 	font-family: 'Monaco', monospace;
 	color:whitesmoke;
-	font-size: 40px;
+	font-size: 25px;
 	display:flex;
     align-items: center;
 	text-align: center;
@@ -442,7 +452,7 @@ ul#rrss{
 	background-color: steelblue;
 	table-layout: fixed;
 	padding: 20px;
-	border-radius: 10px;
+	border-radius: 40px;
 
 }
 
