@@ -125,7 +125,8 @@ public:
 		level = 0;
 		_mana = 0;
 		_name = "Light Attack";
-		_description = "Golpe to guapo con el arma, a terminar";
+		//_description = "Golpe to guapo con el arma, a terminar";
+		_description = "Ataque basico con el arma del heroe";
 
 		_id = habID::LIGHTATTACK;
 		_habilityType = habTy::ATTACK;
