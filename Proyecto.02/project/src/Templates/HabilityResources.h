@@ -168,10 +168,11 @@ public:
 		level = 0;
 		_mana = 0;
 		_name = "BloodyStrike";
-		_description = "Esto es un ejemplo, hace 1d5 de daño";
+		//_description = "Esto es un ejemplo, hace 1d5 de daño";
+		_description = "Ataque que hace 1d5 de daño a un enemigo y aplica sangrado";
 
 		_id = habID::BLOODYSTRIKE;
-		_damageType = damTy::ICE;
+		_damageType = damTy::SLASH;
 		_habilityType = habTy::ATTACK;
 		_mod = ms::INT;
 		_obj = objTy::SINGLEENEMY;
@@ -300,10 +301,10 @@ public:
 		level = 3;
 		_mana = 3;
 		_name = "Rock Pillar";
-		_description = "Mejorando la estructura, a hace 1d8 a un enemigo frente a salvacion DEX (reduce CON)";
+		_description = "Mejorando la estructura, hace 1d8 a un enemigo frente a salvacion DEX (reduce CON)";
 
 		_id = habID::ROCKPILLAR;
-		_damageType = damTy::WIND;
+		_damageType = damTy::EARTH;
 		_habilityType = habTy::ATTACK;
 		_mod = ms::INT;
 		_obj = objTy::SINGLEENEMY;
@@ -425,7 +426,7 @@ public:
 		level = 1;
 		_mana = 2;
 		_name = "Whirlpool";
-		_description = "Mas agua, a hace 1d8 a un enemigo frente a salvacion DEX (y reduce DEX)";
+		_description = "Mas agua, a hace 1d8 a un enemigo frente a salvacion DEX (y reduce STR)";
 
 		_id = habID::WHIRLPOOL;
 		_damageType = damTy::WATER;
