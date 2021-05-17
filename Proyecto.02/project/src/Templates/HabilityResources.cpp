@@ -169,7 +169,10 @@ void DarkVortex::throwHability(Character* obj, bool critical) const //hay que mi
 
 void FireArrow::throwHability(Character* obj, bool critical) const
 {
-	// HACER FIRE ARROW
+	int damage = throwDice(1 + critical, 8, true);
+	damage = obj->savingThrow(10 + _caster->getMod(_mod), ms::DEX) ? damage / 2 : damage;
+	obj->recieveDamage(damage, _damageType);
+	obj->addCondition<BuffStats>(-3, ms::DEX, _name, _description);
 }
 
 void Lighten::throwHability(Character* obj, bool critical) const
