@@ -162,7 +162,6 @@ vector<Resources::ImageInfo> Resources::images_{
 
 	//Habilidades
 	{Aligerar, "resources/sprites/iconos habilidades/ALIGERAR.PNG"},
-	{AllyTeamAttackExample, "resources/sprites/iconos habilidades/LightAttack.PNG"},
 	{Bendicion, "resources/sprites/iconos habilidades/BENDICION.png"},
 	{Bloody_strike, "resources/sprites/iconos habilidades/BLODDY_STRIKE.PNG"},
 	{Bola_fuego, "resources/sprites/iconos habilidades/BOLA_DE_FUEGO.PNG"},
