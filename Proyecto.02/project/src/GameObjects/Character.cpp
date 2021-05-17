@@ -244,9 +244,9 @@ void Hero::loadFromJson(jute::jValue v, int t)
 
 	int size = v["Characters"][t]["ListHabilities"].size();
 
-	for (int i = 0; i < 2; i++)
+	for (int i = 0; i < size; i++)
 	{
-		int h = v["Characters"][t]["ListHabilities"][throwDice(1,size) - 1].as_int();
+		int h = v["Characters"][t]["ListHabilities"][i].as_int();
 		addHability((Hability_Id)h);
 	}
 }
