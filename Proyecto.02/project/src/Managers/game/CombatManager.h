@@ -39,7 +39,7 @@ private:
 	bool stateChanged = false;
 
 	Hability* _habilityToCast = nullptr;
-	characterType targetList = ENEMY;
+	characterType targetList = charTy::ENEMY;
 	int maxTargets = 0;
 
 	struct Initiative {
@@ -82,7 +82,7 @@ private:
 
 #pragma region CombatePorConsola
 
-	void consoleCombat();
+	//void consoleCombat();
 
 	void showTeams();
 
@@ -97,14 +97,14 @@ public:
 
 	~CombatManager() {}
 
-	void update()override;
+	void update() override;
 
 	Character* nextTurn() {
 		if (!_turnQueue.empty()) return _turnQueue[_turn];
 	}
 
 	void addCharacter(Character* c) {
-		if (c->getType())
+		if (size_t(c->getType()))
 			_enemies.push_back(dynamic_cast<Enemy*>(c));
 		else
 			_heroes.push_back(dynamic_cast<Hero*>(c));
@@ -140,7 +140,7 @@ public:
 	CombatState getState() { return _state; }
 
 	Character* getCharacter(int index, characterType type) {
-		return  type ? static_cast<Character*>(_enemies[index]) : static_cast<Character*>(_heroes[index]);
+		return  size_t(type) ? static_cast<Character*>(_enemies[index]) : static_cast<Character*>(_heroes[index]);
 	};
 
 	size_t getHerosTam() { return _heroes.size(); }
@@ -152,11 +152,11 @@ public:
 
 	characterType getCurrentTarget() { return targetList; }
 
+	Character* getCurrentCharacter() { return currentCharacter; }
+
 	vector<Character*> getCurrentTargetList() {
-		if (targetList) {
-			std::vector<Character*> ret = targetList ? std::vector<Character*>(_enemies.begin(), _enemies.end()) : std::vector<Character*>(_heroes.begin(), _heroes.end());
-			return ret;
-		}
+		std::vector<Character*> ret = size_t(targetList) ? std::vector<Character*>(_enemies.begin(), _enemies.end()) : std::vector<Character*>(_heroes.begin(), _heroes.end());
+		return ret;
 	}
 
 	// ----------------------------------------------------

@@ -25,11 +25,11 @@ protected:
 	Hability* lightAttack_;
 	Hability* heavyAttack_;
 
-	std::array<Hability*, _lasHabilityId_> _habilitiesArray = {};
+	std::array<Hability*, size_t(habID::_lastHabilityId_)> _habilitiesArray = {};
 
 	std::vector<Condition*> _conditions;
 
-	std::array<Condition*, _lastConditionId_> _conditonsArray = {};
+	std::array<Condition*, size_t(condID::_lastConditionId_)> _conditonsArray = {};
 
 	virtual void init() {
 			_conditions = vector<Condition*>();
@@ -38,8 +38,8 @@ protected:
 		lightAttack_ = new LightAttack(this);
 		heavyAttack_ = new HeavyStrike(this);
 
-		_habilitiesArray[LightAttack::id()] = lightAttack_;
-		_habilitiesArray[HeavyStrike::id()] = lightAttack_;
+		_habilitiesArray[size_t(LightAttack::id())] = lightAttack_;
+		_habilitiesArray[size_t(HeavyStrike::id())] = heavyAttack_;
 	}
 
 	virtual void loadFromJson(jute::jValue v, int t) = 0;
@@ -107,7 +107,7 @@ public:
 			Hability* c = HabilityManager::instance()->getHability(id);
 			c->setCaster(this);
 			_habilities.push_back(c);
-			_habilitiesArray[id] = c;
+			_habilitiesArray[size_t(id)] = c;
 		}
 	}
 
@@ -116,7 +116,7 @@ public:
 		if (!hasHability(T::id())) {
 			T* c(new T(this));
 			_habilities.push_back(c);
-			_habilitiesArray[T::id()] = c;
+			_habilitiesArray[size_t(T::id())] = c;
 		}
 	}
 
@@ -125,25 +125,25 @@ public:
 		if (!hasCondition(T::id())) {
 			T* c(new T(this, std::forward<TArgs>(mArgs)...));
 			_conditions.push_back(c);
-			_conditonsArray[T::id()] = c;
+			_conditonsArray[size_t(T::id())] = c;
 			c->init();
 		}
 		else {
-			_conditonsArray[T::id()]->resetTurns();
-			_conditonsArray[T::id()]->addStack();
+			_conditonsArray[size_t(T::id())]->resetTurns();
+			_conditonsArray[size_t(T::id())]->addStack();
 		}
 	}
 
 	bool hasCondition(Conditions_Id id) {
-		return _conditonsArray[id] != nullptr;
+		return _conditonsArray[size_t(id)] != nullptr;
 	}
 
 	bool hasHability(Hability_Id id) {
-		return _habilitiesArray[id] != nullptr;
+		return _habilitiesArray[size_t(id)] != nullptr;
 	}
 
 	void removeCondition(Conditions_Id id) {
-		_conditonsArray[id] = nullptr;
+		_conditonsArray[size_t(id)] = nullptr;
 	}
 
 	vector<Hability*> getHabilities() {
@@ -183,7 +183,7 @@ private:
 	virtual void manageTurn(CombatManager* cm);
 
 public:
-	Hero(SDLGame* game, EntityManager* mngr) : Character(game, mngr, HERO) {};
+	Hero(SDLGame* game, EntityManager* mngr) : Character(game, mngr, charTy::HERO) {};
 
 	~Hero();
 
@@ -245,7 +245,7 @@ private:
 	virtual void manageTurn(CombatManager* cm);
 
 public:
-	Enemy(SDLGame* game, EntityManager* mngr) : Character(game, mngr, ENEMY) {
+	Enemy(SDLGame* game, EntityManager* mngr) : Character(game, mngr, charTy::ENEMY) {
 	}
 
 	int getExp() { return exp; }

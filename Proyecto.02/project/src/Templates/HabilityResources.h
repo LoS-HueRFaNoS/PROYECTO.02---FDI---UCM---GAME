@@ -11,7 +11,7 @@ class Character;
 
 #pragma region HABILITY
 
-enum Hability_Id {
+enum class Hability_Id {
 	LIGHTATTACK, //0
 	FIREBALL, //1
 	BLOODYSTRIKE, //2
@@ -48,25 +48,24 @@ enum Hability_Id {
 	GLADIATORBALLAD, //33
 	WINDSONG, //34
 	DETERMINATION, //35
-	_lasHabilityId_
-};
+	_lastHabilityId_
+}; using habID = Hability_Id;
 
-enum ObjectiveType
+enum class ObjectiveType
 {
 	SINGLEALLY,
 	SINGLEENEMY,
 	ALLYTEAM,
 	ENEMYTEAM,
 	CASTER
-};
+}; using objTy = ObjectiveType;
 
-enum HabilityType {
+enum class HabilityType {
 	ATTACK,
 	DEBUFF,
 	HEAL,
 	BUFF
-};
-
+}; using habTy = HabilityType;
 
 class Hability {
 protected:
@@ -75,23 +74,25 @@ protected:
 	std::string _name = "DefaultName";
 	std::string _description = "DefaultDescription";
 
-	damageType _damageType = damageType(0);
-	mainStat _mod = _LastStatId_;
-	ObjectiveType _obj = CASTER;
+	Hability_Id _id = habID::_lastHabilityId_;
+	damageType _damageType = damTy(0);
+	mainStat _mod = ms::_lastStatId_;
+	ObjectiveType _obj = objTy::CASTER;
 
-	HabilityType _habilityType = ATTACK;
+	HabilityType _habilityType = habTy::ATTACK;
 
 	Character* _caster;
 
 public:
 
-	static Hability_Id id() {
-		return _lasHabilityId_;
+	virtual Hability_Id getID() {
+		return _id;
 	}
+	static Hability_Id id() { return habID::_lastHabilityId_; }
 
-	Hability() :_caster(nullptr) {}
+	Hability() : _caster(nullptr) {}
 
-	Hability(Character* caster) :_caster(caster) {}
+	Hability(Character* caster) : _caster(caster) {}
 
 	~Hability() {}
 
@@ -126,32 +127,34 @@ public:
 		_name = "Light Attack";
 		_description = "Golpe to guapo con el arma, a terminar";
 
-		_habilityType = ATTACK;
-		_mod = STR;
-		_obj = SINGLEENEMY;
+		_id = habID::LIGHTATTACK;
+		_habilityType = habTy::ATTACK;
+		_mod = ms::STR;
+		_obj = objTy::SINGLEENEMY;
 	}
 
-	static Hability_Id id() { return LIGHTATTACK; }
+	static Hability_Id id() { return habID::LIGHTATTACK; }
 
 	virtual void throwHability(Character* obj, bool critical)const;
 };
 
 class Fireball : public Hability {
 public:
-	Fireball(Character* caster = nullptr) :Hability(caster) {
+	Fireball(Character* caster = nullptr) : Hability(caster) {
 
 		level = 4;
 		_mana = 4;
 		_name = "Fireball";
 		_description = "Bola de fuego to guapa, a hace 8d6 a todos los enemigos frente a salvacion DEX";
 
-		_damageType = FIRE;
-		_habilityType = ATTACK;
-		_mod = INT;
-		_obj = ENEMYTEAM;
+		_id = habID::FIREBALL;
+		_damageType = damTy::FIRE;
+		_habilityType = habTy::ATTACK;
+		_mod = ms::INT;
+		_obj = objTy::ENEMYTEAM;
 	}
 
-	static Hability_Id id() { return FIREBALL; }
+	static Hability_Id id() { return habID::FIREBALL; }
 
 	virtual void throwHability(Character* obj, bool critical)const;
 };
@@ -159,20 +162,21 @@ public:
 
 class BloodyStrike : public Hability {
 public:
-	BloodyStrike(Character* caster = nullptr) :Hability(caster) {
+	BloodyStrike(Character* caster = nullptr) : Hability(caster) {
 
 		level = 0;
 		_mana = 0;
 		_name = "BloodyStrike";
 		_description = "Esto es un ejemplo, hace 1d5 de daño";
 
-		_damageType = ICE;
-		_habilityType = ATTACK;
-		_mod = INT;
-		_obj = SINGLEENEMY;
+		_id = habID::BLOODYSTRIKE;
+		_damageType = damTy::ICE;
+		_habilityType = habTy::ATTACK;
+		_mod = ms::INT;
+		_obj = objTy::SINGLEENEMY;
 	}
 
-	static Hability_Id id() { return BLOODYSTRIKE; }
+	static Hability_Id id() { return habID::BLOODYSTRIKE; }
 
 	virtual void throwHability(Character* obj, bool critical)const;
 };
@@ -181,20 +185,21 @@ public:
 
 class HealingWord : public Hability {
 public:
-	HealingWord(Character* caster = nullptr) :Hability(caster) {
+	HealingWord(Character* caster = nullptr) : Hability(caster) {
 
 		level = 0;
 		_mana = 0;
 		_name = "HealingWord";
 		_description = "Esto es un ejemplo, cura 2d5 de vida a un aliado";
 
-		_damageType = LIGHT;
-		_habilityType = HEAL;
-		_mod = INT;
-		_obj = SINGLEALLY;
+		_id = habID::HEALINGWORD;
+		_damageType = damTy::LIGHT;
+		_habilityType = habTy::HEAL;
+		_mod = ms::INT;
+		_obj = objTy::SINGLEALLY;
 	}
 
-	static Hability_Id id() { return HEALINGWORD; }
+	static Hability_Id id() { return habID::HEALINGWORD; }
 
 	virtual void throwHability(Character* obj, bool critical)const;
 };
@@ -202,20 +207,21 @@ public:
 
 class AllyTeamHealExample : public Hability {
 public:
-	AllyTeamHealExample(Character* caster = nullptr) :Hability(caster) {
+	AllyTeamHealExample(Character* caster = nullptr) : Hability(caster) {
 
 		level = 0;
 		_mana = 0;
 		_name = "AllyTeamHealExample";
 		_description = "Esto es un ejemplo, cura a todo tu equipo 1d5";
 
-		_damageType = LIGHT;
-		_habilityType = HEAL;
-		_mod = INT;
-		_obj = ALLYTEAM;
+		_id = habID::ALLYTEAMHEALEXAMPLE;
+		_damageType = damTy::LIGHT;
+		_habilityType = habTy::HEAL;
+		_mod = ms::INT;
+		_obj = objTy::ALLYTEAM;
 	}
 
-	static Hability_Id id() { return ALLYTEAMHEALEXAMPLE; }
+	static Hability_Id id() { return habID::ALLYTEAMHEALEXAMPLE; }
 
 	virtual void throwHability(Character* obj, bool critical)const;
 };
@@ -223,20 +229,21 @@ public:
 
 class SelfHealExample : public Hability {
 public:
-	SelfHealExample(Character* caster = nullptr) :Hability(caster) {
+	SelfHealExample(Character* caster = nullptr) : Hability(caster) {
 
 		level = 0;
 		_mana = 0;
 		_name = "SelfHealExample";
 		_description = "Esto es un ejemplo, te cura 1d8";
 
-		_damageType = LIGHT;
-		_habilityType = HEAL;
-		_mod = INT;
-		_obj = CASTER;
+		_id = habID::SELFHEALEXAMPLE;
+		_damageType = damTy::LIGHT;
+		_habilityType = habTy::HEAL;
+		_mod = ms::INT;
+		_obj = objTy::CASTER;
 	}
 
-	static Hability_Id id() { return SELFHEALEXAMPLE; }
+	static Hability_Id id() { return habID::SELFHEALEXAMPLE; }
 
 	virtual void throwHability(Character* obj, bool critical)const;
 };
@@ -245,237 +252,249 @@ public:
 
 class WindBurst : public Hability {
 public:
-	WindBurst(Character* caster = nullptr) :Hability(caster) {
+	WindBurst(Character* caster = nullptr) : Hability(caster) {
 
 		level = 4;
 		_mana = 3;
 		_name = "WindBurst";
 		_description = "Sal a que te de el aire, hace 8d6 a todos los enemigos frente a salvacion DEX (reduce DEX)";
 
-		_damageType = WIND;
-		_habilityType = ATTACK;
-		_mod = INT;
-		_obj = ENEMYTEAM;
+		_id = habID::WINDBURST;
+		_damageType = damTy::WIND;
+		_habilityType = habTy::ATTACK;
+		_mod = ms::INT;
+		_obj = objTy::ENEMYTEAM;
 	}
 
-	static Hability_Id id() { return WINDBURST; }
+	static Hability_Id id() { return habID::WINDBURST; }
 
 	virtual void throwHability(Character* obj, bool critical)const;
 };
 
 class WindSlash : public Hability {
 public:
-	WindSlash(Character* caster = nullptr) :Hability(caster) {
+	WindSlash(Character* caster = nullptr) : Hability(caster) {
 
 		level = 2;
 		_mana = 2;
 		_name = "Wind Slash";
 		_description = "Menuda brisa, a hace 1d8 a un enemigo frente a salvacion DEX";
 
-		_damageType = WIND;
-		_habilityType = ATTACK;
-		_mod = INT;
-		_obj = SINGLEENEMY;
+		_id = habID::WINDSLASH;
+		_damageType = damTy::WIND;
+		_habilityType = habTy::ATTACK;
+		_mod = ms::INT;
+		_obj = objTy::SINGLEENEMY;
 	}
 
-	static Hability_Id id() { return WINDSLASH; }
+	static Hability_Id id() { return habID::WINDSLASH; }
 
 	virtual void throwHability(Character* obj, bool critical)const;
 };
 
 class RockPillar : public Hability {
 public:
-	RockPillar(Character* caster = nullptr) :Hability(caster) {
+	RockPillar(Character* caster = nullptr) : Hability(caster) {
 
 		level = 3;
 		_mana = 3;
 		_name = "Rock Pillar";
 		_description = "Mejorando la estructura, a hace 1d8 a un enemigo frente a salvacion DEX (reduce CON)";
 
-		_damageType = WIND;
-		_habilityType = ATTACK;
-		_mod = INT;
-		_obj = SINGLEENEMY;
+		_id = habID::ROCKPILLAR;
+		_damageType = damTy::WIND;
+		_habilityType = habTy::ATTACK;
+		_mod = ms::INT;
+		_obj = objTy::SINGLEENEMY;
 	}
 
-	static Hability_Id id() { return ROCKPILLAR; }
+	static Hability_Id id() { return habID::ROCKPILLAR; }
 
 	virtual void throwHability(Character* obj, bool critical)const;
 };
 
 class ToxicShadow : public Hability {
 public:
-	ToxicShadow(Character* caster = nullptr) :Hability(caster) {
+	ToxicShadow(Character* caster = nullptr) : Hability(caster) {
 
 		level = 3;
 		_mana = 3;
 		_name = "Toxic Shadow";
 		_description = "Sientes cosquillas, a hace 1d8 a un enemigo frente a salvacion DEX (puede causar envenenamiento)";
 
-		_damageType = WIND;
-		_habilityType = ATTACK;
-		_mod = INT;
-		_obj = SINGLEENEMY;
+		_id = habID::TOXICSHADOW;
+		_damageType = damTy::WIND;
+		_habilityType = habTy::ATTACK;
+		_mod = ms::INT;
+		_obj = objTy::SINGLEENEMY;
 	}
 
-	static Hability_Id id() { return TOXICSHADOW; }
+	static Hability_Id id() { return habID::TOXICSHADOW; }
 
 	virtual void throwHability(Character* obj, bool critical)const;
 };
 
 class Tsunami : public Hability {
 public:
-	Tsunami(Character* caster = nullptr) :Hability(caster) {
+	Tsunami(Character* caster = nullptr) : Hability(caster) {
 
 		level = 4;
 		_mana = 4;
 		_name = "Tsunami";
 		_description = "Avisaron de bandera roja, a hace 8d6 a todos los enemigos frente a salvacion DEX (y reduce STR)";
 
-		_damageType = WATER;
-		_habilityType = ATTACK;
-		_mod = INT;
-		_obj = ENEMYTEAM;
+		_id = habID::TSUNAMI;
+		_damageType = damTy::WATER;
+		_habilityType = habTy::ATTACK;
+		_mod = ms::INT;
+		_obj = objTy::ENEMYTEAM;
 	}
 
-	static Hability_Id id() { return TSUNAMI; }
+	static Hability_Id id() { return habID::TSUNAMI; }
 
 	virtual void throwHability(Character* obj, bool critical)const;
 };
 
 class DivineProtection : public Hability {
 public:
-	DivineProtection(Character* caster = nullptr) :Hability(caster) {
+	DivineProtection(Character* caster = nullptr) : Hability(caster) {
 
 		level = 3;
 		_mana = 2;
 		_name = "Divine protection";
 		_description = "Reduce el daño recibido en el proximo ataque";
 
-		_damageType = LIGHT;
-		_habilityType = BUFF;
-		_mod = INT;
-		_obj = CASTER;
+		_id = habID::DIVINEPROTECTION;
+		_damageType = damTy::LIGHT;
+		_habilityType = habTy::BUFF;
+		_mod = ms::INT;
+		_obj = objTy::CASTER;
 	}
 
-	static Hability_Id id() { return DIVINEPROTECTION; }
+	static Hability_Id id() { return habID::DIVINEPROTECTION; }
 
 	virtual void throwHability(Character* obj, bool critical)const;
 };
 
 class Flash : public Hability {
 public:
-	Flash(Character* caster = nullptr) :Hability(caster) {
+	Flash(Character* caster = nullptr) : Hability(caster) {
 
 		level = 2;
 		_mana = 2;
 		_name = "Flash";
 		_description = "Sonrie, a hace 1d8 a un enemigo frente a salvacion DEX(reduce DEX)";
 
-		_damageType = LIGHT;
-		_habilityType = ATTACK;
-		_mod = INT;
-		_obj = SINGLEENEMY;
+		_id = habID::FLASH;
+		_damageType = damTy::LIGHT;
+		_habilityType = habTy::ATTACK;
+		_mod = ms::INT;
+		_obj = objTy::SINGLEENEMY;
 	}
 
-	static Hability_Id id() { return FLASH; }
+	static Hability_Id id() { return habID::FLASH; }
 
 	virtual void throwHability(Character* obj, bool critical)const;
 };
 
 class Freeze : public Hability {
 public:
-	Freeze(Character* caster = nullptr) :Hability(caster) {
+	Freeze(Character* caster = nullptr) : Hability(caster) {
 
 		level = 3;
 		_mana = 3;
 		_name = "Freeze";
 		_description = "Winter is coming FOR THEM, a hace 1d8 a un enemigo frente a salvacion DEX (y reduce DEX)";
 
-		_damageType = ICE;
-		_habilityType = ATTACK;
-		_mod = INT;
-		_obj = SINGLEENEMY;
+		_id = habID::FREEZE;
+		_damageType = damTy::ICE;
+		_habilityType = habTy::ATTACK;
+		_mod = ms::INT;
+		_obj = objTy::SINGLEENEMY;
 	}
 
-	static Hability_Id id() { return FREEZE; }
+	static Hability_Id id() { return habID::FREEZE; }
 
 	virtual void throwHability(Character* obj, bool critical)const;
 };
 class Whirlpool : public Hability {
 public:
-	Whirlpool(Character* caster = nullptr) :Hability(caster) {
+	Whirlpool(Character* caster = nullptr) : Hability(caster) {
 
 		level = 1;
 		_mana = 2;
 		_name = "Whirlpool";
 		_description = "Mas agua, a hace 1d8 a un enemigo frente a salvacion DEX (y reduce DEX)";
 
-		_damageType = WATER;
-		_habilityType = ATTACK;
-		_mod = INT;
-		_obj = SINGLEENEMY;
+		_id = habID::WHIRLPOOL;
+		_damageType = damTy::WATER;
+		_habilityType = habTy::ATTACK;
+		_mod = ms::INT;
+		_obj = objTy::SINGLEENEMY;
 	}
 
-	static Hability_Id id() { return WHIRLPOOL; }
+	static Hability_Id id() { return habID::WHIRLPOOL; }
 
 	virtual void throwHability(Character* obj, bool critical)const;
 };
 class LightBeam : public Hability {
 public:
-	LightBeam(Character* caster = nullptr) :Hability(caster) {
+	LightBeam(Character* caster = nullptr) : Hability(caster) {
 
 		level = 3;
 		_mana = 3;
 		_name = "Light Beam";
 		_description = "Muy bonito, pero doloroso, a hace 1d8 a un enemigo frente a salvacion DEX (y reduce DEX)";
 
-		_damageType = LIGHT;
-		_habilityType = ATTACK;
-		_mod = INT;
-		_obj = SINGLEENEMY;
+		_id = habID::LIGHTBEAM;
+		_damageType = damTy::LIGHT;
+		_habilityType = habTy::ATTACK;
+		_mod = ms::INT;
+		_obj = objTy::SINGLEENEMY;
 	}
 
-	static Hability_Id id() { return LIGHTBEAM; }
+	static Hability_Id id() { return habID::LIGHTBEAM; }
 
 	virtual void throwHability(Character* obj, bool critical)const;
 };
 class DarkVortex : public Hability {
 public:
-	DarkVortex(Character* caster = nullptr) :Hability(caster) {
+	DarkVortex(Character* caster = nullptr) : Hability(caster) {
 
 		level = 1;
 		_mana = 2;
 		_name = "Dark Vortex";
 		_description = "No veo, a hace 1d8 a un enemigo frente a salvacion DEX (y reduce DEX)";
 
-		_damageType = DARK;
-		_habilityType = ATTACK;
-		_mod = INT;
-		_obj = SINGLEENEMY;
+		_id = habID::DARKVORTEX;
+		_damageType = damTy::DARK;
+		_habilityType = habTy::ATTACK;
+		_mod = ms::INT;
+		_obj = objTy::SINGLEENEMY;
 	}
 
-	static Hability_Id id() { return DARKVORTEX; }
+	static Hability_Id id() { return habID::DARKVORTEX; }
 
 	virtual void throwHability(Character* obj, bool critical)const;
 };
 
 class FireArrow : public Hability {
 public:
-	FireArrow(Character* caster = nullptr) :Hability(caster) {
+	FireArrow(Character* caster = nullptr) : Hability(caster) {
 
 		level = 1;
 		_mana = 3;
 		_name = "Fire Arrow";
 		_description = "Quema, a hace 1d8 a un enemigo frente a salvacion DEX (y reduce DEX)";
 
-		_damageType = FIRE;
-		_habilityType = ATTACK;
-		_mod = DEX;
-		_obj = SINGLEENEMY;
+		_id = habID::FIREARROW;
+		_damageType = damTy::FIRE;
+		_habilityType = habTy::ATTACK;
+		_mod = ms::DEX;
+		_obj = objTy::SINGLEENEMY;
 	}
 
-	static Hability_Id id() { return FIREARROW; }
+	static Hability_Id id() { return habID::FIREARROW; }
 
 	virtual void throwHability(Character* obj, bool critical)const;
 };
@@ -483,157 +502,165 @@ public:
 
 class Lighten : public Hability {
 public:
-	Lighten(Character* caster = nullptr) :Hability(caster) {
+	Lighten(Character* caster = nullptr) : Hability(caster) {
 
 		level = 1;
 		_mana = 1;
 		_name = "Lighten";
 		_description = "Aumenta la destreza";
 
-		_damageType = LIGHT;
-		_habilityType = BUFF;
-		_mod = INT;
-		_obj = CASTER;
+		_id = habID::LIGHTEN;
+		_damageType = damTy::LIGHT;
+		_habilityType = habTy::BUFF;
+		_mod = ms::INT;
+		_obj = objTy::CASTER;
 	}
 
-	static Hability_Id id() { return LIGHTEN; }
+	static Hability_Id id() { return habID::LIGHTEN; }
 
 	virtual void throwHability(Character* obj, bool critical)const;
 };
 class Strengthen : public Hability {
 public:
-	Strengthen(Character* caster = nullptr) :Hability(caster) {
+	Strengthen(Character* caster = nullptr) : Hability(caster) {
 
 		level = 1;
 		_mana = 1;
 		_name = "Strengthen";
 		_description = "Aumenta la fuerza";
 
-		_damageType = LIGHT;
-		_habilityType = BUFF;
-		_mod = INT;
-		_obj = CASTER;
+		_id = habID::STRENGTHEN;
+		_damageType = damTy::LIGHT;
+		_habilityType = habTy::BUFF;
+		_mod = ms::INT;
+		_obj = objTy::CASTER;
 	}
 
-	static Hability_Id id() { return STRENGTHEN; }
+	static Hability_Id id() { return habID::STRENGTHEN; }
 
 	virtual void throwHability(Character* obj, bool critical)const;
 };
 class Toughen : public Hability {
 public:
-	Toughen(Character* caster = nullptr) :Hability(caster) {
+	Toughen(Character* caster = nullptr) : Hability(caster) {
 
 		level = 1;
 		_mana = 1;
 		_name = "Toughen";
 		_description = "Aumenta la constitucion";
 
-		_damageType = LIGHT;
-		_habilityType = BUFF;
-		_mod = INT;
-		_obj = CASTER;
+		_id = habID::TOUGHEN;
+		_damageType = damTy::LIGHT;
+		_habilityType = habTy::BUFF;
+		_mod = ms::INT;
+		_obj = objTy::CASTER;
 	}
 
-	static Hability_Id id() { return TOUGHEN; }
+	static Hability_Id id() { return habID::TOUGHEN; }
 
 	virtual void throwHability(Character* obj, bool critical)const;
 };
 class Meditate : public Hability {
 public:
-	Meditate(Character* caster = nullptr) :Hability(caster) {
+	Meditate(Character* caster = nullptr) : Hability(caster) {
 
 		level = 1;
 		_mana = 1;
 		_name = "Meditate";
 		_description = "Aumenta la inteligencia";
 
-		_damageType = LIGHT;
-		_habilityType = BUFF;
-		_mod = INT;
-		_obj = CASTER;
+		_id = habID::MEDITATE;
+		_damageType = damTy::LIGHT;
+		_habilityType = habTy::BUFF;
+		_mod = ms::INT;
+		_obj = objTy::CASTER;
 	}
 
-	static Hability_Id id() { return MEDITATE; }
+	static Hability_Id id() { return habID::MEDITATE; }
 
 	virtual void throwHability(Character* obj, bool critical)const;
 };
 
 class BloodThirst : public Hability {
 public:
-	BloodThirst(Character* caster = nullptr) :Hability(caster) {
+	BloodThirst(Character* caster = nullptr) : Hability(caster) {
 
 		level = 2;
 		_mana = 3;
 		_name = "Blood Thirst";
 		_description = "Dame tu vida, a hace 1d8 a un enemigo frente a salvacion DEX y cura al usuario";
 
-		_damageType = LIGHT;
-		_habilityType = ATTACK;
-		_mod = INT;
-		_obj = SINGLEENEMY;
+		_id = habID::BLOODTHIRST;
+		_damageType = damTy::LIGHT;
+		_habilityType = habTy::ATTACK;
+		_mod = ms::INT;
+		_obj = objTy::SINGLEENEMY;
 	}
 
-	static Hability_Id id() { return BLOODTHIRST; }
+	static Hability_Id id() { return habID::BLOODTHIRST; }
 
 	virtual void throwHability(Character* obj, bool critical)const;
 };
 
 class Sacrifice : public Hability {
 public:
-	Sacrifice(Character* caster = nullptr) :Hability(caster) {
+	Sacrifice(Character* caster = nullptr) : Hability(caster) {
 
 		level = 2;
 		_mana = 2;
 		_name = "Sacrifice";
 		_description = "Dame tu vida, a hace 1d8 a un enemigo frente a salvacion DEX x1.5 ,pero recibe daño de retroceso";
 
-		_damageType = LIGHT;
-		_habilityType = ATTACK;
-		_mod = INT;
-		_obj = SINGLEENEMY;
+		_id = habID::SACRIFICE;
+		_damageType = damTy::LIGHT;
+		_habilityType = habTy::ATTACK;
+		_mod = ms::INT;
+		_obj = objTy::SINGLEENEMY;
 	}
 
-	static Hability_Id id() { return SACRIFICE; }
+	static Hability_Id id() { return habID::SACRIFICE; }
 
 	virtual void throwHability(Character* obj, bool critical)const;
 };
 
 class DoubleShot : public Hability {
 public:
-	DoubleShot(Character* caster = nullptr) :Hability(caster) {
+	DoubleShot(Character* caster = nullptr) : Hability(caster) {
 
 		level = 2;
 		_mana = 2;
 		_name = "Double Shot";
 		_description = "Dispara 2 flechas a la vez, la segunda flecha hace la mitad de daño de la primera";
 
-		_damageType = LIGHT;
-		_habilityType = ATTACK;
-		_mod = DEX;
-		_obj = SINGLEENEMY;
+		_id = habID::DOUBLESHOT;
+		_damageType = damTy::LIGHT;
+		_habilityType = habTy::ATTACK;
+		_mod = ms::DEX;
+		_obj = objTy::SINGLEENEMY;
 	}
 
-	static Hability_Id id() { return DOUBLESHOT; }
+	static Hability_Id id() { return habID::DOUBLESHOT; }
 
 	virtual void throwHability(Character* obj, bool critical)const;
 };
 
 class ThrowingAxes : public Hability { //revisar los modificadores
 public:
-	ThrowingAxes(Character* caster = nullptr) :Hability(caster) {
+	ThrowingAxes(Character* caster = nullptr) : Hability(caster) {
 
 		level = 4;
 		_mana = 3;
 		_name = "Throwing Axes";
 		_description = "Lanza 3 hachas";
 
-		_damageType = LIGHT;
-		_habilityType = ATTACK;
-		_mod = DEX;
-		_obj = SINGLEENEMY;
+		_id = habID::THROWINGAXES;
+		_damageType = damTy::LIGHT;
+		_habilityType = habTy::ATTACK;
+		_mod = ms::DEX;
+		_obj = objTy::SINGLEENEMY;
 	}
 
-	static Hability_Id id() { return THROWINGAXES; }
+	static Hability_Id id() { return habID::THROWINGAXES; }
 
 	virtual void throwHability(Character* obj, bool critical)const;
 };
@@ -642,199 +669,209 @@ public:
 
 class HeavyStrike : public Hability { //modificar la descripcion cuando lo ajustemos, pero de momento solo hace +3 de daño el ataque
 public:
-	HeavyStrike(Character* caster = nullptr) :Hability(caster) {
+	HeavyStrike(Character* caster = nullptr) : Hability(caster) {
 
 		level = 3;
 		_mana = 3;
 		_name = "Heavy Strike";
 		_description = "El ataque hace el doble de daño con una gran probabilidad de fallar";
 
-		_damageType = LIGHT;
-		_habilityType = ATTACK;
-		_mod = STR;
-		_obj = SINGLEENEMY;
+		_id = habID::HEAVYSTRIKE;
+		_damageType = damTy::LIGHT;
+		_habilityType = habTy::ATTACK;
+		_mod = ms::STR;
+		_obj = objTy::SINGLEENEMY;
 	}
 
-	static Hability_Id id() { return HEAVYSTRIKE; }
+	static Hability_Id id() { return habID::HEAVYSTRIKE; }
 
 	virtual void throwHability(Character* obj, bool critical)const;
 };
 
 class SmokeArrow : public Hability {
 public:
-	SmokeArrow(Character* caster = nullptr) :Hability(caster) {
+	SmokeArrow(Character* caster = nullptr) : Hability(caster) {
 
 		level = 2;
 		_mana = 2;
 		_name = "Smoke arrow";
 		_description = "Dispara una flecha de humo que desorienta a los enemigos y les reduce la destreza durante 3 turnos";
 
-		_damageType = DARK;
-		_habilityType = BUFF;
-		_mod = INT;
-		_obj = ENEMYTEAM;
+		_id = habID::SMOKEARROW;
+		_damageType = damTy::DARK;
+		_habilityType = habTy::BUFF;
+		_mod = ms::INT;
+		_obj = objTy::ENEMYTEAM;
 	}
 
-	static Hability_Id id() { return SMOKEARROW; }
+	static Hability_Id id() { return habID::SMOKEARROW; }
 
 	virtual void throwHability(Character* obj, bool critical)const;
 };
 
 class Morph : public Hability {
 public:
-	Morph(Character* caster = nullptr) :Hability(caster) {
+	Morph(Character* caster = nullptr) : Hability(caster) {
 
 		level = 0;
 		_mana = 4;
 		_name = "Morph";
 		_description = "Conviertete en una bestia alterando las estadisticas";
 
-		_damageType = DARK;
-		_habilityType = BUFF;
-		_mod = INT;
-		_obj = CASTER;
+		_id = habID::MORPH;
+		_damageType = damTy::DARK;
+		_habilityType = habTy::BUFF;
+		_mod = ms::INT;
+		_obj = objTy::CASTER;
 	}
 
-	static Hability_Id id() { return MORPH; }
+	static Hability_Id id() { return habID::MORPH; }
 
 	virtual void throwHability(Character* obj, bool critical)const;
 };
 class ReverseMorph : public Hability {
 public:
-	ReverseMorph(Character* caster = nullptr) :Hability(caster) {
+	ReverseMorph(Character* caster = nullptr) : Hability(caster) {
 
 		level = 0;
 		_mana = 0;
 		_name = "Reverse Morph";
 		_description = "Vuelve al estado anterior";
 
-		_damageType = DARK;
-		_habilityType = BUFF;
-		_mod = INT;
-		_obj = CASTER;
+		_id = habID::REVERSEMORPH;
+		_damageType = damTy::DARK;
+		_habilityType = habTy::BUFF;
+		_mod = ms::INT;
+		_obj = objTy::CASTER;
 	}
 
-	static Hability_Id id() { return REVERSEMORPH; }
+	static Hability_Id id() { return habID::REVERSEMORPH; }
 
 	virtual void throwHability(Character* obj, bool critical)const;
 };
 
 class RainOfDaggers : public Hability { //revisar los modificadores
 public:
-	RainOfDaggers(Character* caster = nullptr) :Hability(caster) {
+	RainOfDaggers(Character* caster = nullptr) : Hability(caster) {
 
 		level = 3;
 		_mana = 4;
 		_name = "Rain of Daggers";
 		_description = "Lanza un numero aleatorio de dagas entre 1 y 10 que hacen cada una un 20% del daño del personaje";
 
-		_damageType = LIGHT;
-		_habilityType = ATTACK;
-		_mod = DEX;
-		_obj = SINGLEENEMY;
+		_id = habID::RAINOFDAGGERS;
+		_damageType = damTy::LIGHT;
+		_habilityType = habTy::ATTACK;
+		_mod = ms::DEX;
+		_obj = objTy::SINGLEENEMY;
 	}
 
-	static Hability_Id id() { return RAINOFDAGGERS; }
+	static Hability_Id id() { return habID::RAINOFDAGGERS; }
 
 	virtual void throwHability(Character* obj, bool critical)const;
 };
 
 class RockProjectiles : public Hability {
 public:
-	RockProjectiles(Character* caster = nullptr) :Hability(caster) {
+	RockProjectiles(Character* caster = nullptr) : Hability(caster) {
 
 		level = 3;
 		_mana = 3;
 		_name = "Rock Projectiles";
 		_description = "Dispara tres rocas que tiene cada una su propia probabilidad de fallar";
 
-		_damageType = EARTH;
-		_habilityType = ATTACK;
-		_mod = INT;
-		_obj = SINGLEENEMY;
+		_id = habID::ROCKPROJECTILES;
+		_damageType = damTy::EARTH;
+		_habilityType = habTy::ATTACK;
+		_mod = ms::INT;
+		_obj = objTy::SINGLEENEMY;
 	}
 
-	static Hability_Id id() { return ROCKPROJECTILES; }
+	static Hability_Id id() { return habID::ROCKPROJECTILES; }
 
 	virtual void throwHability(Character* obj, bool critical)const;
 };
 
 class TrickShot : public Hability {
 public:
-	TrickShot(Character* caster = nullptr) :Hability(caster) { //cambiar la descripcion si al final se hace lo de hacer 2 tiradas de ataque para confirmar que acierta
+	TrickShot(Character* caster = nullptr) : Hability(caster) { //cambiar la descripcion si al final se hace lo de hacer 2 tiradas de ataque para confirmar que acierta
 
 		level = 4;
 		_mana = 3;
 		_name = "Trick Shot";
 		_description = "Dispara una flecha que hace el triple de daño";
 
-		_damageType = LIGHT;
-		_habilityType = ATTACK;
-		_mod = DEX;
-		_obj = SINGLEENEMY;
+		_id = habID::TRICKSHOT;
+		_damageType = damTy::LIGHT;
+		_habilityType = habTy::ATTACK;
+		_mod = ms::DEX;
+		_obj = objTy::SINGLEENEMY;
 	}
 
-	static Hability_Id id() { return TRICKSHOT; }
+	static Hability_Id id() { return habID::TRICKSHOT; }
 
 	virtual void throwHability(Character* obj, bool critical)const;
 };
 
 class GladiatorBallad : public Hability {
 public:
-	GladiatorBallad(Character* caster = nullptr) :Hability(caster) {
+	GladiatorBallad(Character* caster = nullptr) : Hability(caster) {
 
 		level = 0;
 		_mana = 3;
 		_name = "Gladiator's Ballad";
 		_description = "Aumenta la fuerza del equipo durante 3 turnos";
 
-		_damageType = LIGHT;
-		_habilityType = BUFF;
-		_mod = INT;
-		_obj = ALLYTEAM;
+		_id = habID::GLADIATORBALLAD;
+		_damageType = damTy::LIGHT;
+		_habilityType = habTy::BUFF;
+		_mod = ms::INT;
+		_obj = objTy::ALLYTEAM;
 	}
 
-	static Hability_Id id() { return GLADIATORBALLAD; }
+	static Hability_Id id() { return habID::GLADIATORBALLAD; }
 
 	virtual void throwHability(Character* obj, bool critical)const;
 };
 
 class WindSong : public Hability {
 public:
-	WindSong(Character* caster = nullptr) :Hability(caster) {
+	WindSong(Character* caster = nullptr) : Hability(caster) {
 
 		level = 0;
 		_mana = 3;
 		_name = "Wind Song";
 		_description = "Aumenta la velocidad del equipo durante 3 turnos";
 
-		_damageType = LIGHT;
-		_habilityType = BUFF;
-		_mod = INT;
-		_obj = ALLYTEAM;
+		_id = habID::WINDSONG;
+		_damageType = damTy::LIGHT;
+		_habilityType = habTy::BUFF;
+		_mod = ms::INT;
+		_obj = objTy::ALLYTEAM;
 	}
 
-	static Hability_Id id() { return WINDSONG; }
+	static Hability_Id id() { return habID::WINDSONG; }
 
 	virtual void throwHability(Character* obj, bool critical)const;
 };
 
 class Determination : public Hability {
 public:
-	Determination(Character* caster = nullptr) :Hability(caster) {
+	Determination(Character* caster = nullptr) : Hability(caster) {
 
 		level = 3;
 		_mana = 4;
 		_name = "Determination";
 		_description = "El proximo golpe letal que reciba el personaje le dejara con 1 de vida en vez de matarle";
 
-		_damageType = LIGHT;
-		_habilityType = BUFF;
-		_mod = CON;
-		_obj = CASTER;
+		_id = habID::DETERMINATION;
+		_damageType = damTy::LIGHT;
+		_habilityType = habTy::BUFF;
+		_mod = ms::CON;
+		_obj = objTy::CASTER;
 	}
 
-	static Hability_Id id() { return DETERMINATION; }
+	static Hability_Id id() { return habID::DETERMINATION; }
 
 	virtual void throwHability(Character* obj, bool critical)const;
 };
@@ -843,7 +880,7 @@ public:
 
 #pragma region CONDITION
 
-enum Conditions_Id {
+enum class Conditions_Id {
 	BLEEDING,
 	EJEMPLOCURACIONFINALTURNO,
 	EJEMPLOREDUCCIONATAQUE,
@@ -852,6 +889,7 @@ enum Conditions_Id {
 	DETERMINATIONCOND,
 	_lastConditionId_
 };
+using condID = Conditions_Id;
 
 class Condition {
 protected:
@@ -872,9 +910,9 @@ protected:
 
 public:
 
-	Condition() :_objective(nullptr) {}
+	Condition() : _objective(nullptr), _caster(nullptr), _id(), _positive() {}
 
-	Condition(Character* objective, Character* caster) :_objective(objective), _caster(caster) {
+	Condition(Character* objective, Character* caster) :_objective(objective), _caster(caster), _id(), _positive() {
 	}
 
 	virtual void init() = 0;
@@ -895,9 +933,9 @@ public:
 
 	void addStack() { _stack++; }
 
-	Conditions_Id getId() { return _id; }
+	virtual Conditions_Id getID() { return _id; }
 
-	static Conditions_Id id() { return _lastConditionId_; }
+	static Conditions_Id id() { return condID::_lastConditionId_; }
 };
 
 class Bleeding : public Condition {
@@ -906,7 +944,7 @@ public:
 		_name = "Ejemplo de daño cada turno";
 		_description = "Hace 1d3 de daño cada turno, durante 3 turnos";
 		_turns = 3;
-		_id = BLEEDING;
+		_id = condID::BLEEDING;
 		resetTurns();
 	}
 
@@ -914,7 +952,7 @@ public:
 
 	virtual bool onTurnStarted();
 
-	static Conditions_Id id() { return BLEEDING; }
+	static Conditions_Id id() { return condID::BLEEDING; }
 };
 
 
@@ -925,7 +963,7 @@ public:
 		_name = "Ejemplo de daño cada turno";
 		_description = "Cura 1d3 cada final de turno, durante 3 turnos";
 		_turns = 3;
-		_id = EJEMPLOCURACIONFINALTURNO;
+		_id = condID::EJEMPLOCURACIONFINALTURNO;
 		resetTurns();
 	}
 
@@ -933,7 +971,7 @@ public:
 
 	virtual bool onTurnEnd();
 
-	static Conditions_Id id() { return EJEMPLOCURACIONFINALTURNO; }
+	static Conditions_Id id() { return condID::EJEMPLOCURACIONFINALTURNO; }
 };
 
 class EjemploReduccionAtaque : public Condition {
@@ -942,7 +980,7 @@ public:
 	EjemploReduccionAtaque(Character* objective, Character* caster) : Condition(objective, caster) {
 		_name = "Ejemplo de daño cada turno";
 		_description = "Reduce el daño el siguiente ataque a la mitad";
-		_id = EJEMPLOREDUCCIONATAQUE;
+		_id = condID::EJEMPLOREDUCCIONATAQUE;
 		resetTurns();
 	}
 
@@ -950,7 +988,7 @@ public:
 
 	virtual bool onAttackRecieved(int& damage, Character* attacker);
 
-	static Conditions_Id id() { return EJEMPLOREDUCCIONATAQUE; }
+	static Conditions_Id id() { return condID::EJEMPLOREDUCCIONATAQUE; }
 };
 
 
@@ -960,7 +998,7 @@ public:
 	EjemploRevivirMuerte(Character* objective, Character* caster) : Condition(objective, caster) {
 		_name = "Ejemplo de daño cada turno";
 		_description = "Revivira con 5 de vida al morir";
-		_id = EJEMPLOREVIVIRMUERTE;
+		_id = condID::EJEMPLOREVIVIRMUERTE;
 		resetTurns();
 	}
 
@@ -968,7 +1006,7 @@ public:
 
 	virtual bool onDeath(Character* attacker);
 
-	static Conditions_Id id() { return EJEMPLOREVIVIRMUERTE; }
+	static Conditions_Id id() { return condID::EJEMPLOREVIVIRMUERTE; }
 };
 
 
@@ -981,7 +1019,7 @@ public:
 	BuffStats(Character* objective, Character* caster, int val, mainStat stat, std::string name, std::string description) :statMod(stat), value(val), Condition(objective, caster) {
 		_name = name;
 		_description = description;
-		_id = BUFFSTATS;
+		_id = condID::BUFFSTATS;
 		(val > 0) ? _positive = true : _positive = false;
 
 		resetTurns();
@@ -991,7 +1029,7 @@ public:
 
 	virtual bool onTurnStarted();
 
-	static Conditions_Id id() { return BUFFSTATS; }
+	static Conditions_Id id() { return condID::BUFFSTATS; }
 
 private:
 	int value;
@@ -1005,7 +1043,7 @@ public:
 	DeterminationCond(Character* objective, Character* caster) : Condition(objective, caster) {
 		_name = "Determination condition";
 		_description = "Cuando muera el personaje este revivira con 1 punto de vida";
-		_id = DETERMINATIONCOND;
+		_id = condID::DETERMINATIONCOND;
 		resetTurns();
 	}
 
@@ -1013,7 +1051,7 @@ public:
 
 	virtual bool onDeath(Character* attacker);
 
-	static Conditions_Id id() { return DETERMINATIONCOND; }
+	static Conditions_Id id() { return condID::DETERMINATIONCOND; }
 };
 
 #pragma endregion

@@ -37,7 +37,7 @@ void ButtonHero::click()
 #include "../Managers/game/CombatManager.h"
 #include "../ecs/ecs.h"
 #include "../ecs/ecs_interfaz.h"
-void ButtonHability::init(Vector2D pos, uint ancho, uint alto, Resources::TextureId imagen, HbltType attack)
+void ButtonHability::init(Vector2D pos, uint ancho, uint alto, Resources::TextureId imagen, uint attack)
 {
 	hability_ = attack;
 	Button::init(pos, ancho, alto, imagen);

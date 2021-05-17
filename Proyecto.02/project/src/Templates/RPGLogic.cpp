@@ -19,22 +19,22 @@ namespace rpgLogic {
 
 	enemyTemplate getRandomEnemy()
 	{
-		return (enemyTemplate)SDLGame::instance()->getRandGen()->nextInt(0, _LastEnemyTemplateId_);
+		return (enemyTemplate)SDLGame::instance()->getRandGen()->nextInt(0, int(eTem::_lastEnemyTemplateId_));
 	}
 
 	heroTemplate getRandomHero()
 	{
-		return (heroTemplate)SDLGame::instance()->getRandGen()->nextInt(0,_LastheroTemplateId_);
+		return (heroTemplate)SDLGame::instance()->getRandGen()->nextInt(0, int(heroTem::_lastHeroTemplateId_));
 	}
 
 	weaponId getRandomWeapon()
 	{
-		return (weaponId)SDLGame::instance()->getRandGen()->nextInt(0, _LastWeaponId_);
+		return (weaponId)SDLGame::instance()->getRandGen()->nextInt(0, int(wID::_lastWeaponId_));
 	}
 
 	armorId getRandomArmor()
 	{
-		return (armorId)SDLGame::instance()->getRandGen()->nextInt(0, _LastArmorId_);
+		return (armorId)SDLGame::instance()->getRandGen()->nextInt(0, int(aID::_lastArmorId_));
 	}
 
 }

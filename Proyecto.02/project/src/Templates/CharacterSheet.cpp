@@ -42,7 +42,7 @@ void CharacterSheet::recieveMana(int mana)
 {
 	//cambiar el _hitPoints por el stat que aumenta
 
-	_stats[st].value += buff;
+	_stats[size_t(st)].value += buff;
 
 	//cout << name << " aumenta su "<< stat << buff << " puntos" << endl;
 

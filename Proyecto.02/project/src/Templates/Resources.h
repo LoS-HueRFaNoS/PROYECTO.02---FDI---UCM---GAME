@@ -81,7 +81,7 @@ public:
 		RotarI,
 		Interactuar,
 
-//Info
+		//Info
 		Inventario,
 		PocionVida,
 		PocionMana,
@@ -89,7 +89,7 @@ public:
 		Chat,
 		Configuracion,
 
-//Combate
+		//Combate
 		AtaqueNormal,
 		AtaqueMagico,
 		Defensa,
@@ -177,8 +177,7 @@ public:
 
 		//Habilidades
 		_firstSkillId_,
-		
-			LightAttack,
+		LightAttack,
 		Bola_fuego,
 		Bloody_strike,
 		Curacion,

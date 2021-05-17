@@ -38,10 +38,10 @@ void TheElementalMaze::init()
 	
 	combatManager_ = addComponent<CombatManager>();
 
-	Hero* wizard = characterManager_->addHeroFromTemplate(WIZARD);
-	Hero* warrior = characterManager_->addHeroFromTemplate(WARRIOR);
-	Hero* rogue = characterManager_->addHeroFromTemplate(ROGUE);
-	Hero* cleric = characterManager_->addHeroFromTemplate(CLERIC);;
+	Hero* wizard = characterManager_->addHeroFromTemplate(heroTem::WIZARD);
+	Hero* warrior = characterManager_->addHeroFromTemplate(heroTem::WARRIOR);
+	Hero* rogue = characterManager_->addHeroFromTemplate(heroTem::ROGUE);
+	Hero* cleric = characterManager_->addHeroFromTemplate(heroTem::CLERIC);;
 
 	partyManager_->addHero(wizard);
 	partyManager_->addHero(warrior);
@@ -95,9 +95,7 @@ void TheElementalMaze::startCombat()
 
 void TheElementalMaze::onExitLaberinto()
 {
-	//removeComponent(ecs::Laberinto);
 	lab_->disable();
-	//delete player_;
 	player_->disable();
 	player_ = nullptr;
 }

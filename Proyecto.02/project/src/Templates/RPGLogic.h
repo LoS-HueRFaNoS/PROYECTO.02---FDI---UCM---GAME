@@ -6,12 +6,12 @@
 
 namespace rpgLogic {
 
-	enum characterType {
+	enum class characterType {
 		HERO,
 		ENEMY
-	};
+	}; using charTy = characterType;
 
-	enum damageType {
+	enum class damageType {
 		// Daños físicos
 		BLUNT,
 		PIERCE,
@@ -24,19 +24,18 @@ namespace rpgLogic {
 		WIND,
 		LIGHT,
 		DARK,
-		_LastTypeId_
-	};
+		_lastDamageTypeId_
+	}; using damTy = damageType;
 
-
-	enum mainStat {
+	enum class mainStat {
 		STR, // fuerza = strength
 		CON, // constitucion
 		DEX, // detreza = dexterity
 		INT, // inteligencia = intelect
-		_LastStatId_
-	};
+		_lastStatId_
+	}; using ms = mainStat;
 
-	enum heroTemplate {
+	enum class heroTemplate {
 		WARRIOR,
 		WIZARD,
 		RANGER,
@@ -46,10 +45,10 @@ namespace rpgLogic {
 		BARBARIAN,
 		ROGUE,
 		DRUID,
-		_LastheroTemplateId_
-	};
+		_lastHeroTemplateId_
+	}; using heroTem = heroTemplate;
 
-	enum weaponId
+	enum class weaponId
 	{
 		DESARMADO,
 		BASTON,
@@ -78,10 +77,10 @@ namespace rpgLogic {
 		TRIDENTE,
 		ARCOLARGO,
 		BALLESTAPESADA,
-		_LastWeaponId_
-	};
+		_lastWeaponId_
+	}; using wID = weaponId;
 
-	enum armorId
+	enum class armorId
 	{
 		ACOLCHADA,
 		CUEROTACHONADO,
@@ -91,10 +90,10 @@ namespace rpgLogic {
 		COTADEMALLA,
 		BANDAS,
 		PLACAS,
-		_LastArmorId_
-	};
+		_lastArmorId_
+	}; using aID = armorId;
 
-	enum enemyTemplate {
+	enum class enemyTemplate {
 		//Nivel 0
 		GOBLIN,
 		PIXIE,
@@ -113,7 +112,59 @@ namespace rpgLogic {
 		DEATHKNIGHT, 
 		DRACOLICH, 
 		// Escribir encima de estecomentario
-		_LastEnemyTemplateId_
+		_lastEnemyTemplateId_
+	}; using eTem = enemyTemplate;
+
+	static std::string toString(enemyTemplate type)
+	{ 
+		switch (type)
+		{
+		case rpgLogic::enemyTemplate::GOBLIN:
+			return "GOBLIN";
+			break;
+		case rpgLogic::enemyTemplate::PIXIE:
+			return "PIXIE";
+			break;
+		case rpgLogic::enemyTemplate::ZOMBIE:
+			return "ZOMBIE";
+			break;
+		case rpgLogic::enemyTemplate::SKELETON:
+			return "SKELETON";
+			break;
+		case rpgLogic::enemyTemplate::SPECTER:
+			return "SPECTER";
+			break;
+		case rpgLogic::enemyTemplate::TROLL:
+			return "TROLL";
+			break;
+		case rpgLogic::enemyTemplate::HELLHOUND:
+			return "HELLHOUND";
+			break;
+		case rpgLogic::enemyTemplate::MIMIC:
+			return "MIMIC";
+			break;
+		case rpgLogic::enemyTemplate::GHOUL:
+			return "GHOUL";
+			break;
+		case rpgLogic::enemyTemplate::GIANTWORM:
+			return "GIANTWORM";
+			break;
+		case rpgLogic::enemyTemplate::BANSHEE:
+			return "BANSHEE";
+			break;
+		case rpgLogic::enemyTemplate::DEATHKNIGHT:
+			return "DEATHKNIGHT";
+			break;
+		case rpgLogic::enemyTemplate::DRACOLICH:
+			return "DRACOLICH";
+			break;
+		case rpgLogic::enemyTemplate::_lastEnemyTemplateId_:
+			return "_lastEnemyTemplateId_";
+			break;
+		default:
+			return "NULL";
+			break;
+		}
 	};
 
 	struct  Stat
@@ -134,7 +185,7 @@ namespace rpgLogic {
 		std::vector<float> _weaknesses;
 
 		Weaknesses() {
-			_weaknesses = std::vector<float>(_LastTypeId_, 0);
+			_weaknesses = std::vector<float>(size_t(damTy::_lastDamageTypeId_), 0);
 		}
 
 		Weaknesses(std::vector<float> in) {
@@ -142,15 +193,15 @@ namespace rpgLogic {
 		}
 
 		void setWeakness(damageType type, float set) {
-			_weaknesses[type] = set;
+			_weaknesses[size_t(type)] = set;
 		}
 
 		void changeWeakness(damageType type, float change) {
-			_weaknesses[type] += change;
+			_weaknesses[size_t(type)] += change;
 		}
 
 		float getWeakness(damageType type) {	// Devolver la resistencia en función de tipo o parametro
-			return _weaknesses[type];
+			return _weaknesses[size_t(type)];
 		}
 	};
 

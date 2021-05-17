@@ -59,10 +59,7 @@ public:
 };
 
 // ----------------------------------------------------
-#pragma ButtonHeroes
-#include "../Managers/TheElementalMaze.h"
 
-#pragma endregion
 
 // ----------------------------------------------------
 
@@ -306,18 +303,16 @@ public:
 #include "../Templates/callbacks.h"
 #include "../Components/Interfaz.h"
 
-enum class HbltType { hability1, hability2, hability3, hability4 };
-
 class ButtonHability : public Button {
 private:
-	HbltType hability_;
+	uint hability_;
 
 public:
-	ButtonHability(SDLGame* game, EntityManager* mngr) : Button(game, mngr), hability_(HbltType::hability1) {};
+	ButtonHability(SDLGame* game, EntityManager* mngr) : Button(game, mngr), hability_(0) {};
 
 	~ButtonHability() {};
 
-	virtual void init(Vector2D pos, uint ancho, uint alto, Resources::TextureId imagen, HbltType attack);
+	virtual void init(Vector2D pos, uint ancho, uint alto, Resources::TextureId imagen, uint attack);
 
 	virtual void click();
 	

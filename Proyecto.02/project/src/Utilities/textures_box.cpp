@@ -13,7 +13,7 @@ Resources::TextureId textures_box::getHeroTxt(uint number)
 
 	uint pivot = src::_firstHeroRId_;
 
-	Resources::TextureId id = (Resources::TextureId)(pivot + tem + 1);
+	Resources::TextureId id = (Resources::TextureId)(pivot + uint(tem) + 1);
 
 	return id;
 }
@@ -27,7 +27,7 @@ Resources::TextureId textures_box::getEnemyTxt(uint number)
 
 	uint pivot = src::_firstEnemyId_;
 
-	Resources::TextureId id = (Resources::TextureId)(pivot + tem + 1);
+	Resources::TextureId id = (Resources::TextureId)(pivot + uint(tem) + 1);
 
 	return id;
 }
@@ -49,7 +49,7 @@ Resources::TextureId textures_box::getItemTxt(uint number)
 
 		pivot = src::_firstArmorId_;
 
-		id = (Resources::TextureId)(pivot + aId + 1);
+		id = (Resources::TextureId)(pivot + uint(aId) + 1);
 	}
 
 	else if (itemType == ItemType::WEAPON) {
@@ -58,24 +58,24 @@ Resources::TextureId textures_box::getItemTxt(uint number)
 
 		pivot = src::_firstWeaponId_;
 
-		id = (Resources::TextureId)(pivot + wId + 1);
+		id = (Resources::TextureId)(pivot + uint(wId) + 1);
 
 	}
 
 	return id;
 }
 
-Resources::TextureId textures_box::getHabilityTxt(uint hero, uint number)
+Resources::TextureId textures_box::getHabilityTxt(Hero* hero, uint number)
 {
 	PartyManager* c = TheElementalMaze::instance()->getPartyManager();
-	std::vector<Hero*> heroes = c->getHeroes();
-	std::vector<Hability*> habilities = heroes[number]->getHabilities();
+	//std::vector<Hero*> heroes = c->getHeroes();
+	std::vector<Hability*> habilities = hero->getHabilities();
 
 	uint pivot = src::_firstSkillId_;
 
-	Hability_Id idHability = habilities[number]->id();
+	Hability_Id idHability = habilities[number]->getID();
 
-	Resources::TextureId id = (Resources::TextureId)(pivot + idHability + 1);
+	Resources::TextureId id = (Resources::TextureId)(pivot + size_t(idHability) + 1);
 
 	return id;
 }

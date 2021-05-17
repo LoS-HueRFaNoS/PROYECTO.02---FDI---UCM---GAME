@@ -21,9 +21,9 @@ void CombatManager::showTeams()
 		{
 			cout << std::setfill(' ') << std::left << setw(12) << s->name << setw(15) << "HP " + to_string(s->hitPoints()) + "/" + to_string(s->maxHitPoints()) <<
 				setw(15) << "MP " + to_string(s->manaPoints()) + "/" + to_string(s->maxManaPoints()) << std::right <<
-				" STR " << std::setfill('0') << setw(2) << s->getStat(rpgLogic::STR).value << "  CON " << std::setfill('0') << setw(2) <<
-				s->getStat(rpgLogic::CON).value << "  DEX " << std::setfill('0') << setw(2) << s->getStat(rpgLogic::DEX).value << "  INT " <<
-				std::setfill('0') << setw(2) << s->getStat(rpgLogic::INT).value << endl;
+				" STR " << std::setfill('0') << setw(2) << s->getStat(rpgLogic::ms::STR).value << "  CON " << std::setfill('0') << setw(2) <<
+				s->getStat(rpgLogic::ms::CON).value << "  DEX " << std::setfill('0') << setw(2) << s->getStat(rpgLogic::ms::DEX).value << "  INT " <<
+				std::setfill('0') << setw(2) << s->getStat(rpgLogic::ms::INT).value << endl;
 		}
 	}
 
@@ -36,9 +36,9 @@ void CombatManager::showTeams()
 		else {
 			cout << std::setfill(' ') << std::left << setw(12) << s->name << setw(15) << "HP " + to_string(s->hitPoints()) + "/" + to_string(s->maxHitPoints()) <<
 				setw(15) << "MP " + to_string(s->manaPoints()) + "/" + to_string(s->maxManaPoints()) << std::right <<
-				" STR " << std::setfill('0') << setw(2) << s->getStat(rpgLogic::STR).value << "  CON " << std::setfill('0') << setw(2) <<
-				s->getStat(rpgLogic::CON).value << "  DEX " << std::setfill('0') << setw(2) << s->getStat(rpgLogic::DEX).value << "  INT " <<
-				std::setfill('0') << setw(2) << s->getStat(rpgLogic::INT).value << endl;
+				" STR " << std::setfill('0') << setw(2) << s->getStat(rpgLogic::ms::STR).value << "  CON " << std::setfill('0') << setw(2) <<
+				s->getStat(rpgLogic::ms::CON).value << "  DEX " << std::setfill('0') << setw(2) << s->getStat(rpgLogic::ms::DEX).value << "  INT " <<
+				std::setfill('0') << setw(2) << s->getStat(rpgLogic::ms::INT).value << endl;
 		}
 	}
 
@@ -62,11 +62,16 @@ void CombatManager::showTargets()
 	cout << "TARGETS (Press enter to cancel spell): " << endl;
 
 	maxTargets = 0;
-	for (Character* ch : getCurrentTargetList()) {
-		CharacterSheet* c = ch->getCharacterSheet();
-		cout << maxTargets << ". " << std::setfill(' ') << std::left << setw(12) << c->name << setw(15) << "HP " + to_string(c->hitPoints()) + "/" + to_string(c->maxHitPoints()) << endl;
-		maxTargets++;
+	try {
+		for (Character* ch : getCurrentTargetList()) {
+
+			CharacterSheet* c = ch->getCharacterSheet();
+			cout << maxTargets << ". " << std::setfill(' ') << std::left << setw(12) << c->name << setw(15) << "HP " + to_string(c->hitPoints()) + "/" + to_string(c->maxHitPoints()) << endl;
+			maxTargets++;
+
+		}
 	}
+	catch (...) { cout << "ERROR: taking out targets"; }
 	cout << "Choose target: ";
 }
 
@@ -84,7 +89,7 @@ void CombatManager::passTurn()
 	if (!checkEnd()) {
 		for (std::vector<Character*>::iterator it = _turnQueue.begin(); it != _turnQueue.end();) {
 			if ((*it)->isDead()) {
-				if ((*it)->getType() || (!(*it)->getType() && static_cast<Hero*>(*it)->getDeathGate()))
+				if (size_t((*it)->getType()) || (!size_t((*it)->getType()) && static_cast<Hero*>(*it)->getDeathGate()))
 					it = _turnQueue.erase(it);
 				else
 					it++;
@@ -130,11 +135,11 @@ void CombatManager::tryEscape()
 
 	for (Hero* h : _heroes) {
 		if (!h->isDead())
-			tiradasH += h->throwStat(DEX) + h->getMod(DEX);
+			tiradasH += h->throwStat(ms::DEX) + h->getMod(ms::DEX);
 	}
 	for (Enemy* e : _enemies) {
 		if (!e->isDead())
-			tiradasE += e->throwStat(DEX) + e->getMod(DEX);
+			tiradasE += e->throwStat(ms::DEX) + e->getMod(ms::DEX);
 	}
 
 	cout << "Heroes: " << tiradasH << "\n";
@@ -196,23 +201,23 @@ void CombatManager::castHability(Hability* hability)
 
 	switch (t)
 	{
-	case SINGLEALLY:
+	case objTy::SINGLEALLY:
 		targetList = currentCharacter->getType();
 		changeState(ACTION_PHASE_TARGET);
 		break;
-	case SINGLEENEMY:
+	case objTy::SINGLEENEMY:
 		targetList = (characterType)((int)currentCharacter->getType() ^ 1);
 		changeState(ACTION_PHASE_TARGET);
 		break;
-	case ALLYTEAM:
+	case objTy::ALLYTEAM:
 		targetList = currentCharacter->getType();
 		castToTeam();
 		break;
-	case ENEMYTEAM:
+	case objTy::ENEMYTEAM:
 		targetList = (characterType)((int)currentCharacter->getType() ^ 1);
 		castToTeam();
 		break;
-	case CASTER:
+	case objTy::CASTER:
 		throwHability(hability->getCaster(), hability);
 		break;
 	default:
@@ -223,7 +228,7 @@ void CombatManager::castHability(Hability* hability)
 
 void CombatManager::castToTeam()
 {
-	if (targetList) {
+	if (size_t(targetList)) {
 		for (Enemy* e : _enemies)
 			if (!e->isDead())throwHability(e, _habilityToCast);
 	}
@@ -242,14 +247,14 @@ void CombatManager::castToSingleTarget(int input)
 		return;
 	}
 
-	throwHability(targetList ? dynamic_cast<Character*>(_enemies[input]) : dynamic_cast<Character*>(_heroes[input]), _habilityToCast);
+	throwHability(size_t(targetList) ? dynamic_cast<Character*>(_enemies[input]) : dynamic_cast<Character*>(_heroes[input]), _habilityToCast);
 }
 
 void CombatManager::throwHability(Character* objective, Hability* hability)
 {
 	cout << hability->name() << " on " << objective->name() << endl;
 	int hit = hability->getCaster()->throw20PlusMod(hability->getMod(), true);
-	if ((hability->getHabilityType() > 1) || objective->checkHit(hit)) {
+	if ((size_t(hability->getHabilityType()) > 1) || objective->checkHit(hit)) {
 		cout << hability->name() << " hits" << endl;;
 		if (hit == 100)
 			cout << "CRITICAL" << endl;
@@ -269,14 +274,14 @@ void CombatManager::calculateTurns()
 {
 	vector<Initiative> ini;
 	for (int i = 0; i < _heroes.size(); i++)
-		ini.push_back(Initiative(_heroes[i]->getType(), i, throwDice(1, _heroes[i]->getStat(DEX), false) + _heroes[i]->getMod(DEX)));
+		ini.push_back(Initiative(_heroes[i]->getType(), i, throwDice(1, _heroes[i]->getStat(ms::DEX), false) + _heroes[i]->getMod(ms::DEX)));
 	for (int i = 0; i < _enemies.size(); i++)
-		ini.push_back(Initiative(_enemies[i]->getType(), i, throwDice(1, _enemies[i]->getStat(DEX), false) + _enemies[i]->getMod(DEX)));
+		ini.push_back(Initiative(_enemies[i]->getType(), i, throwDice(1, _enemies[i]->getStat(ms::DEX), false) + _enemies[i]->getMod(ms::DEX)));
 
 	sort(ini.begin(), ini.end(), initiative_roll());
 
 	for (Initiative i : ini) {
-		if (i.type)
+		if (size_t(i.type))
 			_turnQueue.push_back(_enemies[i.pos]);
 		else
 			_turnQueue.push_back(_heroes[i.pos]);
@@ -316,7 +321,7 @@ void CombatManager::onStateChanged()
 		cout << "---------- PRESS ENTER TO START TURN ----------" << endl;
 		break;
 	case ACTION_PHASE_SPELL:
-		if (!currentCharacter->getType())
+		if (!size_t(currentCharacter->getType()))
 			static_cast<Hero*>(currentCharacter)->showSpellList();
 		break;
 	case ACTION_PHASE_TARGET:
@@ -370,7 +375,7 @@ void CombatManager::sendKeyEvent(int key)
 			TheElementalMaze::instance()->getPartyManager()->usePotion((Hero*)currentCharacter,(6+key));
 			break;
 		default:
-			if (!currentCharacter->getType())
+			if (!size_t(currentCharacter->getType()))
 				static_cast<Hero*>(currentCharacter)->manageInput(this, key);
 			break;
 		}
@@ -381,7 +386,7 @@ void CombatManager::sendKeyEvent(int key)
 			changeState(ACTION_PHASE_SPELL);
 			break;
 		}
-		if (!currentCharacter->getType() && key >= 0)
+		if (!size_t(currentCharacter->getType()) && key >= 0)
 			castToSingleTarget(key);
 		break;
 	case COMBAT_END:

@@ -198,7 +198,7 @@ void PlayerMotion::debugear()
 		CombatManager* comManager = TheElementalMaze::instance()->getCombatManager();
 		for (int i = 0; i < enemigo->size(); i++)
 		{
-			cout << "Encuentras con el enemigo " << to_string((*enemigo)[i]) << endl;
+			cout << "Encuentras con el enemigo " << toString((*enemigo)[i]) << endl;
 
 			comManager->addCharacter(chaManager->addEnemyFromTemplate((*enemigo)[i]));
 		}

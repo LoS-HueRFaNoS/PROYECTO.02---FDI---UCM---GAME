@@ -38,7 +38,7 @@ void Character::startTurn(CombatManager* cm)
 		if (!(*it)->onTurnStarted())
 		{
 			Condition* temp = (*it);
-			removeCondition((*it)->getId());
+			removeCondition((*it)->getID());
 			it = _conditions.erase(it);
 			delete temp;
 		}
@@ -58,7 +58,7 @@ void Character::endTurn()
 		if (!(*it)->onTurnEnd())
 		{
 			Condition* temp = (*it);
-			removeCondition((*it)->getId());
+			removeCondition((*it)->getID());
 			it = _conditions.erase(it);
 			delete temp;
 		}
@@ -71,12 +71,12 @@ void Character::endTurn()
 
 void Character::loadFromTemplate(jute::jValue v, heroTemplate t)
 {
-	loadFromJson(v, t);
+	loadFromJson(v, int(t));
 }
 
 void Character::loadFromTemplate(jute::jValue v, enemyTemplate t)
 {
-	loadFromJson(v, t);
+	loadFromJson(v, int(t));
 }
 
 void Character::recieveDamage(int damage, rpgLogic::damageType type, Character* attacker)
@@ -86,7 +86,7 @@ void Character::recieveDamage(int damage, rpgLogic::damageType type, Character* 
 		if (!(*it)->onAttackRecieved(damage, attacker))
 		{
 			Condition* temp = (*it);
-			removeCondition((*it)->getId());
+			removeCondition((*it)->getID());
 			it = _conditions.erase(it);
 			delete temp;
 		}
@@ -103,7 +103,7 @@ void Character::recieveDamage(int damage, rpgLogic::damageType type, Character* 
 			if (!(*it)->onDeath(attacker))
 			{
 				Condition* temp = (*it);
-				removeCondition((*it)->getId());
+				removeCondition((*it)->getID());
 				it = _conditions.erase(it);
 				delete temp;
 			}
@@ -156,7 +156,7 @@ int Character::throwStat(mainStat stat)
 
 bool Character::checkHit(int hit)
 {
-	return hit > throwStat(DEX);
+	return hit > throwStat(ms::DEX);
 }
 
 void Character::removeConditions()
@@ -206,7 +206,7 @@ void Hero::loadFromJson(jute::jValue v, int t)
 	template_ = (heroTemplate)t;
 
 	// Buscamos las stats en el json dentro de nuestro heroe "t" y asignamos un valor aleatorio entre los valores dados
-	for (int i = 0; i < _LastStatId_; i++)
+	for (int i = 0; i < size_t(ms::_lastStatId_); i++)
 	{
 		int min = v["Characters"][t]["Stats"][i]["Min"].as_int();
 		int max = v["Characters"][t]["Stats"][i]["Max"].as_int();
@@ -225,7 +225,7 @@ void Hero::loadFromJson(jute::jValue v, int t)
 
 	// Guardamos las debilidades en un vector para luego inicializarlas
 	vector<float> weak = vector<float>();
-	for (int i = 0; i < _LastTypeId_; i++)
+	for (int i = 0; i < size_t(damTy::_lastDamageTypeId_); i++)
 	{
 		weak.push_back((float)v["Characters"][t]["Weaknesses"][i]["Value"].as_double());
 	}
@@ -350,14 +350,14 @@ void Hero::levelUp(int exp)
 
 		int hpMax, pmMax;
 
-		if (getMod(CON) >= 0)
-			hpMax = hp + throwStat(CON) + getMod(CON);
+		if (getMod(ms::CON) >= 0)
+			hpMax = hp + throwStat(ms::CON) + getMod(ms::CON);
 
 		else
 			hpMax = hp + throwDice(1, 10, false);
 
-		if (getMod(INT) >= 0)
-			pmMax = pm + throwStat(INT) + getMod(INT);
+		if (getMod(ms::INT) >= 0)
+			pmMax = pm + throwStat(ms::INT) + getMod(ms::INT);
 
 		else
 			pmMax = pm + throwDice(1, 10, false);
@@ -413,7 +413,7 @@ void Enemy::loadFromJson(jute::jValue v, int t)
 	template_ = (enemyTemplate)t;
 
 	// Buscamos las stats en el json dentro de nuestro heroe "t" y asignamos un valor aleatorio entre los valores dados
-	for (int i = 0; i < _LastStatId_; i++)
+	for (int i = 0; i < size_t(ms::_lastStatId_); i++)
 	{
 		_sheet->setStat(i, v["Characters"][t]["Stats"][i]["Value"].as_int());
 	}
@@ -436,7 +436,7 @@ void Enemy::loadFromJson(jute::jValue v, int t)
 
 	// Guardamos las debilidades en un vector para luego inicializarlas
 	vector<float> weak = vector<float>();
-	for (int i = 0; i < _LastTypeId_; i++)
+	for (int i = 0; i < size_t(damTy::_lastDamageTypeId_); i++)
 	{
 		weak.push_back((float)v["Characters"][t]["Weaknesses"][i]["Value"].as_double());
 	}
@@ -449,7 +449,7 @@ void Enemy::loadFromJson(jute::jValue v, int t)
 
 	_sheet->weaknesses = Weaknesses(weak);
 
-	_weapon = TheElementalMaze::instance()->getItemManager()->getWeaponFromId(DESARMADO);
+	_weapon = TheElementalMaze::instance()->getItemManager()->getWeaponFromId(wID::DESARMADO);
 }
 
 void Enemy::manageTurn(CombatManager* cm)
@@ -458,13 +458,13 @@ void Enemy::manageTurn(CombatManager* cm)
 
 	Hability* hab = _habilities[aux];
 
-	if (hab->getObjectiveType() == ENEMYTEAM || hab->getObjectiveType() == ALLYTEAM
-		|| hab->getObjectiveType() == CASTER)
+	if (hab->getObjectiveType() == objTy::ENEMYTEAM || hab->getObjectiveType() == objTy::ALLYTEAM
+		|| hab->getObjectiveType() == objTy::CASTER)
 		cm->castHability(hab);
 
 	else
 	{
-		if (hab->getObjectiveType() == SINGLEENEMY)
+		if (hab->getObjectiveType() == objTy::SINGLEENEMY)
 		{
 			vector <Hero*> heroTeam = cm->getHeroesTeam();
 

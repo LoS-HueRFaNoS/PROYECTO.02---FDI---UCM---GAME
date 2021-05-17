@@ -35,7 +35,7 @@ public:
 	~CharacterSheet(){}
 
 	rpgLogic::Stat getStat(rpgLogic::mainStat st) {
-		return (_stats[st].value <= 0) ? rpgLogic::Stat(1) : _stats[st];
+		return (_stats[size_t(st)].value <= 0) ? rpgLogic::Stat(1) : _stats[size_t(st)];
 	}
 
 	float getResistance(rpgLogic::damageType type) {
@@ -43,16 +43,16 @@ public:
 	}
 
 	void setStat(rpgLogic::mainStat st, int set) {
-		_stats[st].value = set;
+		_stats[size_t(st)].value = set;
 	}
 
 	void setStat(int st, int set) {
-		_stats[st].value = set;
+		_stats[size_t(st)].value = set;
 	}
 
 	int getStatValue(int st)
 	{
-		return _stats[st].value;
+		return _stats[size_t(st)].value;
 	}
 
 	int maxHitPoints() {
@@ -88,7 +88,7 @@ public:
 	}
 
 	void changeStat(rpgLogic::mainStat st, int change) {
-		_stats[st].value += change;
+		_stats[size_t(st)].value += change;
 	}
 
 	bool recieveDamage(int damage, rpgLogic::damageType type);

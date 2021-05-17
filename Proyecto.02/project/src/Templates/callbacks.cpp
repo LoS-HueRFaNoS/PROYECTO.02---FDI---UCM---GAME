@@ -35,7 +35,7 @@ void callbacks::pruebaGame3(Interfaz* app) {
 
 void callbacks::heroType(uint numberHeroe) {
 	CombatManager* c = GETCMP2(TheElementalMaze::instance(), CombatManager);
-	string name = c->getCharacter(numberHeroe, HERO)->name();
+	string name = c->getCharacter(numberHeroe, charTy::HERO)->name();
 	std::cout << "heroe " << numberHeroe << ": " << name << std::endl;
 }
 

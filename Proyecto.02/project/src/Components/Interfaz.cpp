@@ -313,35 +313,35 @@ void Interfaz::createFichaDD(uint nCharacter)
 	p->addButton(iManager->addButton<Line>(Vector2D(xs_ + 0 * espace_H, ys_ + 1 * espace_V + lineTam_V * 1), ws_, lineTam_V, text, Resources::Beaulieux, color));
 
 	// MAIN STATS:
-	text = "Strength = " + to_string(hero_sheet->getStat(STR).value); info += text + "\n";		// Fuerza
+	text = "Strength = " + to_string(hero_sheet->getStat(ms::STR).value); info += text + "\n";		// Fuerza
 	p->addButton(iManager->addButton<Line>(Vector2D(xs_ + 0 * espace_H, ys_ + 1 * espace_V + lineTam_V * 3), ws_, lineTam_V, text, Resources::Beaulieux, color));
-	text = "Constitution = " + to_string(hero_sheet->getStat(CON).value); info += text + "\n";	// Constitution
+	text = "Constitution = " + to_string(hero_sheet->getStat(ms::CON).value); info += text + "\n";	// Constitution
 	p->addButton(iManager->addButton<Line>(Vector2D(xs_ + 0 * espace_H, ys_ + 1 * espace_V + lineTam_V * 4), ws_, lineTam_V, text, Resources::Beaulieux, color));
-	text = "Dexterity = " + to_string(hero_sheet->getStat(DEX).value); info += text + "\n";		// Destreza
+	text = "Dexterity = " + to_string(hero_sheet->getStat(ms::DEX).value); info += text + "\n";		// Destreza
 	p->addButton(iManager->addButton<Line>(Vector2D(xs_ + 0 * espace_H, ys_ + 1 * espace_V + lineTam_V * 5), ws_, lineTam_V, text, Resources::Beaulieux, color));
-	text = "Intelect = " + to_string(hero_sheet->getStat(INT).value); info += text + "\n";		// Intelecto
+	text = "Intelect = " + to_string(hero_sheet->getStat(ms::INT).value); info += text + "\n";		// Intelecto
 	p->addButton(iManager->addButton<Line>(Vector2D(xs_ + 0 * espace_H, ys_ + 1 * espace_V + lineTam_V * 6), ws_, lineTam_V, text, Resources::Beaulieux, color));
 
 	// RESISTENCIAS:
-	text = "Fire = " + to_string(hero_sheet->getResistance(FIRE)); info += text + "\n";			// Fire
+	text = "Fire = " + to_string(hero_sheet->getResistance(damTy::FIRE)); info += text + "\n";			// Fire
 	color = { 255,0,0,255 };
 	p->addButton(iManager->addButton<Line>(Vector2D(xs_ + 2 * espace_H, ys_ + 1 * espace_V + lineTam_V * 0), ws_, lineTam_V, text, Resources::Beaulieux, color));
-	text = "Water = " + to_string(hero_sheet->getResistance(WATER)); info += text + "\n";		// Water
+	text = "Water = " + to_string(hero_sheet->getResistance(damTy::WATER)); info += text + "\n";		// Water
 	color = { 0,0,255,255 };
 	p->addButton(iManager->addButton<Line>(Vector2D(xs_ + 2 * espace_H, ys_ + 1 * espace_V + lineTam_V * 1), ws_, lineTam_V, text, Resources::Beaulieux, color));
-	text = "Ice = " + to_string(hero_sheet->getResistance(ICE)); info += text + "\n";			// Ice
+	text = "Ice = " + to_string(hero_sheet->getResistance(damTy::ICE)); info += text + "\n";			// Ice
 	color = { 155,155,255,255 };
 	p->addButton(iManager->addButton<Line>(Vector2D(xs_ + 2 * espace_H, ys_ + 1 * espace_V + lineTam_V * 2), ws_, lineTam_V, text, Resources::Beaulieux, color));
-	text = "Earth = " + to_string(hero_sheet->getResistance(EARTH)); info += text + "\n";		// Earth
+	text = "Earth = " + to_string(hero_sheet->getResistance(damTy::EARTH)); info += text + "\n";		// Earth
 	color = { 155,80,20,255 };
 	p->addButton(iManager->addButton<Line>(Vector2D(xs_ + 2 * espace_H, ys_ + 1 * espace_V + lineTam_V * 3), ws_, lineTam_V, text, Resources::Beaulieux, color));
-	text = "Wind = " + to_string(hero_sheet->getResistance(WIND)); info += text + "\n";			// Wind
+	text = "Wind = " + to_string(hero_sheet->getResistance(damTy::WIND)); info += text + "\n";			// Wind
 	color = { 0, 150, 0,255 };
 	p->addButton(iManager->addButton<Line>(Vector2D(xs_ + 2 * espace_H, ys_ + 1 * espace_V + lineTam_V * 4), ws_, lineTam_V, text, Resources::Beaulieux, color));
-	text = "Light = " + to_string(hero_sheet->getResistance(LIGHT)); info += text + "\n";		// Light
+	text = "Light = " + to_string(hero_sheet->getResistance(damTy::LIGHT)); info += text + "\n";		// Light
 	color = { 255,255,150,255 };
 	p->addButton(iManager->addButton<Line>(Vector2D(xs_ + 2 * espace_H, ys_ + 1 * espace_V + lineTam_V * 5), ws_, lineTam_V, text, Resources::Beaulieux, color));
-	text = "Dark = " + to_string(hero_sheet->getResistance(DARK)); info += text + "\n";			// Dark
+	text = "Dark = " + to_string(hero_sheet->getResistance(damTy::DARK)); info += text + "\n";			// Dark
 	color = { 50,50,50,255 };
 	p->addButton(iManager->addButton<Line>(Vector2D(xs_ + 2 * espace_H, ys_ + 1 * espace_V + lineTam_V * 6), ws_, lineTam_V, text, Resources::Beaulieux, color));
 
@@ -362,7 +362,8 @@ void Interfaz::createFichaDD(uint nCharacter)
 void Interfaz::createTargets()
 {
 	CombatManager* c = GETCMP2(TheElementalMaze::instance(), CombatManager);
-	uint nEnemys = c->getEnemysTam();
+	std::vector<Character*> targets = c->getCurrentTargetList();
+	uint nTargets = targets.size();
 
 	// posicion en pixeles del 'fondo'
 	double x_ = 70;
@@ -387,15 +388,18 @@ void Interfaz::createTargets()
 	allPanels[Targets] = p;
 
 	// BOTONES:
-	for (int i = 0; i < 4/*nEnemys*/; i++) {
-		p->addButton(iManager->addButton<ButtonTarget>(Vector2D(x_ + espace * i, y_), w_, h_, src::Target, (target)i));
+	for (int i = 0; i < nTargets; i++) {
+		src::TextureId img = size_t(targets[i]->getType()) ? getEnemyTxt(i) : getHeroTxt(i);
+		p->addButton(iManager->addButton<ButtonTarget>(Vector2D(x_ + espace * i, y_), w_, h_, img, (target)i));
 	}
 }
 
 void Interfaz::createHabilities()
 {
 	CombatManager* c = GETCMP2(TheElementalMaze::instance(), CombatManager);
-	uint nEnemys = c->getEnemysTam();
+	Hero* hero = static_cast<Hero*>(c->getCurrentCharacter());
+	std::vector<Hability*> habilities = hero->getHabilities();
+	uint nHabilities = habilities.size();
 
 	// posicion en pixeles del 'fondo'
 	double x_ = 70;
@@ -410,7 +414,7 @@ void Interfaz::createHabilities()
 	x_ = game_->setHorizontalScale(x_ + n);
 	y_ = game_->setVerticalScale(y_ + n);
 
-	double espace = game_->setHorizontalScale((w_ - n) / 4);
+	double espace = game_->setHorizontalScale((w_ - n) / nHabilities);
 
 	w_ = espace - game_->setHorizontalScale(n);
 	h_ = game_->setVerticalScale(h_ - n * 2);
@@ -420,8 +424,8 @@ void Interfaz::createHabilities()
 	allPanels[Habilities] = p;
 
 	// BOTONES:
-	for (int i = 0; i < nEnemys; i++) {
-		p->addButton(iManager->addButton<ButtonHability>(Vector2D(x_ + espace * i, y_), w_, h_, src::Hability, (HbltType)i));
+	for (int i = 0; i < nHabilities; i++) {
+		p->addButton(iManager->addButton<ButtonHability>(Vector2D(x_ + espace * i, y_), w_, h_, getHabilityTxt(hero, i), i));
 	}
 	togglePanel(Fight); // oculta el panel fight
 }
@@ -702,8 +706,6 @@ void Interfaz::update()
 			if (getActivePan(Fight)) {
 				removePanel(Fight);
 			}
-			// PARTY
-			checkHerosParty(); // check de puertas de la muerte
 		}
 		break;
 	case gameST::COMBAT:
@@ -718,6 +720,8 @@ void Interfaz::update()
 		if (getActivePan(Enemies))
 		{
 			removePanel(Enemies);
+			// PARTY
+			checkHerosParty(); // check de puertas de la muerte
 			TheElementalMaze::instance()->changeState(gameST::COMBAT);
 		}
 		break;
