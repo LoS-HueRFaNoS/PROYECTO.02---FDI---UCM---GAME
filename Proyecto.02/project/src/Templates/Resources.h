@@ -183,7 +183,6 @@ public:
 		Curacion,
 		Curacion_en_masa,
 		SelfHeal,
-		AllyTeamAttackExample,
 		RafagaDeViento,
 		Cuchilla_aerea,
 		PilarDeTierra,
