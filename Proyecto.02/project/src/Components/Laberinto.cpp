@@ -91,8 +91,8 @@ void Laberinto::createRandomMaze(Vector2D entrada)
 	vector<Look> neighbours;
 	while (cellsCreated < w * h)
 	{
-		x = m_stack.back().getX();
-		y = m_stack.back().getY();
+		x = int(m_stack.back().getX());
+		y = int(m_stack.back().getY());
 		// North neighbour
 		if (y > 0 && !maze1D[(int)((y - 1) * w + x)])
 			neighbours.push_back(Norte);
@@ -209,7 +209,7 @@ void Laberinto::draw()
 	{
 		for (int j = 0; j < w; ++j) // Por cada columna  = X
 		{
-			laberinto[j][i]->casillaRender(_x + j * _w, _y + i * _h);
+			laberinto[j][i]->casillaRender(int(_x) + j * int(_w), int(_y) + i * int(_h));
 		}
 	}
 }

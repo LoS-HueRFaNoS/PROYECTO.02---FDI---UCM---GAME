@@ -84,7 +84,7 @@ void TheElementalMaze::backFromDungeon()
 
 void TheElementalMaze::checkOutNoInitialEnemy()
 {
-	laberinto_->getCasillaInfo(player_->getComponent<MazePos>(ecs::MazePos)->getPos().getX(), player_->getComponent<MazePos>(ecs::MazePos)->getPos().getY())->getEnemy()->clear();
+	laberinto_->getCasillaInfo(int(player_->getComponent<MazePos>(ecs::MazePos)->getPos().getX()), int(player_->getComponent<MazePos>(ecs::MazePos)->getPos().getY()))->getEnemy()->clear();
 }
 
 void TheElementalMaze::startCombat()

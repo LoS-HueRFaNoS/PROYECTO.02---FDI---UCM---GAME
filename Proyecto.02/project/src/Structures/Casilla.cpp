@@ -1,4 +1,6 @@
 #include "Casilla.h"
+#include "../Utilities/SDL_macros.h"
+
 Casilla::Casilla(SDLGame* game):esSalida(false)
 {
 	game_ = game;
@@ -35,10 +37,10 @@ void Casilla::casillaRender(int x, int y)
 {
 	double w = game_->setHorizontalScale(34); // 28
 	double h = game_->setVerticalScale(19); // 20
-	SDL_Rect dest = { x, y, w, h };
+	SDL_Rect dest = RECT( x, y, w, h );
 	Texture* texturaSuelo;
 	Texture* texturaPosActual;
-	Texture* texturaSalida;
+	//Texture* texturaSalida;
 	Texture* texturaPared = nullptr;
 	auto manager = game_->getTextureMngr();
 

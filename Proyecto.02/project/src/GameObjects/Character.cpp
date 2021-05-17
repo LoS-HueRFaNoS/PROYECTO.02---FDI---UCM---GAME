@@ -454,7 +454,7 @@ void Enemy::loadFromJson(jute::jValue v, int t)
 
 void Enemy::manageTurn(CombatManager* cm)
 {
-	int aux = game_->getRandGen()->nextInt(0, _habilities.size());
+	int aux = game_->getRandGen()->nextInt(0, int(_habilities.size()));
 
 	Hability* hab = _habilities[aux];
 
@@ -470,7 +470,7 @@ void Enemy::manageTurn(CombatManager* cm)
 
 			while (true)
 			{
-				int heroe = game_->getRandGen()->nextInt(0, heroTeam.size());
+				int heroe = game_->getRandGen()->nextInt(0, int(heroTeam.size()));
 
 				if (!heroTeam[heroe]->isDead())
 				{
@@ -486,7 +486,7 @@ void Enemy::manageTurn(CombatManager* cm)
 
 			while (true)
 			{
-				int enemigo = game_->getRandGen()->nextInt(0, enemyTeam.size());
+				int enemigo = game_->getRandGen()->nextInt(0, int(enemyTeam.size()));
 
 				if (!enemyTeam[enemigo]->isDead())
 				{

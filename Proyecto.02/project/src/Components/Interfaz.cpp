@@ -64,7 +64,7 @@ void Interfaz::createEnemies()
 {
 	CombatManager* c = GETCMP2(TheElementalMaze::instance(), CombatManager);
 	std::vector<Enemy*> enemies = c->getEnemiesTeam();
-	uint nEnemies = c->getEnemysTam();
+	size_t nEnemies = c->getEnemysTam();
 
 	// posicion en pixeles del 'fondo'
 	double x_ = 70;
@@ -135,7 +135,7 @@ void Interfaz::createHeroes()
 {
 	PartyManager* c = TheElementalMaze::instance()->getPartyManager();
 	std::vector<Hero*> heroes = c->getHeroes();
-	uint nHeros = heroes.size();
+	size_t nHeros = heroes.size();
 
 	// posicion en pixeles del 'fondo'
 	double x_ = 1510;
@@ -363,7 +363,7 @@ void Interfaz::createTargets()
 {
 	CombatManager* c = GETCMP2(TheElementalMaze::instance(), CombatManager);
 	std::vector<Character*> targets = c->getCurrentTargetList();
-	uint nTargets = targets.size();
+	size_t nTargets = targets.size();
 
 	// posicion en pixeles del 'fondo'
 	double x_ = 70;
@@ -399,7 +399,7 @@ void Interfaz::createHabilities()
 	CombatManager* c = GETCMP2(TheElementalMaze::instance(), CombatManager);
 	Hero* hero = static_cast<Hero*>(c->getCurrentCharacter());
 	std::vector<Hability*> habilities = hero->getHabilities();
-	uint nHabilities = habilities.size();
+	size_t nHabilities = habilities.size();
 
 	// posicion en pixeles del 'fondo'
 	double x_ = 70;
@@ -471,7 +471,7 @@ void Interfaz::createOptions()
 	allPanels[Options] = p;
 	int w, h;
 	int x, y;
-	int ancho;
+	//int ancho;
 	string text;
 	SDL_Color color;
 
@@ -534,29 +534,29 @@ void Interfaz::createGuide()
 	color = { 100,50,0,255 };
 	x = 250; y = 370;
 	text = "Click on the virtual buttons to play the game";
-	ancho = text.size() * 15 - 100;
+	ancho = int(text.size()) * 15 - 100;
 	p->addButton(iManager->addButton<Line>(Vector2D(x, y), ancho, 30, text, Resources::Fornite, color));
 
 	color = { 150,150,0,255 };
 	y += 50;
 	text = "Special Keyboards";
-	ancho = text.size() * 20;
+	ancho = int(text.size()) * 20;
 	p->addButton(iManager->addButton<Line>(Vector2D(x+150, y), ancho, 40, text, Resources::Fornite, color));
 
 	color = { 100,50,0,255 };
 	y += 50;
 	text = "Press left-right arrows or A-D keys to rotate the view";
-	ancho = text.size() * 15 -100;
+	ancho = int(text.size()) * 15 - 100;
 	p->addButton(iManager->addButton<Line>(Vector2D(x, y), ancho, 30, text, Resources::Fornite, color));
 
 	y += 30;
 	text = "Press up arrows or W keys to advance";
-	ancho = text.size() * 15 -30;
+	ancho = int(text.size()) * 15 - 30;
 	p->addButton(iManager->addButton<Line>(Vector2D(x, y), ancho , 30, text, Resources::Fornite, color));
 
 	y += 30;
 	text = "Press spacebar or E keys to interact";
-	ancho = text.size() * 15 - 50;
+	ancho = int(text.size()) * 15 - 50;
 	p->addButton(iManager->addButton<Line>(Vector2D(x, y), ancho, 30, text, Resources::Fornite, color));	
 
 	p->addButton(iManager->addButton<ButtonMenu>(Vector2D(w - 225, 120), 64, 64, src::close, accionMenu::how_to_play, this));

@@ -49,7 +49,7 @@ void PlayerViewer::draw()
 	double _y = game_->setVerticalScale(70);
 	double _w = game_->setHorizontalScale(1340);
 	double _h = game_->setVerticalScale(620);
-	SDL_Rect dest = { _x, _y, _w, _h };
+	SDL_Rect dest = RECT( _x, _y, _w, _h );
 	/*Texture* texturaCasilla;
 	Texture* texturaIzquierda;
 	Texture* texturaDerecha;

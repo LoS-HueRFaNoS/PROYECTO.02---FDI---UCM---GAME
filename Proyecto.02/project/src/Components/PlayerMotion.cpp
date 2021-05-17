@@ -159,7 +159,7 @@ void PlayerMotion::debugear()
 	cout << "Estas en la casilla " << pos->getPos() << ".	\n";
 
 
-	Casilla* cas = lab->getCasillaInfo(pos->getPos().getX(), pos->getPos().getY());
+	Casilla* cas = lab->getCasillaInfo(int(pos->getPos().getX()), int(pos->getPos().getY()));
 	cas->setVisibilidad(Visibilidad::visitado);
 	cas->setPosActual(true);
 	cas->setLook(pos->getLook() * 90);
@@ -172,20 +172,20 @@ void PlayerMotion::debugear()
 			switch (k)
 			{
 			case Norte:
-				if (lab->getCasillaInfo(pos->getPos().getX(), pos->getPos().getY() - 1)->getVisibilidad() == Visibilidad::noVisitado)
-					lab->getCasillaInfo(pos->getPos().getX(), pos->getPos().getY() - 1)->setVisibilidad(Visibilidad::noEntrado);
+				if (lab->getCasillaInfo(int(pos->getPos().getX()), int(pos->getPos().getY()) - 1)->getVisibilidad() == Visibilidad::noVisitado)
+					lab->getCasillaInfo(int(pos->getPos().getX()), int(pos->getPos().getY()) - 1)->setVisibilidad(Visibilidad::noEntrado);
 				break;
 			case Este:
-				if (lab->getCasillaInfo(pos->getPos().getX() + 1, pos->getPos().getY())->getVisibilidad() == Visibilidad::noVisitado)
-					lab->getCasillaInfo(pos->getPos().getX() + 1, pos->getPos().getY())->setVisibilidad(Visibilidad::noEntrado);
+				if (lab->getCasillaInfo(int(pos->getPos().getX()) + 1, int(pos->getPos().getY()))->getVisibilidad() == Visibilidad::noVisitado)
+					lab->getCasillaInfo(int(pos->getPos().getX()) + 1, int(pos->getPos().getY()))->setVisibilidad(Visibilidad::noEntrado);
 				break;
 			case Sur:
-				if (lab->getCasillaInfo(pos->getPos().getX(), pos->getPos().getY() + 1)->getVisibilidad() == Visibilidad::noVisitado)
-					lab->getCasillaInfo(pos->getPos().getX(), pos->getPos().getY() + 1)->setVisibilidad(Visibilidad::noEntrado);
+				if (lab->getCasillaInfo(int(pos->getPos().getX()), int(pos->getPos().getY()) + 1)->getVisibilidad() == Visibilidad::noVisitado)
+					lab->getCasillaInfo(int(pos->getPos().getX()), int(pos->getPos().getY()) + 1)->setVisibilidad(Visibilidad::noEntrado);
 				break;
 			case Oeste:
-				if (lab->getCasillaInfo(pos->getPos().getX() - 1, pos->getPos().getY())->getVisibilidad() == Visibilidad::noVisitado)
-					lab->getCasillaInfo(pos->getPos().getX() - 1, pos->getPos().getY())->setVisibilidad(Visibilidad::noEntrado);
+				if (lab->getCasillaInfo(int(pos->getPos().getX()) - 1, int(pos->getPos().getY()))->getVisibilidad() == Visibilidad::noVisitado)
+					lab->getCasillaInfo(int(pos->getPos().getX()) - 1, int(pos->getPos().getY()))->setVisibilidad(Visibilidad::noEntrado);
 				break;
 			}
 		}

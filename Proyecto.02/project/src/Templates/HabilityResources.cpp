@@ -216,7 +216,7 @@ void Sacrifice::throwHability(Character* obj, bool critical) const //hay que mir
 
 	damage = obj->savingThrow(10 + _caster->getMod(_mod), ms::DEX) ? damage / 2 : damage;
 
-	obj->recieveDamage(damage * 1.5, _damageType, _caster);
+	obj->recieveDamage(int(damage * 1.5), _damageType, _caster);
 
 	//obj =_caster;									NO BORREIS LA REFERENCIA AL OBJETIVO USAD DIRECTAMENTE EL CASTER
 
