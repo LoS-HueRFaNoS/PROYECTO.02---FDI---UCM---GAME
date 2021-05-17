@@ -633,8 +633,6 @@
       ]
     },
 
-
-
     {
       "Name": "Ghoul",
       "Description": "Necrófagos, pero aún así bastante peligrosos para los vivos",
@@ -713,8 +711,6 @@
         31
       ]
     },
-
-
 
     {
       "Name": "Giant worm",
@@ -1029,6 +1025,87 @@
         15,
         20,
         21
+      ]
+    },
+
+    {
+      "Name": "Lich",
+      "Description": "El Señor de la Mazmorra, un poderoso brujo que decidió jugar con fuerzas que nadie osaba controlar e instauró un periodo de oscuridad",
+
+      "Stats": [
+        {
+          "Key": "Strength",
+          "Value": 12
+        },
+        {
+          "Key": "Constitution",
+          "Value": 16
+        },
+        {
+          "Key": "Dexterity",
+          "Value": 16
+        },
+        {
+          "Key": "Intelligence",
+          "Value": 20
+        }
+      ],
+
+      "HitPoints": 300,
+      "ManaPoints": 60,
+      "Experience": 3000,
+      "Coins": 1000,
+
+      "Weaknesses": [
+        {
+          "Key": "Blunt",
+          "Value": 0.75
+        },
+        {
+          "Key": "Pierce",
+          "Value": 0.75
+        },
+        {
+          "Key": "Slash",
+          "Value": 0.75
+        },
+        {
+          "Key": "Fire",
+          "Value": 0.0
+        },
+        {
+          "Key": "Water",
+          "Value": 0.0
+        },
+        {
+          "Key": "Ice",
+          "Value": 0.5
+        },
+        {
+          "Key": "Earth",
+          "Value": 0.0
+        },
+        {
+          "Key": "Wind",
+          "Value": 0.0
+        },
+        {
+          "Key": "Light",
+          "Value": -1.0
+        },
+        {
+          "Key": "Dark",
+          "Value": 1.0
+        }
+      ],
+
+      "ListHabilities": [
+        1,
+        3,
+        9,
+        15,
+        16,
+        18
       ]
     }
 

@@ -111,6 +111,8 @@ namespace rpgLogic {
 		//Minibosses
 		DEATHKNIGHT, 
 		DRACOLICH, 
+		//Boss
+		LICH,
 		// Escribir encima de estecomentario
 		_lastEnemyTemplateId_
 	}; using eTem = enemyTemplate;
