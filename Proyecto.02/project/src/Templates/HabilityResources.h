@@ -48,6 +48,7 @@ enum class Hability_Id {
 	GLADIATORBALLAD, //33
 	WINDSONG, //34
 	DETERMINATION, //35
+	BLESSING, //36
 	_lastHabilityId_
 }; using habID = Hability_Id;
 
@@ -874,6 +875,27 @@ public:
 	}
 
 	static Hability_Id id() { return habID::DETERMINATION; }
+
+	virtual void throwHability(Character* obj, bool critical)const;
+};
+
+class Blessing : public Hability {
+public:
+	Blessing(Character* caster = nullptr) : Hability(caster) {
+
+		level = 1;
+		_mana = 9;
+		_name = "Blessing";
+		_description = "Quita los efectos negativos a todos los miembros del equipo";
+
+		_id = habID::BLESSING;
+		_damageType = damTy::LIGHT;
+		_habilityType = habTy::BUFF;
+		_mod = ms::INT;
+		_obj = objTy::ALLYTEAM;
+	}
+
+	static Hability_Id id() { return habID::BLESSING; }
 
 	virtual void throwHability(Character* obj, bool critical)const;
 };
