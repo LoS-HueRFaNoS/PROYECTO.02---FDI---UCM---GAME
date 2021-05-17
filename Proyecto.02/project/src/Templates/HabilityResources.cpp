@@ -348,6 +348,10 @@ void Determination::throwHability(Character* obj, bool critical) const
 	obj->addCondition<DeterminationCond>(_caster);
 }
 
+void Blessing::throwHability(Character* obj, bool critical) const {
+	obj->removeBadConditions();
+}
+
 #pragma endregion
 
 #pragma region CONDITION
