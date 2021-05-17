@@ -414,4 +414,35 @@ ul#rrss{
 #menu3:hover{
 	background-image: url("../html_imgs/redesh.png");
 }
+.Tablaplayers{
+	font-family: 'Monaco', monospace;
+	color:whitesmoke;
+	font-size: 40px;
+	display:flex;
+    align-items: center;
+	text-align: center;
+	border: 10px;
+	border-color: whitesmoke;
+	background-color: steelblue;
+	table-layout: fixed;
+	padding: 20px;
+	border-radius: 10px;
+
+}
+
+.Tablaarmas{
+	font-family: 'Monaco', monospace;
+	color:whitesmoke;
+	font-size: 40px;
+	display:flex;
+    align-items: center;
+	text-align: center;
+	border: 10px;
+	border-color: whitesmoke;
+	background-color: steelblue;
+	table-layout: fixed;
+	padding: 20px;
+	border-radius: 10px;
+
+}
 
