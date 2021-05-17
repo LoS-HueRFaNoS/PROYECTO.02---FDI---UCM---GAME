@@ -40,6 +40,8 @@ public:
 		pared_O, // Pared oeste minimapa
 		salidaMiniMap,
 		texto_salida,
+
+		lobFondo,
 		mFondo,
 		close,
 

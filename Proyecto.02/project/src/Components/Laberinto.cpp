@@ -175,7 +175,7 @@ void Laberinto::createRandomMaze(Vector2D entrada)
 					int totalItem = weaponId::_LastWeaponId_ + armorId::_LastArmorId_ + 4;
 					int chestType = game_->getRandGen()->nextInt(0, totalItem );
 					//cout << "En la casilla [" << x << " , " << y << " ]" << " hay un cofre con :" << endl;
-					generaObjeto(1, chestType, laberinto[x][y], 2, 0);
+					generaObjeto(1, chestType, laberinto[x][y], 2, 0);  // 
 				}
 
 				
@@ -223,7 +223,7 @@ void Laberinto::generaObjeto(int object, int type, Casilla* casilla, int maxObje
 		casilla->addEnemy((static_cast<enemyTemplate>(type)));
 		//cout << "generado " << (cant+1) << " enemigo"<<endl;
 	}
-	else if (object == 1)
+	else if (object == 1)  //genera cofre
 	{
 		//Generacion de tipo de cofre
 		if (type < weaponId::_LastWeaponId_)

@@ -107,6 +107,7 @@ public:
 		callbacks::addTarget((int)target_);
 	}
 };
+// ----------------------------------------------------
 
 enum class accionMenu { start, how_to_play, options, quit};
 
@@ -148,6 +149,57 @@ public:
 	}
 };
 // ----------------------------------------------------
+
+
+
+class ButtonHeroEquipar : public Button {
+private:
+	int heroeid;
+	Interfaz* app;
+public:
+	ButtonHeroEquipar(SDLGame* game, EntityManager* mngr) : Button(game, mngr) {};
+
+	~ButtonHeroEquipar() {};
+
+	virtual void init(Vector2D pos, uint ancho, uint alto, Resources::TextureId imagen, int her, Interfaz* app_) {
+		heroeid = her;
+		app = app_;
+		Button::init(pos, ancho, alto, imagen);
+	};
+
+	virtual void click()
+	{
+		callbacks::equiparHeroe(app, heroeid);
+
+	}
+};
+// ----------------------------------------------------
+
+class ButtonCompra : public Button {
+private:
+	int itemid;
+	int itemType;
+	Interfaz* app;
+public:
+	ButtonCompra(SDLGame* game, EntityManager* mngr) : Button(game, mngr) {};
+
+	~ButtonCompra() {};
+
+	virtual void init(Vector2D pos, uint ancho, uint alto, Resources::TextureId imagen,int itemId_, int itemType_, Interfaz* app_) {
+		itemid = itemId_;
+		itemType = itemType_;
+		app = app_;
+		Button::init(pos, ancho, alto, imagen);
+	};
+
+	virtual void click()
+	{
+		callbacks::shopping(app, itemType, itemid);
+
+	}
+};
+// ----------------------------------------------------
+
 
 enum class accionOption {volumen, velocidad  };
 

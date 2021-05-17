@@ -52,6 +52,7 @@ vector<Resources::ImageInfo> Resources::images_{
 	{quit, "resources/images/Menu/quit.png"},
 	{howToPlay, "resources/images/Menu/howtoplay.png"},
 
+	{lobFondo, "resources/images/Menu/lobbyfondo.png"},
 	{mFondo, "resources/images/Menu/menufondo.jpg"},
 	{close, "resources/images/Menu/close.png"},
 

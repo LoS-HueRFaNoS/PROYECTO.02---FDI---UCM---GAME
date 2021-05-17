@@ -228,10 +228,22 @@ void callbacks::set_hability(int hability_)
 #pragma region MenuPrincipal
 void callbacks::startLobby(Interfaz* app)
 {
+	std::cout << "startLobby se ha activado\n";
 	TheElementalMaze::instance()->changeState(gameST::LOBBY);
+	cout << "LOBBY REACHED" << endl;
+	TheElementalMaze::instance()->backFromDungeon();
 	app->togglePanel(MenuPrincipal);
 	app->createPanel(Lobby);
-	std::cout << "startLobby se ha activado\n";
+	
+	
+}
+void callbacks::startExp(Interfaz* app)
+{
+	
+	TheElementalMaze::instance()->changeState(gameST::START_EXPLORING);
+	app->togglePanel(Lobby);
+
+	std::cout << "startExploration se ha activado\n";
 }
 void callbacks::options(Interfaz* app)
 {
@@ -248,6 +260,18 @@ void callbacks::quit(Interfaz* app)
 {
 	Game::Instance()->exitGame();
 	std::cout << "quit se ha activado\n";
+}
+
+
+#include "../Managers/game/LobbyManager.h"
+#include"../GameObjects/Character.h"
+void callbacks::equiparHeroe(Interfaz* app, int her )
+{
+	std::cout << "equipar heroe " << her<< std::endl;
+}
+void callbacks::shopping(Interfaz* app, int itemType, int itemid)
+{
+	std::cout << "comprar item " << itemid<< std::endl;
 }
 #pragma endregion
 //void callbacks::start(Game* app) // previo app->setLevel(lvl);

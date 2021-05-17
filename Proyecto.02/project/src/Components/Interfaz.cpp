@@ -13,6 +13,8 @@
 #include "../Managers/game/PartyManager.h"
 #include "../Managers/game/InterfazManager.h"
 #include "../Managers/game/CombatManager.h"
+#include "../Managers/game/LobbyManager.h"
+
 
 using cb = callbacks;
 using src = Resources;
@@ -450,13 +452,81 @@ void Interfaz::createLobby()
 {
 	Panel* p = new Panel(Lobby);
 	allPanels[Lobby] = p;
-	int w, h;
+	int w, h ,x,y;
+	string text;
+	SDL_Color color;
+
 	w = game_->getWindowWidth();
 	h = game_->getWindowHeight();
-	//p->addButton(iManager->addButton<ButtonSlott>(Vector2D(0, 0), w, h, src::mFondo));
+	p->addButton(iManager->addButton<ButtonSlott>(Vector2D(0, 0), w, h, src::lobFondo));
 
-	int x, y;
-	x = w / 2 - 150;	y = h / 2 - 50;
+
+	y = 50;
+	color = { 205,105,0,255 };
+	text = "Tu equipo de combate";
+	p->addButton(iManager->addButton<Line>(Vector2D(w/2 - text.size()*15, y), text.size() * 30, 70, text, Resources::FontId::Fornite, color));
+	
+	int esp = (w - 6 * 100)/7;
+	y += 120;
+	LobbyManager* loManager = TheElementalMaze::instance()->getLobbyManager();
+
+	int tam;
+	
+	/*tam = loManager->getPlayerStash()->heroes.size();
+	for (int i = 0; i < 6 && i<tam ; i++)
+	{
+		Hero* her = loManager->getPlayerStash()->heroes[i];
+		auto tex = src::_firstHeroRId_ + her->getTemplate()+1;
+		x = esp + 100 * i +esp*i;
+		p->addButton(iManager->addButton<ButtonSlott>(Vector2D(x, y), 70, 100, static_cast<Resources::TextureId>(tex)));
+		p->addButton(iManager->addButton<ButtonHeroEquipar>(Vector2D(x, y + 100), 100, 60, src::howToPlay, i, this));
+	}*/
+
+	if (loManager->getLobbyStore() != nullptr)
+	{
+
+		y += 150;
+		text = "Heroes que puedes comprar";
+		p->addButton(iManager->addButton<Line>(Vector2D(w / 2 - text.size() * 15, y), text.size() * 30, 70, text, Resources::FontId::Fornite, color));
+
+
+		y += 70;
+		color = { 155,155,0,255 };
+		tam = loManager->getLobbyStore()->heroes.size();
+		for (int i = 0; i < 6 && i < tam; i++)
+		{
+			HeroContract* her = loManager->getLobbyStore()->heroes[i];
+			int tex = src::_firstHeroRId_ + her->hero->getTemplate()+1;
+			x = esp + 100 * i + esp * i;
+			p->addButton(iManager->addButton<ButtonSlott>(Vector2D(x, y), 100, 100, static_cast<Resources::TextureId>(tex)));
+			text = "x" + to_string(her->price);
+			p->addButton(iManager->addButton<Line>(Vector2D(x-text.size()*8, y + 110), text.size()*15, 50, text, Resources::FontId::Fornite, color));
+			p->addButton(iManager->addButton<ButtonCompra>(Vector2D(x + 45, y + 110), 70, 50, src::howToPlay, i, 0, this));
+		}
+		color = { 205,105,0,255 };
+
+
+		y += 180;
+		text = "Items que puedes comprar";
+		p->addButton(iManager->addButton<Line>(Vector2D(w / 2 - text.size() * 15, y), text.size() * 30, 70, text, Resources::FontId::Fornite, color));
+
+		y += 70;
+		tam = loManager->getLobbyStore()->items.size();
+		for (int i = 0; i < 6 && i < tam; i++)
+		{
+			ItemToBuy* it = loManager->getLobbyStore()->items[i];
+			int tex = src::_firstWeaponId_ + it->item->getItemType()+1;
+			x = esp + 100 * i + esp * i;
+			p->addButton(iManager->addButton<ButtonSlott>(Vector2D(x, y), 100, 100, static_cast<Resources::TextureId>(tex)));
+			text = "x" + to_string(it->sold);
+			p->addButton(iManager->addButton<Line>(Vector2D(x-text.size()*8, y + 110), text.size()*15, 50, text, Resources::FontId::Fornite, color));
+			p->addButton(iManager->addButton<ButtonCompra>(Vector2D(x + 45, y + 110), 70, 50, src::howToPlay, i, 1, this));
+		}
+	}
+	
+
+
+
 	
 
 }
@@ -555,7 +625,7 @@ void Interfaz::createGuide()
 	ancho = text.size() * 15 - 50;
 	p->addButton(iManager->addButton<Line>(Vector2D(x, y), ancho, 30, text, Resources::Fornite, color));	
 
-	p->addButton(iManager->addButton<ButtonMenu>(Vector2D(w - 225, 120), 64, 64, src::close, accionMenu::how_to_play, this));
+	p->addButton(iManager->addButton<ButtonMenu>(Vector2D(w - 100, 36), 64, 64, src::close, accionMenu::how_to_play, this));
 
 }
 
@@ -614,6 +684,9 @@ void Interfaz::createPanel(idPanel panelID)
 	case Enemies:
 		createEnemies();
 		break;
+	case Lobby:
+		createLobby();
+		break;
 	default:
 		break;
 	}
@@ -662,13 +735,6 @@ void Interfaz::init()
 	togglePanel(HowToPlay);
 	togglePanel(Options);
 
-	/*createPanel(Movement);
-	createPanel(Heroes);
-	createPanel(Info);
-
-	togglePanel(Movement);
-	togglePanel(Heroes);
-	togglePanel(Info);*/
 
 	
 }
