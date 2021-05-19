@@ -80,6 +80,30 @@ typedef struct SDL_Rect
     int w, h;
 } SDL_Rect;
 
+/// <summary>
+/// panel data for panel with relative size respect window size and with given interfaz parameters
+/// </summary>
+/// <param name="(x,y)"> = marco panel position </param>
+/// <param name="(w,h)"> = marco panel size </param>
+/// <param name="(r,c)"> = elements in a row or in a col </param>
+/// <param name="(mw,mh)"> = margins size </param>
+/// <param name="(ew,eh)"> = espace size between elements </param>
+/// <param name="(fcx,fcy)"> = first element position </param>
+/// <param name="(lcx,lcy)"> = last element position </param>
+/// <param name="(cw,ch)"> = elements size </param>
+/// <returns> struct SDL_Panel </returns>
+typedef struct SDL_Panel
+{
+    double x, y;     // window position
+    double w, h;     // window size
+    int r, c;        // number of elements in a row or col
+    double mw, mh;   // margins size
+    double ew, eh;   // espace between elements
+    double fcx, fcy; // first element position 
+    double lcx, lcy; // last element position 
+    double cw, ch;   // elements size
+} SDL_Panel;
+
 
 /**
  *  \brief A rectangle, with the origin at the upper left (floating point).
