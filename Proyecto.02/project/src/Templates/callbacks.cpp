@@ -170,7 +170,7 @@ void callbacks::combatType(int combatType_)
 	case 0:
 		if (c->getState() == ACTION_PHASE_SPELL) {
 			std::cout << "ataque cuerpo a cuerpo" << std::endl;
-			callbacks::set_hability(-1);
+			callbacks::set_hability(-2);
 		}
 		else
 			std::cout << "ERROR: aun no has comenzado tu turno" << std::endl;
@@ -185,9 +185,11 @@ void callbacks::combatType(int combatType_)
 			std::cout << "ERROR: aun no has comenzado tu turno" << std::endl;
 		break;
 	case 2:
-		std::cout << "actitud defensiva" << std::endl;
+		c->sendKeyEvent(-1);
+		std::cout << "Pulsaste enter" << std::endl;
 		break;
 	case 3:
+		c->sendKeyEvent(-4);
 		std::cout << "huir del combate" << std::endl;
 		break;
 	default:
