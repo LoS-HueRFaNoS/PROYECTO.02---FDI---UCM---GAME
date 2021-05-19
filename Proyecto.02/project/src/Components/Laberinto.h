@@ -18,6 +18,8 @@ private:
 	vector<Vector2D> m_stack;	// (x, y) coordinate pairs
 	int cellsCreated = 0;
 	bool drawMiniMap;
+
+	int level = 0;
 	
 public:
 	Laberinto(int h,int w);

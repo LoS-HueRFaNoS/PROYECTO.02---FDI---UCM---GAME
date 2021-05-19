@@ -159,9 +159,25 @@ void Laberinto::createRandomMaze(Vector2D entrada)
 
 			int hayEnemy = game_->getRandGen()->nextInt(0,10);
 			
-			if (hayEnemy < 9)
+			if (hayEnemy < 3)
 			{
-				int enemyType = game_->getRandGen()->nextInt(0, int(enemyTemplate::_lastEnemyTemplateId_));
+				int enemyType = 0;
+
+				switch (level)
+				{
+				case 0:
+					enemyType = game_->getRandGen()->nextInt(0, int(enemyTemplate::ZOMBIE));
+					break;
+				case 1:
+					enemyType = game_->getRandGen()->nextInt(0, int(enemyTemplate::HELLHOUND));
+					break;
+				case 2:
+					enemyType = game_->getRandGen()->nextInt(0, int(enemyTemplate::DEATHKNIGHT));
+					break;
+				default:
+					break;
+				}
+				
 				//int enemyType = enemyTemplate::ZOMBIE;
 				//cout << "En la casilla [" << x << " , " << y << " ]" << endl;
 				generaObjeto(0, enemyType, laberinto[x][y], 1,0);
@@ -216,8 +232,6 @@ void Laberinto::draw()
 
 void Laberinto::generaObjeto(int object, int type, Casilla* casilla, int maxObject, int cant)
 {
-
-
 	if (object == 0) {
 
 		casilla->addEnemy((static_cast<enemyTemplate>(type)));
