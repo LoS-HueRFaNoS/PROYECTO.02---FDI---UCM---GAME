@@ -48,6 +48,8 @@ void TheElementalMaze::init()
 	partyManager_->addHero(rogue);
 	partyManager_->addHero(cleric);
 
+	partyManager_->addItem(itemManager_->getRandomWeapon(), 0);
+
 	// 4. Interfaz
 	uiManager_ = addComponent<Interfaz>(iManager_);
 
