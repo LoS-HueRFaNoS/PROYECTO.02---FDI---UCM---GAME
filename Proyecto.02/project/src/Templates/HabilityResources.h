@@ -49,6 +49,7 @@ enum class Hability_Id {
 	WINDSONG, //34
 	DETERMINATION, //35
 	BLESSING, //36
+	THORNS, //37
 	_lastHabilityId_
 }; using habID = Hability_Id;
 
@@ -145,7 +146,7 @@ public:
 	Fireball(Character* caster = nullptr) : Hability(caster) {
 
 		level = 4;
-		_mana = 4;
+		_mana = 8;
 		_name = "Fireball";
 		_description = "Bola de fuego to guapa, a hace 8d6 a todos los enemigos frente a salvacion DEX";
 
@@ -191,7 +192,7 @@ public:
 	HealingWord(Character* caster = nullptr) : Hability(caster) {
 
 		level = 0;
-		_mana = 0;
+		_mana = 4;
 		_name = "HealingWord";
 		_description = "Esto es un ejemplo, cura 2d5 de vida a un aliado";
 
@@ -213,7 +214,7 @@ public:
 	AllyTeamHealExample(Character* caster = nullptr) : Hability(caster) {
 
 		level = 0;
-		_mana = 0;
+		_mana = 4;
 		_name = "AllyTeamHealExample";
 		_description = "Esto es un ejemplo, cura a todo tu equipo 1d5";
 
@@ -235,7 +236,7 @@ public:
 	SelfHealExample(Character* caster = nullptr) : Hability(caster) {
 
 		level = 0;
-		_mana = 0;
+		_mana = 4;
 		_name = "SelfHealExample";
 		_description = "Esto es un ejemplo, te cura 1d8";
 
@@ -258,7 +259,7 @@ public:
 	WindBurst(Character* caster = nullptr) : Hability(caster) {
 
 		level = 4;
-		_mana = 3;
+		_mana = 6;
 		_name = "WindBurst";
 		_description = "Sal a que te de el aire, hace 8d6 a todos los enemigos frente a salvacion DEX (reduce DEX)";
 
@@ -279,7 +280,7 @@ public:
 	WindSlash(Character* caster = nullptr) : Hability(caster) {
 
 		level = 2;
-		_mana = 2;
+		_mana = 4;
 		_name = "Wind Slash";
 		_description = "Menuda brisa, a hace 1d8 a un enemigo frente a salvacion DEX";
 
@@ -300,7 +301,7 @@ public:
 	RockPillar(Character* caster = nullptr) : Hability(caster) {
 
 		level = 3;
-		_mana = 3;
+		_mana = 6;
 		_name = "Rock Pillar";
 		_description = "Mejorando la estructura, hace 1d8 a un enemigo frente a salvacion DEX (reduce CON)";
 
@@ -321,7 +322,7 @@ public:
 	ToxicShadow(Character* caster = nullptr) : Hability(caster) {
 
 		level = 3;
-		_mana = 3;
+		_mana = 6;
 		_name = "Toxic Shadow";
 		_description = "Sientes cosquillas, a hace 1d8 a un enemigo frente a salvacion DEX (puede causar envenenamiento)";
 
@@ -342,7 +343,7 @@ public:
 	Tsunami(Character* caster = nullptr) : Hability(caster) {
 
 		level = 4;
-		_mana = 4;
+		_mana = 8;
 		_name = "Tsunami";
 		_description = "Avisaron de bandera roja, a hace 8d6 a todos los enemigos frente a salvacion DEX (y reduce STR)";
 
@@ -363,7 +364,7 @@ public:
 	DivineProtection(Character* caster = nullptr) : Hability(caster) {
 
 		level = 3;
-		_mana = 2;
+		_mana = 4;
 		_name = "Divine protection";
 		_description = "Reduce el daño recibido en el proximo ataque";
 
@@ -384,7 +385,7 @@ public:
 	Flash(Character* caster = nullptr) : Hability(caster) {
 
 		level = 2;
-		_mana = 2;
+		_mana = 4;
 		_name = "Flash";
 		_description = "Sonrie, a hace 1d8 a un enemigo frente a salvacion DEX(reduce DEX)";
 
@@ -405,7 +406,7 @@ public:
 	Freeze(Character* caster = nullptr) : Hability(caster) {
 
 		level = 3;
-		_mana = 3;
+		_mana = 6;
 		_name = "Freeze";
 		_description = "Winter is coming FOR THEM, a hace 1d8 a un enemigo frente a salvacion DEX (y reduce DEX)";
 
@@ -425,7 +426,7 @@ public:
 	Whirlpool(Character* caster = nullptr) : Hability(caster) {
 
 		level = 1;
-		_mana = 2;
+		_mana = 4;
 		_name = "Whirlpool";
 		_description = "Mas agua, a hace 1d8 a un enemigo frente a salvacion DEX (y reduce STR)";
 
@@ -445,7 +446,7 @@ public:
 	LightBeam(Character* caster = nullptr) : Hability(caster) {
 
 		level = 3;
-		_mana = 3;
+		_mana = 6;
 		_name = "Light Beam";
 		_description = "Muy bonito, pero doloroso, a hace 1d8 a un enemigo frente a salvacion DEX (y reduce DEX)";
 
@@ -465,7 +466,7 @@ public:
 	DarkVortex(Character* caster = nullptr) : Hability(caster) {
 
 		level = 1;
-		_mana = 2;
+		_mana = 4;
 		_name = "Dark Vortex";
 		_description = "No veo, a hace 1d8 a un enemigo frente a salvacion DEX (y reduce DEX)";
 
@@ -486,7 +487,7 @@ public:
 	FireArrow(Character* caster = nullptr) : Hability(caster) {
 
 		level = 1;
-		_mana = 3;
+		_mana = 6;
 		_name = "Fire Arrow";
 		_description = "Quema, a hace 1d8 a un enemigo frente a salvacion DEX (y reduce DEX)";
 
@@ -508,7 +509,7 @@ public:
 	Lighten(Character* caster = nullptr) : Hability(caster) {
 
 		level = 1;
-		_mana = 1;
+		_mana = 2;
 		_name = "Lighten";
 		_description = "Aumenta la destreza";
 
@@ -528,7 +529,7 @@ public:
 	Strengthen(Character* caster = nullptr) : Hability(caster) {
 
 		level = 1;
-		_mana = 1;
+		_mana = 2;
 		_name = "Strengthen";
 		_description = "Aumenta la fuerza";
 
@@ -548,7 +549,7 @@ public:
 	Toughen(Character* caster = nullptr) : Hability(caster) {
 
 		level = 1;
-		_mana = 1;
+		_mana = 2;
 		_name = "Toughen";
 		_description = "Aumenta la constitucion";
 
@@ -568,7 +569,7 @@ public:
 	Meditate(Character* caster = nullptr) : Hability(caster) {
 
 		level = 1;
-		_mana = 1;
+		_mana = 2;
 		_name = "Meditate";
 		_description = "Aumenta la inteligencia";
 
@@ -589,7 +590,7 @@ public:
 	BloodThirst(Character* caster = nullptr) : Hability(caster) {
 
 		level = 2;
-		_mana = 3;
+		_mana = 6;
 		_name = "Blood Thirst";
 		_description = "Dame tu vida, a hace 1d8 a un enemigo frente a salvacion DEX y cura al usuario";
 
@@ -610,7 +611,7 @@ public:
 	Sacrifice(Character* caster = nullptr) : Hability(caster) {
 
 		level = 2;
-		_mana = 2;
+		_mana = 4;
 		_name = "Sacrifice";
 		_description = "Dame tu vida, a hace 1d8 a un enemigo frente a salvacion DEX x1.5 ,pero recibe daño de retroceso";
 
@@ -631,7 +632,7 @@ public:
 	DoubleShot(Character* caster = nullptr) : Hability(caster) {
 
 		level = 2;
-		_mana = 2;
+		_mana = 4;
 		_name = "Double Shot";
 		_description = "Dispara 2 flechas a la vez, la segunda flecha hace la mitad de daño de la primera";
 
@@ -652,7 +653,7 @@ public:
 	ThrowingAxes(Character* caster = nullptr) : Hability(caster) {
 
 		level = 4;
-		_mana = 3;
+		_mana = 6;
 		_name = "Throwing Axes";
 		_description = "Lanza 3 hachas";
 
@@ -675,7 +676,7 @@ public:
 	HeavyStrike(Character* caster = nullptr) : Hability(caster) {
 
 		level = 3;
-		_mana = 3;
+		_mana = 6;
 		_name = "Heavy Strike";
 		_description = "El ataque hace el doble de daño con una gran probabilidad de fallar";
 
@@ -696,7 +697,7 @@ public:
 	SmokeArrow(Character* caster = nullptr) : Hability(caster) {
 
 		level = 2;
-		_mana = 2;
+		_mana = 4;
 		_name = "Smoke arrow";
 		_description = "Dispara una flecha de humo que desorienta a los enemigos y les reduce la destreza durante 3 turnos";
 
@@ -717,7 +718,7 @@ public:
 	Morph(Character* caster = nullptr) : Hability(caster) {
 
 		level = 0;
-		_mana = 4;
+		_mana = 8;
 		_name = "Morph";
 		_description = "Conviertete en una bestia alterando las estadisticas";
 
@@ -758,7 +759,7 @@ public:
 	RainOfDaggers(Character* caster = nullptr) : Hability(caster) {
 
 		level = 3;
-		_mana = 4;
+		_mana = 8;
 		_name = "Rain of Daggers";
 		_description = "Lanza un numero aleatorio de dagas entre 1 y 10 que hacen cada una un 20% del daño del personaje";
 
@@ -779,7 +780,7 @@ public:
 	RockProjectiles(Character* caster = nullptr) : Hability(caster) {
 
 		level = 3;
-		_mana = 3;
+		_mana = 6;
 		_name = "Rock Projectiles";
 		_description = "Dispara tres rocas que tiene cada una su propia probabilidad de fallar";
 
@@ -800,7 +801,7 @@ public:
 	TrickShot(Character* caster = nullptr) : Hability(caster) { //cambiar la descripcion si al final se hace lo de hacer 2 tiradas de ataque para confirmar que acierta
 
 		level = 4;
-		_mana = 3;
+		_mana = 9;
 		_name = "Trick Shot";
 		_description = "Dispara una flecha que hace el triple de daño";
 
@@ -821,7 +822,7 @@ public:
 	GladiatorBallad(Character* caster = nullptr) : Hability(caster) {
 
 		level = 0;
-		_mana = 3;
+		_mana = 6;
 		_name = "Gladiator's Ballad";
 		_description = "Aumenta la fuerza del equipo durante 3 turnos";
 
@@ -842,7 +843,7 @@ public:
 	WindSong(Character* caster = nullptr) : Hability(caster) {
 
 		level = 0;
-		_mana = 3;
+		_mana = 6;
 		_name = "Wind Song";
 		_description = "Aumenta la velocidad del equipo durante 3 turnos";
 
@@ -900,6 +901,27 @@ public:
 	virtual void throwHability(Character* obj, bool critical)const;
 };
 
+class Thorns : public Hability {
+public:
+	Thorns(Character* caster = nullptr) : Hability(caster) {
+
+		level = 1;
+		_mana = 6;
+		_name = "Thorns";
+		_description = "Haz crecer espinas en tu cuerpo que devuelven una parte del daño que recibes a tu atacante, pica un poco con ropas ajustadas.";
+
+		_id = habID::THORNS;
+		_damageType = damTy::EARTH;
+		_habilityType = habTy::BUFF;
+		_mod = ms::CON;
+		_obj = objTy::CASTER;
+	}
+
+	static Hability_Id id() { return habID::THORNS; }
+
+	virtual void throwHability(Character* obj, bool critical)const;
+};
+
 #pragma endregion
 
 #pragma region CONDITION
@@ -911,6 +933,7 @@ enum class Conditions_Id {
 	EJEMPLOREVIVIRMUERTE,
 	BUFFSTATS,
 	DETERMINATIONCOND,
+	THORNSCOND,
 	_lastConditionId_
 };
 using condID = Conditions_Id;
@@ -1076,6 +1099,26 @@ public:
 	virtual bool onDeath(Character* attacker);
 
 	static Conditions_Id id() { return condID::DETERMINATIONCOND; }
+};
+
+class ThornsCond : public Condition {
+public:
+
+	ThornsCond(Character* objective, Character* caster) : Condition(objective, caster) {
+		_name = "Thorns condition";
+		_description = "Devuelve parte del daño que recibes al atacante";
+		_turns = 3;
+		_id = condID::THORNSCOND;
+		resetTurns();
+	}
+
+	virtual void init();
+
+	virtual bool onAttackRecieved(int& damage, Character* attacker);
+
+	virtual bool onTurnStarted();
+
+	static Conditions_Id id() { return condID::THORNSCOND; }
 };
 
 #pragma endregion

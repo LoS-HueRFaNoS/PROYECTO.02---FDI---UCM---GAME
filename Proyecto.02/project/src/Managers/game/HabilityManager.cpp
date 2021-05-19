@@ -42,6 +42,7 @@ void HabilityManager::init()
 	habilityMap_[habID::WINDSONG] = &HabilityManager::createHability<WindSong>;
 	habilityMap_[habID::DETERMINATION] = &HabilityManager::createHability<Determination>;
 	habilityMap_[habID::BLESSING] = &HabilityManager::createHability<Blessing>;
+	habilityMap_[habID::THORNS] = &HabilityManager::createHability<Thorns>;
 }
 
 void HabilityManager::Init()
