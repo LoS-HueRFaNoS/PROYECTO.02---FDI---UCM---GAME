@@ -70,6 +70,12 @@ public:
 		return InputHandler::instance();
 	}
 
+	inline void setWindowSize(int width, int height) {
+		width_ = width;
+		height_ = height;
+		SDL_SetWindowSize(window_, width, height);
+	}
+
 	int  throwDice(int dice) {
 		return random_->nextInt(1, dice + 1);
 	}
@@ -92,7 +98,7 @@ public:
 	void initResources(); // initialize the SDLResources object with the data at the top of this file
 
 	// cambio a dimensiones de la pantalla actual
-	double setVerticalScale(double num) { return num * getWindowHeight() / 1050; };
+	double setVerticalScale(double num) { return num * getWindowHeight() / 1080; };
 	double setHorizontalScale(double num) { return num * getWindowWidth() / 1920; };
 
 	/// <summary>
