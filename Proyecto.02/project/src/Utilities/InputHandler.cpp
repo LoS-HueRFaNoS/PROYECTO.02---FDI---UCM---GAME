@@ -30,6 +30,9 @@ bool InputHandler::update() {
 		case SDL_MOUSEMOTION:
 			onMouseMotion(event);
 			break;
+		case SDL_MOUSEWHEEL:
+			onMouseWheelMotion(event, true);
+			break;
 		case SDL_MOUSEBUTTONDOWN:
 			onMouseButtonChange(event, true);
 			break;
