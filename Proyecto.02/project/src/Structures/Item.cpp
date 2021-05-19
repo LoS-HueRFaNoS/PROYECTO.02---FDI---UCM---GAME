@@ -4,6 +4,22 @@
 
 using namespace rpgLogic;
 
+void Item::elementalAfinity()
+{
+	if (throwDice(1, 100, false) > 80)
+	{
+		int afinityType = throwDice(1, size_t(damTy::_lastDamageTypeId_) - 1, false);
+		int afinityAmount = throwDice(1, 100, false);
+
+		sellValue += afinityAmount;
+		buyValue += afinityAmount;
+
+		_elementalAfinity.changeWeakness(damageType(afinityType), (float)afinityAmount / 100.0);
+
+		elementalAfinity();
+	}
+}
+
 void Weapon::loadWeaponTemplate(jute::jValue v, weaponId t)
 {
 	_name = v["Armas"][size_t(t)]["Name"].as_string();
@@ -25,27 +41,11 @@ void Weapon::loadWeaponTemplate(jute::jValue v, weaponId t)
 		resist.push_back((float)v["Armas"][size_t(t)]["DamageElement"][i]["Value"].as_double());
 	}
 
-	_elementalDamage = Weaknesses(resist);
+	_elementalAfinity = Weaknesses(resist);
 
-	elementalAfinity(t);
+	elementalAfinity();
 
 	weapId = t;
-}
-
-void Weapon::elementalAfinity(weaponId t)
-{
-	if (throwDice(1, 100, false) > 60)
-	{
-		int afinityType = throwDice(1, size_t(damTy::_lastDamageTypeId_) - 1, false);
-		int afinityAmount = throwDice(1, 100, false);
-
-		sellValue += afinityAmount;
-		buyValue += afinityAmount;
-
-		_elementalDamage.changeWeakness(damageType(afinityType), (float)afinityAmount/100);
-
-		elementalAfinity(t);
-	}
 }
 
 void Armor::loadArmorTemplate(jute::jValue v, armorId t)
@@ -59,9 +59,9 @@ void Armor::loadArmorTemplate(jute::jValue v, armorId t)
 		weak.push_back((float)v["Armaduras"][size_t(t)]["Weaknesses"][i]["Value"].as_double());
 	}
 
-	_weaknesses = Weaknesses(weak);
+	_elementalAfinity = Weaknesses(weak);
 
-	elementalAfinity(t);
+	elementalAfinity();
 
 	int statNeed = v["Armaduras"][size_t(t)]["TypeNeeded"].as_int();
 	_statNeeded = mainStat(statNeed);
@@ -71,18 +71,3 @@ void Armor::loadArmorTemplate(jute::jValue v, armorId t)
 	armId = t;
 }
 
-void Armor::elementalAfinity(armorId t)
-{
-	if (throwDice(1, 100, false) > 60)
-	{
-		int afinityType = throwDice(1, size_t(damTy::_lastDamageTypeId_) - 1, false);
-		int afinityAmount = throwDice(1, 100, false);
-
-		sellValue += afinityAmount;
-		buyValue += afinityAmount;
-
-		_weaknesses.changeWeakness(damageType(afinityType), (float)afinityAmount / 100);
-
-		elementalAfinity(t);
-	}
-}

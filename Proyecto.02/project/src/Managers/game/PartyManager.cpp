@@ -121,6 +121,31 @@ Item* PartyManager::addItem(Item* i, int pos)
 	}
 }
 
+void PartyManager::changeItemWithHero(int index, int hero)
+{
+	if (!heroes_[hero] || !items_[index])
+		return;
+	
+	Item* it = items_[index];
+	ItemType t = it->getItemType();
+	Item* ret = nullptr;
+
+	if (t) {
+		Armor* a = heroes_[hero]->getArmor();
+		heroes_[hero]->giveArmor((Armor*)it);
+		if (a)
+			ret = a;
+	}
+	else {
+		Weapon* w = heroes_[hero]->getWeapon();
+		heroes_[hero]->giveWeapon((Weapon*)it);
+		if (w->getWeaponId() != weaponId::DESARMADO)
+			ret = w;
+	}
+	if (ret)
+		items_[index] = ret;
+}
+
 void PartyManager::usePotion(int hero, bool mana)
 {
 	if (mana) {

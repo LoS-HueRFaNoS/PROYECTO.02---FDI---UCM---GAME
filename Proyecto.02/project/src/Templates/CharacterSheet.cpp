@@ -2,13 +2,56 @@
 #include <iostream>
 
 
+std::string CharacterSheet::getResName(rpgLogic::damageType type)
+{
+	std::string ret = "";
+
+	switch (type)
+	{
+	case rpgLogic::damageType::BLUNT:
+		ret = " blunt";
+		break;
+	case rpgLogic::damageType::PIERCE:
+		ret = " piercing";
+		break;
+	case rpgLogic::damageType::SLASH:
+		ret = " slash";
+		break;
+	case rpgLogic::damageType::FIRE:
+		ret = " fire";
+		break;
+	case rpgLogic::damageType::WATER:
+		ret = " water";
+		break;
+	case rpgLogic::damageType::ICE:
+		ret = " ice";
+		break;
+	case rpgLogic::damageType::EARTH:
+		ret = " earth";
+		break;
+	case rpgLogic::damageType::WIND:
+		ret = " wind";
+		break;
+	case rpgLogic::damageType::LIGHT:
+		ret = " light";
+		break;
+	case rpgLogic::damageType::DARK:
+		ret = " dark";
+		break;
+	default:
+		ret = "damageTypeError";
+		break;
+	}
+	return ret;
+}
+
 bool CharacterSheet::recieveDamage(int damage, rpgLogic::damageType type)
 {
 	float res = weaknesses.getWeakness(type);
 
 	int damageAfterRes = int(damage - (damage * res));
 
-	std::cout << name << " recieves " << damageAfterRes << " damage" << "( " << damage << " " << (int)(res * 100) << "% RES)" << std::endl;
+	std::cout << name << " recieves " << damageAfterRes << getResName(type) << " damage" << "( " << damage << " " << (int)(res * 100) << "% RES)" << std::endl;
 
 	_hitPoints -= damageAfterRes;
 

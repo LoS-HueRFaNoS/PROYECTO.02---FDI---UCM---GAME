@@ -47,6 +47,8 @@ public:
 
 	Item* addItem(Item* i, int pos);
 
+	void changeItemWithHero(int index, int hero);
+
 	std::vector<Hero*> getHeroes() { return heroes_; }
 
 	std::vector<Item*> getItems() { return items_; }

@@ -18,6 +18,8 @@ private:
 	int _manaPoints = 10;
 	int _maxManaPoints = 10;
 
+	std::string getResName(rpgLogic::damageType type);
+
 public:
 
 	//Debilidades

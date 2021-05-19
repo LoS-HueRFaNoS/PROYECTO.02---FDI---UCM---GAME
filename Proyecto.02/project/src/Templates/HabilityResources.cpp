@@ -1,6 +1,6 @@
 #include "HabilityResources.h"
 #include "../GameObjects/Character.h"
-
+#include "RPGLogic.h"
 
 
 #pragma region HABILITY
@@ -22,6 +22,25 @@ void LightAttack::throwHability(Character* obj, bool critical) const
 	int damage = throwDice(w->getNDice(), w->getDamage(), true);
 
 	obj->recieveDamage(damage, w->getDamageType(), _caster);
+	int elementalDamage = 0;
+	for (int i = 0; i < (int)damageType::_lastDamageTypeId_; i++) {
+		elementalDamage = damage * w->getElementalAfinity().getWeakness((damageType)i);
+		if (elementalDamage >= 1)
+			obj->recieveDamage(elementalDamage, (damageType)i);
+	}
+}
+
+void HeavyStrike::throwHability(Character* obj, bool critical) const
+{
+	Weapon* w = _caster->getWeapon();
+
+	int damage = throwDice(w->getNDice(), w->getDamage(), true) * 2;
+
+	if (obj->savingThrow(5 + _caster->getMod(_mod), ms::DEX))
+		cout << "You missed your heavy hit" << endl;
+	else
+		obj->recieveDamage(damage, _damageType, _caster);
+
 }
 
 
@@ -248,19 +267,6 @@ void ThrowingAxes::throwHability(Character* obj, bool critical) const //revisar 
 	damage = obj->savingThrow(10 + _caster->getMod(_mod), ms::DEX) ? damage / 2 : damage;
 
 	obj->recieveDamage(damage, _damageType, _caster);
-
-}
-
-void HeavyStrike::throwHability(Character* obj, bool critical) const
-{
-	Weapon* w = _caster->getWeapon();
-
-	int damage = throwDice(w->getNDice(), w->getDamage(), true) * 2;
-
-	if (obj->savingThrow(5 + _caster->getMod(_mod), ms::DEX))
-		cout << "You missed your heavy hit" << endl;
-	else
-		obj->recieveDamage(damage, _damageType, _caster);
 
 }
 

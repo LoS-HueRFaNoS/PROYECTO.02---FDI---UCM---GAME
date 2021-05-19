@@ -13,8 +13,7 @@ enum PotionType {
 enum ItemType
 {
 	WEAPON,
-	ARMOR,
-	RUNE
+	ARMOR
 };
 
 class Item
@@ -28,6 +27,9 @@ protected:
 	std::string _description = "DefaultDescription";
 
 	ItemType _ItemType = ItemType(0);
+	rpgLogic::Weaknesses _elementalAfinity;
+
+	void elementalAfinity();
 
 public:
 
@@ -39,6 +41,8 @@ public:
 	std::string getName() { return _name; }
 	std::string getDescription() { return _description; }
 	ItemType getItemType() { return _ItemType; }
+	rpgLogic::Weaknesses getElementalAfinity() { return _elementalAfinity; }
+
 };
 
 class Weapon : public Item
@@ -50,8 +54,8 @@ private:
 	int damage;
 	int diceNumber;
 	int hands;
-	rpgLogic::Weaknesses _elementalDamage;
 	rpgLogic::weaponId weapId;
+
 
 public:
 
@@ -71,10 +75,6 @@ public:
 
 	void loadWeaponTemplate(jute::jValue v, rpgLogic::weaponId t);
 
-	rpgLogic::Weaknesses getWeaknesses() { return _elementalDamage; }
-
-	void elementalAfinity(rpgLogic::weaponId t);
-
 	rpgLogic::weaponId getWeaponId() { return weapId; }
 };
 
@@ -84,7 +84,6 @@ private:
 
 	rpgLogic::mainStat _statNeeded;
 	int minStatNeeded;
-	rpgLogic::Weaknesses _weaknesses;
 	rpgLogic::armorId armId;
 
 public:
@@ -95,33 +94,14 @@ public:
 		buyValue = rand() % 100;
 	}
 
-	rpgLogic::Weaknesses getWeaknesses() { return _weaknesses; }
-
 	rpgLogic::mainStat getStatNeeded() { return _statNeeded; }
 
 	int getMinStatNeeded() { return minStatNeeded; }
 
 	void loadArmorTemplate(jute::jValue v, rpgLogic::armorId t);
 
-	void elementalAfinity(rpgLogic::armorId t);
-
 	rpgLogic::armorId getArmorId() { return armId; }
 };
-
-//class Runes : public Item
-//{
-//public:
-//
-//	Runes() {
-//		_name = "Runas";
-//		_description = "Objeto intercambiable por objetos";
-//		sellValue = NULL;
-//		buyValue = NULL;
-//		equipanble_ = false;
-//		_ItemType = RUNE;
-//	}
-//};
-//
 
 class Chest
 {
