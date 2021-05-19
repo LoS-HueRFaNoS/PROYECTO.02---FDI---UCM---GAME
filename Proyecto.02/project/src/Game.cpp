@@ -21,6 +21,7 @@
 #include "Managers/game/InterfazManager.h"
 #include "Managers/TheElementalMaze.h"
 #include "Managers/SDLGame.h"
+#include <Windows.h>
 //
 
 using namespace std;
@@ -41,9 +42,9 @@ Game* Game::Instance()
 }
 
 Game::Game() : game_(nullptr),			   //
-			   entityManager_(nullptr),	   //
-			   characterManager_(nullptr), //
-			   exit_(false)
+entityManager_(nullptr),	   //
+characterManager_(nullptr), //
+exit_(false)
 {
 	initGame();
 }
@@ -56,10 +57,22 @@ Game::~Game()
 void Game::initGame()
 {
 	int initTime = 0;
-	game_ = SDLGame::init("THE ELEMENTAL MAZE", _WINDOW_WIDTH_, _WINDOW_HEIGHT_);
+	RECT rect;
+	HWND hd = GetDesktopWindow();
+	GetClientRect(hd, &rect);
+	int client_width = (rect.right - rect.left);
+	int client_height = (rect.bottom - rect.top);
 
-	Texture *tex_ = new Texture(game_->getRenderer(), "resources/images/cargando.png");
-	SDL_Rect dest = {0, 0, int(game_->getWindowWidth()), int(game_->getWindowHeight())};
+	//MODO VENTANA
+	//game_ = SDLGame::init("THE ELEMENTAL MAZE", client_width * 0.75, client_height * 0.75);
+	game_ = SDLGame::init("THE ELEMENTAL MAZE", 1920, 1080);
+
+	// PANTALLA COMPLETA
+	/*game_ = SDLGame::init("THE ELEMENTAL MAZE", client_width, client_height);
+	SDL_SetWindowFullscreen(game_->getWindow(), SDL_WINDOW_FULLSCREEN);*/
+
+	Texture* tex_ = new Texture(game_->getRenderer(), "resources/images/cargando.png");
+	SDL_Rect dest = { 0, 0, int(game_->getWindowWidth()), int(game_->getWindowHeight()) };
 	SDL_SetRenderDrawColor(game_->getRenderer(), COLOR(0x00000000));
 	SDL_RenderClear(game_->getRenderer());
 	tex_->render(dest);
@@ -123,23 +136,12 @@ void Game::stop()
 void Game::handleInput()
 {
 
-	InputHandler *ih = InputHandler::instance();
+	InputHandler* ih = InputHandler::instance();
 
 	if (ih->update()) {
 		if (ih->keyDownEvent()) {
 			if (ih->isKeyDown(SDLK_ESCAPE)) {
 				exit_ = true;
-			}
-
-			if (ih->isKeyDown(SDLK_f)) {
-				int flags = SDL_GetWindowFlags(game_->getWindow());
-				if (flags & SDL_WINDOW_FULLSCREEN) {
-					SDL_SetWindowFullscreen(game_->getWindow(), 0);
-				}
-				else {
-					SDL_SetWindowFullscreen(game_->getWindow(),
-						SDL_WINDOW_FULLSCREEN);
-				}
 			}
 		}
 	}
