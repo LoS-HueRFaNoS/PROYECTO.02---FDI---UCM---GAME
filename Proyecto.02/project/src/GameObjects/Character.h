@@ -22,6 +22,9 @@ protected:
 
 	vector<Hability*> _habilities;
 
+	vector<Hability*> _habilitiesExtra;
+	std::array<Hability*, size_t(habID::_lastHabilityId_)> _habilitiesArrayExtra = {};
+
 	Hability* lightAttack_;
 	Hability* heavyAttack_;
 

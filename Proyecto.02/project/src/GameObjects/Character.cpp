@@ -249,6 +249,35 @@ void Hero::loadFromJson(jute::jValue v, int t)
 		int h = v["Characters"][t]["ListHabilities"][i].as_int();
 		addHability((Hability_Id)h);
 	}
+
+	int cont = 0;
+
+	int lanz = throwDice(1, v["Characters"][t]["ListHabilitiesLv1"].size() - 1);
+	int habLv1 = v["Characters"][t]["ListHabilitiesLv1"][lanz].as_int();
+	Hability* c = HabilityManager::instance()->getHability((Hability_Id)habLv1);
+	_habilitiesExtra.push_back(c);
+	_habilitiesArrayExtra[cont] = c;
+	cont++;
+
+	lanz = throwDice(1, v["Characters"][t]["ListHabilitiesLv2"].size() - 1);
+	int habLv2 = v["Characters"][t]["ListHabilitiesLv2"][lanz].as_int();
+	c = HabilityManager::instance()->getHability((Hability_Id)habLv2);
+	_habilitiesExtra.push_back(c);
+	_habilitiesArrayExtra[cont] = c;
+	cont++;
+
+	lanz = throwDice(1, v["Characters"][t]["ListHabilitiesLv3"].size() - 1);
+	int habLv3 = v["Characters"][t]["ListHabilitiesLv3"][lanz].as_int();
+	c = HabilityManager::instance()->getHability((Hability_Id)habLv3);
+	_habilitiesExtra.push_back(c);
+	_habilitiesArrayExtra[cont] = c;
+	cont++;
+
+	lanz = throwDice(1, v["Characters"][t]["ListHabilitiesLv4"].size() - 1);
+	int habLv4 = v["Characters"][t]["ListHabilitiesLv4"][lanz].as_int();
+	c = HabilityManager::instance()->getHability((Hability_Id)habLv4);
+	_habilitiesExtra.push_back(c);
+	_habilitiesArrayExtra[cont] = c;
 }
 
 void Hero::endCombat(int exp)
@@ -264,7 +293,6 @@ void Hero::endCombat(int exp)
 
 void Hero::showSpellList()
 {
-
 	cout << "\nSpells: " << endl;
 
 	for (int i = 0; i < _habilities.size(); i++)
