@@ -235,7 +235,7 @@ void Interfaz::createInventory()
 			p->addButton(iManager->addButton<ButtonSlott>(Vector2D(posX, posY), slotTam, slotTam, src::Slot));
 
 			int indice = i * 5 + j;
-			Item* item = items[i];
+			Item* item = items[indice];
 			if (item != nullptr) {
 				ItemType itemType = item->getItemType();
 

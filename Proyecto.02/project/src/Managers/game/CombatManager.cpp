@@ -318,7 +318,9 @@ void CombatManager::onStateChanged()
 	case START_TURN:
 		showTeams();
 		showQ();
-		cout << "---------- PRESS ENTER TO START TURN ----------" << endl;
+		cout << "---------- START TURN ----------" << endl;
+		currentCharacter->startTurn(this);
+		changeState(ACTION_PHASE_SPELL);
 		break;
 	case ACTION_PHASE_SPELL:
 		if (!size_t(currentCharacter->getType()))
@@ -335,6 +337,7 @@ void CombatManager::onStateChanged()
 		endCombat();
 		cout << "---------- PRESS ENTER TO END COMBAT ----------" << endl;
 		TheElementalMaze::instance()->changeState(gameST::END_COMBAT);
+		// botin del enemigo
 		break;
 	case NO_COMBAT:
 		if (_win)
@@ -352,12 +355,6 @@ void CombatManager::sendKeyEvent(int key)
 {
 	switch (_state)
 	{
-	case START_TURN:
-		if (key == -1) {
-			changeState(ACTION_PHASE_SPELL);
-			currentCharacter->startTurn(this);
-		}
-		break;
 	case END_TURN:
 		if (key == -1) changeState(PASS_TURN);
 		break;

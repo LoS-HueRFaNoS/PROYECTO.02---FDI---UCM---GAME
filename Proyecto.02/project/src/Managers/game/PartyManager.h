@@ -6,7 +6,7 @@
 
 class Hero;
 class Item;
-
+const int NUM_ITEMS = 25;
 
 class PartyManager
 {

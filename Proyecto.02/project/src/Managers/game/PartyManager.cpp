@@ -7,7 +7,7 @@ PartyManager::PartyManager() :
 	gold(0),
 	manaPotions(5),
 	healthPotions(5),
-	items_(std::vector<Item*>(30)),
+	items_(std::vector<Item*>(NUM_ITEMS)),
 	heroes_(std::vector<Hero*>())
 {
 }
