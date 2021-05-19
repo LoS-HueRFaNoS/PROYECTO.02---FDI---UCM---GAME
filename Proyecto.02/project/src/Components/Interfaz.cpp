@@ -58,7 +58,7 @@ void Interfaz::createFight()
 	// BOTONES: normal, magic, defend, escape
 	p->addButton(iManager->addButton<ButtonCombate>(Vector2D(x_ + 0, y_), w_, h_, src::AtaqueNormal, CmbtType::attack));
 	p->addButton(iManager->addButton<ButtonCombate>(Vector2D(x_ + espace, y_), w_, h_, src::AtaqueMagico, CmbtType::magic));
-	p->addButton(iManager->addButton<ButtonCombate>(Vector2D(x_ + espace * 2, y_), w_, h_, src::Defensa, CmbtType::defend));
+	p->addButton(iManager->addButton<ButtonCombate>(Vector2D(x_ + espace * 2, y_), w_, h_, src::Enter, CmbtType::defend));
 	p->addButton(iManager->addButton<ButtonCombate>(Vector2D(x_ + espace * 3, y_), w_, h_, src::Huida, CmbtType::escape));
 }
 
@@ -117,7 +117,7 @@ void Interfaz::createMovement()
 	y_ = game_->setVerticalScale(y_ + n);
 
 	/* || 20px - button - 20px - button - 20px - button - 20px - button - 20px - button - 20px || */
-	double espace = game_->setHorizontalScale((w_ - n) / 4);
+	double espace = game_->setHorizontalScale((w_ - n) / 3);
 
 	w_ = espace - game_->setHorizontalScale(n);
 	h_ = game_->setVerticalScale(h_ - n * 2);
@@ -130,7 +130,7 @@ void Interfaz::createMovement()
 	p->addButton(iManager->addButton<ButtonMovimiento>(Vector2D(x_ + 0, y_), w_, h_, src::RotarI, MovType::rotL));
 	p->addButton(iManager->addButton<ButtonMovimiento>(Vector2D(x_ + espace, y_), w_, h_, src::Avanzar, MovType::forward));
 	p->addButton(iManager->addButton<ButtonMovimiento>(Vector2D(x_ + espace * 2, y_), w_, h_, src::RotarD, MovType::rotR));
-	p->addButton(iManager->addButton<ButtonMovimiento>(Vector2D(x_ + espace * 3, y_), w_, h_, src::Interactuar, MovType::touch));
+	//p->addButton(iManager->addButton<ButtonMovimiento>(Vector2D(x_ + espace * 3, y_), w_, h_, src::Interactuar, MovType::touch));
 }
 
 void Interfaz::createHeroes()

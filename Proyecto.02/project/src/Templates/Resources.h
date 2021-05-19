@@ -92,7 +92,7 @@ public:
 		//Combate
 		AtaqueNormal,
 		AtaqueMagico,
-		Defensa,
+		Enter,
 		Huida,
 		Marco,
 		Target,
