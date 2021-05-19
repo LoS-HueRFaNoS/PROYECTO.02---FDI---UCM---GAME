@@ -26,7 +26,7 @@ private:
 	void createBigMap() {}; //
 	void createTurns(); //
 	void createSettings() {}; //
-	void createChat() {}; //
+	void createChat();
 	void createTargets(); //
 	void createHabilities(); //
 
@@ -47,6 +47,7 @@ public:
 
 	void createPanel(idPanel panelID);
 	void removePanel(idPanel panelID);
+	void removeChat();
 	void destroyPanel(idPanel panelID);
 
 	void togglePanel(Panel* pan);

@@ -15,6 +15,8 @@
 #include "../Managers/game/PartyManager.h"
 #include "../Managers/game/InterfazManager.h"
 #include "../Managers/game/CombatManager.h"
+#include "../Managers/game/ChatManager.h"
+#include "ChatInfo.h"
 
 using cb = callbacks;
 using src = Resources;
@@ -371,25 +373,32 @@ void Interfaz::createFichaDD(uint nCharacter)
 	p->addButton(iManager->addButton<Line>(Vector2D(xs_ + 0 * espace_H, ys_ + 1 * espace_V + lineTam_V * 6), ws_, lineTam_V, text, Resources::Beaulieux, color));
 
 	// RESISTENCIAS:
-	text = "Fire = " + to_string((int)(100 * hero_sheet->getResistance(damTy::FIRE))) + " %"; info += text + "\n";			// Fire
+	std::string line = PERCENTAGE(hero_sheet->getResistance(damTy::FIRE));
+	text = "Fire = " + line;	// Fire
 	color = { 255,0,0,255 };
 	p->addButton(iManager->addButton<Line>(Vector2D(xs_ + 2 * espace_H, ys_ + 1 * espace_V + lineTam_V * 0), ws_, lineTam_V, text, Resources::Beaulieux, color));
-	text = "Water = " + to_string((int)(100 * hero_sheet->getResistance(damTy::WATER))) + " %"; info += text + "\n";		// Water
+	line = PERCENTAGE(hero_sheet->getResistance(damTy::WATER));
+	text = "Water = " + line;	// Water
 	color = { 0,0,255,255 };
 	p->addButton(iManager->addButton<Line>(Vector2D(xs_ + 2 * espace_H, ys_ + 1 * espace_V + lineTam_V * 1), ws_, lineTam_V, text, Resources::Beaulieux, color));
-	text = "Ice = " + to_string((int)(100 * hero_sheet->getResistance(damTy::ICE))) + " %"; info += text + "\n";			// Ice
+	line = PERCENTAGE(hero_sheet->getResistance(damTy::ICE));
+	text = "Ice = " + line;		// Ice
 	color = { 155,155,255,255 };
 	p->addButton(iManager->addButton<Line>(Vector2D(xs_ + 2 * espace_H, ys_ + 1 * espace_V + lineTam_V * 2), ws_, lineTam_V, text, Resources::Beaulieux, color));
-	text = "Earth = " + to_string((int)(100 * hero_sheet->getResistance(damTy::EARTH))) + " %"; info += text + "\n";		// Earth
+	line = PERCENTAGE(hero_sheet->getResistance(damTy::EARTH));
+	text = "Earth = " + line;	// Earth
 	color = { 155,80,20,255 };
 	p->addButton(iManager->addButton<Line>(Vector2D(xs_ + 2 * espace_H, ys_ + 1 * espace_V + lineTam_V * 3), ws_, lineTam_V, text, Resources::Beaulieux, color));
-	text = "Wind = " + to_string((int)(100 * hero_sheet->getResistance(damTy::WIND))) + " %"; info += text + "\n";			// Wind
+	line = PERCENTAGE(hero_sheet->getResistance(damTy::WIND));
+	text = "Wind = " + line;	// Wind
 	color = { 0, 150, 0,255 };
 	p->addButton(iManager->addButton<Line>(Vector2D(xs_ + 2 * espace_H, ys_ + 1 * espace_V + lineTam_V * 4), ws_, lineTam_V, text, Resources::Beaulieux, color));
-	text = "Light = " + to_string((int)(100 * hero_sheet->getResistance(damTy::LIGHT))) + " %"; info += text + "\n";		// Light
+	line = PERCENTAGE(hero_sheet->getResistance(damTy::LIGHT));
+	text = "Light = " + line;	// Light
 	color = { 255,255,150,255 };
 	p->addButton(iManager->addButton<Line>(Vector2D(xs_ + 2 * espace_H, ys_ + 1 * espace_V + lineTam_V * 5), ws_, lineTam_V, text, Resources::Beaulieux, color));
-	text = "Dark = " + to_string((int)(100 * hero_sheet->getResistance(damTy::DARK))) + " %"; info += text + "\n";			// Dark
+	line = PERCENTAGE(hero_sheet->getResistance(damTy::DARK));
+	text = "Dark = " + line;	// Dark
 	color = { 50,50,50,255 };
 	p->addButton(iManager->addButton<Line>(Vector2D(xs_ + 2 * espace_H, ys_ + 1 * espace_V + lineTam_V * 6), ws_, lineTam_V, text, Resources::Beaulieux, color));
 
@@ -441,6 +450,11 @@ void Interfaz::createFichaDD(uint nCharacter)
 	}
 
 	
+}
+
+void Interfaz::createChat()
+{
+	TheElementalMaze::instance()->addComponent<ChatInfo>(game_);
 }
 
 void Interfaz::createTargets()
@@ -619,29 +633,29 @@ void Interfaz::createGuide()
 	x = 250; y = 370;
 	text = "Click on the virtual buttons to play the game";
 	ancho = int(text.size()) * 15 - 100;
-	p->addButton(iManager->addButton<Line>(Vector2D(x, y), ancho, 30, text, Resources::Fornite, color));
+	p->addButton(iManager->addButton<Line>(Vector2D(x, y), ancho, 30, text, Resources::Fornite64, color));
 
 	color = { 150,150,0,255 };
 	y += 50;
 	text = "Special Keyboards";
 	ancho = int(text.size()) * 20;
-	p->addButton(iManager->addButton<Line>(Vector2D(x+150, y), ancho, 40, text, Resources::Fornite, color));
+	p->addButton(iManager->addButton<Line>(Vector2D(x+150, y), ancho, 40, text, Resources::Fornite64, color));
 
 	color = { 100,50,0,255 };
 	y += 50;
 	text = "Press left-right arrows or A-D keys to rotate the view";
 	ancho = int(text.size()) * 15 - 100;
-	p->addButton(iManager->addButton<Line>(Vector2D(x, y), ancho, 30, text, Resources::Fornite, color));
+	p->addButton(iManager->addButton<Line>(Vector2D(x, y), ancho, 30, text, Resources::Fornite64, color));
 
 	y += 30;
 	text = "Press up arrows or W keys to advance";
 	ancho = int(text.size()) * 15 - 30;
-	p->addButton(iManager->addButton<Line>(Vector2D(x, y), ancho , 30, text, Resources::Fornite, color));
+	p->addButton(iManager->addButton<Line>(Vector2D(x, y), ancho , 30, text, Resources::Fornite64, color));
 
 	y += 30;
 	text = "Press spacebar or E keys to interact";
 	ancho = int(text.size()) * 15 - 50;
-	p->addButton(iManager->addButton<Line>(Vector2D(x, y), ancho, 30, text, Resources::Fornite, color));	
+	p->addButton(iManager->addButton<Line>(Vector2D(x, y), ancho, 30, text, Resources::Fornite64, color));	
 
 	p->addButton(iManager->addButton<ButtonMenu>(Vector2D(w - 225, 120), 64, 64, src::close, accionMenu::how_to_play, this));
 
@@ -727,6 +741,11 @@ void Interfaz::removePanel(idPanel panID)
 	allPanels[panID] = nullptr;
 }
 
+void Interfaz::removeChat()
+{
+	TheElementalMaze::instance()->removeComponent(ecs::ChatInfo);
+}
+
 void Interfaz::destroyPanel(idPanel panelID)
 {
 	/*delete allPanels[panelID];
@@ -752,6 +771,7 @@ void Interfaz::toggleCombat_Movement()
 
 void Interfaz::init()
 {
+	ChatManager::Init();
 	//allPanels.reserve(maxPanels);
 	initialize(); // convertir a tipo std::map<clave, valor> -> ahora est� hardcodeado
 	// Fondo de todo la interfaz, para delimitar claramente los paneles: 
@@ -795,6 +815,7 @@ void Interfaz::update()
 			createPanel(Movement);
 			createPanel(Heroes);
 			createPanel(Info);
+			createPanel(Chat);
 		}
 		break;
 	case gameST::EXPLORING:
@@ -830,6 +851,7 @@ void Interfaz::update()
 		removePanel(Movement);
 		removePanel(Heroes);
 		removePanel(Info);
+		removeChat();
 		break;
 	default:
 		break;
