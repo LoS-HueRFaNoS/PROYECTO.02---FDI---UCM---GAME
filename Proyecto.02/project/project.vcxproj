@@ -19,8 +19,10 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\Components\ChatInfo.cpp" />
     <ClCompile Include="src\Components\GameStateManager.cpp" />
     <ClCompile Include="src\Components\PanelTurns.cpp" />
+    <ClCompile Include="src\Managers\game\ChatManager.cpp" />
     <ClCompile Include="src\Managers\SDL\AudioManager.cpp" />
     <ClCompile Include="src\GameObjects\Button.cpp" />
     <ClCompile Include="src\Components\ButtonCtrl.cpp" />
@@ -74,8 +76,10 @@
     <ClCompile Include="src\Utilities\textures_box.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Components\ChatInfo.h" />
     <ClInclude Include="src\Components\GameStateManager.h" />
     <ClInclude Include="src\Components\PanelTurns.h" />
+    <ClInclude Include="src\Managers\game\ChatManager.h" />
     <ClInclude Include="src\Managers\SDL\AudioManager.h" />
     <ClInclude Include="src\GameObjects\Button.h" />
     <ClInclude Include="src\Components\ButtonCtrl.h" />

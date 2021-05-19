@@ -27,6 +27,7 @@ enum CmpId : CmpIdType {
 	StateBar,
 	GameStateManager,
 	PanelTurns,
+	ChatInfo,
 	//
 	// don't touch the rest of this enum, it is to identify the max
 	// number of components

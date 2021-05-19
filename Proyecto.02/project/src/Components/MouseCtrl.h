@@ -40,7 +40,7 @@ public:
         }
         if (st == 1) { ++st; }
         if (ih_->mouseButtonEvent()) {
-            uint e = ih_->getMouseButtonState(InputHandler::LEFT);
+            float e = ih_->getMouseButtonState(InputHandler::LEFT);
             cout << e << endl;
             Sprite* s = entity_->getComponent<Sprite>(ecs::Sprite);
             if (e) s->avanza();

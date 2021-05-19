@@ -5,6 +5,7 @@
 #include "../Managers/game/LobbyManager.h"
 #include "../Managers/game/ItemManager.h"
 #include "../Managers/game/HabilityManager.h"
+#include "../Managers/game/ChatManager.h"
 #include "../Components/GameStateManager.h"
 #include "../Components/Interfaz.h"
 #include "../Components/Laberinto.h"
@@ -57,6 +58,11 @@ void TheElementalMaze::init()
 	// 5. GameStateManager
 	stManager_ = addComponent<GameStateManager>();
 	stManager_->changeState(GameState::MainMenu);
+
+	uiManager_->createPanel(Chat);
+	string s = "Había una vez una casita de una bruja hecha de chocolate, entonces Hansel dijo....";
+	int k = s.size();
+	ChatManager::instance()->addLine(s, linTy::Info);
 }
 
 //--------------------------------------------------------

@@ -5,7 +5,8 @@ vector<Resources::FontInfo> Resources::fonts_{
 	{ARIAL16, "resources/fonts/ARIAL.ttf", 16}, //
 	{ARIAL24, "resources/fonts/ARIAL.ttf", 24},	//
 	{HERMAN, "resources/fonts/ARHERMANN.ttf", 64},
-	{Fornite, "resources/fonts/Fortnite.ttf", 64},
+	{Fornite64, "resources/fonts/Fortnite.ttf", 64},
+	{Fornite14, "resources/fonts/Fortnite.ttf", 14},
 	{Quake, "resources/fonts/dpquake_.ttf", 64},
 	{KillerInst, "resources/fonts/kinifed_.ttf", 64},
 	{Sega, "resources/fonts/SEGA.ttf", 64},
