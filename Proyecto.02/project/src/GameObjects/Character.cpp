@@ -371,7 +371,11 @@ void Hero::levelUp(int exp)
 		level++;
 
 		if (level % 4 == 0)
+		{
 			pointsPerLevel += 4;
+			AddHabilityWithLevel(level);
+		}
+
 
 		int hp = _sheet->maxHitPoints();
 		int pm = _sheet->maxManaPoints();
@@ -400,6 +404,31 @@ void Hero::levelUp(int exp)
 
 	else
 		expNeed -= expObtain;
+}
+
+void Hero::AddHabilityWithLevel(int level)
+{
+	int nivel = level / 4;
+
+	switch (nivel)
+	{
+	case 1:
+		addHability(_habilitiesExtra[0]->getID());
+		break;
+	case 2:
+		addHability(_habilitiesExtra[1]->getID());
+		break;
+	case 3:
+		addHability(_habilitiesExtra[2]->getID());
+		break;
+	case 4:
+		addHability(_habilitiesExtra[4]->getID());
+		break;
+	default:
+		break;
+	}
+		
+
 }
 
 void Hero::changeHeroStat(rpgLogic::mainStat stat)

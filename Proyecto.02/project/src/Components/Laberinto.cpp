@@ -159,7 +159,7 @@ void Laberinto::createRandomMaze(Vector2D entrada)
 
 			int hayEnemy = game_->getRandGen()->nextInt(0,10);
 			
-			if (hayEnemy < 3)
+			if (hayEnemy < 9)
 			{
 				int enemyType = game_->getRandGen()->nextInt(0, int(enemyTemplate::_lastEnemyTemplateId_));
 				//int enemyType = enemyTemplate::ZOMBIE;
@@ -220,7 +220,7 @@ void Laberinto::generaObjeto(int object, int type, Casilla* casilla, int maxObje
 
 	if (object == 0) {
 
-		//casilla->addEnemy((static_cast<enemyTemplate>(type)));
+		casilla->addEnemy((static_cast<enemyTemplate>(type)));
 		//cout << "generado " << (cant+1) << " enemigo"<<endl;
 	}
 	else if (object == 1)
