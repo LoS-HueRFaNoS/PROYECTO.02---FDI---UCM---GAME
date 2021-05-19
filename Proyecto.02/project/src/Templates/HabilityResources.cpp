@@ -355,6 +355,11 @@ void Blessing::throwHability(Character* obj, bool critical) const {
 	obj->removeBadConditions();
 }
 
+void Thorns::throwHability(Character* obj, bool critical) const
+{
+	obj->addCondition<ThornsCond>(_caster);
+}
+
 #pragma endregion
 
 #pragma region CONDITION
@@ -446,6 +451,27 @@ bool DeterminationCond::onDeath(Character* attacker)
 	cout << _objective->name() << " revives!!" << endl;
 	_objective->recieveHealing(1);
 	return false;
+}
+
+void ThornsCond::init() {
+	cout << _objective->name() << " devolvera parte del daño que reciba a su atacante" << endl;
+}
+
+bool ThornsCond::onAttackRecieved(int& damage, Character* attacker) {
+	//int recoil = damage / 4;
+	attacker->recieveDamage(damage / 4, damageType::PIERCE, _objective);
+	return true;
+}
+
+bool ThornsCond::onTurnStarted() {
+	cout << "Thorns active ";
+	
+	if (!--_counter) {
+		cout << "SE ACABO EL EFECTO DE THORNS" << endl;
+		return false;
+	}
+	cout << "TURNOS RESTANTES: " << _counter << endl;
+	return true;
 }
 
 #pragma endregion
