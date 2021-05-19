@@ -90,7 +90,12 @@ public:
 	void toggleEnabled() { enabled = !enabled; }
 
 	// deshabilitar / delete
-	void disable() { active = false; }
+	void disable() { 
+		active = false;
+		for (int i = 0; i < components_.size(); i++) {
+			components_[i].get()->disable();
+		}
+	}
 	bool isActive() const { return active; };
 
 protected:

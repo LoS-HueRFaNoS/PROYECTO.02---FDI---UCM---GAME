@@ -371,25 +371,25 @@ void Interfaz::createFichaDD(uint nCharacter)
 	p->addButton(iManager->addButton<Line>(Vector2D(xs_ + 0 * espace_H, ys_ + 1 * espace_V + lineTam_V * 6), ws_, lineTam_V, text, Resources::Beaulieux, color));
 
 	// RESISTENCIAS:
-	text = "Fire = " + to_string(hero_sheet->getResistance(damTy::FIRE)); info += text + "\n";			// Fire
+	text = "Fire = " + to_string((int)(100 * hero_sheet->getResistance(damTy::FIRE))) + " %"; info += text + "\n";			// Fire
 	color = { 255,0,0,255 };
 	p->addButton(iManager->addButton<Line>(Vector2D(xs_ + 2 * espace_H, ys_ + 1 * espace_V + lineTam_V * 0), ws_, lineTam_V, text, Resources::Beaulieux, color));
-	text = "Water = " + to_string(hero_sheet->getResistance(damTy::WATER)); info += text + "\n";		// Water
+	text = "Water = " + to_string((int)(100 * hero_sheet->getResistance(damTy::WATER))) + " %"; info += text + "\n";		// Water
 	color = { 0,0,255,255 };
 	p->addButton(iManager->addButton<Line>(Vector2D(xs_ + 2 * espace_H, ys_ + 1 * espace_V + lineTam_V * 1), ws_, lineTam_V, text, Resources::Beaulieux, color));
-	text = "Ice = " + to_string(hero_sheet->getResistance(damTy::ICE)); info += text + "\n";			// Ice
+	text = "Ice = " + to_string((int)(100 * hero_sheet->getResistance(damTy::ICE))) + " %"; info += text + "\n";			// Ice
 	color = { 155,155,255,255 };
 	p->addButton(iManager->addButton<Line>(Vector2D(xs_ + 2 * espace_H, ys_ + 1 * espace_V + lineTam_V * 2), ws_, lineTam_V, text, Resources::Beaulieux, color));
-	text = "Earth = " + to_string(hero_sheet->getResistance(damTy::EARTH)); info += text + "\n";		// Earth
+	text = "Earth = " + to_string((int)(100 * hero_sheet->getResistance(damTy::EARTH))) + " %"; info += text + "\n";		// Earth
 	color = { 155,80,20,255 };
 	p->addButton(iManager->addButton<Line>(Vector2D(xs_ + 2 * espace_H, ys_ + 1 * espace_V + lineTam_V * 3), ws_, lineTam_V, text, Resources::Beaulieux, color));
-	text = "Wind = " + to_string(hero_sheet->getResistance(damTy::WIND)); info += text + "\n";			// Wind
+	text = "Wind = " + to_string((int)(100 * hero_sheet->getResistance(damTy::WIND))) + " %"; info += text + "\n";			// Wind
 	color = { 0, 150, 0,255 };
 	p->addButton(iManager->addButton<Line>(Vector2D(xs_ + 2 * espace_H, ys_ + 1 * espace_V + lineTam_V * 4), ws_, lineTam_V, text, Resources::Beaulieux, color));
-	text = "Light = " + to_string(hero_sheet->getResistance(damTy::LIGHT)); info += text + "\n";		// Light
+	text = "Light = " + to_string((int)(100 * hero_sheet->getResistance(damTy::LIGHT))) + " %"; info += text + "\n";		// Light
 	color = { 255,255,150,255 };
 	p->addButton(iManager->addButton<Line>(Vector2D(xs_ + 2 * espace_H, ys_ + 1 * espace_V + lineTam_V * 5), ws_, lineTam_V, text, Resources::Beaulieux, color));
-	text = "Dark = " + to_string(hero_sheet->getResistance(damTy::DARK)); info += text + "\n";			// Dark
+	text = "Dark = " + to_string((int)(100 * hero_sheet->getResistance(damTy::DARK))) + " %"; info += text + "\n";			// Dark
 	color = { 50,50,50,255 };
 	p->addButton(iManager->addButton<Line>(Vector2D(xs_ + 2 * espace_H, ys_ + 1 * espace_V + lineTam_V * 6), ws_, lineTam_V, text, Resources::Beaulieux, color));
 

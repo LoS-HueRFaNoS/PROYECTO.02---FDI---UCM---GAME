@@ -3,6 +3,7 @@
 #include "CharacterManager.h"
 #include "PartyManager.h"
 #include "../TheElementalMaze.h"
+#include "../../Components/Laberinto.h"
 
 #pragma region CombatePorConsola
 
@@ -190,6 +191,8 @@ void CombatManager::endCombat()
 	_enemies.clear();
 	TheElementalMaze::instance()->checkOutNoInitialEnemy();
 
+	TheElementalMaze::instance()->checkOutNoInitialEnemy();
+
 	_turnQueue.clear();
 }
 
@@ -320,8 +323,8 @@ void CombatManager::onStateChanged()
 		showTeams();
 		showQ();
 		cout << "---------- START TURN ----------" << endl;
-		currentCharacter->startTurn(this);
 		changeState(ACTION_PHASE_SPELL);
+		currentCharacter->startTurn(this);
 		break;
 	case ACTION_PHASE_SPELL:
 		if (!size_t(currentCharacter->getType()))

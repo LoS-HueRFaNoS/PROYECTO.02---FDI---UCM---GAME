@@ -51,7 +51,8 @@ protected:
 
 public:
 
-	Character(SDLGame* game, EntityManager* mngr, characterType type) : _type(type), Entity(game, mngr) {
+	Character(SDLGame* game, EntityManager* mngr, characterType type) :_weapon(nullptr),
+		_type(type), Entity(game, mngr) {
 		init();
 	}
 
@@ -186,7 +187,9 @@ private:
 	virtual void manageTurn(CombatManager* cm);
 
 public:
-	Hero(SDLGame* game, EntityManager* mngr) : Character(game, mngr, charTy::HERO) {};
+	Hero(SDLGame* game, EntityManager* mngr) :
+		_armor(nullptr), 
+		Character(game, mngr, charTy::HERO) {};
 
 	~Hero();
 
@@ -196,12 +199,13 @@ public:
 
 	heroTemplate getTemplate() { return template_; }
 
-	void giveArmor(Armor* a) { _armor = a; }
 
 	int getSavingSuccess() { return savingSuccess; }
 	int getSavingFailures() { return savingFailure; }
 
 	void savingDeathThrow();
+
+	void giveArmor(Armor* a);
 
 	virtual void recieveHealing(int healing);
 	

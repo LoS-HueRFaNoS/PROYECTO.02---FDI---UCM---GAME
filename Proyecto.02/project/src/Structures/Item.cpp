@@ -6,7 +6,7 @@ using namespace rpgLogic;
 
 void Item::elementalAfinity()
 {
-	if (throwDice(1, 100, false) > 80)
+	if (throwDice(1, 100, false) > 60)
 	{
 		int afinityType = throwDice(1, size_t(damTy::_lastDamageTypeId_) - 1, false);
 		int afinityAmount = throwDice(1, 100, false);

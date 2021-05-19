@@ -240,7 +240,7 @@ void Hero::loadFromJson(jute::jValue v, int t)
 
 	int r2 = v["Characters"][t]["Equipement"]["ListArmors"].size();
 	int idRArmor = v["Characters"][t]["Equipement"]["ListArmors"][game_->getRandGen()->nextInt(0, r2)].as_int();
-	_armor = TheElementalMaze::instance()->getItemManager()->getArmorFromId(armorId(idRArmor));
+	giveArmor(TheElementalMaze::instance()->getItemManager()->getArmorFromId(armorId(idRArmor)));
 
 	int size = v["Characters"][t]["ListHabilities"].size();
 
@@ -343,6 +343,21 @@ void Hero::savingDeathThrow()
 	}
 }
 
+void Hero::giveArmor(Armor* a) {
+	Weaknesses w;
+	if (_armor) {
+		w = _armor->getElementalAfinity();
+		for (int i = 0; i < (int)damageType::_lastDamageTypeId_; i++) {
+			_sheet->weaknesses.changeWeakness((damageType)i,-w.getWeakness(((damageType)i)));
+		}
+	}
+	w = a->getElementalAfinity();
+	for (int i = 0; i < (int)damageType::_lastDamageTypeId_; i++) {
+		_sheet->weaknesses.changeWeakness((damageType)i, w.getWeakness(((damageType)i)));
+	}
+	_armor = a;
+}
+
 void Hero::recieveHealing(int healing)
 {
 	Character::recieveHealing(healing);
@@ -427,7 +442,7 @@ void Hero::AddHabilityWithLevel(int level)
 	default:
 		break;
 	}
-		
+
 
 }
 
