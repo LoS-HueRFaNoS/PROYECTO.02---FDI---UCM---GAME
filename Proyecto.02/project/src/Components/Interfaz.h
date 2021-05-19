@@ -22,10 +22,9 @@ private:
 	void createMovement();
 	void createHeroes();
 	void createInfo();
-	void createMinimap() {}; //
 	void createInventory();
 	void createBigMap() {}; //
-	void createTurns() {}; //
+	void createTurns(); //
 	void createSettings() {}; //
 	void createChat() {}; //
 	void createTargets(); //
@@ -35,6 +34,8 @@ private:
 	void createLobby();
 	void createOptions();
 	void createGuide();
+
+	void toggleMinimap();
 
 public:
 	Interfaz(InterfazManager* i) :

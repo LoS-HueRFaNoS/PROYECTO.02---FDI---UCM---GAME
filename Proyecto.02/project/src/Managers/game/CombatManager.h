@@ -158,6 +158,9 @@ public:
 		std::vector<Character*> ret = size_t(targetList) ? std::vector<Character*>(_enemies.begin(), _enemies.end()) : std::vector<Character*>(_heroes.begin(), _heroes.end());
 		return ret;
 	}
+	vector<Character*> getCurrentTurnsList() {
+		return _turnQueue;
+	}
 
 	// ----------------------------------------------------
 };

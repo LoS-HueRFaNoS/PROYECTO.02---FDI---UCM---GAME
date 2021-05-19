@@ -201,6 +201,9 @@
     <ClCompile Include="src\Components\GameStateManager.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
+    <ClCompile Include="src\Components\PanelTurns.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Managers\SDL\AudioManager.h">
@@ -383,6 +386,9 @@
     <ClInclude Include="src\Components\GameStateManager.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
+    <ClInclude Include="src\Components\PanelTurns.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="resources\jsons\pruebasArmaduras.json">
@@ -397,5 +403,8 @@
     <None Include="resources\jsons\enemies.json">
       <Filter>Archivos de recursos</Filter>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="src\NewFile.txt" />
   </ItemGroup>
 </Project>

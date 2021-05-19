@@ -4,14 +4,30 @@
 #include "../Managers/TheElementalMaze.h"
 using src = Resources;
 
+Resources::TextureId textures_box::getHeroTxt(Character* hero)
+{
+	heroTemplate tem = static_cast<Hero*>(hero)->getTemplate();
+
+	uint pivot = src::_firstHeroRId_;
+
+	Resources::TextureId id = (Resources::TextureId)(pivot + uint(tem) + 1);
+
+	return id;
+}
+
 Resources::TextureId textures_box::getHeroTxt(uint number)
 {
 	PartyManager* c = TheElementalMaze::instance()->getPartyManager();
 	std::vector<Hero*> heroes = c->getHeroes();
 
-	heroTemplate tem = heroes[number]->getTemplate();
+	return getHeroTxt(heroes[number]);
+}
 
-	uint pivot = src::_firstHeroRId_;
+Resources::TextureId textures_box::getEnemyTxt(Character* enemy)
+{
+	enemyTemplate tem = static_cast<Enemy*>(enemy)->getTemplate();
+	
+	uint pivot = src::_firstEnemyId_;
 
 	Resources::TextureId id = (Resources::TextureId)(pivot + uint(tem) + 1);
 
@@ -23,13 +39,7 @@ Resources::TextureId textures_box::getEnemyTxt(uint number)
 	CombatManager* c = TheElementalMaze::instance()->getCombatManager();
 	std::vector<Enemy*> enemies = c->getEnemiesTeam();
 
-	enemyTemplate tem = enemies[number]->getTemplate();
-
-	uint pivot = src::_firstEnemyId_;
-
-	Resources::TextureId id = (Resources::TextureId)(pivot + uint(tem) + 1);
-
-	return id;
+	return getEnemyTxt(enemies[number]);
 }
 
 Resources::TextureId textures_box::getItemTxt(uint number)

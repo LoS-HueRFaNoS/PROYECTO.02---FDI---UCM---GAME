@@ -12,7 +12,7 @@ using namespace std;
 Laberinto::Laberinto(int h_, int w_) :Component(ecs::Laberinto), h(h_), w(w_)
 {
 	salida = Vector2D(w, 0);
-
+	drawMiniMap = true;
 }
 Laberinto::Laberinto() : Component(ecs::Laberinto), h(5), w(5)
 {
@@ -200,7 +200,7 @@ Casilla* Laberinto::getCasillaInfo(int x, int y)
 
 void Laberinto::draw()
 {
-//
+	if (!drawMiniMap) return;
 	double _x = game_->setHorizontalScale(1510);
 	double _y = game_->setVerticalScale(70);
 	double _w = game_->setHorizontalScale(34); // 28
@@ -264,7 +264,7 @@ void Laberinto::generaObjeto(int object, int type, Casilla* casilla, int maxObje
 		else
 		{
 			int dinero = game_->getRandGen()->nextInt(5, 21); // 5 a 21 runas
-		//	cout << dinero << " Runas" <<endl;
+			//	cout << dinero << " Runas" <<endl;
 			casilla->addChest(static_cast<ItemType>(3), dinero);
 		}
 
