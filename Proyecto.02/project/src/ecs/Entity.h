@@ -53,7 +53,7 @@ public:
 	}
 
 	void update() {
-		if (!enabled) return;
+		if (!enabled || !active) return;
 		auto n = components_.size();
 		for (auto i = 0u; i < n; i++)
 		{

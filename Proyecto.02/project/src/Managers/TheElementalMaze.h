@@ -23,6 +23,8 @@ enum class GameState {
 };
 using gameST = GameState;
 
+typedef unsigned int uint;
+
 class TheElementalMaze : public Entity
 {
 private:
@@ -41,6 +43,7 @@ private:
 	LobbyManager* lobbyManager_;
 	GameStateManager* stManager_; // compt
 
+	uint floor;
 	bool pause_ = false;
 
 public:
@@ -49,7 +52,8 @@ public:
 		iManager_(iMngr),
 		Entity(game, mngr),
 		player_(nullptr),
-		laberinto_(nullptr)
+		laberinto_(nullptr),
+		floor(0)
 	{};
 
 public:

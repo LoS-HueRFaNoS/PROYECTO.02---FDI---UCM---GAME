@@ -294,6 +294,7 @@ public:
 	virtual void click();
 
 	HeroNum getNumHero() { return heroType_; };
+
 };
 #pragma endregion
 

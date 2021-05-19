@@ -104,16 +104,18 @@ void callbacks::configuracion(Interfaz* app)
 void callbacks::potionType(int potionType_)
 {
 	CombatManager* c = GETCMP2(TheElementalMaze::instance(), CombatManager); // falta paso intermedio para guardar la habilidad y seleccionar enemigos
-	
+	GameState gameST = TheElementalMaze::instance()->gameState();
 	switch (potionType_)
 	{
 	case 0:
 		std::cout << "has usado la pocion de vida" << std::endl;
-		c->sendKeyEvent(-6); //indice de la habilidad
+		if (gameST == gameST::COMBAT) c->sendKeyEvent(-6); //indice de la habilidad
+		else if (gameST == gameST::EXPLORING) callbacks::set_hability(-6);
 		break;
 	case 1:
 		std::cout << "has usado la pocion de mana" << std::endl;
-		c->sendKeyEvent(-5); //indice de la habilidad
+		if (gameST == gameST::COMBAT) c->sendKeyEvent(-5); //indice de la habilidad
+		else if (gameST == gameST::EXPLORING) callbacks::set_hability(-5);
 		break;
 	case 2:
 		std::cout << "has usado la pocion de resurreccion" << std::endl;

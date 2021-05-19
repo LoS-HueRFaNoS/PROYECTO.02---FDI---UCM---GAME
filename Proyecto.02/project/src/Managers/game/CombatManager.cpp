@@ -188,6 +188,7 @@ void CombatManager::endCombat()
 		e->disable();
 	}
 	_enemies.clear();
+	TheElementalMaze::instance()->checkOutNoInitialEnemy();
 
 	_turnQueue.clear();
 }

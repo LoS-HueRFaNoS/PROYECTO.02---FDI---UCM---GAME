@@ -251,12 +251,9 @@ void Interfaz::createInventory()
 				p->addButton(iManager->addButton<ButtonSlott>(Vector2D(posX + margen, posY + margen), itemTam, itemTam, id));
 			}
 
-
-			
 			posX += slotTam;
 		}
-
-			posY += slotTam; // Se suma la coordenada Y
+		posY += slotTam; // Se suma la coordenada Y
 		
 	}
 

@@ -41,14 +41,15 @@ void TheElementalMaze::init()
 	Hero* wizard = characterManager_->addHeroFromTemplate(heroTem::WIZARD);
 	Hero* warrior = characterManager_->addHeroFromTemplate(heroTem::WARRIOR);
 	Hero* rogue = characterManager_->addHeroFromTemplate(heroTem::ROGUE);
-	Hero* cleric = characterManager_->addHeroFromTemplate(heroTem::CLERIC);;
+	Hero* cleric = characterManager_->addHeroFromTemplate(heroTem::CLERIC);
 
 	partyManager_->addHero(wizard);
 	partyManager_->addHero(warrior);
 	partyManager_->addHero(rogue);
 	partyManager_->addHero(cleric);
 
-	partyManager_->addItem(itemManager_->getRandomWeapon(), 21);
+	partyManager_->addItem(itemManager_->getWeaponFromId(wID::LUCERODELALBA), 21);
+	partyManager_->changeItemWithHero(21,2);
 
 	// 4. Interfaz
 	uiManager_ = addComponent<Interfaz>(iManager_);
