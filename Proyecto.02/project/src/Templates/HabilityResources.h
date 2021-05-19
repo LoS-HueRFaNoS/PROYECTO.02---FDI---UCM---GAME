@@ -186,7 +186,6 @@ public:
 };
 
 
-
 class HealingWord : public Hability {
 public:
 	HealingWord(Character* caster = nullptr) : Hability(caster) {
@@ -194,7 +193,7 @@ public:
 		level = 0;
 		_mana = 4;
 		_name = "HealingWord";
-		_description = "Esto es un ejemplo, cura 2d5 de vida a un aliado";
+		_description = "Esto es un ejemplo, cura 1d8 de vida a un aliado";
 
 		_id = habID::HEALINGWORD;
 		_damageType = damTy::LIGHT;
@@ -253,7 +252,6 @@ public:
 };
 
 
-
 class WindBurst : public Hability {
 public:
 	WindBurst(Character* caster = nullptr) : Hability(caster) {
@@ -261,7 +259,7 @@ public:
 		level = 4;
 		_mana = 6;
 		_name = "WindBurst";
-		_description = "Sal a que te de el aire, hace 8d6 a todos los enemigos frente a salvacion DEX (reduce DEX)";
+		_description = "Sal a que te de el aire, hace 6d4 a todos los enemigos frente a salvacion DEX (reduce DEX)";
 
 		_id = habID::WINDBURST;
 		_damageType = damTy::WIND;
@@ -345,7 +343,7 @@ public:
 		level = 4;
 		_mana = 8;
 		_name = "Tsunami";
-		_description = "Avisaron de bandera roja, a hace 8d6 a todos los enemigos frente a salvacion DEX (y reduce STR)";
+		_description = "Avisaron de bandera roja, a hace 6d4 a todos los enemigos frente a salvacion DEX (y reduce STR)";
 
 		_id = habID::TSUNAMI;
 		_damageType = damTy::WATER;

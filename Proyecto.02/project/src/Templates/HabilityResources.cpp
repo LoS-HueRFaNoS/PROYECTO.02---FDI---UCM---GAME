@@ -40,7 +40,6 @@ void HeavyStrike::throwHability(Character* obj, bool critical) const
 		cout << "You missed your heavy hit" << endl;
 	else
 		obj->recieveDamage(damage, _damageType, _caster);
-
 }
 
 
@@ -55,7 +54,7 @@ void BloodyStrike::throwHability(Character* obj, bool critical) const
 
 void HealingWord::throwHability(Character* obj, bool critical) const
 {
-	int healing = throwDice(2 + (2 * critical), 5, true);
+	int healing = throwDice(1 + critical, 8, true);
 
 	obj->recieveHealing(healing);
 
@@ -82,16 +81,17 @@ void SelfHealExample::throwHability(Character* obj, bool critical) const
 
 void WindBurst::throwHability(Character* obj, bool critical) const
 {
-	int damage = throwDice(8 + 8 * critical, 6, true);
+	int damage = throwDice(6 + 6 * critical, 4, true);
 
 	damage = obj->savingThrow(10 + _caster->getMod(_mod), ms::DEX) ? damage / 2 : damage;
 
 	obj->recieveDamage(damage, _damageType, _caster);
+	obj->addCondition<BuffStats>(_caster, -2, ms::CON, _name, _description);
 }
 
 void RockPillar::throwHability(Character* obj, bool critical) const
 {
-	int damage = throwDice(8 + 8 * critical, 6, true);
+	int damage = throwDice(1 + critical, 8, true);
 
 	damage = obj->savingThrow(10 + _caster->getMod(_mod), ms::DEX) ? damage / 2 : damage;
 
@@ -100,7 +100,7 @@ void RockPillar::throwHability(Character* obj, bool critical) const
 
 void ToxicShadow::throwHability(Character* obj, bool critical) const
 {
-	int damage = throwDice(8 + 8 * critical, 6, true);
+	int damage = throwDice(1 + critical, 8, true);
 
 	damage = obj->savingThrow(10 + _caster->getMod(_mod), ms::DEX) ? damage / 2 : damage;
 
@@ -109,7 +109,7 @@ void ToxicShadow::throwHability(Character* obj, bool critical) const
 
 void WindSlash::throwHability(Character* obj, bool critical) const
 {
-	int damage = throwDice(8 + 8 * critical, 6, true);
+	int damage = throwDice(1 + critical, 8, true);
 
 	damage = obj->savingThrow(10 + _caster->getMod(_mod), ms::DEX) ? damage / 2 : damage;
 
@@ -118,7 +118,7 @@ void WindSlash::throwHability(Character* obj, bool critical) const
 
 void Tsunami::throwHability(Character* obj, bool critical) const
 {
-	int damage = throwDice(8 + 8 * critical, 6, true);
+	int damage = throwDice(6 + 6 * critical, 4, true);
 
 	damage = obj->savingThrow(10 + _caster->getMod(_mod), ms::DEX) ? damage / 2 : damage;
 
@@ -136,11 +136,12 @@ void DivineProtection::throwHability(Character* obj, bool critical) const
 
 void Flash::throwHability(Character* obj, bool critical) const
 {
-	int damage = throwDice(8 + 8 * critical, 6, true);
+	int damage = throwDice(1 + critical, 8, true);
 
 	damage = obj->savingThrow(10 + _caster->getMod(_mod), ms::DEX) ? damage / 2 : damage;
 
 	obj->recieveDamage(damage, _damageType, _caster);
+	obj->addCondition<BuffStats>(_caster, -2, ms::DEX, _name, _description);
 }
 
 void Freeze::throwHability(Character* obj, bool critical) const //hay que mirar que hacer con el debuff y ajustar el ataque
@@ -150,7 +151,7 @@ void Freeze::throwHability(Character* obj, bool critical) const //hay que mirar 
 	damage = obj->savingThrow(10 + _caster->getMod(_mod), ms::DEX) ? damage / 2 : damage;
 
 	obj->recieveDamage(damage, _damageType, _caster);
-	obj->addCondition<BuffStats>(_caster ,-3, ms::DEX, _name, _description);
+	obj->addCondition<BuffStats>(_caster ,-2, ms::DEX, _name, _description);
 }
 
 void Whirlpool::throwHability(Character* obj, bool critical) const //hay que mirar que hacer con el debuff y ajustar el ataque
@@ -160,8 +161,7 @@ void Whirlpool::throwHability(Character* obj, bool critical) const //hay que mir
 	damage = obj->savingThrow(10 + _caster->getMod(_mod), ms::DEX) ? damage / 2 : damage;
 
 	obj->recieveDamage(damage, _damageType, _caster);
-
-	obj->addCondition<BuffStats>(_caster ,-3, ms::STR, _name, _description);						// ESTO COMO UN ESTADO
+	obj->addCondition<BuffStats>(_caster ,-2, ms::STR, _name, _description);						// ESTO COMO UN ESTADO
 }
 
 void LightBeam::throwHability(Character* obj, bool critical) const //hay que mirar que hacer con el debuff y ajustar el ataque
@@ -171,8 +171,7 @@ void LightBeam::throwHability(Character* obj, bool critical) const //hay que mir
 	damage = obj->savingThrow(10 + _caster->getMod(_mod), ms::DEX) ? damage / 2 : damage;
 
 	obj->recieveDamage(damage, _damageType, _caster);
-
-	obj->addCondition<BuffStats>(_caster ,-3, ms::DEX, _name, _description);						// ESTO COMO UN ESTADO
+	obj->addCondition<BuffStats>(_caster ,-2, ms::DEX, _name, _description);						// ESTO COMO UN ESTADO
 }
 
 void DarkVortex::throwHability(Character* obj, bool critical) const //hay que mirar que hacer con el debuff y ajustar el ataque
@@ -182,8 +181,7 @@ void DarkVortex::throwHability(Character* obj, bool critical) const //hay que mi
 	damage = obj->savingThrow(10 + _caster->getMod(_mod), ms::DEX) ? damage / 2 : damage;
 
 	obj->recieveDamage(damage, _damageType, _caster);
-
-	obj->addCondition<BuffStats>(_caster, -3, ms::DEX, _name, _description);						// ESTO COMO UN ESTADO
+	obj->addCondition<BuffStats>(_caster, -2, ms::DEX, _name, _description);						// ESTO COMO UN ESTADO
 }
 
 void FireArrow::throwHability(Character* obj, bool critical) const
@@ -191,13 +189,12 @@ void FireArrow::throwHability(Character* obj, bool critical) const
 	int damage = throwDice(1 + critical, 8, true);
 	damage = obj->savingThrow(10 + _caster->getMod(_mod), ms::DEX) ? damage / 2 : damage;
 	obj->recieveDamage(damage, _damageType);
-	obj->addCondition<BuffStats>(_caster, -3, ms::DEX, _name, _description);
+	obj->addCondition<BuffStats>(_caster, -2, ms::DEX, _name, _description);
 }
 
 void Lighten::throwHability(Character* obj, bool critical) const
 {
 	obj->addCondition<BuffStats>(_caster,2, ms::DEX, _name, _description);
-
 }
 
 void Strengthen::throwHability(Character* obj, bool critical) const
@@ -339,17 +336,12 @@ void TrickShot::throwHability(Character* obj, bool critical) const //cambiarlo s
 
 void GladiatorBallad::throwHability(Character* obj, bool critical) const
 {
-	int strUp = 3;
-
-
-	obj->addCondition<BuffStats>(_caster,strUp, ms::STR, _name, _description);
+	obj->addCondition<BuffStats>(_caster, 3, ms::STR, _name, _description);
 }
 
 void WindSong::throwHability(Character* obj, bool critical) const
 {
-	int velUp = 3;
-
-	obj->addCondition<BuffStats>(_caster,velUp, ms::DEX, _name, _description);
+	obj->addCondition<BuffStats>(_caster, 3, ms::DEX, _name, _description);
 }
 
 void Determination::throwHability(Character* obj, bool critical) const
