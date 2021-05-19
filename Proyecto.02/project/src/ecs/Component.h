@@ -13,6 +13,7 @@ protected:
 	Entity* entity_;
 	SDLGame* game_;
 	ecs::CmpId id_;
+	bool active;
 public:
 	Component(ecs::CmpId id);
 	virtual ~Component();
@@ -39,6 +40,10 @@ public:
 	}
 	virtual void draw() {
 	}
+
+	// deshabilitar / delete
+	void disable() { active = false; }
+	bool isActive() const { return active; };
 
 };
 

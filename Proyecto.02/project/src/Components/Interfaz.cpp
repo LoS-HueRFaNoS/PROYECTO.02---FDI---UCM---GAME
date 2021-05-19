@@ -400,25 +400,50 @@ void Interfaz::createFichaDD(uint nCharacter)
 	Hero* hero_ = dynamic_cast<Hero*>(hero);
 	if (hero_ != nullptr)
 	{
-		Armor* armor_ = hero_->getArmor();		// Armadura
+		uint pivot, auxId;
+		Resources::TextureId id;
+		Weapon* weapon = hero_->getWeapon();
+		if (weapon != nullptr) {
+			p->addButton(iManager->addButton<ButtonSlott>(Vector2D(xs_ + 1 * espace_H + (abs(ws_ - hs_) / 2), ys_ + 1 * espace_V + 1.02 * hs_), hs_ / 2, hs_ / 2, src::Slot));
+			pivot = src::_firstWeaponId_;
+			auxId = (int)weapon->getWeaponId();
+			id = (Resources::TextureId) (pivot + auxId + 1);
+			p->addButton(iManager->addButton<ButtonSlott>(Vector2D(xs_ + 1 * espace_H + (abs(ws_ - hs_) / 2), ys_ + 1 * espace_V + 1.02 * hs_), hs_ / 2, hs_ / 2, id));
+		}
+		else
+			p->addButton(iManager->addButton<ButtonSlott>(Vector2D(xs_ + 1 * espace_H + (abs(ws_ - hs_) / 2), ys_ + 1 * espace_V + 1.02 * hs_), hs_ / 2, hs_ / 2, src::WeaponSlot));
+
+		Armor* armor = hero_->getArmor();
+		if (armor != nullptr) {
+			p->addButton(iManager->addButton<ButtonSlott>(Vector2D(xs_ + 1.5 * espace_H, ys_ + 1 * espace_V + 1.02 * hs_), hs_ / 2, hs_ / 2, src::Slot));
+			pivot = src::_firstArmorId_;
+			auxId = (int)armor->getArmorId();
+			id = (Resources::TextureId) (pivot + auxId + 1);
+			p->addButton(iManager->addButton<ButtonSlott>(Vector2D(xs_ + 1.5 * espace_H, ys_ + 1 * espace_V + 1.02 * hs_), hs_ / 2, hs_ / 2, id));
+		}
+		else
+			p->addButton(iManager->addButton<ButtonSlott>(Vector2D(xs_ + 1.5 * espace_H, ys_ + 1 * espace_V + 1.02 * hs_), hs_ / 2, hs_ / 2, src::ArmorSlot));
+
+		/*Armor* armor_ = hero_->getArmor();		// Armadura
 		Weapon* weapon_ = hero_->getWeapon();	// Arma
+		*/
+		// No funciona bien lo ponerlo en una sola linea: (prueba si quieres)
+		//p->addButton(iManager->addButton<ButtonSlott>(Vector2D(xs_ + 1 * espace_H + (abs(ws_ - hs_) / 2), ys_ + 1 * espace_V + 1.02 * hs_), hs_ / 2, hs_ / 2, Resources::WeaponSlot));
+		//p->addButton(iManager->addButton<ButtonSlott>(Vector2D(xs_ + 1.5 * espace_H, ys_ + 1 * espace_V + 1.02 * hs_), hs_ / 2, hs_ / 2, Resources::ArmorSlot));
+		//p->addButton(iManager->addButton<Line>(Vector2D(xs_ + 2 * espace_H, ys_ + 1 * espace_V + lineTam_V * 0), ws_, lineTam_V * 4, info, Resources::Beaulieux,color));
+
+		//HABILIDADES
+		vector<Hability*> habilities = hero->getHabilities();
+		int size = habilities.size();
+		pivot = src::_firstSkillId_;
+		for (int i = 0; i < size; ++i)
+		{
+			id = (Resources::TextureId)(pivot + uint(habilities[i]->getID()) + 1);
+			p->addButton(iManager->addButton<ButtonSlott>(Vector2D(xs_ + 1 * espace_H + (abs(ws_ - hs_) / 2) + i * (hs_ / size), ys_ + 1 * espace_V + 1.55 * hs_), hs_ / size, hs_ / size, id));
+		}
 	}
 
-	// No funciona bien lo ponerlo en una sola linea: (prueba si quieres)
-	p->addButton(iManager->addButton<ButtonSlott>(Vector2D(xs_ + 1 * espace_H + (abs(ws_ - hs_) / 2), ys_ + 1 * espace_V + 1.02 * hs_), hs_ / 2, hs_ / 2, Resources::WeaponSlot));
-	p->addButton(iManager->addButton<ButtonSlott>(Vector2D(xs_ + 1.5 * espace_H, ys_ + 1 * espace_V + 1.02 * hs_), hs_ / 2, hs_ / 2, Resources::ArmorSlot));
-	//p->addButton(iManager->addButton<Line>(Vector2D(xs_ + 2 * espace_H, ys_ + 1 * espace_V + lineTam_V * 0), ws_, lineTam_V * 4, info, Resources::Beaulieux,color));
-
-	//HABILIDADES
-	vector<Hability*> habilities = hero->getHabilities();
-	int size = habilities.size();
-	uint pivot = src::_firstSkillId_;
-	Resources::TextureId id;
-	for (int i = 0; i < size; ++i) 
-	{
-		id = (Resources::TextureId)(pivot + uint(habilities[i]->getID()) + 1);
-		p->addButton(iManager->addButton<ButtonSlott>(Vector2D(xs_ + 1 * espace_H + (abs(ws_ - hs_) / 2) + i * (hs_ / size), ys_ + 1 * espace_V + 1.55 * hs_), hs_ / size, hs_ / size, id));
-	}
+	
 }
 
 void Interfaz::createTargets()

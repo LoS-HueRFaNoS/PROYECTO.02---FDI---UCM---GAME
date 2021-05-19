@@ -34,16 +34,13 @@ public:
 	}
 
 	void removeComponent(ecs::CmpIdType id) {
-		for (auto it = components_.begin(); it != components_.end(); /**/)
+		//componentsArray_[id]->disable();
+		for (auto it = components_.begin(); it != components_.end(); it++)
 		{
 			if ((*it).get()->getId() == id) {
-				it = components_.erase(it);
+				(*it)->disable();				
 			}
-			else it++;
-		}		
-		
-		componentsArray_[id] = nullptr;
-		
+		}
 	}
 
 	template<typename T>
@@ -63,6 +60,7 @@ public:
 			if (isActive())
 				components_[i]->update();
 		}
+		refresh();
 	}
 
 	void draw() {
@@ -71,6 +69,21 @@ public:
 			if (isActive())
 				c->draw();
 		}
+	}
+
+	void refresh()
+	{
+		ecs::CmpIdType id = ecs::PanelTurns;
+		for (auto it = components_.begin(); it != components_.end(); /**/)
+		{
+			if (!(*it).get()->isActive()) {
+				id = (*it).get()->getId();
+				it = components_.erase(it);
+			}
+			else it++;
+		}
+
+		componentsArray_[id] = nullptr;
 	}
 
 	// ocultar / mostrar

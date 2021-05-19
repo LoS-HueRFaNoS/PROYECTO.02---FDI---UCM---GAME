@@ -3,7 +3,8 @@
 Component::Component(ecs::CmpId id) :
 		entity_(nullptr), //
 		game_(nullptr), //
-		id_(id) //
+		id_(id), //
+		active(true)
 {
 }
 
