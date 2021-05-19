@@ -27,8 +27,8 @@
         }
       ],
 
-      "HitPoints": 10,
-      "ManaPoints": 8,
+      "HitPoints": 20,
+      "ManaPoints": 16,
       "Marcial": true,
 
       "Weaknesses": [
@@ -138,8 +138,8 @@
         }
       ],
 
-      "HitPoints": 6,
-      "ManaPoints": 12,
+      "HitPoints": 12,
+      "ManaPoints": 24,
       "Marcial": false,
 
       "Weaknesses": [
@@ -248,8 +248,8 @@
         }
       ],
 
-      "HitPoints": 8,
-      "ManaPoints": 10,
+      "HitPoints": 16,
+      "ManaPoints": 20,
       "Marcial": true,
 
       "Weaknesses": [
@@ -360,8 +360,8 @@
         }
       ],
 
-      "HitPoints": 8,
-      "ManaPoints": 10,
+      "HitPoints": 16,
+      "ManaPoints": 20,
       "Marcial": true,
 
       "Weaknesses": [
@@ -473,8 +473,8 @@
         }
       ],
 
-      "HitPoints": 8,
-      "ManaPoints": 10,
+      "HitPoints": 16,
+      "ManaPoints": 20,
       "Marcial": false,
 
       "Weaknesses": [
@@ -585,8 +585,8 @@
         }
       ],
 
-      "HitPoints": 10,
-      "ManaPoints": 8,
+      "HitPoints": 20,
+      "ManaPoints": 16,
       "Marcial": true,
 
       "Weaknesses": [
@@ -696,8 +696,8 @@
         }
       ],
 
-      "HitPoints": 12,
-      "ManaPoints": 6,
+      "HitPoints": 24,
+      "ManaPoints": 12,
       "Marcial": true,
 
       "Weaknesses": [
@@ -810,8 +810,8 @@
         }
       ],
 
-      "HitPoints": 8,
-      "ManaPoints": 10,
+      "HitPoints": 16,
+      "ManaPoints": 20,
       "Marcial": true,
 
       "Weaknesses": [
@@ -921,8 +921,8 @@
         }
       ],
 
-      "HitPoints": 8,
-      "ManaPoints": 10,
+      "HitPoints": 16,
+      "ManaPoints": 20,
       "Marcial": false,
 
       "Weaknesses": [

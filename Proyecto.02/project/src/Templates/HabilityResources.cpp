@@ -57,8 +57,6 @@ void HealingWord::throwHability(Character* obj, bool critical) const
 	int healing = throwDice(1 + critical, 8, true);
 
 	obj->recieveHealing(healing);
-
-	obj->addCondition<EjemploRevivirMuerte>(_caster);
 }
 
 void AllyTeamHealExample::throwHability(Character* obj, bool critical) const
