@@ -57,9 +57,11 @@ public:
 
 	void update() {
 		if (!enabled) return;
-		for (auto &c : components_) {
+		auto n = components_.size();
+		for (auto i = 0u; i < n; i++)
+		{
 			if (isActive())
-				c->update();
+				components_[i]->update();
 		}
 	}
 

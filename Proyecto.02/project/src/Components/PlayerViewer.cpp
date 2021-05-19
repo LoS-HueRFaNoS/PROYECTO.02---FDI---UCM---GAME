@@ -73,7 +73,6 @@ void PlayerViewer::draw()
 		if (!casillaSigSig[sentido])
 		{
 			manager->getTexture(Resources::muro_fondo_fr)->render(dest);
-
 		}
 
 		if (casillaSigSig[izquierda])
@@ -108,17 +107,16 @@ void PlayerViewer::draw()
 		if (casillaSig[sentido])
 		{
 			manager->getTexture(Resources::camino_fr)->render(dest);
-
-
 		}
 		else manager->getTexture(Resources::muro_fr)->render(dest);
 	}
 	else manager->getTexture(Resources::muro_del)->render(dest);
 	//renderEnemyActual();
 	if (cas->isExit()) {
-		manager->getTexture(Resources::texto_salida)->render(dest);
+			dest = RECT(_x+_w/2-300, _y+50, 600, 300);
+			manager->getTexture(Resources::texto_salida)->render(dest);
 	}
-		//manager->getTexture(Resources::guiaSalida)->render(SDL_Rect{game_->getWindowWidth()/2-50, 100, 100,50});
+	//manager->getTexture(Resources::guiaSalida)->render(SDL_Rect{game_->getWindowWidth()/2-50, 100, 100,50});
 }
 
 //void PlayerViewer::renderEnemyActual()

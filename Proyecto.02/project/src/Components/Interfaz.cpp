@@ -6,6 +6,8 @@
 #include "Image.h"
 #include "Transform.h"
 #include "StateBar.h"
+#include "Laberinto.h"
+#include "PanelTurns.h"
 #include "../Utilities/SDL_macros.h"
 #include "../Utilities/textures_box.h"
 #include "../Managers/SDLGame.h"
@@ -648,6 +650,20 @@ void Interfaz::createGuide()
 
 }
 
+void Interfaz::createTurns() 
+{
+	// construccion y asignacion del panel:
+	Panel* p = new Panel(Turns);
+	allPanels[Turns] = p;
+
+	TheElementalMaze::instance()->addComponent<PanelTurns>(game_, p, iManager);
+}
+
+void Interfaz::toggleMinimap()
+{
+	TheElementalMaze::instance()->getLaberinto()->toggleMiniMap();
+}
+
 
 void Interfaz::createPanel(idPanel panelID)
 {
@@ -659,7 +675,7 @@ void Interfaz::createPanel(idPanel panelID)
 		createMovement();
 		break;
 	case Minimap:
-		createMinimap();
+		toggleMinimap();
 		break;
 	case Heroes:
 		createHeroes();
@@ -799,13 +815,16 @@ void Interfaz::update()
 			togglePanel(Movement);
 			createPanel(Fight);
 			createPanel(Enemies);
+			createPanel(Turns);
+			toggleMinimap();
 		}
 		break;
 	case gameST::END_COMBAT:
 		if (getActivePan(Enemies))
 		{
+			toggleMinimap();
 			removePanel(Enemies);
-			// PARTY
+			TheElementalMaze::instance()->removeComponent(ecs::PanelTurns);
 			checkHerosParty(); // check de puertas de la muerte
 			TheElementalMaze::instance()->changeState(gameST::COMBAT);
 		}

@@ -20,6 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Components\GameStateManager.cpp" />
+    <ClCompile Include="src\Components\PanelTurns.cpp" />
     <ClCompile Include="src\Managers\SDL\AudioManager.cpp" />
     <ClCompile Include="src\GameObjects\Button.cpp" />
     <ClCompile Include="src\Components\ButtonCtrl.cpp" />
@@ -74,6 +75,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Components\GameStateManager.h" />
+    <ClInclude Include="src\Components\PanelTurns.h" />
     <ClInclude Include="src\Managers\SDL\AudioManager.h" />
     <ClInclude Include="src\GameObjects\Button.h" />
     <ClInclude Include="src\Components\ButtonCtrl.h" />
@@ -139,6 +141,9 @@
     <None Include="resources\jsons\enemies.json" />
     <None Include="resources\jsons\pruebasArmaduras.json" />
     <None Include="resources\jsons\pruebasArmas.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="src\NewFile.txt" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
