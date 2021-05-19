@@ -120,8 +120,6 @@ void Laberinto::createRandomMaze(Vector2D entrada)
 				y--;
 				laberinto[x][y] = new Casilla(game_);
 				laberinto[x][y]->setDirs(Sur);
-
-
 				break;
 
 			case 1: // East
@@ -129,7 +127,6 @@ void Laberinto::createRandomMaze(Vector2D entrada)
 				x++;
 				laberinto[x][y] = new Casilla(game_);
 				laberinto[x][y]->setDirs(Oeste);
-
 				break;
 
 			case 2: // South
@@ -154,6 +151,28 @@ void Laberinto::createRandomMaze(Vector2D entrada)
 			if (x == salida.getX() && y == salida.getY())
 			{
 				shortestWay = vector<Vector2D>(m_stack);
+
+				int enemyType = 0;
+
+				switch (level)
+				{
+				case 0:
+					enemyType = int(enemyTemplate::DEATHKNIGHT);
+					break;
+				case 1:
+					enemyType = int(enemyTemplate::DRACOLICH);
+					break;
+				case 2:
+					enemyType = int(enemyTemplate::LICH);
+					break;
+				default:
+					break;
+				}
+				
+				generaObjeto(0, enemyType, laberinto[x][y], 1, 0);
+
+				level++;
+
 				laberinto[x][y]->setSalida();
 			}
 
@@ -162,27 +181,39 @@ void Laberinto::createRandomMaze(Vector2D entrada)
 			if (hayEnemy < 3)
 			{
 				int enemyType = 0;
+				int random = 0; 
 
 				switch (level)
 				{
 				case 0:
-					enemyType = game_->getRandGen()->nextInt(0, int(enemyTemplate::ZOMBIE));
+					random = throwDice(1, 3);
+					for (int i = 0; i < random; i++)
+					{
+						enemyType = game_->getRandGen()->nextInt(0, int(enemyTemplate::ZOMBIE));
+						generaObjeto(0, enemyType, laberinto[x][y], 1, 0);
+					}
 					break;
 				case 1:
-					enemyType = game_->getRandGen()->nextInt(0, int(enemyTemplate::HELLHOUND));
+					random = throwDice(1, 3);
+					for (int i = 0; i < random; i++)
+					{
+						enemyType = game_->getRandGen()->nextInt(0, int(enemyTemplate::HELLHOUND));
+						generaObjeto(0, enemyType, laberinto[x][y], 1, 0);
+					}
 					break;
 				case 2:
-					enemyType = game_->getRandGen()->nextInt(0, int(enemyTemplate::DEATHKNIGHT));
+					random = throwDice(1, 3);
+					for (int i = 0; i < random; i++)
+					{
+						enemyType = game_->getRandGen()->nextInt(0, int(enemyTemplate::DEATHKNIGHT));
+						generaObjeto(0, enemyType, laberinto[x][y], 1, 0);
+					}
 					break;
 				default:
 					break;
 				}
-				
-				//int enemyType = enemyTemplate::ZOMBIE;
-				//cout << "En la casilla [" << x << " , " << y << " ]" << endl;
-				generaObjeto(0, enemyType, laberinto[x][y], 1,0);
-				
 			}
+
 			else
 			{
 				int hayCofre = game_->getRandGen()->nextInt(0, 10);
@@ -193,13 +224,9 @@ void Laberinto::createRandomMaze(Vector2D entrada)
 					//cout << "En la casilla [" << x << " , " << y << " ]" << " hay un cofre con :" << endl;
 					generaObjeto(1, chestType, laberinto[x][y], 2, 0);
 				}
-
-				
 			}
-
-			
-
 		}
+
 		else
 		{
 			// No available neighbours so backtrack!
