@@ -95,6 +95,23 @@ public:
 	double setVerticalScale(double num) { return num * getWindowHeight() / 1050; };
 	double setHorizontalScale(double num) { return num * getWindowWidth() / 1920; };
 
+	/// <summary>
+	/// panel data with relative size respect window size and with given interfaz parameters
+	/// (look .cpp for more info)
+	/// </summary>
+	/// <param name="x"> = position at X axe </param>
+	/// <param name="y"> = position at Y axe </param>
+	/// <param name="w"> = marco width size </param>
+	/// <param name="h"> = marco height size </param>
+	/// <param name="r"> = elements in a row </param>
+	/// <param name="c"> = elements in a col </param>
+	/// <param name="mw"> = horizontal margins size </param>
+	/// <param name="mh"> = vertical margins size </param>
+	/// <param name="ew"> = horizontal espace size between elements </param>
+	/// <param name="eh"> = vertical espace size between elements </param>
+	/// <returns> struct SDL_Panel </returns>
+	SDL_Panel relativePanel(double x, double y, double w, double h, int r, int c, double mw, double mh, double ew, double eh);
+
 private:
 	SDLGame(string windowTitle_, int width, int height);
 

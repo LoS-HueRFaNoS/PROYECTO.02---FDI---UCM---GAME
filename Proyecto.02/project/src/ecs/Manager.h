@@ -12,7 +12,7 @@ public:
 
 	virtual void update();
 	void refresh();
-	void draw();
+	virtual void draw();
 	Entity* addEntity();
 	void addEntity(Entity* e);
 	void removeEntity(Entity* e);

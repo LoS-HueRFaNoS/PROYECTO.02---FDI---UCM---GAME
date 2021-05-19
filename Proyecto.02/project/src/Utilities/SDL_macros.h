@@ -2,7 +2,7 @@
 
 #include <string>
 #include <SDL.h>
-
+#include "../Managers/SDLGame.h"
 /*
  * This file includes some SDL related macros
  */
@@ -31,3 +31,9 @@
 // converts string of the form "#4455AAFF" to a corresponding SDL_Color
 //
 SDL_Color hex2sdlcolor(std::string input);
+
+//Returns de position given by the rect
+#define POS(rect) {Vector2D(rect.x,rect.y)} 
+
+//Returns el porcentaje (x/1.0 * 100)% when num <= 1.0
+#define PERCENTAGE(num) {to_string(int(num*100))  + "%"}

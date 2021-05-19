@@ -12,6 +12,9 @@ public:
 	enum MOUSEBUTTON : Uint8 {
 		LEFT = 0, MIDDLE = 1, RIGHT = 2
 	};
+	enum MOUSEWHEEL : Uint8 {
+		UP = 0, DOWN = 1
+	};
 
 	InputHandler(InputHandler&) = delete;
 	InputHandler& operator=(InputHandler&) = delete;
@@ -64,6 +67,18 @@ public:
 		return isMouseButtonEvent_;
 	}
 
+	inline bool mouseWheelEvent() {
+		bool e = isMouseWheelEvent_;
+		isMouseWheelEvent_ = false;
+		return e;
+	}
+
+	inline int getMouseWheelState(MOUSEWHEEL w) {
+		bool e = mwState_[w];
+		mwState_[w] = false;
+		return e;
+	}
+
 	inline const Vector2D& getMousePos() {
 		return mousePos_;
 	}
@@ -94,6 +109,15 @@ private:
 		isMouseMotionEvent_ = true;
 		mousePos_.set(event.motion.x, event.motion.y);
 	}
+	inline void onMouseWheelMotion(SDL_Event &event, bool isDown) {
+		isMouseWheelEvent_ = true;
+		if (event.wheel.y > 0) {
+			mwState_[UP] = isDown;
+		}
+		else if (event.wheel.y < 0) {
+			mwState_[DOWN] = isDown;
+		}
+	}
 	inline void onMouseButtonChange(SDL_Event &event, bool isDown) {
 		isMouseButtonEvent_ = true;
 		if (event.button.button == SDL_BUTTON_LEFT) {
@@ -112,8 +136,10 @@ private:
 	bool isKeyDownEvent_;
 	bool isMouseMotionEvent_;
 	bool isMouseButtonEvent_;
+	bool isMouseWheelEvent_;
 
 	Vector2D mousePos_;
+	std::array<bool, 2> mwState_;
 	std::array<bool, 3> mbState_;
 };
 

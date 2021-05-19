@@ -11,6 +11,45 @@
 
 unique_ptr<SDLGame> SDLGame::instance_;
 
+/// \brief panel data with relative size respect window size and with given interfaz parameters
+SDL_Panel SDLGame::relativePanel(double x, double y, double w, double h, int r, int c, double mw, double mh, double ew, double eh)
+{
+	SDL_Panel panel;
+
+	// margins size
+	panel.mw = setHorizontalScale(mw);
+	panel.mh = setVerticalScale(mh);
+
+	// number of elements in a row or in a col
+	panel.r = r;
+	panel.c = c;
+
+	// panel position respect window
+	panel.x = setHorizontalScale(x);
+	panel.y = setVerticalScale(y);
+
+	// panel size in window
+	panel.w = setHorizontalScale(w);
+	panel.h = setVerticalScale(h);	
+
+	// espaces between elements
+	panel.ew = setHorizontalScale(ew);
+	panel.eh = setVerticalScale(eh);
+
+	// first element position
+	panel.fcx = panel.x + panel.mw + panel.ew;
+	panel.fcy = panel.y + panel.mh + panel.eh;
+
+	// cells size
+	panel.cw = ((panel.w - (panel.mw * 2)) / panel.r) - panel.ew;
+	panel.ch = ((panel.h - (panel.mh * 2)) / panel.c) - panel.eh;
+
+	// last element position
+	panel.lcx = panel.x + panel.w - panel.mw - panel.ew - panel.cw;
+	panel.lcy = panel.y + panel.h - panel.mh - panel.eh - panel.ch;
+
+	return panel;
+}
 
 SDLGame::SDLGame(string windowTitle, int width, int height) :
 		windowTitle_(windowTitle), width_(width), height_(height) {

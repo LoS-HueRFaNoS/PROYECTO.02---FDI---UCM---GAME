@@ -66,9 +66,9 @@ void PanelTurns::drawCharacterActual()
 	CharacterSheet* character_sheet = character_->getCharacterSheet();
 	pos = Vector2D(firstElement.x, firstElement.y + firstElement.h * 2);
 	string text = to_string(character_sheet->maxHitPoints());	// Health
-	pan_->addButton(iManager_->addButton<Line>(pos, firstElement.w, firstElement.h, text, Resources::Fornite, color));
+	pan_->addButton(iManager_->addButton<Line>(pos, firstElement.w, firstElement.h, text, Resources::Fornite64, color));
 	color = { 0,0,255,255 };
 	pos = Vector2D(firstElement.x + firstElement.w, firstElement.y + firstElement.h * 2);
 	text = to_string(character_sheet->maxManaPoints());	// Mana
-	pan_->addButton(iManager_->addButton<Line>(pos, firstElement.w, firstElement.h, text, Resources::Fornite, color));
+	pan_->addButton(iManager_->addButton<Line>(pos, firstElement.w, firstElement.h, text, Resources::Fornite64, color));
 }

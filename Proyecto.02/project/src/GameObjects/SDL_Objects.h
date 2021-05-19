@@ -36,4 +36,5 @@ public:
 	Line(SDLGame* game, EntityManager* mngr) : SDL_Object(game, mngr) {};
 	~Line() {};
 	virtual void init(Vector2D pos, uint ancho, uint alto, string line, Resources::FontId font, const SDL_Color& color);
+	virtual void init(SDL_Rect size, string line, const SDL_Color& color);
 };
