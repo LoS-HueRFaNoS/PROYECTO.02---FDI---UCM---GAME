@@ -8,7 +8,7 @@ PartyManager::PartyManager() :
 	manaPotions(5),
 	healthPotions(5),
 	items_(std::vector<Item*>(NUM_ITEMS)),
-	heroes_(std::vector<Hero*>())
+	heroes_(std::vector<Hero*>(4, nullptr))
 {
 }
 
@@ -56,9 +56,11 @@ Hero* PartyManager::addHero(Hero* h, int pos)
 
 bool PartyManager::addHero(Hero* h)
 {
-	if (heroes_.size() < 4) {
-		heroes_.push_back(h);
-		return true;
+	for (int i = 0; i < 4; i++) {
+		if (!heroes_[i]) {
+			heroes_[i] = h;
+			return true;
+		}
 	}
 	return false;
 }
@@ -125,7 +127,7 @@ void PartyManager::changeItemWithHero(int index, int hero)
 {
 	if (!heroes_[hero] || !items_[index])
 		return;
-	
+
 	Item* it = items_[index];
 	ItemType t = it->getItemType();
 	Item* ret = nullptr;

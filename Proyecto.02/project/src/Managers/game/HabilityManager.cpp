@@ -45,6 +45,11 @@ void HabilityManager::init()
 	habilityMap_[habID::THORNS] = &HabilityManager::createHability<Thorns>;
 }
 
+HabilityManager::~HabilityManager()
+{
+	habilityMap_.clear();
+}
+
 void HabilityManager::Init()
 {
 	assert(instance_.get() == nullptr);

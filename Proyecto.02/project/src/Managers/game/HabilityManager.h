@@ -1,5 +1,6 @@
 #pragma once
 #include "../../Templates/HabilityResources.h"
+#include "../../Utilities/checkML.h"
 
 
 class HabilityManager {
@@ -19,6 +20,9 @@ private:
 public:
 
 	static void Init();
+
+	HabilityManager() {}
+	~HabilityManager();
 
 	static HabilityManager* instance() {
 		assert(instance_.get() != nullptr);

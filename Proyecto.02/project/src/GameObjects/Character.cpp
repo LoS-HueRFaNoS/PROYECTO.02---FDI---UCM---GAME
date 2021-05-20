@@ -11,6 +11,7 @@ using namespace rpgLogic;
 
 Character::~Character()
 {
+	Entity::~Entity();
 	delete _sheet;
 	_sheet = nullptr;
 	for (Hability* h : _habilities)
@@ -18,6 +19,8 @@ Character::~Character()
 		delete h;
 		h = nullptr;
 	}
+	_habilities.clear();
+	_habilitiesExtra.clear();
 	delete lightAttack_;
 	lightAttack_ = nullptr;
 	delete heavyAttack_;
@@ -197,6 +200,7 @@ void Character::removeBadConditions()
 
 Hero::~Hero()
 {
+	Character::~Character();
 	delete _armor;
 	_armor = nullptr;
 }
@@ -253,31 +257,23 @@ void Hero::loadFromJson(jute::jValue v, int t)
 	int cont = 0;
 
 	int lanz = throwDice(1, v["Characters"][t]["ListHabilitiesLv1"].size() - 1);
-	int habLv1 = v["Characters"][t]["ListHabilitiesLv1"][lanz].as_int();
-	Hability* c = HabilityManager::instance()->getHability((Hability_Id)habLv1);
-	_habilitiesExtra.push_back(c);
-	_habilitiesArrayExtra[cont] = c;
+	int hab = v["Characters"][t]["ListHabilitiesLv1"][lanz].as_int();
+	_habilitiesExtra.push_back((habID)hab);
 	cont++;
 
 	lanz = throwDice(1, v["Characters"][t]["ListHabilitiesLv2"].size() - 1);
-	int habLv2 = v["Characters"][t]["ListHabilitiesLv2"][lanz].as_int();
-	c = HabilityManager::instance()->getHability((Hability_Id)habLv2);
-	_habilitiesExtra.push_back(c);
-	_habilitiesArrayExtra[cont] = c;
+	hab = v["Characters"][t]["ListHabilitiesLv2"][lanz].as_int();
+	_habilitiesExtra.push_back((habID)hab);
 	cont++;
 
 	lanz = throwDice(1, v["Characters"][t]["ListHabilitiesLv3"].size() - 1);
-	int habLv3 = v["Characters"][t]["ListHabilitiesLv3"][lanz].as_int();
-	c = HabilityManager::instance()->getHability((Hability_Id)habLv3);
-	_habilitiesExtra.push_back(c);
-	_habilitiesArrayExtra[cont] = c;
+	hab = v["Characters"][t]["ListHabilitiesLv3"][lanz].as_int();
+	_habilitiesExtra.push_back((habID)hab);
 	cont++;
 
 	lanz = throwDice(1, v["Characters"][t]["ListHabilitiesLv4"].size() - 1);
-	int habLv4 = v["Characters"][t]["ListHabilitiesLv4"][lanz].as_int();
-	c = HabilityManager::instance()->getHability((Hability_Id)habLv4);
-	_habilitiesExtra.push_back(c);
-	_habilitiesArrayExtra[cont] = c;
+	hab = v["Characters"][t]["ListHabilitiesLv4"][lanz].as_int();
+	_habilitiesExtra.push_back((habID)hab);
 }
 
 void Hero::endCombat(int exp)
@@ -428,16 +424,16 @@ void Hero::AddHabilityWithLevel(int level)
 	switch (nivel)
 	{
 	case 1:
-		addHability(_habilitiesExtra[0]->getID());
+		addHability(_habilitiesExtra[0]);
 		break;
 	case 2:
-		addHability(_habilitiesExtra[1]->getID());
+		addHability(_habilitiesExtra[1]);
 		break;
 	case 3:
-		addHability(_habilitiesExtra[2]->getID());
+		addHability(_habilitiesExtra[2]);
 		break;
 	case 4:
-		addHability(_habilitiesExtra[4]->getID());
+		addHability(_habilitiesExtra[4]);
 		break;
 	default:
 		break;
