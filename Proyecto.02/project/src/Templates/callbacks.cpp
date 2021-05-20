@@ -249,8 +249,7 @@ void callbacks::startLobby(Interfaz* app)
 	TheElementalMaze::instance()->backFromDungeon();
 	app->togglePanel(MenuPrincipal);
 	app->createPanel(Lobby);
-	/*app->togglePanel(MenuPrincipal);
-	startExp(app);*/
+	
 	
 }
 void callbacks::startExp(Interfaz* app)

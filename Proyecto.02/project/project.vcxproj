@@ -156,6 +156,7 @@
     <ResourceCompile Include="project.rc" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="resources\images\pasillos\frente\fondo_frente.png" />
     <Image Include="resources\lich.ico" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

@@ -399,7 +399,7 @@ void Interfaz::createMenuPrincipal()
 
 	int x, y;
 	x = w / 2 - 150;	y = h / 2 - 50;
-	p->addButton(iManager->addButton<ButtonMenu>(Vector2D(x,y ), 300, 100, src::start, accionMenu::start, this));
+	p->addButton(iManager->addButton<ButtonMenu>(Vector2D(x,y ), 300, 100, src::start, accionMenu::lobby, this));
 	y += 120;
 	p->addButton(iManager->addButton<ButtonMenu>(Vector2D(x,y), 300, 100, src::options, accionMenu::options, this));
 	y += 120;
@@ -412,22 +412,22 @@ void Interfaz::createLobby()
 {
 	Panel* p = new Panel(Lobby);
 	allPanels[Lobby] = p;
-	int w, h ,x,y;
+	int w, h, x, y;
 	string text;
 	SDL_Color color;
 
 	w = game_->getWindowWidth();
 	h = game_->getWindowHeight();
-	p->addButton(iManager->addButton<ButtonSlott>(Vector2D(0, 0), w, h, src::Fondo));
+	p->addButton(iManager->addButton<SDL_Object>(Vector2D(0, 0), w, h, src::Fondo));
 	createPanel(Heroes);
 
 	y = 50;
 	color = { 205,105,0,255 };
 	text = "Tu equipo de combate";
-	p->addButton(iManager->addButton<Line>(Vector2D(w/2 - text.size()*22, y), text.size() * 30, 70, text, Resources::FontId::HERMAN, color));
-	p->addButton(iManager->addButton<ButtonMenu>(Vector2D(w/2 - text.size()*22, y+100), 300, 100, src::howToPlay, accionMenu::shop, this));
-	p->addButton(iManager->addButton<ButtonMenu>(Vector2D(w/2 - text.size()*22, y+150), 300, 100, src::howToPlay, accionMenu::stash, this));
-	p->addButton(iManager->addButton<ButtonMenu>(Vector2D(w-300, y+700), 300, 100, src::howToPlay, accionMenu::start, this));
+	p->addButton(iManager->addButton<Line>(Vector2D(w / 2 - text.size() * 22, y), text.size() * 30, 70, text, Resources::FontId::HERMAN, color));
+	p->addButton(iManager->addButton<ButtonMenu>(Vector2D(w / 2 - text.size() * 22, y + 100), 300, 100, src::howToPlay, accionMenu::shop, this));
+	p->addButton(iManager->addButton<ButtonMenu>(Vector2D(w / 2 - text.size() * 22, y + 150), 300, 100, src::howToPlay, accionMenu::stash, this));
+	p->addButton(iManager->addButton<ButtonMenu>(Vector2D(w - 300, y + 700), 300, 100, src::howToPlay, accionMenu::start, this));
 	//
 	////int esp = (w - 6 * 100)/7;
 	//y += 120;
@@ -498,7 +498,7 @@ void Interfaz::createLobby()
 		//	p->addButton(iManager->addButton<ButtonCompra>(Vector2D(x + 45, y + 110), 70, 50, src::howToPlay, i, 1, this));
 		//}
 	//}
-
+}
 void Interfaz::createShop()
 {
 	Panel* p = new Panel(Shop);
@@ -687,6 +687,15 @@ void Interfaz::createPanel(idPanel panelID)
 		break;
 	case Enemies:
 		createEnemies();
+		break;
+	case Lobby:
+		createLobby();
+		break;
+	case StashPanel:
+		createStash();
+		break;
+	case Shop:
+		createShop();
 		break;
 	default:
 		break;
