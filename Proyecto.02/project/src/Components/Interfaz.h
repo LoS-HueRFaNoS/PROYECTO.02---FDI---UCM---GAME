@@ -15,7 +15,7 @@ class Interfaz : public Component {
 private:
 
 	InterfazManager* iManager;
-	std::map<idPanel, Panel*> allPanels;
+	vector<Panel*> allPanels;
 
 	void createFight();
 	void createEnemies();
@@ -42,7 +42,7 @@ private:
 public:
 	Interfaz(InterfazManager* i) :
 		Component(ecs::Interfaz),
-		allPanels(std::map<idPanel,Panel*>()),
+		allPanels(vector<Panel*>()),
 		iManager(i)
 	{};
 	virtual ~Interfaz();
@@ -67,4 +67,7 @@ public:
 	void checkActiveHeroButton(HeroNum nAct);
 	void checkHerosParty();
 	void createFichaDD(uint nCharacter);
+
+private:
+	void initialize();
 };

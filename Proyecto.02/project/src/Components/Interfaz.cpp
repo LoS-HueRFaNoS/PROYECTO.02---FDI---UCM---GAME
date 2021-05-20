@@ -25,9 +25,9 @@ using namespace textures_box;
 
 Interfaz::~Interfaz()
 {
-	for (int i = 0; i < maxPanels; i++) {
-		delete allPanels[(idPanel)i];
-		allPanels[(idPanel)i] = nullptr;
+	for (auto it = allPanels.begin(); it != allPanels.end(); ++it)
+	{
+		delete (*it);
 	}
 	allPanels.clear();
 }
@@ -169,8 +169,8 @@ void Interfaz::createHeroes()
 		ButtonHero* b_ = iManager->addButton<ButtonHero>(Vector2D(x_, y_ + i * espace), w_, h_, getHeroTxt(i), (HeroNum)i, DDPan, false);
 		uint k = 6;
 		b_->addComponent<StateBar>(heroes[i], health, SDL_Rect(RECT((x_ + w_ + n), (y_ + i * espace + h_ * 1 / k), w_ * 2, h_ / k)));
-		b_->addComponent<StateBar>(heroes[i], mana, SDL_Rect(RECT((x_ + w_ + n), (y_ + i * espace + h_ * 2.5 / k), w_ * 2, h_ / k)));
-		b_->addComponent<StateBar>(heroes[i], experience, SDL_Rect(RECT((x_ + w_ + n), (y_ + i * espace + h_ * 4 / k), w_ * 2, h_ / k)));
+		b_->addComponent<StateBar>(heroes[i], mana, SDL_Rect(RECT( (x_ + w_ + n), (y_ + i * espace + h_ * 2.5 / k), w_ * 2, h_ / k )));
+		b_->addComponent<StateBar>(heroes[i], experience, SDL_Rect(RECT( (x_ + w_ + n), (y_ + i * espace + h_ * 4 / k), w_ * 2, h_ / k )));
 		p->addButton(b_);
 	}
 }
@@ -202,7 +202,7 @@ void Interfaz::createInfo()
 	// construccion del panel de informacion
 	Panel* p = new Panel(Info);
 	allPanels[Info] = p;
-
+	
 	// BOTONES: health, mana, resurrection
 	p->addButton(iManager->addButton<ButtonPanel>(Vector2D(x_, y_), w_ * 2, h_ * 2, src::Inventario, Inventory, false));
 	p->addButton(iManager->addButton<ButtonPotion>(Vector2D(x_ + 2 * espace_H, y_ + 0 * espace_V), w_, h_, src::PocionVida, PtnType::health));
@@ -259,12 +259,12 @@ void Interfaz::createInventory()
 			posX += slotTam;
 		}
 		posY += slotTam; // Se suma la coordenada Y
-
+		
 	}
 
 	posX += slotTam; // Se suma la coordenada X dejando un espacio.
 	posY = slotTam * 1.8;
-
+	
 
 	// Inventario personajes: clase + arma + armadura
 	PartyManager* c = TheElementalMaze::instance()->getPartyManager();
@@ -280,21 +280,21 @@ void Interfaz::createInventory()
 			id = (Resources::TextureId) (pivot + auxId + 1);
 			p->addButton(iManager->addButton<SDL_Object>(Vector2D(posX + slotTam + margen, posY + margen), itemTam, itemTam, id));
 		}
-		else
+		else 	
 			p->addButton(iManager->addButton<SDL_Object>(Vector2D(posX + slotTam, posY), slotTam, slotTam, src::WeaponSlot));
 
 		Armor* armor = heroes[i]->getArmor();
 		if (armor != nullptr) {
 			p->addButton(iManager->addButton<SDL_Object>(Vector2D(posX + slotTam * 2, posY), slotTam, slotTam, src::Slot));
 			pivot = src::_firstArmorId_;
-			auxId = (int)armor->getArmorId();
+			auxId = (int) armor->getArmorId();
 			id = (Resources::TextureId) (pivot + auxId + 1);
-			p->addButton(iManager->addButton<SDL_Object>(Vector2D(posX + slotTam * 2 + margen, posY + margen), 0.8 * slotTam, 0.8 * slotTam, id));
+			p->addButton(iManager->addButton<SDL_Object>(Vector2D( posX + slotTam * 2 + margen, posY + margen), 0.8 * slotTam, 0.8 * slotTam, id));
 		}
-		else
+		else 
 			p->addButton(iManager->addButton<SDL_Object>(Vector2D(posX + slotTam * 2, posY), slotTam, slotTam, src::ArmorSlot));
 
-
+		
 
 		posY += slotTam * 1.33;
 	}
@@ -314,7 +314,7 @@ void Interfaz::createFichaDD(uint nCharacter)
 
 void Interfaz::createChat()
 {
-
+	
 }
 
 void Interfaz::createTargets()
@@ -392,20 +392,20 @@ void Interfaz::createMenuPrincipal()
 {
 	Panel* p = new Panel(MenuPrincipal);
 	allPanels[MenuPrincipal] = p;
-	int w, h;
+	int w,  h;
 	w = game_->getWindowWidth();
 	h = game_->getWindowHeight();
 	p->addButton(iManager->addButton<SDL_Object>(Vector2D(0, 0), w, h, src::mFondo));
 
 	int x, y;
 	x = w / 2 - 150;	y = h / 2 - 50;
-	p->addButton(iManager->addButton<ButtonMenu>(Vector2D(x, y), 300, 100, src::start, accionMenu::lobby, this));
+	p->addButton(iManager->addButton<ButtonMenu>(Vector2D(x,y ), 300, 100, src::start, accionMenu::lobby, this));
 	y += 120;
-	p->addButton(iManager->addButton<ButtonMenu>(Vector2D(x, y), 300, 100, src::options, accionMenu::options, this));
+	p->addButton(iManager->addButton<ButtonMenu>(Vector2D(x,y), 300, 100, src::options, accionMenu::options, this));
 	y += 120;
-	p->addButton(iManager->addButton<ButtonMenu>(Vector2D(x, y), 300, 100, src::howToPlay, accionMenu::how_to_play, this));
+	p->addButton(iManager->addButton<ButtonMenu>(Vector2D(x,y), 300, 100, src::howToPlay, accionMenu::how_to_play, this));
 	y += 120;
-	p->addButton(iManager->addButton<ButtonMenu>(Vector2D(x, y), 300, 100, src::quit, accionMenu::quit, this));
+	p->addButton(iManager->addButton<ButtonMenu>(Vector2D(x,y), 300, 100, src::quit, accionMenu::quit, this));
 }
 
 void Interfaz::createLobby()
@@ -509,8 +509,8 @@ void Interfaz::createShop()
 	y = 50;
 	p->addButton(iManager->addButton<ButtonMenu>(Vector2D(w - 300, y + 700), 300, 100, src::howToPlay, accionMenu::shop_lobby, this));
 }
-void Interfaz::createStash() {
-	Panel* p = new Panel(StashPanel);
+void Interfaz::createStash(){
+	Panel* p = new Panel(StashPanel); 
 	allPanels[StashPanel] = p;
 	int w, h, x, y;
 	w = game_->getWindowWidth();
@@ -535,7 +535,7 @@ void Interfaz::createOptions()
 	h = game_->getWindowHeight();
 	p->addButton(iManager->addButton<SDL_Object>(Vector2D(0, 0), w, h, src::mFondo));
 
-
+	
 	x = w / 2 - 200; y = 100;
 	color = { 0,0,0,255 };
 	text = "Options";
@@ -550,7 +550,7 @@ void Interfaz::createOptions()
 	//p->addButton(iManager->addButton<ButtonOption>(Vector2D(w - 100, 36), 64, 64, src::close, accionOption::volumen, 2,this));
 	//p->addButton(iManager->addButton<ButtonOption>(Vector2D(w - 100, 36), 64, 64, src::close, accionOption::volumen, 3,this));
 	//p->addButton(iManager->addButton<ButtonOption>(Vector2D(w - 100, 36), 64, 64, src::close, accionOption::volumen, 4,this));
-
+	
 	x = w / 2 - 100;
 	y += 50;
 	text = "Animation speed";
@@ -580,12 +580,12 @@ void Interfaz::createGuide()
 	h = game_->getWindowHeight();
 	p->addButton(iManager->addButton<SDL_Object>(Vector2D(0, 0), w, h, src::mFondo));
 
-	p->addButton(iManager->addButton<SDL_Object>(Vector2D(100, 100), w - 200, h - 200, src::Pergamino));
+	p->addButton(iManager->addButton<SDL_Object>(Vector2D(100, 100), w-200, h-200, src::Pergamino));
 
 	x = w / 2 - 200; y = 250;
-	color = { 0,0,0,255 };
+	color = {0,0,0,255};
 	text = "How To Play";
-	p->addButton(iManager->addButton<Line>(Vector2D(x, y), 400, 100, text, Resources::FontId::HERMAN, color));
+	p->addButton(iManager->addButton<Line>(Vector2D(x,y),400,100, text, Resources::FontId::HERMAN, color));
 
 	color = { 100,50,0,255 };
 	x = 250; y = 370;
@@ -597,7 +597,7 @@ void Interfaz::createGuide()
 	y += 50;
 	text = "Special Keyboards";
 	ancho = int(text.size()) * 20;
-	p->addButton(iManager->addButton<Line>(Vector2D(x + 150, y), ancho, 40, text, Resources::Fornite64, color));
+	p->addButton(iManager->addButton<Line>(Vector2D(x+150, y), ancho, 40, text, Resources::Fornite64, color));
 
 	color = { 100,50,0,255 };
 	y += 50;
@@ -608,18 +608,18 @@ void Interfaz::createGuide()
 	y += 30;
 	text = "Press up arrows or W keys to advance";
 	ancho = int(text.size()) * 15 - 30;
-	p->addButton(iManager->addButton<Line>(Vector2D(x, y), ancho, 30, text, Resources::Fornite64, color));
+	p->addButton(iManager->addButton<Line>(Vector2D(x, y), ancho , 30, text, Resources::Fornite64, color));
 
 	y += 30;
 	text = "Press spacebar or E keys to interact";
 	ancho = int(text.size()) * 15 - 50;
-	p->addButton(iManager->addButton<Line>(Vector2D(x, y), ancho, 30, text, Resources::Fornite64, color));
+	p->addButton(iManager->addButton<Line>(Vector2D(x, y), ancho, 30, text, Resources::Fornite64, color));	
 
 	p->addButton(iManager->addButton<ButtonMenu>(Vector2D(w - 225, 120), 64, 64, src::close, accionMenu::how_to_play, this));
 
 }
 
-void Interfaz::createTurns()
+void Interfaz::createTurns() 
 {
 	// construccion y asignacion del panel:
 	Panel* p = new Panel(Turns);
@@ -630,7 +630,7 @@ void Interfaz::createTurns()
 
 void Interfaz::toggleMinimap()
 {
-
+	
 }
 
 
@@ -706,54 +706,54 @@ void Interfaz::removePanel(idPanel panID)
 {
 	switch (panID)
 	{
-		/*case interfaz::Movement:
-			break;
-		case interfaz::Heroes:
-			break;
-		case interfaz::Inventory:
-			break;
-		case interfaz::Info:
-			break;*/
+	/*case interfaz::Movement:
+		break;
+	case interfaz::Heroes:
+		break;
+	case interfaz::Inventory:
+		break;
+	case interfaz::Info:
+		break;*/
 	case interfaz::Minimap:
 		TheElementalMaze::instance()->getLaberinto()->toggleMiniMap();
 		break;
-		/*case interfaz::Targets:
-			break;
-		case interfaz::Habilities:
-			break;
-		case interfaz::Fight:
-			break;*/
+	/*case interfaz::Targets:
+		break;
+	case interfaz::Habilities:
+		break;
+	case interfaz::Fight:
+		break;*/
 	case interfaz::Turns:
 		TheElementalMaze::instance()->removeComponent(ecs::PanelTurns);
 		allPanels[panID]->removeButtons();
 		allPanels[panID] = nullptr;
 		break;
-		/*case interfaz::HeroesStats:
-			break;*/
+	/*case interfaz::HeroesStats:
+		break;*/
 	case interfaz::DDPan:
 		TheElementalMaze::instance()->removeComponent(ecs::PanelDnD);
 		allPanels[panID]->removeButtons();
 		allPanels[panID] = nullptr;
 		break;
-		/*case interfaz::BigMap:
-			break;
-		case interfaz::Settings:
-			break;*/
+	/*case interfaz::BigMap:
+		break;
+	case interfaz::Settings:
+		break;*/
 	case interfaz::Chat:
 		TheElementalMaze::instance()->removeComponent(ecs::ChatInfo);
 		break;
-		/*case interfaz::MenuPrincipal:
-			break;
-		case interfaz::Lobby:
-			break;
-		case interfaz::Options:
-			break;
-		case interfaz::HowToPlay:
-			break;
-		case interfaz::Enemies:
-			break;
-		case interfaz::_LastPanId_:
-			break;*/
+	/*case interfaz::MenuPrincipal:
+		break;
+	case interfaz::Lobby:
+		break;
+	case interfaz::Options:
+		break;
+	case interfaz::HowToPlay:
+		break;
+	case interfaz::Enemies:
+		break;
+	case interfaz::_LastPanId_:
+		break;*/
 	default:
 		allPanels[panID]->removeButtons();
 		allPanels[panID] = nullptr;
@@ -792,6 +792,8 @@ void Interfaz::toggleCombat_Movement()
 void Interfaz::init()
 {
 	ChatManager::Init();
+	//allPanels.reserve(maxPanels);
+	initialize(); // convertir a tipo std::map<clave, valor> -> ahora est� hardcodeado
 	// Fondo de todo la interfaz, para delimitar claramente los paneles: 
 	// (mejor que ButtonSlott ser�a crear unaclase foto/image y que button herede de ella)
 	//iManager->addButton<ButtonSlott>(Vector2D(), game_->getWindowWidth(), game_->getWindowHeight(), src::Fondo); 
@@ -810,7 +812,7 @@ void Interfaz::init()
 	togglePanel(Heroes);
 	togglePanel(Info);*/
 
-
+	
 }
 
 void Interfaz::update()
@@ -912,5 +914,13 @@ void Interfaz::checkHerosParty()
 			savedHeroes.push_back(allPanels[Heroes]->getButton(i));
 		}
 	if (changed) allPanels[Heroes]->swapButtonList(savedHeroes);
+}
+
+void Interfaz::initialize()
+{
+	for (uint i = 0; i < maxPanels; ++i)
+	{
+		allPanels.push_back(nullptr);
+	}
 }
 

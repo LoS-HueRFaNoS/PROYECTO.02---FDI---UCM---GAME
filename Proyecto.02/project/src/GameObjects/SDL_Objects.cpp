@@ -34,10 +34,8 @@ void Fondo::changeTheme()
 void Line::init(Vector2D pos, uint ancho, uint alto, string line, Resources::FontId font, const SDL_Color& color = { (0),(0),(0),(255) })
 {
 	Texture* text = new Texture();
-	if (text->loadFromText(game_->getRenderer(), line, game_->getFontMngr()->getFont(font), color)) {
-		tex_ = text;
+	if (text->loadFromText(game_->getRenderer(), line, game_->getFontMngr()->getFont(font), color))
 		SDL_Object::init(pos, ancho, alto, text);
-	}
 	else
 		delete text;
 }
@@ -45,10 +43,8 @@ void Line::init(Vector2D pos, uint ancho, uint alto, string line, Resources::Fon
 void Line::init(SDL_Rect size, string line, const SDL_Color& color)
 {
 	Texture* text = new Texture();
-	if (text->loadFromText(game_->getRenderer(), line, game_->getFontMngr()->getFont(src::Beaulieux), color)) { //src::Beaulieux
-		tex_ = text;
+	if (text->loadFromText(game_->getRenderer(), line, game_->getFontMngr()->getFont(src::Beaulieux), color)) //src::Beaulieux
 		SDL_Object::init(POS(size), size.w, size.h, text);
-	}
 	else
 		delete text;
 }

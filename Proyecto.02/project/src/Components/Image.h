@@ -17,7 +17,6 @@ public:
 		hide(false)
 	{}
 	virtual ~Image() {
-		tex_ = nullptr;
 	}
 
 	void init() override {

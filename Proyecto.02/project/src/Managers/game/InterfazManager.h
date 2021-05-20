@@ -9,6 +9,8 @@ public:
 
 	InterfazManager(SDLGame* game) : EntityManager(game) {}
 
+	virtual ~InterfazManager() {};
+
 	template<typename T, typename ... TArgs>
 	T* addButton(TArgs&& ... mArgs)
 	{
