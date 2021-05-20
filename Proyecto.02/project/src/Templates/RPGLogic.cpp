@@ -1,5 +1,6 @@
 #include "RPGLogic.h"
 #include "../Managers/SDLGame.h"
+#include "../Managers/game/ChatManager.h"
 #include <iostream>
 
 namespace rpgLogic {
@@ -7,13 +8,20 @@ namespace rpgLogic {
 	int throwDice(int n, int dice, bool text)
 	{
 		int r = 0;
-		if (text) cout << "Throwing: " << n << "d" << dice << endl;
+		std::string out1 = "Throwing: " + std::to_string(n);
+		out1 += "d" + std::to_string(dice);
+		std::string out2 = "";
 		for (int i = 0; i < n; i++) {
 			int t = SDLGame::instance()->getRandGen()->nextInt(1, dice + 1);
-			if (text) cout << t << " ";
+			out2 += std::to_string(t) + " ";
 			r += t;
 		}
-		if (text) cout << "\n";
+		if (text && ChatManager::instance()) {
+			ChatManager::instance()->addLine(out1, LineType::Info);
+			ChatManager::instance()->addLine(out2, LineType::Info);
+			std::cout << out1 << "\n";
+			std::cout << out2 << "\n";
+		}
 		return r;
 	}
 

@@ -4,6 +4,7 @@
 #include "../Managers/game/CombatManager.h"
 #include "../Managers/game/ItemManager.h"
 #include "../Managers/TheElementalMaze.h"
+#include "../Managers/game/ChatManager.h"
 
 using namespace rpgLogic;
 
@@ -34,7 +35,10 @@ void Character::startTurn(CombatManager* cm)
 {
 
 	// Manejar estados y cambios que ocurren al pasar de turnos
-	cout << name() << " TURN" << endl;
+
+	std::string out = name() + " TURN";
+	cout << out << endl;
+	ChatManager::instance()->addLine(out, LineType::Info);
 
 	for (std::vector<Condition*>::iterator it = _conditions.begin(); it != _conditions.end();)
 	{
@@ -100,7 +104,10 @@ void Character::recieveDamage(int damage, rpgLogic::damageType type, Character* 
 	}
 	if (_sheet->recieveDamage(damage, type))
 	{
-		cout << name() << " has fainted" << endl;
+
+		std::string out = name() + " has fainted";
+		cout << out << endl;
+		ChatManager::instance()->addLine(out, _type == characterType::HERO ? LineType::DamageReceive : LineType::DamageDone);
 		for (std::vector<Condition*>::iterator it = _conditions.begin(); it != _conditions.end();)
 		{
 			if (!(*it)->onDeath(attacker))
@@ -131,10 +138,13 @@ void Character::recieveBuff(int buff, mainStat stat)
 
 bool Character::savingThrow(int save, rpgLogic::mainStat stat)
 {
-	cout << "Saving throw (" << save << "): " << endl;
+	std::string out = "Saving throw (" + std::to_string(save) + "): ";
+	cout << out << endl;
+	ChatManager::instance()->addLine(out, LineType::Info);
 	bool saved = save < throw20PlusMod(stat, false);
-	string mess = saved ? "Successful throw\n" : "Failed throw\n";
-	cout << mess;
+	string mess = saved ? "Successful throw" : "Failed throw";
+	cout << mess << "\n";
+	ChatManager::instance()->addLine(mess, saved ? LineType::DamageDone : LineType::DamageReceive);
 	return saved;
 }
 
@@ -344,7 +354,7 @@ void Hero::giveArmor(Armor* a) {
 	if (_armor) {
 		w = _armor->getElementalAfinity();
 		for (int i = 0; i < (int)damageType::_lastDamageTypeId_; i++) {
-			_sheet->weaknesses.changeWeakness((damageType)i,-w.getWeakness(((damageType)i)));
+			_sheet->weaknesses.changeWeakness((damageType)i, -w.getWeakness(((damageType)i)));
 		}
 	}
 	w = a->getElementalAfinity();

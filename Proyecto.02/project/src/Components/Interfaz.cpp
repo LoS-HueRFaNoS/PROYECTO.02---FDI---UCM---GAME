@@ -633,9 +633,16 @@ void Interfaz::toggleMinimap()
 
 }
 
+void Interfaz::checkAndDeletePanel(idPanel id)
+{
+	if (allPanels[id])
+		delete allPanels[id];
+}
+
 
 void Interfaz::createPanel(idPanel panelID)
 {
+	checkAndDeletePanel(panelID);
 	switch (panelID) {
 	case Fight:
 		createFight();

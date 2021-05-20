@@ -39,6 +39,8 @@ private:
 
 	void toggleMinimap();
 
+	void checkAndDeletePanel(idPanel id);
+
 public:
 	Interfaz(InterfazManager* i) :
 		Component(ecs::Interfaz),
