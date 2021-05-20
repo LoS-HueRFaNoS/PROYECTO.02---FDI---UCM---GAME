@@ -35,4 +35,14 @@ public:
 	static void options(Interfaz* app);
 	static void howToPlay(Interfaz* app);
 	static void quit(Interfaz* app);
+
+	//boton de lobby
+
+	static void stash(Interfaz* app);
+	static void equiparHeroe(Interfaz* app , int her_);
+	static void shop(Interfaz* app);
+	static void shopping(Interfaz* app, int itemType, int itemid);
+	static void startExp(Interfaz* app);
+	static void shop_lobby(Interfaz* app);
+	static void stash_lobby(Interfaz* app);
 };

@@ -20,9 +20,9 @@ void GameStateManager::update()
 		cout << "MAIN MENU" << endl;
 		break;*/
 	case gameST::LOBBY:
-		cout << "LOBBY REACHED" << endl;
-		tem_->backFromDungeon();
-		changeState(gameST::START_EXPLORING);
+		//cout << "LOBBY REACHED" << endl;
+		//tem_->backFromDungeon();
+		//changeState(gameST::START_EXPLORING);
 		break;
 	case gameST::START_EXPLORING:
 		tem_->startExploring();

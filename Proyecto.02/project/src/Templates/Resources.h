@@ -30,7 +30,7 @@ public:
 		muro_fondo_fr,
 		muro_fondo_fr_izq,
 		muro_fondo_fr_der,
-
+		fondo_vacio,
 		no_visitado,
 		no_entrado,
 		visitado,
@@ -40,6 +40,8 @@ public:
 		pared_O, // Pared oeste minimapa
 		salidaMiniMap,
 		texto_salida,
+
+		lobFondo,
 		mFondo,
 		close,
 

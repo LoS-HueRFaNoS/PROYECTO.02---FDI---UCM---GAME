@@ -69,6 +69,7 @@ void PlayerViewer::draw()
 
 	if (casillaActual[sentido]) // <-^-> Si delante hay un camino, dibujaremos la informacion de la casilla siguiente
 	{
+		manager->getTexture(Resources::fondo_vacio)->render(dest);
 		manager->getTexture(Resources::camino_fondo_fr)->render(dest);
 		if (!casillaSigSig[sentido])
 		{
