@@ -35,6 +35,8 @@ private:
 	void createLobby();
 	void createOptions();
 	void createGuide();
+	void createShop();
+	void createStash();
 
 public:
 	Interfaz(InterfazManager* i) :

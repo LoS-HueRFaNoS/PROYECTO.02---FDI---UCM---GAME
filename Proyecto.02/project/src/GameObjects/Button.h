@@ -109,7 +109,7 @@ public:
 };
 // ----------------------------------------------------
 
-enum class accionMenu { start, how_to_play, options, quit};
+enum class accionMenu { start, lobby, how_to_play, options, quit, shop, stash, shop_lobby, stash_lobby};
 
 class ButtonMenu : public Button {
 private:
@@ -131,6 +131,9 @@ public:
 		switch (tipo)
 		{
 		case accionMenu::start:
+			callbacks::startExp(app);
+			break;
+		case accionMenu::lobby:
 			callbacks::startLobby(app);
 			break;
 		case accionMenu::how_to_play:
@@ -141,6 +144,18 @@ public:
 			break;
 		case accionMenu::quit:
 			callbacks::quit(app);
+			break;
+		case accionMenu::shop:
+			callbacks::shop(app);
+			break;
+		case accionMenu::stash:
+			callbacks::stash(app);
+			break;
+		case accionMenu::stash_lobby:
+			callbacks::stash_lobby(app);
+			break;
+		case accionMenu::shop_lobby:
+			callbacks::shop_lobby(app);
 			break;
 		default:
 			break;

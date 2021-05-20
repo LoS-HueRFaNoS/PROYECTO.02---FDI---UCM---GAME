@@ -439,7 +439,7 @@ void Interfaz::createMenuPrincipal()
 
 	int x, y;
 	x = w / 2 - 150;	y = h / 2 - 50;
-	p->addButton(iManager->addButton<ButtonMenu>(Vector2D(x,y ), 300, 100, src::start, accionMenu::start, this));
+	p->addButton(iManager->addButton<ButtonMenu>(Vector2D(x,y ), 300, 100, src::start, accionMenu::lobby, this));
 	y += 120;
 	p->addButton(iManager->addButton<ButtonMenu>(Vector2D(x,y), 300, 100, src::options, accionMenu::options, this));
 	y += 120;
@@ -458,20 +458,31 @@ void Interfaz::createLobby()
 
 	w = game_->getWindowWidth();
 	h = game_->getWindowHeight();
-	p->addButton(iManager->addButton<ButtonSlott>(Vector2D(0, 0), w, h, src::lobFondo));
-
+	p->addButton(iManager->addButton<ButtonSlott>(Vector2D(0, 0), w, h, src::Fondo));
+	createPanel(Heroes);
 
 	y = 50;
 	color = { 205,105,0,255 };
 	text = "Tu equipo de combate";
-	p->addButton(iManager->addButton<Line>(Vector2D(w/2 - text.size()*15, y), text.size() * 30, 70, text, Resources::FontId::Fornite, color));
-	
-	int esp = (w - 6 * 100)/7;
-	y += 120;
-	LobbyManager* loManager = TheElementalMaze::instance()->getLobbyManager();
+	p->addButton(iManager->addButton<Line>(Vector2D(w/2 - text.size()*22, y), text.size() * 30, 70, text, Resources::FontId::HERMAN, color));
+	p->addButton(iManager->addButton<ButtonMenu>(Vector2D(w/2 - text.size()*22, y+100), 300, 100, src::howToPlay, accionMenu::shop, this));
+	p->addButton(iManager->addButton<ButtonMenu>(Vector2D(w/2 - text.size()*22, y+150), 300, 100, src::howToPlay, accionMenu::stash, this));
+	p->addButton(iManager->addButton<ButtonMenu>(Vector2D(w-300, y+700), 300, 100, src::howToPlay, accionMenu::start, this));
+	//
+	////int esp = (w - 6 * 100)/7;
+	//y += 120;
+	//LobbyManager* loManager = TheElementalMaze::instance()->getLobbyManager();
+	//PartyManager* partyManager = TheElementalMaze::instance()->getPartyManager();
+	//int tam;
+	//int esp = (w - 2 * 20)/10;
+	//x = esp;
+	//uint nHeros = partyManager->getHeroes().size();
+	//for (int i = 0; i < nHeros; i++) {
+	//	ButtonHero* b_ = iManager->addButton<ButtonHero>(Vector2D(x+300*i, y), esp, esp, getHeroTxt(i), (HeroNum)i, DDPan, false);
+	//	//uint k = 6;
+	//	p->addButton(b_);
+	//}
 
-	int tam;
-	
 	/*tam = loManager->getPlayerStash()->heroes.size();
 	for (int i = 0; i < 6 && i<tam ; i++)
 	{
@@ -482,47 +493,51 @@ void Interfaz::createLobby()
 		p->addButton(iManager->addButton<ButtonHeroEquipar>(Vector2D(x, y + 100), 100, 60, src::howToPlay, i, this));
 	}*/
 
-	if (loManager->getLobbyStore() != nullptr)
-	{
+	//if (loManager->getLobbyStore() != nullptr)
+	//{
 
-		y += 150;
-		text = "Heroes que puedes comprar";
-		p->addButton(iManager->addButton<Line>(Vector2D(w / 2 - text.size() * 15, y), text.size() * 30, 70, text, Resources::FontId::Fornite, color));
+		//y += 150;
+		//text = "Heroes que puedes comprar";
 
-
-		y += 70;
-		color = { 155,155,0,255 };
-		tam = loManager->getLobbyStore()->heroes.size();
-		for (int i = 0; i < 6 && i < tam; i++)
-		{
-			HeroContract* her = loManager->getLobbyStore()->heroes[i];
-			int tex = src::_firstHeroRId_ + her->hero->getTemplate()+1;
-			x = esp + 100 * i + esp * i;
-			p->addButton(iManager->addButton<ButtonSlott>(Vector2D(x, y), 100, 100, static_cast<Resources::TextureId>(tex)));
-			text = "x" + to_string(her->price);
-			p->addButton(iManager->addButton<Line>(Vector2D(x-text.size()*8, y + 110), text.size()*15, 50, text, Resources::FontId::Fornite, color));
-			p->addButton(iManager->addButton<ButtonCompra>(Vector2D(x + 45, y + 110), 70, 50, src::howToPlay, i, 0, this));
-		}
-		color = { 205,105,0,255 };
+		//p->addButton(iManager->addButton<Line>(Vector2D(w / 2 - text.size() * 15, y), text.size() * 30, 70, text, Resources::FontId::Fornite, color));
 
 
-		y += 180;
-		text = "Items que puedes comprar";
-		p->addButton(iManager->addButton<Line>(Vector2D(w / 2 - text.size() * 15, y), text.size() * 30, 70, text, Resources::FontId::Fornite, color));
+		//y += 70;
+		//color = { 155,155,0,255 };
+		//esp = (w - 2 * 20)/10;
+		////p->addButton(iManager->addButton<ButtonSlott>(Vector2D(20, y + esp), w - 2 * 20, esp, static_cast<Resources::TextureId>(tex)));
+		//for (int i = 0; i < 10; i++)
+		//{
+		//	HeroContract* her = loManager->getLobbyStore()->heroes[i];
+		//	int tex = src::_firstHeroRId_ + her->hero->getTemplate()+1;
+		//	x = 20 + esp * i;
+		//	p->addButton(iManager->addButton<ButtonSlott>(Vector2D(x, y), esp, esp, static_cast<Resources::TextureId>(tex)));
+		//	
+		//	text = "x" + to_string(her->price);
+		//	p->addButton(iManager->addButton<Line>(Vector2D(x-text.size()*8, y + 110), text.size()*15, 50, text, Resources::FontId::Fornite, color));
+		//	p->addButton(iManager->addButton<ButtonCompra>(Vector2D(x + 45, y + 110), 70, 50, src::howToPlay, i, 0, this));
+		//}
+		//
+		//color = { 205,105,0,255 };
 
-		y += 70;
-		tam = loManager->getLobbyStore()->items.size();
-		for (int i = 0; i < 6 && i < tam; i++)
-		{
-			ItemToBuy* it = loManager->getLobbyStore()->items[i];
-			int tex = src::_firstWeaponId_ + it->item->getItemType()+1;
-			x = esp + 100 * i + esp * i;
-			p->addButton(iManager->addButton<ButtonSlott>(Vector2D(x, y), 100, 100, static_cast<Resources::TextureId>(tex)));
-			text = "x" + to_string(it->sold);
-			p->addButton(iManager->addButton<Line>(Vector2D(x-text.size()*8, y + 110), text.size()*15, 50, text, Resources::FontId::Fornite, color));
-			p->addButton(iManager->addButton<ButtonCompra>(Vector2D(x + 45, y + 110), 70, 50, src::howToPlay, i, 1, this));
-		}
-	}
+
+		//y += 180;
+		//text = "Items que puedes comprar";
+		//p->addButton(iManager->addButton<Line>(Vector2D(w / 2 - text.size() * 15, y), text.size() * 30, 70, text, Resources::FontId::Fornite, color));
+
+		//y += 70;
+		//tam = loManager->getLobbyStore()->items.size();
+		//for (int i = 0; i < 6 && i < tam; i++)
+		//{
+		//	ItemToBuy* it = loManager->getLobbyStore()->items[i];
+		//	int tex = src::_firstWeaponId_ + it->item->getItemType()+1;
+		//	x = esp + 100 * i + esp * i;
+		//	p->addButton(iManager->addButton<ButtonSlott>(Vector2D(x, y), 100, 100, static_cast<Resources::TextureId>(tex)));
+		//	text = "x" + to_string(it->sold);
+		//	p->addButton(iManager->addButton<Line>(Vector2D(x-text.size()*8, y + 110), text.size()*15, 50, text, Resources::FontId::Fornite, color));
+		//	p->addButton(iManager->addButton<ButtonCompra>(Vector2D(x + 45, y + 110), 70, 50, src::howToPlay, i, 1, this));
+		//}
+	//}
 	
 
 
@@ -628,8 +643,26 @@ void Interfaz::createGuide()
 	p->addButton(iManager->addButton<ButtonMenu>(Vector2D(w - 100, 36), 64, 64, src::close, accionMenu::how_to_play, this));
 
 }
+void Interfaz::createShop()
+{
+	Panel* p = new Panel(Shop);
+	allPanels[Shop] = p;
+	int w, h, x, y;
+	w = game_->getWindowWidth();
+	h = game_->getWindowHeight();
+	y = 50;
+	p->addButton(iManager->addButton<ButtonMenu>(Vector2D(w - 300, y + 700), 300, 100, src::howToPlay, accionMenu::shop_lobby, this));
+}void Interfaz::createStash(){
+	Panel* p = new Panel(StashPanel); 
+	allPanels[StashPanel] = p;
+	int w, h, x, y;
+	w = game_->getWindowWidth();
+	h = game_->getWindowHeight();
+	y = 50;
+	p->addButton(iManager->addButton<ButtonMenu>(Vector2D(w - 300, y + 700), 300, 100, src::howToPlay, accionMenu::stash_lobby, this));
 
 
+}
 void Interfaz::createPanel(idPanel panelID)
 {
 	switch (panelID) {
@@ -686,6 +719,12 @@ void Interfaz::createPanel(idPanel panelID)
 		break;
 	case Lobby:
 		createLobby();
+		break;
+	case Shop:
+		createShop();
+		break;
+	case StashPanel:
+		createStash();
 		break;
 	default:
 		break;

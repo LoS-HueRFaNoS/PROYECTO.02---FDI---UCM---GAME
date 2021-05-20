@@ -41,7 +41,7 @@ void TheElementalMaze::init()
 	Hero* wizard = characterManager_->addHeroFromTemplate(WIZARD);
 	Hero* warrior = characterManager_->addHeroFromTemplate(WARRIOR);
 	Hero* rogue = characterManager_->addHeroFromTemplate(ROGUE);
-	Hero* cleric = characterManager_->addHeroFromTemplate(CLERIC);;
+	Hero* cleric = characterManager_->addHeroFromTemplate(CLERIC);
 
 	partyManager_->addHero(wizard);
 	partyManager_->addHero(warrior);

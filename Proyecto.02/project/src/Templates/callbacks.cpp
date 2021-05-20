@@ -234,14 +234,16 @@ void callbacks::startLobby(Interfaz* app)
 	TheElementalMaze::instance()->backFromDungeon();
 	app->togglePanel(MenuPrincipal);
 	app->createPanel(Lobby);
-	
+	/*app->togglePanel(MenuPrincipal);
+	startExp(app);*/
 	
 }
 void callbacks::startExp(Interfaz* app)
 {
 	
 	TheElementalMaze::instance()->changeState(gameST::START_EXPLORING);
-	app->togglePanel(Lobby);
+	app->togglePanel(Lobby); // Comentar para jugar la partida
+	app->togglePanel(Heroes);
 
 	std::cout << "startExploration se ha activado\n";
 }
@@ -262,17 +264,46 @@ void callbacks::quit(Interfaz* app)
 	std::cout << "quit se ha activado\n";
 }
 
-
-#include "../Managers/game/LobbyManager.h"
-#include"../GameObjects/Character.h"
-void callbacks::equiparHeroe(Interfaz* app, int her )
+void callbacks::equiparHeroe(Interfaz* app, int her)
 {
-	std::cout << "equipar heroe " << her<< std::endl;
+	std::cout << " vamos al stash" << std::endl;
 }
 void callbacks::shopping(Interfaz* app, int itemType, int itemid)
 {
-	std::cout << "comprar item " << itemid<< std::endl;
+	std::cout << "vamos a la tienda" << std::endl;
 }
+
+void callbacks::stash(Interfaz* app)
+{
+	app->togglePanel(Lobby);
+	app->togglePanel(Heroes);
+	app->createPanel(StashPanel);
+	std::cout << " vamos al stash"<< std::endl;
+}
+void callbacks::shop(Interfaz* app)
+{
+	app->togglePanel(Lobby);
+	app->togglePanel(Heroes);
+	app->createPanel(Shop);
+	std::cout << "vamos a la tienda" << std::endl;
+}
+
+void callbacks::shop_lobby(Interfaz* app)
+{
+	app->togglePanel(Shop);
+	app->togglePanel(Lobby);
+	std::cout << "volvemos al lobby desde la tienda" << std::endl;
+}
+void callbacks::stash_lobby(Interfaz* app)
+{
+	app->togglePanel(StashPanel);
+	app->togglePanel(Lobby);
+	std::cout << "volvemos al lobby desde el stash" << std::endl;
+}
+
+#include "../Managers/game/LobbyManager.h"
+#include"../GameObjects/Character.h"
+
 #pragma endregion
 //void callbacks::start(Game* app) // previo app->setLevel(lvl);
 //{
