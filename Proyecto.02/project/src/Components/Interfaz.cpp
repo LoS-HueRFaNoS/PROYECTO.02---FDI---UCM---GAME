@@ -729,7 +729,7 @@ void Interfaz::update()
 			createPanel(Heroes);
 			createPanel(Info);
 			createPanel(Chat);
-			string s = "Había una vez una casita de una bruja hecha de chocolate, entonces Hansel dijo....";
+			string s = "Habia una vez una casita de una bruja hecha de chocolate, entonces Hansel dijo....";
 			int k = s.size();
 			ChatManager::instance()->addLine(s, linTy::Info);
 		}

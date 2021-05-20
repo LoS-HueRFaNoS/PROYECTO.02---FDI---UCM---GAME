@@ -11,7 +11,7 @@ enum class LineType {
 	DamageReceive
 }; using linTy = LineType;
 const int NUM_LINES = 20;
-const int NUM_LETTERS_IN_LINE = 15; // 70
+const int NUM_LETTERS_IN_LINE = 30; // 70
 
 class ChatManager : public EntityManager {
 private:
