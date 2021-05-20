@@ -11,7 +11,7 @@ vector<Resources::FontInfo> Resources::fonts_{
 	{KillerInst, "project/resources/fonts/kinifed_.ttf", 64},
 	{Sega, "project/resources/fonts/SEGA.ttf", 64},
 	{Beaulieux, "project/resources/fonts/t4cbeaulieux.ttf", 64},
-	{Triforce, "project/resources/fonts/Triforce.ttf", 64}
+	{Triforce, "project/resources/fonts/Triforce.ttf", 64}	
 };
 
 vector<Resources::ImageInfo> Resources::images_{
