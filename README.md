@@ -60,7 +60,7 @@
 | [Pagina web][Web] | [Repositorio][Repositorio] | [Gestión][Pivotal] | [Twitter][Twitter] |
 | -- | -- | -- | -- |
 
-> ###### Documento de diseño de videojuego - Versión 16/03/2021 (hito 1.0)
+> ###### Documento de diseño de videojuego - Versión 26/05/2021 (hito Final)
 
 ## 1. Resumen ##
 
@@ -75,7 +75,7 @@
   
   + _Pre-producción_: 17-03-2021
   + _Producción_: 28-04-2021
-  + _Lanzamiento_: 19-06-2021
+  + _Lanzamiento_: 26-05-2021
   
 ## 2. Aspectos generales ##
 
@@ -99,13 +99,13 @@ Existen los siguientes menús dentro del juego:
 * **Menú principal**: Es el menú que aparece al iniciar el juego.
 En este menú encontramos los siguientes botones: _comenzar partida, configuración, mostrar ayuda_.
 
-* **Menú de configuración**: En este menú se pueden modificar las siguientes opciones: _establecer volumen y establecer velocidad de animación_.
+* **Menú de configuración**: En este menú se pueden modificar las siguientes opciones: _establecer volumen y cambiar fondo_.
 Es accesible en cualquier momento.
 * **Ayuda**: Pantalla con breves instrucciones para comenzar una partida básica y con recordatorios acerca del objetivo que debe alcanzar el jugador.
 * **Tienda de compra**: Este menú aparece al empezar una partida.
-En él se puede _contratar héroes, comprar armas, mejorar habilidades, vender héroes u objetos, etc_.
+En él se puede _contratar héroes, comprar armas, vender héroes u objetos, etc_.
 * **Menú de partida**: Este menú aparece al darle al botón de mochila del HUD.
-Se puede gestionar _el equipamiento de héroes, armas, mejora de habilidades, entrar a la mazmorra, curar a los personajes o aplicar buffs parciales a éstos_.
+Se puede gestionar _el equipamiento de héroes, armas o curar a los personajes.
 * **Menú de pausa**: Este menú aparece al darle al botón de ayuda y configuración.
 En él se permite acceder al _Menú de configuración_ y a la _Ayuda_, así como _abandonar la partida actual_.
 
@@ -120,20 +120,21 @@ Está situada en la parte superior izquierda y ocupa más de la mitad de la pant
 * **Minimapa**: Muestra la parte del nivel cercana al jugador, incluyendo la sala en la que está y los caminos colindantes a ella.
 Alguno de estos caminos puede contener algún símbolo que indique si hay algún tesoro o hay enemigos en ese punto.
 Está situado en la parte superior derecha de la pantalla.
-* **Estado de los personajes**: Muestra el icono y la información de cada uno de los héroes del equipo mediante una barra roja (barra de vida) y una barra azul (barra de maná).
+* **Estado de los personajes**: Muestra el icono y la información de cada uno de los héroes del equipo mediante una barra roja (barra de vida), una barra azul (barra de maná) y una barra amarilla 
+(barra de experiencia).
 Cada personaje tendrá un icono para poder diferenciarlo de otros.
 Se encuentra en el margen derecho, debajo del minimapa.
-Si se hace click en alguno de los personajes, aparece _una ficha con sus datos_: puntos de vida totales, puntos totales de maná, objetos equipados, etc.
-* **Objetos y misceláneos**: En esta parte del HUD situada en la esquina inferior derecha encontraremos el botón de mochila, dos botones rápidos de pociones (uno de vida y el otro de maná) que restaurarán parte de alguno de estos atributos a alguno de los personajes, el interruptor para mostrar/ocultar el chat y el botón de configuración/ayuda.
+Si se hace click en alguno de los personajes, aparece _una ficha con sus datos_: puntos de vida totales, puntos totales de maná, objetos equipados, habilidades, etc.
+* **Objetos y misceláneos**: En esta parte del HUD situada en la esquina inferior derecha encontraremos el botón de mochila, dos botones rápidos de pociones (uno de vida y el otro de maná) que restaurarán parte de alguno de estos atributos a alguno de los personajes y el botón de configuración/ayuda.
   * **Mochila**: Al pulsar el botón de mochila del apartado anterior, aparece una pantalla con todos los objetos que lleva el jugador con él, el inventario. Esta pantalla también permite equipar a los personajes con los distintos objetos recogidos.
-  * **Chat**: Al pulsar el botón aparecen en pantalla las últimas acciones realizadas en el juego (como el daño realizado/recibido de un enemigo, la apertura de un cofre o el         resultado de una tirada de dados).
+* **Chat**: Muestra en pantalla las últimas acciones realizadas en el juego (como el daño realizado/recibido de un enemigo, la apertura de un cofre o el         resultado de una tirada de dados).
 * **Movimiento e interacción**: Esta parte del HUD sólo aparecerá cuando el jugador no se encuentre en combate.
 Contiene 3 flechas de dirección: _movimiento hacia adelante, rotación hacia la derecha y rotación hacia la izquierda_.
 También hay un botón que sirve para _interactuar con el entorno_: abrir un cofre, hablar con un personaje, etc.
 Está situado en la esquina inferior izquierda.
 * **Combate**: Esta parte sólo aparecerá cuando el jugador esté en combate y reemplaza la sección **“Movimiento e interacción”**.
-Contiene los siguientes botones: _ataque básico, ataque mágico elemental (usa maná), defensa, huir y mostrar turnos_ (este último, es un interruptor que despliega un panel vertical, en él figura la cara del siguiente personaje que va a atacar).
-  * **Pantalla de turnos**: Si se hace click en este último botón del apartado **“Combate”**, se despliega un panel vertical sustituyendo al botón, en el que se visualiza el orden de ataque de todos los personajes y enemigos. Si ya estaba desplegado el panel, esta zona de la interfaz vuelve a su estado original.
+Contiene los siguientes botones: _ataque básico, ataque mágico elemental (usa maná), pasar turno y huir.
+* **Pantalla de turnos**: Situada en la parte superior derecha, sustituyendo al minimapa cuando se está en combate. En esta, aparecen el personaje, con su vida y maná, y si clickamos, aparecerán los siguientes héroes o enemigos que ataquen.
   
   <p align="center"><b> ESQUEMA DEL HUD </b></p>
 
@@ -166,7 +167,7 @@ El juego se controla principalmente mediante el ***uso del ratón***, pulsando l
   - #### 4.1.2. Combate ####
  
 * Al coincidir con un enemigo en la misma casilla, comenzará un combate por turnos. Al comenzar el combate, se reparten los turnos según el número obtenido, por tanto, se hace una tirada por cada personaje en la batalla. Cuanto más alto sea el valor de la tirada, antes hará una acción ese personaje.
-* Las acciones que el jugador puede realizar durante un turno del combate son: _atacar, protegerse, utilizar un objeto, lanzar un hechizo y/o habilidad o huir_ (Si queremos abandonar el combate) 
+* Las acciones que el jugador puede realizar durante un turno del combate son: _atacar, pasar turno, utilizar un objeto, lanzar un hechizo y/o habilidad o huir_ (Si queremos abandonar el combate) 
 * En el caso de que sea un ataque, se hará una tirada de 1d20 (+ MOD) que se comparará con la tirada de DEX (+ MOD), en el caso de superar el ataque impactará. Para determinar el daño del ataque se tirará los dados requeridos por el mismo (ejemplo: Bola de Fuego 8d6 contra salvación), en el caso de que el ataque requiera una tirada de salvación por parte del objetivo se tirará 1d20 (+MOD) para calcular el daño/estado final. 
 * En el caso de ser una habilidad defensiva/curativa dependerá de la descripción de la misma.
 * Cuando se hace una tirada de ataque, al tirar el 1d20 por impacto se deben tener en cuenta dos casos especiales: 
@@ -228,25 +229,36 @@ El juego está dirigido a personas hispanohablantes a partir de los 12 años, ya
 Cada nivel es un laberinto pequeño donde el jugador irá encontrando enemigos y objetos que podrá utilizar durante su recorrido por la mazmorra, mientras que busca la salida de la susodicha zona. Habrá salas especiales en las que nos encontraremos con enemigos más fuertes o con un cofre del tesoro, que al abrirlo nos permite obtener objetos para mejorar nuestros personajes.
 
 - ### 5.3.  Héroes ###
-| ICONO | NOMBRE | DESCRIPCIÓN |
-| -- | -- | -- |
-| ![img - bardo][bardo] | **BARDO** | Los bardos son unidades débiles en el combate, pero cuentan con una gran capacidad para evadir ataques enemigos y están especializados en los hechizos para mejorar las características de sus aliados o empeorar las de sus enemigos. |
-| ![img - brujo][brujo] | **BRUJO** | Los brujos son unidades débiles en el combate físico, ya sea para atacar o evadir las arremetidas del enemigo, pero lo compensan con un gran arsenal de hechizos de ataque. |
-| ![img - clerigo][clerigo] | **CLÉRIGO** | Los clérigos son unidades especializadas en los hechizos de curación y protección, aunque tienen bastantes dificultades para esquivar los ataques de los enemigos. |
-| ![img - guerrero][guerrero] | **GUERRERO** | Los guerreros son unidades especializadas en el combate físico dada su fuerza y resistencia, pero que no cuentan con muchos hechizos y/o habilidades. |
-| ![img - paladin][paladin] | **PALADÍN** | Los paladines son unidades lentas pero muy resistentes, especializándose en el combate físico y en los hechizos y/o habilidades de protección. |
-| ![img - barbaro][barbaro] | **BÁRBARO** | Los bárbaros son unidades especializadas en el combate físico, aunque cuentan con un limitado número de hechizos y/o habilidades, los cuales suelen estar enfocados en aumentar su poder de ataque. |
-| ![img - explorador][explorador] | **EXPLORADOR** | Los exploradores son unidades veloces pero con poca resistencia, que suelen estar especializadas en ataques débiles que afectan a varios enemigos en un solo turno. |
-| ![img - picaro][picaro] | **PÍCARO** | Los pícaros son unidades veloces pero débiles en el combate físico, que poseen numerosos hechizos y/o habilidades especializadas en generar estados alterados en los enemigos. |
-| ![img - druida][druida] | **DRUIDA** | Los druidas son unidades cambiantes, que comienzan los combates como unidades débiles en el combate físico pero con un gran arsenal de hechizos ofensivos. Tras finalizar varios turnos, si el jugador prefiere un estilo de juego más agresivo, podrá cambiar a la forma de ***bestia***. |
-| ![img - bestia][bestia] | **BESTIA** | En esta forma, el druida, tendrá mucha fuerza y resistencia a cambio de anular su capacidad para lanzar hechizos. |
-| ![img - protagonista][protagonista] | **GRAN ARCHIMAGO** | Cuenta con numerosos mercenarios contratados en la taberna y procura obtener la mayor cantidad de beneficios en el proceso, ya sea invirtiendo la mínima cantidad de monedas en los supuestos héroes o saqueando los laberínticos pasillos infestados de monstruos de la cambiante mazmorra donde reside la temible criatura. |
+| ICONO | NOMBRE | DESCRIPCIÓN | FUERZA | CONSTITUCIÓN | DESTREZA | INTELIGENCIA | VIDA | MANÁ |
+| -- | -- | -- | -- | -- | -- | -- | -- | -- |
+| ![](https://github.com/LoS-HueRFaNoS/PROYECTO.02---FDI---UCM---GAME/blob/main/Proyecto.02/project/resources/sprites/iconos%20personajes/bardo.png)| **BARDO** | Los bardos son unidades débiles en el combate, pero cuentan con una gran capacidad para evadir ataques enemigos y están especializados en los hechizos para mejorar las características de sus aliados o empeorar las de sus enemigos. | Valores entre 1 y 5 | Valores entre 5 y 10 | Valores entre 10 y 15 | Valores entre 15 y 20 | 16 | 20 |
+| ![](https://github.com/LoS-HueRFaNoS/PROYECTO.02---FDI---UCM---GAME/blob/main/Proyecto.02/project/resources/sprites/iconos%20personajes/brujo.png)| **BRUJO** | Los brujos son unidades débiles en el combate físico, ya sea para atacar o evadir las arremetidas del enemigo, pero lo compensan con un gran arsenal de hechizos de ataque. | Valores entre 1 y 5 | Valores entre 10 y 15 | Valores entre 5 y 10 | Valores entre 15 y 20 | 12 | 24 |
+| ![](https://github.com/LoS-HueRFaNoS/PROYECTO.02---FDI---UCM---GAME/blob/main/Proyecto.02/project/resources/sprites/iconos%20personajes/clerigo.png)| **CLÉRIGO** | Los clérigos son unidades especializadas en los hechizos de curación y protección, aunque tienen bastantes dificultades para esquivar los ataques de los enemigos. | Valores entre 5 y 10 | Valores entre 15 y 20 | Valores entre 1 y 5 | Valores entre 10 y 15 | 16 | 20 |
+| ![](https://github.com/LoS-HueRFaNoS/PROYECTO.02---FDI---UCM---GAME/blob/main/Proyecto.02/project/resources/sprites/iconos%20personajes/guerrero.png)| **GUERRERO** | Los guerreros son unidades especializadas en el combate físico dada su fuerza y resistencia, pero que no cuentan con muchos hechizos y/o habilidades. | Valores entre 15 y 20 | Valores entre 5 y 10 | Valores entre 10 y 15 | Valores entre 1 y 5 | 20 | 16 |
+| ![](https://github.com/LoS-HueRFaNoS/PROYECTO.02---FDI---UCM---GAME/blob/main/Proyecto.02/project/resources/sprites/iconos%20personajes/paladin.png)| **PALADÍN** | Los paladines son unidades lentas pero muy resistentes, especializándose en el combate físico y en los hechizos y/o habilidades de protección. | Valores entre 10 y 15 | Valores entre 15 y 20 | Valores entre 1 y 5 | Valores entre 5 y 10 | 20 | 16 |
+| ![](https://github.com/LoS-HueRFaNoS/PROYECTO.02---FDI---UCM---GAME/blob/main/Proyecto.02/project/resources/sprites/iconos%20personajes/barbaro.png)| **BÁRBARO** | Los bárbaros son unidades especializadas en el combate físico, aunque cuentan con un limitado número de hechizos y/o habilidades, los cuales suelen estar enfocados en aumentar su poder de ataque. | Valores entre 15 y 20 | Valores entre 10 y 15 | Valores entre 5 y 10 | Valores entre 1 y 5 | 24 | 12 |
+| ![](https://github.com/LoS-HueRFaNoS/PROYECTO.02---FDI---UCM---GAME/blob/main/Proyecto.02/project/resources/sprites/iconos%20personajes/explorador.png)| **EXPLORADOR** | Los exploradores son unidades veloces pero con poca resistencia, que suelen estar especializadas en ataques débiles que afectan a varios enemigos en un solo turno. | Valores entre 10 y 15 | Valores entre 1 y 5 | Valores entre 15 y 20 | Valores entre 5 y 10 | 16 | 20 |
+| ![](https://github.com/LoS-HueRFaNoS/PROYECTO.02---FDI---UCM---GAME/blob/main/Proyecto.02/project/resources/sprites/iconos%20personajes/picaro.PNG)| **PÍCARO** | Los pícaros son unidades veloces pero débiles en el combate físico, que poseen numerosos hechizos y/o habilidades especializadas en generar estados alterados en los enemigos. | Valores entre 5 y 10 | Valores entre 1 y 5 | Valores entre 15 y 20 | Valores entre 10 y 15 | 16 | 20 |
+| ![](https://github.com/LoS-HueRFaNoS/PROYECTO.02---FDI---UCM---GAME/blob/main/Proyecto.02/project/resources/sprites/iconos%20personajes/druida.png) | **DRUIDA** | Los druidas son unidades cambiantes, que comienzan los combates como unidades débiles en el combate físico pero con un gran arsenal de hechizos ofensivos. Tras finalizar varios turnos, si el jugador prefiere un estilo de juego más agresivo, podrá cambiar a la forma de ***bestia***. | Valores entre 1 y 5 | Valores entre 10 y 15 | Valores entre 5 y 10 | Valores entre 15 y 20 | 16 | 20 |
+| ![](https://github.com/LoS-HueRFaNoS/PROYECTO.02---FDI---UCM---GAME/blob/main/Proyecto.02/project/resources/sprites/iconos%20personajes/bestia.png)| **BESTIA** | En esta forma, el druida, tendrá mucha fuerza y resistencia a cambio de anular su capacidad para lanzar hechizos. | Valores entre 15 y 20 | Valores entre 5 y 10 | Valores entre 10 y 15 | Valores entre 1 y 5 | 16 | 20 |
+|![](https://github.com/LoS-HueRFaNoS/PROYECTO.02---FDI---UCM---GAME/blob/main/Proyecto.02/project/resources/sprites/iconos%20personajes/heroe-mago.png)| **GRAN ARCHIMAGO** | Cuenta con numerosos mercenarios contratados en la taberna y procura obtener la mayor cantidad de beneficios en el proceso, ya sea invirtiendo la mínima cantidad de monedas en los supuestos héroes o saqueando los laberínticos pasillos infestados de monstruos de la cambiante mazmorra donde reside la temible criatura. | None | None | None | None | None | None |
 
 - ### 5.4.  Enemigos ###
-| ICONO | NOMBRE | DESCRIPCIÓN |
-| -- | -- | -- |
-| ![img - lich][lich] | **LICH** | El todopoderoso Lich lanza hechizos sobre su propia guarida para transformarla y así cambiar la ruta para llegar hasta sus aposentos. Debido a su hechizo logra que la ruta sea cada vez distinta, por tanto nuestros héroes quedan totalmente desorientados y así trata que nadie interrumpa en sus maléficos planes. |
-| ![img - necro][necro] | **NECROFAGO** | Los necrofagos son unidades débiles en el combate, pero cuentan con una gran capacidad para recuperarse comiendo los restos de aquellos héroes a los que logran matar. |
+| ICONO | NOMBRE | DESCRIPCIÓN | ESTADÍSTICAS | RECOMPENSAS | DEBILIDADES |
+| -- | -- | -- | -- | -- | -- |
+| ![](https://github.com/LoS-HueRFaNoS/PROYECTO.02---FDI---UCM---GAME/blob/main/Proyecto.02/project/resources/sprites/enemigos/zombie.png) | **ZOMBIE** | Un pobre cadáver resucitado gracias a los poderes nigrománticos del Lich, que carece de poder o inteligencia. Su único propósito es deambular por los tortuosos recovecos del laberinto, atacando a cualquier criatura viva que ose acercarse a él. | **Salud:** 22  **Maná:** 10  **Fuerza:** 13  **Destreza:** 6  **Constitución:** 16  **Inteligencia:** 3 | **Experiencia:** 50  **Dinero:** 25 | **Contundente:** Normal **Perforante:** Normal  **Cortante:** Normal  **Fuego:** Normal  **Agua:** Normal  **Hielo:** Normal  **Tierra:** Normal  **Viento:** Normal  **Luz:** Normal  **Oscuridad:** Normal |
+| ![](https://github.com/LoS-HueRFaNoS/PROYECTO.02---FDI---UCM---GAME/blob/main/Proyecto.02/project/resources/sprites/enemigos/troll.png) | **TROLL** | Una enorme criatura con poca inteligencia, que recorre el laberinto durante el día debido a que no puede exponerse a la luz del sol. | **Salud:** 40  **Maná:** 10  **Fuerza:** 20  **Destreza:** 7  **Constitución:** 14  **Inteligencia:** 3 | **Experiencia:** 50  **Dinero:** 100 | **Contundente:** Normal **Perforante:** Normal  **Cortante:** Normal  **Fuego:** Normal  **Agua:** Normal  **Hielo:** Normal  **Tierra:** Resistente  **Viento:** Normal  **Luz:** Débil  **Oscuridad:** Normal |
+| ![](https://github.com/LoS-HueRFaNoS/PROYECTO.02---FDI---UCM---GAME/blob/main/Proyecto.02/project/resources/sprites/enemigos/skeleton.png) | **ESQUELETO** | Un cadáver desprovisto de carne, creado gracias a la magia nigromántica del Lich, que protegerá el camino hacia su creador sin descanso. |  **Salud:** 13  **Maná:** 12  **Fuerza:** 10  **Destreza:** 15  **Constitución:** 14  **Inteligencia:** 6 | **Experiencia:** 50  **Dinero:** 25 | **Contundente:** Normal **Perforante:** Normal  **Cortante:** Normal  **Fuego:** Normal  **Agua:** Normal  **Hielo:** Normal  **Tierra:** Normal  **Viento:** Normal  **Luz:** Normal  **Oscuridad:** Normal |
+| ![](https://github.com/LoS-HueRFaNoS/PROYECTO.02---FDI---UCM---GAME/blob/main/Proyecto.02/project/resources/sprites/enemigos/specter.png) | **ESPECTRO** | El alma de un guerrero caído en mitad de la batalla, con asuntos pendientes en el mundo de los vivos que no puede cumplir y deseoso de conseguir que otros compartan su mismo destino. |  **Salud:** 22  **Maná:** 20  **Fuerza:** 1  **Destreza:** 11  **Constitución:** 14  **Inteligencia:** 10 | **Experiencia:** 50  **Dinero:** 25 | **Contundente:** Resistente **Perforante:** Resistente  **Cortante:** Resistente  **Fuego:** Resistente  **Agua:** Normal  **Hielo:** Resistente  **Tierra:** Resistente  **Viento:** Normal  **Luz:** Normal  **Oscuridad:** Inmune |
+| ![](https://github.com/LoS-HueRFaNoS/PROYECTO.02---FDI---UCM---GAME/blob/main/Proyecto.02/project/resources/sprites/enemigos/goblin.png) | **GOBLIN** | Una pequeña criatura desagradable, que mora en los recovecos del laberinto alimentándose de los restos de criaturas más grandes y saqueando todos los túmulos que no hayan sido profanados. |  **Salud:** 7  **Maná:** 20  **Fuerza:** 8  **Destreza:** 10  **Constitución:** 14  **Inteligencia:** 10 | **Experiencia:** 20  **Dinero:** 10 | **Contundente:** Normal **Perforante:** Normal  **Cortante:** Normal  **Fuego:** Normal  **Agua:** Normal  **Hielo:** Normal  **Tierra:** Normal  **Viento:** Normal  **Luz:** Normal  **Oscuridad:** Normal |
+| ![](https://github.com/LoS-HueRFaNoS/PROYECTO.02---FDI---UCM---GAME/blob/main/Proyecto.02/project/resources/sprites/enemigos/deathknight.png) | **DEATH KNIGHT** | Un poderoso paladín resucitado con magia oscura, que ha jurado servir al Lich contra cualquier tipo de amenaza. A diferencia de otros no-muertos, el Death Knight muestra un carácter cruel pero calculador, sin dejarse llevar en ningún momento por los instintos. | **Salud:** 90  **Maná:** 24  **Fuerza:** 20  **Destreza:** 11  **Constitución:** 20  **Inteligencia:** 12 | **Experiencia:** 500  **Dinero:** 500 | **Contundente:** Normal **Perforante:** Resistente  **Cortante:** Resistente  **Fuego:** Normal  **Agua:** Normal  **Hielo:** Normal  **Tierra:** Normal  **Viento:** Normal  **Luz:** Débil  **Oscuridad:** Inmune |
+| ![](https://github.com/LoS-HueRFaNoS/PROYECTO.02---FDI---UCM---GAME/blob/main/Proyecto.02/project/resources/sprites/enemigos/mimic.png) | **MÍMICO** | Una criatura sin forma definida, que suele ocultarse a simple vista con el aspecto de un objeto común y corriente, como por ejemplo un cofre. A pesar de que prefiera esperar a sus presas, subestimar las capacidades de combate de un mímico puede salir caro. | **Salud:** 58  **Maná:** 10  **Fuerza:** 17  **Destreza:** 12  **Constitución:** 15  **Inteligencia:** 5 | **Experiencia:** 100  **Dinero:** 50 | **Contundente:** Normal **Perforante:** Normal  **Cortante:** Normal  **Fuego:** Normal  **Agua:** Normal  **Hielo:** Normal  **Tierra:** Normal  **Viento:** Normal  **Luz:** Normal  **Oscuridad:** Normal |
+| ![](https://github.com/LoS-HueRFaNoS/PROYECTO.02---FDI---UCM---GAME/blob/main/Proyecto.02/project/resources/sprites/enemigos/pixie.png) | **PIXIE** | Una diminuta criatura alada que ha conseguido traspasar el velo que oculta el Plano de las Hadas del Plano de los Humanos, bastante débil pero extremadamente veloz. | **Salud:** 5  **Maná:** 20  **Fuerza:** 2  **Destreza:** 20  **Constitución:** 8  **Inteligencia:** 10 | **Experiencia:** 20  **Dinero:** 10 | **Contundente:** Normal **Perforante:** Normal  **Cortante:** Normal  **Fuego:** Inmune  **Agua:** Inmune  **Hielo:** Normal  **Tierra:** Inmune  **Viento:** Inmune  **Luz:** Normal  **Oscuridad:** Normal |
+| ![](https://github.com/LoS-HueRFaNoS/PROYECTO.02---FDI---UCM---GAME/blob/main/Proyecto.02/project/resources/sprites/enemigos/ghoul.png)| **GHOUL** | Un no-muerto que, tras regresar a la vida, decidió alimentarse de otros cadáveres y encontró cierto placer en el sabor de la carne de otros. Por este motivo, deambula por el laberinto persiguiendo a todo tipo de criaturas con el fin de alimentarse de ellas. | **Salud:** 36  **Maná:** 22  **Fuerza:** 16  **Destreza:** 17  **Constitución:** 10  **Inteligencia:** 11 | **Experiencia:** 100  **Dinero:** 50 | **Contundente:** Normal **Perforante:** Normal  **Cortante:** Normal  **Fuego:** Débil  **Agua:** Normal  **Hielo:** Débil  **Tierra:** Normal  **Viento:** Normal  **Luz:** Débil  **Oscuridad:** Inmune |
+| ![](https://github.com/LoS-HueRFaNoS/PROYECTO.02---FDI---UCM---GAME/blob/main/Proyecto.02/project/resources/sprites/enemigos/dracolich.png) | **DRACOLICH** | El mayor logro del Lich y, de igual manera, la mayor amenaza que oculta el laberinto exceptuando a su propio creador: el Dracolich. Un dragón resucitado, del cual solo se conservan los huesos y las emociones negativas que poseía antes de ser asesinado, que custodia la entrada a los aposentos de su creador con celo. | **Salud:** 112  **Maná:** 32  **Fuerza:** 20  **Destreza:** 10  **Constitución:** 20  **Inteligencia:** 16 | **Experiencia:** 500  **Dinero:** 500 | **Contundente:** Normal **Perforante:** Resistente  **Cortante:** Resistente  **Fuego:** Normal  **Agua:** Normal  **Hielo:** Normal  **Tierra:** Normal  **Viento:** Normal  **Luz:** Muy débil  **Oscuridad:** Inmune |
+|![](https://github.com/LoS-HueRFaNoS/PROYECTO.02---FDI---UCM---GAME/blob/main/Proyecto.02/project/resources/sprites/enemigos/giantworm.png) | **GUSANO GIGANTE** | Una gigantesca bestia que reside en el subsuelo del laberinto, emergiendo cada cierto tiempo con el fin de engullir a los incautos que tengan la desdicha de caminar hacia sus fauces. | **Salud:** 60  **Maná:** 10  **Fuerza:** 20  **Destreza:** 7  **Constitución:** 15  **Inteligencia:** 1 | **Experiencia:** 200  **Dinero:** 100 | **Contundente:** Normal **Perforante:** Normal  **Cortante:** Normal  **Fuego:** Normal  **Agua:** Normal  **Hielo:** Normal  **Tierra:** Normal  **Viento:** Normal  **Luz:** Normal  **Oscuridad:** Normal |
+| ![](https://github.com/LoS-HueRFaNoS/PROYECTO.02---FDI---UCM---GAME/blob/main/Proyecto.02/project/resources/sprites/enemigos/banshee.png) | **BANSHEE** | El fantasma de una mujer resucitada por los poderes del Lich, cuyo final resultó ser bastante violento. Vaga por el laberinto gritando en pena, con intención de que todos sean testigos de su dolor. | **Salud:** 58  **Maná:** 24  **Fuerza:** 1  **Destreza:** 14  **Constitución:** 10  **Inteligencia:** 12 | **Experiencia:** 100  **Dinero:** 50 | **Contundente:** Resistente **Perforante:** Resistente  **Cortante:** Resistente  **Fuego:** Resistente  **Agua:** Normal  **Hielo:** Inmune  **Tierra:** Resistente  **Viento:** Débil  **Luz:** Débil  **Oscuridad:** Inmune |
+| | **LICH** | El Señor de la Mazmorra, un poderoso brujo que decidió jugar con fuerzas que nadie osaba controlar e instauró un periodo de oscuridad. | **Salud:** 300  **Maná:** 60  **Fuerza:** 12  **Destreza:** 16  **Constitución:** 16  **Inteligencia:** 20 | **Experiencia:** 3000  **Dinero:** 1000 | **Contundente:** Muy resistente **Perforante:** Muy resistente  **Cortante:** Muy resistente  **Fuego:** Normal  **Agua:** Normal  **Hielo:** Resistente  **Tierra:** Normal  **Viento:** Normal  **Luz:** Muy Débil  **Oscuridad:** Inmune |
 
 - ### 5.5.  Objetos ###
 | ICONO | NOMBRE | DESCRIPCIÓN |
@@ -276,12 +288,48 @@ Cada nivel es un laberinto pequeño donde el jugador irá encontrando enemigos y
 | ![img - arco_largo][arco_largo] | **ARCO LARGO** | Un arma **marcial y de área** que puede hacer hasta **6** puntos de daño. |
 | ![img - ballesta_pesada][ballesta_pesada] | **BALLESTA PESADA** | Un arma **marcial y de área** que puede hacer hasta **10** puntos de daño, aunque necesita cargar antes de realizar cada disparo. |
 
-<!-- - ### 5.7.  Armaduras ###
+- ### 5.7.  Armaduras ###
 | ICONO | NOMBRE | DESCRIPCIÓN |
 | -- | -- | -- | 
-- ### 5.8.  Habilidades ###
+ ### 5.8.  Habilidades ###
 | ICONO | NOMBRE | DESCRIPCIÓN |
-| -- | -- | -- | -->
+| -- | -- | -- |
+| ![](https://github.com/LoS-HueRFaNoS/PROYECTO.02---FDI---UCM---GAME/blob/main/Proyecto.02/project/resources/sprites/iconos%20habilidades/LightAttack.PNG)| **ATAQUE LIGERO** | Ataque básico que tiene cada uno de los héroes. |
+| ![](https://github.com/LoS-HueRFaNoS/PROYECTO.02---FDI---UCM---GAME/blob/main/Proyecto.02/project/resources/sprites/iconos%20habilidades/DISPARO%20DOBLE.PNG) | **DISPARO DOBLE** | Esta skill consiste en disparar 2 flechas a la vez y la primera flecha hace daño completo y la segunda hace la mitad de daño que la primera flecha. |
+| ![](https://github.com/LoS-HueRFaNoS/PROYECTO.02---FDI---UCM---GAME/blob/main/Proyecto.02/project/resources/sprites/iconos%20habilidades/TRICKSHOT.png) | **TRICKSHOT** | Al usar esta skill (se hacen 2 tiradas de ataque y si ambas son exitosas (no se hace esto de momento pero lo dejo por si acaso)) el ataque hace 3 tiradas de daño |
+| ![](https://github.com/LoS-HueRFaNoS/PROYECTO.02---FDI---UCM---GAME/blob/main/Proyecto.02/project/resources/sprites/iconos%20habilidades/FLECHA%20DE%20HUMO.png) | **FLECHA DE HUMO** | Al usar la skill los enemigos pierden destreza por 3 turnos. |
+| ![](https://github.com/LoS-HueRFaNoS/PROYECTO.02---FDI---UCM---GAME/blob/main/Proyecto.02/project/resources/sprites/iconos%20habilidades/FLECHA%20DE%20FUEGO.png) | **FLECHA DE FUEGO** |Esta skill dispara una flecha que inflige daño al enemigo y reduce su destreza. |
+| ![](https://github.com/LoS-HueRFaNoS/PROYECTO.02---FDI---UCM---GAME/blob/main/Proyecto.02/project/resources/sprites/iconos%20habilidades/LLUVIA%20DE%20DAGAS.png) | **LLUVIA DE DAGAS** | Al usar esta skill se lanzan un número aleatorio de dagas entre 2 y 10 que hacen cada una un 20% de daño normal del personaje. |
+| ![](https://github.com/LoS-HueRFaNoS/PROYECTO.02---FDI---UCM---GAME/blob/main/Proyecto.02/project/resources/sprites/iconos%20habilidades/BOLA_DE_FUEGO.PNG) | **BOLA DE FUEGO** | Una bola de fuego que explota en contacto y hace daño a todos los enemigos. |
+| ![](https://github.com/LoS-HueRFaNoS/PROYECTO.02---FDI---UCM---GAME/blob/main/Proyecto.02/project/resources/sprites/iconos%20habilidades/CONGELAR.PNG) | **CONGELAR** | Hechizo que además de hacer daño al enemigo reduce su destreza. |
+| ![](https://github.com/LoS-HueRFaNoS/PROYECTO.02---FDI---UCM---GAME/blob/main/Proyecto.02/project/resources/sprites/iconos%20habilidades/PILAR%20DE%20TIERRA.png) | **PILAR DE ROCA** |Hechizo que inflige daño a un enemigo y reduce su constitución. |
+| ![](https://github.com/LoS-HueRFaNoS/PROYECTO.02---FDI---UCM---GAME/blob/main/Proyecto.02/project/resources/sprites/iconos%20habilidades/RAFAGA%20DE%20VIENTO.png) | **RÁFAGA DE VIENTO** | Hechizo que daña a todos los enemigos en combate. |
+| ![](https://github.com/LoS-HueRFaNoS/PROYECTO.02---FDI---UCM---GAME/blob/main/Proyecto.02/project/resources/sprites/iconos%20habilidades/CUCHILLA%20AEREA.png) | **CUCHILLAS DE VIENTO** |Hechizo que daña a un enemigo. |
+| ![](https://github.com/LoS-HueRFaNoS/PROYECTO.02---FDI---UCM---GAME/blob/main/Proyecto.02/project/resources/sprites/iconos%20habilidades/DESTELLO.png) | **DESTELLO** | Inflige daño de luz y reduce la destreza del enemigo. |
+| ![](https://github.com/LoS-HueRFaNoS/PROYECTO.02---FDI---UCM---GAME/blob/main/Proyecto.02/project/resources/sprites/iconos%20habilidades/RAYO%20LUMINOSO.PNG) | **RAYO LUMINOSO** |Hechizo que hace daño a un enemigo y reduce su destreza. |
+| ![](https://github.com/LoS-HueRFaNoS/PROYECTO.02---FDI---UCM---GAME/blob/main/Proyecto.02/project/resources/sprites/iconos%20habilidades/SOMBRA%20TOXICA.png) | **SOMBRA TÓXICA** | Inflige daño de oscuridad y envenena al objetivo. |
+| ![](https://github.com/LoS-HueRFaNoS/PROYECTO.02---FDI---UCM---GAME/blob/main/Proyecto.02/project/resources/sprites/iconos%20habilidades/VORTICE%20DE%20OSCURIDAD.PNG) | **VÓRTICE DE OSCURIDAD** |Inflige daño a un enemigo y reduce su destreza. |
+| ![](https://github.com/LoS-HueRFaNoS/PROYECTO.02---FDI---UCM---GAME/blob/main/Proyecto.02/project/resources/sprites/iconos%20habilidades/TSUNAMI.png) | **TSUNAMI** | Inflige daño a todos los objetivos y reduce su fuerza. |
+| ![](https://github.com/LoS-HueRFaNoS/PROYECTO.02---FDI---UCM---GAME/blob/main/Proyecto.02/project/resources/sprites/iconos%20habilidades/TORRENTE%20ACUATICO.PNG) | **TORRENTE ACUÁTICO** |Inflige daño a un enemigo y reduce su fuerza. |
+| ![](https://github.com/LoS-HueRFaNoS/PROYECTO.02---FDI---UCM---GAME/blob/main/Proyecto.02/project/resources/sprites/iconos%20habilidades/CURACION.PNG) | **CURACIÓN** | Cura a un solo personaje. |
+| ![](https://github.com/LoS-HueRFaNoS/PROYECTO.02---FDI---UCM---GAME/blob/main/Proyecto.02/project/resources/sprites/iconos%20habilidades/CURACION%20EN%20MASA.png) | **CURACIÓN EN MASA** | Cura a todos los miembros del equipo una pequeña cantidad. |
+| ![](https://github.com/LoS-HueRFaNoS/PROYECTO.02---FDI---UCM---GAME/blob/main/Proyecto.02/project/resources/sprites/iconos%20habilidades/MORPH.png) | **METAMORFOSIS** | Cuando se utiliza el druida alterna entre su forma humana y forma bestia modificando sus stats. |
+| ![](https://github.com/LoS-HueRFaNoS/PROYECTO.02---FDI---UCM---GAME/blob/main/Proyecto.02/project/resources/sprites/iconos%20habilidades/ODA%20DE%20LOS%20GLADIADORES.png) | **ODA DEL GLADIADOR** | Todos los miembros del equipo hacen más daño durante 2 turnos.|
+| ![](https://github.com/LoS-HueRFaNoS/PROYECTO.02---FDI---UCM---GAME/blob/main/Proyecto.02/project/resources/sprites/iconos%20habilidades/ODA%20DE%20VIENTO.png) | **ODA DEL VIENTO** | Todos los miembros del equipo reciben mas velocidad durante 3 turnos. |
+| ![](https://github.com/LoS-HueRFaNoS/PROYECTO.02---FDI---UCM---GAME/blob/main/Proyecto.02/project/resources/sprites/iconos%20habilidades/PROYECTILES%20DE%20ROCA.png) | **PROYECTILES DE ROCA** | Dispara 3 rocas con probabilidad de fallar. |
+| ![](https://github.com/LoS-HueRFaNoS/PROYECTO.02---FDI---UCM---GAME/blob/main/Proyecto.02/project/resources/sprites/iconos%20habilidades/GOLPE%20DURO.png) | **GOLPE DURO** | El ataque hace mas daño que uno normal. |
+| ![](https://github.com/LoS-HueRFaNoS/PROYECTO.02---FDI---UCM---GAME/blob/main/Proyecto.02/project/resources/sprites/iconos%20habilidades/SACRIFICIO.PNG) | **SACRIFICIO** | Al usar la skill el usuario realiza un ataque causando un 50% más de daño, pero perdiendo un poco de vida. |
+| ![](https://github.com/LoS-HueRFaNoS/PROYECTO.02---FDI---UCM---GAME/blob/main/Proyecto.02/project/resources/sprites/iconos%20habilidades/SED%20DE%20SANGRE.png) | **SED DE SANGRE** | El ataque realizado recupera vida. |
+| ![](https://github.com/LoS-HueRFaNoS/PROYECTO.02---FDI---UCM---GAME/blob/main/Proyecto.02/project/resources/sprites/iconos%20habilidades/PROTECCION%20DIVINA.png) | **PROTECCIÓN DIVINA** | El próximo ataque recibido se reduce un 60%. |
+| ![](https://github.com/LoS-HueRFaNoS/PROYECTO.02---FDI---UCM---GAME/blob/main/Proyecto.02/project/resources/sprites/iconos%20habilidades/MEDITACION.png) | **MEDITACIÓN** | El usuario aumenta 2 su inteligencia. |
+| ![](https://github.com/LoS-HueRFaNoS/PROYECTO.02---FDI---UCM---GAME/blob/main/Proyecto.02/project/resources/sprites/iconos%20habilidades/ALIGERAR.PNG) | **ALIGERAR** | El usuario aumenta 2 su destreza. |
+| ![](https://github.com/LoS-HueRFaNoS/PROYECTO.02---FDI---UCM---GAME/blob/main/Proyecto.02/project/resources/sprites/iconos%20habilidades/FORTALECER.png) | **FORTALECER** | El usuario aumenta 2 su fuerza. |
+| ![](https://github.com/LoS-HueRFaNoS/PROYECTO.02---FDI---UCM---GAME/blob/main/Proyecto.02/project/resources/sprites/iconos%20habilidades/ENDURECER.png) | **ENDURECER** | El usuario aumenta 2 su constitución. |
+| ![](https://github.com/LoS-HueRFaNoS/PROYECTO.02---FDI---UCM---GAME/blob/main/Proyecto.02/project/resources/sprites/iconos%20habilidades/HACHA%20ARROJADIZA.PNG) | **HACHA ARROJADIZA** | Lanza 3 hachas con probabilidad de fallar. |
+| ![](https://github.com/LoS-HueRFaNoS/PROYECTO.02---FDI---UCM---GAME/blob/main/Proyecto.02/project/resources/sprites/iconos%20habilidades/DETERMINACION.png) | **DETERMINACIÓN** | El próximo golpe letal que reciba el personaje hará que reviva con 1 de vida. |
+| ![](https://github.com/LoS-HueRFaNoS/PROYECTO.02---FDI---UCM---GAME/blob/main/Proyecto.02/project/resources/sprites/iconos%20habilidades/ESPINAS.png) | **ESPINAS** | Cuando el personaje recibe daño el agresor recibe también parte de este. |
+| ![](https://github.com/LoS-HueRFaNoS/PROYECTO.02---FDI---UCM---GAME/blob/main/Proyecto.02/project/resources/sprites/iconos%20habilidades/BLODDY_STRIKE.PNG) | **BLOODY STRIKE** | Ataque que hace daño a un enemigo y aplica sangrado. |
+| ![](https://github.com/LoS-HueRFaNoS/PROYECTO.02---FDI---UCM---GAME/blob/main/Proyecto.02/project/resources/sprites/iconos%20habilidades/BENDICION.png) | **BENDICIÓN** | Elimina todos los debuffs de los aliados. |
 
 - ### 5.7.  Tipos elementales ###
 Los tipos elementales serán seis: _fuego, agua, tierra, aire, luz y oscuridad_.
@@ -328,7 +376,9 @@ La plataforma de comunicación que estamos utilizado durante el desarrollo del j
 
 En esta plataforma hemos debatido todos los problemas del proyecto, realizado las reuniones diarias y comentado aspectos fundamentales del proyecto e ideas relevantes a este.
 
-## 9. Referencias ##
+## 9. QA y testing ##
+
+## 10. Referencias ##
 
 * **Estéticas**: 
     * Dark Souls (Videojuego)
