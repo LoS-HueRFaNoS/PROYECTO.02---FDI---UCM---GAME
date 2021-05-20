@@ -28,7 +28,7 @@ public:
 	SDLGame* getSDLGame() { return game_; };
 	void exitGame() { exit_ = true; };
 
-	Fondo* getFondo() { return fondo; };
+	Fondo* getFondo();
 
 private:
 	static std::unique_ptr<Game> instance_;

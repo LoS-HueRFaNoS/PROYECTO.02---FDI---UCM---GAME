@@ -43,9 +43,14 @@ public:
 
 class Line : public SDL_Object
 {
+private:
+	Texture* tex_;
 public:
-	Line(SDLGame* game, EntityManager* mngr) : SDL_Object(game, mngr) {};
-	~Line() {};
+	Line(SDLGame* game, EntityManager* mngr) : tex_(nullptr), SDL_Object(game, mngr) {};
+	~Line() {
+		delete tex_;
+		tex_ = nullptr;
+	};
 	virtual void init(SDL_Rect size, string line, const SDL_Color& color);
 	virtual void init(Vector2D pos, uint ancho, uint alto, string line, Resources::FontId font, const SDL_Color& color);
 };

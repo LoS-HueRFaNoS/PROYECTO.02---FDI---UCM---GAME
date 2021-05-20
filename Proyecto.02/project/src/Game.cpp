@@ -82,12 +82,13 @@ void Game::initGame()
 
 	entityManager_ = new EntityManager(game_);
 
-	fondo = static_cast<Fondo*>(entityManager_->addEntity());
-	fondo->init(Vector2D(), game_->getWindowWidth(), game_->getWindowHeight());
 
 	characterManager_ = new CharacterManager(game_);
 
 	interfazManager_ = new InterfazManager(game_);
+	fondo = new Fondo(game_, interfazManager_);
+	fondo->init(Vector2D(), game_->getWindowWidth(), game_->getWindowHeight());
+	interfazManager_->addEntity(fondo);
 
 	system("cls");
 
@@ -130,6 +131,11 @@ void Game::start()
 void Game::stop()
 {
 	exit_ = true;
+}
+
+Fondo* Game::getFondo()
+{
+	return fondo;
 }
 
 
