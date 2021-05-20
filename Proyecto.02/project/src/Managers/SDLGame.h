@@ -98,7 +98,7 @@ public:
 	void initResources(); // initialize the SDLResources object with the data at the top of this file
 
 	// cambio a dimensiones de la pantalla actual
-	double setVerticalScale(double num) { return num * getWindowHeight() / 1080; };
+	double setVerticalScale(double num) { return num * getWindowHeight() / 1050; };
 	double setHorizontalScale(double num) { return num * getWindowWidth() / 1920; };
 
 	/// <summary>

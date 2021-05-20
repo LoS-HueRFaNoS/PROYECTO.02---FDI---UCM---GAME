@@ -64,8 +64,8 @@ void Game::initGame()
 	int client_height = (rect.bottom - rect.top);
 
 	//MODO VENTANA
-	//game_ = SDLGame::init("THE ELEMENTAL MAZE", client_width * 0.75, client_height * 0.75);
-	game_ = SDLGame::init("THE ELEMENTAL MAZE", 1920, 1080);
+	game_ = SDLGame::init("THE ELEMENTAL MAZE", client_width * 0.75, client_height * 0.75);
+	//game_ = SDLGame::init("THE ELEMENTAL MAZE", 1920, 1080);
 
 	// PANTALLA COMPLETA
 	/*game_ = SDLGame::init("THE ELEMENTAL MAZE", client_width, client_height);
