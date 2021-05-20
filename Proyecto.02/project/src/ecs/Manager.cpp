@@ -8,7 +8,7 @@ EntityManager::EntityManager(SDLGame *game) :
 }
 
 EntityManager::~EntityManager() {
-	entities.clear();
+	//entities.clear();
 }
 
 void EntityManager::update() {
