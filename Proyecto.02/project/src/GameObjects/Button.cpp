@@ -5,7 +5,9 @@
 #include "../Components/Image.h"
 #include "../Components/Sprite.h"
 #include "../Components/ButtonCtrl.h"
-
+#include "../Utilities/textures_box.h"
+#include "../Utilities/SDL_macros.h"
+using namespace textures_box;
 // todo el juego se une mediante GameMngr(entity_)
 
 
@@ -32,6 +34,8 @@ void ButtonHero::click()
 
 #pragma endregion
 
+//----------------------------------------------------------------------------
+
 #pragma region ButtonCombateResources
 #include "../Managers/TheElementalMaze.h"
 #include "../Managers/game/CombatManager.h"
@@ -50,7 +54,7 @@ void ButtonHability::click()
 
 #pragma endregion
 
-
+//----------------------------------------------------------------------------
 
 void ButtonPanel::setActive(bool set)
 {
@@ -62,8 +66,36 @@ void ButtonPanel::setHide(bool set)
 	GETCMP2(this, Sprite)->setHide(set);
 }
 
+//----------------------------------------------------------------------------
+
 void Button::init(Vector2D pos, uint ancho, uint alto, Resources::TextureId imagen)
 {
 	SDL_Object::init(pos, ancho, alto, imagen);
 	addComponent<ButtonCtrl>(this);
+}
+
+void Button::init(SDL_Rect dest, Resources::TextureId imagen)
+{
+	SDL_Object::init(POS(dest), dest.w, dest.h, imagen);
+	addComponent<ButtonCtrl>(this);
 };
+
+//----------------------------------------------------------------------------
+
+void ButtonSlott::init(SDL_Rect dest, Item* item)
+{
+	if (item != nullptr) {
+		Button::init(dest, src::Slot);
+		Texture* text = game_->getTextureMngr()->getTexture(getItemTxt(item));
+		addComponent<Image>(text);
+	}
+	else {
+		Button::init(dest, src::WeaponSlot);
+	}
+}
+void ButtonSlott::init(Vector2D pos, uint ancho, uint alto, Item* item)
+{
+	init(RECT(pos.getX(), pos.getY(), ancho, alto), item);
+};
+
+//----------------------------------------------------------------------------

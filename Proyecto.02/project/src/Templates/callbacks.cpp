@@ -8,6 +8,17 @@
 
 // ----------------------------------------------------
 
+#pragma region SettingsButtons
+#include "../Game.h"
+
+void callbacks::toggleThemeFondo() {
+	Game::Instance()->getFondo()->changeTheme();
+}
+
+#pragma endregion
+
+// ----------------------------------------------------
+
 #pragma region PruebasBotones
 
 

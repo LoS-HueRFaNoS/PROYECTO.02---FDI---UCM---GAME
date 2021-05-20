@@ -7,7 +7,8 @@
 #include "Transform.h"
 #include "StateBar.h"
 #include "Laberinto.h"
-#include "PanelTurns.h"
+#include "Paneles/PanelTurns.h"
+#include "Paneles/PanelDnD.h"
 #include "../Utilities/SDL_macros.h"
 #include "../Utilities/textures_box.h"
 #include "../Managers/SDLGame.h"
@@ -37,7 +38,7 @@ void Interfaz::createFight()
 	double x_ = 70;
 	double y_ = 790;
 	// tamano en pixeles del 'fondo'
-	double w_ = 710;
+	double w_ = 540;
 	double h_ = 190;
 	// tamano de los margenes
 	double n = 20;
@@ -109,7 +110,7 @@ void Interfaz::createMovement()
 	double x_ = 70;
 	double y_ = 790;
 	// tamano en pixeles del 'fondo'
-	double w_ = 710;
+	double w_ = 540;
 	double h_ = 190;
 	// tamano de los margenes
 	double n = 20;
@@ -180,10 +181,10 @@ void Interfaz::createInfo()
 	uint nInfoButton_V = 2; // separaciones verticales
 
 	// posicion en pixeles del 'fondo'
-	double x_ = 880;
-	double y_ = 790;
+	double x_ = 1350; //880;
+	double y_ = 790; //790;
 	// tamano en pixeles del 'fondo'
-	double w_ = 530;
+	double w_ = 500;
 	double h_ = 190;
 	// tamano de los margenes
 	double n = 5;
@@ -201,15 +202,17 @@ void Interfaz::createInfo()
 	// construccion del panel de informacion
 	Panel* p = new Panel(Info);
 	allPanels[Info] = p;
-
+	
 	// BOTONES: health, mana, resurrection
 	p->addButton(iManager->addButton<ButtonPanel>(Vector2D(x_, y_), w_ * 2, h_ * 2, src::Inventario, Inventory, false));
 	p->addButton(iManager->addButton<ButtonPotion>(Vector2D(x_ + 2 * espace_H, y_ + 0 * espace_V), w_, h_, src::PocionVida, PtnType::health));
 	p->addButton(iManager->addButton<ButtonPotion>(Vector2D(x_ + 2 * espace_H, y_ + 1 * espace_V), w_, h_, src::PocionMana, PtnType::mana));
 	//p->addButton(iManager->addButton<ButtonPotion>(Vector2D(width * 5 / 7, height * 5 / 6 + space), tamBoton * 0.8, tamBoton * 0.8, src::PocionRess, PtnType::resurrection));
 
-	p->addButton(iManager->addButton<ButtonPanel>(Vector2D(x_ + 3 * espace_H, y_ + 0 * espace_V), w_, h_, src::Chat, Chat, false));
+	//p->addButton(iManager->addButton<ButtonPanel>(Vector2D(x_ + 3 * espace_H, y_ + 0 * espace_V), w_, h_, src::Chat, Chat, false));
+	p->addButton(iManager->addButton<ButtonSettings>(Vector2D(x_ + 3 * espace_H, y_ + 0 * espace_V), w_, h_, src::Change));
 	p->addButton(iManager->addButton<ButtonPanel>(Vector2D(x_ + 3 * espace_H, y_ + 1 * espace_V), w_, h_, src::Configuracion, Settings, false));
+
 } // 
 
 void Interfaz::createInventory()
@@ -234,7 +237,7 @@ void Interfaz::createInventory()
 		posX = slotTam * 1.5; //Se resetea la coordenada X
 
 		for (int j = 0; j < 5; ++j) {
-			p->addButton(iManager->addButton<ButtonSlott>(Vector2D(posX, posY), slotTam, slotTam, src::Slot));
+			p->addButton(iManager->addButton<SDL_Object>(Vector2D(posX, posY), slotTam, slotTam, src::Slot));
 
 			int indice = i * 5 + j;
 			Item* item = items[indice];
@@ -250,7 +253,7 @@ void Interfaz::createInventory()
 					auxId = (int) static_cast<Weapon*>(item)->getWeaponId();
 				}
 				id = (Resources::TextureId) (pivot + auxId + 1);
-				p->addButton(iManager->addButton<ButtonSlott>(Vector2D(posX + margen, posY + margen), itemTam, itemTam, id));
+				p->addButton(iManager->addButton<SDL_Object>(Vector2D(posX + margen, posY + margen), itemTam, itemTam, id));
 			}
 
 			posX += slotTam;
@@ -267,29 +270,29 @@ void Interfaz::createInventory()
 	PartyManager* c = TheElementalMaze::instance()->getPartyManager();
 	std::vector<Hero*> heroes = c->getHeroes();
 	for (int i = 0; i < 4; ++i) {
-		p->addButton(iManager->addButton<ButtonSlott>(Vector2D(posX, posY), slotTam, slotTam, getHeroTxt(i)));
+		p->addButton(iManager->addButton<SDL_Object>(Vector2D(posX, posY), slotTam, slotTam, getHeroTxt(i)));
 
 		Weapon* weapon = heroes[i]->getWeapon();
 		if (weapon != nullptr) {
-			p->addButton(iManager->addButton<ButtonSlott>(Vector2D(posX + slotTam, posY), slotTam, slotTam, src::Slot));
+			p->addButton(iManager->addButton<SDL_Object>(Vector2D(posX + slotTam, posY), slotTam, slotTam, src::Slot));
 			pivot = src::_firstWeaponId_;
 			auxId = (int)weapon->getWeaponId();
 			id = (Resources::TextureId) (pivot + auxId + 1);
-			p->addButton(iManager->addButton<ButtonSlott>(Vector2D(posX + slotTam + margen, posY + margen), itemTam, itemTam, id));
+			p->addButton(iManager->addButton<SDL_Object>(Vector2D(posX + slotTam + margen, posY + margen), itemTam, itemTam, id));
 		}
 		else 	
-			p->addButton(iManager->addButton<ButtonSlott>(Vector2D(posX + slotTam, posY), slotTam, slotTam, src::WeaponSlot));
+			p->addButton(iManager->addButton<SDL_Object>(Vector2D(posX + slotTam, posY), slotTam, slotTam, src::WeaponSlot));
 
 		Armor* armor = heroes[i]->getArmor();
 		if (armor != nullptr) {
-			p->addButton(iManager->addButton<ButtonSlott>(Vector2D(posX + slotTam * 2, posY), slotTam, slotTam, src::Slot));
+			p->addButton(iManager->addButton<SDL_Object>(Vector2D(posX + slotTam * 2, posY), slotTam, slotTam, src::Slot));
 			pivot = src::_firstArmorId_;
 			auxId = (int) armor->getArmorId();
 			id = (Resources::TextureId) (pivot + auxId + 1);
-			p->addButton(iManager->addButton<ButtonSlott>(Vector2D( posX + slotTam * 2 + margen, posY + margen), 0.8 * slotTam, 0.8 * slotTam, id));
+			p->addButton(iManager->addButton<SDL_Object>(Vector2D( posX + slotTam * 2 + margen, posY + margen), 0.8 * slotTam, 0.8 * slotTam, id));
 		}
 		else 
-			p->addButton(iManager->addButton<ButtonSlott>(Vector2D(posX + slotTam * 2, posY), slotTam, slotTam, src::ArmorSlot));
+			p->addButton(iManager->addButton<SDL_Object>(Vector2D(posX + slotTam * 2, posY), slotTam, slotTam, src::ArmorSlot));
 
 		
 
@@ -302,159 +305,16 @@ void Interfaz::createFichaDD(uint nCharacter)
 	PartyManager* c = TheElementalMaze::instance()->getPartyManager();
 	std::vector<Hero*> heroes = c->getHeroes();
 
-	Character* hero = heroes[nCharacter];
-	CharacterSheet* hero_sheet = hero->getCharacterSheet();
-
-	uint nInfoButton_H = 3; // separaciones horizontales
-	uint nInfoButton_V = 3; // separaciones verticales
-
-	// posicion en pixeles del 'fondo'
-	double x_ = 70;
-	double y_ = 70;
-	// tamano en pixeles del 'fondo'
-	double w_ = 1340;
-	double h_ = 620;
-	// tamano de los margenes
-	double _nw = 50;
-	double _nh = 50;
-
-	// posicion del panel respecto a la ventana
-	x_ = game_->setHorizontalScale(x_ + _nw);
-	y_ = game_->setVerticalScale(y_ + _nh);
-
-	// dmensiones delpanel
-	w_ = game_->setHorizontalScale(w_ - _nw * 2);	// ancho panel
-	h_ = game_->setVerticalScale(h_ - _nh * 2);	// alto panel
-	
 	// construccion y asignacion del panel:
 	Panel* p = new Panel(DDPan);
 	allPanels[DDPan] = p;
 
-	// Fondo:
-	p->addButton(iManager->addButton<ButtonSlott>(Vector2D(x_, y_), w_, h_, src::Pergamino));
-	
-	_nw = 10;
-	_nh = 10;
-	// posicion del primer button respecto al panel
-	double k = 3.75;
-	double xs_ = game_->setHorizontalScale(x_ + w_ * k / 10);
-	double ys_ = game_->setVerticalScale(y_ + h_ * k / 10);
-	k = 2;
-	double espace_H = w_ * (k / 10);
-	double espace_V = h_ * (k / 10);
-	// dimensiones de cada cuadrante
-	double ws_ = espace_H - game_->setHorizontalScale(_nw);	// ancho cuadrante
-	double hs_ = espace_V - game_->setVerticalScale(_nh);	// alto cuadrante
-	double lineTam_V = espace_V * 2 / 8;
-
-	SDL_Color color = { 0,0,0,255 };
-	// Titulo:
-	p->addButton(iManager->addButton<Line>(Vector2D(xs_, ys_ - espace_V * 1 / 3), ws_ * 3, hs_, hero->name(), Resources::Beaulieux, color));
-
-	// icono heroe:
-	p->addButton(iManager->addButton<ButtonSlott>(Vector2D(xs_ + 1 * espace_H + (abs(ws_ - hs_) / 2), ys_ + 1 * espace_V), hs_, hs_, getHeroTxt((uint)nCharacter)));
-
-	string info = ""; // auxiliar para recopilar todo en caso de poder sacarlo en una sola linea.
-
-	// VIDA y MANA:
-	string text = "Health = " + to_string(hero_sheet->maxHitPoints()); info += text + "\n";		// Health
-	p->addButton(iManager->addButton<Line>(Vector2D(xs_ + 0 * espace_H, ys_ + 1 * espace_V + lineTam_V * 0), ws_, lineTam_V, text, Resources::Beaulieux, color));
-	text = "Mana = " + to_string(hero_sheet->maxManaPoints()); info += text + "\n";				// Mana
-	p->addButton(iManager->addButton<Line>(Vector2D(xs_ + 0 * espace_H, ys_ + 1 * espace_V + lineTam_V * 1), ws_, lineTam_V, text, Resources::Beaulieux, color));
-
-	// MAIN STATS:
-	text = "Strength = " + to_string(hero_sheet->getStat(ms::STR).value); info += text + "\n";		// Fuerza
-	p->addButton(iManager->addButton<Line>(Vector2D(xs_ + 0 * espace_H, ys_ + 1 * espace_V + lineTam_V * 3), ws_, lineTam_V, text, Resources::Beaulieux, color));
-	text = "Constitution = " + to_string(hero_sheet->getStat(ms::CON).value); info += text + "\n";	// Constitution
-	p->addButton(iManager->addButton<Line>(Vector2D(xs_ + 0 * espace_H, ys_ + 1 * espace_V + lineTam_V * 4), ws_, lineTam_V, text, Resources::Beaulieux, color));
-	text = "Dexterity = " + to_string(hero_sheet->getStat(ms::DEX).value); info += text + "\n";		// Destreza
-	p->addButton(iManager->addButton<Line>(Vector2D(xs_ + 0 * espace_H, ys_ + 1 * espace_V + lineTam_V * 5), ws_, lineTam_V, text, Resources::Beaulieux, color));
-	text = "Intelect = " + to_string(hero_sheet->getStat(ms::INT).value); info += text + "\n";		// Intelecto
-	p->addButton(iManager->addButton<Line>(Vector2D(xs_ + 0 * espace_H, ys_ + 1 * espace_V + lineTam_V * 6), ws_, lineTam_V, text, Resources::Beaulieux, color));
-
-	// RESISTENCIAS:
-	std::string line = PERCENTAGE(hero_sheet->getResistance(damTy::FIRE));
-	text = "Fire = " + line;	// Fire
-	color = { 255,0,0,255 };
-	p->addButton(iManager->addButton<Line>(Vector2D(xs_ + 2 * espace_H, ys_ + 1 * espace_V + lineTam_V * 0), ws_, lineTam_V, text, Resources::Beaulieux, color));
-	line = PERCENTAGE(hero_sheet->getResistance(damTy::WATER));
-	text = "Water = " + line;	// Water
-	color = { 0,0,255,255 };
-	p->addButton(iManager->addButton<Line>(Vector2D(xs_ + 2 * espace_H, ys_ + 1 * espace_V + lineTam_V * 1), ws_, lineTam_V, text, Resources::Beaulieux, color));
-	line = PERCENTAGE(hero_sheet->getResistance(damTy::ICE));
-	text = "Ice = " + line;		// Ice
-	color = { 155,155,255,255 };
-	p->addButton(iManager->addButton<Line>(Vector2D(xs_ + 2 * espace_H, ys_ + 1 * espace_V + lineTam_V * 2), ws_, lineTam_V, text, Resources::Beaulieux, color));
-	line = PERCENTAGE(hero_sheet->getResistance(damTy::EARTH));
-	text = "Earth = " + line;	// Earth
-	color = { 155,80,20,255 };
-	p->addButton(iManager->addButton<Line>(Vector2D(xs_ + 2 * espace_H, ys_ + 1 * espace_V + lineTam_V * 3), ws_, lineTam_V, text, Resources::Beaulieux, color));
-	line = PERCENTAGE(hero_sheet->getResistance(damTy::WIND));
-	text = "Wind = " + line;	// Wind
-	color = { 0, 150, 0,255 };
-	p->addButton(iManager->addButton<Line>(Vector2D(xs_ + 2 * espace_H, ys_ + 1 * espace_V + lineTam_V * 4), ws_, lineTam_V, text, Resources::Beaulieux, color));
-	line = PERCENTAGE(hero_sheet->getResistance(damTy::LIGHT));
-	text = "Light = " + line;	// Light
-	color = { 255,255,150,255 };
-	p->addButton(iManager->addButton<Line>(Vector2D(xs_ + 2 * espace_H, ys_ + 1 * espace_V + lineTam_V * 5), ws_, lineTam_V, text, Resources::Beaulieux, color));
-	line = PERCENTAGE(hero_sheet->getResistance(damTy::DARK));
-	text = "Dark = " + line;	// Dark
-	color = { 50,50,50,255 };
-	p->addButton(iManager->addButton<Line>(Vector2D(xs_ + 2 * espace_H, ys_ + 1 * espace_V + lineTam_V * 6), ws_, lineTam_V, text, Resources::Beaulieux, color));
-
-	// ARMA & ARMADURA:
-	Hero* hero_ = dynamic_cast<Hero*>(hero);
-	if (hero_ != nullptr)
-	{
-		uint pivot, auxId;
-		Resources::TextureId id;
-		Weapon* weapon = hero_->getWeapon();
-		if (weapon != nullptr) {
-			p->addButton(iManager->addButton<ButtonSlott>(Vector2D(xs_ + 1 * espace_H + (abs(ws_ - hs_) / 2), ys_ + 1 * espace_V + 1.02 * hs_), hs_ / 2, hs_ / 2, src::Slot));
-			pivot = src::_firstWeaponId_;
-			auxId = (int)weapon->getWeaponId();
-			id = (Resources::TextureId) (pivot + auxId + 1);
-			p->addButton(iManager->addButton<ButtonSlott>(Vector2D(xs_ + 1 * espace_H + (abs(ws_ - hs_) / 2), ys_ + 1 * espace_V + 1.02 * hs_), hs_ / 2, hs_ / 2, id));
-		}
-		else
-			p->addButton(iManager->addButton<ButtonSlott>(Vector2D(xs_ + 1 * espace_H + (abs(ws_ - hs_) / 2), ys_ + 1 * espace_V + 1.02 * hs_), hs_ / 2, hs_ / 2, src::WeaponSlot));
-
-		Armor* armor = hero_->getArmor();
-		if (armor != nullptr) {
-			p->addButton(iManager->addButton<ButtonSlott>(Vector2D(xs_ + 1.5 * espace_H, ys_ + 1 * espace_V + 1.02 * hs_), hs_ / 2, hs_ / 2, src::Slot));
-			pivot = src::_firstArmorId_;
-			auxId = (int)armor->getArmorId();
-			id = (Resources::TextureId) (pivot + auxId + 1);
-			p->addButton(iManager->addButton<ButtonSlott>(Vector2D(xs_ + 1.5 * espace_H, ys_ + 1 * espace_V + 1.02 * hs_), hs_ / 2, hs_ / 2, id));
-		}
-		else
-			p->addButton(iManager->addButton<ButtonSlott>(Vector2D(xs_ + 1.5 * espace_H, ys_ + 1 * espace_V + 1.02 * hs_), hs_ / 2, hs_ / 2, src::ArmorSlot));
-
-		/*Armor* armor_ = hero_->getArmor();		// Armadura
-		Weapon* weapon_ = hero_->getWeapon();	// Arma
-		*/
-		// No funciona bien lo ponerlo en una sola linea: (prueba si quieres)
-		//p->addButton(iManager->addButton<ButtonSlott>(Vector2D(xs_ + 1 * espace_H + (abs(ws_ - hs_) / 2), ys_ + 1 * espace_V + 1.02 * hs_), hs_ / 2, hs_ / 2, Resources::WeaponSlot));
-		//p->addButton(iManager->addButton<ButtonSlott>(Vector2D(xs_ + 1.5 * espace_H, ys_ + 1 * espace_V + 1.02 * hs_), hs_ / 2, hs_ / 2, Resources::ArmorSlot));
-		//p->addButton(iManager->addButton<Line>(Vector2D(xs_ + 2 * espace_H, ys_ + 1 * espace_V + lineTam_V * 0), ws_, lineTam_V * 4, info, Resources::Beaulieux,color));
-
-		//HABILIDADES
-		vector<Hability*> habilities = hero->getHabilities();
-		int size = habilities.size();
-		pivot = src::_firstSkillId_;
-		for (int i = 0; i < size; ++i)
-		{
-			id = (Resources::TextureId)(pivot + uint(habilities[i]->getID()) + 1);
-			p->addButton(iManager->addButton<ButtonSlott>(Vector2D(xs_ + 1 * espace_H + (abs(ws_ - hs_) / 2) + i * (hs_ / size), ys_ + 1 * espace_V + 1.55 * hs_), hs_ / size, hs_ / size, id));
-		}
-	}
-
-	
+	TheElementalMaze::instance()->addComponent<PanelDnD>(game_, p, heroes[nCharacter], iManager);
 }
 
 void Interfaz::createChat()
 {
-	TheElementalMaze::instance()->addComponent<ChatInfo>(game_);
+	
 }
 
 void Interfaz::createTargets()
@@ -535,7 +395,7 @@ void Interfaz::createMenuPrincipal()
 	int w,  h;
 	w = game_->getWindowWidth();
 	h = game_->getWindowHeight();
-	p->addButton(iManager->addButton<ButtonSlott>(Vector2D(0, 0), w, h, src::mFondo));
+	p->addButton(iManager->addButton<SDL_Object>(Vector2D(0, 0), w, h, src::mFondo));
 
 	int x, y;
 	x = w / 2 - 150;	y = h / 2 - 50;
@@ -575,7 +435,7 @@ void Interfaz::createOptions()
 
 	w = game_->getWindowWidth();
 	h = game_->getWindowHeight();
-	p->addButton(iManager->addButton<ButtonSlott>(Vector2D(0, 0), w, h, src::mFondo));
+	p->addButton(iManager->addButton<SDL_Object>(Vector2D(0, 0), w, h, src::mFondo));
 
 	
 	x = w / 2 - 200; y = 100;
@@ -620,9 +480,9 @@ void Interfaz::createGuide()
 
 	w = game_->getWindowWidth();
 	h = game_->getWindowHeight();
-	p->addButton(iManager->addButton<ButtonSlott>(Vector2D(0, 0), w, h, src::mFondo));
+	p->addButton(iManager->addButton<SDL_Object>(Vector2D(0, 0), w, h, src::mFondo));
 
-	p->addButton(iManager->addButton<ButtonSlott>(Vector2D(100, 100), w-200, h-200, src::Pergamino));
+	p->addButton(iManager->addButton<SDL_Object>(Vector2D(100, 100), w-200, h-200, src::Pergamino));
 
 	x = w / 2 - 200; y = 250;
 	color = {0,0,0,255};
@@ -672,7 +532,7 @@ void Interfaz::createTurns()
 
 void Interfaz::toggleMinimap()
 {
-	TheElementalMaze::instance()->getLaberinto()->toggleMiniMap();
+	
 }
 
 
@@ -686,7 +546,7 @@ void Interfaz::createPanel(idPanel panelID)
 		createMovement();
 		break;
 	case Minimap:
-		toggleMinimap();
+		TheElementalMaze::instance()->getLaberinto()->toggleMiniMap();
 		break;
 	case Heroes:
 		createHeroes();
@@ -710,7 +570,7 @@ void Interfaz::createPanel(idPanel panelID)
 		createSettings();
 		break;
 	case Chat:
-		createChat();
+		TheElementalMaze::instance()->addComponent<ChatInfo>(game_);
 		break;
 	case Targets:
 		createTargets();
@@ -737,8 +597,61 @@ void Interfaz::createPanel(idPanel panelID)
 
 void Interfaz::removePanel(idPanel panID)
 {
-	allPanels[panID]->removeButtons();
-	allPanels[panID] = nullptr;
+	switch (panID)
+	{
+	/*case interfaz::Movement:
+		break;
+	case interfaz::Heroes:
+		break;
+	case interfaz::Inventory:
+		break;
+	case interfaz::Info:
+		break;*/
+	case interfaz::Minimap:
+		TheElementalMaze::instance()->getLaberinto()->toggleMiniMap();
+		break;
+	/*case interfaz::Targets:
+		break;
+	case interfaz::Habilities:
+		break;
+	case interfaz::Fight:
+		break;*/
+	case interfaz::Turns:
+		TheElementalMaze::instance()->removeComponent(ecs::PanelTurns);
+		allPanels[panID]->removeButtons();
+		allPanels[panID] = nullptr;
+		break;
+	/*case interfaz::HeroesStats:
+		break;*/
+	case interfaz::DDPan:
+		TheElementalMaze::instance()->removeComponent(ecs::PanelDnD);
+		allPanels[panID]->removeButtons();
+		allPanels[panID] = nullptr;
+		break;
+	/*case interfaz::BigMap:
+		break;
+	case interfaz::Settings:
+		break;*/
+	case interfaz::Chat:
+		TheElementalMaze::instance()->removeComponent(ecs::ChatInfo);
+		break;
+	/*case interfaz::MenuPrincipal:
+		break;
+	case interfaz::Lobby:
+		break;
+	case interfaz::Options:
+		break;
+	case interfaz::HowToPlay:
+		break;
+	case interfaz::Enemies:
+		break;
+	case interfaz::_LastPanId_:
+		break;*/
+	default:
+		allPanels[panID]->removeButtons();
+		allPanels[panID] = nullptr;
+		break;
+	}
 }
 
 void Interfaz::removeChat()
@@ -816,6 +729,9 @@ void Interfaz::update()
 			createPanel(Heroes);
 			createPanel(Info);
 			createPanel(Chat);
+			string s = "Había una vez una casita de una bruja hecha de chocolate, entonces Hansel dijo....";
+			int k = s.size();
+			ChatManager::instance()->addLine(s, linTy::Info);
 		}
 		break;
 	case gameST::EXPLORING:

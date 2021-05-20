@@ -1,6 +1,7 @@
 #pragma once
 #include "SDL_Objects.h"
 #include "../Templates/callbacks.h"
+#include "../Structures/Item.h"
 #include <cassert>
 
 // ----------------------------------------------------
@@ -13,21 +14,41 @@ public:
 	{};
 	virtual ~Button() {};
 	virtual void init(Vector2D pos, uint ancho, uint alto, Resources::TextureId imagen);
+	virtual void init(SDL_Rect dest, Resources::TextureId imagen);
 
 	virtual void click() = 0;
 };
 
 // ----------------------------------------------------
 
-class ButtonSlott : public Button
+class ButtonSettings : public Button
 {
-	// private: Item* i_;
 public:
-	ButtonSlott(SDLGame* game, EntityManager* mngr) : Button(game, mngr) {};
-	~ButtonSlott() {};
+	ButtonSettings(SDLGame* game, EntityManager* mngr) :
+		Button(game, mngr)
+	{};
+	virtual ~ButtonSettings() {};
 	virtual void init(Vector2D pos, uint ancho, uint alto, Resources::TextureId imagen) {
 		Button::init(pos, ancho, alto, imagen);
 	};
+	virtual void init(SDL_Rect dest, Resources::TextureId imagen) {
+		Button::init(dest, imagen);
+	};
+
+	virtual void click() { callbacks::toggleThemeFondo(); };
+};
+
+// ----------------------------------------------------
+
+class ButtonSlott : public Button
+{
+private:
+	Item* i_;
+public:
+	ButtonSlott(SDLGame* game, EntityManager* mngr) : Button(game, mngr) {};
+	~ButtonSlott() {};
+	virtual void init(SDL_Rect dest, Item* item);
+	virtual void init(Vector2D pos, uint ancho, uint alto, Item* item);
 
 	virtual void click() {
 		// if(i_ != nulptr) i_->use();

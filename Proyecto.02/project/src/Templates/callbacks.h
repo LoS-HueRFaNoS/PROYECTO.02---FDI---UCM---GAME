@@ -8,6 +8,7 @@ typedef unsigned int uint;
 
 class callbacks {
 public:
+	static void toggleThemeFondo();
 	// pruebas (solo escriben por consola)
 	static void pruebaGame0(Interfaz* app);
 	static void pruebaGame1(Interfaz* app);

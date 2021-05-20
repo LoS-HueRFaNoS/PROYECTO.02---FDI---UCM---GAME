@@ -18,8 +18,17 @@ void SDL_Object::initComponents(Vector2D pos, uint ancho, uint alto, Texture* im
 
 void Fondo::init(Vector2D pos, uint ancho, uint alto)
 {
+	image = Resources::Fondo;
 	addComponent<Transform>(pos, Vector2D(), ancho, alto, 0);
-	addComponent<Image>(game_->getTextureMngr()->getTexture(Resources::Fondo));
+	addComponent<Image>(game_->getTextureMngr()->getTexture(image));
+}
+
+void Fondo::changeTheme()
+{
+	Image* img = GETCMP2(this, Image);
+	if (image == Resources::Fondo) image = Resources::Fondo2;
+	else image = Resources::Fondo;
+	img->setTexture(game_->getTextureMngr()->getTexture(image));
 }
 
 void Line::init(Vector2D pos, uint ancho, uint alto, string line, Resources::FontId font, const SDL_Color& color = { (0),(0),(0),(255) })
@@ -34,7 +43,7 @@ void Line::init(Vector2D pos, uint ancho, uint alto, string line, Resources::Fon
 void Line::init(SDL_Rect size, string line, const SDL_Color& color)
 {
 	Texture* text = new Texture();
-	if (text->loadFromText(game_->getRenderer(), line, game_->getFontMngr()->getFont(Resources::Beaulieux), color))
+	if (text->loadFromText(game_->getRenderer(), line, game_->getFontMngr()->getFont(src::Beaulieux), color)) //src::Beaulieux
 		SDL_Object::init(POS(size), size.w, size.h, text);
 	else
 		delete text;

@@ -73,6 +73,8 @@ public:
 		// UI
 		Mouse,
 		Fondo,
+		Fondo2,
+		Change,
 		Selected,
 
 		// movement
@@ -217,7 +219,7 @@ public:
 
 		Bendicion,		
 		Espinas,		
-	};
+	}; using txtID = TextureId;
 
 	enum AudioId : std::size_t {
 		// music
@@ -285,3 +287,5 @@ public:
 	//static vector<ClassTemplates> classTemplates_;
 
 };
+
+using src = Resources;

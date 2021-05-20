@@ -69,7 +69,9 @@ vector<Resources::ImageInfo> Resources::images_{
 	{GranArchimago, "project/resources/sprites/iconos personajes/heroe-mago.png"},
 
 	{Mouse, "project/resources/images/interfaz/cursor+sombras.png"},
-	{Fondo, "project/resources/sprites/fondos y marcos/Fondo_Interfaz_02.png"},
+	{Fondo, "project/resources/sprites/fondos y marcos/Fondo_Interfaz_04.png"},
+	{Fondo2, "project/resources/sprites/fondos y marcos/Fondo_Interfaz_05.png"},
+	{Change, "project/resources/sprites/fondos y marcos/change.png"},
 	{Selected, "project/resources/sprites/fondos y marcos/selected.png"},
 	{Avanzar, "project/resources/sprites/iconos movimiento/movimientoAvanzar.png"},
 	{RotarD, "project/resources/sprites/iconos movimiento/movimientoRotarDerecha.png"},
