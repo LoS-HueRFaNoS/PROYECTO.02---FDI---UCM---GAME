@@ -33,6 +33,9 @@ public:
 
 	void setHide(bool set) { hide = set; };
 
+	Texture* getTexture() { return tex_; };
+	void setTexture(Texture* txt) { tex_ = txt; };
+
 private:
 	Transform *tr_;
 	Texture *tex_;
