@@ -401,6 +401,9 @@
     <ClInclude Include="src\Components\ChatInfo.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
+    <ClInclude Include="resource.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="resources\jsons\pruebasArmaduras.json">
@@ -418,5 +421,15 @@
   </ItemGroup>
   <ItemGroup>
     <Text Include="src\NewFile.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="project.rc">
+      <Filter>Archivos de recursos</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="resources\lich.ico">
+      <Filter>Archivos de recursos</Filter>
+    </Image>
   </ItemGroup>
 </Project>
