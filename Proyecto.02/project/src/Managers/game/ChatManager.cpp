@@ -11,13 +11,13 @@ std::unique_ptr<ChatManager> ChatManager::instance_;
 
 void ChatManager::init()
 {
-	SDL_Panel pan = game_->relativePanel(1510,790,340,190,1,6,20,20,5,5);
+	SDL_Panel pan = game_->relativePanel(710,790,540,190,1,6,20,20,5,5);
 	firstLine = RECT(pan.lcx, pan.lcy, pan.cw, pan.ch);
 	marco = RECT(pan.x, pan.y, pan.w, pan.h);
 	margin = pan.mh;
 	chatSize = NUM_LINES;
 	// color messages
-	lineTypesMap_[linTy::Info] = hex2sdlcolor("#FFFFFFFF"); //COLOR(0xDD0000FF);
+	lineTypesMap_[linTy::Info] = hex2sdlcolor("#FFFFFFFF");
 	lineTypesMap_[linTy::Experience] = hex2sdlcolor("#BBBB00FF");
 	lineTypesMap_[linTy::DamageDone] = hex2sdlcolor("#FF0000FF");
 	lineTypesMap_[linTy::DamageReceive] = hex2sdlcolor("#0055FFFF");

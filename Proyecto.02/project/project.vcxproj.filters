@@ -201,13 +201,16 @@
     <ClCompile Include="src\Components\GameStateManager.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
-    <ClCompile Include="src\Components\PanelTurns.cpp">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
     <ClCompile Include="src\Managers\game\ChatManager.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
     <ClCompile Include="src\Components\ChatInfo.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Components\Paneles\PanelDnD.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Components\Paneles\PanelTurns.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
   </ItemGroup>
@@ -392,9 +395,6 @@
     <ClInclude Include="src\Components\GameStateManager.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
-    <ClInclude Include="src\Components\PanelTurns.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
     <ClInclude Include="src\Managers\game\ChatManager.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
@@ -402,6 +402,12 @@
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
     <ClInclude Include="resource.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Components\Paneles\PanelDnD.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Components\Paneles\PanelTurns.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
   </ItemGroup>

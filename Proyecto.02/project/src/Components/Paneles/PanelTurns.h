@@ -1,9 +1,9 @@
 #pragma once
 #include <string>
-#include "../ecs/Component.h"
-#include "../GameObjects/Character.h"
-#include "../Structures/Panel.h"
-#include "../Managers/game/InterfazManager.h"
+#include "../../ecs/Component.h"
+#include "../../GameObjects/Character.h"
+#include "../../Structures/Panel.h"
+#include "../../Managers/game/InterfazManager.h"
 
 class PanelTurns : public Component {
 private:

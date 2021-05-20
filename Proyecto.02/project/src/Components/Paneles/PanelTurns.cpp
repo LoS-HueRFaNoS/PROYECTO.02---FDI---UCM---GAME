@@ -1,10 +1,10 @@
 #include "PanelTurns.h"
-#include "../GameObjects/Button.h"
-#include "../Templates/Resources.h"
-#include "../Utilities/textures_box.h"
-#include "../Utilities/SDL_macros.h"
-#include "../Managers/game/LobbyManager.h"
-#include "../Managers/game/CombatManager.h"
+#include "../../GameObjects/Button.h"
+#include "../../Templates/Resources.h"
+#include "../../Utilities/textures_box.h"
+#include "../../Utilities/SDL_macros.h"
+#include "../../Managers/game/LobbyManager.h"
+#include "../../Managers/game/CombatManager.h"
 
 using src = Resources;
 using namespace textures_box;
@@ -55,20 +55,20 @@ void PanelTurns::draw()
 
 void PanelTurns::drawCharacterActual()
 {
-	Vector2D pos = Vector2D(firstElement.x + firstElement.w, firstElement.y + firstElement.h);
+	Vector2D pos = Vector2D(double(firstElement.x) + firstElement.w, double(firstElement.y) + firstElement.h);
 
 	// IMG pj actual
-	src::TextureId img = size_t(character_->getType()) ? getEnemyTxt(character_) : getHeroTxt(character_);
+	src::TextureId img = getCharacterTxt(character_);
 	pan_->addButton(iManager_->addButton<SDL_Object>(pos, firstElement.w, firstElement.h, img));
 
 	// VIDA y MANA:
 	SDL_Color color = { 255,0,0,255 };
 	CharacterSheet* character_sheet = character_->getCharacterSheet();
-	pos = Vector2D(firstElement.x, firstElement.y + firstElement.h * 2);
+	pos = Vector2D(firstElement.x, double(firstElement.y) + firstElement.h * 2);
 	string text = to_string(character_sheet->maxHitPoints());	// Health
-	pan_->addButton(iManager_->addButton<Line>(pos, firstElement.w, firstElement.h, text, Resources::Fornite64, color));
+	pan_->addButton(iManager_->addButton<Line>(pos, firstElement.w, firstElement.h, text, src::HERMAN, color));
 	color = { 0,0,255,255 };
-	pos = Vector2D(firstElement.x + firstElement.w, firstElement.y + firstElement.h * 2);
+	pos = Vector2D(double(firstElement.x) + firstElement.w, double(firstElement.y) + firstElement.h * 2);
 	text = to_string(character_sheet->maxManaPoints());	// Mana
-	pan_->addButton(iManager_->addButton<Line>(pos, firstElement.w, firstElement.h, text, Resources::Fornite64, color));
+	pan_->addButton(iManager_->addButton<Line>(pos, firstElement.w, firstElement.h, text, src::HERMAN, color));
 }

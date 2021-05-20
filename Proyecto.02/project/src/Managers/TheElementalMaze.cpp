@@ -58,11 +58,6 @@ void TheElementalMaze::init()
 	// 5. GameStateManager
 	stManager_ = addComponent<GameStateManager>();
 	stManager_->changeState(GameState::MainMenu);
-
-	uiManager_->createPanel(Chat);
-	string s = "Había una vez una casita de una bruja hecha de chocolate, entonces Hansel dijo....";
-	int k = s.size();
-	ChatManager::instance()->addLine(s, linTy::Info);
 }
 
 //--------------------------------------------------------

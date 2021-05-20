@@ -21,7 +21,8 @@
   <ItemGroup>
     <ClCompile Include="src\Components\ChatInfo.cpp" />
     <ClCompile Include="src\Components\GameStateManager.cpp" />
-    <ClCompile Include="src\Components\PanelTurns.cpp" />
+    <ClCompile Include="src\Components\Paneles\PanelDnD.cpp" />
+    <ClCompile Include="src\Components\Paneles\PanelTurns.cpp" />
     <ClCompile Include="src\Managers\game\ChatManager.cpp" />
     <ClCompile Include="src\Managers\SDL\AudioManager.cpp" />
     <ClCompile Include="src\GameObjects\Button.cpp" />
@@ -79,7 +80,8 @@
     <ClInclude Include="resource.h" />
     <ClInclude Include="src\Components\ChatInfo.h" />
     <ClInclude Include="src\Components\GameStateManager.h" />
-    <ClInclude Include="src\Components\PanelTurns.h" />
+    <ClInclude Include="src\Components\Paneles\PanelDnD.h" />
+    <ClInclude Include="src\Components\Paneles\PanelTurns.h" />
     <ClInclude Include="src\Managers\game\ChatManager.h" />
     <ClInclude Include="src\Managers\SDL\AudioManager.h" />
     <ClInclude Include="src\GameObjects\Button.h" />
