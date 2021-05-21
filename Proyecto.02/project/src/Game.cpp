@@ -59,29 +59,6 @@ void Game::initGame()
 	RECT rect;
 	HWND hd = GetDesktopWindow();
 	GetClientRect(hd, &rect);
-	int zoom = GetDpiForWindow(hd);
-	double dpi = 0;
-	switch (zoom) {
-	case 96:
-		dpi = 1;
-		std::cout << "100%" << std::endl;
-		break;
-	case 120:
-		dpi = 1.25;
-		std::cout << "125%" << std::endl;
-		break;
-	case 144:
-		dpi = 1.5;
-		std::cout << "150%" << std::endl;
-		break;
-	case 192:
-		dpi = 2;
-		std::cout << "200%" << std::endl;
-		break;
-	default:
-		std::cout << "error" << std::endl;
-		break;
-	}
 	int client_width = (rect.right - rect.left);
 	int client_height = (rect.bottom - rect.top);
 
@@ -89,7 +66,8 @@ void Game::initGame()
 	game_ = SDLGame::init("THE ELEMENTAL MAZE", client_width * 0.75, client_height * 0.75);
 
 	// PANTALLA COMPLETA
-	//game_->setFullScreen(true);
+	/*game_->setWindowSize(client_width, client_height);
+	game_->setFullScreen(true);*/
 
 	Texture* tex_ = new Texture(game_->getRenderer(), "project/resources/images/cargando.png");
 	SDL_Rect dest = { 0, 0, int(game_->getWindowWidth()), int(game_->getWindowHeight()) };
@@ -120,7 +98,7 @@ void Game::initGame()
 
 
 	int endTime = 0;
-	delete tex_;
+	//delete tex_;
 }
 
 void Game::closeGame()

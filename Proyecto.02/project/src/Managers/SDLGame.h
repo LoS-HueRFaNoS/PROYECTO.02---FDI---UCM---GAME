@@ -85,44 +85,20 @@ public:
 		return SDL_GetTicks();
 	}
 
-	inline void setFullScreen(bool fullscreen)
+	void setFullScreen(bool fullscreen)
 	{
 		int newWidth, newHeight;
 		if (fullscreen) {
 			RECT rect;
 			HWND hd = GetDesktopWindow();
 			GetClientRect(hd, &rect);
-			int zoom = GetDpiForWindow(hd);
-			double dpi = 0;
-			switch (zoom) {
-			case 96:
-				dpi = 1;
-				std::cout << "100%" << std::endl;
-				break;
-			case 120:
-				dpi = 1.25;
-				std::cout << "125%" << std::endl;
-				break;
-			case 144:
-				dpi = 1.5;
-				std::cout << "150%" << std::endl;
-				break;
-			case 192:
-				dpi = 2;
-				std::cout << "200%" << std::endl;
-				break;
-			default:
-				std::cout << "error" << std::endl;
-				break;
-			}
-			newWidth = (rect.right - rect.left) * dpi;
-			newHeight = (rect.bottom - rect.top) * dpi;
+			newWidth = (rect.right - rect.left);
+			newHeight = (rect.bottom - rect.top);
 		}
 		else {
 			newWidth = width_;
 			newHeight = height_;
 		}
-		std::cout << newWidth << " " << newHeight << std::endl;
 		SDL_SetWindowSize(window_, newWidth, newHeight);
 		SDL_SetWindowFullscreen(window_, fullscreen ? SDL_WINDOW_FULLSCREEN : SDL_WINDOW_RESIZABLE);
 	}
