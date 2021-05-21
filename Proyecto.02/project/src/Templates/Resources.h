@@ -108,7 +108,7 @@ public:
 		EmptyArmor,
 		WeaponSlot,
 		ArmorSlot,
-
+		inventory_slots,
 //Objetos
 		_firstWeaponId_,
 		Desarmado,
@@ -174,7 +174,7 @@ public:
 		Lich,
 		Necrofago,
 		//Monster,
-		Desconocido,
+		//Desconocido,
 
 		//Ficha DD
 		Pergamino,

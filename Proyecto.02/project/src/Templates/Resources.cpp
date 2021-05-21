@@ -99,6 +99,7 @@ vector<Resources::ImageInfo> Resources::images_{
 	{EmptyArmor, "project/resources/sprites/iconos inventario/inventoryArmor.png"},
 	{WeaponSlot, "project/resources/sprites/iconos inventario/weapon_slot.png"},
 	{ArmorSlot, "project/resources/sprites/iconos inventario/armor_slot.png"},
+	{inventory_slots, "project/resources/images/Menu/inventory_slots.png"},
 
 	// Armas clasicas
 	{Joker, "project/resources/sprites/iconos armas/joker.png"}, ///TODO
@@ -158,7 +159,7 @@ vector<Resources::ImageInfo> Resources::images_{
 	{Lich, "project/resources/sprites/iconos personajes/lich.PNG"},
 	{Necrofago, "project/resources/sprites/iconos personajes/necrofago.png" },
 	//{ Monster, "project/resources/images/monster.png" },
-	{ Desconocido, "project/resources/images/desconocido.png" },
+	//{ Desconocido, "project/resources/images/desconocido.png" },
 
 	// Ficha DD
 	{Pergamino, "project/resources/sprites/iconos ficha/pergamino.png"},
@@ -214,12 +215,12 @@ vector<Resources::TextMsgInfo> Resources::messages_{
 
 vector<Resources::MusicInfo> Resources::musics_{
 	//
-	{MenuInicial, "project/resources/sound/Musica/Menu principal.wav"}, //
-	{Lobby, "project/resources/sound/Musica/Lobby.wav"}, //
-	{Exploracion, "project/resources/sound/Musica/Exploracion.wav"}, //
-	{Derrota, "project/resources/sound/Musica/Derrota.wav"}, //
-	{Creditos, "project/resources/sound/Musica/Creditos.wav"}, //
-	{CombateLich, "project/resources/sound/Musica/Combate Lich.wav"} //
+	//{MenuInicial, "project/resources/sound/Musica/Menu principal.wav"}, //
+	//{Lobby, "project/resources/sound/Musica/Lobby.wav"}, //
+	//{Exploracion, "project/resources/sound/Musica/Exploracion.wav"}, //
+	//{Derrota, "project/resources/sound/Musica/Derrota.wav"}, //
+	//{Creditos, "project/resources/sound/Musica/Creditos.wav"}, //
+	//{CombateLich, "project/resources/sound/Musica/Combate Lich.wav"} //
 };
 
 vector<Resources::SoundInfo> Resources::sounds_{

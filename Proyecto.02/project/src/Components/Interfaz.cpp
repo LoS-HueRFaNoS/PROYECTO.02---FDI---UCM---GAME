@@ -517,7 +517,17 @@ void Interfaz::createStash() {
 	h = game_->getWindowHeight();
 	y = 50;
 	p->addButton(iManager->addButton<ButtonMenu>(Vector2D(w - 300, y + 700), 300, 100, src::howToPlay, accionMenu::stash_lobby, this));
-
+	p->addButton(iManager->addButton<SDL_Object>(Vector2D(90, 50), w-500, 100, src::inventory_slots));
+	p->addButton(iManager->addButton<SDL_Object>(Vector2D(90, 150), w-500, 100, src::inventory_slots));
+	p->addButton(iManager->addButton<SDL_Object>(Vector2D(90, 250), w-500, 100, src::inventory_slots));
+	p->addButton(iManager->addButton<SDL_Object>(Vector2D(90, 350), w-500, 100, src::inventory_slots));
+	for (int i = 0; i < 4; i++)
+	{
+		for (int j = 0; j < 10; j++)
+		{
+			p->addButton(iManager->addButton<SDL_Object>(Vector2D(100+ 94*j, 60+100*i), 75, 80, src::Clerigo));
+		}
+	}
 
 }
 
