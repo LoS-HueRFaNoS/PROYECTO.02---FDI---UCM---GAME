@@ -189,7 +189,7 @@ public:
 	Hero(SDLGame* game, EntityManager* mngr) :
 		_armor(nullptr), 
 		Character(game, mngr, charTy::HERO) {};
-
+	void setTemplate(heroTemplate newTemplate) { template_ = newTemplate; } // Debug
 	~Hero();
 
 	void giveWeapon(Weapon* w) { _weapon = w; }

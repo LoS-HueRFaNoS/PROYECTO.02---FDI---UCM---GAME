@@ -306,12 +306,14 @@ void callbacks::shop_lobby(Interfaz* app)
 {
 	app->togglePanel(Shop);
 	app->togglePanel(Lobby);
+	app->togglePanel(Heroes);
 	std::cout << "volvemos al lobby desde la tienda" << std::endl;
 }
 void callbacks::stash_lobby(Interfaz* app)
 {
 	app->togglePanel(StashPanel);
 	app->togglePanel(Lobby);
+	app->togglePanel(Heroes);
 	std::cout << "volvemos al lobby desde el stash" << std::endl;
 }
 
