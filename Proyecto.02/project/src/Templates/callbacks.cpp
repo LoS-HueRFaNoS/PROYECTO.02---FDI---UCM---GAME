@@ -5,6 +5,7 @@
 #include "../ecs/Component.h"
 #include "../Components/Interfaz.h"
 #include "../Game.h"
+#include "../Managers/game/LobbyManager.h"
 
 // ----------------------------------------------------
 
@@ -278,13 +279,21 @@ void callbacks::quit(Interfaz* app)
 	std::cout << "quit se ha activado\n";
 }
 
-void callbacks::equiparHeroe(Interfaz* app, int her)
+void callbacks::shoppingHero(Interfaz* app, int her)
 {
-	std::cout << " vamos al stash" << std::endl;
+	LobbyManager* lo = TheElementalMaze::instance()->getLobbyManager();
+	lo->buyHero(her);
+	std::cout << "Heroe comprado" << std::endl;
+	app->togglePanel(Shop);
+	app->createPanel(Shop);
 }
 void callbacks::shopping(Interfaz* app, int itemType, int itemid)
 {
-	std::cout << "vamos a la tienda" << std::endl;
+	LobbyManager* lo = TheElementalMaze::instance()->getLobbyManager();
+	lo->buyItem(itemid);
+	std::cout << "Objeto comprado" << std::endl;
+	app->togglePanel(Shop);
+	app->createPanel(Shop);
 }
 
 void callbacks::stash(Interfaz* app)

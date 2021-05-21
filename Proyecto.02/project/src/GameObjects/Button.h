@@ -185,14 +185,14 @@ public:
 
 
 
-class ButtonHeroEquipar : public Button {
+class ButtonBuyHero : public Button {
 private:
 	int heroeid;
 	Interfaz* app;
 public:
-	ButtonHeroEquipar(SDLGame* game, EntityManager* mngr) : Button(game, mngr) {};
+	ButtonBuyHero(SDLGame* game, EntityManager* mngr) : Button(game, mngr) {};
 
-	~ButtonHeroEquipar() {};
+	~ButtonBuyHero() {};
 
 	virtual void init(Vector2D pos, uint ancho, uint alto, Resources::TextureId imagen, int her, Interfaz* app_) {
 		heroeid = her;
@@ -202,21 +202,21 @@ public:
 
 	virtual void click()
 	{
-		callbacks::equiparHeroe(app, heroeid);
+		callbacks::shoppingHero(app, heroeid);
 
 	}
 };
 // ----------------------------------------------------
 
-class ButtonCompra : public Button {
+class ButtonBuyItem : public Button {
 private:
 	int itemid;
 	int itemType;
 	Interfaz* app;
 public:
-	ButtonCompra(SDLGame* game, EntityManager* mngr) : Button(game, mngr) {};
+	ButtonBuyItem(SDLGame* game, EntityManager* mngr) : Button(game, mngr) {};
 
-	~ButtonCompra() {};
+	~ButtonBuyItem() {};
 
 	virtual void init(Vector2D pos, uint ancho, uint alto, Resources::TextureId imagen,int itemId_, int itemType_, Interfaz* app_) {
 		itemid = itemId_;

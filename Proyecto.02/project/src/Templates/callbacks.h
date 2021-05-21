@@ -39,7 +39,7 @@ public:
 	//boton de lobby
 
 	static void stash(Interfaz* app);
-	static void equiparHeroe(Interfaz* app , int her_);
+	static void shoppingHero(Interfaz* app , int her_);
 	static void shop(Interfaz* app);
 	static void shopping(Interfaz* app, int itemType, int itemid);
 	static void startExp(Interfaz* app);
