@@ -99,7 +99,7 @@ public:
 			newWidth = width_;
 			newHeight = height_;
 		}
-		SDL_SetWindowSize(window_, newWidth, newHeight);
+		setWindowSize(newWidth, newHeight);
 		SDL_SetWindowFullscreen(window_, fullscreen ? SDL_WINDOW_FULLSCREEN : SDL_WINDOW_RESIZABLE);
 	}
 
