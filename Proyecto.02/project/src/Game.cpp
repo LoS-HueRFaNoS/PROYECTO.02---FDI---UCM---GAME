@@ -21,7 +21,6 @@
 #include "Managers/game/InterfazManager.h"
 #include "Managers/TheElementalMaze.h"
 #include "Managers/SDLGame.h"
-#include <Windows.h>
 //
 
 using namespace std;
@@ -60,18 +59,39 @@ void Game::initGame()
 	RECT rect;
 	HWND hd = GetDesktopWindow();
 	GetClientRect(hd, &rect);
+	int zoom = GetDpiForWindow(hd);
+	double dpi = 0;
+	switch (zoom) {
+	case 96:
+		dpi = 1;
+		std::cout << "100%" << std::endl;
+		break;
+	case 120:
+		dpi = 1.25;
+		std::cout << "125%" << std::endl;
+		break;
+	case 144:
+		dpi = 1.5;
+		std::cout << "150%" << std::endl;
+		break;
+	case 192:
+		dpi = 2;
+		std::cout << "200%" << std::endl;
+		break;
+	default:
+		std::cout << "error" << std::endl;
+		break;
+	}
 	int client_width = (rect.right - rect.left);
 	int client_height = (rect.bottom - rect.top);
 
 	//MODO VENTANA
 	game_ = SDLGame::init("THE ELEMENTAL MAZE", client_width * 0.75, client_height * 0.75);
-	//game_ = SDLGame::init("THE ELEMENTAL MAZE", 1920, 1080);
 
 	// PANTALLA COMPLETA
-	/*game_ = SDLGame::init("THE ELEMENTAL MAZE", client_width, client_height);
-	SDL_SetWindowFullscreen(game_->getWindow(), SDL_WINDOW_FULLSCREEN);*/
+	//game_->setFullScreen(true);
 
-	Texture *tex_ = new Texture(game_->getRenderer(), "project/resources/images/cargando.png");
+	Texture* tex_ = new Texture(game_->getRenderer(), "project/resources/images/cargando.png");
 	SDL_Rect dest = { 0, 0, int(game_->getWindowWidth()), int(game_->getWindowHeight()) };
 	SDL_SetRenderDrawColor(game_->getRenderer(), COLOR(0x00000000));
 	SDL_RenderClear(game_->getRenderer());

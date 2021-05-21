@@ -25,10 +25,10 @@ public:
 	// from SDLGame
 	void start();
 	void stop();
-	SDLGame* getSDLGame() { return game_; };
-	void exitGame() { exit_ = true; };
+	SDLGame* getSDLGame() { return game_; }
+	void exitGame() { exit_ = true; }
 
-	Fondo* getFondo() { return fondo; };
+	Fondo* getFondo() { return fondo; }
 
 private:
 	static std::unique_ptr<Game> instance_;
@@ -49,7 +49,4 @@ private:
 	Cursor* createCursor(Vector2D pos, uint width, uint height, Resources::TextureId image);
 
 	bool exit_;
-
-	const static int _WINDOW_WIDTH_ = 1200; // 1920px
-	const static int _WINDOW_HEIGHT_ = 900; // 1080px
 };
