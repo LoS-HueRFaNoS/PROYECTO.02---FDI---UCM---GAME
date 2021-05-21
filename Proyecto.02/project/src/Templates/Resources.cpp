@@ -214,16 +214,22 @@ vector<Resources::TextMsgInfo> Resources::messages_{
 
 vector<Resources::MusicInfo> Resources::musics_{
 	//
-	{ImperialMarch, "project/resources/sound/imperial_march.wav"}, //
-	{Mystery, "project/resources/sound/mystery.mp3"}, //
-	{Tension, "project/resources/sound/tension.mp3"} //
+	{MenuInicial, "project/resources/sound/Musica/Menu principal.wav"}, //
+	{Lobby, "project/resources/sound/Musica/Lobby.wav"}, //
+	{Exploracion, "project/resources/sound/Musica/Exploracion.wav"}, //
+	{Derrota, "project/resources/sound/Musica/Derrota.wav"}, //
+	{Creditos, "project/resources/sound/Musica/Creditos.wav"}, //
+	{CombateLich, "project/resources/sound/Musica/Combate Lich.wav"} //
 };
 
 vector<Resources::SoundInfo> Resources::sounds_{
 	//
-	{Explosion, "project/resources/sound/explosion.wav"}, //
-	{Notification, "project/resources/sound/notification.wav"},	  //
-	{GameOver, "project/resources/sound/gameover.wav"}	  //
+	{AtaqueAgua, "project/resources/sound/Sonidos/ataque agua.mp3"}, //
+	{AtaqueFuego, "project/resources/sound/Sonidos/ataque fuego.mp3"}, //
+	{AtaqueLuz, "project/resources/sound/Sonidos/ataque luz.mp3"}, //
+	{AtaqueViento, "project/resources/sound/Sonidos/ataque viento.mp3"}, //
+	{Boton1, "project/resources/sound/Sonidos/boton 1.mp3"}, //
+	{Boton2, "project/resources/sound/Sonidos/boton 2.mp3"}, //
 };
 
 vector<Resources::JsonInfo> Resources::jsons_{

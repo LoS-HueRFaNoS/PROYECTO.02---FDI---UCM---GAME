@@ -74,7 +74,7 @@ public:
 
 	virtual void click() 
 	{
-		game_->getAudioMngr()->playChannel(Resources::AudioId::Notification, 0, 0);
+		game_->getAudioMngr()->playChannel(Resources::AudioId::Boton1, 0, 0);
 		callbacks::movCommand((int)movementType_);
 	}
 };
@@ -350,7 +350,7 @@ public:
 
 	virtual void click()
 	{
-		game_->getAudioMngr()->playMusic(Resources::Mystery, -1);
+		game_->getAudioMngr()->playMusic(Resources::Exploracion, -1);
 		game_->getAudioMngr()->setMusicVolume(50);
 
 		callbacks::createPanel(activated, pan_);

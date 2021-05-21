@@ -225,14 +225,20 @@ public:
 
 	enum AudioId : std::size_t {
 		// music
-		ImperialMarch,
-		Mystery,
-		Tension,
+		MenuInicial,
+		Lobby,
+		Exploracion,
+		Derrota,
+		Creditos,
+		CombateLich,
 
 		// sound effects
-		Explosion,
-		Notification,
-		GameOver
+		AtaqueAgua,
+		AtaqueFuego,
+		AtaqueLuz, 
+		AtaqueViento,
+		Boton1,
+		Boton2
 	};
 
 	enum FontId : std::size_t {
