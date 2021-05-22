@@ -168,12 +168,15 @@ void Interfaz::createHeroes()
 
 	// BOTONES: hero1, hero2, hero3, hero4
 	for (int i = 0; i < nHeros; i++) {
-		ButtonHero* b_ = iManager->addButton<ButtonHero>(Vector2D(x_, y_ + i * espace), w_, h_, getHeroTxt(i), (HeroNum)i, DDPan, false);
-		uint k = 6;
-		b_->addComponent<StateBar>(heroes[i], health, SDL_Rect(RECT((x_ + w_ + n), (y_ + i * espace + h_ * 1 / k), w_ * 2, h_ / k)));
-		b_->addComponent<StateBar>(heroes[i], mana, SDL_Rect(RECT((x_ + w_ + n), (y_ + i * espace + h_ * 2.5 / k), w_ * 2, h_ / k)));
-		b_->addComponent<StateBar>(heroes[i], experience, SDL_Rect(RECT((x_ + w_ + n), (y_ + i * espace + h_ * 4 / k), w_ * 2, h_ / k)));
-		p->addButton(b_);
+		if (c->getHeroes()[i] != nullptr)
+		{
+			ButtonHero* b_ = iManager->addButton<ButtonHero>(Vector2D(x_, y_ + i * espace), w_, h_, getHeroTxt(i), (HeroNum)i, DDPan, false);
+			uint k = 6;
+			b_->addComponent<StateBar>(heroes[i], health, SDL_Rect(RECT((x_ + w_ + n), (y_ + i * espace + h_ * 1 / k), w_ * 2, h_ / k)));
+			b_->addComponent<StateBar>(heroes[i], mana, SDL_Rect(RECT((x_ + w_ + n), (y_ + i * espace + h_ * 2.5 / k), w_ * 2, h_ / k)));
+			b_->addComponent<StateBar>(heroes[i], experience, SDL_Rect(RECT((x_ + w_ + n), (y_ + i * espace + h_ * 4 / k), w_ * 2, h_ / k)));
+			p->addButton(b_);
+		}
 	}
 }
 
@@ -306,11 +309,14 @@ void Interfaz::createFichaDD(uint nCharacter)
 {
 	PartyManager* c = TheElementalMaze::instance()->getPartyManager();
 	std::vector<Hero*> heroes = c->getHeroes();
-
+	int w, h;
+	w = game_->getWindowWidth();
+	h = game_->getWindowHeight();
 	// construccion y asignacion del panel:
 	Panel* p = new Panel(DDPan);
 	allPanels[DDPan] = p;
-
+	if (TheElementalMaze::instance()->gameState() == GameState::LOBBY) 
+		p->addButton(iManager->addButton<ButtonHeroManagement>(Vector2D(w / 2 + w / 3 - 150, 0), 300, 100, src::start, accionHero::sendHeroToStash,nCharacter, this));
 	TheElementalMaze::instance()->addComponent<PanelDnD>(game_, p, heroes[nCharacter], iManager);
 }
 
@@ -439,7 +445,7 @@ void Interfaz::createShop()
 	Panel* p = new Panel(Shop);
 	nameItemTienda = " ";
 	descrItemTienda = " ";
-	allPanels[infoTiendaPanel] = new Panel(infoTiendaPanel);
+	createPanel(infoTiendaPanel);
 	allPanels[Shop] = p;
 	int w, h;	
 	SDL_Color color;
@@ -541,9 +547,10 @@ void Interfaz::createStash() {
 	else p->addButton(iManager->addButton<ButtonMenu>(Vector2D(w - 300, 400), 100, 100, src::RetrocederBloqueado, accionMenu::avanzarItems, this));
 	//for (int i = 0; i < 81; i++)
 	//{
-	//	Hero* a = new Hero(game_, mngr_);
-	//	a->setTemplate(heroTemplate::WARRIOR);
-	//	loManager->addHeroToStash(a);
+		//Hero* a = new Hero(game_, mngr_);
+		//a->setTemplate(heroTemplate::WARRIOR);
+		//loManager->addHeroToStash(a);
+		
 	//}
 	tam = loManager->getPlayerStash()->heroes.size();
 	// Por cada fila de slots de héroes

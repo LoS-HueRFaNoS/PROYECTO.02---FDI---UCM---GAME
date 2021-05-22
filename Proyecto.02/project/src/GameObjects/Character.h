@@ -189,6 +189,19 @@ public:
 	Hero(SDLGame* game, EntityManager* mngr) :
 		_armor(nullptr), 
 		Character(game, mngr, charTy::HERO) {};
+	
+	Hero(SDLGame* game, EntityManager* mngr,Hero* hero) : _armor(hero->_armor), Character(game,mngr,charTy::HERO) {
+		_armor = hero->_armor;
+		template_ = hero->template_;
+		_marcial = hero->_marcial;
+		savingSuccess = hero->savingSuccess;
+		savingFailure = hero->savingFailure;
+		expNeed = hero->expNeed;
+		expMax = hero->expMax;
+		level = hero->level;
+		pointsPerLevel = hero->pointsPerLevel;
+		_deathGate = hero->_deathGate;
+	}
 	void setTemplate(heroTemplate newTemplate) { template_ = newTemplate; } // Debug
 	~Hero();
 

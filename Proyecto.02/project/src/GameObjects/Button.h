@@ -219,6 +219,41 @@ public:
 
 	}
 };
+
+
+enum class accionHero {
+	sendHeroToStash, sendHeroToParty
+};
+class ButtonHeroManagement : public Button {
+private:
+	int heroeid;
+	accionHero accion;
+	Interfaz* app;
+public:
+	ButtonHeroManagement(SDLGame* game, EntityManager* mngr) : Button(game, mngr) {};
+
+	~ButtonHeroManagement() {};
+
+	virtual void init(Vector2D pos, uint ancho, uint alto, Resources::TextureId imagen,accionHero accion_, int her, Interfaz* app_) {
+		heroeid = her;
+		app = app_;
+		accion = accion_;
+		Button::init(pos, ancho, alto, imagen);
+	};
+
+	virtual void click()
+	{
+		switch (accion)
+		{
+		case accionHero::sendHeroToStash:
+				callbacks::sendHeroToStash(app, heroeid);
+				break;
+		case accionHero::sendHeroToParty:
+			callbacks::sendHeroToParty(app, heroeid);
+			break;
+		}
+	}
+};
 // ----------------------------------------------------
 
 class ButtonBuyItem : public Button {
