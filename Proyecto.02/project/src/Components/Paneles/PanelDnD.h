@@ -7,6 +7,7 @@
 #include "../../Managers/game/InterfazManager.h"
 
 const int NUM_WEAKNESSES = 8;
+const int NUM_LETTERS = 20;
 
 class PanelDnD : public Component {
 private:
@@ -42,4 +43,5 @@ private:
 	void addHabilities(Hero* hero);
 
 	void addTemplate();
+	std::string checkLineSize(std::string line);
 };

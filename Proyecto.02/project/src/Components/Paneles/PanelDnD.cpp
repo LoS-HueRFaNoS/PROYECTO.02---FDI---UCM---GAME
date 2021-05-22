@@ -81,37 +81,37 @@ void PanelDnD::addWeaknesses()
 	std::string line = PERCENTAGE(character_sheet->getResistance(damTy::FIRE));		// Fire
 	//lineSize.y += lineSize.h;
 	std::string text = "Fire = " + line;	
-	pan_->addButton(iManager_->addButton<Line>(lineSize, text, hex2sdlcolor("0xFF0000FF")));
+	pan_->addButton(iManager_->addButton<Line>(lineSize, checkLineSize(text), hex2sdlcolor("0xFF0000FF")));
 
 	line = PERCENTAGE(character_sheet->getResistance(damTy::WATER));				// Water
 	lineSize.y += lineSize.h;
 	text = "Water = " + line;	
-	pan_->addButton(iManager_->addButton<Line>(lineSize, text, hex2sdlcolor("0x0000FFFF")));
+	pan_->addButton(iManager_->addButton<Line>(lineSize, checkLineSize(text), hex2sdlcolor("0x0000FFFF")));
 
 	line = PERCENTAGE(character_sheet->getResistance(damTy::ICE));					// Ice
 	lineSize.y += lineSize.h;
 	text = "Ice = " + line;		
-	pan_->addButton(iManager_->addButton<Line>(lineSize, text, hex2sdlcolor("0x9B9BFFFF")));
+	pan_->addButton(iManager_->addButton<Line>(lineSize, checkLineSize(text), hex2sdlcolor("0x9B9BFFFF")));
 
 	line = PERCENTAGE(character_sheet->getResistance(damTy::EARTH));				// Earth
 	lineSize.y += lineSize.h;
 	text = "Earth = " + line;	
-	pan_->addButton(iManager_->addButton<Line>(lineSize, text, hex2sdlcolor("0x9B5014FF")));
+	pan_->addButton(iManager_->addButton<Line>(lineSize, checkLineSize(text), hex2sdlcolor("0x9B5014FF")));
 
 	line = PERCENTAGE(character_sheet->getResistance(damTy::WIND));					// Wind
 	lineSize.y += lineSize.h;
 	text = "Wind = " + line;	
-	pan_->addButton(iManager_->addButton<Line>(lineSize, text, hex2sdlcolor("0x009B00FF")));
+	pan_->addButton(iManager_->addButton<Line>(lineSize, checkLineSize(text), hex2sdlcolor("0x009B00FF")));
 
 	line = PERCENTAGE(character_sheet->getResistance(damTy::LIGHT));				// Light
 	lineSize.y += lineSize.h;
 	text = "Light = " + line;	
-	pan_->addButton(iManager_->addButton<Line>(lineSize, text, hex2sdlcolor("0xFFFF9BFF")));
+	pan_->addButton(iManager_->addButton<Line>(lineSize, checkLineSize(text), hex2sdlcolor("0xFFFF9BFF")));
 
 	line = PERCENTAGE(character_sheet->getResistance(damTy::DARK));					// Dark
 	lineSize.y += lineSize.h;
 	text = "Dark = " + line;	
-	pan_->addButton(iManager_->addButton<Line>(lineSize, text, hex2sdlcolor("0x323232FF")));
+	pan_->addButton(iManager_->addButton<Line>(lineSize, checkLineSize(text), hex2sdlcolor("0x323232FF")));
 }
 
 void PanelDnD::addMainStats()
@@ -126,11 +126,11 @@ void PanelDnD::addMainStats()
 	// VIDA y MANA:
 	string text = "Health = " + to_string(character_sheet->maxHitPoints());			// Health
 	//lineSize.y += lineSize.h;
-	pan_->addButton(iManager_->addButton<Line>(lineSize, text, hex2sdlcolor("0x000000FF")));
+	pan_->addButton(iManager_->addButton<Line>(lineSize, checkLineSize(text), hex2sdlcolor("0x000000FF")));
 	
 	text = "Mana = " + to_string(character_sheet->maxManaPoints());					// Mana
 	lineSize.y += lineSize.h;
-	pan_->addButton(iManager_->addButton<Line>(lineSize, text, hex2sdlcolor("0x000000FF")));
+	pan_->addButton(iManager_->addButton<Line>(lineSize, checkLineSize(text), hex2sdlcolor("0x000000FF")));
 
 	// Espaciado
 	lineSize.y += lineSize.h;
@@ -138,19 +138,19 @@ void PanelDnD::addMainStats()
 	// MAIN STATS:
 	text = "Strength = " + to_string(character_sheet->getStat(ms::STR).value);		// Fuerza
 	lineSize.y += lineSize.h;
-	pan_->addButton(iManager_->addButton<Line>(lineSize, text, hex2sdlcolor("0x000000FF")));
+	pan_->addButton(iManager_->addButton<Line>(lineSize, checkLineSize(text), hex2sdlcolor("0x000000FF")));
 	
 	text = "Constitution = " + to_string(character_sheet->getStat(ms::CON).value);	// Constitution
 	lineSize.y += lineSize.h;
-	pan_->addButton(iManager_->addButton<Line>(lineSize, text, hex2sdlcolor("0x000000FF")));
+	pan_->addButton(iManager_->addButton<Line>(lineSize, checkLineSize(text), hex2sdlcolor("0x000000FF")));
 	
 	text = "Dexterity = " + to_string(character_sheet->getStat(ms::DEX).value);		// Destreza
 	lineSize.y += lineSize.h;
-	pan_->addButton(iManager_->addButton<Line>(lineSize, text, hex2sdlcolor("0x000000FF")));
+	pan_->addButton(iManager_->addButton<Line>(lineSize, checkLineSize(text), hex2sdlcolor("0x000000FF")));
 	
 	text = "Intelect = " + to_string(character_sheet->getStat(ms::INT).value);		// Intelecto
 	lineSize.y += lineSize.h;
-	pan_->addButton(iManager_->addButton<Line>(lineSize, text, hex2sdlcolor("0x000000FF")));
+	pan_->addButton(iManager_->addButton<Line>(lineSize, checkLineSize(text), hex2sdlcolor("0x000000FF")));
 }
 
 void PanelDnD::addArmorWeapon()
@@ -184,9 +184,9 @@ void PanelDnD::addCharacter()
 {
 	double L = 2.0 / NUM_WEAKNESSES;
 	SDL_Rect slottSize = RECT(
-		firstElement.x + firstElement.w * 9 / 8,
+		firstElement.x + firstElement.w * 10 / 8,
 		firstElement.y + firstElement.h * 9 / 8 + L * firstElement.h,
-		firstElement.w * 6 / 8,
+		firstElement.w * 4 / 8,
 		firstElement.h * 6 / 8
 	);	uint k = 0;
 
@@ -236,4 +236,10 @@ void PanelDnD::addTemplate()
 		slottSize.x = firstElement.x;
 	}
 	
+}
+
+std::string PanelDnD::checkLineSize(std::string line)
+{
+	if (line.size() < NUM_LETTERS) line.resize(NUM_LETTERS, ' ');
+	return line;
 }
