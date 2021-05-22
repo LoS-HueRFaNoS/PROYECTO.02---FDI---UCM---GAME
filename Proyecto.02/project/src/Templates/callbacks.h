@@ -45,4 +45,8 @@ public:
 	static void startExp(Interfaz* app);
 	static void shop_lobby(Interfaz* app);
 	static void stash_lobby(Interfaz* app);
+	static void avanzarHeroes(Interfaz* app);
+	static void avanzarItems(Interfaz* app);
+	static void retrocederHeroes(Interfaz* app);
+	static void retrocederItems(Interfaz* app);
 };

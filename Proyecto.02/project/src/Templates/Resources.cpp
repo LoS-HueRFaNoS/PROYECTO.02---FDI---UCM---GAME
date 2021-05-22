@@ -77,6 +77,9 @@ vector<Resources::ImageInfo> Resources::images_{
 	{RotarD, "project/resources/sprites/iconos movimiento/movimientoRotarDerecha.png"},
 	{RotarI, "project/resources/sprites/iconos movimiento/movimientoRotarIzquierda.png"},
 	{Interactuar, "project/resources/sprites/iconos movimiento/movimientoInteractuar.png"},
+	{Retroceder, "project/resources/sprites/iconos movimiento/movimientoRetroceder.png"},
+	{AvanzarBloqueado, "project/resources/sprites/iconos movimiento/movimientoAvanzarBloqueado.png"},
+	{RetrocederBloqueado, "project/resources/sprites/iconos movimiento/movimientoRetrocederBloqueado.png"},
 
 	{Inventario, "project/resources/sprites/iconos info/infoInventario.png"},
 	{PocionVida, "project/resources/sprites/iconos info/infoPocionVida.png"},

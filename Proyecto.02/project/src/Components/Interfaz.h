@@ -16,7 +16,8 @@ private:
 
 	InterfazManager* iManager;
 	std::map<idPanel, Panel*> allPanels;
-
+	uint pagHeroes = 0;
+	uint pagItems = 0;
 	void createFight();
 	void createEnemies();
 	void createMovement();
@@ -57,7 +58,10 @@ public:
 	void togglePanel(Panel* pan);
 	void togglePanel(idPanel panID) { togglePanel(allPanels[panID]); };
 	bool getEnablePan(idPanel panID);
-
+	void avPagHeroes();
+	void rePagHeroes();
+	void avPagItems();
+	void rePagItems();
 	void toggleCombat_Movement();
 
 	virtual void init() override;

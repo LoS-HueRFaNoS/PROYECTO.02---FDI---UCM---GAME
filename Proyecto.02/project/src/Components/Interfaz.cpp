@@ -430,9 +430,9 @@ void Interfaz::createLobby()
 	// Botón para ir a la tienda
 	p->addButton(iManager->addButton<ButtonMenu>(Vector2D(w / 2-150, 2*h/3+100), 300, 100, src::howToPlay, accionMenu::shop, this));
 	// Botón para ir al stash
-	p->addButton(iManager->addButton<ButtonMenu>(Vector2D(w/6-150, 2 * h / 3+100), 300, 100, src::howToPlay, accionMenu::stash, this));
+	p->addButton(iManager->addButton<ButtonMenu>(Vector2D(w/6-150, 2 * h / 3+100), 300, 100, src::Inventario, accionMenu::stash, this));
 	// Botón para empezar la partida
-	p->addButton(iManager->addButton<ButtonMenu>(Vector2D(w/2+w/3-150, 2 * h / 3+100), 300, 100, src::howToPlay, accionMenu::start, this));
+	p->addButton(iManager->addButton<ButtonMenu>(Vector2D(w/2+w/3-150, 2 * h / 3+100), 300, 100, src::start, accionMenu::start, this));
 }
 void Interfaz::createShop()
 {
@@ -502,7 +502,7 @@ void Interfaz::createStash() {
 	w = game_->getWindowWidth();
 	h = game_->getWindowHeight();
 	EntityManager* mngr_ = TheElementalMaze::instance()->getEntityMangr();
-	tam = loManager->getPlayerStash()->heroes.size();
+	
 
 	// Botón para volver al lobby
 	p->addButton(iManager->addButton<ButtonMenu>(Vector2D(w / 2 + w / 3 - 150, 2 * h / 3 + 100), 300, 100, src::howToPlay, accionMenu::stash_lobby, this));
@@ -510,17 +510,35 @@ void Interfaz::createStash() {
 	// Slots del stash de héroes
 	p->addButton(iManager->addButton<SDL_Object>(Vector2D(50, 50), w-500, 100, src::inventory_slots));
 	p->addButton(iManager->addButton<SDL_Object>(Vector2D(50, 150), w-500, 100, src::inventory_slots));
+	if (pagHeroes==0)
+	p->addButton(iManager->addButton<ButtonMenu>(Vector2D(w-300, 50), 100, 100, src::AvanzarBloqueado, accionMenu::retrocederHeroes,this));
+	else p->addButton(iManager->addButton<ButtonMenu>(Vector2D(w - 300, 50), 100, 100, src::Avanzar, accionMenu::retrocederHeroes, this));
+	if (loManager->getPlayerStash()->heroes.size() > 20 * (pagHeroes + 1))
+	p->addButton(iManager->addButton<ButtonMenu>(Vector2D(w-300, 150), 100, 100, src::Retroceder, accionMenu::avanzarHeroes, this));
+	else p->addButton(iManager->addButton<ButtonMenu>(Vector2D(w - 300, 150), 100, 100, src::RetrocederBloqueado, accionMenu::avanzarHeroes, this));
 	// Slots del stash de objetos
-	p->addButton(iManager->addButton<SDL_Object>(Vector2D(50, 300), w-500, 100, src::inventory_slots));
+	p->addButton(iManager->addButton<SDL_Object>(Vector2D(50, 300),w-500, 100, src::inventory_slots));
 	p->addButton(iManager->addButton<SDL_Object>(Vector2D(50, 400), w-500, 100, src::inventory_slots));
-
+	if (pagItems == 0)
+	p->addButton(iManager->addButton<ButtonMenu>(Vector2D(w - 300, 300), 100, 100, src::Avanzar, accionMenu::retrocederItems, this));
+	else p->addButton(iManager->addButton<ButtonMenu>(Vector2D(w - 300, 300), 100, 100, src::AvanzarBloqueado, accionMenu::retrocederItems, this));
+	if (loManager->getPlayerStash()->items.size() > 20 * (pagItems + 1))
+	p->addButton(iManager->addButton<ButtonMenu>(Vector2D(w - 300, 400), 100, 100, src::Retroceder, accionMenu::avanzarItems, this));
+	else p->addButton(iManager->addButton<ButtonMenu>(Vector2D(w - 300, 400), 100, 100, src::RetrocederBloqueado, accionMenu::avanzarItems, this));
+	//for (int i = 0; i < 81; i++)
+	//{
+	//	Hero* a = new Hero(game_, mngr_);
+	//	a->setTemplate(heroTemplate::WARRIOR);
+	//	loManager->addHeroToStash(a);
+	//}
+	tam = loManager->getPlayerStash()->heroes.size();
 	// Por cada fila de slots de héroes
 	for (int i = 0; i < 2; i++)
 	{
 		// Por cada héroe de la fila
-		for (int j = 0; j < 10 && i*10+j<tam; j++)
+		for (int j = 0; j < 10 && pagHeroes*20+i*10+j<tam; j++)
 		{
-			Hero* her = loManager->getPlayerStash()->heroes[i*10+j];
+			Hero* her = loManager->getPlayerStash()->heroes[20*pagHeroes+i*10+j];
 			auto tex = src::_firstHeroRId_ + (int)her->getTemplate() + 1;
 			p->addButton(iManager->addButton<SDL_Object>(Vector2D(57+ 94*j, 60+100*i), 75, 80, static_cast<Resources::TextureId>(tex)));
 			//p->addButton(iManager->addButton<ButtonHeroEquipar>(Vector2D(x, y + 100), 100, 60, src::howToPlay, i, this));
@@ -532,9 +550,9 @@ void Interfaz::createStash() {
 	for (int i = 0; i < 2; i++)
 	{
 		// Por cada objeto de la fila
-		for (int j = 0; j < 10 && i * 10 + j +25 < Itemtam; j++)
+		for (int j = 0; j < 10 && pagItems *20+ i * 10 + j +25 < Itemtam; j++)
 		{
-			Item* arma = loManager->getPlayerStash()->items[i * 10 + j+25]; // quitar el más 25 cuando se solucione lo del vector items
+			Item* arma = loManager->getPlayerStash()->items[pagItems *20+ i * 10 + j+25]; // quitar el más 25 cuando se solucione lo del vector items
 			auto tex = src::_firstWeaponId_ + (int)arma->getItemType() + 1;
 			p->addButton(iManager->addButton<SDL_Object>(Vector2D(57 + 94 * j, 110 + 100 * (i + 2)), 75, 80, static_cast<Resources::TextureId>(tex)));
 			//p->addButton(iManager->addButton<ButtonHeroEquipar>(Vector2D(x, y + 100), 100, 60, src::howToPlay, i, this));
@@ -810,6 +828,30 @@ bool Interfaz::getEnablePan(idPanel panID)
 {
 	if (getActivePan(panID)) return allPanels[panID]->getEnable();
 	else return false;
+}
+
+void Interfaz::avPagHeroes()
+{
+	LobbyManager* loManager = TheElementalMaze::instance()->getLobbyManager();
+	if (loManager->getPlayerStash()->heroes.size() > 20 * (pagHeroes+1))
+		pagHeroes++;
+}
+void Interfaz::rePagHeroes()
+{
+	if (pagHeroes>0)
+		pagHeroes--;
+}
+void Interfaz::avPagItems()
+{
+	LobbyManager* loManager = TheElementalMaze::instance()->getLobbyManager();
+	if (loManager->getPlayerStash()->items.size() > 20 * (pagItems+1))
+		pagItems++;
+}
+void Interfaz::rePagItems()
+{
+
+	if (pagItems > 0)
+		pagItems--;
 }
 
 void Interfaz::toggleCombat_Movement()

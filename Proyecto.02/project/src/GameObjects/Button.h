@@ -127,7 +127,7 @@ public:
 };
 // ----------------------------------------------------
 
-enum class accionMenu { start, lobby, how_to_play, options, quit, shop, stash, shop_lobby, stash_lobby};
+enum class accionMenu { start, lobby, how_to_play, options, quit, shop, stash, shop_lobby, stash_lobby, avanzarHeroes, avanzarItems, retrocederHeroes, retrocederItems};
 
 class ButtonMenu : public Button {
 private:
@@ -174,6 +174,18 @@ public:
 			break;
 		case accionMenu::shop_lobby:
 			callbacks::shop_lobby(app);
+			break;
+		case accionMenu::avanzarHeroes:
+			callbacks::avanzarHeroes(app);
+			break;
+		case accionMenu::avanzarItems:
+			callbacks::avanzarItems(app);
+			break;
+		case accionMenu::retrocederHeroes:
+			callbacks::retrocederHeroes(app);
+			break;
+		case accionMenu::retrocederItems:
+			callbacks::retrocederItems(app);
 			break;
 		default:
 			break;

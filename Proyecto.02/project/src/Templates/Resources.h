@@ -84,6 +84,9 @@ public:
 		RotarD,
 		RotarI,
 		Interactuar,
+		Retroceder,
+		AvanzarBloqueado,
+		RetrocederBloqueado,
 
 		//Info
 		Inventario,

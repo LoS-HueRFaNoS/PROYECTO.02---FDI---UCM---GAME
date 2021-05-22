@@ -325,6 +325,38 @@ void callbacks::stash_lobby(Interfaz* app)
 	app->togglePanel(Heroes);
 	std::cout << "volvemos al lobby desde el stash" << std::endl;
 }
+void callbacks::avanzarHeroes(Interfaz* app)
+{
+	app->avPagHeroes();
+	app->togglePanel(StashPanel);
+	app->createPanel(StashPanel);
+
+	std::cout << "mostramos más héroes" << std::endl;
+}
+void callbacks::avanzarItems(Interfaz* app)
+{
+	app->avPagItems();
+	app->togglePanel(StashPanel);
+	app->createPanel(StashPanel);
+
+	std::cout << "mostramos más items" << std::endl;
+}
+void callbacks::retrocederHeroes(Interfaz* app)
+{
+	app->rePagHeroes();
+	app->togglePanel(StashPanel);
+	app->createPanel(StashPanel);
+
+	std::cout << "retrocedemos en la página de héroes" << std::endl;
+}
+void callbacks::retrocederItems(Interfaz* app)
+{
+	app->rePagItems();
+	app->togglePanel(StashPanel);
+	app->createPanel(StashPanel);
+
+	std::cout << "retrocedemos en la página de items" << std::endl;
+}
 
 #include "../Managers/game/LobbyManager.h"
 #include"../GameObjects/Character.h"
