@@ -37,9 +37,10 @@ private:
 	void createGuide();
 	void createShop();
 	void createStash();
-
+	void createInfoTienda();
 	void toggleMinimap();
-
+	string nameItemTienda;
+	string descrItemTienda;
 	void checkAndDeletePanel(idPanel id);
 
 public:
@@ -73,4 +74,7 @@ public:
 	void checkActiveHeroButton(HeroNum nAct);
 	void checkHerosParty();
 	void createFichaDD(uint nCharacter);
+
+	void setNameItem(string name_) { nameItemTienda = name_; }
+	void setDescrItem(string descr_) { descrItemTienda = descr_; }
 };

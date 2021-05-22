@@ -316,6 +316,7 @@ void callbacks::shop_lobby(Interfaz* app)
 	app->togglePanel(Shop);
 	app->togglePanel(Lobby);
 	app->togglePanel(Heroes);
+	app->togglePanel(infoTiendaPanel);
 	std::cout << "volvemos al lobby desde la tienda" << std::endl;
 }
 void callbacks::stash_lobby(Interfaz* app)
@@ -356,6 +357,20 @@ void callbacks::retrocederItems(Interfaz* app)
 	app->createPanel(StashPanel);
 
 	std::cout << "retrocedemos en la página de items" << std::endl;
+}
+
+void callbacks::infoTienda(Interfaz* app,bool isHero, int id)
+{
+	LobbyManager* lo = TheElementalMaze::instance()->getLobbyManager();
+	if (!isHero)
+	{
+		app->setNameItem(lo->getLobbyStore()->items[id]->item->getName());
+		app->setDescrItem(lo->getLobbyStore()->items[id]->item->getDescription());
+		app->togglePanel(infoTiendaPanel);
+		app->createPanel(infoTiendaPanel);	
+	}
+	std::cout << "Descripción de la tienda actualizada" << std::endl;
+	
 }
 
 #include "../Managers/game/LobbyManager.h"

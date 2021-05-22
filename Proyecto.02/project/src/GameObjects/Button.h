@@ -127,7 +127,8 @@ public:
 };
 // ----------------------------------------------------
 
-enum class accionMenu { start, lobby, how_to_play, options, quit, shop, stash, shop_lobby, stash_lobby, avanzarHeroes, avanzarItems, retrocederHeroes, retrocederItems};
+enum class accionMenu { start, lobby, how_to_play, options, quit, shop, stash, shop_lobby,
+	stash_lobby, avanzarHeroes, avanzarItems, retrocederHeroes, retrocederItems};
 
 class ButtonMenu : public Button {
 private:
@@ -244,7 +245,28 @@ public:
 	}
 };
 // ----------------------------------------------------
+class ButtonInfoTienda : public Button {
+private:
+	Interfaz* app;
+	int id;
+	bool isHero = false;
+public:
+	ButtonInfoTienda(SDLGame* game, EntityManager* mngr) : Button(game, mngr) {};
 
+	~ButtonInfoTienda() {};
+
+	virtual void init(Vector2D pos, uint ancho, uint alto, Resources::TextureId imagen,bool isHero_, int id_, Interfaz* app_) {
+		app = app_;
+		id = id_;
+		isHero = isHero_;
+		Button::init(pos, ancho, alto, imagen);
+	};
+
+	virtual void click()
+	{
+		callbacks::infoTienda(app,isHero,id);
+	}
+};
 
 enum class accionOption {volumen, velocidad  };
 

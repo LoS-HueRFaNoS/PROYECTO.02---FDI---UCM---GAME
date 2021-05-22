@@ -437,6 +437,9 @@ void Interfaz::createLobby()
 void Interfaz::createShop()
 {
 	Panel* p = new Panel(Shop);
+	nameItemTienda = " ";
+	descrItemTienda = " ";
+	allPanels[infoTiendaPanel] = new Panel(infoTiendaPanel);
 	allPanels[Shop] = p;
 	int w, h;	
 	SDL_Color color;
@@ -469,7 +472,7 @@ void Interfaz::createShop()
 			HeroContract* her = loManager->getLobbyStore()->heroes[i];
 			int tex = src::_firstHeroRId_ + (int)her->hero->getTemplate() + 1;
 			// Dibujo del héroe
-			p->addButton(iManager->addButton<SDL_Object>(Vector2D(99+94*i, 150), 75, 80, static_cast<Resources::TextureId>(tex)));
+			p->addButton(iManager->addButton<ButtonInfoTienda>(Vector2D(99+94*i, 150), 75, 80, static_cast<Resources::TextureId>(tex),true,i,this));
 			// Si se han vendido se marcan como tal, si no se escribe su precio
 			if (her->sold) text = "sold";
 			else text = "x" + to_string(her->price);
@@ -484,7 +487,7 @@ void Interfaz::createShop()
 			ItemToBuy* it = loManager->getLobbyStore()->items[i];
 			int tex = src::_firstWeaponId_ + it->item->getItemType()+1;
 			// Dibujo del objeto
-			p->addButton(iManager->addButton<SDL_Object>(Vector2D(99 + 94 * i, 350), 75, 80, static_cast<Resources::TextureId>(tex)));
+			p->addButton(iManager->addButton<ButtonInfoTienda>(Vector2D(99 + 94 * i, 350), 75, 80, static_cast<Resources::TextureId>(tex),false,i,this));
 			// Si se han vendido se marcan como tal, si no se escribe su precio
 			if (it->sold) text = "sold";
 			else text = "x" + to_string(it->item->getBuyValue());
@@ -493,6 +496,17 @@ void Interfaz::createShop()
 			p->addButton(iManager->addButton<ButtonBuyItem>(Vector2D(100 + 94 * i, 450), 70, 50, src::howToPlay, i, 1, this));
 		}
 	}
+}
+void Interfaz::createInfoTienda()
+{
+	int w, h;
+	w = game_->getWindowWidth();
+	h = game_->getWindowHeight();
+	Panel* p = new Panel(infoTiendaPanel);
+	allPanels[infoTiendaPanel] = p;
+	SDL_Color color = { 0.0,0.0,0.0 }; 
+	p->addButton(iManager->addButton<Line>(Vector2D(w / 6 - 150, 2 * h / 3 + 100), nameItemTienda.size()*15, 50, nameItemTienda, Resources::FontId::HERMAN, color));
+	p->addButton(iManager->addButton<Line>(Vector2D(w / 2 - 150, 2 * h / 3 + 100), descrItemTienda.size() * 15, 50, descrItemTienda, Resources::FontId::HERMAN, color));
 }
 void Interfaz::createStash() {
 	Panel* p = new Panel(StashPanel);
@@ -743,6 +757,9 @@ void Interfaz::createPanel(idPanel panelID)
 		break;
 	case Shop:
 		createShop();
+		break;
+	case infoTiendaPanel:
+		createInfoTienda();
 		break;
 	default:
 		break;

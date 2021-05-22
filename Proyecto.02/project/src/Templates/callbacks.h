@@ -49,4 +49,5 @@ public:
 	static void avanzarItems(Interfaz* app);
 	static void retrocederHeroes(Interfaz* app);
 	static void retrocederItems(Interfaz* app);
+	static void infoTienda(Interfaz* app, bool isHero, int id);
 };
