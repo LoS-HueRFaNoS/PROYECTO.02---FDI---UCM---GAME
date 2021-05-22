@@ -6,6 +6,8 @@
 #include "../Components/Transform.h"
 
 typedef unsigned int uint;
+const int NUM_FRAMES = 3; // minimo 3
+
 
 class Sprite : public Component {
 public:
@@ -33,7 +35,7 @@ public:
 			SDL_Rect clip;
 			if (!marco_) {
 				dest = { int(tr_->getPos().getX()), int(tr_->getPos().getY()), int(tr_->getW()), int(tr_->getH()) };
-				clip = { int(row), int(col), tex_->getWidth() / 4, tex_->getHeight() }; // (width / 4)
+				clip = { int(row), int(col), tex_->getWidth() / NUM_FRAMES, tex_->getHeight() }; // (width / 4)
 			}
 			else {
 				double h = 5; // game_->setVerticalScale(5);
@@ -45,8 +47,8 @@ public:
 		}
 	}
 
-	void avanza() { row = row + tex_->getHeight(); };
-	bool get() { return (row > 0 && int(row) < tex_->getHeight() * 2); };
+	void avanza() { row = row + tex_->getWidth() / NUM_FRAMES; };
+	bool get() { return (row >= 0 && int(row) < (tex_->getWidth() / NUM_FRAMES) * (NUM_FRAMES - 1)); };
 	void reset() { row = 0; };
 	void setHide(bool set) { hide_ = set; };
 
