@@ -114,7 +114,7 @@ void LobbyManager::addHeroToParty(int index, int partyIndex)
 	}
 }
 
-void LobbyManager::fromPartyToStash(int partyIndex)
+void LobbyManager::heroFromPartyToStash(int partyIndex)
 {
 	assert(partyIndex >= 0 && partyIndex <= 3);
 
