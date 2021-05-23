@@ -157,16 +157,17 @@ void PanelDnD::addArmorWeapon()
 {
 	double L = 2.0 / NUM_WEAKNESSES;
 	SDL_Rect slottSize = RECT(
-		firstElement.x + firstElement.w * (6 + 1) / 6,
-		firstElement.y + firstElement.h * (12 + 0) / 6 + L * firstElement.h,
-		firstElement.w * 2 / 6,
-		firstElement.h * 2 / 6
+		firstElement.x + firstElement.w * 59/ 48,
+		firstElement.y + firstElement.h * 9 / 5 + L * firstElement.h,
+		firstElement.w * 2 / 8,
+		firstElement.w * 2 / 8
 	);	uint k = 0;
 
 	// ARMA:
 	pan_->addButton(iManager_->addButton<ButtonSlott>(slottSize, character_->getWeapon()));
 
-	slottSize.x += slottSize.w;
+	int margen = slottSize.w / 8;
+	slottSize.x = slottSize.x + slottSize.w + margen;
 
 	// ARMOR:
 	Hero* hero_ = dynamic_cast<Hero*>(character_);
@@ -185,9 +186,9 @@ void PanelDnD::addCharacter()
 	double L = 2.0 / NUM_WEAKNESSES;
 	SDL_Rect slottSize = RECT(
 		firstElement.x + firstElement.w * 10 / 8,
-		firstElement.y + firstElement.h * 9 / 8 + L * firstElement.h,
-		firstElement.w * 4 / 8,
-		firstElement.h * 6 / 8
+		firstElement.y + firstElement.h * 3 / 4 + L * firstElement.h,
+		firstElement.w / 2,
+		firstElement.w / 2
 	);	uint k = 0;
 
 	// CHARACTER:
@@ -199,20 +200,23 @@ void PanelDnD::addHabilities(Hero* hero)
 	double L = 2.0 / NUM_WEAKNESSES;
 	SDL_Rect slottSize = RECT(
 		firstElement.x + firstElement.w * (8 + 4) / 8,
-		firstElement.y + firstElement.h * 3 - firstElement.h * L,
-		firstElement.w * L,
-		firstElement.h * L
-	);	uint k = 0;
+		firstElement.y + firstElement.h * 3 - firstElement.h * L * 6 / 5,
+		firstElement.w * L * 3 / 4,
+		firstElement.w * L * 3 / 4
+	);
 
 	vector<Hability*> habilities = hero->getHabilities();
 	int size = habilities.size();
 
-	slottSize.x = slottSize.x - slottSize.w * (size / 2);
+	int margen = slottSize.w / 8;
 
+	slottSize.x = slottSize.x - (slottSize.w * (size / 2.0)) - margen / 2.0;
+
+	
 	for (int i = 0; i < size; ++i)
 	{
 		pan_->addButton(iManager_->addButton<SDL_Object>(slottSize, getHabilityTxt(habilities[i])));
-		slottSize.x += slottSize.w;
+		slottSize.x += slottSize.w + margen;
 	}
 }
 
