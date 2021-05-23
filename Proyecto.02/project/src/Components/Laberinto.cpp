@@ -236,7 +236,10 @@ void Laberinto::createRandomMaze(Vector2D entrada)
 			m_stack.pop_back();
 		}
 		neighbours.clear();
-	}
+	} // fin while
+
+	generaObjeto(0, int(enemyTemplate::LICH), laberinto[1][0], 2, 0);
+	generaObjeto(0, int(enemyTemplate::LICH), laberinto[0][1], 2, 0);
 }
 Casilla* Laberinto::getCasillaInfo(int x, int y)
 {

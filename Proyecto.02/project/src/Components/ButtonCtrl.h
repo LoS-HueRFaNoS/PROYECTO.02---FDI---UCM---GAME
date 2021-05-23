@@ -41,10 +41,6 @@ public:
 					s_->avanza();
 				}
 			}
-			else {
-				s_->setHide(true);
-				s_->reset();
-			}
 		}
 
 		// animation (hover)

@@ -18,6 +18,11 @@ using namespace textures_box;
 void ButtonPanelCte::click()
 {
 	pan_->toggleEnable();
+	if (!pan_->getEnable()) {
+		Sprite* s_ = GETCMP2(this, Sprite);
+		s_->setHide(true);
+		s_->reset();
+	}
 }
 
 #include "../Components/Interfaz.h"
