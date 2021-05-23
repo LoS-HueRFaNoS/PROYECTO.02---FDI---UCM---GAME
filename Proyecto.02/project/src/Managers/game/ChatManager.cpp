@@ -66,7 +66,7 @@ void ChatManager::checkChatSize()
 
 bool ChatManager::checkTopDownMax(int y)
 {
-	if (y >= marco.y /*+ margin*/ && y < double(marco.y) + marco.h - margin)
+	if (y >= marco.y + margin && y < double(marco.y) + marco.h - margin)
 	{
 		return true;
 	}

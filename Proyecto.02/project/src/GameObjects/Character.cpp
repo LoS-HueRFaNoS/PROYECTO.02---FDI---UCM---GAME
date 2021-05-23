@@ -393,6 +393,12 @@ void Hero::levelUp(int exp)
 
 		if (level % 4 == 0)
 		{
+			for (int i = 0; i < (int)ms::_lastStatId_; i++)
+			{
+				if (_sheet->getStatValue(i) < 19)
+					_sheet->changeStat(mainStat(i), 2);
+			}
+
 			pointsPerLevel += 4;
 			AddHabilityWithLevel(level);
 		}
