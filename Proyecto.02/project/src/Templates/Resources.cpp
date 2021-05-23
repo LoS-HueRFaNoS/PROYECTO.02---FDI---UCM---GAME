@@ -53,7 +53,8 @@ vector<Resources::ImageInfo> Resources::images_{
 	{quit, "project/resources/images/Menu/quit.png"},
 	{howToPlay, "project/resources/images/Menu/howtoplay.png"},
 
-	{mFondo, "project/resources/images/Menu/menufondo.jpg"},
+	//{mFondo, "project/resources/images/Menu/menufondo.jpg"},
+	{mFondo, "project/resources/images/Menu/FondoMenuTituloFinal.png"},
 	{close, "project/resources/images/Menu/close.png"},
 
 	{Bardo, "project/resources/sprites/iconos personajes/bardo.png"},
