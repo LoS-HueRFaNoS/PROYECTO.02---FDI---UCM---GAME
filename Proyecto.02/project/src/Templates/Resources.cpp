@@ -53,7 +53,8 @@ vector<Resources::ImageInfo> Resources::images_{
 	{quit, "project/resources/images/Menu/quit.png"},
 	{howToPlay, "project/resources/images/Menu/howtoplay.png"},
 
-	{mFondo, "project/resources/images/Menu/menufondo.jpg"},
+	//{mFondo, "project/resources/images/Menu/menufondo.jpg"},
+	{mFondo, "project/resources/images/Menu/FondoMenuTituloFinal.png"},
 	{close, "project/resources/images/Menu/close.png"},
 
 	{Bardo, "project/resources/sprites/iconos personajes/bardo.png"},
@@ -71,6 +72,8 @@ vector<Resources::ImageInfo> Resources::images_{
 	{Mouse, "project/resources/images/interfaz/cursor+sombras.png"},
 	{Fondo, "project/resources/sprites/fondos y marcos/Fondo_Interfaz_04.png"},
 	{Fondo2, "project/resources/sprites/fondos y marcos/Fondo_Interfaz_05.png"},
+	{Button_transition, "project/resources/sprites/fondos y marcos/button_transition.png"},
+	{Cartel, "project/resources/sprites/fondos y marcos/cartelito.png"},
 	{Change, "project/resources/sprites/fondos y marcos/change.png"},
 	{Selected, "project/resources/sprites/fondos y marcos/selected.png"},
 	{Avanzar, "project/resources/sprites/iconos movimiento/movimientoAvanzar.png"},

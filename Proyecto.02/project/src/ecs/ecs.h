@@ -29,6 +29,7 @@ enum CmpId : CmpIdType {
 	PanelTurns,
 	PanelDnD,
 	ChatInfo,
+	Cartel_Info,
 	//
 	// don't touch the rest of this enum, it is to identify the max
 	// number of components
