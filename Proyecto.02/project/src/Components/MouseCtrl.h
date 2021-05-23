@@ -11,7 +11,7 @@ class MouseCtrl : public Component
 {
 public:
     MouseCtrl() :
-        Component(ecs::MouseCtrl), ih_(nullptr), st(0) {};
+        Component(ecs::MouseCtrl), ih_(nullptr) {};
     virtual ~MouseCtrl() {
     }
 
@@ -34,32 +34,12 @@ public:
             pos.set(pos.getX(), pos.getY()); // nuevo cursor
             entity_->getComponent<Transform>(ecs::Transform)->setPos(pos);
         }
-        if (NUM_FRAMES == 4) {
-            if (st == NUM_FRAMES - 2 && s_->get()) {
-                s_->avanza(); ++st;
-            }
-            else if (st == NUM_FRAMES - 1)
-            {
-                s_->reset();
-                st = 0;
-            }
-        }
-
-        if (st == NUM_FRAMES - 1) {
-            s_->reset();
-            st = 0;
-        }
 
         if (ih_->mouseButtonEvent()) {
             float e = ih_->getMouseButtonState(InputHandler::LEFT);
-            //cout << e << endl;
-            /*if (e) s_->avanza();
-            if (!e && s_->get()) {
-                s_->avanza(); ++st;
-            }*/
-            if (s_->get()) {
-                s_->avanza(); ++st;
-            }
+
+            if (e) s_->avanza();
+            else if (!e && !s_->get()) s_->reset();
         }           
     }
 
@@ -67,5 +47,5 @@ private:
     Sprite* s_;
     InputHandler* ih_;
     Transform* tr_;
-    uint st;
+    
 };
