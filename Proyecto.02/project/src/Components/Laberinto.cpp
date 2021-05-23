@@ -173,6 +173,9 @@ void Laberinto::createRandomMaze(Vector2D entrada)
 
 				level++;
 
+				if (level > 2)
+					level = 0;
+
 				laberinto[x][y]->setSalida();
 			}
 
