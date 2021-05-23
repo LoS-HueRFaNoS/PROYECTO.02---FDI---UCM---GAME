@@ -416,7 +416,6 @@ void callbacks::sendHeroToParty(Interfaz* app, int heroid)
 		LobbyManager* lo = TheElementalMaze::instance()->getLobbyManager();
 		lo->addHeroToParty(heroid, hueco);
 	}
-	auto alpha = paManager->getHeroes()[hueco]->getCharacterSheet();
 	app->createPanel(StashPanel);
 	/*PartyManager* paManager = TheElementalMaze::instance()->getPartyManager();
 	int hueco = -1;
