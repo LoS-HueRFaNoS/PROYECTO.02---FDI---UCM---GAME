@@ -44,6 +44,8 @@ void Character::startTurn(CombatManager* cm)
 	{
 		if (!(*it)->onTurnStarted())
 		{
+			if (isDead())
+				return;
 			Condition* temp = (*it);
 			removeCondition((*it)->getID());
 			it = _conditions.erase(it);
@@ -51,6 +53,8 @@ void Character::startTurn(CombatManager* cm)
 		}
 		else
 		{
+			if (isDead())
+				return;
 			it++;
 		}
 	}
@@ -64,6 +68,8 @@ void Character::endTurn()
 	{
 		if (!(*it)->onTurnEnd())
 		{
+			if (isDead())
+				return;
 			Condition* temp = (*it);
 			removeCondition((*it)->getID());
 			it = _conditions.erase(it);
@@ -71,6 +77,8 @@ void Character::endTurn()
 		}
 		else
 		{
+			if (isDead())
+				return;
 			it++;
 		}
 	}

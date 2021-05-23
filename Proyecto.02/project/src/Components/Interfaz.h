@@ -15,7 +15,7 @@ class Interfaz : public Component {
 private:
 
 	InterfazManager* iManager;
-	std::map<idPanel, Panel*> allPanels;
+	std::vector<Panel*> allPanels;
 	uint pagHeroes = 0;
 	uint pagItems = 0;
 	void createFight();
@@ -47,7 +47,7 @@ private:
 public:
 	Interfaz(InterfazManager* i) :
 		Component(ecs::Interfaz),
-		allPanels(std::map<idPanel,Panel*>()),
+		allPanels(std::vector<Panel*>(maxPanels, nullptr)),
 		iManager(i)
 	{};
 	virtual ~Interfaz();
