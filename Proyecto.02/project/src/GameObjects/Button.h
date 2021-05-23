@@ -2,6 +2,7 @@
 #include "SDL_Objects.h"
 #include "../Templates/callbacks.h"
 #include "../Structures/Item.h"
+#include "../Components/Sprite.h"
 #include <cassert>
 
 // ----------------------------------------------------
@@ -35,7 +36,12 @@ public:
 		Button::init(dest, imagen);
 	};
 
-	virtual void click() { callbacks::toggleThemeFondo(); };
+	virtual void click() { 
+		callbacks::toggleThemeFondo(); 
+		Sprite* s_ = GETCMP2(this, Sprite);
+		s_->setHide(true);
+		s_->reset();
+	};
 };
 
 // ----------------------------------------------------
@@ -52,6 +58,9 @@ public:
 
 	virtual void click() {
 		// if(i_ != nulptr) i_->use();
+		Sprite* s_ = GETCMP2(this, Sprite);
+		s_->setHide(true);
+		s_->reset();
 	};
 };
 
@@ -76,6 +85,9 @@ public:
 	{
 		game_->getAudioMngr()->playChannel(Resources::AudioId::Boton1, 0, 0);
 		callbacks::movCommand((int)movementType_);
+		Sprite* s_ = GETCMP2(this, Sprite);
+		s_->setHide(true);
+		s_->reset();
 	}
 };
 
@@ -102,6 +114,9 @@ public:
 	virtual void click()
 	{
 		callbacks::combatType((int)combatType_);
+		Sprite* s_ = GETCMP2(this, Sprite);
+		s_->setHide(true);
+		s_->reset();
 	}
 };
 
@@ -123,6 +138,9 @@ public:
 	virtual void click()
 	{
 		callbacks::addTarget((int)target_);
+		Sprite* s_ = GETCMP2(this, Sprite);
+		s_->setHide(true);
+		s_->reset();
 	}
 };
 // ----------------------------------------------------
@@ -191,6 +209,9 @@ public:
 		default:
 			break;
 		}
+		Sprite* s_ = GETCMP2(this, Sprite);
+		s_->setHide(true);
+		s_->reset();
 		
 	}
 };
@@ -252,6 +273,9 @@ public:
 			callbacks::sendHeroToParty(app, heroeid);
 			break;
 		}
+		Sprite* s_ = GETCMP2(this, Sprite);
+		s_->setHide(true);
+		s_->reset();
 	}
 };
 // ----------------------------------------------------
@@ -276,7 +300,9 @@ public:
 	virtual void click()
 	{
 		callbacks::shopping(app, itemType, itemid);
-
+		Sprite* s_ = GETCMP2(this, Sprite);
+		s_->setHide(true);
+		s_->reset();
 	}
 };
 // ----------------------------------------------------
@@ -300,6 +326,9 @@ public:
 	virtual void click()
 	{
 		callbacks::infoTienda(app,isHero,id);
+		Sprite* s_ = GETCMP2(this, Sprite);
+		s_->setHide(true);
+		s_->reset();
 	}
 };
 
@@ -335,7 +364,9 @@ public:
 		default:
 			break;
 		}
-
+		Sprite* s_ = GETCMP2(this, Sprite);
+		s_->setHide(true);
+		s_->reset();
 	}
 
 };
@@ -361,8 +392,10 @@ public:
 		game_->getAudioMngr()->haltMusic();
 		game_->getAudioMngr()->setChannelVolume(30, 0);
 		//game_->getAudioMngr()->haltChannel(0);
-
 		callbacks::potionType((int)potionType_);
+		Sprite* s_ = GETCMP2(this, Sprite);
+		s_->setHide(true);
+		s_->reset();
 	}
 };
 
@@ -414,7 +447,7 @@ public:
 		setActive(active);
 		pan_ = p;
 		Button::init(pos, ancho, alto, imagen);
-		addComponent<Sprite>(game_->getTextureMngr()->getTexture(Resources::Selected), 0, 0, true, true); // marco select
+		//addComponent<Sprite>(game_->getTextureMngr()->getTexture(Resources::Selected), 0, 0, true, true); // marco select
 	};
 
 	virtual void click()
@@ -428,8 +461,13 @@ public:
 	}
 
 	virtual bool getActive() { return activated; };
-	virtual void turnON() { setActive(true), setHide(false); }
-	virtual void turnOFF() { setActive(false), setHide(true); }
+	virtual void turnON() { setActive(true); setHide(false); }
+	virtual void turnOFF() { 
+		Sprite* s_ = GETCMP2(this, Sprite);
+		s_->setHide(true);
+		s_->reset();
+		setActive(false); setHide(true);
+	}
 
 };
 
