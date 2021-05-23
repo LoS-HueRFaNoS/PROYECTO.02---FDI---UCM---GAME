@@ -189,12 +189,6 @@ void Laberinto::createRandomMaze(Vector2D entrada)
 					
 				}
 
-				level++;
-
-				if (level > 2)
-					level = 0;
-
-
 				laberinto[x][y]->setSalida();
 			}
 
@@ -276,7 +270,6 @@ void Laberinto::createRandomMaze(Vector2D entrada)
 Casilla* Laberinto::getCasillaInfo(int x, int y)
 {
 	return laberinto[x][y];
-
 }
 
 void Laberinto::draw()
@@ -346,9 +339,6 @@ void Laberinto::generaObjeto(int object, int type, Casilla* casilla, int maxObje
 			//	cout << dinero << " Runas" <<endl;
 			casilla->addChest(static_cast<ItemType>(3), dinero);
 		}
-
-		
-		
 	}
 	cant++;
 
@@ -370,4 +360,12 @@ void Laberinto::generaObjeto(int object, int type, Casilla* casilla, int maxObje
 
 
 
+}
+
+void Laberinto::SubeLaberinto(int level)
+{
+	level++;
+
+	if (level > 2)
+		level = 0;
 }
