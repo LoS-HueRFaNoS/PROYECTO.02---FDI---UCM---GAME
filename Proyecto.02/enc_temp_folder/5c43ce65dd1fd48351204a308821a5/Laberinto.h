@@ -19,7 +19,7 @@ private:
 	int cellsCreated = 0;
 	bool drawMiniMap;
 
-	int level = -1;
+	int level = 0;
 	
 public:
 	Laberinto(int h, int w);
