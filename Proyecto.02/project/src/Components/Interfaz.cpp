@@ -490,10 +490,20 @@ void Interfaz::createShop()
 		}
 		int tam = loManager->getLobbyStore()->items.size();
 		// Se generan 6 objetos a la venta
+		int tex;
 		for (int i = 0; i < 6 && i < tam; i++)
 		{
 			ItemToBuy* it = loManager->getLobbyStore()->items[i];
-			int tex = src::_firstWeaponId_ + it->item->getItemType()+1;
+			if ((int)it->item->getItemType() == 0)
+			{
+				Weapon* arma = static_cast<Weapon*>(it->item);
+				tex = (int)src::_firstWeaponId_ + (int)arma->getWeaponId() + 1;
+			}
+			else
+			{
+				Armor* armadura = static_cast<Armor*>(it->item);
+				tex = (int)src::_firstArmorId_ + (int)armadura->getArmorId() + 1;
+			}
 			// Dibujo del objeto
 			p->addButton(iManager->addButton<ButtonInfoTienda>(Vector2D(99 + 94 * i, 350), 75, 80, static_cast<Resources::TextureId>(tex),false,i,this));
 			// Si se han vendido se marcan como tal, si no se escribe su precio
@@ -542,8 +552,8 @@ void Interfaz::createStash() {
 	p->addButton(iManager->addButton<SDL_Object>(Vector2D(50, 300),w-500, 100, src::inventory_slots));
 	p->addButton(iManager->addButton<SDL_Object>(Vector2D(50, 400), w-500, 100, src::inventory_slots));
 	if (pagItems == 0)
-	p->addButton(iManager->addButton<ButtonMenu>(Vector2D(w - 300, 300), 100, 100, src::Avanzar, accionMenu::retrocederItems, this));
-	else p->addButton(iManager->addButton<ButtonMenu>(Vector2D(w - 300, 300), 100, 100, src::AvanzarBloqueado, accionMenu::retrocederItems, this));
+	p->addButton(iManager->addButton<ButtonMenu>(Vector2D(w - 300, 300), 100, 100, src::AvanzarBloqueado, accionMenu::retrocederItems, this));
+	else p->addButton(iManager->addButton<ButtonMenu>(Vector2D(w - 300, 300), 100, 100, src::Avanzar, accionMenu::retrocederItems, this));
 	if (loManager->getPlayerStash()->items.size() > 20 * (pagItems + 1))
 	p->addButton(iManager->addButton<ButtonMenu>(Vector2D(w - 300, 400), 100, 100, src::Retroceder, accionMenu::avanzarItems, this));
 	else p->addButton(iManager->addButton<ButtonMenu>(Vector2D(w - 300, 400), 100, 100, src::RetrocederBloqueado, accionMenu::avanzarItems, this));
@@ -570,13 +580,24 @@ void Interfaz::createStash() {
 	ItemManager* itemMngr_ = TheElementalMaze::instance()->getItemManager();
 	int Itemtam = loManager->getPlayerStash()->items.size();
 	// Por cada fila de slots de objetos
+	int tex;
+	int a;
 	for (int i = 0; i < 2; i++)
 	{
 		// Por cada objeto de la fila
-		for (int j = 0; j < 10 && pagItems *20+ i * 10 + j +25 < Itemtam; j++)
+		for (int j = 0; j < 10 && pagItems *20+ i * 10 + j < Itemtam-1; j++)
 		{
-			Item* arma = loManager->getPlayerStash()->items[pagItems *20+ i * 10 + j+25]; // quitar el más 25 cuando se solucione lo del vector items
-			auto tex = src::_firstWeaponId_ + (int)arma->getItemType() + 1;
+			Item* objeto = loManager->getPlayerStash()->items[pagItems *20+ i * 10 + j];
+			if ((int)objeto->getItemType() == 0)
+			{
+				Weapon* arma = static_cast<Weapon*>(loManager->getPlayerStash()->items[pagItems * 20 + i * 10 + j]);
+				tex = (int)src::_firstWeaponId_ + (int)arma->getWeaponId() + 1;
+			}
+			else
+			{
+				Armor* armadura = static_cast<Armor*>(loManager->getPlayerStash()->items[pagItems * 20 + i * 10 + j]);
+				tex = (int)src::_firstArmorId_ + (int)armadura->getArmorId() + 1;
+			}
 			p->addButton(iManager->addButton<SDL_Object>(Vector2D(57 + 94 * j, 110 + 100 * (i + 2)), 75, 80, static_cast<Resources::TextureId>(tex)));
 			//p->addButton(iManager->addButton<ButtonHeroEquipar>(Vector2D(x, y + 100), 100, 60, src::howToPlay, i, this));
 		}

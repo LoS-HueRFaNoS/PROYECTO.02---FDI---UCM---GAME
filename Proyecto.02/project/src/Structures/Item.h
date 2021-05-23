@@ -42,7 +42,6 @@ public:
 	std::string getDescription() { return _description; }
 	ItemType getItemType() { return _ItemType; }
 	rpgLogic::Weaknesses getElementalAfinity() { return _elementalAfinity; }
-
 };
 
 class Weapon : public Item

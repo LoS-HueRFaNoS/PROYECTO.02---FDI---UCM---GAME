@@ -7,7 +7,7 @@ PartyManager::PartyManager() :
 	gold(0),
 	manaPotions(5),
 	healthPotions(5),
-	items_(std::vector<Item*>(NUM_ITEMS)),
+	items_(std::vector<Item*>(0)),
 	heroes_(std::vector<Hero*>(4, nullptr))
 {
 }
@@ -110,8 +110,8 @@ void PartyManager::partyLost()
 
 Item* PartyManager::addItem(Item* i, int pos)
 {
-	assert(pos < items_.size() && pos >= 0);
-
+	assert(/*pos < items_.size() &&*/ pos >= 0);
+	items_.resize(items_.size() + 1);
 	if (items_[pos] == nullptr) {
 		items_[pos] = i;
 		return nullptr;
