@@ -29,6 +29,7 @@ namespace interfaz {
 		Shop,
 		StashPanel,
 		infoTiendaPanel,
+		ButtonHeroToPartyPanel,
 		//
 		// don't touch the rest of this enum, it is to identify the max
 		// number of components

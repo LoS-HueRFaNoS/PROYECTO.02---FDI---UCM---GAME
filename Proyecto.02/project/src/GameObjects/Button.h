@@ -128,7 +128,7 @@ public:
 // ----------------------------------------------------
 
 enum class accionMenu { start, lobby, how_to_play, options, quit, shop, stash, shop_lobby,
-	stash_lobby, avanzarHeroes, avanzarItems, retrocederHeroes, retrocederItems};
+	stash_lobby, avanzarHeroes, avanzarItems, retrocederHeroes, retrocederItems, backToMenu};
 
 class ButtonMenu : public Button {
 private:
@@ -188,6 +188,9 @@ public:
 		case accionMenu::retrocederItems:
 			callbacks::retrocederItems(app);
 			break;
+		case accionMenu::backToMenu:
+			callbacks::backToMenu(app);
+			break;
 		default:
 			break;
 		}
@@ -220,6 +223,27 @@ public:
 	}
 };
 
+class ButtonShowHeroToParty : public Button {
+private:
+	int heroeid;
+	Interfaz* app;
+public:
+	ButtonShowHeroToParty(SDLGame* game, EntityManager* mngr) : Button(game, mngr) {};
+
+	~ButtonShowHeroToParty() {};
+
+	virtual void init(Vector2D pos, uint ancho, uint alto, Resources::TextureId imagen, int her, Interfaz* app_) {
+		heroeid = her;
+		app = app_;
+		Button::init(pos, ancho, alto, imagen);
+	};
+
+	virtual void click()
+	{
+		callbacks::showHeroToParty(app, heroeid);
+
+	}
+};
 
 enum class accionHero {
 	sendHeroToStash, sendHeroToParty

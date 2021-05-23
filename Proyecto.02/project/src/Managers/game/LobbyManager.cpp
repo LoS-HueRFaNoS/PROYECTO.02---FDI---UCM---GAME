@@ -132,7 +132,13 @@ void LobbyManager::heroFromPartyToStash(int partyIndex)
 	}
 
 	if (change)
-		playerStash_->heroes.push_back(change);
+	{
+		int i = 0;
+		while (i < playerStash_->heroes.size() && playerStash_->heroes[i] == nullptr)
+			i++;
+		if (playerStash_->heroes.size() > 0 && playerStash_->heroes[i] == nullptr) playerStash_->heroes[i] = change;
+		else playerStash_->heroes.push_back(change);
+	}
 }
 
 void LobbyManager::addHeroToStash(Hero* hero)
@@ -207,7 +213,11 @@ void LobbyManager::buyHero(int hero)
 		return;
 
 	playerStash_->gold -= contract->price;
-	playerStash_->heroes.push_back(contract->hero);
+	int i = 0;
+	while (i < playerStash_->heroes.size() && playerStash_->heroes[i] == nullptr)
+		i++;
+	if (playerStash_->heroes.size() > 0 && playerStash_->heroes[i] == nullptr) playerStash_->heroes[i] = contract->hero;
+	else playerStash_->heroes.push_back(contract->hero);
 	contract->sold = true;
 
 	std::cout << "Hero purchased" << std::endl;
@@ -252,13 +262,19 @@ Stash::~Stash()
 
 HeroContract::~HeroContract()
 {
-	if (hero)
-		hero->disable();
-	hero = nullptr;
+	if (!sold)
+	{
+		if (hero)
+			hero->disable();
+		hero = nullptr;
+	}
 }
 
 ItemToBuy::~ItemToBuy()
 {
-	delete item;
-	item = nullptr;
+	if (!sold)
+	{
+		delete item;
+		item = nullptr;
+	}
 }

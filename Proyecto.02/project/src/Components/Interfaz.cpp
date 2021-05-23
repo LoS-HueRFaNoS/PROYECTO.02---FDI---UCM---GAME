@@ -439,6 +439,8 @@ void Interfaz::createLobby()
 	p->addButton(iManager->addButton<ButtonMenu>(Vector2D(w/6-150, 2 * h / 3+100), 300, 100, src::Inventario, accionMenu::stash, this));
 	// Botón para empezar la partida
 	p->addButton(iManager->addButton<ButtonMenu>(Vector2D(w/2+w/3-150, 2 * h / 3+100), 300, 100, src::start, accionMenu::start, this));
+
+	p->addButton(iManager->addButton<ButtonMenu>(Vector2D(0, 0), 64, 64, src::close, accionMenu::backToMenu, this));
 }
 void Interfaz::createShop()
 {
@@ -561,7 +563,7 @@ void Interfaz::createStash() {
 		{
 			Hero* her = loManager->getPlayerStash()->heroes[20*pagHeroes+i*10+j];
 			auto tex = src::_firstHeroRId_ + (int)her->getTemplate() + 1;
-			p->addButton(iManager->addButton<SDL_Object>(Vector2D(57+ 94*j, 60+100*i), 75, 80, static_cast<Resources::TextureId>(tex)));
+			p->addButton(iManager->addButton<ButtonShowHeroToParty>(Vector2D(57+ 94*j, 60+100*i), 75, 80, static_cast<Resources::TextureId>(tex), 20 * pagHeroes + i * 10 + j,this));
 			//p->addButton(iManager->addButton<ButtonHeroEquipar>(Vector2D(x, y + 100), 100, 60, src::howToPlay, i, this));
 		}
 	}
@@ -700,6 +702,15 @@ void Interfaz::checkAndDeletePanel(idPanel id)
 		delete allPanels[id];
 }
 
+void Interfaz::createHeroToPartyPanel()
+{
+	int w, h;
+	w = game_->getWindowWidth();
+	h = game_->getWindowHeight();
+	Panel* p = new Panel(ButtonHeroToPartyPanel);
+	allPanels[ButtonHeroToPartyPanel] = p;
+	p->addButton(iManager->addButton<ButtonHeroManagement>(Vector2D(w / 2 + w / 3 - 150, 0), 300, 100, src::start, accionHero::sendHeroToParty, selectedHeroToParty, this));
+}
 
 void Interfaz::createPanel(idPanel panelID)
 {
@@ -768,6 +779,9 @@ void Interfaz::createPanel(idPanel panelID)
 	case infoTiendaPanel:
 		createInfoTienda();
 		break;
+	case ButtonHeroToPartyPanel:
+		createHeroToPartyPanel();
+		break;	
 	default:
 		break;
 	}
@@ -926,7 +940,7 @@ void Interfaz::update()
 		if (!getActivePan(Movement))
 		{
 			createPanel(Movement);
-			createPanel(Heroes);
+			//createPanel(Heroes);
 			createPanel(Info);
 			createPanel(Chat);
 			string s = "Habia una vez una casita de una bruja hecha de chocolate, entonces Hansel dijo....";
