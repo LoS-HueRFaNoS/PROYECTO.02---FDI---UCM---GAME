@@ -124,6 +124,8 @@ public:
 
 	void sellItem(Item* item);
 
+	void sellItemFromStash(int inexStash);
+
 	void backFromDungeon();
 
 };

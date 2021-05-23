@@ -224,6 +224,15 @@ void LobbyManager::sellItem(Item* item)
 	lobbyStore_->items.push_back(it);
 }
 
+void LobbyManager::sellItemFromStash(int indexStash)
+{
+	assert(playerStash_->items[indexStash] != nullptr);
+
+	playerStash_->items.erase(playerStash_->items.begin() + indexStash);
+
+	sellItem(playerStash_->items[indexStash]);
+}
+
 Stash::~Stash()
 {
 	heroes.clear();
