@@ -139,14 +139,14 @@ vector<Resources::ImageInfo> Resources::images_{
 	{BallestaPesada, "project/resources/sprites/iconos armas/ballesta_pesada.png"},
 
 	// Armaduras
-	{Acolchada, "project/resources/sprites/iconos armaduras/joker.png"},
-	{CueroTachonado, "project/resources/sprites/iconos armaduras/joker.png"},
+	{Acolchada, "project/resources/sprites/iconos armaduras/acolchadaC.png"},
+	{CueroTachonado, "project/resources/sprites/iconos armaduras/tachonada.png"},
 	{CotaEscamas, "project/resources/sprites/iconos armaduras/cota_escamas.png"},
-	{Coraza, "project/resources/sprites/iconos armaduras/joker.png"},
-	{SemiPlacas, "project/resources/sprites/iconos armaduras/joker.png"},
+	{Coraza, "project/resources/sprites/iconos armaduras/corazaC.png"},
+	{SemiPlacas, "project/resources/sprites/iconos armaduras/semiplacasC.png"},
 	{CotaMalla, "project/resources/sprites/iconos armaduras/cota_mallas.png"},
-	{Bandas, "project/resources/sprites/iconos armaduras/joker.png"},
-	{Placas, "project/resources/sprites/iconos armaduras/joker.png"},
+	{Bandas, "project/resources/sprites/iconos armaduras/bandasC.png"},
+	{Placas, "project/resources/sprites/iconos armaduras/placasC.png"},
 
 	// Enemigos
 	{Zombie, "project/resources/sprites/enemigos/zombie.png" },
