@@ -114,6 +114,27 @@ void LobbyManager::addHeroToParty(int index, int partyIndex)
 	}
 }
 
+void LobbyManager::fromPartyToStash(int partyIndex)
+{
+	assert(partyIndex >= 0 && partyIndex <= 3);
+
+	PartyManager* p = TheElementalMaze::instance()->getPartyManager();
+	Hero* h = nullptr;
+	Hero* change = nullptr;
+
+	if (partyIndex == -1) {
+		if (!p->addHero(h)) {
+			change = p->addHero(h, 0);
+		}
+	}
+	else {
+		change = p->addHero(h, partyIndex);
+	}
+
+	if (change)
+		playerStash_->heroes.push_back(change);
+}
+
 void LobbyManager::addHeroToStash(Hero* hero)
 {
 	playerStash_->heroes.push_back(hero);

@@ -106,6 +106,8 @@ public:
 
 	void addHeroToParty(int index, int partyIndex = -1);
 
+	void fromPartyToStash(int partyIndex);
+
 	void addHeroToStash(Hero* hero);
 
 	void addItemToStash(Item* item);

@@ -97,7 +97,7 @@ void Game::initGame()
 
 
 	int endTime = 0;
-	//delete tex_;
+	delete tex_;
 }
 
 void Game::closeGame()
