@@ -79,6 +79,7 @@ public:
 		Change,
 		Selected,
 		Button_transition,
+		Cartel,
 
 		// movement
 		Avanzar,

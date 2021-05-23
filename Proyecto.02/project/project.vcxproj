@@ -21,6 +21,7 @@
   <ItemGroup>
     <ClCompile Include="src\Components\ChatInfo.cpp" />
     <ClCompile Include="src\Components\GameStateManager.cpp" />
+    <ClCompile Include="src\Components\Paneles\Cartel_Info.cpp" />
     <ClCompile Include="src\Components\Paneles\PanelDnD.cpp" />
     <ClCompile Include="src\Components\Paneles\PanelTurns.cpp" />
     <ClCompile Include="src\Managers\game\ChatManager.cpp" />
@@ -80,6 +81,7 @@
     <ClInclude Include="resource.h" />
     <ClInclude Include="src\Components\ChatInfo.h" />
     <ClInclude Include="src\Components\GameStateManager.h" />
+    <ClInclude Include="src\Components\Paneles\Cartel_Info.h" />
     <ClInclude Include="src\Components\Paneles\PanelDnD.h" />
     <ClInclude Include="src\Components\Paneles\PanelTurns.h" />
     <ClInclude Include="src\Managers\game\ChatManager.h" />

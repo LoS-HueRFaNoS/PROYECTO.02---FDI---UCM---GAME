@@ -72,6 +72,7 @@ vector<Resources::ImageInfo> Resources::images_{
 	{Fondo, "project/resources/sprites/fondos y marcos/Fondo_Interfaz_04.png"},
 	{Fondo2, "project/resources/sprites/fondos y marcos/Fondo_Interfaz_05.png"},
 	{Button_transition, "project/resources/sprites/fondos y marcos/button_transition.png"},
+	{Cartel, "project/resources/sprites/fondos y marcos/cartelito.png"},
 	{Change, "project/resources/sprites/fondos y marcos/change.png"},
 	{Selected, "project/resources/sprites/fondos y marcos/selected.png"},
 	{Avanzar, "project/resources/sprites/iconos movimiento/movimientoAvanzar.png"},
