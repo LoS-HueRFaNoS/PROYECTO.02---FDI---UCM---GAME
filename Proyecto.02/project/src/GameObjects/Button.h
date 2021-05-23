@@ -414,7 +414,7 @@ public:
 		setActive(active);
 		pan_ = p;
 		Button::init(pos, ancho, alto, imagen);
-		addComponent<Sprite>(game_->getTextureMngr()->getTexture(Resources::Selected), 0, 0, true, true); // marco select
+		//addComponent<Sprite>(game_->getTextureMngr()->getTexture(Resources::Selected), 0, 0, true, true); // marco select
 	};
 
 	virtual void click()

@@ -1,4 +1,5 @@
 #pragma once
+#include "Sprite.h"
 #include "../GameObjects/Button.h"
 #include "../Utilities/InputHandler.h"
 #include "Transform.h"
@@ -14,20 +15,47 @@ public:
 
 	void init() override {
 		ih_ = InputHandler::instance();
+		s_ = GETCMP1_(Sprite);
 	}
 
 	void update() override {
-		if (ih_->mouseButtonEvent()) {
-			uint e = ih_->getMouseButtonState(InputHandler::LEFT);
-			Vector2D pos_ = ih_->getMousePos();
-			SDL_Point p_ = { (int)pos_.getX(), (int)pos_.getY() };
-			Transform* tr_ = entity_->getComponent<Transform>(ecs::Transform);
-			SDL_Rect rect_ = { int(tr_->getPos().getX()), int(tr_->getPos().getY()), int(tr_->getW()), int(tr_->getH()) };
-			// mouse event
-			if (!e) {
-				if (SDL_PointInRect(&p_, &rect_)) {
+		// variables necesarias:
+		uint e = ih_->getMouseButtonState(InputHandler::LEFT);
+		Vector2D pos_ = ih_->getMousePos();
+		SDL_Point p_ = { (int)pos_.getX(), (int)pos_.getY() };
+		Transform* tr_ = entity_->getComponent<Transform>(ecs::Transform);
+		SDL_Rect rect_ = { int(tr_->getPos().getX()), int(tr_->getPos().getY()), int(tr_->getW()), int(tr_->getH()) };
+
+		// mouse button event
+		if (ih_->mouseButtonEvent()) 
+		{
+			if (SDL_PointInRect(&p_, &rect_)) 
+			{
+				// effect click
+				if (!e) {
 					button_->click(); // click
 				}
+
+				// animation (click)
+				if (s_->get()) {
+					s_->avanza();
+				}
+			}
+			else {
+				s_->setHide(true);
+				s_->reset();
+			}
+		}
+
+		// animation (hover)
+		if (ih_->mouseMotionEvent())
+		{
+			if (SDL_PointInRect(&p_, &rect_))
+			{
+				s_->setHide(false);
+			}
+			else if (s_->get()) {
+				s_->setHide(true);
 			}
 		}
 	}
@@ -35,4 +63,5 @@ public:
 private:
 	InputHandler* ih_;
 	Button* button_;
+	Sprite* s_;
 };

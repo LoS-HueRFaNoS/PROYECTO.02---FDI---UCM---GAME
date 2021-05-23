@@ -78,6 +78,7 @@ public:
 		Fondo2,
 		Change,
 		Selected,
+		Button_transition,
 
 		// movement
 		Avanzar,
