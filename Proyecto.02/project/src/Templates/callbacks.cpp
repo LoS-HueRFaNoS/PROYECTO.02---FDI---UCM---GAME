@@ -255,14 +255,24 @@ void callbacks::startLobby(Interfaz* app)
 }
 void callbacks::startExp(Interfaz* app)
 {
-	if (app->getActivePan(DDPan))
-		app->removePanel(DDPan);
+	PartyManager* paManager = TheElementalMaze::instance()->getPartyManager();
+	bool partyCompleta = true;
+	for (int i = 0; i < 4; ++i)
+	{
+		if (paManager->getHeroes()[i] == nullptr) partyCompleta = false;
+	}
+	if (partyCompleta)
+	{
+		if (app->getActivePan(DDPan))
+			app->removePanel(DDPan);
 
-	TheElementalMaze::instance()->changeState(gameST::START_EXPLORING);
-	app->togglePanel(Lobby);
-	app->createPanel(Heroes);
+		app->removePanel(Lobby);
+		//app->removePanel(Heroes);
+		TheElementalMaze::instance()->changeState(gameST::START_EXPLORING);
+		
 
-	std::cout << "startExploration se ha activado\n";
+		std::cout << "startExploration se ha activado\n";
+	}
 }
 void callbacks::options(Interfaz* app)
 {
@@ -302,17 +312,19 @@ void callbacks::stash(Interfaz* app)
 {
 	if (app->getActivePan(DDPan))
 		app->removePanel(DDPan);
-	app->togglePanel(Lobby);
-	app->togglePanel(Heroes);
+	app->removePanel(Lobby);
+	app->removePanel(Heroes);
 	app->createPanel(StashPanel);
+	app->createPanel(ButtonHeroToPartyPanel);
+	app->togglePanel(ButtonHeroToPartyPanel);
 	std::cout << " vamos al stash"<< std::endl;
 }
 void callbacks::shop(Interfaz* app)
 {
 	if (app->getActivePan(DDPan))
 		app->removePanel(DDPan);
-	app->togglePanel(Lobby);
-	app->togglePanel(Heroes);
+	app->removePanel(Lobby);
+	app->removePanel(Heroes);
 	app->createPanel(Shop);
 	std::cout << "vamos a la tienda" << std::endl;
 }
@@ -320,16 +332,16 @@ void callbacks::shop(Interfaz* app)
 void callbacks::shop_lobby(Interfaz* app)
 {
 	app->togglePanel(Shop);
-	app->togglePanel(Lobby);
-	app->createPanel(Heroes);
+	app->createPanel(Lobby);
 	app->togglePanel(infoTiendaPanel);
 	std::cout << "volvemos al lobby desde la tienda" << std::endl;
 }
 void callbacks::stash_lobby(Interfaz* app)
 {
-	app->togglePanel(StashPanel);
-	app->togglePanel(Lobby);
-	app->createPanel(Heroes);
+	if (app->getActivePan(ButtonHeroToPartyPanel))
+		app->removePanel(ButtonHeroToPartyPanel);
+	app->removePanel(StashPanel);
+	app->createPanel(Lobby);
 	std::cout << "volvemos al lobby desde el stash" << std::endl;
 }
 void callbacks::avanzarHeroes(Interfaz* app)
@@ -386,17 +398,57 @@ void callbacks::sendHeroToStash(Interfaz* app, int heroid)
 	PartyManager* pa = TheElementalMaze::instance()->getPartyManager();
 	EntityManager* en = TheElementalMaze::instance()->getEntityMangr();
 	SDLGame* game = TheElementalMaze::instance()->getSDLGame();
-	Hero* hero = new Hero(game, en, pa->getHeroes()[heroid]);
-	lo->addHeroToStash(hero);
-	pa->removeHero(pa->getHeroes()[heroid]);
+	lo->heroFromPartyToStash(heroid);
 	app->createPanel(Heroes);
 }
 void callbacks::sendHeroToParty(Interfaz* app, int heroid)
 {
-	LobbyManager* lo = TheElementalMaze::instance()->getLobbyManager();
-	PartyManager* pa = TheElementalMaze::instance()->getPartyManager();
-	pa->addHero(lo->getPlayerStash()->heroes[heroid]);
-	//lo->getPlayerStash()->heroes[heroid] = nullptr;
+	app->removePanel(StashPanel);
+	app->removePanel(ButtonHeroToPartyPanel);
+	PartyManager* paManager = TheElementalMaze::instance()->getPartyManager();
+	int hueco = -1;
+	for (int i = 0; i < 4; ++i)
+	{
+		if (paManager->getHeroes()[i] == nullptr) hueco = i;
+	}
+	if (hueco != -1)
+	{
+		LobbyManager* lo = TheElementalMaze::instance()->getLobbyManager();
+		lo->addHeroToParty(heroid, hueco);
+	}
+	app->createPanel(StashPanel);
+	/*PartyManager* paManager = TheElementalMaze::instance()->getPartyManager();
+	int hueco = -1;
+	for (int i = 0; i < 4; ++i)
+	{
+		if (paManager->getHeroes()[i] == nullptr) hueco = i;
+	}
+	if (hueco != -1)
+	{
+		LobbyManager* lo = TheElementalMaze::instance()->getLobbyManager();
+		lo->addHeroToParty(heroid, hueco);
+		for (int i = heroid; i < lo->getPlayerStash()->heroes.size() - 1; ++i)
+			lo->getPlayerStash()->heroes[i] = lo->getPlayerStash()->heroes[i + 1];
+		lo->getPlayerStash()->heroes[lo->getPlayerStash()->heroes.size() - 1] = nullptr;
+		lo->getPlayerStash()->heroes.resize(lo->getPlayerStash()->heroes.size() - 1);
+	}
+	app->removePanel(StashPanel);
+	app->createPanel(StashPanel);*/
+}
+void callbacks::showHeroToParty(Interfaz* app, int heroid)
+{
+	if (app->getActivePan(ButtonHeroToPartyPanel)) app->removePanel(ButtonHeroToPartyPanel);
+	app->setSelectedHeroToParty(heroid);
+	app->createPanel(ButtonHeroToPartyPanel);
+}
+
+void callbacks::backToMenu(Interfaz* app)
+{
+	if (app->getActivePan(DDPan)) app->removePanel(DDPan);
+	app->removePanel(Lobby);
+	app->removePanel(Heroes);
+	app->createPanel(MenuPrincipal);
+	std::cout << "vamos al menu" << std::endl;
 }
 #include "../Managers/game/LobbyManager.h"
 #include"../GameObjects/Character.h"

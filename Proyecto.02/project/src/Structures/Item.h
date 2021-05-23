@@ -93,12 +93,6 @@ public:
 		sellValue = rand() % 100;
 		buyValue = rand() % 100;
 	}
-	Armor(Armor* armor_)
-	{
-		_ItemType = ARMOR;
-		sellValue = armor_->sellValue;
-		buyValue = armor_->buyValue;
-	}
 	rpgLogic::mainStat getStatNeeded() { return _statNeeded; }
 
 	int getMinStatNeeded() { return minStatNeeded; }

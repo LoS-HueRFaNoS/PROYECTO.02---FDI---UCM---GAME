@@ -52,4 +52,6 @@ public:
 	static void infoTienda(Interfaz* app, bool isHero, int id);
 	static void sendHeroToStash(Interfaz* app, int heroid);
 	static void sendHeroToParty(Interfaz* app, int heroid);
+	static void showHeroToParty(Interfaz* app, int heroid);
+	static void backToMenu(Interfaz* app);
 };
