@@ -42,6 +42,11 @@ void GameStateManager::update()
 		break;*/
 	case gameST::END_EXPLORING:
 		cout << "EXPLORING FINISHED" << endl;
+		//tem_->nextLevel();
+		changeState(gameST::START_EXPLORING);
+		break;
+	case gameST::GAME_OVER: // completa Lich o muerte
+		cout << "EXPLORING FINISHED" << endl;
 		tem_->onExitLaberinto();
 		changeState(gameST::LOBBY);
 		break;

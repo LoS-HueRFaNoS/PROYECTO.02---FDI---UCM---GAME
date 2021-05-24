@@ -7,6 +7,7 @@
 #include "../Managers/game/HabilityManager.h"
 #include "../Managers/game/ChatManager.h"
 #include "../Components/GameStateManager.h"
+#include "../Components/Tutorial.h"
 #include "../Components/Interfaz.h"
 #include "../Components/Laberinto.h"
 #include "../Components/PlayerMotion.h"
@@ -28,6 +29,8 @@ TheElementalMaze::~TheElementalMaze()
 
 void TheElementalMaze::init()
 {
+	
+
 	// 3. Personajes
 	
 	itemManager_ = new ItemManager();
@@ -63,6 +66,14 @@ void TheElementalMaze::init()
 	// 5. GameStateManager
 	stManager_ = addComponent<GameStateManager>();
 	stManager_->changeState(GameState::MainMenu);
+
+	// 6. Tutorial
+	tutorial_ = addComponent<TutorialManager>(iManager_);
+	Message m;
+	m.id_ = MsgId::_BIENVENIDA_;
+	tutorial_->send(m);
+	m.id_ = MsgId::_BIENVENIDA_pt2_;
+	tutorial_->send(m);
 }
 
 //--------------------------------------------------------
@@ -74,6 +85,12 @@ void TheElementalMaze::startExploring()
 
 void TheElementalMaze::createLaberinto()
 {
+	//lab_->removeComponent(ecs::Laberinto);
+	/*laberinto_->createRandomMaze(Vector2D(0, 0));
+	MazePos* mPos = GETCMP2(player_, MazePos);
+	mPos->reset();
+	mPos = nullptr;*/
+
 	// 1. Laberinto
 	lab_ = mngr_->addEntity();
 	laberinto_ = lab_->addComponent<Laberinto>(10, 10);
@@ -111,6 +128,7 @@ void TheElementalMaze::onExitLaberinto()
 	lab_->disable();
 	player_->disable();
 	player_ = nullptr;
+	lab_ = nullptr;
 }
 
 //--------------------------------------------------------
@@ -126,4 +144,9 @@ void TheElementalMaze::changeState(GameState state)
 
 	if (state == GameState::END_EXPLORING)
 		nextLevel();
+}
+
+void TheElementalMaze::sendMsg(Message m)
+{
+	tutorial_->send(m);
 }

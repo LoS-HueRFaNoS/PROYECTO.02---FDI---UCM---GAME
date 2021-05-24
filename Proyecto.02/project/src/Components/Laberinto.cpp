@@ -362,4 +362,3 @@ void Laberinto::generaObjeto(int object, int type, Casilla* casilla, int maxObje
 
 
 }
-

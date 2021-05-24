@@ -56,4 +56,5 @@ public:
 	static void backToMenu(Interfaz* app);
 	static void sellStashItem(Interfaz* app, int itemid);
 	static void showSellButton(Interfaz* app, int itemid);
+	static void closeMessage();
 };

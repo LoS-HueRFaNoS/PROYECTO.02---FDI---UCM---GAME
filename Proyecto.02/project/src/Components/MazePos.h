@@ -33,6 +33,11 @@ public:
 	void setLook(int look_) {
 		look = look_;
 	}
+
+	void reset() {
+		mazePosition_ = Vector2D(0, 0);
+		look = Norte;
+	}
 private:
 	Vector2D mazePosition_;
 	int look;

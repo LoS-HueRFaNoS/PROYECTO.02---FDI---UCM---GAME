@@ -1,12 +1,14 @@
 #include "Interfaz.h"
 #include "../ecs/ecs.h"
 #include "../Templates/callbacks.h"
+#include "../Structures/messages.h"
 #include "../GameObjects/Button.h"
 #include "../GameObjects/Character.h"
 #include "Image.h"
 #include "Transform.h"
 #include "StateBar.h"
 #include "Laberinto.h"
+#include "Tutorial.h"
 #include "Paneles/PanelTurns.h"
 #include "Paneles/PanelDnD.h"
 #include "../Utilities/SDL_macros.h"
@@ -85,7 +87,7 @@ void Interfaz::createEnemies()
 	y_ = game_->setVerticalScale(y_ + n);
 
 	// espacios entre objetos
-	double espace = game_->setHorizontalScale((w_ - n) / 4);
+	double espace = game_->setHorizontalScale((w_ - n) / nEnemies);
 
 	// ancho y alto de cada objeto
 	w_ = espace - game_->setHorizontalScale(n);
@@ -940,7 +942,7 @@ void Interfaz::createPanel(idPanel panelID)
 	case infoTiendaPanel:
 		createInfoTienda();
 		break;
-	case ButtonHeroToPartyPanel:
+	/*case ButtonHeroToPartyPanel:
 		createHeroToPartyPanel();
 		break;
 	case SellButtonPanel:
@@ -948,7 +950,7 @@ void Interfaz::createPanel(idPanel panelID)
 		break;
 	case InventoryLobby:
 		createInventoryLobby();
-		break;
+		break;*/
 	default:
 		break;
 	}
@@ -1107,6 +1109,12 @@ void Interfaz::update()
 	case gameST::START_EXPLORING:
 		if (!getActivePan(Movement))
 		{
+			/*Message m;
+			m.id_ = MsgId::_BIENVENIDA_;
+			TheElementalMaze::instance()->sendMsg(m);
+			m.id_ = MsgId::_BIENVENIDA_pt2_;
+			TheElementalMaze::instance()->sendMsg(m);*/
+			// create Tutorial
 			createPanel(Movement);
 			//createPanel(Heroes);
 			createPanel(Info);
@@ -1150,6 +1158,7 @@ void Interfaz::update()
 		removePanel(Heroes);
 		removePanel(Info);
 		removeChat();
+		// remove tutorial
 		break;
 	default:
 		break;
@@ -1190,4 +1199,3 @@ void Interfaz::checkHerosParty()
 		}
 	if (changed) allPanels[Heroes]->swapButtonList(savedHeroes);
 }
-

@@ -125,7 +125,13 @@ public:
 	/// <param name="ew"> = horizontal espace size between elements </param>
 	/// <param name="eh"> = vertical espace size between elements </param>
 	/// <returns> struct SDL_Panel </returns>
-	SDL_Panel relativePanel(double x, double y, double w, double h, int r, int c, double mw, double mh, double ew, double eh);
+	SDL_Panel relativePanel (
+		double x, double y, 
+		double w, double h, 
+		int r= 0, int c = 0, 
+		double mw = 0, double mh = 0, 
+		double ew = 0, double eh = 0
+	);
 
 private:
 	SDLGame(string windowTitle_, int width, int height);

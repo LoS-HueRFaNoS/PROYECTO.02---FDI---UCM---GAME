@@ -146,8 +146,7 @@ public:
 // ----------------------------------------------------
 
 enum class accionMenu { start, lobby, how_to_play, options, quit, shop, stash, shop_lobby,
-	stash_lobby, avanzarHeroes, avanzarItems, retrocederHeroes, retrocederItems, backToMenu,inventarioLobby
-};
+	stash_lobby, avanzarHeroes, avanzarItems, retrocederHeroes, retrocederItems, backToMenu, inventarioLobby, closeMessage};
 
 class ButtonMenu : public Button {
 private:
@@ -162,6 +161,11 @@ public:
 		tipo = type;
 		app = app_;
 		Button::init(pos, ancho, alto, imagen);
+	};
+	virtual void init(SDL_Rect dest, Resources::TextureId imagen, accionMenu type) {
+		tipo = type;
+		app = nullptr;
+		Button::init(dest, imagen);
 	};
 
 	virtual void click()
@@ -212,6 +216,9 @@ public:
 			break;
 		case accionMenu::inventarioLobby:
 			callbacks::inventarioLobby(app);
+			break;
+		case accionMenu::closeMessage:
+			callbacks::closeMessage();
 			break;
 		default:
 			break;

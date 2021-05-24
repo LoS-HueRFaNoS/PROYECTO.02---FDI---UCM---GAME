@@ -219,7 +219,26 @@ vector<Resources::ImageInfo> Resources::images_{
 	{Tsunami, "project/resources/sprites/iconos habilidades/TSUNAMI.png"},
 	{VorticeDeOscuridad, "project/resources/sprites/iconos habilidades/VORTICE DE OSCURIDAD.PNG"},
 	{Morph, "project/resources/sprites/iconos habilidades/MORPH.png"},
-	{ReverseMorph, "project/resources/sprites/iconos habilidades/MORPH.png"}
+	{ReverseMorph, "project/resources/sprites/iconos habilidades/MORPH.png"},
+
+	// carteles tutorial
+	{ cartel_combate, "project/resources/images/interfaz/carteles/cartel_combate.png" },
+	{ cartel_movimiento, "project/resources/images/interfaz/carteles/cartel_movimiento.png" },
+	{ cartel_inventario, "project/resources/images/interfaz/carteles/cartel_inventario.png" },
+	{ cartel_support, "project/resources/images/interfaz/carteles/cartel_support.png" },
+	{ cartel_heroes, "project/resources/images/interfaz/carteles/cartel_heroes.png" },
+	{ cartel_minimapa, "project/resources/images/interfaz/carteles/cartel_minimapa.png" },
+	{ cartel_configuracion, "project/resources/images/interfaz/carteles/cartel_configuracion.png" },
+	{ cartel_bienvenida_pt1, "project/resources/images/interfaz/carteles/cartel_bienvenida_pt1.png" },
+	{ cartel_bienvenida_pt2, "project/resources/images/interfaz/carteles/cartel_bienvenida_pt2.png" },
+
+	// paneles focalizados
+	{ foco_combate, "project/resources/images/interfaz/focos/foco_combate.png" },
+	{ foco_inventario, "project/resources/images/interfaz/focos/foco_inventario.png" },
+	{ foco_support, "project/resources/images/interfaz/focos/foco_support.png" },
+	{ foco_heroes, "project/resources/images/interfaz/focos/foco_heroes.png" },
+	{ foco_minimapa, "project/resources/images/interfaz/focos/foco_minimapa.png" },
+	{ cinematica, "project/resources/images/interfaz/focos/cinematica.png" }
 };
 
 vector<Resources::TextMsgInfo> Resources::messages_{

@@ -473,6 +473,14 @@ void callbacks::showSellButton(Interfaz* app, int itemid)
 	app->setSelectedItem(itemid);
 	app->createPanel(SellButtonPanel);
 }
+#include "../Components/Tutorial.h"
+void callbacks::closeMessage()
+{
+	TutorialManager* t = GETCMP3(TheElementalMaze::instance(), ecs::Tutorial, TutorialManager);
+	t->exitMessage();
+	std::cout << "saliendo del mensaje del tutorial" << std::endl;
+
+}
 #include "../Managers/game/LobbyManager.h"
 #include"../GameObjects/Character.h"
 

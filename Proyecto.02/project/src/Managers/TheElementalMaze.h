@@ -1,5 +1,6 @@
 #pragma once
 #include "../ecs/Entity.h"
+#include "../Structures/messages.h"
 
 class CombatManager;
 class InterfazManager;
@@ -10,6 +11,7 @@ class CharacterManager;
 class PartyManager;
 class LobbyManager;
 class GameStateManager;
+class TutorialManager;
 
 enum class GameState {
 	MainMenu,
@@ -20,7 +22,8 @@ enum class GameState {
 	START_COMBAT,
 	COMBAT,
 	END_COMBAT,
-	END_EXPLORING
+	END_EXPLORING,
+	GAME_OVER
 };
 using gameST = GameState;
 
@@ -43,8 +46,10 @@ private:
 	PartyManager* partyManager_;
 	LobbyManager* lobbyManager_;
 	GameStateManager* stManager_; // compt
+	TutorialManager* tutorial_; // compt
 	int level = -1;
 	uint floor;
+
 	bool pause_ = false;
 	bool firstLobbyCreated = false;
 public:
@@ -53,8 +58,7 @@ public:
 		iManager_(iMngr),
 		Entity(game, mngr),
 		player_(nullptr),
-		laberinto_(nullptr),
-		floor(0)
+		laberinto_(nullptr)
 	{};
 
 public:
@@ -103,6 +107,8 @@ public:
 
 	LobbyManager* getLobbyManager() { return lobbyManager_; }
 
+	TutorialManager* getTutorial() { return tutorial_; }
+
 	GameState gameState();
 
 	bool isPause() { return pause_; }
@@ -110,4 +116,6 @@ public:
 	void setPauseState(bool set) { pause_ = set; }
 
 	void changeState(GameState state);
+
+	void sendMsg(Message m);
 };
