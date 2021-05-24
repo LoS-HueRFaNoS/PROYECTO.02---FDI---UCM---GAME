@@ -28,6 +28,7 @@
       "ManaPoints": 20,
       "Experience": 20,
       "Coins": 10,
+      "Boss":  false,
 
       "Weaknesses": [
         {
@@ -107,6 +108,7 @@
       "ManaPoints": 20,
       "Experience": 20,
       "Coins": 10,
+      "Boss": false,
 
       "Weaknesses": [
         {
@@ -187,6 +189,7 @@
       "ManaPoints": 10,
       "Experience": 50,
       "Coins": 25,
+      "Boss": false,
 
       "Weaknesses": [
         {
@@ -266,6 +269,7 @@
       "ManaPoints": 12,
       "Experience": 50,
       "Coins": 25,
+      "Boss": false,
 
       "Weaknesses": [
         {
@@ -344,6 +348,7 @@
       "ManaPoints": 20,
       "Experience": 50,
       "Coins": 25,
+      "Boss": false,
 
       "Weaknesses": [
         {
@@ -423,6 +428,7 @@
       "ManaPoints": 10,
       "Experience": 100,
       "Coins": 50,
+      "Boss": false,
 
       "Weaknesses": [
         {
@@ -502,6 +508,7 @@
       "ManaPoints": 12,
       "Experience": 120,
       "Coins": 80,
+      "Boss": false,
 
       "Weaknesses": [
         {
@@ -581,6 +588,7 @@
       "ManaPoints": 10,
       "Experience": 100,
       "Coins": 50,
+      "Boss": false,
 
       "Weaknesses": [
         {
@@ -660,6 +668,7 @@
       "ManaPoints": 22,
       "Experience": 100,
       "Coins": 50,
+      "Boss": false,
 
       "Weaknesses": [
         {
@@ -739,6 +748,7 @@
       "ManaPoints": 10,
       "Experience": 200,
       "Coins": 100,
+      "Boss": false,
 
       "Weaknesses": [
         {
@@ -818,6 +828,7 @@
       "ManaPoints": 24,
       "Experience": 100,
       "Coins": 50,
+      "Boss": false,
 
       "Weaknesses": [
         {
@@ -897,6 +908,7 @@
       "ManaPoints": 24,
       "Experience": 500,
       "Coins": 500,
+      "Boss": true,
 
       "Weaknesses": [
         {
@@ -976,6 +988,7 @@
       "ManaPoints": 32,
       "Experience": 500,
       "Coins": 500,
+      "Boss": true,
 
       "Weaknesses": [
         {
@@ -1055,6 +1068,7 @@
       "ManaPoints": 60,
       "Experience": 3000,
       "Coins": 1000,
+      "Boss": true,
 
       "Weaknesses": [
         {

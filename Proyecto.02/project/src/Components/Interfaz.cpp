@@ -912,7 +912,7 @@ void Interfaz::createPanel(idPanel panelID)
 		createInventory();
 		break;
 	case HeroesStats:
-		//createFichaDD();
+		//createFichaDnD();
 		break;
 	case BigMap:
 		createBigMap();
@@ -959,7 +959,7 @@ void Interfaz::createPanel(idPanel panelID)
 	case infoTiendaPanel:
 		createInfoTienda();
 		break;
-	/*case ButtonHeroToPartyPanel:
+	case ButtonHeroToPartyPanel:
 		createHeroToPartyPanel();
 		break;
 	case SellButtonPanel:
@@ -967,7 +967,7 @@ void Interfaz::createPanel(idPanel panelID)
 		break;
 	case InventoryLobby:
 		createInventoryLobby();
-		break;*/
+		break;
 	default:
 		break;
 	}
@@ -1104,8 +1104,6 @@ void Interfaz::init()
 	togglePanel(Movement);
 	togglePanel(Heroes);
 	togglePanel(Info);*/
-
-
 }
 
 void Interfaz::update()

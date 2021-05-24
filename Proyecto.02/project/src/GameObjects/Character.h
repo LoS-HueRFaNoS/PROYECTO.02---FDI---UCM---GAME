@@ -248,6 +248,8 @@ private:
 
 	int coins = 0;
 
+	bool boss = false;
+
 	virtual void loadFromJson(jute::jValue v, int t);
 
 	virtual void manageTurn(CombatManager* cm);
@@ -257,6 +259,8 @@ public:
 	}
 
 	int getExp() { return exp; }
+
+	bool isBoss() { return boss; }
 
 	enemyTemplate getTemplate() { return template_; }
 };

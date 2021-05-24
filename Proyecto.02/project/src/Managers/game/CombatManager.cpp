@@ -122,9 +122,17 @@ bool CombatManager::checkEnd()
 	return end;
 }
 
+bool CombatManager::isABoss()
+{
+	for (Enemy* e : _enemies)
+		if (e->isBoss()) _boss = true;
+
+	return _boss;
+}
+
 void CombatManager::tryEscape()
 {
-	if (_boss) {
+	if (isABoss()) {
 		cout << "YOU CAN'T ESCAPE FROM THIS COMBAT\n";
 		return;
 	}

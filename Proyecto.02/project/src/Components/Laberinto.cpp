@@ -257,7 +257,7 @@ void Laberinto::createRandomMaze(Vector2D entrada)
 
 	if (TheElementalMaze::instance()->getLevel() == -1)
 	{
-		generaObjeto(0, int(enemyTemplate::GOBLIN), laberinto[1][1], 1, 0);
+		generaObjeto(0, int(enemyTemplate::DRACOLICH), laberinto[1][1], 1, 0);
 		generaObjeto(0, int(enemyTemplate::GOBLIN), laberinto[2][2], 1, 0);
 
 		int totalItem = int(weaponId::_lastWeaponId_) + int(armorId::_lastArmorId_) + 4;

@@ -526,6 +526,8 @@ void Enemy::loadFromJson(jute::jValue v, int t)
 	_sheet->setManaPoints(mp);
 	_sheet->setMaxManaPoints(mp);
 
+	boss = v["Characters"][t]["Boss"].as_bool();
+
 	// Guardamos las debilidades en un vector para luego inicializarlas
 	vector<float> weak = vector<float>();
 	for (int i = 0; i < size_t(damTy::_lastDamageTypeId_); i++)

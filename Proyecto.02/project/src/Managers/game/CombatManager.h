@@ -114,6 +114,8 @@ public:
 		_heroes = heroes;
 	}
 
+	bool isABoss();
+
 	vector<Hero*> getHeroesTeam()
 	{
 		return _heroes;
