@@ -45,19 +45,19 @@ void LobbyManager::backFromDungeon()
 	party_->getItems().clear();
 
 	lobbyStore_ = new Store();
-	generateHeroStash();
-	generateItemStash();
+	generateHeroStore();
+	generateItemStore();
 	//startExploring();
 }
 
 void LobbyManager::firstLobby()
 {
 	lobbyStore_ = new Store();
-	generateHeroStash();
-	generateItemStash();
+	generateHeroStore();
+	generateItemStore();
 }
 
-void LobbyManager::generateHeroStash()
+void LobbyManager::generateHeroStore()
 {
 	CharacterManager* cm = TheElementalMaze::instance()->getCharacterManager();
 	for (int i = 0; i < 10; i++) {
@@ -68,7 +68,7 @@ void LobbyManager::generateHeroStash()
 	}
 }
 
-void LobbyManager::generateItemStash()
+void LobbyManager::generateItemStore()
 {
 	ItemManager* im = TheElementalMaze::instance()->getItemManager();
 	for (int i = 0; i < 10; i++) {
@@ -92,15 +92,20 @@ void LobbyManager::removeItemFromStash(Item* i)
 	}
 }
 
-void LobbyManager::removeItemFromShop(ItemToBuy* i)
+void LobbyManager::removeItemFromShop(ItemToBuy* item)
 {
-	
-	for (auto it = lobbyStore_->items.begin(); it != lobbyStore_->items.end(); it++) {
-		if ((*it) == i) {
-			lobbyStore_->items.erase(it);
+	for(int i = 0; i < lobbyStore_->items.size(); i++){
+		if (lobbyStore_->items[i] == item) {
+			removeItemFromShop(i);
 			return;
 		}
 	}
+}
+
+void LobbyManager::removeItemFromShop(int i)
+{
+	delete lobbyStore_->items[i];
+	lobbyStore_->items.erase(lobbyStore_->items.begin() + i);
 }
 
 Stash* LobbyManager::getPlayerStash()
@@ -220,7 +225,7 @@ void LobbyManager::buyItem(int item)
 	playerStash_->gold -= itemToBuy->item->getBuyValue();
 	playerStash_->items.push_back(itemToBuy->item);
 	itemToBuy->sold = true;
-	removeItemFromShop(itemToBuy);
+	removeItemFromShop(item);
 	std::cout << "Item purchased" << std::endl;
 }
 
@@ -262,9 +267,6 @@ void LobbyManager::sellItemFromStash(int indexStash)
 
 Stash::~Stash()
 {
-	heroes.clear();
-	items.clear();
-
 	for (Item* i : items)
 	{
 		delete i; i = nullptr;
