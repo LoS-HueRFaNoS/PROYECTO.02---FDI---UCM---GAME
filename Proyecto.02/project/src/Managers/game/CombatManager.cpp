@@ -186,10 +186,12 @@ void CombatManager::endCombat()
 			else
 				h->endCombat(_exp);
 		}
+		// si es lich derrotado y vuelve a empezar
 	}
 	else {
 		cout << "PERDISTE, ASI ES LA VIDA" << endl;
 		TheElementalMaze::instance()->getPartyManager()->partyLost();
+		// vuelta al lobby
 	}
 
 	_heroes.clear();
@@ -197,8 +199,6 @@ void CombatManager::endCombat()
 		e->disable();
 	}
 	_enemies.clear();
-	TheElementalMaze::instance()->checkOutNoInitialEnemy();
-
 	TheElementalMaze::instance()->checkOutNoInitialEnemy();
 
 	_turnQueue.clear();

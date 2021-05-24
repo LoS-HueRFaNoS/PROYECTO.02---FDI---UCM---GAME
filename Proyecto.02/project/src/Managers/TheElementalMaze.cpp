@@ -69,11 +69,6 @@ void TheElementalMaze::init()
 
 	// 6. Tutorial
 	tutorial_ = addComponent<TutorialManager>(iManager_);
-	Message m;
-	m.id_ = MsgId::_BIENVENIDA_;
-	tutorial_->send(m);
-	m.id_ = MsgId::_BIENVENIDA_pt2_;
-	tutorial_->send(m);
 }
 
 //--------------------------------------------------------

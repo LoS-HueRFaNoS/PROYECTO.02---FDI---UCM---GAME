@@ -1,5 +1,6 @@
 #include "LobbyManager.h"
 #include "../../GameObjects/Character.h"
+#include "../../Structures/messages.h"
 #include "CharacterManager.h"
 #include "ItemManager.h"
 #include "PartyManager.h"
@@ -52,6 +53,13 @@ void LobbyManager::backFromDungeon()
 
 void LobbyManager::firstLobby()
 {
+	Message m;
+	m.id_ = MsgId::_BIENVENIDA_;
+	TheElementalMaze::instance()->sendMsg(m);
+	m.id_ = MsgId::_BIENVENIDA_pt2_;
+	TheElementalMaze::instance()->sendMsg(m);
+	m.id_ = MsgId::_HEROES_;
+	TheElementalMaze::instance()->sendMsg(m);
 	lobbyStore_ = new Store();
 	generateHeroStore();
 	generateItemStore();

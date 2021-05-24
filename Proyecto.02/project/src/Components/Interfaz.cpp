@@ -87,6 +87,8 @@ void Interfaz::createEnemies()
 	y_ = game_->setVerticalScale(y_ + n);
 
 	// espacios entre objetos
+	double tamBar_w = game_->setHorizontalScale((w_ - n) / 5);
+	double tamBar_h = game_->setHorizontalScale((h_ - n) / 10 / 3);
 	double espace = game_->setHorizontalScale((w_ - n) / nEnemies);
 
 	// ancho y alto de cada objeto
@@ -109,7 +111,7 @@ void Interfaz::createEnemies()
 		else {
 			if (nEnemies == 1) b_ = iManager->addButton<SDL_Object>(Vector2D(x_ + espace / 2 - h_ / 2, y_), h_, h_, getEnemyTxt(i));
 			else {
-				double lado = w_;// / nEnemies;
+				double lado = w_; // nEnemies;
 				b_ = iManager->addButton<SDL_Object>(Vector2D(x_ + i * espace + espace / 2 - lado / 2, y_ + h_ - lado), lado, lado, getEnemyTxt(i));
 			}
 				
@@ -117,7 +119,8 @@ void Interfaz::createEnemies()
 
 		//BARRA DE VIDA
 		uint k = 6;
-		b_->addComponent<StateBar>(enemy, health, SDL_Rect(RECT((x_ + i * espace), (y_ + h_ * 1 / k), w_ , h_ / k)));
+
+		b_->addComponent<StateBar>(enemy, health, SDL_Rect(RECT((x_ + w_ / 2), (y_ + h_ / 10), tamBar_w, tamBar_h)));
 		//b_->addComponent<StateBar>(enemies[i], mana, SDL_Rect(RECT((x_ + i * espace), (y_ + h_ * 2.5 / k), w_ * 2, h_ / k)));
 		p->addButton(b_);
 	}
@@ -1118,17 +1121,17 @@ void Interfaz::update()
 	{
 	case gameST::MainMenu:
 		break;
-	case gameST::LOBBY:
+	case gameST::LOBBY:		
 		callbacks::startLobby(this);
 		break;
 	case gameST::START_EXPLORING:
 		if (!getActivePan(Movement))
 		{
-			/*Message m;
-			m.id_ = MsgId::_BIENVENIDA_;
+			Message m;
+			m.id_ = MsgId::_MOVIMIENTO_;
 			TheElementalMaze::instance()->sendMsg(m);
-			m.id_ = MsgId::_BIENVENIDA_pt2_;
-			TheElementalMaze::instance()->sendMsg(m);*/
+			m.id_ = MsgId::_MINIMAP_;
+			TheElementalMaze::instance()->sendMsg(m);
 			// create Tutorial
 			createPanel(Movement);
 			createPanel(Heroes);
@@ -1151,6 +1154,9 @@ void Interfaz::update()
 	case gameST::COMBAT:
 		if (!getActivePan(Fight))
 		{
+			Message m;
+			m.id_ = MsgId::_COMBATE_;
+			TheElementalMaze::instance()->sendMsg(m);
 			togglePanel(Movement);
 			createPanel(Fight);
 			createPanel(Enemies);
@@ -1161,6 +1167,13 @@ void Interfaz::update()
 	case gameST::END_COMBAT:
 		if (getActivePan(Enemies))
 		{
+			Message m;
+			m.id_ = MsgId::_INVENTARIO_;
+			TheElementalMaze::instance()->sendMsg(m);
+			m.id_ = MsgId::_CONFIG_;
+			TheElementalMaze::instance()->sendMsg(m);
+			m.id_ = MsgId::_SUPPORT_;
+			TheElementalMaze::instance()->sendMsg(m);
 			toggleMinimap();
 			removePanel(Enemies);
 			TheElementalMaze::instance()->removeComponent(ecs::PanelTurns);
