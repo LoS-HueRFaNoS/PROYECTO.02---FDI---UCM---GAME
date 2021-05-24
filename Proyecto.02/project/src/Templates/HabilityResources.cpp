@@ -38,8 +38,15 @@ void HeavyStrike::throwHability(Character* obj, bool critical) const
 
 	if (obj->savingThrow(5 + _caster->getMod(_mod), ms::DEX))
 		cout << "You missed your heavy hit" << endl;
-	else
+	else {
 		obj->recieveDamage(damage, _damageType, _caster);
+		int elementalDamage = 0;
+		for (int i = 0; i < (int)damageType::_lastDamageTypeId_; i++) {
+			elementalDamage = damage * w->getElementalAfinity().getWeakness((damageType)i);
+			if (elementalDamage >= 1)
+				obj->recieveDamage(elementalDamage, (damageType)i);
+		}
+	}
 }
 
 
