@@ -30,6 +30,7 @@ private:
 	void createChat();
 	void createTargets(); //
 	void createHabilities(); //
+	void createInventoryLobby();
 
 	void createMenuPrincipal();
 	void createLobby();

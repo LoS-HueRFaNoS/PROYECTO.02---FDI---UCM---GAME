@@ -1,4 +1,5 @@
 #include "Laberinto.h"
+#include "../Managers/TheElementalMaze.h"
 #include <string>
 #include <iostream>
 #include <fstream>
@@ -71,7 +72,7 @@ void Laberinto::createRandomMaze(Vector2D entrada)
 {
 	int x, y;
 
-	if (level == -1)
+	if (TheElementalMaze::instance()->getLevel() == -1)
 	{
 		w = 5;
 		h = 5;
@@ -166,11 +167,11 @@ void Laberinto::createRandomMaze(Vector2D entrada)
 			{
 				shortestWay = vector<Vector2D>(m_stack);
 
-				if (level != -1)
+				if (TheElementalMaze::instance()->getLevel() != -1)
 				{
 					int enemyType = 0;
 
-					switch (level)
+					switch (TheElementalMaze::instance()->getLevel())
 					{
 					case 0:
 						enemyType = int(enemyTemplate::DEATHKNIGHT);
@@ -192,7 +193,7 @@ void Laberinto::createRandomMaze(Vector2D entrada)
 				laberinto[x][y]->setSalida();
 			}
 
-			if (level != -1)
+			if (TheElementalMaze::instance()->getLevel() != -1)
 			{
 				int hayEnemy = game_->getRandGen()->nextInt(0, 10);
 
@@ -201,7 +202,7 @@ void Laberinto::createRandomMaze(Vector2D entrada)
 					int enemyType = 0;
 					int random = 0;
 
-					switch (level)
+					switch (TheElementalMaze::instance()->getLevel())
 					{
 					case 0:
 						random = throwDice(1, 3);
@@ -254,7 +255,7 @@ void Laberinto::createRandomMaze(Vector2D entrada)
 		neighbours.clear();
 	}
 
-	if (level == -1)
+	if (TheElementalMaze::instance()->getLevel() == -1)
 	{
 		generaObjeto(0, int(enemyTemplate::GOBLIN), laberinto[1][1], 1, 0);
 		generaObjeto(0, int(enemyTemplate::GOBLIN), laberinto[2][2], 1, 0);
@@ -362,10 +363,3 @@ void Laberinto::generaObjeto(int object, int type, Casilla* casilla, int maxObje
 
 }
 
-void Laberinto::SubeLaberinto(int level)
-{
-	level++;
-
-	if (level > 2)
-		level = 0;
-}

@@ -47,6 +47,7 @@ void LobbyManager::backFromDungeon()
 	lobbyStore_ = new Store();
 	generateHeroStash();
 	generateItemStash();
+	
 	//startExploring();
 }
 

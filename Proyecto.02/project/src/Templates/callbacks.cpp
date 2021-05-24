@@ -245,13 +245,20 @@ void callbacks::set_hability(int hability_)
 void callbacks::startLobby(Interfaz* app)
 {
 	std::cout << "startLobby se ha activado\n";
+	if (app->getActivePan(MenuPrincipal)) 	app->removePanel(MenuPrincipal);
 	if (TheElementalMaze::instance()->gameState() != gameST::MainMenu)
+	{
 		TheElementalMaze::instance()->backFromDungeon();
-	else if (!TheElementalMaze::instance()->isFirstLobbyCreated()) TheElementalMaze::instance()->firstLobby();
-	TheElementalMaze::instance()->changeState(gameST::LOBBY);
+	}
+	else if (!TheElementalMaze::instance()->isFirstLobbyCreated())
+	{
+		TheElementalMaze::instance()->firstLobby();
+	
+	}
+
+	TheElementalMaze::instance()->changeState(gameST::DURING_LOBBY);
 	cout << "LOBBY REACHED" << endl;
 	
-	app->togglePanel(MenuPrincipal);
 	app->createPanel(Lobby);
 	
 	
@@ -438,6 +445,15 @@ void callbacks::backToMenu(Interfaz* app)
 	app->createPanel(MenuPrincipal);
 	TheElementalMaze::instance()->changeState(gameST::MainMenu);
 	std::cout << "vamos al menu" << std::endl;
+}
+
+void callbacks::inventarioLobby(Interfaz* app)
+{
+	if (app->getActivePan(DDPan)) app->removePanel(DDPan);
+	app->removePanel(Lobby);
+	app->removePanel(Heroes);
+	app->createPanel(InventoryLobby);
+	std::cout << "vamos al inventario" << std::endl;
 }
 void callbacks::sellStashItem(Interfaz* app,int itemid)
 {

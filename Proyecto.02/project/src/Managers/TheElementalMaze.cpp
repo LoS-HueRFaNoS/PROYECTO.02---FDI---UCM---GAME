@@ -125,5 +125,5 @@ void TheElementalMaze::changeState(GameState state)
 	stManager_->changeState(state);
 
 	if (state == GameState::END_EXPLORING)
-		laberinto_->SubeLaberinto(laberinto_->labLevel());
+		nextLevel();
 }
