@@ -580,6 +580,21 @@ public:
 	
 };
 
+class ButtonWeaponAttack : public Button {
+private:
+	uint attack_;
+
+public:
+	ButtonWeaponAttack(SDLGame* game, EntityManager* mngr) : Button(game, mngr), attack_(0) {};
+
+	~ButtonWeaponAttack() {};
+
+	virtual void init(Vector2D pos, uint ancho, uint alto, Resources::TextureId imagen, int attack);
+
+	virtual void click();
+
+};
+
 #pragma endregion
 
 // ----------------------------------------------------

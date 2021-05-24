@@ -397,6 +397,41 @@ void Interfaz::createHabilities()
 	togglePanel(Fight); // oculta el panel fight
 }
 
+void Interfaz::createWeaponAttacks()
+{
+	CombatManager* c = GETCMP2(TheElementalMaze::instance(), CombatManager);
+	Hero* hero = static_cast<Hero*>(c->getCurrentCharacter());
+	std::vector<Hability*> habilities = hero->getHabilities();
+	size_t nAttack = 2;
+
+	// posicion en pixeles del 'fondo'
+	double x_ = 70;
+	double y_ = 790;
+	// tamano en pixeles del 'fondo'
+	double w_ = 710;
+	double h_ = 190;
+	// tamano de los margenes
+	double n = 20;
+
+	// posicion del panel respecto a la ventana
+	x_ = game_->setHorizontalScale(x_ + n);
+	y_ = game_->setVerticalScale(y_ + n);
+
+	double espace = game_->setHorizontalScale((w_ - n) / nAttack);
+
+	w_ = espace - game_->setHorizontalScale(n);
+	h_ = game_->setVerticalScale(h_ - n * 2);
+
+	// construccion y asignacion del panel:
+	Panel* p = new Panel(WeaponsAttacks);
+	allPanels[WeaponsAttacks] = p;
+
+	p->addButton(iManager->addButton<ButtonWeaponAttack>(Vector2D(x_, y_), w_, h_, src::LightAttack, -2));
+	p->addButton(iManager->addButton<ButtonWeaponAttack>(Vector2D(x_ + espace, y_), w_, h_, src::GolpeDuro, -3));
+
+	togglePanel(Fight); // oculta el panel fight
+}
+
 void Interfaz::createMenuPrincipal()
 {
 	Panel* p = new Panel(MenuPrincipal);
@@ -553,7 +588,7 @@ void Interfaz::createStash() {
 	p->addButton(iManager->addButton<SDL_Object>(Vector2D(50, 300), w - 500, 100, src::inventory_slots));
 	p->addButton(iManager->addButton<SDL_Object>(Vector2D(50, 400), w - 500, 100, src::inventory_slots));
 	if (pagItems == 0)
-	p->addButton(iManager->addButton<ButtonMenu>(Vector2D(w - 435, 330), 50, 50, src::AvanzarBloqueado, accionMenu::retrocederItems, this));
+		p->addButton(iManager->addButton<ButtonMenu>(Vector2D(w - 435, 330), 50, 50, src::AvanzarBloqueado, accionMenu::retrocederItems, this));
 	else p->addButton(iManager->addButton<ButtonMenu>(Vector2D(w - 435, 330), 50, 50, src::Avanzar, accionMenu::retrocederItems, this));
 	if (loManager->getPlayerStash()->items.size() > 20 * (pagItems + 1))
 		p->addButton(iManager->addButton<ButtonMenu>(Vector2D(w - 435, 430), 50, 50, src::Retroceder, accionMenu::avanzarItems, this));
@@ -586,9 +621,9 @@ void Interfaz::createStash() {
 	for (int i = 0; i < 2; i++)
 	{
 		// Por cada objeto de la fila
-		for (int j = 0; j < 10 && pagItems *20+ i * 10 + j < Itemtam; j++)
+		for (int j = 0; j < 10 && pagItems * 20 + i * 10 + j < Itemtam; j++)
 		{
-			Item* objeto = loManager->getPlayerStash()->items[pagItems *20+ i * 10 + j];
+			Item* objeto = loManager->getPlayerStash()->items[pagItems * 20 + i * 10 + j];
 			if ((int)objeto->getItemType() == 0)
 			{
 				Weapon* arma = static_cast<Weapon*>(loManager->getPlayerStash()->items[pagItems * 20 + i * 10 + j]);
@@ -599,7 +634,7 @@ void Interfaz::createStash() {
 				Armor* armadura = static_cast<Armor*>(loManager->getPlayerStash()->items[pagItems * 20 + i * 10 + j]);
 				tex = (int)src::_firstArmorId_ + (int)armadura->getArmorId() + 1;
 			}
-			p->addButton(iManager->addButton<ButtonItemManagement>(Vector2D(57 + 94 * j, 110 + 100 * (i + 2)), 75, 80, static_cast<Resources::TextureId>(tex), accionItem::showSellButton, j,this));
+			p->addButton(iManager->addButton<ButtonItemManagement>(Vector2D(57 + 94 * j, 110 + 100 * (i + 2)), 75, 80, static_cast<Resources::TextureId>(tex), accionItem::showSellButton, j, this));
 			//p->addButton(iManager->addButton<ButtonHeroEquipar>(Vector2D(x, y + 100), 100, 60, src::howToPlay, i, this));
 		}
 	}
@@ -786,6 +821,9 @@ void Interfaz::createPanel(idPanel panelID)
 		break;
 	case Habilities:
 		createHabilities();
+		break;
+	case WeaponsAttacks:
+		createWeaponAttacks();
 		break;
 	case MenuPrincipal:
 		createMenuPrincipal();

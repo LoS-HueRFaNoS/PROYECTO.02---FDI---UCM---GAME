@@ -182,7 +182,8 @@ void callbacks::combatType(int combatType_)
 	case 0:
 		if (c->getState() == ACTION_PHASE_SPELL) {
 			std::cout << "ataque cuerpo a cuerpo" << std::endl;
-			callbacks::set_hability(-2);
+			if (!i->getActivePan(WeaponsAttacks)) callbacks::createPanel(false, WeaponsAttacks);
+			if (i->getEnablePan(Fight)) i->togglePanel(Fight);
 		}
 		else
 			std::cout << "ERROR: aun no has comenzado tu turno" << std::endl;
@@ -227,6 +228,7 @@ void callbacks::set_hability(int hability_)
 	
 	Interfaz* i = GETCMP2(TheElementalMaze::instance(), Interfaz);
 	if (i->getActivePan(Habilities)) i->removePanel(Habilities);
+	if (i->getActivePan(WeaponsAttacks)) i->removePanel(WeaponsAttacks);
 
 	// team or single target
 	if (c->getState() != END_TURN) {

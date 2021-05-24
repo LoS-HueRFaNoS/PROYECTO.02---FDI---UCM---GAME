@@ -14,6 +14,7 @@ namespace interfaz {
 		Minimap, 
 		Targets,
 		Habilities,
+		WeaponsAttacks,
 		Fight, 
 		Turns, 
 		HeroesStats, 

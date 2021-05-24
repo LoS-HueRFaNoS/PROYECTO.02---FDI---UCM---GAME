@@ -108,3 +108,14 @@ void ButtonSlott::init(Vector2D pos, uint ancho, uint alto, Item* item)
 };
 
 //----------------------------------------------------------------------------
+
+void ButtonWeaponAttack::init(Vector2D pos, uint ancho, uint alto, Resources::TextureId imagen, int attack)
+{
+	attack_ = attack;
+	Button::init(pos, ancho, alto, imagen);
+}
+
+void ButtonWeaponAttack::click()
+{
+	callbacks::set_hability(attack_);
+}
