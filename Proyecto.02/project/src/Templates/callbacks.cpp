@@ -245,9 +245,12 @@ void callbacks::set_hability(int hability_)
 void callbacks::startLobby(Interfaz* app)
 {
 	std::cout << "startLobby se ha activado\n";
+	if (TheElementalMaze::instance()->gameState() != gameST::MainMenu)
+		TheElementalMaze::instance()->backFromDungeon();
+	else if (!TheElementalMaze::instance()->isFirstLobbyCreated()) TheElementalMaze::instance()->firstLobby();
 	TheElementalMaze::instance()->changeState(gameST::LOBBY);
 	cout << "LOBBY REACHED" << endl;
-	TheElementalMaze::instance()->backFromDungeon();
+	
 	app->togglePanel(MenuPrincipal);
 	app->createPanel(Lobby);
 	
@@ -340,6 +343,8 @@ void callbacks::stash_lobby(Interfaz* app)
 {
 	if (app->getActivePan(ButtonHeroToPartyPanel))
 		app->removePanel(ButtonHeroToPartyPanel);
+	if (app->getActivePan(SellButtonPanel))
+		app->removePanel(SellButtonPanel);
 	app->removePanel(StashPanel);
 	app->createPanel(Lobby);
 	std::cout << "volvemos al lobby desde el stash" << std::endl;
@@ -417,23 +422,6 @@ void callbacks::sendHeroToParty(Interfaz* app, int heroid)
 		lo->addHeroToParty(heroid, hueco);
 	}
 	app->createPanel(StashPanel);
-	/*PartyManager* paManager = TheElementalMaze::instance()->getPartyManager();
-	int hueco = -1;
-	for (int i = 0; i < 4; ++i)
-	{
-		if (paManager->getHeroes()[i] == nullptr) hueco = i;
-	}
-	if (hueco != -1)
-	{
-		LobbyManager* lo = TheElementalMaze::instance()->getLobbyManager();
-		lo->addHeroToParty(heroid, hueco);
-		for (int i = heroid; i < lo->getPlayerStash()->heroes.size() - 1; ++i)
-			lo->getPlayerStash()->heroes[i] = lo->getPlayerStash()->heroes[i + 1];
-		lo->getPlayerStash()->heroes[lo->getPlayerStash()->heroes.size() - 1] = nullptr;
-		lo->getPlayerStash()->heroes.resize(lo->getPlayerStash()->heroes.size() - 1);
-	}
-	app->removePanel(StashPanel);
-	app->createPanel(StashPanel);*/
 }
 void callbacks::showHeroToParty(Interfaz* app, int heroid)
 {
@@ -448,7 +436,24 @@ void callbacks::backToMenu(Interfaz* app)
 	app->removePanel(Lobby);
 	app->removePanel(Heroes);
 	app->createPanel(MenuPrincipal);
+	TheElementalMaze::instance()->changeState(gameST::MainMenu);
 	std::cout << "vamos al menu" << std::endl;
+}
+void callbacks::sellStashItem(Interfaz* app,int itemid)
+{
+	LobbyManager* lo = TheElementalMaze::instance()->getLobbyManager();
+	lo->sellItemFromStash(itemid);
+	std::cout << "Objeto vendido" << std::endl;
+	app->removePanel(StashPanel);
+	app->createPanel(StashPanel);
+	app->removePanel(SellButtonPanel);
+}
+void callbacks::showSellButton(Interfaz* app, int itemid)
+{
+	if (app->getActivePan(SellButtonPanel))
+		app->removePanel(SellButtonPanel);
+	app->setSelectedItem(itemid);
+	app->createPanel(SellButtonPanel);
 }
 #include "../Managers/game/LobbyManager.h"
 #include"../GameObjects/Character.h"

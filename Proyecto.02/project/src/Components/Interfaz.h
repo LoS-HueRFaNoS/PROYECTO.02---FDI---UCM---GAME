@@ -43,7 +43,9 @@ private:
 	string descrItemTienda;
 	void checkAndDeletePanel(idPanel id);
 	void createHeroToPartyPanel();
+	void createSellButtonPanel();
 	int selectedHeroToParty;
+	int selectedItem;
 public:
 	Interfaz(InterfazManager* i) :
 		Component(ecs::Interfaz),
@@ -79,4 +81,5 @@ public:
 	void setNameItem(string name_) { nameItemTienda = name_; }
 	void setDescrItem(string descr_) { descrItemTienda = descr_; }
 	void setSelectedHeroToParty(int selectedHero) { selectedHeroToParty = selectedHero; }
+	void setSelectedItem(int selectedItem_) { selectedItem = selectedItem_; }
 };

@@ -243,20 +243,23 @@ void Interfaz::createInventory()
 			p->addButton(iManager->addButton<SDL_Object>(Vector2D(posX, posY), slotTam, slotTam, src::Slot));
 
 			int indice = i * 5 + j;
-			Item* item = items[indice];
-			if (item != nullptr) {
-				ItemType itemType = item->getItemType();
+			if (indice < items.size())
+			{
+				Item* item = items[indice];
+				if (item != nullptr) {
+					ItemType itemType = item->getItemType();
 
-				if (itemType == ItemType::ARMOR) {
-					pivot = src::_firstArmorId_;
-					auxId = (int) static_cast<Armor*>(item)->getArmorId();
+					if (itemType == ItemType::ARMOR) {
+						pivot = src::_firstArmorId_;
+						auxId = (int) static_cast<Armor*>(item)->getArmorId();
+					}
+					else {
+						pivot = src::_firstWeaponId_;
+						auxId = (int) static_cast<Weapon*>(item)->getWeaponId();
+					}
+					id = (Resources::TextureId) (pivot + auxId + 1);
+					p->addButton(iManager->addButton<SDL_Object>(Vector2D(posX + margen, posY + margen), itemTam, itemTam, id));
 				}
-				else {
-					pivot = src::_firstWeaponId_;
-					auxId = (int) static_cast<Weapon*>(item)->getWeaponId();
-				}
-				id = (Resources::TextureId) (pivot + auxId + 1);
-				p->addButton(iManager->addButton<SDL_Object>(Vector2D(posX + margen, posY + margen), itemTam, itemTam, id));
 			}
 
 			posX += slotTam;
@@ -487,9 +490,9 @@ void Interfaz::createShop()
 			p->addButton(iManager->addButton<ButtonBuyHero>(Vector2D(100 + 94 * i, 250), 70, 50, src::howToPlay, i, this));
 		}
 		int tam = loManager->getLobbyStore()->items.size();
-		// Se generan 6 objetos a la venta
+		// Se generan 10 objetos a la venta
 		int tex;
-		for (int i = 0; i < 6 && i < tam; i++)
+		for (int i = 0; i < 10 && i < tam; i++)
 		{
 			ItemToBuy* it = loManager->getLobbyStore()->items[i];
 			if ((int)it->item->getItemType() == 0)
@@ -541,20 +544,20 @@ void Interfaz::createStash() {
 	p->addButton(iManager->addButton<SDL_Object>(Vector2D(50, 50), w - 500, 100, src::inventory_slots));
 	p->addButton(iManager->addButton<SDL_Object>(Vector2D(50, 150), w - 500, 100, src::inventory_slots));
 	if (pagHeroes == 0)
-		p->addButton(iManager->addButton<ButtonMenu>(Vector2D(w - 300, 50), 100, 100, src::AvanzarBloqueado, accionMenu::retrocederHeroes, this));
-	else p->addButton(iManager->addButton<ButtonMenu>(Vector2D(w - 300, 50), 100, 100, src::Avanzar, accionMenu::retrocederHeroes, this));
+		p->addButton(iManager->addButton<ButtonMenu>(Vector2D(w - 435, 70), 50, 50, src::AvanzarBloqueado, accionMenu::retrocederHeroes, this));
+	else p->addButton(iManager->addButton<ButtonMenu>(Vector2D(w - 435, 70), 50, 50, src::Avanzar, accionMenu::retrocederHeroes, this));
 	if (loManager->getPlayerStash()->heroes.size() > 20 * (pagHeroes + 1))
-		p->addButton(iManager->addButton<ButtonMenu>(Vector2D(w - 300, 150), 100, 100, src::Retroceder, accionMenu::avanzarHeroes, this));
-	else p->addButton(iManager->addButton<ButtonMenu>(Vector2D(w - 300, 150), 100, 100, src::RetrocederBloqueado, accionMenu::avanzarHeroes, this));
+		p->addButton(iManager->addButton<ButtonMenu>(Vector2D(w - 435, 180), 50, 50, src::Retroceder, accionMenu::avanzarHeroes, this));
+	else p->addButton(iManager->addButton<ButtonMenu>(Vector2D(w - 435, 180), 50, 50, src::RetrocederBloqueado, accionMenu::avanzarHeroes, this));
 	// Slots del stash de objetos
 	p->addButton(iManager->addButton<SDL_Object>(Vector2D(50, 300), w - 500, 100, src::inventory_slots));
 	p->addButton(iManager->addButton<SDL_Object>(Vector2D(50, 400), w - 500, 100, src::inventory_slots));
 	if (pagItems == 0)
-	p->addButton(iManager->addButton<ButtonMenu>(Vector2D(w - 300, 300), 100, 100, src::AvanzarBloqueado, accionMenu::retrocederItems, this));
-	else p->addButton(iManager->addButton<ButtonMenu>(Vector2D(w - 300, 300), 100, 100, src::Avanzar, accionMenu::retrocederItems, this));
+	p->addButton(iManager->addButton<ButtonMenu>(Vector2D(w - 435, 330), 50, 50, src::AvanzarBloqueado, accionMenu::retrocederItems, this));
+	else p->addButton(iManager->addButton<ButtonMenu>(Vector2D(w - 435, 330), 50, 50, src::Avanzar, accionMenu::retrocederItems, this));
 	if (loManager->getPlayerStash()->items.size() > 20 * (pagItems + 1))
-		p->addButton(iManager->addButton<ButtonMenu>(Vector2D(w - 300, 400), 100, 100, src::Retroceder, accionMenu::avanzarItems, this));
-	else p->addButton(iManager->addButton<ButtonMenu>(Vector2D(w - 300, 400), 100, 100, src::RetrocederBloqueado, accionMenu::avanzarItems, this));
+		p->addButton(iManager->addButton<ButtonMenu>(Vector2D(w - 435, 430), 50, 50, src::Retroceder, accionMenu::avanzarItems, this));
+	else p->addButton(iManager->addButton<ButtonMenu>(Vector2D(w - 435, 430), 50, 50, src::RetrocederBloqueado, accionMenu::avanzarItems, this));
 	//for (int i = 0; i < 81; i++)
 	//{
 		//Hero* a = new Hero(game_, mngr_);
@@ -583,7 +586,7 @@ void Interfaz::createStash() {
 	for (int i = 0; i < 2; i++)
 	{
 		// Por cada objeto de la fila
-		for (int j = 0; j < 10 && pagItems *20+ i * 10 + j < Itemtam-1; j++)
+		for (int j = 0; j < 10 && pagItems *20+ i * 10 + j < Itemtam; j++)
 		{
 			Item* objeto = loManager->getPlayerStash()->items[pagItems *20+ i * 10 + j];
 			if ((int)objeto->getItemType() == 0)
@@ -596,7 +599,7 @@ void Interfaz::createStash() {
 				Armor* armadura = static_cast<Armor*>(loManager->getPlayerStash()->items[pagItems * 20 + i * 10 + j]);
 				tex = (int)src::_firstArmorId_ + (int)armadura->getArmorId() + 1;
 			}
-			p->addButton(iManager->addButton<SDL_Object>(Vector2D(57 + 94 * j, 110 + 100 * (i + 2)), 75, 80, static_cast<Resources::TextureId>(tex)));
+			p->addButton(iManager->addButton<ButtonItemManagement>(Vector2D(57 + 94 * j, 110 + 100 * (i + 2)), 75, 80, static_cast<Resources::TextureId>(tex), accionItem::showSellButton, j,this));
 			//p->addButton(iManager->addButton<ButtonHeroEquipar>(Vector2D(x, y + 100), 100, 60, src::howToPlay, i, this));
 		}
 	}
@@ -731,6 +734,16 @@ void Interfaz::createHeroToPartyPanel()
 	p->addButton(iManager->addButton<ButtonHeroManagement>(Vector2D(w / 2 + w / 3 - 150, 0), 300, 100, src::start, accionHero::sendHeroToParty, selectedHeroToParty, this));
 }
 
+void Interfaz::createSellButtonPanel()
+{
+	int w, h;
+	w = game_->getWindowWidth();
+	h = game_->getWindowHeight();
+	Panel* p = new Panel(SellButtonPanel);
+	allPanels[SellButtonPanel] = p;
+	p->addButton(iManager->addButton<ButtonItemManagement>(Vector2D(w / 2 - w / 3 - 150, 600), 300, 100, src::quit, accionItem::sellItem, selectedItem, this));
+}
+
 void Interfaz::createPanel(idPanel panelID)
 {
 	checkAndDeletePanel(panelID);
@@ -800,6 +813,9 @@ void Interfaz::createPanel(idPanel panelID)
 		break;
 	case ButtonHeroToPartyPanel:
 		createHeroToPartyPanel();
+		break;
+	case SellButtonPanel:
+		createSellButtonPanel();
 		break;
 	default:
 		break;

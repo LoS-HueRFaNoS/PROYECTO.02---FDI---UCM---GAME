@@ -95,6 +95,8 @@ private:
 
 	void removeItemFromStash(Item* i);
 
+	void removeItemFromShop(ItemToBuy* i);
+
 public:
 
 	LobbyManager(PartyManager* party);
@@ -128,6 +130,7 @@ public:
 
 	void backFromDungeon();
 
+	void firstLobby();
 };
 #endif // !_LOBBY_MANAGER_
 

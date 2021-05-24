@@ -60,8 +60,8 @@ public:
 
 	Weapon() {
 		_ItemType = WEAPON;
-		sellValue = rand() % 100;
 		buyValue = rand() % 100;
+		sellValue = rand() % 100;
 	}
 
 	int getDamage() { return damage; }

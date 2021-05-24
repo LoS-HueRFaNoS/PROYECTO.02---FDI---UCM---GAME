@@ -90,7 +90,11 @@ void TheElementalMaze::backFromDungeon()
 {
 	lobbyManager_->backFromDungeon();
 }
-
+void TheElementalMaze::firstLobby()
+{
+	lobbyManager_->firstLobby();
+	firstLobbyCreated = true;
+}
 void TheElementalMaze::checkOutNoInitialEnemy()
 {
 	laberinto_->getCasillaInfo(int(player_->getComponent<MazePos>(ecs::MazePos)->getPos().getX()), int(player_->getComponent<MazePos>(ecs::MazePos)->getPos().getY()))->getEnemy()->clear();

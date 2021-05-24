@@ -330,6 +330,48 @@ public:
 	}
 };
 // ----------------------------------------------------
+
+// ----------------------------------------------------
+enum class accionItem {
+	sellItem, showSellButton
+};
+class ButtonItemManagement : public Button {
+private:
+	int itemid;
+	accionItem accion_item;
+	Interfaz* app;
+public:
+	ButtonItemManagement(SDLGame* game, EntityManager* mngr) : Button(game, mngr) {};
+
+	~ButtonItemManagement() {};
+
+	virtual void init(Vector2D pos, uint ancho, uint alto, Resources::TextureId imagen, accionItem accion_item_ , int itemId_, Interfaz* app_) {
+		itemid = itemId_;
+		accion_item = accion_item_;
+		app = app_;
+		Button::init(pos, ancho, alto, imagen);
+	};
+
+	virtual void click()
+	{
+		switch (accion_item)
+		{
+		case accionItem::showSellButton:
+			callbacks::showSellButton(app, itemid);
+			break;
+		case accionItem::sellItem:
+			callbacks::sellStashItem(app,itemid);
+			break;
+		}
+		
+		
+		Sprite* s_ = GETCMP2(this, Sprite);
+		s_->setHide(true);
+		s_->reset();
+	}
+};
+// ----------------------------------------------------
+
 class ButtonInfoTienda : public Button {
 private:
 	Interfaz* app;

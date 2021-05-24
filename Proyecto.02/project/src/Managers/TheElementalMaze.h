@@ -45,7 +45,7 @@ private:
 
 	uint floor;
 	bool pause_ = false;
-
+	bool firstLobbyCreated = false;
 public:
 	TheElementalMaze(SDLGame* game, EntityManager* mngr, CharacterManager* chMngr, InterfazManager* iMngr) :
 		characterManager_(chMngr),
@@ -80,10 +80,11 @@ public:
 	void startExploring();
 	void createLaberinto();
 	void backFromDungeon();
+	void firstLobby();
 	void checkOutNoInitialEnemy();
 	void startCombat();
 	void onExitLaberinto();
-
+	bool isFirstLobbyCreated() { return firstLobbyCreated; }
 	Laberinto* getLaberinto() { return laberinto_; };
 
 	Entity* getPlayer() { return player_; };
