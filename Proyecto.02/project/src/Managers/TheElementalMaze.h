@@ -14,6 +14,7 @@ class GameStateManager;
 enum class GameState {
 	MainMenu,
 	LOBBY,
+	DURING_LOBBY,
 	START_EXPLORING,
 	EXPLORING,
 	START_COMBAT,
@@ -42,7 +43,7 @@ private:
 	PartyManager* partyManager_;
 	LobbyManager* lobbyManager_;
 	GameStateManager* stManager_; // compt
-
+	int level = -1;
 	uint floor;
 	bool pause_ = false;
 	bool firstLobbyCreated = false;
@@ -86,7 +87,8 @@ public:
 	void onExitLaberinto();
 	bool isFirstLobbyCreated() { return firstLobbyCreated; }
 	Laberinto* getLaberinto() { return laberinto_; };
-
+	int getLevel() { return level; }
+	void nextLevel() { level++; if (level > 3) level = 0; }
 	Entity* getPlayer() { return player_; };
 
 	CharacterManager* getCharacterManager() { return characterManager_; }

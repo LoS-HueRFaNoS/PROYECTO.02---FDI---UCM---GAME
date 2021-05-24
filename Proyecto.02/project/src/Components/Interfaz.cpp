@@ -477,6 +477,9 @@ void Interfaz::createLobby()
 	p->addButton(iManager->addButton<ButtonMenu>(Vector2D(w / 2 + w / 3 - 150, 2 * h / 3 + 100), 300, 100, src::start, accionMenu::start, this));
 
 	p->addButton(iManager->addButton<ButtonMenu>(Vector2D(0, 0), 64, 64, src::close, accionMenu::backToMenu, this));
+
+	p->addButton(iManager->addButton<ButtonMenu>(Vector2D(400, 0), 64, 64, src::Inventario, accionMenu::inventarioLobby, this));
+
 }
 void Interfaz::createShop()
 {
@@ -748,6 +751,94 @@ void Interfaz::createTurns()
 	TheElementalMaze::instance()->addComponent<PanelTurns>(game_, p, iManager);
 }
 
+void Interfaz::createInventoryLobby()
+{
+	SDLGame* game_ = entity_->getSDLGame();
+	vector<Item*> items = TheElementalMaze::instance()->getPartyManager()->getItems();
+	double slotTam = game_->getWindowWidth() / 16;
+	double posX;
+	double posY = slotTam * 1.8;
+
+	Panel* p = new Panel(Inventory);
+	//allPanels.emplace(allPanels.begin() + Inventory, p);
+	allPanels[Inventory] = p;
+
+	// Cuadro de inventario 5x5
+	int margen = 0.1 * slotTam;
+	int itemTam = 0.8 * slotTam;
+	Resources::TextureId id;
+	uint pivot, auxId;
+	for (int i = 0; i < 5; ++i) {
+
+		posX = slotTam * 1.5; //Se resetea la coordenada X
+
+		for (int j = 0; j < 5; ++j) {
+			p->addButton(iManager->addButton<SDL_Object>(Vector2D(posX, posY), slotTam, slotTam, src::Slot));
+
+			int indice = i * 5 + j;
+			if (indice < items.size())
+			{
+				Item* item = items[indice];
+				if (item != nullptr) {
+					ItemType itemType = item->getItemType();
+
+					if (itemType == ItemType::ARMOR) {
+						pivot = src::_firstArmorId_;
+						auxId = (int) static_cast<Armor*>(item)->getArmorId();
+					}
+					else {
+						pivot = src::_firstWeaponId_;
+						auxId = (int) static_cast<Weapon*>(item)->getWeaponId();
+					}
+					id = (Resources::TextureId) (pivot + auxId + 1);
+					p->addButton(iManager->addButton<SDL_Object>(Vector2D(posX + margen, posY + margen), itemTam, itemTam, id));
+				}
+			}
+
+			posX += slotTam;
+		}
+		posY += slotTam; // Se suma la coordenada Y
+
+	}
+
+	posX += slotTam; // Se suma la coordenada X dejando un espacio.
+	posY = slotTam * 1.8;
+
+
+	// Inventario personajes: clase + arma + armadura
+	PartyManager* c = TheElementalMaze::instance()->getPartyManager();
+	std::vector<Hero*> heroes = c->getHeroes();
+	for (int i = 0; i < 4; ++i) {
+		p->addButton(iManager->addButton<SDL_Object>(Vector2D(posX, posY), slotTam, slotTam, getHeroTxt(i)));
+
+		Weapon* weapon = heroes[i]->getWeapon();
+		if (weapon != nullptr) {
+			p->addButton(iManager->addButton<SDL_Object>(Vector2D(posX + slotTam, posY), slotTam, slotTam, src::Slot));
+			pivot = src::_firstWeaponId_;
+			auxId = (int)weapon->getWeaponId();
+			id = (Resources::TextureId) (pivot + auxId + 1);
+			p->addButton(iManager->addButton<SDL_Object>(Vector2D(posX + slotTam + margen, posY + margen), itemTam, itemTam, id));
+		}
+		else
+			p->addButton(iManager->addButton<SDL_Object>(Vector2D(posX + slotTam, posY), slotTam, slotTam, src::WeaponSlot));
+
+		Armor* armor = heroes[i]->getArmor();
+		if (armor != nullptr) {
+			p->addButton(iManager->addButton<SDL_Object>(Vector2D(posX + slotTam * 2, posY), slotTam, slotTam, src::Slot));
+			pivot = src::_firstArmorId_;
+			auxId = (int)armor->getArmorId();
+			id = (Resources::TextureId) (pivot + auxId + 1);
+			p->addButton(iManager->addButton<SDL_Object>(Vector2D(posX + slotTam * 2 + margen, posY + margen), 0.8 * slotTam, 0.8 * slotTam, id));
+		}
+		else
+			p->addButton(iManager->addButton<SDL_Object>(Vector2D(posX + slotTam * 2, posY), slotTam, slotTam, src::ArmorSlot));
+
+
+
+		posY += slotTam * 1.33;
+	}
+}
+
 void Interfaz::toggleMinimap()
 {
 
@@ -854,6 +945,9 @@ void Interfaz::createPanel(idPanel panelID)
 		break;
 	case SellButtonPanel:
 		createSellButtonPanel();
+		break;
+	case InventoryLobby:
+		createInventoryLobby();
 		break;
 	default:
 		break;
@@ -1008,6 +1102,7 @@ void Interfaz::update()
 	case gameST::MainMenu:
 		break;
 	case gameST::LOBBY:
+		callbacks::startLobby(this);
 		break;
 	case gameST::START_EXPLORING:
 		if (!getActivePan(Movement))

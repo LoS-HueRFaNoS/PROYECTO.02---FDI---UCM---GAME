@@ -1,6 +1,6 @@
 ﻿#include "GameStateManager.h"
 #include "../Managers/TheElementalMaze.h"
-
+#include "../Templates/callbacks.h"
 GameStateManager::GameStateManager() :
 	Component(ecs::GameStateManager),
 	state_(gameST::MainMenu),
@@ -21,7 +21,6 @@ void GameStateManager::update()
 		break;*/
 	case gameST::LOBBY:
 		//cout << "LOBBY REACHED" << endl;
-		//tem_->backFromDungeon();
 		//changeState(gameST::START_EXPLORING);
 		break;
 	case gameST::START_EXPLORING:

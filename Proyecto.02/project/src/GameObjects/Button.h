@@ -146,7 +146,8 @@ public:
 // ----------------------------------------------------
 
 enum class accionMenu { start, lobby, how_to_play, options, quit, shop, stash, shop_lobby,
-	stash_lobby, avanzarHeroes, avanzarItems, retrocederHeroes, retrocederItems, backToMenu};
+	stash_lobby, avanzarHeroes, avanzarItems, retrocederHeroes, retrocederItems, backToMenu,inventarioLobby
+};
 
 class ButtonMenu : public Button {
 private:

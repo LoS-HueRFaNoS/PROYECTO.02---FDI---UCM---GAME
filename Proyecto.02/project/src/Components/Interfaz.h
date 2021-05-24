@@ -31,6 +31,7 @@ private:
 	void createTargets(); //
 	void createHabilities(); //
 	void createWeaponAttacks();
+	void createInventoryLobby();
 
 	void createMenuPrincipal();
 	void createLobby();
