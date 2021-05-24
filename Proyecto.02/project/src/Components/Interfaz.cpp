@@ -61,8 +61,8 @@ void Interfaz::createFight()
 	// BOTONES: normal, magic, defend, escape
 	p->addButton(iManager->addButton<ButtonCombate>(Vector2D(x_ + 0, y_), w_, h_, src::AtaqueNormal, CmbtType::attack));
 	p->addButton(iManager->addButton<ButtonCombate>(Vector2D(x_ + espace, y_), w_, h_, src::AtaqueMagico, CmbtType::magic));
-	p->addButton(iManager->addButton<ButtonCombate>(Vector2D(x_ + espace * 2, y_), w_, h_, src::Enter, CmbtType::defend));
-	p->addButton(iManager->addButton<ButtonCombate>(Vector2D(x_ + espace * 3, y_), w_, h_, src::Huida, CmbtType::escape));
+	p->addButton(iManager->addButton<ButtonCombate>(Vector2D(x_ + espace * 2, y_), w_, h_, src::Huida, CmbtType::escape));
+	p->addButton(iManager->addButton<ButtonCombate>(Vector2D(x_ + espace * 3, y_), w_, h_, src::Enter, CmbtType::defend));
 }
 
 void Interfaz::createEnemies()
@@ -336,7 +336,7 @@ void Interfaz::createTargets()
 	double x_ = 70;
 	double y_ = 790;
 	// tamano en pixeles del 'fondo'
-	double w_ = 710;
+	double w_ = 540;
 	double h_ = 190;
 	// tamano de los margenes
 	double n = 20;
@@ -372,7 +372,7 @@ void Interfaz::createHabilities()
 	double x_ = 70;
 	double y_ = 790;
 	// tamano en pixeles del 'fondo'
-	double w_ = 710;
+	double w_ = 540;
 	double h_ = 190;
 	// tamano de los margenes
 	double n = 20;
