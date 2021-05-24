@@ -410,7 +410,7 @@ void Interfaz::createWeaponAttacks()
 	double x_ = 70;
 	double y_ = 790;
 	// tamano en pixeles del 'fondo'
-	double w_ = 710;
+	double w_ = 540;
 	double h_ = 190;
 	// tamano de los margenes
 	double n = 20;
