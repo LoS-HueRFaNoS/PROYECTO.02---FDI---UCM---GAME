@@ -92,7 +92,7 @@ public:
 	bool isFirstLobbyCreated() { return firstLobbyCreated; }
 	Laberinto* getLaberinto() { return laberinto_; };
 	int getLevel() { return level; }
-	void nextLevel() { level++; if (level > 3) level = 0; }
+	void nextLevel() { level++; if (level > 2) level = 0; }
 	Entity* getPlayer() { return player_; };
 
 	CharacterManager* getCharacterManager() { return characterManager_; }

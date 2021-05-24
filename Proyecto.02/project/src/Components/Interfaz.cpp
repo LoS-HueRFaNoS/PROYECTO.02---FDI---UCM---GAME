@@ -1133,7 +1133,7 @@ void Interfaz::update()
 			TheElementalMaze::instance()->sendMsg(m);*/
 			// create Tutorial
 			createPanel(Movement);
-			//createPanel(Heroes);
+			createPanel(Heroes);
 			createPanel(Info);
 			createPanel(Chat);
 			string s = "Habia una vez una casita de una bruja hecha de chocolate, entonces Hansel dijo....";
@@ -1177,6 +1177,7 @@ void Interfaz::update()
 		removeChat();
 		// remove tutorial
 		break;
+
 	default:
 		break;
 	}
