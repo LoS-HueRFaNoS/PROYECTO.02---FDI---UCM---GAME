@@ -87,6 +87,27 @@ public:
 		SellButton,
 		StoreItemButton,
 
+		// carteles tutorial
+		_firstCartelId_,
+		cartel_combate,
+		cartel_movimiento,
+		cartel_inventario,
+		cartel_support, // chat/feed
+		cartel_heroes,
+		cartel_minimapa,
+		cartel_configuracion,
+		cartel_bienvenida_pt1,
+		cartel_bienvenida_pt2,
+
+		// paneles focalizados
+		_firstFocoId_,
+		foco_combate, // comparte con movimiento, habilidades y objetivos
+		foco_inventario, // comparte con configuracion
+		foco_support, // chat/feed
+		foco_heroes,
+		foco_minimapa,
+		cinematica,
+
 		// movement
 		Avanzar,
 		RotarD,

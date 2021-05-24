@@ -18,8 +18,6 @@ private:
 	vector<Vector2D> m_stack;	// (x, y) coordinate pairs
 	int cellsCreated = 0;
 	bool drawMiniMap;
-
-	int level = -1;
 	
 public:
 	Laberinto(int h, int w);
@@ -28,10 +26,8 @@ public:
 	void initFromFile();
 	int mazeWidth() { return w; };
 	int mazeHeigh() { return h; };
-	int labLevel() { return level; };
 	Vector2D getSalida();
 	void createRandomMaze(Vector2D entrada);
-	void SubeLaberinto(int level);
 	Casilla* getCasillaInfo(int x, int y);
 	
 	virtual void draw();

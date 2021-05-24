@@ -37,7 +37,7 @@ public:
 	static void quit(Interfaz* app);
 
 	//boton de lobby
-
+	static void inventarioLobby(Interfaz* app);
 	static void stash(Interfaz* app);
 	static void shoppingHero(Interfaz* app , int her_);
 	static void shop(Interfaz* app);
@@ -56,4 +56,5 @@ public:
 	static void backToMenu(Interfaz* app);
 	static void sellStashItem(Interfaz* app, int itemid);
 	static void showSellButton(Interfaz* app, int itemid);
+	static void closeMessage();
 };

@@ -24,6 +24,7 @@
     <ClCompile Include="src\Components\Paneles\Cartel_Info.cpp" />
     <ClCompile Include="src\Components\Paneles\PanelDnD.cpp" />
     <ClCompile Include="src\Components\Paneles\PanelTurns.cpp" />
+    <ClCompile Include="src\Components\Tutorial.cpp" />
     <ClCompile Include="src\Managers\game\ChatManager.cpp" />
     <ClCompile Include="src\Managers\SDL\AudioManager.cpp" />
     <ClCompile Include="src\GameObjects\Button.cpp" />
@@ -84,10 +85,12 @@
     <ClInclude Include="src\Components\Paneles\Cartel_Info.h" />
     <ClInclude Include="src\Components\Paneles\PanelDnD.h" />
     <ClInclude Include="src\Components\Paneles\PanelTurns.h" />
+    <ClInclude Include="src\Components\Tutorial.h" />
     <ClInclude Include="src\Managers\game\ChatManager.h" />
     <ClInclude Include="src\Managers\SDL\AudioManager.h" />
     <ClInclude Include="src\GameObjects\Button.h" />
     <ClInclude Include="src\Components\ButtonCtrl.h" />
+    <ClInclude Include="src\Structures\messages.h" />
     <ClInclude Include="src\Templates\callbacks.h" />
     <ClInclude Include="src\Structures\Casilla.h" />
     <ClInclude Include="src\Components\CasillaRender.h" />

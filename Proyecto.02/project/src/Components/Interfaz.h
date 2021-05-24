@@ -13,7 +13,7 @@ using namespace std;
 class Interfaz : public Component {
 
 private:
-
+	bool tutorial_active;
 	InterfazManager* iManager;
 	std::vector<Panel*> allPanels;
 	uint pagHeroes = 0;
@@ -30,6 +30,8 @@ private:
 	void createChat();
 	void createTargets(); //
 	void createHabilities(); //
+	void createWeaponAttacks();
+	void createInventoryLobby();
 
 	void createMenuPrincipal();
 	void createLobby();
@@ -50,7 +52,8 @@ public:
 	Interfaz(InterfazManager* i) :
 		Component(ecs::Interfaz),
 		allPanels(std::vector<Panel*>(maxPanels, nullptr)),
-		iManager(i)
+		iManager(i),
+		tutorial_active(true)
 	{};
 	virtual ~Interfaz();
 

@@ -4,7 +4,8 @@
 #include "../../GameObjects/Button.h"
 
 class InterfazManager : public EntityManager {
-
+private:
+	bool pause = false;
 public:
 
 	InterfazManager(SDLGame* game) : EntityManager(game) {}
@@ -18,5 +19,13 @@ public:
 		b->init(std::forward<TArgs>(mArgs)...);
 		return b;
 	}
+
+	void update() override {
+		if (!pause) {
+			EntityManager::update();
+		}
+	}
+
+	void togglePause() { pause = !pause; };
 };
 

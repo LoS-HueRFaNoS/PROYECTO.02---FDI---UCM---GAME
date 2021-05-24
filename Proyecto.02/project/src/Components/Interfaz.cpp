@@ -1,12 +1,14 @@
 #include "Interfaz.h"
 #include "../ecs/ecs.h"
 #include "../Templates/callbacks.h"
+#include "../Structures/messages.h"
 #include "../GameObjects/Button.h"
 #include "../GameObjects/Character.h"
 #include "Image.h"
 #include "Transform.h"
 #include "StateBar.h"
 #include "Laberinto.h"
+#include "Tutorial.h"
 #include "Paneles/PanelTurns.h"
 #include "Paneles/PanelDnD.h"
 #include "../Utilities/SDL_macros.h"
@@ -61,8 +63,8 @@ void Interfaz::createFight()
 	// BOTONES: normal, magic, defend, escape
 	p->addButton(iManager->addButton<ButtonCombate>(Vector2D(x_ + 0, y_), w_, h_, src::AtaqueNormal, CmbtType::attack));
 	p->addButton(iManager->addButton<ButtonCombate>(Vector2D(x_ + espace, y_), w_, h_, src::AtaqueMagico, CmbtType::magic));
-	p->addButton(iManager->addButton<ButtonCombate>(Vector2D(x_ + espace * 2, y_), w_, h_, src::Enter, CmbtType::defend));
-	p->addButton(iManager->addButton<ButtonCombate>(Vector2D(x_ + espace * 3, y_), w_, h_, src::Huida, CmbtType::escape));
+	p->addButton(iManager->addButton<ButtonCombate>(Vector2D(x_ + espace * 2, y_), w_, h_, src::Huida, CmbtType::escape));
+	p->addButton(iManager->addButton<ButtonCombate>(Vector2D(x_ + espace * 3, y_), w_, h_, src::Enter, CmbtType::defend));
 }
 
 void Interfaz::createEnemies()
@@ -329,7 +331,7 @@ void Interfaz::createFichaDD(uint nCharacter)
 	// construccion y asignacion del panel:
 	Panel* p = new Panel(DDPan);
 	allPanels[DDPan] = p;
-	if (TheElementalMaze::instance()->gameState() == GameState::LOBBY)
+	if (TheElementalMaze::instance()->gameState() == GameState::DURING_LOBBY)
 		p->addButton(iManager->addButton<ButtonHeroManagement>(Vector2D(w / 2 + w / 3 - 150, 0), 300, 100, src::FireButton, accionHero::sendHeroToStash, nCharacter, this));
 	TheElementalMaze::instance()->addComponent<PanelDnD>(game_, p, heroes[nCharacter], iManager);
 }
@@ -349,7 +351,7 @@ void Interfaz::createTargets()
 	double x_ = 70;
 	double y_ = 790;
 	// tamano en pixeles del 'fondo'
-	double w_ = 710;
+	double w_ = 540;
 	double h_ = 190;
 	// tamano de los margenes
 	double n = 20;
@@ -385,7 +387,7 @@ void Interfaz::createHabilities()
 	double x_ = 70;
 	double y_ = 790;
 	// tamano en pixeles del 'fondo'
-	double w_ = 710;
+	double w_ = 540;
 	double h_ = 190;
 	// tamano de los margenes
 	double n = 20;
@@ -407,6 +409,41 @@ void Interfaz::createHabilities()
 	for (int i = 0; i < nHabilities; i++) {
 		p->addButton(iManager->addButton<ButtonHability>(Vector2D(x_ + espace * i, y_), w_, h_, getHabilityTxt(hero, i), i));
 	}
+	togglePanel(Fight); // oculta el panel fight
+}
+
+void Interfaz::createWeaponAttacks()
+{
+	CombatManager* c = GETCMP2(TheElementalMaze::instance(), CombatManager);
+	Hero* hero = static_cast<Hero*>(c->getCurrentCharacter());
+	std::vector<Hability*> habilities = hero->getHabilities();
+	size_t nAttack = 2;
+
+	// posicion en pixeles del 'fondo'
+	double x_ = 70;
+	double y_ = 790;
+	// tamano en pixeles del 'fondo'
+	double w_ = 540;
+	double h_ = 190;
+	// tamano de los margenes
+	double n = 20;
+
+	// posicion del panel respecto a la ventana
+	x_ = game_->setHorizontalScale(x_ + n);
+	y_ = game_->setVerticalScale(y_ + n);
+
+	double espace = game_->setHorizontalScale((w_ - n) / nAttack);
+
+	w_ = espace - game_->setHorizontalScale(n);
+	h_ = game_->setVerticalScale(h_ - n * 2);
+
+	// construccion y asignacion del panel:
+	Panel* p = new Panel(WeaponsAttacks);
+	allPanels[WeaponsAttacks] = p;
+
+	p->addButton(iManager->addButton<ButtonWeaponAttack>(Vector2D(x_, y_), w_, h_, src::LightAttack, -2));
+	p->addButton(iManager->addButton<ButtonWeaponAttack>(Vector2D(x_ + espace, y_), w_, h_, src::GolpeDuro, -3));
+
 	togglePanel(Fight); // oculta el panel fight
 }
 
@@ -455,6 +492,9 @@ void Interfaz::createLobby()
 	p->addButton(iManager->addButton<ButtonMenu>(Vector2D(w / 2 + w / 3 - 150, 2 * h / 3 + 100), 300, 100, src::start, accionMenu::start, this));
 
 	p->addButton(iManager->addButton<ButtonMenu>(Vector2D(0, 0), 64, 64, src::close, accionMenu::backToMenu, this));
+
+	p->addButton(iManager->addButton<ButtonMenu>(Vector2D(400, 0), 64, 64, src::Inventario, accionMenu::inventarioLobby, this));
+
 }
 void Interfaz::createShop()
 {
@@ -566,7 +606,7 @@ void Interfaz::createStash() {
 	p->addButton(iManager->addButton<SDL_Object>(Vector2D(50, 300), w - 500, 100, src::inventory_slots));
 	p->addButton(iManager->addButton<SDL_Object>(Vector2D(50, 400), w - 500, 100, src::inventory_slots));
 	if (pagItems == 0)
-	p->addButton(iManager->addButton<ButtonMenu>(Vector2D(w - 435, 330), 50, 50, src::AvanzarBloqueado, accionMenu::retrocederItems, this));
+		p->addButton(iManager->addButton<ButtonMenu>(Vector2D(w - 435, 330), 50, 50, src::AvanzarBloqueado, accionMenu::retrocederItems, this));
 	else p->addButton(iManager->addButton<ButtonMenu>(Vector2D(w - 435, 330), 50, 50, src::Avanzar, accionMenu::retrocederItems, this));
 	if (loManager->getPlayerStash()->items.size() > 20 * (pagItems + 1))
 		p->addButton(iManager->addButton<ButtonMenu>(Vector2D(w - 435, 430), 50, 50, src::Retroceder, accionMenu::avanzarItems, this));
@@ -599,9 +639,9 @@ void Interfaz::createStash() {
 	for (int i = 0; i < 2; i++)
 	{
 		// Por cada objeto de la fila
-		for (int j = 0; j < 10 && pagItems *20+ i * 10 + j < Itemtam; j++)
+		for (int j = 0; j < 10 && pagItems * 20 + i * 10 + j < Itemtam; j++)
 		{
-			Item* objeto = loManager->getPlayerStash()->items[pagItems *20+ i * 10 + j];
+			Item* objeto = loManager->getPlayerStash()->items[pagItems * 20 + i * 10 + j];
 			if ((int)objeto->getItemType() == 0)
 			{
 				Weapon* arma = static_cast<Weapon*>(loManager->getPlayerStash()->items[pagItems * 20 + i * 10 + j]);
@@ -612,7 +652,7 @@ void Interfaz::createStash() {
 				Armor* armadura = static_cast<Armor*>(loManager->getPlayerStash()->items[pagItems * 20 + i * 10 + j]);
 				tex = (int)src::_firstArmorId_ + (int)armadura->getArmorId() + 1;
 			}
-			p->addButton(iManager->addButton<ButtonItemManagement>(Vector2D(57 + 94 * j, 110 + 100 * (i + 2)), 75, 80, static_cast<Resources::TextureId>(tex), accionItem::showSellButton, j,this));
+			p->addButton(iManager->addButton<ButtonItemManagement>(Vector2D(57 + 94 * j, 110 + 100 * (i + 2)), 75, 80, static_cast<Resources::TextureId>(tex), accionItem::showSellButton, j, this));
 			//p->addButton(iManager->addButton<ButtonHeroEquipar>(Vector2D(x, y + 100), 100, 60, src::howToPlay, i, this));
 		}
 	}
@@ -726,6 +766,94 @@ void Interfaz::createTurns()
 	TheElementalMaze::instance()->addComponent<PanelTurns>(game_, p, iManager);
 }
 
+void Interfaz::createInventoryLobby()
+{
+	SDLGame* game_ = entity_->getSDLGame();
+	vector<Item*> items = TheElementalMaze::instance()->getPartyManager()->getItems();
+	double slotTam = game_->getWindowWidth() / 16;
+	double posX;
+	double posY = slotTam * 1.8;
+
+	Panel* p = new Panel(InventoryLobby);
+	//allPanels.emplace(allPanels.begin() + Inventory, p);
+	allPanels[InventoryLobby] = p;
+
+	// Cuadro de inventario 5x5
+	int margen = 0.1 * slotTam;
+	int itemTam = 0.8 * slotTam;
+	Resources::TextureId id;
+	uint pivot, auxId;
+	for (int i = 0; i < 5; ++i) {
+
+		posX = slotTam * 1.5; //Se resetea la coordenada X
+
+		for (int j = 0; j < 5; ++j) {
+			p->addButton(iManager->addButton<SDL_Object>(Vector2D(posX, posY), slotTam, slotTam, src::Slot));
+
+			int indice = i * 5 + j;
+			if (indice < items.size())
+			{
+				Item* item = items[indice];
+				if (item != nullptr) {
+					ItemType itemType = item->getItemType();
+
+					if (itemType == ItemType::ARMOR) {
+						pivot = src::_firstArmorId_;
+						auxId = (int) static_cast<Armor*>(item)->getArmorId();
+					}
+					else {
+						pivot = src::_firstWeaponId_;
+						auxId = (int) static_cast<Weapon*>(item)->getWeaponId();
+					}
+					id = (Resources::TextureId) (pivot + auxId + 1);
+					p->addButton(iManager->addButton<SDL_Object>(Vector2D(posX + margen, posY + margen), itemTam, itemTam, id));
+				}
+			}
+
+			posX += slotTam;
+		}
+		posY += slotTam; // Se suma la coordenada Y
+
+	}
+
+	posX += slotTam; // Se suma la coordenada X dejando un espacio.
+	posY = slotTam * 1.8;
+
+
+	// Inventario personajes: clase + arma + armadura
+	PartyManager* c = TheElementalMaze::instance()->getPartyManager();
+	std::vector<Hero*> heroes = c->getHeroes();
+	for (int i = 0; i < 4; ++i) {
+		p->addButton(iManager->addButton<SDL_Object>(Vector2D(posX, posY), slotTam, slotTam, getHeroTxt(i)));
+
+		Weapon* weapon = heroes[i]->getWeapon();
+		if (weapon != nullptr) {
+			p->addButton(iManager->addButton<SDL_Object>(Vector2D(posX + slotTam, posY), slotTam, slotTam, src::Slot));
+			pivot = src::_firstWeaponId_;
+			auxId = (int)weapon->getWeaponId();
+			id = (Resources::TextureId) (pivot + auxId + 1);
+			p->addButton(iManager->addButton<SDL_Object>(Vector2D(posX + slotTam + margen, posY + margen), itemTam, itemTam, id));
+		}
+		else
+			p->addButton(iManager->addButton<SDL_Object>(Vector2D(posX + slotTam, posY), slotTam, slotTam, src::WeaponSlot));
+
+		Armor* armor = heroes[i]->getArmor();
+		if (armor != nullptr) {
+			p->addButton(iManager->addButton<SDL_Object>(Vector2D(posX + slotTam * 2, posY), slotTam, slotTam, src::Slot));
+			pivot = src::_firstArmorId_;
+			auxId = (int)armor->getArmorId();
+			id = (Resources::TextureId) (pivot + auxId + 1);
+			p->addButton(iManager->addButton<SDL_Object>(Vector2D(posX + slotTam * 2 + margen, posY + margen), 0.8 * slotTam, 0.8 * slotTam, id));
+		}
+		else
+			p->addButton(iManager->addButton<SDL_Object>(Vector2D(posX + slotTam * 2, posY), slotTam, slotTam, src::ArmorSlot));
+
+
+
+		posY += slotTam * 1.33;
+	}
+}
+
 void Interfaz::toggleMinimap()
 {
 
@@ -800,6 +928,9 @@ void Interfaz::createPanel(idPanel panelID)
 	case Habilities:
 		createHabilities();
 		break;
+	case WeaponsAttacks:
+		createWeaponAttacks();
+		break;
 	case MenuPrincipal:
 		createMenuPrincipal();
 		break;
@@ -824,12 +955,15 @@ void Interfaz::createPanel(idPanel panelID)
 	case infoTiendaPanel:
 		createInfoTienda();
 		break;
-	case ButtonHeroToPartyPanel:
+	/*case ButtonHeroToPartyPanel:
 		createHeroToPartyPanel();
 		break;
 	case SellButtonPanel:
 		createSellButtonPanel();
 		break;
+	case InventoryLobby:
+		createInventoryLobby();
+		break;*/
 	default:
 		break;
 	}
@@ -983,10 +1117,17 @@ void Interfaz::update()
 	case gameST::MainMenu:
 		break;
 	case gameST::LOBBY:
+		callbacks::startLobby(this);
 		break;
 	case gameST::START_EXPLORING:
 		if (!getActivePan(Movement))
 		{
+			/*Message m;
+			m.id_ = MsgId::_BIENVENIDA_;
+			TheElementalMaze::instance()->sendMsg(m);
+			m.id_ = MsgId::_BIENVENIDA_pt2_;
+			TheElementalMaze::instance()->sendMsg(m);*/
+			// create Tutorial
 			createPanel(Movement);
 			//createPanel(Heroes);
 			createPanel(Info);
@@ -1030,6 +1171,7 @@ void Interfaz::update()
 		removePanel(Heroes);
 		removePanel(Info);
 		removeChat();
+		// remove tutorial
 		break;
 	default:
 		break;
@@ -1070,4 +1212,3 @@ void Interfaz::checkHerosParty()
 		}
 	if (changed) allPanels[Heroes]->swapButtonList(savedHeroes);
 }
-

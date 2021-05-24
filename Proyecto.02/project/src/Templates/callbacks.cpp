@@ -182,7 +182,8 @@ void callbacks::combatType(int combatType_)
 	case 0:
 		if (c->getState() == ACTION_PHASE_SPELL) {
 			std::cout << "ataque cuerpo a cuerpo" << std::endl;
-			callbacks::set_hability(-2);
+			if (!i->getActivePan(WeaponsAttacks)) callbacks::createPanel(false, WeaponsAttacks);
+			if (i->getEnablePan(Fight)) i->togglePanel(Fight);
 		}
 		else
 			std::cout << "ERROR: aun no has comenzado tu turno" << std::endl;
@@ -227,6 +228,7 @@ void callbacks::set_hability(int hability_)
 	
 	Interfaz* i = GETCMP2(TheElementalMaze::instance(), Interfaz);
 	if (i->getActivePan(Habilities)) i->removePanel(Habilities);
+	if (i->getActivePan(WeaponsAttacks)) i->removePanel(WeaponsAttacks);
 
 	// team or single target
 	if (c->getState() != END_TURN) {
@@ -245,13 +247,20 @@ void callbacks::set_hability(int hability_)
 void callbacks::startLobby(Interfaz* app)
 {
 	std::cout << "startLobby se ha activado\n";
+	if (app->getActivePan(MenuPrincipal)) 	app->removePanel(MenuPrincipal);
 	if (TheElementalMaze::instance()->gameState() != gameST::MainMenu)
+	{
 		TheElementalMaze::instance()->backFromDungeon();
-	else if (!TheElementalMaze::instance()->isFirstLobbyCreated()) TheElementalMaze::instance()->firstLobby();
-	TheElementalMaze::instance()->changeState(gameST::LOBBY);
+	}
+	else if (!TheElementalMaze::instance()->isFirstLobbyCreated())
+	{
+		TheElementalMaze::instance()->firstLobby();
+	
+	}
+
+	TheElementalMaze::instance()->changeState(gameST::DURING_LOBBY);
 	cout << "LOBBY REACHED" << endl;
 	
-	app->togglePanel(MenuPrincipal);
 	app->createPanel(Lobby);
 	
 	
@@ -439,6 +448,15 @@ void callbacks::backToMenu(Interfaz* app)
 	TheElementalMaze::instance()->changeState(gameST::MainMenu);
 	std::cout << "vamos al menu" << std::endl;
 }
+
+void callbacks::inventarioLobby(Interfaz* app)
+{
+	if (app->getActivePan(DDPan)) app->removePanel(DDPan);
+	app->removePanel(Lobby);
+	app->removePanel(Heroes);
+	app->createPanel(InventoryLobby);
+	std::cout << "vamos al inventario" << std::endl;
+}
 void callbacks::sellStashItem(Interfaz* app,int itemid)
 {
 	LobbyManager* lo = TheElementalMaze::instance()->getLobbyManager();
@@ -454,6 +472,14 @@ void callbacks::showSellButton(Interfaz* app, int itemid)
 		app->removePanel(SellButtonPanel);
 	app->setSelectedItem(itemid);
 	app->createPanel(SellButtonPanel);
+}
+#include "../Components/Tutorial.h"
+void callbacks::closeMessage()
+{
+	TutorialManager* t = GETCMP3(TheElementalMaze::instance(), ecs::Tutorial, TutorialManager);
+	t->exitMessage();
+	std::cout << "saliendo del mensaje del tutorial" << std::endl;
+
 }
 #include "../Managers/game/LobbyManager.h"
 #include"../GameObjects/Character.h"

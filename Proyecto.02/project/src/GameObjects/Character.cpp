@@ -395,7 +395,7 @@ void Hero::levelUp(int exp)
 
 	if (expNeed - expObtain <= 0)
 	{
-		expMax += 100;
+		expMax += 150;
 
 		level++;
 

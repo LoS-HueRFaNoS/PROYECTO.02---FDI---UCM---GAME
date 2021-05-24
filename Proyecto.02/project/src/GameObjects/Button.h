@@ -146,7 +146,7 @@ public:
 // ----------------------------------------------------
 
 enum class accionMenu { start, lobby, how_to_play, options, quit, shop, stash, shop_lobby,
-	stash_lobby, avanzarHeroes, avanzarItems, retrocederHeroes, retrocederItems, backToMenu};
+	stash_lobby, avanzarHeroes, avanzarItems, retrocederHeroes, retrocederItems, backToMenu, inventarioLobby, closeMessage};
 
 class ButtonMenu : public Button {
 private:
@@ -161,6 +161,11 @@ public:
 		tipo = type;
 		app = app_;
 		Button::init(pos, ancho, alto, imagen);
+	};
+	virtual void init(SDL_Rect dest, Resources::TextureId imagen, accionMenu type) {
+		tipo = type;
+		app = nullptr;
+		Button::init(dest, imagen);
 	};
 
 	virtual void click()
@@ -208,6 +213,12 @@ public:
 			break;
 		case accionMenu::backToMenu:
 			callbacks::backToMenu(app);
+			break;
+		case accionMenu::inventarioLobby:
+			callbacks::inventarioLobby(app);
+			break;
+		case accionMenu::closeMessage:
+			callbacks::closeMessage();
 			break;
 		default:
 			break;
@@ -578,6 +589,21 @@ public:
 
 	virtual void click();
 	
+};
+
+class ButtonWeaponAttack : public Button {
+private:
+	uint attack_;
+
+public:
+	ButtonWeaponAttack(SDLGame* game, EntityManager* mngr) : Button(game, mngr), attack_(0) {};
+
+	~ButtonWeaponAttack() {};
+
+	virtual void init(Vector2D pos, uint ancho, uint alto, Resources::TextureId imagen, int attack);
+
+	virtual void click();
+
 };
 
 #pragma endregion
