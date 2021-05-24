@@ -66,7 +66,7 @@ public:
 	Stash() :
 		heroes(std::vector< Hero*>()),
 		items(std::vector<Item*>()),
-		gold(1000)
+		gold(200)
 	{
 	}
 	~Stash();
