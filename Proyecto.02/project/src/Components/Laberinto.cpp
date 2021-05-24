@@ -74,10 +74,10 @@ void Laberinto::createRandomMaze(Vector2D entrada)
 
 	if (TheElementalMaze::instance()->getLevel() == -1)
 	{
-		w = 5;
-		h = 5;
-		x = 4;
-		y = 4;
+		w = 4;
+		h = 4;
+		x = 3;
+		y = 3;
 	}
 
 	else
@@ -257,13 +257,13 @@ void Laberinto::createRandomMaze(Vector2D entrada)
 
 	if (TheElementalMaze::instance()->getLevel() == -1)
 	{
-		generaObjeto(0, int(enemyTemplate::DRACOLICH), laberinto[1][1], 1, 0);
-		generaObjeto(0, int(enemyTemplate::GOBLIN), laberinto[2][2], 1, 0);
+		generaObjeto(0, int(enemyTemplate::GOBLIN), laberinto[3][2], 1, 0);
+		generaObjeto(0, int(enemyTemplate::GOBLIN), laberinto[2][3], 1, 0);
 
 		int totalItem = int(weaponId::_lastWeaponId_) + int(armorId::_lastArmorId_) + 4;
 		int chestType = game_->getRandGen()->nextInt(0, totalItem);
-		generaObjeto(1, chestType, laberinto[3][3], 2, 0);
-		generaObjeto(1, chestType, laberinto[2][3], 2, 0);
+		generaObjeto(1, chestType, laberinto[1][0], 2, 0);
+		generaObjeto(1, chestType, laberinto[0][1], 2, 0);
 	}
 }
 
