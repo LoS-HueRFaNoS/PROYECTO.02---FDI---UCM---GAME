@@ -15,6 +15,7 @@ vector<Resources::FontInfo> Resources::fonts_{
 };
 
 vector<Resources::ImageInfo> Resources::images_{
+	// laberinto y minimapa
 	{posMiniMap, "project/resources/images/pasillos/posJugador.png"},			//
 	{camino_izq, "project/resources/images/pasillos/frente/giro_izquierda/frente_giro_izquierda_suelo.png"},			//
 	{camino_der, "project/resources/images/pasillos/frente/giro_derecha/frente_giro_derecha_suelo.png"},			//
@@ -25,8 +26,6 @@ vector<Resources::ImageInfo> Resources::images_{
 	{muro_fr_izq, "project/resources/images/pasillos/frente/giro_izquierda/frente_giro_izquierda_pared.png"},				//
 	{muro_fr_der, "project/resources/images/pasillos/frente/giro_derecha/frente_giro_derecha_pared.png"},				//
 	{muro_del, "project/resources/images/pasillos/frente/muro_frontal.png"},				//
-
-
 
 	{camino_fondo_izq, "project/resources/images/pasillos/fondo/giro_izquierda/fondo_giro_izquierda_suelo.png"},			//
 	{camino_fondo_der, "project/resources/images/pasillos/fondo/giro_derecha/fondo_giro_derecha_suelo.png"},			//
@@ -45,18 +44,19 @@ vector<Resources::ImageInfo> Resources::images_{
 	{pared_E, "project/resources/images/pasillos/pared_este.png"},				//
 	{pared_S, "project/resources/images/pasillos/pared_sur.png"},				//
 	{pared_O, "project/resources/images/pasillos/pared_oeste.png"},				//
-	{salidaMiniMap, "project/resources/images/pasillos/salida.png"},				//
+	{salidaMiniMap, "project/resources/images/pasillos/salida.png"},			//
 	{texto_salida, "project/resources/images/texto_salida.jpg"},				//
 
+	// menu principal
 	{start, "project/resources/images/Menu/StartBoton.png"},
 	{options, "project/resources/images/Menu/options.png"},
 	{quit, "project/resources/images/Menu/quit.png"},
 	{howToPlay, "project/resources/images/Menu/howtoplay.png"},
-
 	//{mFondo, "project/resources/images/Menu/menufondo.jpg"},
 	{mFondo, "project/resources/images/Menu/FondoMenuTituloFinal.png"},
 	{close, "project/resources/images/Menu/close.png"},
 
+	// heroes
 	{Bardo, "project/resources/sprites/iconos personajes/bardo.png"},
 	{Brujo, "project/resources/sprites/iconos personajes/brujo.png"},
 	{Clerigo, "project/resources/sprites/iconos personajes/clerigo.png"},
@@ -69,13 +69,16 @@ vector<Resources::ImageInfo> Resources::images_{
 	{Bestia, "project/resources/sprites/iconos personajes/bestia.png"},
 	{GranArchimago, "project/resources/sprites/iconos personajes/heroe-mago.png"},
 
+	// interfaz
 	{Mouse, "project/resources/images/interfaz/cursor+sombras.png"},
-	{Fondo, "project/resources/sprites/fondos y marcos/Fondo_Interfaz_04.png"},
-	{Fondo2, "project/resources/sprites/fondos y marcos/Fondo_Interfaz_05.png"},
-	{Button_transition, "project/resources/sprites/fondos y marcos/button_transition.png"},
-	{Cartel, "project/resources/sprites/fondos y marcos/cartelito.png"},
-	{Change, "project/resources/sprites/fondos y marcos/change.png"},
-	{Selected, "project/resources/sprites/fondos y marcos/selected.png"},
+	{Fondo, "project/resources/images/interfaz/Fondo_Interfaz_04.png"},
+	{Fondo2, "project/resources/images/interfaz/Fondo_Interfaz_05.png"},
+	{Button_transition, "project/resources/images/interfaz/button_transition.png"},
+	{Cartel, "project/resources/images/interfaz/cartelito.png"},
+	{Change, "project/resources/images/interfaz/change.png"},
+	{Selected, "project/resources/images/interfaz/selected.png"},
+
+	// movimiento
 	{Avanzar, "project/resources/sprites/iconos movimiento/movimientoAvanzar.png"},
 	{RotarD, "project/resources/sprites/iconos movimiento/movimientoRotarDerecha.png"},
 	{RotarI, "project/resources/sprites/iconos movimiento/movimientoRotarIzquierda.png"},
@@ -84,6 +87,7 @@ vector<Resources::ImageInfo> Resources::images_{
 	{AvanzarBloqueado, "project/resources/sprites/iconos movimiento/movimientoAvanzarBloqueado.png"},
 	{RetrocederBloqueado, "project/resources/sprites/iconos movimiento/movimientoRetrocederBloqueado.png"},
 
+	// inventario e info
 	{Inventario, "project/resources/sprites/iconos info/infoInventario.png"},
 	{PocionVida, "project/resources/sprites/iconos info/infoPocionVida.png"},
 	{PocionMana, "project/resources/sprites/iconos info/infoPocionMana.png"},
@@ -91,6 +95,7 @@ vector<Resources::ImageInfo> Resources::images_{
 	{Chat, "project/resources/sprites/iconos info/infoChat.png"},
 	{Configuracion, "project/resources/sprites/iconos info/infoConfiguracionAyuda.png"},
 
+	// combate
 	{AtaqueNormal, "project/resources/sprites/iconos combate/ataque.png"},
 	{AtaqueMagico, "project/resources/sprites/iconos combate/magic.png"},
 	{Enter, "project/resources/sprites/iconos combate/enter.png"},
