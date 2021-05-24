@@ -48,10 +48,10 @@ vector<Resources::ImageInfo> Resources::images_{
 	{texto_salida, "project/resources/images/texto_salida.jpg"},				//
 
 	// menu principal
-	{start, "project/resources/images/Menu/StartBoton.png"},
-	{options, "project/resources/images/Menu/options.png"},
+	{start, "project/resources/images/interfaz/button icons/Menu/PlayButton.png"},
+	{options, "project/resources/images/interfaz/button icons/Menu/OptionsButton.png"},
 	{quit, "project/resources/images/Menu/quit.png"},
-	{howToPlay, "project/resources/images/Menu/howtoplay.png"},
+	{howToPlay, "project/resources/images/interfaz/button icons/Menu/HowToPlayButton.png"},
 	//{mFondo, "project/resources/images/Menu/menufondo.jpg"},
 	{mFondo, "project/resources/images/Menu/FondoMenuTituloFinal.png"},
 	{close, "project/resources/images/Menu/close.png"},
@@ -77,6 +77,12 @@ vector<Resources::ImageInfo> Resources::images_{
 	{Cartel, "project/resources/images/interfaz/cartelito.png"},
 	{Change, "project/resources/images/interfaz/change.png"},
 	{Selected, "project/resources/images/interfaz/selected.png"},
+	{BuyButton, "project/resources/images/interfaz/button icons/Tienda/BuyButton.png"},
+	{EquipButton, "project/resources/images/interfaz/button icons/Tienda/EquipButton.png"},
+	{FireButton, "project/resources/images/interfaz/button icons/Tienda/FireButton.png"},
+	{RecruitButton, "project/resources/images/interfaz/button icons/Tienda/RecruitButton.png"},
+	{SellButton, "project/resources/images/interfaz/button icons/Tienda/SellButton.png"},
+	{StoreItemButton, "project/resources/images/interfaz/button icons/Tienda/StoreItemButton.png"},
 
 	// movimiento
 	{Avanzar, "project/resources/sprites/iconos movimiento/movimientoAvanzar.png"},

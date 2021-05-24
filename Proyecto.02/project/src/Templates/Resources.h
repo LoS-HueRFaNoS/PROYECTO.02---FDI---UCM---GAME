@@ -80,6 +80,12 @@ public:
 		Selected,
 		Button_transition,
 		Cartel,
+		BuyButton,
+		EquipButton,
+		FireButton,
+		RecruitButton,
+		SellButton,
+		StoreItemButton,
 
 		// movement
 		Avanzar,
