@@ -108,7 +108,11 @@ void Interfaz::createEnemies()
 		}
 		else {
 			if (nEnemies == 1) b_ = iManager->addButton<SDL_Object>(Vector2D(x_ + espace / 2 - h_ / 2, y_), h_, h_, getEnemyTxt(i));
-			else b_ = iManager->addButton<SDL_Object>(Vector2D(x_ + i * espace, y_), w_ / nEnemies, w_ / nEnemies, getEnemyTxt(i));
+			else {
+				double lado = w_;// / nEnemies;
+				b_ = iManager->addButton<SDL_Object>(Vector2D(x_ + i * espace + espace / 2 - lado / 2, y_ + h_ - lado), lado, lado, getEnemyTxt(i));
+			}
+				
 		}
 
 		//BARRA DE VIDA
