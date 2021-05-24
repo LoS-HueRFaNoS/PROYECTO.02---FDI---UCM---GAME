@@ -89,13 +89,15 @@ private:
 
 	void clearLobby();
 
-	void generateHeroStash();
+	void generateHeroStore();
 
-	void generateItemStash();
+	void generateItemStore();
 
 	void removeItemFromStash(Item* i);
 
 	void removeItemFromShop(ItemToBuy* i);
+
+	void removeItemFromShop(int i);
 
 public:
 

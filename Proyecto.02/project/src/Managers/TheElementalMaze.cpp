@@ -50,8 +50,8 @@ void TheElementalMaze::init()
 	partyManager_->addHero(rogue);
 	partyManager_->addHero(cleric);
 
-	partyManager_->addItem(itemManager_->getWeaponFromId(wID::LUCERODELALBA), 0);
-	partyManager_->changeItemWithHero(0,2);
+	//partyManager_->addItem(itemManager_->getWeaponFromId(wID::LUCERODELALBA), 0);
+	//partyManager_->changeItemWithHero(0,2);
 	/*for (int i = 0; i < 82; i++)
 	{
 		partyManager_->addItem(itemManager_->getWeaponFromId(wID::LUCERODELALBA), i);
