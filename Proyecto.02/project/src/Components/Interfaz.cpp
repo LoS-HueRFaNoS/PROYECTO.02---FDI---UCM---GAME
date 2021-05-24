@@ -78,27 +78,40 @@ void Interfaz::createEnemies()
 	double w_ = 1340;
 	double h_ = 620;
 	// tamano de los margenes
-	double n = 50;
+	double n = 0;
 
 	// posicion del panel respecto a la ventana
 	x_ = game_->setHorizontalScale(x_ + n);
 	y_ = game_->setVerticalScale(y_ + n);
 
 	// espacios entre objetos
-	double espace = game_->setHorizontalScale((w_ - n) / 4);
+	double espace = game_->setHorizontalScale((w_ - n) / nEnemies);
 
 	// ancho y alto de cada objeto
 	w_ = espace - game_->setHorizontalScale(n);
 	h_ = game_->setVerticalScale(h_ - n * 2);
 
+
 	// construccion y asignacion del panel:
 	Panel* p = new Panel(Enemies);
 	allPanels[Enemies] = p;
 
+	
 	for (int i = 0; i < nEnemies; i++) {
-		SDL_Object* b_ = iManager->addButton<SDL_Object>(Vector2D(x_ + i * espace, y_), w_, h_, getEnemyTxt(i));
+		Enemy* enemy = enemies[i];
+		enemyTemplate enTemp = enemy->getTemplate();
+		SDL_Object* b_;
+		if (enTemp == enemyTemplate::DRACOLICH || enTemp == enemyTemplate::HELLHOUND || enTemp == enemyTemplate::GIANTWORM) {
+			b_ = iManager->addButton<SDL_Object>(Vector2D(x_ + i * espace, y_), w_, h_, getEnemyTxt(i));
+		}
+		else {
+			if (nEnemies == 1) b_ = iManager->addButton<SDL_Object>(Vector2D(x_ + espace / 2 - h_ / 2, y_), h_, h_, getEnemyTxt(i));
+			else b_ = iManager->addButton<SDL_Object>(Vector2D(x_ + i * espace, y_), w_ / nEnemies, w_ / nEnemies, getEnemyTxt(i));
+		}
+
+		//BARRA DE VIDA
 		uint k = 6;
-		b_->addComponent<StateBar>(enemies[i], health, SDL_Rect(RECT((x_ + i * espace), (y_ + h_ * 1 / k), w_ * 2, h_ / k)));
+		b_->addComponent<StateBar>(enemy, health, SDL_Rect(RECT((x_ + i * espace), (y_ + h_ * 1 / k), w_ , h_ / k)));
 		//b_->addComponent<StateBar>(enemies[i], mana, SDL_Rect(RECT((x_ + i * espace), (y_ + h_ * 2.5 / k), w_ * 2, h_ / k)));
 		p->addButton(b_);
 	}
