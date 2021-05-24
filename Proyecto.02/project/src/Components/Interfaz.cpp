@@ -316,7 +316,7 @@ void Interfaz::createFichaDD(uint nCharacter)
 	// construccion y asignacion del panel:
 	Panel* p = new Panel(DDPan);
 	allPanels[DDPan] = p;
-	if (TheElementalMaze::instance()->gameState() == GameState::LOBBY)
+	if (TheElementalMaze::instance()->gameState() == GameState::DURING_LOBBY)
 		p->addButton(iManager->addButton<ButtonHeroManagement>(Vector2D(w / 2 + w / 3 - 150, 0), 300, 100, src::FireButton, accionHero::sendHeroToStash, nCharacter, this));
 	TheElementalMaze::instance()->addComponent<PanelDnD>(game_, p, heroes[nCharacter], iManager);
 }
@@ -724,9 +724,9 @@ void Interfaz::createInventoryLobby()
 	double posX;
 	double posY = slotTam * 1.8;
 
-	Panel* p = new Panel(Inventory);
+	Panel* p = new Panel(InventoryLobby);
 	//allPanels.emplace(allPanels.begin() + Inventory, p);
-	allPanels[Inventory] = p;
+	allPanels[InventoryLobby] = p;
 
 	// Cuadro de inventario 5x5
 	int margen = 0.1 * slotTam;

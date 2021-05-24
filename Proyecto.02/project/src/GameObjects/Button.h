@@ -210,6 +210,9 @@ public:
 		case accionMenu::backToMenu:
 			callbacks::backToMenu(app);
 			break;
+		case accionMenu::inventarioLobby:
+			callbacks::inventarioLobby(app);
+			break;
 		default:
 			break;
 		}
