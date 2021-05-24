@@ -175,9 +175,9 @@ private:
 
 	int savingSuccess = 0, savingFailure = 0;
 
-	int expNeed = 90, expMax = 100;
+	int expNeed = 100, expMax = 100;
 
-	int level = 3, pointsPerLevel = 0;
+	int level = 0, pointsPerLevel = 0;
 
 	bool _deathGate = false;
 
