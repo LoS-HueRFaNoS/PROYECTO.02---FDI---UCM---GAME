@@ -105,6 +105,7 @@ void Interfaz::createEnemies()
 		Enemy* enemy = enemies[i];
 		enemyTemplate enTemp = enemy->getTemplate();
 		SDL_Object* b_;
+
 		if (enTemp == enemyTemplate::DRACOLICH || enTemp == enemyTemplate::HELLHOUND || enTemp == enemyTemplate::GIANTWORM) {
 			b_ = iManager->addButton<SDL_Object>(Vector2D(x_ + i * espace, y_), w_, h_, getEnemyTxt(i));
 		}
@@ -114,13 +115,13 @@ void Interfaz::createEnemies()
 				double lado = w_; // nEnemies;
 				b_ = iManager->addButton<SDL_Object>(Vector2D(x_ + i * espace + espace / 2 - lado / 2, y_ + h_ - lado), lado, lado, getEnemyTxt(i));
 			}
-				
+
 		}
 
 		//BARRA DE VIDA
 		uint k = 6;
 
-		b_->addComponent<StateBar>(enemy, health, SDL_Rect(RECT((x_ + w_ / 2), (y_ + h_ / 10), tamBar_w, tamBar_h)));
+		b_->addComponent<StateBar>(enemy, health, SDL_Rect(RECT((x_ + w_ / 2.5 + i * espace), (y_ + h_ / 10), tamBar_w, tamBar_h)));
 		//b_->addComponent<StateBar>(enemies[i], mana, SDL_Rect(RECT((x_ + i * espace), (y_ + h_ * 2.5 / k), w_ * 2, h_ / k)));
 		p->addButton(b_);
 	}
