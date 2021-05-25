@@ -339,7 +339,7 @@ void Interfaz::createFichaDD(uint nCharacter)
 	Panel* p = new Panel(DDPan);
 	allPanels[DDPan] = p;
 	if (TheElementalMaze::instance()->gameState() == GameState::DURING_LOBBY)
-		p->addButton(iManager->addButton<ButtonHeroManagement>(Vector2D(w / 2 + w / 3 - 150, 0), 300, 100, src::FireButton, accionHero::sendHeroToStash, nCharacter, this));
+		p->addButton(iManager->addButton<ButtonHeroManagement>(Vector2D(w / 2 + w / 3 - 65, 75), 250, 100, src::FireButton, accionHero::sendHeroToStash, nCharacter, this));
 	TheElementalMaze::instance()->addComponent<PanelDnD>(game_, p, heroes[nCharacter], iManager);
 }
 
@@ -494,13 +494,13 @@ void Interfaz::createLobby()
 	// Botón para ir a la tienda
 	p->addButton(iManager->addButton<ButtonMenu>(Vector2D(w / 2 - 150, 2 * h / 3 + 100), 300, 100, src::BuyButton, accionMenu::shop, this));
 	// Botón para ir al stash
-	p->addButton(iManager->addButton<ButtonMenu>(Vector2D(w / 6 - 150, 2 * h / 3 + 100), 300, 100, src::Inventario, accionMenu::stash, this));
+	p->addButton(iManager->addButton<ButtonMenu>(Vector2D(w / 6 - 150, 2 * h / 3 + 100), 300, 50, src::stash_button, accionMenu::stash, this));
 	// Botón para empezar la partida
 	p->addButton(iManager->addButton<ButtonMenu>(Vector2D(w / 2 + w / 3 - 150, 2 * h / 3 + 100), 300, 100, src::start, accionMenu::start, this));
 
 	p->addButton(iManager->addButton<ButtonMenu>(Vector2D(0, 0), 64, 64, src::close, accionMenu::backToMenu, this));
 
-	p->addButton(iManager->addButton<ButtonMenu>(Vector2D(400, 0), 64, 64, src::Inventario, accionMenu::inventarioLobby, this));
+	p->addButton(iManager->addButton<ButtonMenu>(Vector2D(w / 6 - 150, 2 * h / 3 + 150), 300, 50, src::inventory_button, accionMenu::inventarioLobby, this));
 
 }
 void Interfaz::createShop()
@@ -779,7 +779,7 @@ void Interfaz::createInventoryLobby()
 	vector<Item*> items = TheElementalMaze::instance()->getPartyManager()->getItems();
 	double slotTam = game_->getWindowWidth() / 16;
 	double posX;
-	double posY = slotTam * 1.8;
+	double posY = slotTam * 0.8;
 	int w, h, tam;
 	w = game_->getWindowWidth();
 	h = game_->getWindowHeight();
@@ -829,37 +829,39 @@ void Interfaz::createInventoryLobby()
 	}
 
 	posX += slotTam; // Se suma la coordenada X dejando un espacio.
-	posY = slotTam * 1.8;
+	posY = slotTam * 0.8;
 
 
 	// Inventario personajes: clase + arma + armadura
 	PartyManager* c = TheElementalMaze::instance()->getPartyManager();
 	std::vector<Hero*> heroes = c->getHeroes();
 	for (int i = 0; i < 4; ++i) {
-		p->addButton(iManager->addButton<SDL_Object>(Vector2D(posX, posY), slotTam, slotTam, getHeroTxt(i)));
+		if (c->getHeroes()[i] != nullptr)
+		{
+			p->addButton(iManager->addButton<SDL_Object>(Vector2D(posX, posY), slotTam, slotTam, getHeroTxt(i)));
 
-		Weapon* weapon = heroes[i]->getWeapon();
-		if (weapon != nullptr) {
-			p->addButton(iManager->addButton<SDL_Object>(Vector2D(posX + slotTam, posY), slotTam, slotTam, src::Slot));
-			pivot = src::_firstWeaponId_;
-			auxId = (int)weapon->getWeaponId();
-			id = (Resources::TextureId) (pivot + auxId + 1);
-			p->addButton(iManager->addButton<SDL_Object>(Vector2D(posX + slotTam + margen, posY + margen), itemTam, itemTam, id));
+			Weapon* weapon = heroes[i]->getWeapon();
+			if (weapon != nullptr) {
+				p->addButton(iManager->addButton<SDL_Object>(Vector2D(posX + slotTam, posY), slotTam, slotTam, src::Slot));
+				pivot = src::_firstWeaponId_;
+				auxId = (int)weapon->getWeaponId();
+				id = (Resources::TextureId) (pivot + auxId + 1);
+				p->addButton(iManager->addButton<SDL_Object>(Vector2D(posX + slotTam + margen, posY + margen), itemTam, itemTam, id));
+			}
+			else
+				p->addButton(iManager->addButton<SDL_Object>(Vector2D(posX + slotTam, posY), slotTam, slotTam, src::WeaponSlot));
+
+			Armor* armor = heroes[i]->getArmor();
+			if (armor != nullptr) {
+				p->addButton(iManager->addButton<SDL_Object>(Vector2D(posX + slotTam * 2, posY), slotTam, slotTam, src::Slot));
+				pivot = src::_firstArmorId_;
+				auxId = (int)armor->getArmorId();
+				id = (Resources::TextureId) (pivot + auxId + 1);
+				p->addButton(iManager->addButton<SDL_Object>(Vector2D(posX + slotTam * 2 + margen, posY + margen), 0.8 * slotTam, 0.8 * slotTam, id));
+			}
+			else
+				p->addButton(iManager->addButton<SDL_Object>(Vector2D(posX + slotTam * 2, posY), slotTam, slotTam, src::ArmorSlot));
 		}
-		else
-			p->addButton(iManager->addButton<SDL_Object>(Vector2D(posX + slotTam, posY), slotTam, slotTam, src::WeaponSlot));
-
-		Armor* armor = heroes[i]->getArmor();
-		if (armor != nullptr) {
-			p->addButton(iManager->addButton<SDL_Object>(Vector2D(posX + slotTam * 2, posY), slotTam, slotTam, src::Slot));
-			pivot = src::_firstArmorId_;
-			auxId = (int)armor->getArmorId();
-			id = (Resources::TextureId) (pivot + auxId + 1);
-			p->addButton(iManager->addButton<SDL_Object>(Vector2D(posX + slotTam * 2 + margen, posY + margen), 0.8 * slotTam, 0.8 * slotTam, id));
-		}
-		else
-			p->addButton(iManager->addButton<SDL_Object>(Vector2D(posX + slotTam * 2, posY), slotTam, slotTam, src::ArmorSlot));
-
 
 
 		posY += slotTam * 1.33;
@@ -884,7 +886,7 @@ void Interfaz::createHeroToPartyPanel()
 	h = game_->getWindowHeight();
 	Panel* p = new Panel(ButtonHeroToPartyPanel);
 	allPanels[ButtonHeroToPartyPanel] = p;
-	p->addButton(iManager->addButton<ButtonHeroManagement>(Vector2D(w / 2 + w / 3 - 150, 0), 300, 100, src::RecruitButton, accionHero::sendHeroToParty, selectedHeroToParty, this));
+	p->addButton(iManager->addButton<ButtonHeroManagement>(Vector2D(w / 2 + w / 3 - 65, 75), 250, 100, src::RecruitButton, accionHero::sendHeroToParty, selectedHeroToParty, this));
 }
 
 void Interfaz::createSendToStashPanel()
@@ -894,7 +896,7 @@ void Interfaz::createSendToStashPanel()
 	h = game_->getWindowHeight();
 	Panel* p = new Panel(sendToStashPanel);
 	allPanels[sendToStashPanel] = p;
-	p->addButton(iManager->addButton<ButtonItemManagement>(Vector2D(w / 2 + w / 3 - 150, 0), 300, 100, src::StoreItemButton, accionItem::sendToStash, selectedInventoryItem, this));
+	p->addButton(iManager->addButton<ButtonItemManagement>(Vector2D(w / 2 + w / 3 - 65, 75), 250, 100, src::StoreItemButton, accionItem::sendToStash, selectedInventoryItem, this));
 }
 
 
@@ -905,8 +907,8 @@ void Interfaz::createSellButtonPanel()
 	h = game_->getWindowHeight();
 	Panel* p = new Panel(SellButtonPanel);
 	allPanels[SellButtonPanel] = p;
-	p->addButton(iManager->addButton<ButtonItemManagement>(Vector2D(w / 2 - w / 3 - 150, 600), 300, 100, src::SellButton, accionItem::sellItem, selectedItem, this));
-	p->addButton(iManager->addButton<ButtonItemManagement>(Vector2D(w / 2 + w / 3 - 150, 600), 300, 100, src::Inventario, accionItem::sendToInventory, selectedItem, this));
+	p->addButton(iManager->addButton<ButtonItemManagement>(Vector2D(w / 2 - w / 3 - 150, 2 * h / 3 + 100), 300, 100, src::SellButton, accionItem::sellItem, selectedItem, this));
+	p->addButton(iManager->addButton<ButtonItemManagement>(Vector2D(w / 2 - 150, 2 * h / 3 + 100), 300, 100, src::take, accionItem::sendToInventory, selectedItem, this));
 }
 
 void Interfaz::createPanel(idPanel panelID)

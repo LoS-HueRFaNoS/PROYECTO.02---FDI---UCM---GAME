@@ -84,6 +84,9 @@ vector<Resources::ImageInfo> Resources::images_{
 	{SellButton, "project/resources/images/interfaz/button icons/Tienda/SellButton.png"},
 	{StoreItemButton, "project/resources/images/interfaz/button icons/Tienda/StoreItemButton.png"},
 	{lobby_button, "project/resources/images/interfaz/button icons/Tienda/lobby_button.png"},
+	{inventory_button, "project/resources/images/interfaz/button icons/Tienda/InventoryButton.png"},
+	{stash_button, "project/resources/images/interfaz/button icons/Tienda/StashButton.png"},
+	{take, "project/resources/images/interfaz/button icons/Tienda/TakeButton.png"},
 
 	// movimiento
 	{Avanzar, "project/resources/sprites/iconos movimiento/movimientoAvanzar.png"},

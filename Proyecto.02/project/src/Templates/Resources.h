@@ -87,6 +87,9 @@ public:
 		SellButton,
 		StoreItemButton,
 		lobby_button,
+		stash_button,
+		inventory_button,
+		take, 
 
 		// carteles tutorial
 		_firstCartelId_,
