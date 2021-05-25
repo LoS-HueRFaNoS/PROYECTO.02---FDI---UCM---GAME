@@ -195,7 +195,7 @@ public:
 	void giveWeapon(Weapon* w) { _weapon = w; }
 
 	Armor* getArmor() { return _armor; }
-
+	void removeArmor() { _armor = nullptr; }
 	heroTemplate getTemplate() { return template_; }
 
 

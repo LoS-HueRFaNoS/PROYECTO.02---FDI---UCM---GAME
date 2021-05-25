@@ -35,7 +35,7 @@ vector<Resources::ImageInfo> Resources::images_{
 	{muro_fondo_fr, "project/resources/images/pasillos/fondo/fondo_pared.png"},				//
 	{muro_fondo_fr_izq, "project/resources/images/pasillos/fondo/giro_izquierda/fondo_giro_izquierda_pared.png"},				//
 	{muro_fondo_fr_der, "project/resources/images/pasillos/fondo/giro_derecha/fondo_giro_derecha_pared.png"},				//
-	//{fondo_vacio, "resources/images/pasillos/frente/fondo_frente.png"},				//
+	{fondo_vacio, "project/resources/images/pasillos/fondo/fondo_frente.png"},				//
 
 	{no_visitado, "project/resources/images/pasillos/pasillo_no_visitado.png"}, //
 	{no_entrado, "project/resources/images/pasillos/pasillo_no_entrado.png"},	//

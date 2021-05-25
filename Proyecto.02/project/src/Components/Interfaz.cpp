@@ -246,7 +246,7 @@ void Interfaz::createInventory()
 	vector<Item*> items = TheElementalMaze::instance()->getPartyManager()->getItems();
 	double slotTam = game_->getWindowWidth() / 16;
 	double posX;
-	double posY = slotTam * 1.8;
+	double posY = slotTam * 0.8;
 
 	Panel* p = new Panel(Inventory);
 	//allPanels.emplace(allPanels.begin() + Inventory, p);
@@ -291,7 +291,7 @@ void Interfaz::createInventory()
 	}
 
 	posX += slotTam; // Se suma la coordenada X dejando un espacio.
-	posY = slotTam * 1.8;
+	posY = slotTam * 0.8;
 
 
 	// Inventario personajes: clase + arma + armadura
@@ -306,7 +306,7 @@ void Interfaz::createInventory()
 			pivot = src::_firstWeaponId_;
 			auxId = (int)weapon->getWeaponId();
 			id = (Resources::TextureId) (pivot + auxId + 1);
-			p->addButton(iManager->addButton<SDL_Object>(Vector2D(posX + slotTam + margen, posY + margen), itemTam, itemTam, id));
+			p->addButton(iManager->addButton<ButtonHeroEquipment>(Vector2D(posX + slotTam + margen, posY + margen), itemTam, itemTam, id, accionHeroEquipment::showUnequip, true, i, this));
 		}
 		else
 			p->addButton(iManager->addButton<SDL_Object>(Vector2D(posX + slotTam, posY), slotTam, slotTam, src::WeaponSlot));
@@ -317,7 +317,7 @@ void Interfaz::createInventory()
 			pivot = src::_firstArmorId_;
 			auxId = (int)armor->getArmorId();
 			id = (Resources::TextureId) (pivot + auxId + 1);
-			p->addButton(iManager->addButton<SDL_Object>(Vector2D(posX + slotTam * 2 + margen, posY + margen), 0.8 * slotTam, 0.8 * slotTam, id));
+			p->addButton(iManager->addButton<ButtonHeroEquipment>(Vector2D(posX + slotTam * 2 + margen, posY + margen), 0.8 * slotTam, 0.8 * slotTam, id, accionHeroEquipment::showUnequip, false, i, this));
 		}
 		else
 			p->addButton(iManager->addButton<SDL_Object>(Vector2D(posX + slotTam * 2, posY), slotTam, slotTam, src::ArmorSlot));
@@ -498,7 +498,7 @@ void Interfaz::createLobby()
 	// Botón para empezar la partida
 	p->addButton(iManager->addButton<ButtonMenu>(Vector2D(w / 2 + w / 3 - 150, 2 * h / 3 + 100), 300, 100, src::start, accionMenu::start, this));
 
-	p->addButton(iManager->addButton<ButtonMenu>(Vector2D(0, 0), 64, 64, src::close, accionMenu::backToMenu, this));
+	p->addButton(iManager->addButton<ButtonMenu>(Vector2D(48, 48), 64, 64, src::close, accionMenu::backToMenu, this));
 
 	p->addButton(iManager->addButton<ButtonMenu>(Vector2D(w / 6 - 150, 2 * h / 3 + 150), 300, 50, src::inventory_button, accionMenu::inventarioLobby, this));
 
@@ -784,7 +784,6 @@ void Interfaz::createInventoryLobby()
 	w = game_->getWindowWidth();
 	h = game_->getWindowHeight();
 	Panel* p = new Panel(InventoryLobby);
-	//allPanels.emplace(allPanels.begin() + Inventory, p);
 	allPanels[InventoryLobby] = p;
 
 	// Botón para volver al lobby
@@ -846,8 +845,8 @@ void Interfaz::createInventoryLobby()
 				pivot = src::_firstWeaponId_;
 				auxId = (int)weapon->getWeaponId();
 				id = (Resources::TextureId) (pivot + auxId + 1);
-				p->addButton(iManager->addButton<SDL_Object>(Vector2D(posX + slotTam + margen, posY + margen), itemTam, itemTam, id));
-			}
+				p->addButton(iManager->addButton<ButtonHeroEquipment>(Vector2D(posX + slotTam + margen, posY + margen), itemTam, itemTam, id,accionHeroEquipment::showUnequip, true,i,this ));
+			} 
 			else
 				p->addButton(iManager->addButton<SDL_Object>(Vector2D(posX + slotTam, posY), slotTam, slotTam, src::WeaponSlot));
 
@@ -857,7 +856,7 @@ void Interfaz::createInventoryLobby()
 				pivot = src::_firstArmorId_;
 				auxId = (int)armor->getArmorId();
 				id = (Resources::TextureId) (pivot + auxId + 1);
-				p->addButton(iManager->addButton<SDL_Object>(Vector2D(posX + slotTam * 2 + margen, posY + margen), 0.8 * slotTam, 0.8 * slotTam, id));
+				p->addButton(iManager->addButton<ButtonHeroEquipment>(Vector2D(posX + slotTam * 2 + margen, posY + margen), 0.8 * slotTam, 0.8 * slotTam, id,accionHeroEquipment::showUnequip, false, i, this));
 			}
 			else
 				p->addButton(iManager->addButton<SDL_Object>(Vector2D(posX + slotTam * 2, posY), slotTam, slotTam, src::ArmorSlot));
@@ -867,7 +866,15 @@ void Interfaz::createInventoryLobby()
 		posY += slotTam * 1.33;
 	}
 }
-
+void Interfaz::createUnequipPanel()
+{
+	int w, h, tam;
+	w = game_->getWindowWidth();
+	h = game_->getWindowHeight();
+	Panel* p = new Panel(UnequipPanel);
+	allPanels[UnequipPanel] = p;
+	p->addButton(iManager->addButton<ButtonHeroEquipment>(Vector2D(w / 2 - 150, 2 * h / 3 + 100), 300, 100, src::EquipButton, accionHeroEquipment::Unequip,isWeapon,selectedInventoryHero,this));
+}
 void Interfaz::toggleMinimap()
 {
 
@@ -992,6 +999,9 @@ void Interfaz::createPanel(idPanel panelID)
 		break;
 	case sendToStashPanel:
 		createSendToStashPanel();
+		break;
+	case UnequipPanel:
+		createUnequipPanel();
 		break;
 	default:
 		break;

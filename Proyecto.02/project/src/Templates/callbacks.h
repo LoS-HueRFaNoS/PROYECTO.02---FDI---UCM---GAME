@@ -60,5 +60,7 @@ public:
 	static void showSendToStash(Interfaz* app, int itemid);
 	static void sendToStash(Interfaz* app, int itemid);
 	static void sendToInventory(Interfaz* app, int itemid);
+	static void showUnequipButton(Interfaz* app,bool isWeapon_,int heroid_);
+	static void unequip(Interfaz* app, bool isWeapon, int heroid);
 	static void closeMessage();
 };

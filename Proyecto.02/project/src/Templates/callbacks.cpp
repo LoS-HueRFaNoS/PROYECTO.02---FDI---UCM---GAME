@@ -6,6 +6,7 @@
 #include "../Components/Interfaz.h"
 #include "../Game.h"
 #include "../Managers/game/LobbyManager.h"
+#include "../Managers/game/ItemManager.h"
 
 // ----------------------------------------------------
 
@@ -455,6 +456,7 @@ void callbacks::inventarioLobby(Interfaz* app)
 	app->removePanel(Lobby);
 	app->removePanel(Heroes);
 	app->createPanel(InventoryLobby);
+	if (app->getActivePan(UnequipPanel)) app->removePanel(UnequipPanel);
 	std::cout << "vamos al inventario" << std::endl;
 }
 void callbacks::sellStashItem(Interfaz* app,int itemid)
@@ -472,6 +474,7 @@ void callbacks::showSellButton(Interfaz* app, int itemid)
 		app->removePanel(SellButtonPanel);
 	app->setSelectedItem(itemid);
 	app->createPanel(SellButtonPanel);
+	if (app->getActivePan(UnequipPanel)) app->removePanel(UnequipPanel);
 }
 #include "../Components/Tutorial.h"
 void callbacks::closeMessage()
@@ -485,6 +488,7 @@ void callbacks::inventarioToLobby(Interfaz* app)
 {
 	if (app->getActivePan(DDPan)) app->removePanel(DDPan);
 	if (app->getActivePan(sendToStashPanel)) app->removePanel(sendToStashPanel);
+	if (app->getActivePan(UnequipPanel)) app->removePanel(UnequipPanel);
 	app->removePanel(InventoryLobby);
 	app->removePanel(Heroes);
 	app->createPanel(Lobby);
@@ -517,6 +521,45 @@ void callbacks::sendToInventory(Interfaz* app, int itemid)
 	app->createPanel(StashPanel);
 	app->removePanel(SellButtonPanel);
 	std::cout << "Enviar objeto al stash" << std::endl;
+}
+void callbacks::showUnequipButton(Interfaz* app,bool isWeapon_, int heroid)
+{
+	PartyManager* pa = TheElementalMaze::instance()->getPartyManager();
+	LobbyManager* lo = TheElementalMaze::instance()->getLobbyManager();
+	if (app->getActivePan(UnequipPanel)) app->removePanel(UnequipPanel);
+	if (isWeapon_ && pa->getHeroes()[heroid]->getWeapon()->getWeaponId() == wID::DESARMADO) return;
+	app->setSelectedInventoryHero(heroid);
+	app->setIsWeapon(isWeapon_);
+	app->createPanel(UnequipPanel);
+}
+void callbacks::unequip(Interfaz* app, bool isWeapon, int heroid)
+{
+	PartyManager* pa = TheElementalMaze::instance()->getPartyManager();
+	LobbyManager* lo = TheElementalMaze::instance()->getLobbyManager();
+	ItemManager* itemManager_ = TheElementalMaze::instance()->getItemManager();
+	Item* item = nullptr;
+	bool espacio = false;
+	if (isWeapon)
+	item = pa->getHeroes()[heroid]->getWeapon();
+	else
+	item = pa->getHeroes()[heroid]->getArmor();
+	espacio = pa->addItem(item);
+	if (espacio)
+	{
+		if (isWeapon) pa->getHeroes()[heroid]->giveWeapon(itemManager_->getWeaponFromId(wID::DESARMADO));
+		else pa->getHeroes()[heroid]->removeArmor(); //giveArmor(itemManager_->getArmorFromId(aID::);
+	}
+	app->removePanel(UnequipPanel);
+	if (app->getActivePan(InventoryLobby))
+	{
+		app->removePanel(InventoryLobby);
+		app->createPanel(InventoryLobby);
+	}
+	else if (app->getActivePan(Inventory))
+	{
+		app->removePanel(Inventory);
+		app->createPanel(Inventory);
+	}
 }
 #include "../Managers/game/LobbyManager.h"
 #include"../GameObjects/Character.h"

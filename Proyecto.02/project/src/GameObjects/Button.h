@@ -624,3 +624,45 @@ public:
 #pragma endregion
 
 // ----------------------------------------------------
+
+// ----------------------------------------------------
+
+// ----------------------------------------------------
+enum class accionHeroEquipment {showUnequip,Unequip};
+class ButtonHeroEquipment : public Button {
+private:
+	bool isWeapon = false;
+	int heroid;
+	Interfaz* app;
+	accionHeroEquipment accion;
+public:
+	ButtonHeroEquipment(SDLGame* game, EntityManager* mngr) : Button(game, mngr) {};
+
+	~ButtonHeroEquipment() {};
+
+	virtual void init(Vector2D pos, uint ancho, uint alto, Resources::TextureId imagen, accionHeroEquipment accion_, bool isWeapon_,int heroId_, Interfaz* app_) {
+		isWeapon = isWeapon_;
+		heroid = heroId_;
+		app = app_;
+		accion = accion_;
+		Button::init(pos, ancho, alto, imagen);
+	};
+
+	virtual void click()
+	{
+		switch (accion)
+		{
+		case accionHeroEquipment::showUnequip:
+			callbacks::showUnequipButton(app,isWeapon,heroid);
+			break;
+		case accionHeroEquipment::Unequip:
+			callbacks::unequip(app, isWeapon, heroid);
+			break;
+		}
+		
+		Sprite* s_ = GETCMP2(this, Sprite);
+		s_->setHide(true);
+		s_->reset();
+	}
+};
+// ----------------------------------------------------

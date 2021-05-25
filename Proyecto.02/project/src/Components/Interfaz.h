@@ -40,6 +40,7 @@ private:
 	void createShop();
 	void createStash();
 	void createInfoTienda();
+	void createUnequipPanel();
 	void toggleMinimap();
 	string nameItemTienda;
 	string descrItemTienda;
@@ -47,6 +48,8 @@ private:
 	void createHeroToPartyPanel();
 	void createSellButtonPanel();
 	int selectedHeroToParty;
+	bool isWeapon;
+	int selectedInventoryHero;
 	int selectedInventoryItem;
 	int selectedItem;
 public:
@@ -86,5 +89,7 @@ public:
 	void setDescrItem(string descr_) { descrItemTienda = descr_; }
 	void setSelectedHeroToParty(int selectedHero) { selectedHeroToParty = selectedHero; }
 	void setSelectedItem(int selectedItem_) { selectedItem = selectedItem_; }
+	void setIsWeapon(bool isWeapon_) { isWeapon = isWeapon_; }
+	void setSelectedInventoryHero(int selectedHero_) { selectedInventoryHero = selectedHero_; }
 	void setSelectedInventoryItem(int selectedItem_) { selectedInventoryItem = selectedItem_; }
 };

@@ -30,7 +30,7 @@ public:
 		muro_fondo_fr,
 		muro_fondo_fr_izq,
 		muro_fondo_fr_der,
-		//fondo_vacio,
+		fondo_vacio,
 		no_visitado,
 		no_entrado,
 		visitado,
