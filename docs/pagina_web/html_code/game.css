@@ -39,7 +39,7 @@ h3 {
 body {
 	background-image: url("../html_imgs/fondo.png");
 	background-size: 100%;
-	background-repeat: no-repeat;
+	background-repeat: repeat;
 	background-position: 100% 30%;
 	background-attachment: scroll;
 }
@@ -52,6 +52,8 @@ body {
 	margin: auto;
 	width: 100%;
 	text-align: center;
+	border-radius: 40px;
+	
 }
 #descargar{
 	background-image: url("../html_imgs/marco.png");
