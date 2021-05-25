@@ -780,10 +780,15 @@ void Interfaz::createInventoryLobby()
 	double slotTam = game_->getWindowWidth() / 16;
 	double posX;
 	double posY = slotTam * 1.8;
-
+	int w, h, tam;
+	w = game_->getWindowWidth();
+	h = game_->getWindowHeight();
 	Panel* p = new Panel(InventoryLobby);
 	//allPanels.emplace(allPanels.begin() + Inventory, p);
 	allPanels[InventoryLobby] = p;
+
+	// Botón para volver al lobby
+	p->addButton(iManager->addButton<ButtonMenu>(Vector2D(w / 2 + w / 3 - 150, 2 * h / 3 + 100), 300, 100, src::lobby_button, accionMenu::inventario_to_lobby, this));
 
 	// Cuadro de inventario 5x5
 	int margen = 0.1 * slotTam;
@@ -813,7 +818,7 @@ void Interfaz::createInventoryLobby()
 						auxId = (int) static_cast<Weapon*>(item)->getWeaponId();
 					}
 					id = (Resources::TextureId) (pivot + auxId + 1);
-					p->addButton(iManager->addButton<SDL_Object>(Vector2D(posX + margen, posY + margen), itemTam, itemTam, id));
+					p->addButton(iManager->addButton<ButtonItemManagement>(Vector2D(posX + margen, posY + margen), itemTam, itemTam, id,accionItem::showSendToStash,indice,this));
 				}
 			}
 
@@ -882,6 +887,17 @@ void Interfaz::createHeroToPartyPanel()
 	p->addButton(iManager->addButton<ButtonHeroManagement>(Vector2D(w / 2 + w / 3 - 150, 0), 300, 100, src::RecruitButton, accionHero::sendHeroToParty, selectedHeroToParty, this));
 }
 
+void Interfaz::createSendToStashPanel()
+{
+	int w, h;
+	w = game_->getWindowWidth();
+	h = game_->getWindowHeight();
+	Panel* p = new Panel(sendToStashPanel);
+	allPanels[sendToStashPanel] = p;
+	p->addButton(iManager->addButton<ButtonItemManagement>(Vector2D(w / 2 + w / 3 - 150, 0), 300, 100, src::StoreItemButton, accionItem::sendToStash, selectedInventoryItem, this));
+}
+
+
 void Interfaz::createSellButtonPanel()
 {
 	int w, h;
@@ -890,6 +906,7 @@ void Interfaz::createSellButtonPanel()
 	Panel* p = new Panel(SellButtonPanel);
 	allPanels[SellButtonPanel] = p;
 	p->addButton(iManager->addButton<ButtonItemManagement>(Vector2D(w / 2 - w / 3 - 150, 600), 300, 100, src::SellButton, accionItem::sellItem, selectedItem, this));
+	p->addButton(iManager->addButton<ButtonItemManagement>(Vector2D(w / 2 + w / 3 - 150, 600), 300, 100, src::Inventario, accionItem::sendToInventory, selectedItem, this));
 }
 
 void Interfaz::createPanel(idPanel panelID)
@@ -970,6 +987,9 @@ void Interfaz::createPanel(idPanel panelID)
 		break;
 	case InventoryLobby:
 		createInventoryLobby();
+		break;
+	case sendToStashPanel:
+		createSendToStashPanel();
 		break;
 	default:
 		break;

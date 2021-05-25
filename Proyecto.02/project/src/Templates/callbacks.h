@@ -45,6 +45,7 @@ public:
 	static void startExp(Interfaz* app);
 	static void shop_lobby(Interfaz* app);
 	static void stash_lobby(Interfaz* app);
+	static void inventarioToLobby(Interfaz* app);
 	static void avanzarHeroes(Interfaz* app);
 	static void avanzarItems(Interfaz* app);
 	static void retrocederHeroes(Interfaz* app);
@@ -56,5 +57,8 @@ public:
 	static void backToMenu(Interfaz* app);
 	static void sellStashItem(Interfaz* app, int itemid);
 	static void showSellButton(Interfaz* app, int itemid);
+	static void showSendToStash(Interfaz* app, int itemid);
+	static void sendToStash(Interfaz* app, int itemid);
+	static void sendToInventory(Interfaz* app, int itemid);
 	static void closeMessage();
 };

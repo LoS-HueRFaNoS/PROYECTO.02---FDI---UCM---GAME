@@ -32,7 +32,7 @@ private:
 	void createHabilities(); //
 	void createWeaponAttacks();
 	void createInventoryLobby();
-
+	void createSendToStashPanel();
 	void createMenuPrincipal();
 	void createLobby();
 	void createOptions();
@@ -47,6 +47,7 @@ private:
 	void createHeroToPartyPanel();
 	void createSellButtonPanel();
 	int selectedHeroToParty;
+	int selectedInventoryItem;
 	int selectedItem;
 public:
 	Interfaz(InterfazManager* i) :
@@ -85,4 +86,5 @@ public:
 	void setDescrItem(string descr_) { descrItemTienda = descr_; }
 	void setSelectedHeroToParty(int selectedHero) { selectedHeroToParty = selectedHero; }
 	void setSelectedItem(int selectedItem_) { selectedItem = selectedItem_; }
+	void setSelectedInventoryItem(int selectedItem_) { selectedInventoryItem = selectedItem_; }
 };

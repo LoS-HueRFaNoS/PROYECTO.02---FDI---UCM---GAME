@@ -1,4 +1,6 @@
 #include "PartyManager.h"
+#include "LobbyManager.h"
+#include "../TheElementalMaze.h"
 #include "../../Structures/Item.h"
 #include "../../GameObjects/Character.h"
 
@@ -7,7 +9,7 @@ PartyManager::PartyManager() :
 	gold(0),
 	manaPotions(5),
 	healthPotions(5),
-	items_(std::vector<Item*>(0)),
+	items_(std::vector<Item*>(NUM_ITEMS)),
 	heroes_(std::vector<Hero*>(4, nullptr))
 {
 }
@@ -108,19 +110,19 @@ void PartyManager::partyLost()
 	healthPotions = 0;
 }
 
-Item* PartyManager::addItem(Item* i, int pos)
+bool PartyManager::addItem(Item* i)
 {
-	assert(/*pos < items_.size() &&*/ pos >= 0);
-	items_.resize(items_.size() + 1);
-	if (items_[pos] == nullptr) {
-		items_[pos] = i;
-		return nullptr;
-	}
-	else {
-		Item* oldItem = items_[pos];
-		items_[pos] = i;
-		return oldItem;
-	}
+		int iterator = 0;
+		while (iterator < NUM_ITEMS && items_[iterator] != nullptr)
+			iterator++;
+		if (items_[iterator] == nullptr)
+		{
+			items_[iterator] = i;
+			return true;
+		}
+		else {
+			return false;
+		}
 }
 
 void PartyManager::changeItemWithHero(int index, int hero)
@@ -178,4 +180,27 @@ void PartyManager::usePotion(Hero* hero, bool mana)
 		}
 		i++;
 	}
+}
+
+void PartyManager::itemFromInventoryToStash(int itemIndex)
+{
+	assert(itemIndex >= 0 && itemIndex <= 25);
+
+	LobbyManager* lo = TheElementalMaze::instance()->getLobbyManager();
+	Item* item = items_[itemIndex];
+	bool change = false;
+	int i = 0;
+	while (i < lo->getPlayerStash()->items.size() && lo->getPlayerStash()->items[i] != nullptr)
+		i++;
+	if (i < lo->getPlayerStash()->items.size() && lo->getPlayerStash()->items[i] == nullptr)
+	{
+		lo->getPlayerStash()->items[i] = item;
+		items_.erase(items_.begin() + itemIndex);
+	}
+	else
+	{
+		lo->getPlayerStash()->items.push_back(item);
+		items_.erase(items_.begin() + itemIndex);
+	}
+
 }

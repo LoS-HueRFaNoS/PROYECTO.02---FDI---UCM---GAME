@@ -409,9 +409,9 @@ void callbacks::sendHeroToStash(Interfaz* app, int heroid)
 	app->removePanel(DDPan);
 	app->removePanel(Heroes);
 	LobbyManager* lo = TheElementalMaze::instance()->getLobbyManager();
-	PartyManager* pa = TheElementalMaze::instance()->getPartyManager();
-	EntityManager* en = TheElementalMaze::instance()->getEntityMangr();
-	SDLGame* game = TheElementalMaze::instance()->getSDLGame();
+	//PartyManager* pa = TheElementalMaze::instance()->getPartyManager();
+	//EntityManager* en = TheElementalMaze::instance()->getEntityMangr();
+	//SDLGame* game = TheElementalMaze::instance()->getSDLGame();
 	lo->heroFromPartyToStash(heroid);
 	app->createPanel(Heroes);
 }
@@ -479,7 +479,44 @@ void callbacks::closeMessage()
 	TutorialManager* t = GETCMP3(TheElementalMaze::instance(), ecs::Tutorial, TutorialManager);
 	t->exitMessage();
 	std::cout << "saliendo del mensaje del tutorial" << std::endl;
+}
 
+void callbacks::inventarioToLobby(Interfaz* app)
+{
+	if (app->getActivePan(DDPan)) app->removePanel(DDPan);
+	if (app->getActivePan(sendToStashPanel)) app->removePanel(sendToStashPanel);
+	app->removePanel(InventoryLobby);
+	app->removePanel(Heroes);
+	app->createPanel(Lobby);
+	std::cout << "vamos al lobby" << std::endl;
+}
+
+void callbacks::showSendToStash(Interfaz* app, int itemid){
+	if (app->getActivePan(sendToStashPanel)) app->removePanel(sendToStashPanel);
+	app->setSelectedInventoryItem(itemid);
+	app->createPanel(sendToStashPanel);
+}
+
+void callbacks::sendToStash(Interfaz* app,int itemid)
+{
+	PartyManager* pa = TheElementalMaze::instance()->getPartyManager();
+	LobbyManager* lo = TheElementalMaze::instance()->getLobbyManager();
+	pa->itemFromInventoryToStash(itemid);
+	app->removePanel(sendToStashPanel);
+	app->removePanel(InventoryLobby);
+	app->createPanel(InventoryLobby);
+	std::cout << "Enviar objeto al stash" << std::endl;
+}
+
+void callbacks::sendToInventory(Interfaz* app, int itemid)
+{
+	PartyManager* pa = TheElementalMaze::instance()->getPartyManager();
+	LobbyManager* lo = TheElementalMaze::instance()->getLobbyManager();
+	lo->itemFromStashToInventory(itemid);
+	app->removePanel(StashPanel);
+	app->createPanel(StashPanel);
+	app->removePanel(SellButtonPanel);
+	std::cout << "Enviar objeto al stash" << std::endl;
 }
 #include "../Managers/game/LobbyManager.h"
 #include"../GameObjects/Character.h"

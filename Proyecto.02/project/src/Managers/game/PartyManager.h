@@ -45,7 +45,7 @@ public:
 
 	void partyLost();
 
-	Item* addItem(Item* i, int pos);
+	bool addItem(Item* i);
 
 	void changeItemWithHero(int index, int hero);
 
@@ -56,6 +56,8 @@ public:
 	void usePotion(int hero, bool mana);
 
 	void usePotion(Hero* hero, bool mana);
+
+	void itemFromInventoryToStash(int itemIndex);
 };
 
 #endif // !_PARTY_MANAGER_

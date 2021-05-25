@@ -112,6 +112,10 @@ public:
 
 	void heroFromPartyToStash(int partyIndex);
 
+
+
+	void itemFromStashToInventory(int index);
+
 	void addHeroToStash(Hero* hero);
 
 	void addItemToStash(Item* item);

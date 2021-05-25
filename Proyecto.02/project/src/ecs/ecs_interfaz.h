@@ -33,6 +33,7 @@ namespace interfaz {
 		ButtonHeroToPartyPanel,
 		SellButtonPanel,
 		InventoryLobby,
+		sendToStashPanel,
 		//
 		// don't touch the rest of this enum, it is to identify the max
 		// number of components

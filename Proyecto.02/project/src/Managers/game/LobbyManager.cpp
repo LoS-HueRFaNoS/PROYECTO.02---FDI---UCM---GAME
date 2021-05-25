@@ -165,9 +165,9 @@ void LobbyManager::heroFromPartyToStash(int partyIndex)
 	if (change)
 	{
 		int i = 0;
-		while (i < playerStash_->heroes.size() && playerStash_->heroes[i] == nullptr)
+		while (i < playerStash_->heroes.size() && playerStash_->heroes[i] != nullptr)
 			i++;
-		if (playerStash_->heroes.size() > 0 && playerStash_->heroes[i] == nullptr) playerStash_->heroes[i] = change;
+		if (i < playerStash_->heroes.size() && playerStash_->heroes[i] == nullptr) playerStash_->heroes[i] = change;
 		else playerStash_->heroes.push_back(change);
 	}
 }
@@ -180,6 +180,16 @@ void LobbyManager::addHeroToStash(Hero* hero)
 void LobbyManager::addItemToStash(Item* item)
 {
 	playerStash_->items.push_back(item);
+}
+void LobbyManager::itemFromStashToInventory(int itemIndex)
+{
+	assert(itemIndex >= 0);
+
+	PartyManager* p = TheElementalMaze::instance()->getPartyManager();
+	Item* item = playerStash_->items[itemIndex];
+	bool change = false;
+	change = p->addItem(item);
+	if (change) playerStash_->items.erase(playerStash_->items.begin() + itemIndex);
 }
 
 Store* LobbyManager::getLobbyStore()

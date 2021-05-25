@@ -146,7 +146,7 @@ public:
 // ----------------------------------------------------
 
 enum class accionMenu { start, lobby, how_to_play, options, quit, shop, stash, shop_lobby,
-	stash_lobby, avanzarHeroes, avanzarItems, retrocederHeroes, retrocederItems, backToMenu, inventarioLobby, closeMessage};
+	stash_lobby, avanzarHeroes, avanzarItems, retrocederHeroes, retrocederItems, backToMenu, inventarioLobby, closeMessage, inventario_to_lobby};
 
 class ButtonMenu : public Button {
 private:
@@ -219,6 +219,9 @@ public:
 			break;
 		case accionMenu::closeMessage:
 			callbacks::closeMessage();
+			break;
+		case accionMenu::inventario_to_lobby:
+			callbacks::inventarioToLobby(app);
 			break;
 		default:
 			break;
@@ -344,7 +347,7 @@ public:
 
 // ----------------------------------------------------
 enum class accionItem {
-	sellItem, showSellButton
+	sellItem, showSellButton, showSendToStash, sendToStash, showSendToInventory, sendToInventory
 };
 class ButtonItemManagement : public Button {
 private:
@@ -372,6 +375,18 @@ public:
 			break;
 		case accionItem::sellItem:
 			callbacks::sellStashItem(app,itemid);
+			break;
+		case accionItem::showSendToStash:
+			callbacks::showSendToStash(app, itemid);
+			break;
+		case accionItem::sendToStash:
+			callbacks::sendToStash(app, itemid);
+			break;
+		case accionItem::showSendToInventory:
+			callbacks::showSellButton(app, itemid);
+			break;
+		case accionItem::sendToInventory:
+			callbacks::sendToInventory(app, itemid);
 			break;
 		}
 		
