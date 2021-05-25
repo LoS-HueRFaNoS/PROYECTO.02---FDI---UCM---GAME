@@ -16,8 +16,6 @@ private:
 
 	std::vector<Item*> items_;
 
-	void reorderVector();
-
 public:
 
 	PartyManager();

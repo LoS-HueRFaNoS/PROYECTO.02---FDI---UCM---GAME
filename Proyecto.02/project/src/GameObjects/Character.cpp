@@ -352,6 +352,8 @@ void Hero::savingDeathThrow()
 		}
 		else if (getSavingFailures() >= 3) {
 			cout << name() << " is dead. \n";
+			_sheet->setHitPoints(0);
+			_sheet->setManaPoints(0);
 			_deathGate = true;
 		}
 	}

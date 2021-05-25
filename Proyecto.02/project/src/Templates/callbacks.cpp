@@ -249,6 +249,9 @@ void callbacks::startLobby(Interfaz* app)
 {
 	std::cout << "startLobby se ha activado\n";
 	if (app->getActivePan(MenuPrincipal)) 	app->removePanel(MenuPrincipal);
+	if (app->getActivePan(Fight)) 			app->removePanel(Fight);
+	if (app->getActivePan(Turns)) 			app->removePanel(Turns);
+	if (app->getActivePan(Info)) 			app->removePanel(Info);
 	if (TheElementalMaze::instance()->gameState() != gameST::MainMenu)
 	{
 		TheElementalMaze::instance()->backFromDungeon();

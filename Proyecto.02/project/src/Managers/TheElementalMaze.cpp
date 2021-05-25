@@ -117,7 +117,12 @@ void TheElementalMaze::checkOutNoInitialEnemy()
 
 void TheElementalMaze::startCombat()
 {
-	combatManager_->addHeroesTeam(partyManager_->getHeroes());
+	std::vector<Hero*> heroes_ = std::vector<Hero*>();
+	for (Hero* h : partyManager_->getHeroes()) {
+		if (h)
+			heroes_.push_back(h);
+	}
+	combatManager_->addHeroesTeam(heroes_);
 	combatManager_->startCombat();
 }
 

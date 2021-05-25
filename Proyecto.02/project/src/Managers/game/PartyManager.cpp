@@ -31,15 +31,6 @@ PartyManager::~PartyManager()
 	heroes_.clear();
 }
 
-void PartyManager::reorderVector()
-{
-	for (auto it = heroes_.begin(); it != heroes_.end();) {
-		if (!(*it))
-			it = heroes_.erase(it);
-		else
-			it++;
-	}
-}
 
 Hero* PartyManager::addHero(Hero* h, int pos)
 {
@@ -69,11 +60,10 @@ bool PartyManager::addHero(Hero* h)
 
 void PartyManager::removeHero(Hero* h)
 {
-	for (auto it = heroes_.begin(); it != heroes_.end();) {
-		if ((*it) == h) {
-			(*it)->disable();
-			(*it) = nullptr;
-			heroes_.erase(it);
+	for (int i = 0; i < 4; i++) {
+		if (heroes_[i] == h) {
+			heroes_[i]->disable();
+			heroes_[i] = nullptr;
 			return;
 		}
 	}
@@ -105,6 +95,7 @@ void PartyManager::partyLost()
 	for (Item* i : items_)
 		delete i;
 	items_.clear();
+	heroes_ = std::vector<Hero*>(4, nullptr);
 	gold = 0;
 	manaPotions = 0;
 	healthPotions = 0;
@@ -112,17 +103,17 @@ void PartyManager::partyLost()
 
 bool PartyManager::addItem(Item* i)
 {
-		int iterator = 0;
-		while (iterator < NUM_ITEMS && items_[iterator] != nullptr)
-			iterator++;
-		if (items_[iterator] == nullptr)
-		{
-			items_[iterator] = i;
-			return true;
-		}
-		else {
-			return false;
-		}
+	int iterator = 0;
+	while (iterator < NUM_ITEMS && items_[iterator] != nullptr)
+		iterator++;
+	if (items_[iterator] == nullptr)
+	{
+		items_[iterator] = i;
+		return true;
+	}
+	else {
+		return false;
+	}
 }
 
 void PartyManager::changeItemWithHero(int index, int hero)

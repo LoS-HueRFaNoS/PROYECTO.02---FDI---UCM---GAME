@@ -299,6 +299,8 @@ void Interfaz::createInventory()
 	PartyManager* c = TheElementalMaze::instance()->getPartyManager();
 	std::vector<Hero*> heroes = c->getHeroes();
 	for (int i = 0; i < 4; ++i) {
+		if (!heroes[i])
+			continue;
 		p->addButton(iManager->addButton<SDL_Object>(Vector2D(posX, posY), slotTam, slotTam, getHeroTxt(i)));
 
 		Weapon* weapon = heroes[i]->getWeapon();
@@ -867,6 +869,7 @@ void Interfaz::createInventoryLobby()
 		posY += slotTam * 1.33;
 	}
 }
+
 void Interfaz::createUnequipPanel()
 {
 	int w, h, tam;
@@ -1209,6 +1212,7 @@ void Interfaz::update()
 			TheElementalMaze::instance()->sendMsg(m);
 			toggleMinimap();
 			removePanel(Enemies);
+			removePanel(Turns);
 			TheElementalMaze::instance()->removeComponent(ecs::PanelTurns);
 			checkHerosParty(); // check de puertas de la muerte
 			TheElementalMaze::instance()->changeState(gameST::COMBAT);
@@ -1252,7 +1256,7 @@ void Interfaz::checkHerosParty()
 	std::vector<Hero*> heroes = c->getHeroes();
 	auto n = heroes.size(); // max number of heros
 	for (auto i = 0u; i < n; i++)
-		if (heroes[i]->getDeathGate()) {
+		if (!heroes[i]) {
 			allPanels[Heroes]->removeButton(i);
 			changed = true;
 		}

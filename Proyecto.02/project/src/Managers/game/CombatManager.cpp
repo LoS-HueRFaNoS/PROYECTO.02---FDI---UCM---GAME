@@ -347,9 +347,8 @@ void CombatManager::onStateChanged()
 		break;
 	case COMBAT_END:
 		endCombat();
-		cout << "---------- PRESS ENTER TO END COMBAT ----------" << endl;
 		TheElementalMaze::instance()->changeState(gameST::END_COMBAT);
-		// botin del enemigo
+		changeState(NO_COMBAT);
 		break;
 	case NO_COMBAT:
 		if (_win)
@@ -398,9 +397,6 @@ void CombatManager::sendKeyEvent(int key)
 		if (!size_t(currentCharacter->getType()) && key >= 0)
 			castToSingleTarget(key);
 		break;
-	case COMBAT_END:
-		if (key == -1)
-			changeState(NO_COMBAT);
 	default:
 		break;
 	}
@@ -416,7 +412,7 @@ void CombatManager::update()
 	InputHandler* ih = InputHandler::instance();
 
 	if (ih->keyDownEvent()) {
-		if (ih->isKeyDown(SDLK_0)) sendKeyEvent(0);
+			 if (ih->isKeyDown(SDLK_0)) sendKeyEvent(0);
 		else if (ih->isKeyDown(SDLK_1)) sendKeyEvent(1);
 		else if (ih->isKeyDown(SDLK_2)) sendKeyEvent(2);
 		else if (ih->isKeyDown(SDLK_3)) sendKeyEvent(3);
@@ -426,7 +422,8 @@ void CombatManager::update()
 		else if (ih->isKeyDown(SDLK_7)) sendKeyEvent(7);
 		else if (ih->isKeyDown(SDLK_8)) sendKeyEvent(8);
 		else if (ih->isKeyDown(SDLK_9)) sendKeyEvent(9);
-		else if (ih->isKeyDown(SDLK_RETURN)) sendKeyEvent(-1);		// Saltar turno , terminar turno
+		else if (ih->isKeyDown(SDLK_RETURN)) 
+										sendKeyEvent(-1);			// Saltar turno , terminar turno
 		else if (ih->isKeyDown(SDLK_l)) sendKeyEvent(-2);			// Ataque ligero
 		else if (ih->isKeyDown(SDLK_h)) sendKeyEvent(-3);			// Ataque pesado
 		else if (ih->isKeyDown(SDLK_x)) sendKeyEvent(-4);			// Intentar Huir
