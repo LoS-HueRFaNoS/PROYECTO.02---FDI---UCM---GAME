@@ -50,7 +50,7 @@ vector<Resources::ImageInfo> Resources::images_{
 	// menu principal
 	{start, "project/resources/images/interfaz/button icons/Menu/PlayButton.png"},
 	{options, "project/resources/images/interfaz/button icons/Menu/OptionsButton.png"},
-	{quit, "project/resources/images/Menu/quit.png"},
+	{quit, "project/resources/images/interfaz/button icons/Menu/quit.png"},
 	{howToPlay, "project/resources/images/interfaz/button icons/Menu/HowToPlayButton.png"},
 	//{mFondo, "project/resources/images/Menu/menufondo.jpg"},
 	{mFondo, "project/resources/images/Menu/FondoMenuTituloFinal.png"},
@@ -83,6 +83,7 @@ vector<Resources::ImageInfo> Resources::images_{
 	{RecruitButton, "project/resources/images/interfaz/button icons/Tienda/RecruitButton.png"},
 	{SellButton, "project/resources/images/interfaz/button icons/Tienda/SellButton.png"},
 	{StoreItemButton, "project/resources/images/interfaz/button icons/Tienda/StoreItemButton.png"},
+	{lobby_button, "project/resources/images/interfaz/button icons/Tienda/lobby_button.png"},
 
 	// movimiento
 	{Avanzar, "project/resources/sprites/iconos movimiento/movimientoAvanzar.png"},

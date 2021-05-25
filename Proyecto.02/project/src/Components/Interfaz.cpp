@@ -517,7 +517,7 @@ void Interfaz::createShop()
 	h = game_->getWindowHeight();
 
 	// Botón para retroceder al lobby
-	p->addButton(iManager->addButton<ButtonMenu>(Vector2D(w / 2 + w / 3 - 150, 2 * h / 3 + 100), 300, 100, src::start, accionMenu::shop_lobby, this));
+	p->addButton(iManager->addButton<ButtonMenu>(Vector2D(w / 2 + w / 3 - 150, 2 * h / 3 + 100), 300, 100, src::lobby_button, accionMenu::shop_lobby, this));
 	LobbyManager* loManager = TheElementalMaze::instance()->getLobbyManager();
 	if (loManager->getLobbyStore() != nullptr)
 	{
@@ -598,7 +598,7 @@ void Interfaz::createStash() {
 
 
 	// Botón para volver al lobby
-	p->addButton(iManager->addButton<ButtonMenu>(Vector2D(w / 2 + w / 3 - 150, 2 * h / 3 + 100), 300, 100, src::howToPlay, accionMenu::stash_lobby, this));
+	p->addButton(iManager->addButton<ButtonMenu>(Vector2D(w / 2 + w / 3 - 150, 2 * h / 3 + 100), 300, 100, src::lobby_button, accionMenu::stash_lobby, this));
 
 	// Slots del stash de héroes
 	p->addButton(iManager->addButton<SDL_Object>(Vector2D(50, 50), w - 500, 100, src::inventory_slots));

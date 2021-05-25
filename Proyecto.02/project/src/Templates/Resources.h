@@ -86,6 +86,7 @@ public:
 		RecruitButton,
 		SellButton,
 		StoreItemButton,
+		lobby_button,
 
 		// carteles tutorial
 		_firstCartelId_,
