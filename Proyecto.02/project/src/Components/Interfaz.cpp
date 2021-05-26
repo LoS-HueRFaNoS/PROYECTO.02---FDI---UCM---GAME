@@ -105,23 +105,23 @@ void Interfaz::createEnemies()
 		Enemy* enemy = enemies[i];
 		enemyTemplate enTemp = enemy->getTemplate();
 		SDL_Object* b_;
-
+		double lado;
+		double margenBarra = w_ - tamBar_w;
 		if (enTemp == enemyTemplate::DRACOLICH || enTemp == enemyTemplate::HELLHOUND || enTemp == enemyTemplate::GIANTWORM) {
 			b_ = iManager->addButton<SDL_Object>(Vector2D(x_ + i * espace, y_), w_, h_, getEnemyTxt(i));
 		}
 		else {
-			if (nEnemies == 1) b_ = iManager->addButton<SDL_Object>(Vector2D(x_ + espace / 2 - h_ / 2, y_), h_, h_, getEnemyTxt(i));
+			if (nEnemies == 1) lado = h_;
 			else {
-				double lado = w_; // nEnemies;
-				b_ = iManager->addButton<SDL_Object>(Vector2D(x_ + i * espace + espace / 2 - lado / 2, y_ + h_ - lado), lado, lado, getEnemyTxt(i));
+				lado = w_;
+				margenBarra = espace - tamBar_w;
 			}
-
+			
+			b_ = iManager->addButton<SDL_Object>(Vector2D(x_ + i * espace + espace / 2.0 - lado / 2.0, y_ + h_ - lado), lado, lado, getEnemyTxt(i));
 		}
 
 		//BARRA DE VIDA
-		uint k = 6;
-
-		b_->addComponent<StateBar>(enemy, health, SDL_Rect(RECT((x_ + w_ / 2.5 + i * espace), (y_ + h_ / 10), tamBar_w, tamBar_h)));
+		b_->addComponent<StateBar>(enemy, health, SDL_Rect(RECT((x_ + i * espace + margenBarra / 2.0), (y_ + h_ / 10.0), tamBar_w, tamBar_h)));
 		//b_->addComponent<StateBar>(enemies[i], mana, SDL_Rect(RECT((x_ + i * espace), (y_ + h_ * 2.5 / k), w_ * 2, h_ / k)));
 		p->addButton(b_);
 	}
