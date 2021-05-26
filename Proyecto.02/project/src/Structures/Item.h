@@ -60,8 +60,8 @@ public:
 
 	Weapon() {
 		_ItemType = WEAPON;
-		buyValue = rand() % 100;
-		sellValue = rand() % 100;
+		buyValue = 70;
+		sellValue = 100;
 	}
 
 	int getDamage() { return damage; }
@@ -89,8 +89,8 @@ public:
 
 	Armor() {
 		_ItemType = ARMOR;
-		sellValue = rand() % 100;
-		buyValue = rand() % 100;
+		sellValue = 70;
+		buyValue = 100;
 	}
 	rpgLogic::mainStat getStatNeeded() { return _statNeeded; }
 
