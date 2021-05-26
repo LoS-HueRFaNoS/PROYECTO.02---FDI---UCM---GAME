@@ -53,7 +53,7 @@ public:
 	}
 
 	void update() {
-		if (!enabled || !active) return;
+		if (!enabled || !active || pause) return;
 		auto n = components_.size();
 		for (auto i = 0u; i < n; i++)
 		{
@@ -98,12 +98,18 @@ public:
 	}
 	bool isActive() const { return active; };
 
+	// pause
+	void togglePause() { pause = !pause; };
+	void setPause() { pause = true; };
+	void setContinue() { pause = false; };
+
 protected:
 	SDLGame *game_;
 	EntityManager* mngr_;
 
 	bool enabled;	// equivalente a hide / unhide
 	bool active;	// se mantiene en memoria o se prepara para ser eliminado
+	bool pause;		// cancela el update
 
 	std::vector<unique_ptr<Component>> components_;
 	std::array<Component*,ecs::maxComponents> componentsArray_ = {};
