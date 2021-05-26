@@ -492,6 +492,7 @@ void callbacks::inventarioToLobby(Interfaz* app)
 	if (app->getActivePan(DDPan)) app->removePanel(DDPan);
 	if (app->getActivePan(sendToStashPanel)) app->removePanel(sendToStashPanel);
 	if (app->getActivePan(UnequipPanel)) app->removePanel(UnequipPanel);
+	if (app->getActivePan(EquipPanel)) app->removePanel(EquipPanel);
 	app->removePanel(InventoryLobby);
 	app->removePanel(Heroes);
 	app->createPanel(Lobby);
@@ -534,6 +535,33 @@ void callbacks::showUnequipButton(Interfaz* app,bool isWeapon_, int heroid)
 	app->setSelectedInventoryHero(heroid);
 	app->setIsWeapon(isWeapon_);
 	app->createPanel(UnequipPanel);
+}
+void callbacks::showEquipButton(Interfaz* app,bool isWeapon_, int itemid)
+{
+	if (app->getActivePan(UnequipPanel)) app->removePanel(UnequipPanel);
+	app->removePanel(EquipPanel);
+	app->setIsItemToEquipAWeapon(isWeapon_);
+	app->createPanel(EquipPanel);
+}
+void callbacks::equip(Interfaz* app, bool isWeapon,int itemid, int heroid)
+{
+	PartyManager* pa = TheElementalMaze::instance()->getPartyManager();
+	pa->giveWeaponFromInventory(isWeapon, itemid, heroid);
+	
+	app->removePanel(EquipPanel);
+	app->removePanel(SellButtonPanel);
+	app->removePanel(sendToStashPanel);
+	if (app->getActivePan(InventoryLobby))
+	{
+		app->removePanel(InventoryLobby);
+		app->createPanel(InventoryLobby);
+	}
+	else if (app->getActivePan(Inventory))
+	{
+		app->removePanel(Inventory);
+		app->createPanel(Inventory);
+	}
+	if (app->getActivePan(SellButtonPanel)) app->removePanel(SellButtonPanel);
 }
 void callbacks::unequip(Interfaz* app, bool isWeapon, int heroid)
 {

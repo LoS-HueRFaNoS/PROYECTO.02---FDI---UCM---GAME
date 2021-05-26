@@ -47,8 +47,10 @@ private:
 	void checkAndDeletePanel(idPanel id);
 	void createHeroToPartyPanel();
 	void createSellButtonPanel();
+	void createEquipPanel();
 	int selectedHeroToParty;
 	bool isWeapon;
+	bool isItemToEquipAWeapon;
 	int selectedInventoryHero;
 	int selectedInventoryItem;
 	int selectedItem;
@@ -92,4 +94,5 @@ public:
 	void setIsWeapon(bool isWeapon_) { isWeapon = isWeapon_; }
 	void setSelectedInventoryHero(int selectedHero_) { selectedInventoryHero = selectedHero_; }
 	void setSelectedInventoryItem(int selectedItem_) { selectedInventoryItem = selectedItem_; }
+	void setIsItemToEquipAWeapon(bool isItemToEquipAWeapon_) { isItemToEquipAWeapon = isItemToEquipAWeapon_; }
 };

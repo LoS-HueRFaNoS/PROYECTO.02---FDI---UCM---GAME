@@ -347,21 +347,23 @@ public:
 
 // ----------------------------------------------------
 enum class accionItem {
-	sellItem, showSellButton, showSendToStash, sendToStash, showSendToInventory, sendToInventory
+	sellItem, showSellButton, showSendToStash, sendToStash, showSendToInventory, sendToInventory, showEquipButton
 };
 class ButtonItemManagement : public Button {
 private:
 	int itemid;
 	accionItem accion_item;
+	bool isWeapon;
 	Interfaz* app;
 public:
 	ButtonItemManagement(SDLGame* game, EntityManager* mngr) : Button(game, mngr) {};
 
 	~ButtonItemManagement() {};
 
-	virtual void init(Vector2D pos, uint ancho, uint alto, Resources::TextureId imagen, accionItem accion_item_ , int itemId_, Interfaz* app_) {
+	virtual void init(Vector2D pos, uint ancho, uint alto, Resources::TextureId imagen, accionItem accion_item_ ,bool isWeapon_, int itemId_, Interfaz* app_) {
 		itemid = itemId_;
 		accion_item = accion_item_;
+		isWeapon = isWeapon_;
 		app = app_;
 		Button::init(pos, ancho, alto, imagen);
 	};
@@ -378,6 +380,7 @@ public:
 			break;
 		case accionItem::showSendToStash:
 			callbacks::showSendToStash(app, itemid);
+			callbacks::showEquipButton(app,isWeapon, itemid);
 			break;
 		case accionItem::sendToStash:
 			callbacks::sendToStash(app, itemid);
@@ -387,6 +390,9 @@ public:
 			break;
 		case accionItem::sendToInventory:
 			callbacks::sendToInventory(app, itemid);
+			break;
+		case accionItem::showEquipButton:
+			callbacks::showEquipButton(app,isWeapon, itemid);
 			break;
 		}
 		
@@ -628,11 +634,12 @@ public:
 // ----------------------------------------------------
 
 // ----------------------------------------------------
-enum class accionHeroEquipment {showUnequip,Unequip};
+enum class accionHeroEquipment {showUnequip,Unequip, showEquip, Equip};
 class ButtonHeroEquipment : public Button {
 private:
 	bool isWeapon = false;
 	int heroid;
+	int itemid;
 	Interfaz* app;
 	accionHeroEquipment accion;
 public:
@@ -640,9 +647,11 @@ public:
 
 	~ButtonHeroEquipment() {};
 
-	virtual void init(Vector2D pos, uint ancho, uint alto, Resources::TextureId imagen, accionHeroEquipment accion_, bool isWeapon_,int heroId_, Interfaz* app_) {
+	virtual void init(Vector2D pos, uint ancho, uint alto, Resources::TextureId imagen, accionHeroEquipment accion_, bool isWeapon_,int itemId_,int heroId_, Interfaz* app_) {
 		isWeapon = isWeapon_;
 		heroid = heroId_;
+		itemid = itemId_;
+
 		app = app_;
 		accion = accion_;
 		Button::init(pos, ancho, alto, imagen);
@@ -653,12 +662,20 @@ public:
 		switch (accion)
 		{
 		case accionHeroEquipment::showUnequip:
-			callbacks::showUnequipButton(app,isWeapon,heroid);
+			callbacks::showUnequipButton(app, isWeapon, heroid);
 			break;
 		case accionHeroEquipment::Unequip:
 			callbacks::unequip(app, isWeapon, heroid);
 			break;
+		case accionHeroEquipment::Equip:
+			callbacks::equip(app, isWeapon, itemid, heroid);
+			break;
+
+		case accionHeroEquipment::showEquip:
+			callbacks::showEquipButton(app, isWeapon, itemid);
+			break;
 		}
+	
 		
 		Sprite* s_ = GETCMP2(this, Sprite);
 		s_->setHide(true);

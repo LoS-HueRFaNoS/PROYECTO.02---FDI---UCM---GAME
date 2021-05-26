@@ -56,6 +56,8 @@ public:
 	void usePotion(Hero* hero, bool mana);
 
 	void itemFromInventoryToStash(int itemIndex);
+
+	void giveWeaponFromInventory(bool isWeapon, int itemid,int heroid);
 };
 
 #endif // !_PARTY_MANAGER_

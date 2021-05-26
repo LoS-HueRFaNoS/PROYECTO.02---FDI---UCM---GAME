@@ -275,13 +275,15 @@ void Interfaz::createInventory()
 					if (itemType == ItemType::ARMOR) {
 						pivot = src::_firstArmorId_;
 						auxId = (int) static_cast<Armor*>(item)->getArmorId();
+						isItemToEquipAWeapon = false;
 					}
 					else {
 						pivot = src::_firstWeaponId_;
 						auxId = (int) static_cast<Weapon*>(item)->getWeaponId();
+						isItemToEquipAWeapon = true;
 					}
 					id = (Resources::TextureId) (pivot + auxId + 1);
-					p->addButton(iManager->addButton<SDL_Object>(Vector2D(posX + margen, posY + margen), itemTam, itemTam, id));
+					p->addButton(iManager->addButton<ButtonItemManagement>(Vector2D(posX + margen, posY + margen), itemTam, itemTam, id, accionItem::showSendToStash, isItemToEquipAWeapon, indice, this));
 				}
 			}
 
@@ -309,7 +311,7 @@ void Interfaz::createInventory()
 			pivot = src::_firstWeaponId_;
 			auxId = (int)weapon->getWeaponId();
 			id = (Resources::TextureId) (pivot + auxId + 1);
-			p->addButton(iManager->addButton<ButtonHeroEquipment>(Vector2D(posX + slotTam + margen, posY + margen), itemTam, itemTam, id, accionHeroEquipment::showUnequip, true, i, this));
+			p->addButton(iManager->addButton<ButtonHeroEquipment>(Vector2D(posX + slotTam + margen, posY + margen), itemTam, itemTam, id, accionHeroEquipment::showUnequip, true,-1, i, this));
 		}
 		else
 			p->addButton(iManager->addButton<SDL_Object>(Vector2D(posX + slotTam, posY), slotTam, slotTam, src::WeaponSlot));
@@ -320,7 +322,7 @@ void Interfaz::createInventory()
 			pivot = src::_firstArmorId_;
 			auxId = (int)armor->getArmorId();
 			id = (Resources::TextureId) (pivot + auxId + 1);
-			p->addButton(iManager->addButton<ButtonHeroEquipment>(Vector2D(posX + slotTam * 2 + margen, posY + margen), 0.8 * slotTam, 0.8 * slotTam, id, accionHeroEquipment::showUnequip, false, i, this));
+			p->addButton(iManager->addButton<ButtonHeroEquipment>(Vector2D(posX + slotTam * 2 + margen, posY + margen), 0.8 * slotTam, 0.8 * slotTam, id, accionHeroEquipment::showUnequip, false,-1, i, this));
 		}
 		else
 			p->addButton(iManager->addButton<SDL_Object>(Vector2D(posX + slotTam * 2, posY), slotTam, slotTam, src::ArmorSlot));
@@ -662,7 +664,7 @@ void Interfaz::createStash() {
 				Armor* armadura = static_cast<Armor*>(loManager->getPlayerStash()->items[pagItems * 20 + i * 10 + j]);
 				tex = (int)src::_firstArmorId_ + (int)armadura->getArmorId() + 1;
 			}
-			p->addButton(iManager->addButton<ButtonItemManagement>(Vector2D(57 + 94 * j, 110 + 100 * (i + 2)), 75, 80, static_cast<Resources::TextureId>(tex), accionItem::showSellButton, j, this));
+			p->addButton(iManager->addButton<ButtonItemManagement>(Vector2D(57 + 94 * j, 110 + 100 * (i + 2)), 75, 80, static_cast<Resources::TextureId>(tex), accionItem::showSellButton,isWeapon, j, this));
 			//p->addButton(iManager->addButton<ButtonHeroEquipar>(Vector2D(x, y + 100), 100, 60, src::howToPlay, i, this));
 		}
 	}
@@ -814,13 +816,15 @@ void Interfaz::createInventoryLobby()
 					if (itemType == ItemType::ARMOR) {
 						pivot = src::_firstArmorId_;
 						auxId = (int) static_cast<Armor*>(item)->getArmorId();
+						isItemToEquipAWeapon = false;
 					}
 					else {
 						pivot = src::_firstWeaponId_;
 						auxId = (int) static_cast<Weapon*>(item)->getWeaponId();
+						isItemToEquipAWeapon = true;
 					}
 					id = (Resources::TextureId) (pivot + auxId + 1);
-					p->addButton(iManager->addButton<ButtonItemManagement>(Vector2D(posX + margen, posY + margen), itemTam, itemTam, id,accionItem::showSendToStash,indice,this));
+					p->addButton(iManager->addButton<ButtonItemManagement>(Vector2D(posX + margen, posY + margen), itemTam, itemTam, id,accionItem::showSendToStash,isItemToEquipAWeapon ,indice,this));
 				}
 			}
 
@@ -848,7 +852,7 @@ void Interfaz::createInventoryLobby()
 				pivot = src::_firstWeaponId_;
 				auxId = (int)weapon->getWeaponId();
 				id = (Resources::TextureId) (pivot + auxId + 1);
-				p->addButton(iManager->addButton<ButtonHeroEquipment>(Vector2D(posX + slotTam + margen, posY + margen), itemTam, itemTam, id,accionHeroEquipment::showUnequip, true,i,this ));
+				p->addButton(iManager->addButton<ButtonHeroEquipment>(Vector2D(posX + slotTam + margen, posY + margen), itemTam, itemTam, id,accionHeroEquipment::showUnequip, true,-1,i,this ));
 			} 
 			else
 				p->addButton(iManager->addButton<SDL_Object>(Vector2D(posX + slotTam, posY), slotTam, slotTam, src::WeaponSlot));
@@ -859,7 +863,7 @@ void Interfaz::createInventoryLobby()
 				pivot = src::_firstArmorId_;
 				auxId = (int)armor->getArmorId();
 				id = (Resources::TextureId) (pivot + auxId + 1);
-				p->addButton(iManager->addButton<ButtonHeroEquipment>(Vector2D(posX + slotTam * 2 + margen, posY + margen), 0.8 * slotTam, 0.8 * slotTam, id,accionHeroEquipment::showUnequip, false, i, this));
+				p->addButton(iManager->addButton<ButtonHeroEquipment>(Vector2D(posX + slotTam * 2 + margen, posY + margen), 0.8 * slotTam, 0.8 * slotTam, id,accionHeroEquipment::showUnequip, false,-1, i, this));
 			}
 			else
 				p->addButton(iManager->addButton<SDL_Object>(Vector2D(posX + slotTam * 2, posY), slotTam, slotTam, src::ArmorSlot));
@@ -877,7 +881,7 @@ void Interfaz::createUnequipPanel()
 	h = game_->getWindowHeight();
 	Panel* p = new Panel(UnequipPanel);
 	allPanels[UnequipPanel] = p;
-	p->addButton(iManager->addButton<ButtonHeroEquipment>(Vector2D(w / 2 - 150, 2 * h / 3 + 100), 300, 100, src::EquipButton, accionHeroEquipment::Unequip,isWeapon,selectedInventoryHero,this));
+	p->addButton(iManager->addButton<ButtonHeroEquipment>(Vector2D(w / 2 - 150, 2 * h / 3 + 100), 300, 100, src::StoreItemButton, accionHeroEquipment::Unequip,isWeapon,-1,selectedInventoryHero,this));
 }
 void Interfaz::toggleMinimap()
 {
@@ -907,7 +911,8 @@ void Interfaz::createSendToStashPanel()
 	h = game_->getWindowHeight();
 	Panel* p = new Panel(sendToStashPanel);
 	allPanels[sendToStashPanel] = p;
-	p->addButton(iManager->addButton<ButtonItemManagement>(Vector2D(w / 2 + w / 3 - 65, 75), 250, 100, src::StoreItemButton, accionItem::sendToStash, selectedInventoryItem, this));
+	p->addButton(iManager->addButton<ButtonItemManagement>(Vector2D(w / 2 + w / 3 - 65, 75), 250, 100, src::StoreItemButton, accionItem::sendToStash,isWeapon, selectedInventoryItem, this));
+	p->addButton(iManager->addButton<ButtonItemManagement>(Vector2D(w / 2 - w / 3 - 150, 2 * h / 3 + 100), 300, 100, src::EquipButton, accionItem::showEquipButton,isItemToEquipAWeapon, selectedInventoryItem, this));
 }
 
 
@@ -918,9 +923,50 @@ void Interfaz::createSellButtonPanel()
 	h = game_->getWindowHeight();
 	Panel* p = new Panel(SellButtonPanel);
 	allPanels[SellButtonPanel] = p;
-	p->addButton(iManager->addButton<ButtonItemManagement>(Vector2D(w / 2 - w / 3 - 150, 2 * h / 3 + 100), 300, 100, src::SellButton, accionItem::sellItem, selectedItem, this));
-	p->addButton(iManager->addButton<ButtonItemManagement>(Vector2D(w / 2 - 150, 2 * h / 3 + 100), 300, 100, src::take, accionItem::sendToInventory, selectedItem, this));
+	p->addButton(iManager->addButton<ButtonItemManagement>(Vector2D(w / 2 - w / 3 - 150, 2 * h / 3 + 100), 300, 100, src::SellButton, accionItem::sellItem,isWeapon, selectedItem, this));
+	p->addButton(iManager->addButton<ButtonItemManagement>(Vector2D(w / 2 - 150, 2 * h / 3 + 100), 300, 100, src::take, accionItem::sendToInventory,isWeapon, selectedItem, this));
 }
+
+void Interfaz::createEquipPanel()
+{
+	PartyManager* pa = TheElementalMaze::instance()->getPartyManager();
+	LobbyManager* lo = TheElementalMaze::instance()->getLobbyManager();
+	double slotTam = game_->getWindowWidth() / 16;
+	double posX =slotTam * 1.5;
+	double posY = slotTam * 0.8;
+	int w, h, tam;
+	int margen = 0.1 * slotTam;
+	int itemTam = 0.8 * slotTam;
+	Panel* p = new Panel(EquipPanel);
+	allPanels[EquipPanel] = p;
+	if (isItemToEquipAWeapon)
+	{
+		posX += slotTam*6;
+
+		for (int i = 0; i < pa->getHeroes().size(); ++i)
+		{
+			if (pa->getHeroes()[i] != nullptr && pa->getHeroes()[i]->getWeapon()->getWeaponId() == wID::DESARMADO)
+			{
+				p->addButton(iManager->addButton<ButtonHeroEquipment>(Vector2D(posX + slotTam + margen, posY + margen), itemTam, itemTam, src::EquipButton, accionHeroEquipment::Equip, true,selectedInventoryItem, i, this));
+			}
+			posY += slotTam * 1.33;
+		}
+	}
+	else
+	{
+		posX += slotTam * 7;
+
+		for (int i = 0; i < pa->getHeroes().size(); ++i)
+		{
+			if (pa->getHeroes()[i] != nullptr && pa->getHeroes()[i]->getArmor() == nullptr)
+			{
+				p->addButton(iManager->addButton<ButtonHeroEquipment>(Vector2D(posX + slotTam + margen, posY + margen), itemTam, itemTam, src::EquipButton, accionHeroEquipment::Equip, false, selectedInventoryItem, i, this));
+			}
+			posY += slotTam * 1.33;
+		}
+	}
+}
+
 
 void Interfaz::createPanel(idPanel panelID)
 {
@@ -1003,6 +1049,9 @@ void Interfaz::createPanel(idPanel panelID)
 		break;
 	case sendToStashPanel:
 		createSendToStashPanel();
+		break;
+	case EquipPanel:
+		createEquipPanel();
 		break;
 	case UnequipPanel:
 		createUnequipPanel();

@@ -195,3 +195,13 @@ void PartyManager::itemFromInventoryToStash(int itemIndex)
 	}
 
 }
+
+void PartyManager::giveWeaponFromInventory(bool isWeapon, int itemid, int heroid)
+{
+	Item* item = nullptr;
+	item = items_[itemid];
+
+	if (isWeapon) heroes_[heroid]->giveWeapon(static_cast<Weapon*>(item));
+	else heroes_[heroid]->giveArmor(static_cast<Armor*>(item));
+	items_.erase(items_.begin() + itemid);
+}
