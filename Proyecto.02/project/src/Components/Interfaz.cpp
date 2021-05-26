@@ -7,6 +7,7 @@
 #include "Image.h"
 #include "Transform.h"
 #include "StateBar.h"
+#include "BorrarAlMorir.h"
 #include "Laberinto.h"
 #include "Tutorial.h"
 #include "Paneles/PanelTurns.h"
@@ -122,6 +123,7 @@ void Interfaz::createEnemies()
 
 		//BARRA DE VIDA
 		b_->addComponent<StateBar>(enemy, health, SDL_Rect(RECT((x_ + i * espace + margenBarra / 2.0), (y_ + h_ / 10.0), tamBar_w, tamBar_h)));
+		b_->addComponent<BorrarAlMorir>(this, i , enemy);
 		//b_->addComponent<StateBar>(enemies[i], mana, SDL_Rect(RECT((x_ + i * espace), (y_ + h_ * 2.5 / k), w_ * 2, h_ / k)));
 		p->addButton(b_);
 	}
@@ -1313,4 +1315,10 @@ void Interfaz::checkHerosParty()
 			savedHeroes.push_back(allPanels[Heroes]->getButton(i));
 		}
 	if (changed) allPanels[Heroes]->swapButtonList(savedHeroes);
+}
+
+void Interfaz::enemyDead(int indice) {
+	Panel* p = allPanels[Enemies];
+	p->removeButton(indice);
+
 }
