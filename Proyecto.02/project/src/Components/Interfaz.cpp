@@ -385,7 +385,7 @@ void Interfaz::createTargets()
 
 	// BOTONES:
 	for (int i = 0; i < nTargets; i++) {
-		src::TextureId img = size_t(targets[i]->getType()) ? getEnemyTxt(i) : getHeroTxt(i);
+		src::TextureId img = size_t(targets[i]->getType()) ? getEnemyTxt(i) : getHeroTxt(i, true);
 		p->addButton(iManager->addButton<ButtonTarget>(Vector2D(x_ + espace * i, y_), w_, h_, img, (target)i));
 	}
 }

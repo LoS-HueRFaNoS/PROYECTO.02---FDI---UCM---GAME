@@ -90,8 +90,14 @@ void CombatManager::passTurn()
 	if (!checkEnd()) {
 		for (std::vector<Character*>::iterator it = _turnQueue.begin(); it != _turnQueue.end();) {
 			if ((*it)->isDead()) {
-				if (size_t((*it)->getType()) || (!size_t((*it)->getType()) && static_cast<Hero*>(*it)->getDeathGate()))
+				if ((bool)((*it)->getType()) || (!(bool)((*it)->getType()) && static_cast<Hero*>(*it)->getDeathGate())) {
+					if((bool)((*it)->getType()))
+						 _enemies.erase(std::find(_enemies.begin(), _enemies.end(), (*it)));
+					else
+						_heroes.erase(std::find(_heroes.begin(), _heroes.end(), (*it)));
+
 					it = _turnQueue.erase(it);
+				}
 				else
 					it++;
 			}

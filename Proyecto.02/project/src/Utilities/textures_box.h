@@ -10,7 +10,7 @@ namespace textures_box {
 	src::txtID getCharacterTxt(Character* character);
 	// heroes
 	src::txtID getHeroTxt(Hero* hero);
-	src::txtID getHeroTxt(uint number);
+	src::txtID getHeroTxt(uint number, bool combat = false);
 	// enemigos
 	src::txtID getEnemyTxt(Enemy* enemy);
 	src::txtID getEnemyTxt(uint number);

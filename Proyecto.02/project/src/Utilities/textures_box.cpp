@@ -30,10 +30,11 @@ src::txtID textures_box::getHeroTxt(Hero* hero)
 	return id;
 }
 
-src::txtID textures_box::getHeroTxt(uint number)
+src::txtID textures_box::getHeroTxt(uint number, bool combat)
 {
-	PartyManager* c = TheElementalMaze::instance()->getPartyManager();
-	std::vector<Hero*> heroes = c->getHeroes();
+	std::vector<Hero*> heroes = combat ? 
+		TheElementalMaze::instance()->getCombatManager()->getHeroesTeam(): 
+		TheElementalMaze::instance()->getPartyManager()->getHeroes();
 
 	return getHeroTxt(heroes[number]);
 }
