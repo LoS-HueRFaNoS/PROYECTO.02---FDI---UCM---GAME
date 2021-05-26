@@ -95,4 +95,5 @@ public:
 	void setSelectedInventoryHero(int selectedHero_) { selectedInventoryHero = selectedHero_; }
 	void setSelectedInventoryItem(int selectedItem_) { selectedInventoryItem = selectedItem_; }
 	void setIsItemToEquipAWeapon(bool isItemToEquipAWeapon_) { isItemToEquipAWeapon = isItemToEquipAWeapon_; }
+	void enemyDead(int indice);
 };
