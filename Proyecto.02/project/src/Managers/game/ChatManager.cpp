@@ -52,7 +52,6 @@ bool ChatManager::checkLineSize(std::string text, LineType type)
 		string line = text.substr(0, NUM_LETTERS_IN_LINE);
 		addLine(line, type);
 		string line2 = text.substr(NUM_LETTERS_IN_LINE);
-		if (line2.size() < NUM_LETTERS_IN_LINE) line2.resize(NUM_LETTERS_IN_LINE, ' ');
 		addLine(line2, type);
 		cut = true;
 	}
@@ -86,6 +85,7 @@ void ChatManager::addLine(std::string line, LineType type)
 		for (auto it = entities.begin(); it != entities.end(); it++) {
 			moveUp(it->get());
 		}
+		if (line.size() < NUM_LETTERS_IN_LINE) line.resize(NUM_LETTERS_IN_LINE, ' ');
 		addLine<Line>(firstLine, line, lineTypesMap_[type]);
 	}
 }
