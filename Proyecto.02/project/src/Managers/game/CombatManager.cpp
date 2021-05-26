@@ -409,6 +409,7 @@ void CombatManager::update()
 	if (stateChanged)
 		onStateChanged();
 
+#if (defined _DEBUG)
 	InputHandler* ih = InputHandler::instance();
 
 	if (ih->keyDownEvent()) {
@@ -430,4 +431,5 @@ void CombatManager::update()
 		else if (ih->isKeyDown(SDLK_q)) sendKeyEvent(-5);			// Poción de mana
 		else if (ih->isKeyDown(SDLK_e)) sendKeyEvent(-6);			// Poción de vida
 	}
+#endif
 }

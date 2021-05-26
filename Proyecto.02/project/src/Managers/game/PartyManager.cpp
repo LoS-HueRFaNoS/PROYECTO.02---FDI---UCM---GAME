@@ -25,9 +25,9 @@ PartyManager::PartyManager(std::vector<Hero*> heroes, std::vector<Item*> items, 
 
 PartyManager::~PartyManager()
 {
-	/*for (Item* i : items_) {
+	for (Item* i : items_) {
 		delete i; i = nullptr;
-	}*/
+	}
 	heroes_.clear();
 }
 
