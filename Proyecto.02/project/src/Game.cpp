@@ -102,9 +102,9 @@ void Game::initGame()
 
 void Game::closeGame()
 {
-	delete entityManager_;
-	delete characterManager_;
-	delete interfazManager_;
+	delete entityManager_; entityManager_ = nullptr;
+	delete characterManager_; characterManager_ = nullptr;
+	delete interfazManager_; interfazManager_ = nullptr;
 }
 
 void Game::start()

@@ -66,28 +66,43 @@ void TutorialManager::show(MsgId mID)
 		break;
 	}
 
-	if (!achievementsMap_[mID]) {
-		fondo = iManager->addButton<SDL_Object>(fondo_dest, id_fondo);
+	/*fondo = new SDL_Object(game_, manager_);
+	fondo->init(fondo_dest, id_fondo);
+	manager_->addEntity(fondo);
 
-		cartel = iManager->addButton<SDL_Object>(cartel_dest, id_cartel);
+	cartel = new SDL_Object(game_, manager_);
+	cartel->init(cartel_dest, id_cartel);
+	manager_->addEntity(cartel);
 
-		uint size = 64;
-		SDL_Rect dest = RECT(
-			cartel_dest.x + cartel_dest.w - size,
-			cartel_dest.y + 10,
-			size,
-			size
-		);
+	uint size = 64;
+	SDL_Rect dest = RECT(
+		cartel_dest.x + cartel_dest.w - size,
+		cartel_dest.y + 10,
+		size,
+		size
+	);
 
-		bt_exit = iManager->addButton<ButtonMenu>(dest, src::close, accionMenu::closeMessage);
-	}
+	bt_exit = new ButtonMenu(game_, manager_);
+	bt_exit->init(dest, src::close, accionMenu::closeMessage);
+	manager_->addEntity(bt_exit);*/
+
+	fondo = manager_->addButton<SDL_Object>(fondo_dest, id_fondo);
+	cartel = manager_->addButton<SDL_Object>(cartel_dest, id_cartel);
+	uint size = 64;
+	SDL_Rect dest = RECT(
+		cartel_dest.x + cartel_dest.w - size,
+		cartel_dest.y + 10,
+		size,
+		size
+	);
+	bt_exit = manager_->addButton<ButtonMenu>(dest, src::close, accionMenu::closeMessage);
 }
 
 //-------------------------------------------------------------
 
 TutorialManager::TutorialManager(InterfazManager* i) :
 	Component(ecs::Tutorial),
-	iManager(i),
+	manager_(i),
 	on_receive_message(false),
 	fondo(nullptr),
 	cartel(nullptr),
@@ -134,8 +149,9 @@ void TutorialManager::draw()
 
 // add message:: llamar a este método para invocar mensajes
 void TutorialManager::send(const Message& msg) {
-	msgsQueue_.emplace_back(msg);
-	/*on_receive_message = true;*/
+	if (!achievementsMap_[msg.id_]) {
+		msgsQueue_.emplace_back(msg);
+	}
 }
 
 // recibe mensajes de uno en uno:
@@ -160,9 +176,9 @@ void TutorialManager::actionMsg()
 {
 	auto& m = msgsQueue_[index];
 	activeMsg = m.id_;
+	setUIPause();
 	show(m.id_);
 	on_receive_message = true;
-	//iManager->togglePause();
 	index++;
 }
 
@@ -172,7 +188,7 @@ void TutorialManager::exitMessage() {
 	cartel->disable(); cartel = nullptr;
 	bt_exit->disable(); bt_exit = nullptr;
 	on_receive_message = false;
-	//iManager->togglePause();
+	setUIContinue();
 	achievementsMap_[activeMsg] = true;
 }
 
@@ -213,4 +229,16 @@ void TutorialManager::resetTutorial()
 		achievementsMap_[MsgId(j)] = false;
 	achievementsMap_[MsgId::_COFRE_] = true; //
 	achievementsMap_[MsgId::_LOBBY_] = true; //
+}
+
+//-------------------------------------------------------------
+
+void TutorialManager::setUIPause()
+{
+	manager_->setPause();
+}
+
+void TutorialManager::setUIContinue()
+{
+	manager_->setContinue();
 }

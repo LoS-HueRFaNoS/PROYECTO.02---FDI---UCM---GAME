@@ -8,12 +8,12 @@ class InterfazManager;
 
 class TutorialManager : public Component {
 private:
-	InterfazManager* iManager;
+	InterfazManager* manager_;
 	bool on_receive_message;
 
 	SDL_Object* fondo;
 	SDL_Object* cartel;
-	Button* bt_exit;
+	ButtonMenu* bt_exit;
 
 	void show(MsgId mID);
 	void actionMsg();
@@ -24,12 +24,17 @@ private:
 	void autoCompleted();
 	void resetTutorial();
 
+	void setUIPause();
+	void setUIContinue();
+
 public:
 	TutorialManager(InterfazManager* i);
 	virtual ~TutorialManager() {
-		fondo->disable(); fondo = nullptr;
-		cartel->disable(); cartel = nullptr;
-		bt_exit->disable(); bt_exit = nullptr;
+		if (cartel != nullptr) {
+			fondo->disable(); fondo = nullptr;
+			cartel->disable(); cartel = nullptr;
+			bt_exit->disable(); bt_exit = nullptr;
+		}
 		achievementsMap_.clear();
 	};
 

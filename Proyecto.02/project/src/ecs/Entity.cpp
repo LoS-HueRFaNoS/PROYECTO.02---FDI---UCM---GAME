@@ -4,7 +4,8 @@ Entity::Entity(SDLGame *game, EntityManager *mngr) :
 		game_(game), //
 		mngr_(mngr), //
 		enabled(true), //
-		active(true)
+		active(true),
+		pause(false)
 {
 }
 

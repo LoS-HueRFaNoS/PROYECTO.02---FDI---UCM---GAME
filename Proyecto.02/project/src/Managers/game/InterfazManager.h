@@ -27,5 +27,16 @@ public:
 	}
 
 	void togglePause() { pause = !pause; };
+	
+	void setPause() {
+		for (auto it = entities.begin(); it != entities.end(); it++) {
+			(*it)->setPause();
+		}
+	}
+	void setContinue() {
+		for (auto it = entities.begin(); it != entities.end(); it++) {
+			(*it)->setContinue();
+		}
+	}
 };
 
