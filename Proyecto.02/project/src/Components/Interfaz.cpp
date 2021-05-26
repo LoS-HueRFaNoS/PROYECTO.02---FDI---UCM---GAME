@@ -485,7 +485,6 @@ void Interfaz::createMenuPrincipal()
 
 void Interfaz::createLobby()
 {
-	game_->getAudioMngr()->playMusic(Resources::AudioId::Lobby, -1);
 	game_->getAudioMngr()->setMusicVolume(50);
 	Panel* p = new Panel(Lobby);
 	allPanels[Lobby] = p;
@@ -912,14 +911,14 @@ void Interfaz::createHeroToPartyPanel()
 
 void Interfaz::createSendToStashPanel()
 {
+	if (TheElementalMaze::instance()->gameState() != gameST::DURING_LOBBY) return;
 	int w, h;
 	w = game_->getWindowWidth();
 	h = game_->getWindowHeight();
 	Panel* p = new Panel(sendToStashPanel);
 	allPanels[sendToStashPanel] = p;
 	p->addButton(iManager->addButton<ButtonItemManagement>(Vector2D(w / 2 + w / 3 - 65, 75), 250, 100, src::StoreItemButton, accionItem::sendToStash,isWeapon, selectedInventoryItem, this));
-	p->addButton(iManager->addButton<ButtonItemManagement>(Vector2D(w / 2 - w / 3 - 150, 2 * h / 3 + 100), 300, 100, src::EquipButton, accionItem::showEquipButton,isItemToEquipAWeapon, selectedInventoryItem, this));
-}
+	}
 
 
 void Interfaz::createSellButtonPanel()

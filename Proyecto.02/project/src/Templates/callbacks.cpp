@@ -247,6 +247,8 @@ void callbacks::set_hability(int hability_)
 #pragma region MenuPrincipal
 void callbacks::startLobby(Interfaz* app)
 {
+	
+	TheElementalMaze::instance()->getSDLGame()->getAudioMngr()->playMusic(Resources::AudioId::Lobby, -1);
 	std::cout << "startLobby se ha activado\n";
 	if (app->getActivePan(MenuPrincipal)) 	app->removePanel(MenuPrincipal);
 	if (app->getActivePan(Fight)) 			app->removePanel(Fight);
@@ -530,7 +532,9 @@ void callbacks::showUnequipButton(Interfaz* app,bool isWeapon_, int heroid)
 {
 	PartyManager* pa = TheElementalMaze::instance()->getPartyManager();
 	LobbyManager* lo = TheElementalMaze::instance()->getLobbyManager();
-	if (app->getActivePan(UnequipPanel)) app->removePanel(UnequipPanel);
+	app->removePanel(UnequipPanel);
+	if (app->getActivePan(sendToStashPanel)) app->removePanel(sendToStashPanel);
+	if (app->getActivePan(EquipPanel)) app->removePanel(EquipPanel);
 	if (isWeapon_ && pa->getHeroes()[heroid]->getWeapon()->getWeaponId() == wID::DESARMADO) return;
 	app->setSelectedInventoryHero(heroid);
 	app->setIsWeapon(isWeapon_);
