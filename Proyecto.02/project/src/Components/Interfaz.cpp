@@ -463,6 +463,8 @@ void Interfaz::createWeaponAttacks()
 
 void Interfaz::createMenuPrincipal()
 {
+	game_->getAudioMngr()->playMusic(Resources::AudioId::MenuInicial, -1);
+	game_->getAudioMngr()->setMusicVolume(50);
 	Panel* p = new Panel(MenuPrincipal);
 	allPanels[MenuPrincipal] = p;
 	int w, h;
@@ -483,6 +485,8 @@ void Interfaz::createMenuPrincipal()
 
 void Interfaz::createLobby()
 {
+	game_->getAudioMngr()->playMusic(Resources::AudioId::Lobby, -1);
+	game_->getAudioMngr()->setMusicVolume(50);
 	Panel* p = new Panel(Lobby);
 	allPanels[Lobby] = p;
 	int w, h, x, y;

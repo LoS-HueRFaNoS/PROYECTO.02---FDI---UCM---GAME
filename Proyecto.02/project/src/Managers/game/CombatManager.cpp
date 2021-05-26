@@ -81,6 +81,8 @@ void CombatManager::showTargets()
 
 void CombatManager::startCombat(bool boss)
 {
+	game_->getAudioMngr()->playMusic(Resources::AudioId::CombateLich, -1);
+	game_->getAudioMngr()->setMusicVolume(50);
 	_boss = boss;
 	changeState(COMBAT_START);
 }
@@ -196,6 +198,8 @@ void CombatManager::endCombat()
 	}
 	else {
 		cout << "PERDISTE, ASI ES LA VIDA" << endl;
+		game_->getAudioMngr()->playMusic(Resources::AudioId::Derrota, 0);
+		game_->getAudioMngr()->setMusicVolume(50);
 		TheElementalMaze::instance()->getPartyManager()->partyLost();
 		// vuelta al lobby
 	}
