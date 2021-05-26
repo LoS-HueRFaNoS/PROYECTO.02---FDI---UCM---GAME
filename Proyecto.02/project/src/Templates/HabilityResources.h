@@ -176,7 +176,7 @@ public:
 		_id = habID::BLOODYSTRIKE;
 		_damageType = damTy::SLASH;
 		_habilityType = habTy::ATTACK;
-		_mod = ms::INT;
+		_mod = ms::DEX;
 		_obj = objTy::SINGLEENEMY;
 	}
 
