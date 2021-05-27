@@ -38,7 +38,7 @@ void Character::startTurn(CombatManager* cm)
 
 	std::string out = name() + " TURN";
 	cout << out << endl;
-	ChatManager::instance()->addLine(out, LineType::Info);
+	ChatManager::instance()->clean_n_addLine(out, LineType::Info);
 
 	for (std::vector<Condition*>::iterator it = _conditions.begin(); it != _conditions.end();)
 	{
@@ -115,7 +115,7 @@ void Character::recieveDamage(int damage, rpgLogic::damageType type, Character* 
 
 		std::string out = name() + " has fainted";
 		cout << out << endl;
-		ChatManager::instance()->addLine(out, _type == characterType::HERO ? LineType::DamageReceive : LineType::DamageDone);
+		ChatManager::instance()->add(out, _type == characterType::HERO ? LineType::DamageReceive : LineType::DamageDone);
 		for (std::vector<Condition*>::iterator it = _conditions.begin(); it != _conditions.end();)
 		{
 			if (!(*it)->onDeath(attacker))
@@ -148,11 +148,11 @@ bool Character::savingThrow(int save, rpgLogic::mainStat stat)
 {
 	std::string out = "Saving throw (" + std::to_string(save) + "): ";
 	cout << out << endl;
-	ChatManager::instance()->addLine(out, LineType::Info);
+	ChatManager::instance()->add(out, LineType::Info);
 	bool saved = save < throw20PlusMod(stat, false);
 	string mess = saved ? "Successful throw" : "Failed throw";
 	cout << mess << "\n";
-	ChatManager::instance()->addLine(mess, saved ? LineType::DamageDone : LineType::DamageReceive);
+	ChatManager::instance()->add(mess, saved ? LineType::DamageDone : LineType::DamageReceive);
 	return saved;
 }
 

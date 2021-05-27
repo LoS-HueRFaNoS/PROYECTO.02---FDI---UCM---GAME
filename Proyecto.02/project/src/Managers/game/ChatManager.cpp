@@ -9,6 +9,18 @@
 
 std::unique_ptr<ChatManager> ChatManager::instance_;
 
+void ChatManager::removeLine(Line* e)
+{
+	std::string aux = "";
+	aux.resize(NUM_LETTERS_IN_LINE, ' ');
+	if (e->getLine() == aux) {
+		e->disable();
+		for (auto it = entities.begin(); it != entities.end(); it++) {
+			moveDown(it->get());
+		}
+	}
+}
+
 void ChatManager::init()
 {
 	SDL_Panel pan = game_->relativePanel(710,790,540,190,1,6,20,20,5,5);
@@ -72,11 +84,53 @@ bool ChatManager::checkTopDownMax(int y)
 	else return false;
 }
 
+int ChatManager::getFirstLinePOS()
+{
+	double y = 0;
+	std::string aux = "";
+	aux.resize(NUM_LETTERS_IN_LINE, ' ');
+	for (auto it = entities.begin(); it != entities.end(); it++) {
+		Line* line = dynamic_cast<Line*>(it->get());
+		if (line != nullptr && line->getLine() != aux) {
+			Transform* tr_ = GETCMP2(line, Transform);
+			y = tr_->getPos().getY();
+		}
+	}
+	return y;
+}
+
+void ChatManager::clean()
+{
+	for (auto it = entities.rbegin(); it != entities.rend(); it++) {
+		Line* line = dynamic_cast<Line*>(it->get());
+		if (line != nullptr) {
+			removeLine(line);
+		}
+	}
+}
+
+void ChatManager::cleanALL()
+{
+	for (auto it = entities.rbegin(); it != entities.rend(); it++) {
+		Line* line = dynamic_cast<Line*>(it->get());
+		if (line != nullptr) {
+			line->disable();
+		}
+	}
+	entities.clear();
+}
+
 void ChatManager::Init()
 {
 	assert(instance_.get() == nullptr);
 	instance_.reset(new ChatManager(TheElementalMaze::instance()->getSDLGame()));
 	instance_->init();
+}
+
+void ChatManager::add(std::string line, LineType type)
+{
+	clean();
+	addLine(line, type);
 }
 
 void ChatManager::addLine(std::string line, LineType type)
@@ -90,11 +144,16 @@ void ChatManager::addLine(std::string line, LineType type)
 	}
 }
 
+void ChatManager::clean_n_addLine(std::string line, LineType type)
+{
+	cleanALL();
+	addLine(line, type);
+}
+
 void ChatManager::update()
 {
 	checkChatSize();
-	Transform* tr_ = GETCMP2(entities.rbegin()->get(), Transform);
-	double y = tr_->getPos().getY();
+	int y = getFirstLinePOS();
 
 	InputHandler* ih_ = InputHandler::instance();
 	if (ih_->mouseWheelEvent()) {
@@ -103,17 +162,15 @@ void ChatManager::update()
 			if (ih_->getMouseWheelState(InputHandler::UP)) // away from the user
 			{
 				if (checkTopDownMax(y + firstLine.h)) {
-					for (auto it = entities.begin(); it != entities.end(); it++) {
-						moveDown(it->get());
-					}
+					Line* line = dynamic_cast<Line*>(entities.rbegin()->get());
+					if (line != nullptr)
+						removeLine(line); // move down
 				}
 			}
 			else if (ih_->getMouseWheelState(InputHandler::DOWN)) // toward the user
 			{
 				if (checkTopDownMax(y - firstLine.h)) {
-					for (auto it = entities.begin(); it != entities.end(); it++) {
-						moveUp(it->get());
-					}
+					addLine("", linTy::Info); // move up
 				}
 			}
 		}

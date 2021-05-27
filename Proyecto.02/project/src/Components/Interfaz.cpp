@@ -385,7 +385,7 @@ void Interfaz::createTargets()
 
 	// BOTONES:
 	for (int i = 0; i < nTargets; i++) {
-		src::TextureId img = size_t(targets[i]->getType()) ? getEnemyTxt(i) : getHeroTxt(i, true);
+		src::TextureId img = size_t(targets[i]->getType()) ? getEnemyTxt(i) : getHeroTxt(i);
 		p->addButton(iManager->addButton<ButtonTarget>(Vector2D(x_ + espace * i, y_), w_, h_, img, (target)i));
 	}
 }
@@ -463,8 +463,6 @@ void Interfaz::createWeaponAttacks()
 
 void Interfaz::createMenuPrincipal()
 {
-	game_->getAudioMngr()->playMusic(Resources::AudioId::MenuInicial, -1);
-	game_->getAudioMngr()->setMusicVolume(50);
 	Panel* p = new Panel(MenuPrincipal);
 	allPanels[MenuPrincipal] = p;
 	int w, h;
@@ -485,7 +483,6 @@ void Interfaz::createMenuPrincipal()
 
 void Interfaz::createLobby()
 {
-	game_->getAudioMngr()->setMusicVolume(50);
 	Panel* p = new Panel(Lobby);
 	allPanels[Lobby] = p;
 	int w, h, x, y;
@@ -911,14 +908,14 @@ void Interfaz::createHeroToPartyPanel()
 
 void Interfaz::createSendToStashPanel()
 {
-	if (TheElementalMaze::instance()->gameState() != gameST::DURING_LOBBY) return;
 	int w, h;
 	w = game_->getWindowWidth();
 	h = game_->getWindowHeight();
 	Panel* p = new Panel(sendToStashPanel);
 	allPanels[sendToStashPanel] = p;
 	p->addButton(iManager->addButton<ButtonItemManagement>(Vector2D(w / 2 + w / 3 - 65, 75), 250, 100, src::StoreItemButton, accionItem::sendToStash,isWeapon, selectedInventoryItem, this));
-	}
+	p->addButton(iManager->addButton<ButtonItemManagement>(Vector2D(w / 2 - w / 3 - 150, 2 * h / 3 + 100), 300, 100, src::EquipButton, accionItem::showEquipButton,isItemToEquipAWeapon, selectedInventoryItem, this));
+}
 
 
 void Interfaz::createSellButtonPanel()
@@ -1227,9 +1224,12 @@ void Interfaz::update()
 			createPanel(Heroes);
 			createPanel(Info);
 			createPanel(Chat);
-			string s = "Habia una vez una casita de una bruja hecha de chocolate, entonces Hansel dijo....";
-			int k = s.size();
-			ChatManager::instance()->addLine(s, linTy::Experience);
+			string s = "Bienvenidos! Aqui comienza";
+			ChatManager::instance()->clean_n_addLine(s, linTy::Experience);
+			s = "vuestra aventura,";
+			ChatManager::instance()->add(s, linTy::Experience);
+			s = "mucha suerte mis muchachos!!";
+			ChatManager::instance()->add(s, linTy::Experience);
 		}
 		break;
 	case gameST::EXPLORING:
@@ -1250,7 +1250,7 @@ void Interfaz::update()
 			togglePanel(Movement);
 			createPanel(Fight);
 			createPanel(Enemies);
-			createPanel(Turns);
+			//createPanel(Turns);
 			toggleMinimap();
 		}
 		break;
@@ -1266,7 +1266,7 @@ void Interfaz::update()
 			TheElementalMaze::instance()->sendMsg(m);
 			toggleMinimap();
 			removePanel(Enemies);
-			removePanel(Turns);
+			//removePanel(Turns);
 			TheElementalMaze::instance()->removeComponent(ecs::PanelTurns);
 			checkHerosParty(); // check de puertas de la muerte
 			TheElementalMaze::instance()->changeState(gameST::COMBAT);

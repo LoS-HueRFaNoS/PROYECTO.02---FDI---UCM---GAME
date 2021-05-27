@@ -26,6 +26,7 @@ private:
 		b->init(std::forward<TArgs>(mArgs)...);
 		return b;
 	}
+	void removeLine(Line* e);
 
 	void init();
 	void moveUp(Entity* e);
@@ -34,6 +35,10 @@ private:
 	bool checkLineSize(std::string line, LineType type);
 	void checkChatSize();
 	bool checkTopDownMax(int y);
+	int getFirstLinePOS();
+	void clean();
+	void cleanALL();
+
 
 public:
 	static void Init();
@@ -43,7 +48,9 @@ public:
 		return instance_.get();
 	}
 
+	void add(std::string line, LineType type);
 	void addLine(std::string line, LineType type);
+	void clean_n_addLine(std::string line, LineType type);
 	void update() override;
 	void draw() override;
 
