@@ -43,6 +43,8 @@ public:
 
 	void partyLost();
 
+	void clearItems();
+
 	bool addItem(Item* i);
 
 	void changeItemWithHero(int index, int hero);

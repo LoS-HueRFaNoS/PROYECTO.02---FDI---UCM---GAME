@@ -308,7 +308,7 @@ void Interfaz::createInventory()
 		p->addButton(iManager->addButton<SDL_Object>(Vector2D(posX, posY), slotTam, slotTam, getHeroTxt(i)));
 
 		Weapon* weapon = heroes[i]->getWeapon();
-		if (weapon != nullptr) {
+		if (weapon != nullptr && weapon->getWeaponId() != wID::DESARMADO) {
 			p->addButton(iManager->addButton<SDL_Object>(Vector2D(posX + slotTam, posY), slotTam, slotTam, src::Slot));
 			pivot = src::_firstWeaponId_;
 			auxId = (int)weapon->getWeaponId();
@@ -849,7 +849,7 @@ void Interfaz::createInventoryLobby()
 			p->addButton(iManager->addButton<SDL_Object>(Vector2D(posX, posY), slotTam, slotTam, getHeroTxt(i)));
 
 			Weapon* weapon = heroes[i]->getWeapon();
-			if (weapon != nullptr) {
+			if (weapon != nullptr && weapon->getWeaponId() != wID::DESARMADO) {
 				p->addButton(iManager->addButton<SDL_Object>(Vector2D(posX + slotTam, posY), slotTam, slotTam, src::Slot));
 				pivot = src::_firstWeaponId_;
 				auxId = (int)weapon->getWeaponId();
@@ -883,6 +883,7 @@ void Interfaz::createUnequipPanel()
 	h = game_->getWindowHeight();
 	Panel* p = new Panel(UnequipPanel);
 	allPanels[UnequipPanel] = p;
+	if (getActivePan(EquipPanel)) removePanel(EquipPanel);
 	p->addButton(iManager->addButton<ButtonHeroEquipment>(Vector2D(w / 2 - 150, 2 * h / 3 + 100), 300, 100, src::StoreItemButton, accionHeroEquipment::Unequip,isWeapon,-1,selectedInventoryHero,this));
 }
 void Interfaz::toggleMinimap()
@@ -914,7 +915,7 @@ void Interfaz::createSendToStashPanel()
 	Panel* p = new Panel(sendToStashPanel);
 	allPanels[sendToStashPanel] = p;
 	p->addButton(iManager->addButton<ButtonItemManagement>(Vector2D(w / 2 + w / 3 - 65, 75), 250, 100, src::StoreItemButton, accionItem::sendToStash,isWeapon, selectedInventoryItem, this));
-	p->addButton(iManager->addButton<ButtonItemManagement>(Vector2D(w / 2 - w / 3 - 150, 2 * h / 3 + 100), 300, 100, src::EquipButton, accionItem::showEquipButton,isItemToEquipAWeapon, selectedInventoryItem, this));
+	//p->addButton(iManager->addButton<ButtonItemManagement>(Vector2D(w / 2 - w / 3 - 150, 2 * h / 3 + 100), 300, 100, src::EquipButton, accionItem::showEquipButton,isItemToEquipAWeapon, selectedInventoryItem, this));
 }
 
 
@@ -941,6 +942,7 @@ void Interfaz::createEquipPanel()
 	int itemTam = 0.8 * slotTam;
 	Panel* p = new Panel(EquipPanel);
 	allPanels[EquipPanel] = p;
+	if (getActivePan(UnequipPanel)) removePanel(UnequipPanel);
 	if (isItemToEquipAWeapon)
 	{
 		posX += slotTam*6;
@@ -949,6 +951,7 @@ void Interfaz::createEquipPanel()
 		{
 			if (pa->getHeroes()[i] != nullptr && pa->getHeroes()[i]->getWeapon()->getWeaponId() == wID::DESARMADO)
 			{
+				//p->addButton(iManager->addButton<ButtonHeroEquipment>(Vector2D(0, posY + margen), itemTam, itemTam, src::EquipButton, accionHeroEquipment::Equip, true,selectedInventoryItem, i, this));
 				p->addButton(iManager->addButton<ButtonHeroEquipment>(Vector2D(posX + slotTam + margen, posY + margen), itemTam, itemTam, src::EquipButton, accionHeroEquipment::Equip, true,selectedInventoryItem, i, this));
 			}
 			posY += slotTam * 1.33;
@@ -1266,7 +1269,7 @@ void Interfaz::update()
 			TheElementalMaze::instance()->sendMsg(m);
 			toggleMinimap();
 			removePanel(Enemies);
-			//removePanel(Turns);
+			removePanel(Turns);
 			TheElementalMaze::instance()->removeComponent(ecs::PanelTurns);
 			checkHerosParty(); // check de puertas de la muerte
 			TheElementalMaze::instance()->changeState(gameST::COMBAT);

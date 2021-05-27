@@ -79,7 +79,6 @@ void TheElementalMaze::init()
 void TheElementalMaze::startExploring()
 {
 	game_->getAudioMngr()->playMusic(Resources::AudioId::Exploracion, -1);
-	game_->getAudioMngr()->setMusicVolume(50);
 	lobbyManager_->startExploring();
 }
 

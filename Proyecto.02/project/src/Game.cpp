@@ -76,7 +76,7 @@ void Game::initGame()
 	SDL_RenderPresent(game_->getRenderer());
 
 	game_->initResources();
-
+	game_->getAudioMngr()->setMusicVolume(15);
 	entityManager_ = new EntityManager(game_);
 
 	fondo = new Fondo(game_, entityManager_);
@@ -87,7 +87,10 @@ void Game::initGame()
 
 	interfazManager_ = new InterfazManager(game_);
 
+#ifdef DEBUG
 	system("cls");
+#endif // DEBUG
+
 
 	gameManager_ = TheElementalMaze::initInstace(game_, entityManager_, characterManager_, interfazManager_);
 

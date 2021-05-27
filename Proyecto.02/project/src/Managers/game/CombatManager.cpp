@@ -81,9 +81,11 @@ void CombatManager::showTargets()
 
 void CombatManager::startCombat(bool boss)
 {
-	game_->getAudioMngr()->playMusic(Resources::AudioId::CombateLich, -1);
-	game_->getAudioMngr()->setMusicVolume(50);
 	_boss = boss;
+	if (_boss)
+		game_->getAudioMngr()->playMusic(Resources::AudioId::CombateLich, -1);
+	else
+		game_->getAudioMngr()->playMusic(Resources::AudioId::Exploracion, -1);
 	changeState(COMBAT_START);
 }
 
@@ -93,8 +95,8 @@ void CombatManager::passTurn()
 		for (std::vector<Character*>::iterator it = _turnQueue.begin(); it != _turnQueue.end();) {
 			if ((*it)->isDead()) {
 				if ((bool)((*it)->getType()) || (!(bool)((*it)->getType()) && static_cast<Hero*>(*it)->getDeathGate())) {
-					if((bool)((*it)->getType()))
-						 _enemies.erase(std::find(_enemies.begin(), _enemies.end(), (*it)));
+					if ((bool)((*it)->getType()))
+						_enemies.erase(std::find(_enemies.begin(), _enemies.end(), (*it)));
 					else
 						_heroes.erase(std::find(_heroes.begin(), _heroes.end(), (*it)));
 
@@ -199,7 +201,6 @@ void CombatManager::endCombat()
 	else {
 		cout << "PERDISTE, ASI ES LA VIDA" << endl;
 		game_->getAudioMngr()->playMusic(Resources::AudioId::Derrota, 0);
-		game_->getAudioMngr()->setMusicVolume(50);
 		TheElementalMaze::instance()->getPartyManager()->partyLost();
 		// vuelta al lobby
 	}
@@ -390,7 +391,7 @@ void CombatManager::sendKeyEvent(int key)
 			tryEscape();
 			break;
 		case -5: case -6:
-			TheElementalMaze::instance()->getPartyManager()->usePotion((Hero*)currentCharacter,(6+key));
+			TheElementalMaze::instance()->getPartyManager()->usePotion((Hero*)currentCharacter, (6 + key));
 			break;
 		default:
 			if (!size_t(currentCharacter->getType()))
@@ -423,7 +424,7 @@ void CombatManager::update()
 	InputHandler* ih = InputHandler::instance();
 
 	if (ih->keyDownEvent()) {
-			 if (ih->isKeyDown(SDLK_0)) sendKeyEvent(0);
+		if (ih->isKeyDown(SDLK_0)) sendKeyEvent(0);
 		else if (ih->isKeyDown(SDLK_1)) sendKeyEvent(1);
 		else if (ih->isKeyDown(SDLK_2)) sendKeyEvent(2);
 		else if (ih->isKeyDown(SDLK_3)) sendKeyEvent(3);
@@ -433,8 +434,8 @@ void CombatManager::update()
 		else if (ih->isKeyDown(SDLK_7)) sendKeyEvent(7);
 		else if (ih->isKeyDown(SDLK_8)) sendKeyEvent(8);
 		else if (ih->isKeyDown(SDLK_9)) sendKeyEvent(9);
-		else if (ih->isKeyDown(SDLK_RETURN)) 
-										sendKeyEvent(-1);			// Saltar turno , terminar turno
+		else if (ih->isKeyDown(SDLK_RETURN))
+			sendKeyEvent(-1);			// Saltar turno , terminar turno
 		else if (ih->isKeyDown(SDLK_l)) sendKeyEvent(-2);			// Ataque ligero
 		else if (ih->isKeyDown(SDLK_h)) sendKeyEvent(-3);			// Ataque pesado
 		else if (ih->isKeyDown(SDLK_x)) sendKeyEvent(-4);			// Intentar Huir

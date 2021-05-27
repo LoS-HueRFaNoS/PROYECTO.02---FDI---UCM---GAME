@@ -94,11 +94,17 @@ void PartyManager::partyLost()
 	heroes_.clear();
 	for (Item* i : items_)
 		delete i;
-	items_.clear();
+	clearItems();
 	heroes_ = std::vector<Hero*>(4, nullptr);
 	gold = 0;
 	manaPotions = 0;
 	healthPotions = 0;
+}
+
+void PartyManager::clearItems()
+{
+	items_.clear();
+	items_ = std::vector<Item*>(NUM_ITEMS);
 }
 
 bool PartyManager::addItem(Item* i)

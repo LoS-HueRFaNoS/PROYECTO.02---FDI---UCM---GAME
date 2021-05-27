@@ -54,7 +54,7 @@ void callbacks::heroType(uint numberHeroe) {
 
 void callbacks::createDDPan(bool active, uint numberHeroe) {
 	Interfaz* i = GETCMP2(TheElementalMaze::instance(), Interfaz);
-	
+
 	if (!active) i->createFichaDD(numberHeroe);
 	else if (active) i->removePanel(DDPan);
 }
@@ -226,7 +226,7 @@ void callbacks::set_hability(int hability_)
 {
 	CombatManager* c = GETCMP2(TheElementalMaze::instance(), CombatManager); // falta paso intermedio para guardar la habilidad y seleccionar enemigos
 	c->sendKeyEvent(hability_); //indice de la habilidad
-	
+
 	Interfaz* i = GETCMP2(TheElementalMaze::instance(), Interfaz);
 	if (i->getActivePan(Habilities)) i->removePanel(Habilities);
 	if (i->getActivePan(WeaponsAttacks)) i->removePanel(WeaponsAttacks);
@@ -236,8 +236,8 @@ void callbacks::set_hability(int hability_)
 		// abre panel selecionar objetivo
 		callbacks::createPanel(false, Targets);
 	}
-	else { 
-		if (!i->getEnablePan(Fight)) i->togglePanel(Fight); 
+	else {
+		if (!i->getEnablePan(Fight)) i->togglePanel(Fight);
 	}
 }
 
@@ -247,7 +247,7 @@ void callbacks::set_hability(int hability_)
 #pragma region MenuPrincipal
 void callbacks::startLobby(Interfaz* app)
 {
-	
+
 	TheElementalMaze::instance()->getSDLGame()->getAudioMngr()->playMusic(Resources::AudioId::Lobby, -1);
 	std::cout << "startLobby se ha activado\n";
 	if (app->getActivePan(MenuPrincipal)) 	app->removePanel(MenuPrincipal);
@@ -261,15 +261,15 @@ void callbacks::startLobby(Interfaz* app)
 	else if (!TheElementalMaze::instance()->isFirstLobbyCreated())
 	{
 		TheElementalMaze::instance()->firstLobby();
-	
+
 	}
 
 	TheElementalMaze::instance()->changeState(gameST::DURING_LOBBY);
 	cout << "LOBBY REACHED" << endl;
-	
+
 	app->createPanel(Lobby);
-	
-	
+
+
 }
 void callbacks::startExp(Interfaz* app)
 {
@@ -287,7 +287,7 @@ void callbacks::startExp(Interfaz* app)
 		app->removePanel(Lobby);
 		//app->removePanel(Heroes);
 		TheElementalMaze::instance()->changeState(gameST::START_EXPLORING);
-		
+
 
 		std::cout << "startExploration se ha activado\n";
 	}
@@ -335,7 +335,7 @@ void callbacks::stash(Interfaz* app)
 	app->createPanel(StashPanel);
 	app->createPanel(ButtonHeroToPartyPanel);
 	app->togglePanel(ButtonHeroToPartyPanel);
-	std::cout << " vamos al stash"<< std::endl;
+	std::cout << " vamos al stash" << std::endl;
 }
 void callbacks::shop(Interfaz* app)
 {
@@ -397,7 +397,7 @@ void callbacks::retrocederItems(Interfaz* app)
 	std::cout << "retrocedemos en la página de items" << std::endl;
 }
 
-void callbacks::infoTienda(Interfaz* app,bool isHero, int id)
+void callbacks::infoTienda(Interfaz* app, bool isHero, int id)
 {
 	LobbyManager* lo = TheElementalMaze::instance()->getLobbyManager();
 	if (!isHero)
@@ -405,10 +405,10 @@ void callbacks::infoTienda(Interfaz* app,bool isHero, int id)
 		app->setNameItem(lo->getLobbyStore()->items[id]->item->getName());
 		app->setDescrItem(lo->getLobbyStore()->items[id]->item->getDescription());
 		app->togglePanel(infoTiendaPanel);
-		app->createPanel(infoTiendaPanel);	
+		app->createPanel(infoTiendaPanel);
 	}
 	std::cout << "Descripción de la tienda actualizada" << std::endl;
-	
+
 }
 void callbacks::sendHeroToStash(Interfaz* app, int heroid)
 {
@@ -464,7 +464,7 @@ void callbacks::inventarioLobby(Interfaz* app)
 	if (app->getActivePan(UnequipPanel)) app->removePanel(UnequipPanel);
 	std::cout << "vamos al inventario" << std::endl;
 }
-void callbacks::sellStashItem(Interfaz* app,int itemid)
+void callbacks::sellStashItem(Interfaz* app, int itemid)
 {
 	LobbyManager* lo = TheElementalMaze::instance()->getLobbyManager();
 	lo->sellItemFromStash(itemid);
@@ -501,13 +501,15 @@ void callbacks::inventarioToLobby(Interfaz* app)
 	std::cout << "vamos al lobby" << std::endl;
 }
 
-void callbacks::showSendToStash(Interfaz* app, int itemid){
+void callbacks::showSendToStash(Interfaz* app, int itemid) {
+	if (TheElementalMaze::instance()->gameState() != gameST::DURING_LOBBY)
+		return;
 	if (app->getActivePan(sendToStashPanel)) app->removePanel(sendToStashPanel);
 	app->setSelectedInventoryItem(itemid);
 	app->createPanel(sendToStashPanel);
 }
 
-void callbacks::sendToStash(Interfaz* app,int itemid)
+void callbacks::sendToStash(Interfaz* app, int itemid)
 {
 	PartyManager* pa = TheElementalMaze::instance()->getPartyManager();
 	LobbyManager* lo = TheElementalMaze::instance()->getLobbyManager();
@@ -528,7 +530,7 @@ void callbacks::sendToInventory(Interfaz* app, int itemid)
 	app->removePanel(SellButtonPanel);
 	std::cout << "Enviar objeto al stash" << std::endl;
 }
-void callbacks::showUnequipButton(Interfaz* app,bool isWeapon_, int heroid)
+void callbacks::showUnequipButton(Interfaz* app, bool isWeapon_, int heroid)
 {
 	PartyManager* pa = TheElementalMaze::instance()->getPartyManager();
 	LobbyManager* lo = TheElementalMaze::instance()->getLobbyManager();
@@ -540,18 +542,20 @@ void callbacks::showUnequipButton(Interfaz* app,bool isWeapon_, int heroid)
 	app->setIsWeapon(isWeapon_);
 	app->createPanel(UnequipPanel);
 }
-void callbacks::showEquipButton(Interfaz* app,bool isWeapon_, int itemid)
+void callbacks::showEquipButton(Interfaz* app, bool isWeapon_, int itemid)
 {
 	if (app->getActivePan(UnequipPanel)) app->removePanel(UnequipPanel);
 	app->removePanel(EquipPanel);
 	app->setIsItemToEquipAWeapon(isWeapon_);
+	app->setSelectedInventoryItem(itemid);
 	app->createPanel(EquipPanel);
 }
-void callbacks::equip(Interfaz* app, bool isWeapon,int itemid, int heroid)
+
+void callbacks::equip(Interfaz* app, bool isWeapon, int itemid, int heroid)
 {
 	PartyManager* pa = TheElementalMaze::instance()->getPartyManager();
 	pa->giveWeaponFromInventory(isWeapon, itemid, heroid);
-	
+
 	app->removePanel(EquipPanel);
 	app->removePanel(SellButtonPanel);
 	app->removePanel(sendToStashPanel);
@@ -575,9 +579,9 @@ void callbacks::unequip(Interfaz* app, bool isWeapon, int heroid)
 	Item* item = nullptr;
 	bool espacio = false;
 	if (isWeapon)
-	item = pa->getHeroes()[heroid]->getWeapon();
+		item = pa->getHeroes()[heroid]->getWeapon();
 	else
-	item = pa->getHeroes()[heroid]->getArmor();
+		item = pa->getHeroes()[heroid]->getArmor();
 	espacio = pa->addItem(item);
 	if (espacio)
 	{

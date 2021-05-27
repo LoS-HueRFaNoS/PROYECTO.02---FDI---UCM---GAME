@@ -551,7 +551,6 @@ public:
 	virtual void click()
 	{
 		game_->getAudioMngr()->playMusic(Resources::Exploracion, -1);
-		game_->getAudioMngr()->setMusicVolume(50);
 
 		callbacks::createPanel(activated, pan_);
 		if (!activated) turnON();
