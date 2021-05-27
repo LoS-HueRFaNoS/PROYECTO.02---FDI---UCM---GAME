@@ -4,6 +4,7 @@
 #include "PartyManager.h"
 #include "../TheElementalMaze.h"
 #include "../../Components/Laberinto.h"
+#include "ChatManager.h"
 
 #pragma region CombatePorConsola
 
@@ -144,11 +145,12 @@ void CombatManager::tryEscape()
 {
 	if (isABoss()) {
 		cout << "YOU CAN'T ESCAPE FROM THIS COMBAT\n";
+		ChatManager::instance()->addLine("YOU CAN'T ESCAPE FROM THIS COMBAT", linCol::Red);
 		return;
 	}
 
 	cout << "YOU TRY TO ESCAPE\n";
-
+	ChatManager::instance()->add("YOU TRY TO ESCAPE", LineColor::White);
 	int tiradasH = 0;
 	int tiradasE = 0;
 
@@ -166,6 +168,7 @@ void CombatManager::tryEscape()
 
 	if (tiradasH > tiradasE) {
 		cout << "YOU ESCAPED \n";
+		ChatManager::instance()->add("YOU ESCAPED", LineColor::Green);
 		bool leftBehind = false;
 		_exp = 0;
 
@@ -174,22 +177,27 @@ void CombatManager::tryEscape()
 				h->killHero();
 				leftBehind = true;
 				cout << "You just left " << h->name() << " behind !!! \n";
+				ChatManager::instance()->add("You just left " + h->name() + " behind !!!", LineColor::Red);
 			}
-		if (!leftBehind)
+		if (!leftBehind) {
 			cout << "No one was left behind\n";
+			ChatManager::instance()->add("No one was left behind", LineColor::White);
+		}
 		changeState(COMBAT_END);
 		_win = true;
 	}
 	else {
 		cout << "YOU FAILED TO ESCAPE \n";
+		ChatManager::instance()->add("YOU FAILED TO ESCAPE", LineColor::Red);
 	}
 }
 
 void CombatManager::endCombat()
 {
 	if (_win) {
-		cout << "GANASTE, ERES BUENISIMO NO ?" << endl << _exp << " DE EXPERIENCIA GANADA" << endl;
-
+		cout << "YOU WIN" << endl << _exp << " EXP SHARED" << endl;
+		ChatManager::instance()->add("YOU WIN", LineColor::Green);
+		ChatManager::instance()->add(std::to_string(_exp) + " exp", LineColor::Yellow);
 		for (Hero* h : _heroes) {
 			if (h->getDeathGate())
 				TheElementalMaze::instance()->getPartyManager()->removeHero(h);
@@ -199,7 +207,8 @@ void CombatManager::endCombat()
 		// si es lich derrotado y vuelve a empezar
 	}
 	else {
-		cout << "PERDISTE, ASI ES LA VIDA" << endl;
+		cout << "Another party lost to the Lich" << endl;
+		ChatManager::instance()->add("Another party lost to the Lich", LineColor::Red);
 		game_->getAudioMngr()->playMusic(Resources::AudioId::Derrota, 0);
 		TheElementalMaze::instance()->getPartyManager()->partyLost();
 		// vuelta al lobby
@@ -275,18 +284,26 @@ void CombatManager::castToSingleTarget(int input)
 
 void CombatManager::throwHability(Character* objective, Hability* hability)
 {
-	cout << hability->name() << " on " << objective->name() << endl;
+	std::string out = hability->name() + " on " + objective->name();
+	cout << out << endl;
+	ChatManager::instance()->add(out, LineColor::White);
 	int hit = hability->getCaster()->throw20PlusMod(hability->getMod(), true);
 	if ((size_t(hability->getHabilityType()) > 1) || objective->checkHit(hit)) {
 		cout << hability->name() << " hits" << endl;;
-		if (hit == 100)
+		ChatManager::instance()->add(hability->name() + " hits", LineColor::White);
+		if (hit == 100) {
 			cout << "CRITICAL" << endl;
+			ChatManager::instance()->add("CRITICAL", LineColor::Yellow);
+		}
 		hability->throwHability(objective, hit == 100);
 	}
 	else {
-		if (hit == -100)
+		if (hit == -100) {
 			cout << "CRITICAL FAILURE" << endl;
+			ChatManager::instance()->add("CRITICAL FAILURE", LineColor::Red);
+		}
 		cout << "No Hit" << endl;
+		ChatManager::instance()->add("No hit", LineColor::White);
 	}
 	cout << "\n\n";
 
@@ -339,7 +356,10 @@ void CombatManager::onStateChanged()
 		passTurn();
 		break;
 	case START_TURN:
+#ifdef DEBUG
 		showTeams();
+#endif // DEBUG
+
 		showQ();
 		cout << "---------- START TURN ----------" << endl;
 		changeState(ACTION_PHASE_SPELL);
@@ -355,6 +375,7 @@ void CombatManager::onStateChanged()
 	case END_TURN:
 		currentCharacter->endTurn();
 		cout << "---------- PRESS ENTER TO END TURN ----------" << endl;
+		ChatManager::instance()->addLine("PRESS TO END TURN", linCol::White);
 		break;
 	case COMBAT_END:
 		endCombat();
@@ -378,7 +399,10 @@ void CombatManager::sendKeyEvent(int key)
 	switch (_state)
 	{
 	case END_TURN:
-		if (key == -1) changeState(PASS_TURN);
+		if (key == -1) {
+			changeState(PASS_TURN);
+			ChatManager::instance()->clean_n_addLine("", linCol::White);
+		}
 		break;
 	case ACTION_PHASE_SPELL:
 
@@ -441,6 +465,6 @@ void CombatManager::update()
 		else if (ih->isKeyDown(SDLK_x)) sendKeyEvent(-4);			// Intentar Huir
 		else if (ih->isKeyDown(SDLK_q)) sendKeyEvent(-5);			// Poción de mana
 		else if (ih->isKeyDown(SDLK_e)) sendKeyEvent(-6);			// Poción de vida
-	}
+}
 #endif
 }

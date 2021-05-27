@@ -29,10 +29,11 @@ void ChatManager::init()
 	margin = pan.mh;
 	chatSize = NUM_LINES;
 	// color messages
-	lineTypesMap_[linTy::Info] = hex2sdlcolor("#FFFFFFFF");
-	lineTypesMap_[linTy::Experience] = hex2sdlcolor("#BBBB00FF");
-	lineTypesMap_[linTy::DamageDone] = hex2sdlcolor("#FF0000FF");
-	lineTypesMap_[linTy::DamageReceive] = hex2sdlcolor("#0055FFFF");
+	lineTypesMap_[linCol::White] = hex2sdlcolor("#FFFFFFFF");
+	lineTypesMap_[linCol::Yellow] = hex2sdlcolor("#FFD700FF");
+	lineTypesMap_[linCol::Green] = hex2sdlcolor("#00FF00FF");
+	lineTypesMap_[linCol::Red] = hex2sdlcolor("#FF0000FF");
+	lineTypesMap_[linCol::Blue] = hex2sdlcolor("#0055FFFF");
 }
 
 void ChatManager::moveUp(Entity* e)
@@ -57,7 +58,7 @@ void ChatManager::drawLine(Entity* e)
 	};
 }
 
-bool ChatManager::checkLineSize(std::string text, LineType type)
+bool ChatManager::checkLineSize(std::string text, LineColor type)
 {
 	bool cut = false;
 	if (text.size() > NUM_LETTERS_IN_LINE) {
@@ -127,13 +128,13 @@ void ChatManager::Init()
 	instance_->init();
 }
 
-void ChatManager::add(std::string line, LineType type)
+void ChatManager::add(std::string line, LineColor type)
 {
 	clean();
 	addLine(line, type);
 }
 
-void ChatManager::addLine(std::string line, LineType type)
+void ChatManager::addLine(std::string line, LineColor type)
 {
 	if (!checkLineSize(line, type)) {
 		for (auto it = entities.begin(); it != entities.end(); it++) {
@@ -144,7 +145,7 @@ void ChatManager::addLine(std::string line, LineType type)
 	}
 }
 
-void ChatManager::clean_n_addLine(std::string line, LineType type)
+void ChatManager::clean_n_addLine(std::string line, LineColor type)
 {
 	cleanALL();
 	addLine(line, type);
@@ -170,7 +171,7 @@ void ChatManager::update()
 			else if (ih_->getMouseWheelState(InputHandler::DOWN)) // toward the user
 			{
 				if (checkTopDownMax(y - firstLine.h)) {
-					addLine("", linTy::Info); // move up
+					addLine("", linCol::White); // move up
 				}
 			}
 		}

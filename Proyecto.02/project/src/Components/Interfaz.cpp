@@ -1228,11 +1228,11 @@ void Interfaz::update()
 			createPanel(Info);
 			createPanel(Chat);
 			string s = "Bienvenidos! Aqui comienza";
-			ChatManager::instance()->clean_n_addLine(s, linTy::Experience);
+			ChatManager::instance()->clean_n_addLine(s, linCol::Yellow);
 			s = "vuestra aventura,";
-			ChatManager::instance()->add(s, linTy::Experience);
+			ChatManager::instance()->add(s, linCol::Yellow);
 			s = "mucha suerte mis muchachos!!";
-			ChatManager::instance()->add(s, linTy::Experience);
+			ChatManager::instance()->add(s, linCol::Yellow);
 		}
 		break;
 	case gameST::EXPLORING:

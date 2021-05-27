@@ -488,8 +488,6 @@ public:
 
 	virtual void click()
 	{
-		game_->getAudioMngr()->haltMusic();
-		game_->getAudioMngr()->setChannelVolume(30, 0);
 		//game_->getAudioMngr()->haltChannel(0);
 		callbacks::potionType((int)potionType_);
 		Sprite* s_ = GETCMP2(this, Sprite);

@@ -17,8 +17,8 @@ namespace rpgLogic {
 			r += t;
 		}
 		if (text && ChatManager::instance()) {
-			ChatManager::instance()->add(out1 + out2, LineType::Info);
-			//ChatManager::instance()->add(out2, LineType::Info);
+			ChatManager::instance()->add(out1 + out2, LineColor::White);
+			//ChatManager::instance()->add(out2, LineColor::White);
 			std::cout << out1 << "\n";
 			std::cout << out2 << "\n";
 		}

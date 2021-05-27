@@ -1,4 +1,5 @@
 #include "CharacterSheet.h"
+#include "../Managers/game/ChatManager.h"
 #include <iostream>
 
 
@@ -45,13 +46,15 @@ std::string CharacterSheet::getResName(rpgLogic::damageType type)
 	return ret;
 }
 
-bool CharacterSheet::recieveDamage(int damage, rpgLogic::damageType type)
+bool CharacterSheet::recieveDamage(int damage, rpgLogic::damageType type, bool enemy)
 {
 	float res = weaknesses.getWeakness(type);
 
 	int damageAfterRes = int(damage - (damage * res));
 
-	std::cout << name << " recieves " << damageAfterRes << getResName(type) << " damage" << "( " << damage << " " << (int)(res * 100) << "% RES)" << std::endl;
+	std::string out = name + " recieves " + std::to_string(damageAfterRes) + getResName(type) + " damage" + "( " + std::to_string(damage) + " " + std::to_string((int)(res * 100)) + "% RES)";
+	std::cout << out << std::endl;
+	ChatManager::instance()->addLine(out, enemy ?  linCol::Green : linCol::Red);
 
 	_hitPoints -= damageAfterRes;
 
@@ -61,11 +64,13 @@ bool CharacterSheet::recieveDamage(int damage, rpgLogic::damageType type)
 	return !_hitPoints;
 }
 
-void CharacterSheet::recieveHealing(int healing)
+void CharacterSheet::recieveHealing(int healing, bool enemy)
 {
 	_hitPoints += healing;
 
-	std::cout << name << " heals for " << healing << " points" << std::endl;
+	std::string out = name + " heals for " + std::to_string(healing) + " points";
+	std::cout << out << std::endl;
+	ChatManager::instance()->addLine(out, enemy ? linCol::Red : linCol::Green);
 
 	if (_hitPoints > _maxHitPoints)
 		_hitPoints = _maxHitPoints;
@@ -75,7 +80,9 @@ void CharacterSheet::recieveMana(int mana)
 {
 	_manaPoints += mana;
 
-	std::cout << name << " recovers " << mana << " mana points" << std::endl;
+	std::string out = name + " recovers " + std::to_string(mana) + " mana points";
+	std::cout << out << std::endl;
+	ChatManager::instance()->addLine(out, linCol::Blue);
 
 	if (_manaPoints > _maxManaPoints)
 		_manaPoints = _maxManaPoints;

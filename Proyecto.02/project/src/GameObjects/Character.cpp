@@ -38,7 +38,7 @@ void Character::startTurn(CombatManager* cm)
 
 	std::string out = name() + " TURN";
 	cout << out << endl;
-	ChatManager::instance()->clean_n_addLine(out, LineType::Info);
+	ChatManager::instance()->clean_n_addLine(out, LineColor::White);
 
 	for (std::vector<Condition*>::iterator it = _conditions.begin(); it != _conditions.end();)
 	{
@@ -110,12 +110,12 @@ void Character::recieveDamage(int damage, rpgLogic::damageType type, Character* 
 			it++;
 		}
 	}
-	if (_sheet->recieveDamage(damage, type))
+	if (_sheet->recieveDamage(damage, type, _type == characterType::ENEMY))
 	{
 
 		std::string out = name() + " has fainted";
 		cout << out << endl;
-		ChatManager::instance()->add(out, _type == characterType::HERO ? LineType::DamageReceive : LineType::DamageDone);
+		ChatManager::instance()->add(out, _type == characterType::HERO ? LineColor::Red : LineColor::Green);
 		for (std::vector<Condition*>::iterator it = _conditions.begin(); it != _conditions.end();)
 		{
 			if (!(*it)->onDeath(attacker))
@@ -136,7 +136,7 @@ void Character::recieveDamage(int damage, rpgLogic::damageType type, Character* 
 
 void Character::recieveHealing(int healing)
 {
-	_sheet->recieveHealing(healing);
+	_sheet->recieveHealing(healing, _type == characterType::ENEMY);
 }
 
 void Character::recieveBuff(int buff, mainStat stat)
@@ -148,11 +148,11 @@ bool Character::savingThrow(int save, rpgLogic::mainStat stat)
 {
 	std::string out = "Saving throw (" + std::to_string(save) + "): ";
 	cout << out << endl;
-	ChatManager::instance()->add(out, LineType::Info);
+	ChatManager::instance()->add(out, LineColor::White);
 	bool saved = save < throw20PlusMod(stat, false);
 	string mess = saved ? "Successful throw" : "Failed throw";
 	cout << mess << "\n";
-	ChatManager::instance()->add(mess, saved ? LineType::DamageDone : LineType::DamageReceive);
+	ChatManager::instance()->add(mess, saved ? LineColor::Green : LineColor::Red);
 	return saved;
 }
 
@@ -160,7 +160,9 @@ int Character::throw20PlusMod(mainStat mod, bool crit)
 {
 	int dice = rpgLogic::throwDice(1, 20, false);
 	int throwS = dice + _sheet->getStat(mod).getMod();
+	std::string out = name() + " throws a " + std::to_string(throwS) + " (" + std::to_string(dice) + " " + std::to_string(_sheet->getStat(mod).getMod()) + " MOD)";
 	cout << name() << " throws a " << throwS << " (" << dice << " " << _sheet->getStat(mod).getMod() << " MOD)" << endl;
+	ChatManager::instance()->addLine(out, linCol::White);
 	if ((dice != 20 && dice != 1) || !crit)
 		return throwS;
 	else
@@ -171,7 +173,9 @@ int Character::throwStat(mainStat stat)
 {
 	int dice = rpgLogic::throwDice(1, _sheet->getStat(stat).value, false);
 	int throwS = dice + _sheet->getStat(stat).getMod();
+	std::string out = name() + " throws a " + std::to_string(throwS) + " (" + std::to_string(dice) + " " + std::to_string(_sheet->getStat(stat).getMod()) + " MOD)";
 	cout << name() << " throws a " << throwS << " (" << dice << " " << _sheet->getStat(stat).getMod() << " MOD)" << endl;
+	ChatManager::instance()->addLine(out, linCol::White);
 	return throwS;
 }
 
@@ -324,7 +328,9 @@ void Hero::killHero()
 void Hero::manageTurn(CombatManager* cm)
 {
 	if (isDead()) {
-		cout << "This character is at the death gates. \n";
+		std::string out = "This character is at the death gates";
+		cout << out << std::endl;
+		ChatManager::instance()->addLine(out, linCol::Red);
 		savingDeathThrow();
 		cm->changeState(END_TURN);
 	}
@@ -343,15 +349,18 @@ void Hero::savingDeathThrow()
 		else
 			savingFailure++;
 
-		string mess = saveThrow ? "Successful throw\n" : "Failed throw\n";
-		cout << "Saving throw from death: " << mess << endl;
-
+		string mess = saveThrow ? "Successful throw" : "Failed throw";
+		cout << "Saving throw from death:\n" << mess << endl;
+		ChatManager::instance()->addLine("Saving throw from death:", linCol::White);
+		ChatManager::instance()->addLine(mess, saveThrow ? linCol::Green : linCol::Red);
 		if (getSavingSuccess() >= 3) {
 			cout << name() << " is no longer at the death gates.\n";
+			ChatManager::instance()->addLine(name() + " is no longer at the death gates", linCol::Blue);
 			recieveHealing(1);
 		}
 		else if (getSavingFailures() >= 3) {
 			cout << name() << " is dead. \n";
+			ChatManager::instance()->addLine(name() + " is dead", linCol::Red);
 			_sheet->setHitPoints(0);
 			_sheet->setManaPoints(0);
 			_deathGate = true;
