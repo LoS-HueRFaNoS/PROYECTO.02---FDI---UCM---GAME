@@ -83,9 +83,9 @@ void CombatManager::startCombat(bool boss)
 {
 	_boss = boss;
 	if (_boss)
-		game_->getAudioMngr()->playMusic(Resources::AudioId::CombateLich, -1);
+		game_->getAudioMngr()->playMusic(Resources::AudioId::CombateBoss, -1);
 	else
-		game_->getAudioMngr()->playMusic(Resources::AudioId::Exploracion, -1);
+		game_->getAudioMngr()->playMusic(Resources::AudioId::Combate, -1);
 	changeState(COMBAT_START);
 }
 

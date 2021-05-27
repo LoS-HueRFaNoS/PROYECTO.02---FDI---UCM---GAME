@@ -247,8 +247,6 @@ void callbacks::set_hability(int hability_)
 #pragma region MenuPrincipal
 void callbacks::startLobby(Interfaz* app)
 {
-
-	TheElementalMaze::instance()->getSDLGame()->getAudioMngr()->playMusic(Resources::AudioId::Lobby, -1);
 	std::cout << "startLobby se ha activado\n";
 	if (app->getActivePan(MenuPrincipal)) 	app->removePanel(MenuPrincipal);
 	if (app->getActivePan(Fight)) 			app->removePanel(Fight);

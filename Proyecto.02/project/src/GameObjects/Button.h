@@ -79,6 +79,7 @@ public:
 	virtual void init(Vector2D pos, uint ancho, uint alto, Resources::TextureId imagen, MovType movement) {
 		movementType_ = movement;
 		Button::init(pos, ancho, alto, imagen);
+		game_->getAudioMngr()->setChannelVolume(15,-1);
 	};
 
 	virtual void click() 
@@ -550,8 +551,6 @@ public:
 
 	virtual void click()
 	{
-		game_->getAudioMngr()->playMusic(Resources::Exploracion, -1);
-
 		callbacks::createPanel(activated, pan_);
 		if (!activated) turnON();
 		else turnOFF();

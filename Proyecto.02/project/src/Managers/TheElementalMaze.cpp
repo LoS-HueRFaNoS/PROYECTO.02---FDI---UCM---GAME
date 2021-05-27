@@ -69,6 +69,7 @@ void TheElementalMaze::init()
 	// 5. GameStateManager
 	stManager_ = addComponent<GameStateManager>();
 	stManager_->changeState(GameState::MainMenu);
+	TheElementalMaze::instance()->getSDLGame()->getAudioMngr()->playMusic(Resources::AudioId::MenuInicial, -1);
 
 	// 6. Tutorial
 	tutorial_ = addComponent<TutorialManager>(iManager_);
@@ -78,7 +79,6 @@ void TheElementalMaze::init()
 
 void TheElementalMaze::startExploring()
 {
-	game_->getAudioMngr()->playMusic(Resources::AudioId::Exploracion, -1);
 	lobbyManager_->startExploring();
 }
 

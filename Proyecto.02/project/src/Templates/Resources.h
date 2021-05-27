@@ -264,9 +264,10 @@ public:
 		MenuInicial,
 		Lobby,
 		Exploracion,
+		Combate,
 		Derrota,
 		Creditos,
-		CombateLich,
+		CombateBoss,
 
 		// sound effects
 		AtaqueAgua,

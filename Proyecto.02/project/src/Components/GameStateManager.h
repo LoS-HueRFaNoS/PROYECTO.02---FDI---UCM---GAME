@@ -9,6 +9,7 @@ class GameStateManager : public Component {
 private:
 	GameState state_;
 	TheElementalMaze* tem_;
+	bool stateChanged = false;
 public:
 	GameStateManager();
 	virtual ~GameStateManager() {};
@@ -18,6 +19,7 @@ public:
 	{
 		if (state_ != state) {
 			state_ = state;
+			stateChanged = true;
 		}
 	}
 
