@@ -7,15 +7,15 @@
       "Weaknesses": [
         {
           "Key": "Blunt",
-          "Value": 0.0
+          "Value": 0.1
         },
         {
           "Key": "Pierce",
-          "Value": 0.0
+          "Value": 0.1
         },
         {
           "Key": "Slash",
-          "Value": 0.0
+          "Value": 0.1
         },
         {
           "Key": "Fire",
@@ -56,7 +56,7 @@
       "Weaknesses": [
         {
           "Key": "Blunt",
-          "Value": 0.0
+          "Value": 0.2
         },
         {
           "Key": "Pierce",
@@ -64,7 +64,7 @@
         },
         {
           "Key": "Slash",
-          "Value": 0.0
+          "Value": 0.1
         },
         {
           "Key": "Fire",
@@ -109,11 +109,11 @@
         },
         {
           "Key": "Pierce",
-          "Value": 0.0
+          "Value": 0.1
         },
         {
           "Key": "Slash",
-          "Value": 0.0
+          "Value": 0.4
         },
         {
           "Key": "Fire",
@@ -154,7 +154,7 @@
       "Weaknesses": [
         {
           "Key": "Blunt",
-          "Value": 0.0
+          "Value": 0.5
         },
         {
           "Key": "Pierce",
@@ -162,7 +162,7 @@
         },
         {
           "Key": "Slash",
-          "Value": 0.0
+          "Value": 0.5
         },
         {
           "Key": "Fire",
@@ -203,15 +203,15 @@
       "Weaknesses": [
         {
           "Key": "Blunt",
-          "Value": 0.0
+          "Value": 0.2
         },
         {
           "Key": "Pierce",
-          "Value": 0.0
+          "Value": 0.2
         },
         {
           "Key": "Slash",
-          "Value": 0.0
+          "Value": 0.2
         },
         {
           "Key": "Fire",
@@ -252,15 +252,15 @@
       "Weaknesses": [
         {
           "Key": "Blunt",
-          "Value": 0.0
+          "Value": 0.1
         },
         {
           "Key": "Pierce",
-          "Value": 0.0
+          "Value": 0.4
         },
         {
           "Key": "Slash",
-          "Value": 0.0
+          "Value": 0.3
         },
         {
           "Key": "Fire",
@@ -301,15 +301,15 @@
       "Weaknesses": [
         {
           "Key": "Blunt",
-          "Value": 0.0
+          "Value": 0.2
         },
         {
           "Key": "Pierce",
-          "Value": 0.0
+          "Value": 0.1
         },
         {
           "Key": "Slash",
-          "Value": 0.0
+          "Value": 0.1
         },
         {
           "Key": "Fire",
@@ -350,15 +350,15 @@
       "Weaknesses": [
         {
           "Key": "Blunt",
-          "Value": 0.0
+          "Value": 0.5
         },
         {
           "Key": "Pierce",
-          "Value": 0.0
+          "Value": 0.3
         },
         {
           "Key": "Slash",
-          "Value": 0.0
+          "Value": 0.3
         },
         {
           "Key": "Fire",
@@ -388,9 +388,6 @@
           "Key": "Dark",
           "Value": 0.0
         }
-
-
-
 
       ],
       "TypeNeeded": 0,
