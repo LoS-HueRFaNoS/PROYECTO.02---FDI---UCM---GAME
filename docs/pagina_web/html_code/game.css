@@ -56,9 +56,8 @@ body {
 	
 }
 #descargar{
-	background-image: url("../html_imgs/marco.png");
-	background-repeat: no-repeat;;
-	background-size: 100% 100%;
+	background-color: steelblue;
+	background-attachment:fixed;
 	margin: 90px 1.5em 0 auto;
 	height: 400px;
 	width: 450px;
@@ -72,10 +71,11 @@ body {
 	-moz-hyphens: auto;
     -ms-hyphens: auto;
     hyphens: auto;
+	border-radius: 40px;
 }
 
 #video{
-	background-color: steelblue;
+	
 	margin: -400px 0 0 40px;
 	height: 500px;
 	width: 900px;
@@ -89,7 +89,6 @@ body {
 	-moz-hyphens: auto;
     -ms-hyphens: auto;
     hyphens: auto;
-	border-radius: 40px;
 	
 }
 #fotos1{
