@@ -204,6 +204,7 @@ void CombatManager::endCombat()
 		ChatManager::instance()->clean_n_addLine("YOU WIN", LineColor::Green);
 		if (_gold > 0) {
 			cout << "You find " << _gold << " gold coins" << endl;
+			TheElementalMaze::instance()->getPartyManager()->gold += _gold;
 			ChatManager::instance()->add("You find " + std::to_string(_gold) + " gold coins", LineColor::Yellow);
 			int manaPotions = throwDice(1, 4) - 1;
 			cout << "You find " << manaPotions << " mana potions" << endl;
