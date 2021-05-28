@@ -517,8 +517,8 @@ public:
 };
 // ----------------------------------------------------
 
-enum class PtnType { health, mana, resurrection };
 
+#include "../Components/Contador.h"
 class ButtonPotion : public Button {
 private:
 	PtnType potionType_;
@@ -539,7 +539,6 @@ public:
 		Sprite* s_ = GETCMP2(this, Sprite);
 		s_->setHide(true);
 		s_->reset();
-		addComponent<Image>();
 	}
 };
 
