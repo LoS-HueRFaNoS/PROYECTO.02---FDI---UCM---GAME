@@ -75,6 +75,7 @@ void ButtonPanel::setHide(bool set)
 
 void Button::init(Vector2D pos, uint ancho, uint alto, Resources::TextureId imagen)
 {
+	id_ = imagen;
 	SDL_Object::init(pos, ancho, alto, imagen);
 	Sprite* s = addComponent<Sprite>(game_->getTextureMngr()->getTexture(src::Button_transition), 0, 0, 3);
 	s->setHide(true);
@@ -83,11 +84,19 @@ void Button::init(Vector2D pos, uint ancho, uint alto, Resources::TextureId imag
 
 void Button::init(SDL_Rect dest, Resources::TextureId imagen)
 {
+	id_ = imagen;
 	SDL_Object::init(POS(dest), dest.w, dest.h, imagen);
 	Sprite* s = addComponent<Sprite>(game_->getTextureMngr()->getTexture(src::Button_transition), 0, 0, 3);
 	s->setHide(true);
 	addComponent<ButtonCtrl>(this);
-};
+}
+void Button::toggleImage(Resources::TextureId imagen)
+{
+	id_ = imagen;
+	Image* img = GETCMP2(this, Image);
+	img->setTexture(game_->getTextureMngr()->getTexture(imagen));
+}
+;
 
 //----------------------------------------------------------------------------
 

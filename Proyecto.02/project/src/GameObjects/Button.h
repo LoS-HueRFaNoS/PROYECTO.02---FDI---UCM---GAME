@@ -9,6 +9,8 @@
 
 class Button : public SDL_Object
 {
+protected:
+	Resources::TextureId id_;
 public:
 	Button(SDLGame* game, EntityManager* mngr) :
 		SDL_Object(game, mngr)
@@ -18,6 +20,9 @@ public:
 	virtual void init(SDL_Rect dest, Resources::TextureId imagen);
 
 	virtual void click() = 0;
+
+	void toggleImage(Resources::TextureId imagen);
+	Resources::TextureId getImageID() { return id_; };
 };
 
 // ----------------------------------------------------
@@ -37,11 +42,17 @@ public:
 	};
 
 	virtual void click() { 
-		callbacks::toggleThemeFondo(); 
+		if (id_ == src::Change) 
+			toggleImage(src::Change2);
+		else 
+			toggleImage(src::Change);
+		callbacks::toggleThemeFondo(); 		
 		Sprite* s_ = GETCMP2(this, Sprite);
 		s_->setHide(true);
 		s_->reset();
 	};
+
+	
 };
 
 // ----------------------------------------------------
@@ -251,6 +262,11 @@ public:
 		app = app_;
 		Button::init(pos, ancho, alto, imagen);
 	};
+	virtual void init(SDL_Rect dest, Resources::TextureId imagen, int her, Interfaz* app_) {
+		heroeid = her;
+		app = app_;
+		Button::init(dest, imagen);
+	};
 
 	virtual void click()
 	{
@@ -305,6 +321,12 @@ public:
 		accion = accion_;
 		Button::init(pos, ancho, alto, imagen);
 	};
+	virtual void init(SDL_Rect dest, Resources::TextureId imagen,accionHero accion_, int her, Interfaz* app_) {
+		heroeid = her;
+		app = app_;
+		accion = accion_;
+		Button::init(dest, imagen);
+	};
 
 	virtual void click()
 	{
@@ -339,6 +361,12 @@ public:
 		itemType = itemType_;
 		app = app_;
 		Button::init(pos, ancho, alto, imagen);
+	};
+	virtual void init(SDL_Rect dest, Resources::TextureId imagen,int itemId_, int itemType_, Interfaz* app_) {
+		itemid = itemId_;
+		itemType = itemType_;
+		app = app_;
+		Button::init(dest, imagen);
 	};
 
 	virtual void click()
@@ -433,6 +461,12 @@ public:
 		isHero = isHero_;
 		Button::init(pos, ancho, alto, imagen);
 	};
+	virtual void init(SDL_Rect dest, Resources::TextureId imagen,bool isHero_, int id_, Interfaz* app_) {
+		app = app_;
+		id = id_;
+		isHero = isHero_;
+		Button::init(dest, imagen);
+	};
 
 	virtual void click()
 	{
@@ -505,6 +539,7 @@ public:
 		Sprite* s_ = GETCMP2(this, Sprite);
 		s_->setHide(true);
 		s_->reset();
+		addComponent<Image>();
 	}
 };
 
