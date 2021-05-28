@@ -53,16 +53,6 @@ void TheElementalMaze::init()
 	partyManager_->addHero(rogue);
 	partyManager_->addHero(cleric);
 
-	partyManager_->addItem(itemManager_->getWeaponFromId(wID::LUCERODELALBA));
-	partyManager_->addItem(itemManager_->getWeaponFromId(wID::LATIGO));
-	partyManager_->addItem(itemManager_->getWeaponFromId(wID::ESPADAROPERA));
-	partyManager_->addItem(itemManager_->getWeaponFromId(wID::CLAVA));
-	//partyManager_->changeItemWithHero(0,2);
-	/*for (int i = 0; i < 82; i++)
-	{
-		partyManager_->addItem(itemManager_->getWeaponFromId(wID::LUCERODELALBA), i);
-
-	}*/
 	// 4. Interfaz
 	uiManager_ = addComponent<Interfaz>(iManager_);
 

@@ -106,12 +106,11 @@ class Chest
 private:
 	ItemType item;
 	int itemId;
-	int manaPotions;
-	int healthPotions;
-	int gold; 
+	int gold;
 public:
-	Chest(ItemType it, int value) : item(it), itemId(value) {}
+	Chest(ItemType it, int value, int gold) : item(it), itemId(value), gold(gold) {}
 	ItemType getType() { return item; }
 	int getIdValue() { return itemId; }
+	int getGold() { return gold; }
 
 };

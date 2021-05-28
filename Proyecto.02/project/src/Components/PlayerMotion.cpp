@@ -216,14 +216,4 @@ void PlayerMotion::debugear()
 		
 		return;
 	}
-
-	vector<Chest>* cofres = cas->getChest();
-
-	if (cofres->size()) {
-		for (int i = 0; i < cofres->size(); i++)
-		{
-			cout << "Encuentras con un cofre con " << to_string((*cofres)[i].getType()) << " de tipo " << to_string((*cofres)[i].getIdValue()) << endl;
-		}
-	}
-
 }

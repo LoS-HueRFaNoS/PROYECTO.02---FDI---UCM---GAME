@@ -38,10 +38,5 @@ public:
 		enemyEnum.push_back(e);
 	}
 	vector<enemyTemplate>* getEnemy() { return &enemyEnum; }
-	void addChest(ItemType it, int itId)
-	{
-		cofres.push_back({ it,itId });
-	}
-	vector<Chest>* getChest() { return &cofres; }
 };
 

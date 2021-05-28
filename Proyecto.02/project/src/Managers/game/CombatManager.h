@@ -30,6 +30,8 @@ private:
 
 	int _exp = 0;
 
+	int _gold = 0;
+
 	bool _win = true;
 
 	bool _boss = false;

@@ -83,10 +83,14 @@ void CombatManager::showTargets()
 void CombatManager::startCombat(bool boss)
 {
 	_boss = boss;
-	if (_boss)
+	if (_boss) {
+		_gold = 500;
 		game_->getAudioMngr()->playMusic(Resources::AudioId::CombateBoss, -1);
-	else
+	}
+	else {
+		_gold = 50;
 		game_->getAudioMngr()->playMusic(Resources::AudioId::Combate, -1);
+	}
 	changeState(COMBAT_START);
 }
 
@@ -171,6 +175,7 @@ void CombatManager::tryEscape()
 		ChatManager::instance()->add("YOU ESCAPED", LineColor::Green);
 		bool leftBehind = false;
 		_exp = 0;
+		_gold = 0;
 
 		for (Hero* h : _heroes)
 			if (h->isDead()) {
@@ -196,7 +201,21 @@ void CombatManager::endCombat()
 {
 	if (_win) {
 		cout << "YOU WIN" << endl << _exp << " EXP SHARED" << endl;
-		ChatManager::instance()->add("YOU WIN", LineColor::Green);
+		ChatManager::instance()->clean_n_addLine("YOU WIN", LineColor::Green);
+		if (_gold > 0) {
+			cout << "You find " << _gold << " gold coins" << endl;
+			ChatManager::instance()->add("You find " + std::to_string(_gold) + " gold coins", LineColor::Yellow);
+			int manaPotions = throwDice(1, 4) - 1;
+			cout << "You find " << manaPotions << " mana potions" << endl;
+			if (manaPotions > 0)
+				ChatManager::instance()->add("You find " + std::to_string(manaPotions) + "  mana potions", LineColor::Blue);
+			TheElementalMaze::instance()->getPartyManager()->manaPotions += manaPotions;
+			manaPotions = throwDice(1, 4) - 1;
+			cout << "You find " << manaPotions << " health potions" << endl;
+			if (manaPotions > 0)
+				ChatManager::instance()->add("You find " + std::to_string(manaPotions) + " health potions", LineColor::Green);
+			TheElementalMaze::instance()->getPartyManager()->healthPotions += manaPotions;
+		}
 		ChatManager::instance()->add(std::to_string(_exp) + " exp", LineColor::Yellow);
 		for (Hero* h : _heroes) {
 			if (h->getDeathGate())
@@ -208,7 +227,7 @@ void CombatManager::endCombat()
 	}
 	else {
 		cout << "Another party lost to the Lich" << endl;
-		ChatManager::instance()->add("Another party lost to the Lich", LineColor::Red);
+		ChatManager::instance()->clean_n_addLine("Another party lost to the Lich", LineColor::Red);
 		game_->getAudioMngr()->playMusic(Resources::AudioId::Derrota, 0);
 		TheElementalMaze::instance()->getPartyManager()->partyLost();
 		// vuelta al lobby
@@ -222,8 +241,6 @@ void CombatManager::endCombat()
 	TheElementalMaze::instance()->checkOutNoInitialEnemy();
 
 	_turnQueue.clear();
-	if (!_win)
-	TheElementalMaze::instance()->onExitLaberinto();
 }
 
 void CombatManager::castHability(Hability* hability)
@@ -387,8 +404,10 @@ void CombatManager::onStateChanged()
 	case NO_COMBAT:
 		if (_win)
 			TheElementalMaze::instance()->changeState(gameST::EXPLORING);
-		else
+		else {
+			TheElementalMaze::instance()->onExitLaberinto();
 			TheElementalMaze::instance()->changeState(gameST::LOBBY);
+		}
 
 		break;
 	default:
@@ -467,6 +486,6 @@ void CombatManager::update()
 		else if (ih->isKeyDown(SDLK_x)) sendKeyEvent(-4);			// Intentar Huir
 		else if (ih->isKeyDown(SDLK_q)) sendKeyEvent(-5);			// Poción de mana
 		else if (ih->isKeyDown(SDLK_e)) sendKeyEvent(-6);			// Poción de vida
-}
+	}
 #endif
 }
