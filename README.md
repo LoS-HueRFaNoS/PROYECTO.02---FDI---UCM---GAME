@@ -138,7 +138,7 @@ Contiene los siguientes botones: _ataque básico, ataque mágico elemental (usa 
   
   <p align="center"><b> ESQUEMA DEL HUD </b></p>
 
-![Esta imagen muestra el esquema del HUD][IMG-Interfaz]
+![image](https://user-images.githubusercontent.com/55288550/120029471-70c8cd00-bff6-11eb-94f8-428feaf516a6.png)
 
 El juego se controla principalmente mediante el ***uso del ratón***, pulsando los distintos botones ofrecidos por la interfaz.
 
