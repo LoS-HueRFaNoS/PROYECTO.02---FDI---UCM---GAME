@@ -77,6 +77,7 @@ void Game::initGame()
 
 	game_->initResources();
 	entityManager_ = new EntityManager(game_);
+	game_->getAudioMngr()->setMusicVolume(15);
 
 	fondo = new Fondo(game_, entityManager_);
 	fondo->init(Vector2D(), game_->getWindowWidth(), game_->getWindowHeight());
