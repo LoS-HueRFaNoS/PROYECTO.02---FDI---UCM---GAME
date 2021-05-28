@@ -369,6 +369,16 @@ En esta plataforma hemos debatido todos los problemas del proyecto, realizado la
 
 ## 9. QA y testing ##
 
+Habiendo realizado las pruebas de QA y testing a 15 personas, hemos sacado las siguientes conclusiones:
+
+En la primera parte del cuestionario, queríamos saber qué tipo de jugador era el que probaba nuestro juego y sus gustos, por lo que preguntamos datos demográficos y de gustos, como edad, sexo, juegos jugados, etc. Por lo general, son jugadores entre 19 y 22 años y predomina el sexo masculino.
+
+En la siguiente parte del cuestionario de QA, preguntamos sobre feedback de la interfaz, como si se entiende todos los botones, si está bien organizado, acciones que ha podido realizar el jugador, preguntas sobre el tutorial… Hemos sacado de conclusión que la interfaz es avanzada, muy bien organizada y que sería necesario un tutorial que explique la función de los botones.
+
+En la tercera parte, tratamos el tema de combate y exploración, con preguntas de balanceo de personajes y enemigos, opinión sobre la diversidad de laberintos, controles, etc. Por lo dicho, la generación procedural de laberintos es buena, pero debemos marcar de alguna forma que los laberintos son diferentes (otros colores). Los controles no son lentos, son bastante intuitivos de hecho, pero claramente por las respuestas se ve un claro desbalance entre la fuerza de héroes y enemigos.
+
+En la parte final, preguntamos sobre la valoración del juegos en algunos aspectos: la dificultad del juego es bastante elevada, el arte tiene una calidad notable y el juego no disgusta a la gente.
+
 ## 10. Referencias ##
 
 * **Estéticas**: 
