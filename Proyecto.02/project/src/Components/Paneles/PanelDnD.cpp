@@ -117,7 +117,7 @@ void PanelDnD::addWeaknesses()
 void PanelDnD::addMainStats()
 {
 	SDL_Rect lineSize = RECT(
-		firstElement.x,
+		firstElement.x + firstElement.w,
 		firstElement.y + firstElement.h,
 		firstElement.w,
 		firstElement.h * 2.0 / NUM_WEAKNESSES
@@ -157,7 +157,7 @@ void PanelDnD::addArmorWeapon()
 {
 	double L = 2.0 / NUM_WEAKNESSES;
 	SDL_Rect slottSize = RECT(
-		firstElement.x + firstElement.w * 59/ 48,
+		firstElement.x + firstElement.w * 59/ 48 - firstElement.w,
 		firstElement.y + firstElement.h * 9 / 5 + L * firstElement.h,
 		firstElement.w * 2 / 8,
 		firstElement.w * 2 / 8
@@ -185,7 +185,7 @@ void PanelDnD::addCharacter()
 {
 	double L = 2.0 / NUM_WEAKNESSES;
 	SDL_Rect slottSize = RECT(
-		firstElement.x + firstElement.w * 10 / 8,
+		firstElement.x + firstElement.w * 10 / 8 - firstElement.w,
 		firstElement.y + firstElement.h * 3 / 4 + L * firstElement.h,
 		firstElement.w / 2,
 		firstElement.w / 2
@@ -199,8 +199,8 @@ void PanelDnD::addHabilities(Hero* hero)
 {
 	double L = 2.0 / NUM_WEAKNESSES;
 	SDL_Rect slottSize = RECT(
-		firstElement.x + firstElement.w * (8 + 4) / 8,
-		firstElement.y + firstElement.h * 3 - firstElement.h * L * 6 / 5,
+		firstElement.x /*+ firstElement.w * (8 + 4) / 8*/,
+		firstElement.y + firstElement.h * 2.75/*+ L - firstElement.h * L * 6 / 5*/,
 		firstElement.w * L * 3 / 4,
 		firstElement.w * L * 3 / 4
 	);
@@ -209,10 +209,9 @@ void PanelDnD::addHabilities(Hero* hero)
 	int size = habilities.size();
 
 	int margen = slottSize.w / 8;
+	//slottSize.x = slottSize.x - (slottSize.w * (size / 2.0)) - margen / 2.0;
 
-	slottSize.x = slottSize.x - (slottSize.w * (size / 2.0)) - margen / 2.0;
-
-	
+	//slottSize.x += slottSize.w + margen;
 	for (int i = 0; i < size; ++i)
 	{
 		pan_->addButton(iManager_->addButton<SDL_Object>(slottSize, getHabilityTxt(habilities[i])));

@@ -15,6 +15,8 @@ public:
 	virtual void init(SDL_Rect dest, Resources::TextureId imagen) {
 		initComponents(POS(dest), dest.w, dest.h, imagen);
 	};
+	
+	virtual void init(SDL_Rect dest, Texture* image);
 
 	virtual void init(Vector2D pos, uint ancho, uint alto, Resources::TextureId imagen) {
 		initComponents(pos, ancho, alto, imagen);
@@ -54,6 +56,7 @@ public:
 	};
 	virtual void init(SDL_Rect size, string line, const SDL_Color& color);
 	virtual void init(Vector2D pos, uint ancho, uint alto, string line, Resources::FontId font, const SDL_Color& color);
+	virtual void init(SDL_Rect size, string line, Resources::FontId font, const SDL_Color& color);
 
 	std::string getLine() { return texto; };
 };

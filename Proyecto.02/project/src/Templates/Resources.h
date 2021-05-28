@@ -77,6 +77,7 @@ public:
 		Fondo,
 		Fondo2,
 		Change,
+		Change2,
 		Selected,
 		Button_transition,
 		Cartel,

@@ -4,6 +4,13 @@
 #include "../Components/Image.h"
 #include "../Utilities/SDL_macros.h"
 
+void SDL_Object::init(SDL_Rect dest, Texture* image)
+{
+	Vector2D pos = POS(dest);
+	addComponent<Transform>(pos, Vector2D(), dest.w, dest.h, 0);
+	addComponent<Image>(image);
+}
+
 void SDL_Object::initComponents(Vector2D pos, uint ancho, uint alto, Resources::TextureId imagen)
 {
 	addComponent<Transform>(pos, Vector2D(), ancho, alto, 0);
@@ -38,6 +45,18 @@ void Line::init(Vector2D pos, uint ancho, uint alto, string line, Resources::Fon
 	if (text->loadFromText(game_->getRenderer(), line, game_->getFontMngr()->getFont(font), color)) {
 		tex_ = text;
 		SDL_Object::init(pos, ancho, alto, text);
+	}
+	else
+		delete text;
+}
+
+void Line::init(SDL_Rect size, string line, Resources::FontId font, const SDL_Color& color)
+{
+	texto = line;
+	Texture* text = new Texture();
+	if (text->loadFromText(game_->getRenderer(), line, game_->getFontMngr()->getFont(src::Beaulieux), color)) { //src::Beaulieux
+		tex_ = text;
+		SDL_Object::init(size, text);
 	}
 	else
 		delete text;

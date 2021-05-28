@@ -76,6 +76,7 @@ vector<Resources::ImageInfo> Resources::images_{
 	{Button_transition, "project/resources/images/interfaz/button_transition.png"},
 	{Cartel, "project/resources/images/interfaz/cartelito.png"},
 	{Change, "project/resources/images/interfaz/change.png"},
+	{Change2, "project/resources/images/interfaz/change2.png"},
 	{Selected, "project/resources/images/interfaz/selected.png"},
 	{BuyButton, "project/resources/images/interfaz/button icons/Tienda/BuyButton.png"},
 	{EquipButton, "project/resources/images/interfaz/button icons/Tienda/EquipButton.png"},

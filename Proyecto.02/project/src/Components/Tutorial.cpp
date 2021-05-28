@@ -88,10 +88,10 @@ void TutorialManager::show(MsgId mID)
 
 	fondo = manager_->addButton<SDL_Object>(fondo_dest, id_fondo);
 	cartel = manager_->addButton<SDL_Object>(cartel_dest, id_cartel);
-	uint size = 64;
+	uint size = 40;
 	SDL_Rect dest = RECT(
-		cartel_dest.x + cartel_dest.w - size,
-		cartel_dest.y + 10,
+		cartel_dest.x + cartel_dest.w - size * 3 / 2,
+		cartel_dest.y + size / 2,
 		size,
 		size
 	);
