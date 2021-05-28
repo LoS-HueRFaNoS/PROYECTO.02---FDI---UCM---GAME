@@ -178,7 +178,7 @@ vector<Resources::ImageInfo> Resources::images_{
 	{Dracolich, "project/resources/sprites/enemigos/dracolich.png" },
 	{GiantWorm, "project/resources/sprites/enemigos/giantworm.png" },
 	{Banshee, "project/resources/sprites/enemigos/banshee.png" },
-	{Lich, "project/resources/sprites/iconos personajes/lich.PNG"},
+	{Lich, "project/resources/sprites/enemigos/lich.PNG"},
 	{Necrofago, "project/resources/sprites/iconos personajes/necrofago.png" },
 	//{ Monster, "project/resources/images/monster.png" },
 	//{ Desconocido, "project/resources/images/desconocido.png" },
