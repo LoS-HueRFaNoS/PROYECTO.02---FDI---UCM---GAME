@@ -26,7 +26,7 @@ public:
 	Entity* getButton(uint n) {
 		return buttonList[n];
 	};
-
+	int getButtonListSize() { return buttonList.size(); }
 	void addButton(Entity* b) {
 		buttonList.push_back(b);
 	}

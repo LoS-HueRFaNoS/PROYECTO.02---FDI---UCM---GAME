@@ -1419,7 +1419,12 @@ void Interfaz::update()
 	{
 	case gameST::MainMenu:
 		break;
-	case gameST::LOBBY:		
+	case gameST::LOBBY:	
+		if (getActivePan(DDPan)) removePanel(DDPan);
+		if (getActivePan(Inventory)) removePanel(Inventory);
+		if (getActivePan(UnequipPanel)) removePanel(UnequipPanel);
+		if (getActivePan(EquipPanel)) removePanel(EquipPanel);
+		ChatManager::instance()->clean_n_addLine(" ", LineColor::White);
 		callbacks::startLobby(this);
 		break;
 	case gameST::START_EXPLORING:
@@ -1484,6 +1489,10 @@ void Interfaz::update()
 		}
 		break;
 	case gameST::END_EXPLORING:
+		if (getActivePan(DDPan)) removePanel(DDPan);
+		if (getActivePan(Inventory)) removePanel(Inventory);
+		if (getActivePan(UnequipPanel)) removePanel(UnequipPanel);
+		if (getActivePan(EquipPanel)) removePanel(EquipPanel);
 		removePanel(Movement);
 		removePanel(Heroes);
 		removePanel(Info);
