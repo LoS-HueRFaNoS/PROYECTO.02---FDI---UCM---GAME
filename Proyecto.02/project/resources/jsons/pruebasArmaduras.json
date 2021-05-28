@@ -252,7 +252,7 @@
       "Weaknesses": [
         {
           "Key": "Blunt",
-          "Value": 0.1
+          "Value": 0.0
         },
         {
           "Key": "Pierce",
@@ -301,15 +301,15 @@
       "Weaknesses": [
         {
           "Key": "Blunt",
-          "Value": 0.2
+          "Value": 0.3
         },
         {
           "Key": "Pierce",
-          "Value": 0.1
+          "Value": 0.3
         },
         {
           "Key": "Slash",
-          "Value": 0.1
+          "Value": 0.3
         },
         {
           "Key": "Fire",
