@@ -4,12 +4,13 @@
 #include "../TheElementalMaze.h"
 #include "../../GameObjects/SDL_Objects.h"
 
-enum class LineType {
-	Info,
-	Experience,
-	DamageDone,
-	DamageReceive
-}; using linTy = LineType;
+enum class LineColor {
+	White,
+	Yellow,
+	Green,
+	Red,
+	Blue
+}; using linCol = LineColor;
 const int NUM_LINES = 20;
 const int NUM_LETTERS_IN_LINE = 30; // 70
 
@@ -26,14 +27,19 @@ private:
 		b->init(std::forward<TArgs>(mArgs)...);
 		return b;
 	}
+	void removeLine(Line* e);
 
 	void init();
 	void moveUp(Entity* e);
 	void moveDown(Entity* e);
 	void drawLine(Entity* e);
-	bool checkLineSize(std::string line, LineType type);
+	bool checkLineSize(std::string line, LineColor type);
 	void checkChatSize();
 	bool checkTopDownMax(int y);
+	int getFirstLinePOS();
+	void clean();
+	void cleanALL();
+
 
 public:
 	static void Init();
@@ -43,7 +49,9 @@ public:
 		return instance_.get();
 	}
 
-	void addLine(std::string line, LineType type);
+	void add(std::string line, LineColor type);
+	void addLine(std::string line, LineColor type);
+	void clean_n_addLine(std::string line, LineColor type);
 	void update() override;
 	void draw() override;
 
@@ -55,6 +63,6 @@ private:
 	SDL_Rect marco;
 	double margin;
 	int chatSize;
-	std::map<LineType, SDL_Color> lineTypesMap_;
+	std::map<LineColor, SDL_Color> lineTypesMap_;
 	
 };

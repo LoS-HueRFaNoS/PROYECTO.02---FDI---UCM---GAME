@@ -76,6 +76,7 @@ vector<Resources::ImageInfo> Resources::images_{
 	{Button_transition, "project/resources/images/interfaz/button_transition.png"},
 	{Cartel, "project/resources/images/interfaz/cartelito.png"},
 	{Change, "project/resources/images/interfaz/change.png"},
+	{Change2, "project/resources/images/interfaz/change2.png"},
 	{Selected, "project/resources/images/interfaz/selected.png"},
 	{BuyButton, "project/resources/images/interfaz/button icons/Tienda/BuyButton.png"},
 	{EquipButton, "project/resources/images/interfaz/button icons/Tienda/EquipButton.png"},
@@ -258,9 +259,10 @@ vector<Resources::MusicInfo> Resources::musics_{
 	{MenuInicial, "project/resources/sound/Musica/Menu principal.mp3"}, //
 	{Lobby, "project/resources/sound/Musica/Lobby.wav"}, //
 	{Exploracion, "project/resources/sound/Musica/Exploracion.mp3"}, //
+	{Combate, "project/resources/sound/Musica/Combate.mp3"}, //
 	{Derrota, "project/resources/sound/Musica/Derrota.mp3"}, //
 	{Creditos, "project/resources/sound/Musica/Creditos.mp3"}, //
-	{CombateLich, "project/resources/sound/Musica/Combate Lich.mp3"} //
+	{CombateBoss, "project/resources/sound/Musica/CombateBoss.mp3"} //
 };
 
 vector<Resources::SoundInfo> Resources::sounds_{

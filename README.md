@@ -265,7 +265,6 @@ Cada nivel es un laberinto pequeño donde el jugador irá encontrando enemigos y
 | -- | -- | -- |
 | ![img - health][health] | **POCIÓN DE SALUD** | Permite al jugador recuperar el 50% de los puntos de salud de un personaje. |
 | ![img - mana][mana] | **POCIÓN DE MANÁ** | Permite al jugador recuperar el 50% de los puntos de maná de un personaje. |
-| ![img - nigro][nigro] | **POCIÓN NIGROMÁNTICA** | Permite al jugador resucitar a un personaje que haya muerto durante la partida, restaurando el 25% de los puntos de salud y maná. |
 | ![img - rune][rune] | **RUNA** | Moneda utilizada en el juego. Sirve para contratar a los héroes que posteriormente podrán ser utilizados en la mazmorra y comprar objetos, como por ejemplo, pociones. |
 
 - ### 5.6.  Equipo ###
@@ -337,14 +336,6 @@ Los tipos elementales serán seis: _fuego, agua, tierra, aire, luz y oscuridad_.
 Las armas que sean de un tipo elemental determinado realizarán una pequeña cantidad extra de daño, siendo esta cantidad dependiente de las debilidades que posea el enemigo. Es decir, si el enemigo es débil a ese elemento, los puntos de daño realizados se duplicarán. Si, por el contrario, el enemigo es resistente a ese elemento, no se realizará ningún punto extra de daño.
 
 Respecto a las armaduras, el tipo elemental realizará la misma función que en las armas pero a la inversa. Por ejemplo, si una armadura recibe un ataque de un elemento al cual es resistente, no recibirá puntos de daño. Pero si, por el contrario, recibe un ataque de un elemento al cual es débil, el daño recibido se duplicará.
-
-En ambos casos, tanto en armas como en armaduras, el tipo elemental estará representado con el fondo, siendo cada color una representación un elemento concreto.
-
-| ICONO | NOMBRE | ICONO | NOMBRE |
-| -- | -- | -- | -- |
-| ![img - fuego][fuego] | **FUEGO** | ![img - agua][agua] | **AGUA** |
-| ![img - viento][viento] | **VIENTO** | ![img - tierra][tierra] | **TIERRA** |
-| ![img - luz][luz] | **LUZ** | ![img - oscuridad][oscuridad] | **OSCURIDAD** |
 
 ## 6. Arquitectura UML ##
 

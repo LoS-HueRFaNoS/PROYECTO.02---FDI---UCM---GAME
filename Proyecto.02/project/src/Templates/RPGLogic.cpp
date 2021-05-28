@@ -13,12 +13,12 @@ namespace rpgLogic {
 		std::string out2 = "";
 		for (int i = 0; i < n; i++) {
 			int t = SDLGame::instance()->getRandGen()->nextInt(1, dice + 1);
-			out2 += std::to_string(t) + " ";
+			out2 += " ("  + std::to_string(t) + ") ";
 			r += t;
 		}
 		if (text && ChatManager::instance()) {
-			ChatManager::instance()->addLine(out1, LineType::Info);
-			ChatManager::instance()->addLine(out2, LineType::Info);
+			ChatManager::instance()->add(out1 + out2, LineColor::White);
+			//ChatManager::instance()->add(out2, LineColor::White);
 			std::cout << out1 << "\n";
 			std::cout << out2 << "\n";
 		}

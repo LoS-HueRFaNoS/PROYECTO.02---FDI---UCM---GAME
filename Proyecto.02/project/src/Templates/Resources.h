@@ -77,6 +77,7 @@ public:
 		Fondo,
 		Fondo2,
 		Change,
+		Change2,
 		Selected,
 		Button_transition,
 		Cartel,
@@ -264,9 +265,10 @@ public:
 		MenuInicial,
 		Lobby,
 		Exploracion,
+		Combate,
 		Derrota,
 		Creditos,
-		CombateLich,
+		CombateBoss,
 
 		// sound effects
 		AtaqueAgua,

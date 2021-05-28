@@ -93,9 +93,9 @@ public:
 		_stats[size_t(st)].value += change;
 	}
 
-	bool recieveDamage(int damage, rpgLogic::damageType type);
+	bool recieveDamage(int damage, rpgLogic::damageType type, bool enemy);
 
-	void recieveHealing(int healing);
+	void recieveHealing(int healing, bool enemy);
 
 	void recieveMana(int mana);
 

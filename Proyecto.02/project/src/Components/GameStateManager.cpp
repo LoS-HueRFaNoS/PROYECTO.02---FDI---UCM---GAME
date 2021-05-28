@@ -14,39 +14,39 @@ void GameStateManager::init()
 
 void GameStateManager::update()
 {
+	if (!stateChanged)
+		return;
+	stateChanged = false;
+	TheElementalMaze::instance()->getSDLGame()->getAudioMngr()->setMusicVolume(15);
 	switch (state_)
 	{
-	/*case gameST::MainMenu:
-		cout << "MAIN MENU" << endl;
-		break;*/
-	case gameST::LOBBY:
-		//cout << "LOBBY REACHED" << endl;
-		//changeState(gameST::START_EXPLORING);
+	case gameST::MainMenu:
+		TheElementalMaze::instance()->getSDLGame()->getAudioMngr()->playMusic(Resources::AudioId::MenuInicial, -1);
+		break;
+	case gameST::LOBBY: case gameST::DURING_LOBBY:
+		TheElementalMaze::instance()->getSDLGame()->getAudioMngr()->playMusic(Resources::AudioId::Lobby, -1);
 		break;
 	case gameST::START_EXPLORING:
 		tem_->startExploring();
-		cout << "EXPLORATION STARTED" << endl;
 		tem_->createLaberinto();
 		tem_->checkOutNoInitialEnemy();
 		changeState(gameST::EXPLORING);
 		break;
-	/*case gameST::EXPLORING:
-		cout << "ON EXPLORING" << endl;
-		break;*/
+	case gameST::EXPLORING:
+		game_->getAudioMngr()->playMusic(Resources::Exploracion, -1);
+		break;
 	case gameST::START_COMBAT:
-		cout << "FIGHT STARTED" << endl;
 		tem_->startCombat();
 		changeState(gameST::COMBAT);
 		break;
-	/*case gameST::COMBAT:
-		break;*/
+	case gameST::COMBAT:
+		TheElementalMaze::instance()->getSDLGame()->getAudioMngr()->setMusicVolume(8);
+		break;
 	case gameST::END_EXPLORING:
-		cout << "EXPLORING FINISHED" << endl;
 		//tem_->nextLevel();
 		changeState(gameST::START_EXPLORING);
 		break;
-	case gameST::GAME_OVER: // completa Lich o muerte
-		cout << "EXPLORING FINISHED" << endl;
+	case gameST::GAME_OVER:
 		tem_->onExitLaberinto();
 		changeState(gameST::LOBBY);
 		break;

@@ -41,9 +41,10 @@ void LobbyManager::backFromDungeon()
 
 	for (Item* i : party_->getItems())
 	{
-		addItemToStash(i);
+		if (i != nullptr)
+			addItemToStash(i);
 	}
-	party_->getItems().clear();
+	party_->clearItems();
 
 	lobbyStore_ = new Store();
 	generateHeroStore();
@@ -102,7 +103,7 @@ void LobbyManager::removeItemFromStash(Item* i)
 
 void LobbyManager::removeItemFromShop(ItemToBuy* item)
 {
-	for(int i = 0; i < lobbyStore_->items.size(); i++){
+	for (int i = 0; i < lobbyStore_->items.size(); i++) {
 		if (lobbyStore_->items[i] == item) {
 			removeItemFromShop(i);
 			return;

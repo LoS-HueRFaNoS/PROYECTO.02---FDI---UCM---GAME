@@ -15,6 +15,8 @@ public:
 	virtual void init(SDL_Rect dest, Resources::TextureId imagen) {
 		initComponents(POS(dest), dest.w, dest.h, imagen);
 	};
+	
+	virtual void init(SDL_Rect dest, Texture* image);
 
 	virtual void init(Vector2D pos, uint ancho, uint alto, Resources::TextureId imagen) {
 		initComponents(pos, ancho, alto, imagen);
@@ -44,13 +46,17 @@ public:
 class Line : public SDL_Object
 {
 private:
+	std::string texto;
 	Texture* tex_;
 public:
-	Line(SDLGame* game, EntityManager* mngr) : tex_(nullptr), SDL_Object(game, mngr) {};
+	Line(SDLGame* game, EntityManager* mngr) : texto(), tex_(nullptr), SDL_Object(game, mngr) {};
 	~Line() {
 		delete tex_;
 		tex_ = nullptr;
 	};
 	virtual void init(SDL_Rect size, string line, const SDL_Color& color);
 	virtual void init(Vector2D pos, uint ancho, uint alto, string line, Resources::FontId font, const SDL_Color& color);
+	virtual void init(SDL_Rect size, string line, Resources::FontId font, const SDL_Color& color);
+
+	std::string getLine() { return texto; };
 };

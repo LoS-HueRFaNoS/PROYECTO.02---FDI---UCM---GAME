@@ -76,7 +76,7 @@ void Game::initGame()
 	SDL_RenderPresent(game_->getRenderer());
 
 	game_->initResources();
-
+	game_->getAudioMngr()->setMusicVolume(15);
 	entityManager_ = new EntityManager(game_);
 
 	fondo = new Fondo(game_, entityManager_);
@@ -87,14 +87,16 @@ void Game::initGame()
 
 	interfazManager_ = new InterfazManager(game_);
 
+#ifdef DEBUG
 	system("cls");
+#endif // DEBUG
+
 
 	gameManager_ = TheElementalMaze::initInstace(game_, entityManager_, characterManager_, interfazManager_);
 
 	entityManager_->addEntity(gameManager_);
 
 	c_ = createCursor(Vector2D(game_->getWindowWidth() / 2, game_->getWindowHeight() / 2), 50, 50, Resources::Mouse);
-
 
 	int endTime = 0;
 	delete tex_;

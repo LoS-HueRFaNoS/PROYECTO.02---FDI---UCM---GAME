@@ -32,6 +32,7 @@ enum CmpId : CmpIdType {
 	Cartel_Info,
 	Tutorial,
 	BorrarAlMorir,
+	Contador,
 	//
 	// don't touch the rest of this enum, it is to identify the max
 	// number of components

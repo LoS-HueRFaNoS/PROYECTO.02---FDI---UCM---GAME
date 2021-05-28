@@ -9,6 +9,18 @@
 
 std::unique_ptr<ChatManager> ChatManager::instance_;
 
+void ChatManager::removeLine(Line* e)
+{
+	std::string aux = "";
+	aux.resize(NUM_LETTERS_IN_LINE, ' ');
+	if (e->getLine() == aux) {
+		e->disable();
+		for (auto it = entities.begin(); it != entities.end(); it++) {
+			moveDown(it->get());
+		}
+	}
+}
+
 void ChatManager::init()
 {
 	SDL_Panel pan = game_->relativePanel(710,790,540,190,1,6,20,20,5,5);
@@ -17,10 +29,11 @@ void ChatManager::init()
 	margin = pan.mh;
 	chatSize = NUM_LINES;
 	// color messages
-	lineTypesMap_[linTy::Info] = hex2sdlcolor("#FFFFFFFF");
-	lineTypesMap_[linTy::Experience] = hex2sdlcolor("#BBBB00FF");
-	lineTypesMap_[linTy::DamageDone] = hex2sdlcolor("#FF0000FF");
-	lineTypesMap_[linTy::DamageReceive] = hex2sdlcolor("#0055FFFF");
+	lineTypesMap_[linCol::White] = hex2sdlcolor("#FFFFFFFF");
+	lineTypesMap_[linCol::Yellow] = hex2sdlcolor("#FFD700FF");
+	lineTypesMap_[linCol::Green] = hex2sdlcolor("#00FF00FF");
+	lineTypesMap_[linCol::Red] = hex2sdlcolor("#FF0000FF");
+	lineTypesMap_[linCol::Blue] = hex2sdlcolor("#0055FFFF");
 }
 
 void ChatManager::moveUp(Entity* e)
@@ -45,7 +58,7 @@ void ChatManager::drawLine(Entity* e)
 	};
 }
 
-bool ChatManager::checkLineSize(std::string text, LineType type)
+bool ChatManager::checkLineSize(std::string text, LineColor type)
 {
 	bool cut = false;
 	if (text.size() > NUM_LETTERS_IN_LINE) {
@@ -72,6 +85,42 @@ bool ChatManager::checkTopDownMax(int y)
 	else return false;
 }
 
+int ChatManager::getFirstLinePOS()
+{
+	double y = 0;
+	std::string aux = "";
+	aux.resize(NUM_LETTERS_IN_LINE, ' ');
+	for (auto it = entities.begin(); it != entities.end(); it++) {
+		Line* line = dynamic_cast<Line*>(it->get());
+		if (line != nullptr && line->getLine() != aux) {
+			Transform* tr_ = GETCMP2(line, Transform);
+			y = tr_->getPos().getY();
+		}
+	}
+	return y;
+}
+
+void ChatManager::clean()
+{
+	for (auto it = entities.rbegin(); it != entities.rend(); it++) {
+		Line* line = dynamic_cast<Line*>(it->get());
+		if (line != nullptr) {
+			removeLine(line);
+		}
+	}
+}
+
+void ChatManager::cleanALL()
+{
+	for (auto it = entities.rbegin(); it != entities.rend(); it++) {
+		Line* line = dynamic_cast<Line*>(it->get());
+		if (line != nullptr) {
+			line->disable();
+		}
+	}
+	entities.clear();
+}
+
 void ChatManager::Init()
 {
 	assert(instance_.get() == nullptr);
@@ -79,7 +128,13 @@ void ChatManager::Init()
 	instance_->init();
 }
 
-void ChatManager::addLine(std::string line, LineType type)
+void ChatManager::add(std::string line, LineColor type)
+{
+	clean();
+	addLine(line, type);
+}
+
+void ChatManager::addLine(std::string line, LineColor type)
 {
 	if (!checkLineSize(line, type)) {
 		for (auto it = entities.begin(); it != entities.end(); it++) {
@@ -90,11 +145,16 @@ void ChatManager::addLine(std::string line, LineType type)
 	}
 }
 
+void ChatManager::clean_n_addLine(std::string line, LineColor type)
+{
+	cleanALL();
+	addLine(line, type);
+}
+
 void ChatManager::update()
 {
 	checkChatSize();
-	Transform* tr_ = GETCMP2(entities.rbegin()->get(), Transform);
-	double y = tr_->getPos().getY();
+	int y = getFirstLinePOS();
 
 	InputHandler* ih_ = InputHandler::instance();
 	if (ih_->mouseWheelEvent()) {
@@ -103,17 +163,15 @@ void ChatManager::update()
 			if (ih_->getMouseWheelState(InputHandler::UP)) // away from the user
 			{
 				if (checkTopDownMax(y + firstLine.h)) {
-					for (auto it = entities.begin(); it != entities.end(); it++) {
-						moveDown(it->get());
-					}
+					Line* line = dynamic_cast<Line*>(entities.rbegin()->get());
+					if (line != nullptr)
+						removeLine(line); // move down
 				}
 			}
 			else if (ih_->getMouseWheelState(InputHandler::DOWN)) // toward the user
 			{
 				if (checkTopDownMax(y - firstLine.h)) {
-					for (auto it = entities.begin(); it != entities.end(); it++) {
-						moveUp(it->get());
-					}
+					addLine("", linCol::White); // move up
 				}
 			}
 		}

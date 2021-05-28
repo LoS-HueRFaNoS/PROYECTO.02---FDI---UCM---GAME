@@ -9,6 +9,8 @@
 
 class Button : public SDL_Object
 {
+protected:
+	Resources::TextureId id_;
 public:
 	Button(SDLGame* game, EntityManager* mngr) :
 		SDL_Object(game, mngr)
@@ -18,6 +20,9 @@ public:
 	virtual void init(SDL_Rect dest, Resources::TextureId imagen);
 
 	virtual void click() = 0;
+
+	void toggleImage(Resources::TextureId imagen);
+	Resources::TextureId getImageID() { return id_; };
 };
 
 // ----------------------------------------------------
@@ -37,11 +42,17 @@ public:
 	};
 
 	virtual void click() { 
-		callbacks::toggleThemeFondo(); 
+		if (id_ == src::Change) 
+			toggleImage(src::Change2);
+		else 
+			toggleImage(src::Change);
+		callbacks::toggleThemeFondo(); 		
 		Sprite* s_ = GETCMP2(this, Sprite);
 		s_->setHide(true);
 		s_->reset();
 	};
+
+	
 };
 
 // ----------------------------------------------------
@@ -79,6 +90,7 @@ public:
 	virtual void init(Vector2D pos, uint ancho, uint alto, Resources::TextureId imagen, MovType movement) {
 		movementType_ = movement;
 		Button::init(pos, ancho, alto, imagen);
+		game_->getAudioMngr()->setChannelVolume(15,-1);
 	};
 
 	virtual void click() 
@@ -162,9 +174,9 @@ public:
 		app = app_;
 		Button::init(pos, ancho, alto, imagen);
 	};
-	virtual void init(SDL_Rect dest, Resources::TextureId imagen, accionMenu type) {
+	virtual void init(SDL_Rect dest, Resources::TextureId imagen, accionMenu type, Interfaz* app_ = nullptr) {
 		tipo = type;
-		app = nullptr;
+		app = app_;
 		Button::init(dest, imagen);
 	};
 
@@ -250,6 +262,11 @@ public:
 		app = app_;
 		Button::init(pos, ancho, alto, imagen);
 	};
+	virtual void init(SDL_Rect dest, Resources::TextureId imagen, int her, Interfaz* app_) {
+		heroeid = her;
+		app = app_;
+		Button::init(dest, imagen);
+	};
 
 	virtual void click()
 	{
@@ -271,6 +288,11 @@ public:
 		heroeid = her;
 		app = app_;
 		Button::init(pos, ancho, alto, imagen);
+	};
+	virtual void init(SDL_Rect dest, Resources::TextureId imagen, int her, Interfaz* app_) {
+		heroeid = her;
+		app = app_;
+		Button::init(dest, imagen);
 	};
 
 	virtual void click()
@@ -298,6 +320,12 @@ public:
 		app = app_;
 		accion = accion_;
 		Button::init(pos, ancho, alto, imagen);
+	};
+	virtual void init(SDL_Rect dest, Resources::TextureId imagen,accionHero accion_, int her, Interfaz* app_) {
+		heroeid = her;
+		app = app_;
+		accion = accion_;
+		Button::init(dest, imagen);
 	};
 
 	virtual void click()
@@ -334,6 +362,12 @@ public:
 		app = app_;
 		Button::init(pos, ancho, alto, imagen);
 	};
+	virtual void init(SDL_Rect dest, Resources::TextureId imagen,int itemId_, int itemType_, Interfaz* app_) {
+		itemid = itemId_;
+		itemType = itemType_;
+		app = app_;
+		Button::init(dest, imagen);
+	};
 
 	virtual void click()
 	{
@@ -366,6 +400,13 @@ public:
 		isWeapon = isWeapon_;
 		app = app_;
 		Button::init(pos, ancho, alto, imagen);
+	};
+	virtual void init(SDL_Rect dest, Resources::TextureId imagen, accionItem accion_item_ ,bool isWeapon_, int itemId_, Interfaz* app_) {
+		itemid = itemId_;
+		accion_item = accion_item_;
+		isWeapon = isWeapon_;
+		app = app_;
+		Button::init(dest, imagen);
 	};
 
 	virtual void click()
@@ -420,6 +461,12 @@ public:
 		isHero = isHero_;
 		Button::init(pos, ancho, alto, imagen);
 	};
+	virtual void init(SDL_Rect dest, Resources::TextureId imagen,bool isHero_, int id_, Interfaz* app_) {
+		app = app_;
+		id = id_;
+		isHero = isHero_;
+		Button::init(dest, imagen);
+	};
 
 	virtual void click()
 	{
@@ -470,8 +517,8 @@ public:
 };
 // ----------------------------------------------------
 
-enum class PtnType { health, mana, resurrection };
 
+#include "../Components/Contador.h"
 class ButtonPotion : public Button {
 private:
 	PtnType potionType_;
@@ -487,8 +534,6 @@ public:
 
 	virtual void click()
 	{
-		game_->getAudioMngr()->haltMusic();
-		game_->getAudioMngr()->setChannelVolume(30, 0);
 		//game_->getAudioMngr()->haltChannel(0);
 		callbacks::potionType((int)potionType_);
 		Sprite* s_ = GETCMP2(this, Sprite);
@@ -550,9 +595,6 @@ public:
 
 	virtual void click()
 	{
-		game_->getAudioMngr()->playMusic(Resources::Exploracion, -1);
-		game_->getAudioMngr()->setMusicVolume(50);
-
 		callbacks::createPanel(activated, pan_);
 		if (!activated) turnON();
 		else turnOFF();
