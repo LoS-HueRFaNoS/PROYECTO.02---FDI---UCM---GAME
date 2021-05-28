@@ -27,8 +27,8 @@
 [lich]: Proyecto.02/project/resources/sprites/iconos%20personajes/lich.PNG "IMG - Lich"
 [necro]: Proyecto.02/project/resources/sprites/iconos%20personajes/necrofago.png "IMG - Necrofago"
 <!-- Objetos -->
-[health]: Proyecto.02/project/resources/sprites/iconos%20objetos/life_potion.png "IMG - Poción de Salud"
-[mana]: Proyecto.02/project/resources/sprites/iconos%20objetos/mana_potion.png "IMG - Poción de Maná"
+[health]: Proyecto.02/project/resources/sprites/iconos%20info/infoPocionVida.png "IMG - Poción de Salud"
+[mana]: Proyecto.02/project/resources/sprites/iconos%20info/infoPocionMana.png "IMG - Poción de Maná"
 [nigro]: Proyecto.02/project/resources/sprites/iconos%20objetos/nigro_potion.png "IMG - Poción Nigromántica"
 [rune]: Proyecto.02/project/resources/sprites/iconos%20objetos/rune.png "IMG - Runa (moneda de cambio)"
 <!-- Armas -->
@@ -49,6 +49,16 @@
 [martillo]: Proyecto.02/project/resources/sprites/iconos%20armas/martillo.png "IMG - Martillo"
 [maza]: Proyecto.02/project/resources/sprites/iconos%20armas/maza.png "IMG - Maza"
 [puños]: Proyecto.02/project/resources/sprites/iconos%20armas/puños.png "IMG - Puños"
+<!-- Armaduras -->
+[acolchada]: Proyecto.02/project/resources/sprites/iconos%20armaduras/acolchada.png "IMG - Acolchada"
+[bandas]: Proyecto.02/project/resources/sprites/iconos%20armaduras/bandas.png "IMG - Bandas"
+[coraza]: Proyecto.02/project/resources/sprites/iconos%20armaduras/coraza.png "IMG - Coraza"
+[cota escamas]: Proyecto.02/project/resources/sprites/iconos%20armaduras/cota_escamas.png "IMG - Cota Escamas"
+[cota mallas]: Proyecto.02/project/resources/sprites/iconos%20armaduras/cota_mallas.png "IMG - Cota Mallas"
+[cuero tachonado]: Proyecto.02/project/resources/sprites/iconos%20armaduras/cuero_tachonado.png "IMG - Cuero Tachonado"
+[placas]: Proyecto.02/project/resources/sprites/iconos%20armaduras/placas.png "IMG - Placas"
+[semiplacas]: Proyecto.02/project/resources/sprites/iconos%20armaduras/semiplacas.png "IMG - Semiplacas"
+
 <!-- Arquitecturas UML -->
 [interfaz_uml]: Proyecto.02/project/resources/images/UML/interfaz_uml.png "Esquema UML del Interfaz"
 [mapa_uml]: Proyecto.02/project/resources/images/UML/mapa_uml.png "Esquema UML del Mapa"
@@ -288,8 +298,17 @@ Cada nivel es un laberinto pequeño donde el jugador irá encontrando enemigos y
 | ![img - ballesta_pesada][ballesta_pesada] | **BALLESTA PESADA** | Un arma **marcial y de área** que puede hacer hasta **10** puntos de daño, aunque necesita cargar antes de realizar cada disparo. |
 
 - ### 5.7.  Armaduras ###
-| ICONO | NOMBRE | DESCRIPCIÓN |
+| ICONO | NOMBRE | NIVEL DE PROTECCIÓN |
 | -- | -- | -- | 
+| ![img - acolchada][acolchada] | **ACOLCHADA** |  |
+| ![img - placas][placas] | **PLACAS** |  |
+| ![img - semiplacas][semiplacas] | **SEMIPLACAS** |  |
+| ![img - cuero tachonado][cuero tachonado] | **CUERO TACHONADO** |  |
+| ![img - bandas][bandas] | **BANDAS** |  |
+| ![img - coraza][coraza] | **CORAZA** |  |
+| ![img - cota escamas][cota escamas] | **COTA DE ESCAMAS** |  |
+| ![img - cota mallas][cota mallas] | **COTA DE MALLAS** |  |
+
  ### 5.8.  Habilidades ###
 | ICONO | NOMBRE | DESCRIPCIÓN |
 | -- | -- | -- |
