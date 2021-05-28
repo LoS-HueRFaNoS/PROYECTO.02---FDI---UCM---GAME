@@ -511,10 +511,10 @@ void Interfaz::createMenuPrincipal()
 
 	// HOW TO PLAY
 	dest.y = dest.y + pan.ch + pan.eh;
-	p->addButton(iManager->addButton<ButtonMenu>(dest, src::howToPlay, accionMenu::how_to_play, this));
+	//p->addButton(iManager->addButton<ButtonMenu>(dest, src::howToPlay, accionMenu::how_to_play, this));
 
 	// QUIT
-	dest.y = dest.y + pan.ch + pan.eh;
+	dest.y = pan.lcy;
 	p->addButton(iManager->addButton<ButtonMenu>(dest, src::quit, accionMenu::quit, this));
 }
 
