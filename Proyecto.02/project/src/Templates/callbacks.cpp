@@ -252,6 +252,9 @@ void callbacks::startLobby(Interfaz* app)
 	if (app->getActivePan(Fight)) 			app->removePanel(Fight);
 	if (app->getActivePan(Turns)) 			app->removePanel(Turns);
 	if (app->getActivePan(Info)) 			app->removePanel(Info);
+	if (app->getActivePan(Movement))		app->removePanel(Movement);
+	if (app->getActivePan(Minimap))			app->removePanel(Minimap);
+	if (app->getActivePan(BigMap))			app->removePanel(BigMap);
 	if (TheElementalMaze::instance()->gameState() != gameST::MainMenu)
 	{
 		TheElementalMaze::instance()->backFromDungeon();

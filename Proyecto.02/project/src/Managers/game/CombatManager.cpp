@@ -222,6 +222,8 @@ void CombatManager::endCombat()
 	TheElementalMaze::instance()->checkOutNoInitialEnemy();
 
 	_turnQueue.clear();
+	if (!_win)
+	TheElementalMaze::instance()->onExitLaberinto();
 }
 
 void CombatManager::castHability(Hability* hability)

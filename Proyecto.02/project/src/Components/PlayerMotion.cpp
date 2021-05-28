@@ -32,8 +32,17 @@ void PlayerMotion::update()
 	if (ih->isKeyDown(avance)) { avanzar(); }
 	else if (ih->isKeyDown(giraIzq)) { rotarIzquierda(); }
 	else if (ih->isKeyDown(giraDer)) { rotarDerecha(); }
-	else if (ih->isKeyDown(SDLK_e) && lab->getCasillaInfo(x, y)->isExit()) { TheElementalMaze::instance()->changeState(gameST::END_EXPLORING); }
-	else if (ih->isKeyDown(SDLK_f) && lab->getCasillaInfo(x, y)->isExit()) { TheElementalMaze::instance()->changeState(gameST::LOBBY); }
+	else if (ih->isKeyDown(SDLK_e) && lab->getCasillaInfo(x, y)->isExit()) { 
+		TheElementalMaze::instance()->changeState(gameST::END_EXPLORING);
+		TheElementalMaze::instance()->onExitLaberinto();
+	}
+	else if (ih->isKeyDown(SDLK_f) && lab->getCasillaInfo(x, y)->isExit()) { 
+		
+		TheElementalMaze::instance()->nextLevel();
+		TheElementalMaze::instance()->onExitLaberinto();
+		TheElementalMaze::instance()->changeState(gameST::LOBBY);
+
+	}
 }
 
 void PlayerMotion::rotarDerecha()
