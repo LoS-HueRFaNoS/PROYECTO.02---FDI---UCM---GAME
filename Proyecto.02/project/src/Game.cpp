@@ -76,7 +76,6 @@ void Game::initGame()
 	SDL_RenderPresent(game_->getRenderer());
 
 	game_->initResources();
-	game_->getAudioMngr()->setMusicVolume(15);
 	entityManager_ = new EntityManager(game_);
 
 	fondo = new Fondo(game_, entityManager_);

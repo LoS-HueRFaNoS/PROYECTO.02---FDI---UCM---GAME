@@ -17,7 +17,6 @@ void GameStateManager::update()
 	if (!stateChanged)
 		return;
 	stateChanged = false;
-	TheElementalMaze::instance()->getSDLGame()->getAudioMngr()->setMusicVolume(15);
 	switch (state_)
 	{
 	case gameST::MainMenu:
@@ -40,7 +39,6 @@ void GameStateManager::update()
 		changeState(gameST::COMBAT);
 		break;
 	case gameST::COMBAT:
-		TheElementalMaze::instance()->getSDLGame()->getAudioMngr()->setMusicVolume(8);
 		break;
 	case gameST::END_EXPLORING:
 		//tem_->nextLevel();
