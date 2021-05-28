@@ -224,7 +224,7 @@ vector<Resources::ImageInfo> Resources::images_{
 	{Tsunami, "project/resources/sprites/iconos habilidades/TSUNAMI.png"},
 	{VorticeDeOscuridad, "project/resources/sprites/iconos habilidades/VORTICE DE OSCURIDAD.PNG"},
 	{Morph, "project/resources/sprites/iconos habilidades/MORPH.png"},
-	{ReverseMorph, "project/resources/sprites/iconos habilidades/MORPH.png"},
+	{ReverseMorph, "project/resources/sprites/iconos habilidades/REVERSEMORPH.png"},
 
 	// carteles tutorial
 	{ cartel_combate, "project/resources/images/interfaz/carteles/cartel_combate.png" },
