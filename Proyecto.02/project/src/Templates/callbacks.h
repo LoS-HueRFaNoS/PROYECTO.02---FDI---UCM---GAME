@@ -1,5 +1,6 @@
 #pragma once
 
+#include "../GameObjects/SDL_Objects.h"
 class Interfaz;
 
 // MENU
@@ -65,4 +66,6 @@ public:
 	static void equip(Interfaz* app, bool isWeapon,int itemid, int heroid);
 	static void unequip(Interfaz* app, bool isWeapon, int heroid);
 	static void closeMessage();
+
+	static void volumen(int val, SDL_Object* obj, int min, int max);
 };

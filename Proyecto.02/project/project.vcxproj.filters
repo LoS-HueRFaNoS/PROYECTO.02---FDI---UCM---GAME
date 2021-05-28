@@ -102,9 +102,6 @@
     <ClCompile Include="src\GameObjects\Cursor.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
-    <ClCompile Include="src\GameObjects\Rectangle.cpp">
-      <Filter>Archivos de origen\Components</Filter>
-    </ClCompile>
     <ClCompile Include="src\Structures\Panel.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
@@ -222,6 +219,9 @@
     <ClCompile Include="src\Components\BorrarAlMorir.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
+    <ClCompile Include="src\Components\Rectangle.cpp">
+      <Filter>Archivos de origen\Components</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Managers\SDL\AudioManager.h">
@@ -280,9 +280,6 @@
     </ClInclude>
     <ClInclude Include="src\GameObjects\Cursor.h">
       <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="src\GameObjects\Rectangle.h">
-      <Filter>Archivos de encabezado\Components</Filter>
     </ClInclude>
     <ClInclude Include="src\Structures\Panel.h">
       <Filter>Archivos de encabezado</Filter>
@@ -433,6 +430,9 @@
     </ClInclude>
     <ClInclude Include="src\Components\Contador.h">
       <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Components\Rectangle.h">
+      <Filter>Archivos de encabezado\Components</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

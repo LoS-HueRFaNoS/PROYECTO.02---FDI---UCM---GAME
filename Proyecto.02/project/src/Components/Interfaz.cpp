@@ -10,6 +10,7 @@
 #include "BorrarAlMorir.h"
 #include "Laberinto.h"
 #include "Tutorial.h"
+#include "Rectangle.h"
 #include "Paneles/PanelTurns.h"
 #include "Paneles/PanelDnD.h"
 #include "../Utilities/SDL_macros.h"
@@ -876,36 +877,60 @@ void Interfaz::createOptions()
 {
 	Panel* p = new Panel(Options);
 	allPanels[Options] = p;
-	int w, h;
-	int x, y;
-	//int ancho;
+
+	uint w = game_->getWindowWidth();
+	uint h = game_->getWindowHeight();
+	SDL_Object* obj = iManager->addButton<SDL_Object>(Vector2D(0, 0), w, h, src::Cartel);
+	p->addButton(obj);
+
 	string text;
 	SDL_Color color;
 
-	w = game_->getWindowWidth();
-	h = game_->getWindowHeight();
-	p->addButton(iManager->addButton<SDL_Object>(Vector2D(0, 0), w, h, src::mFondo));
-
-
-	x = w / 2 - 200; y = 100;
 	color = { 0,0,0,255 };
-	text = "Options";
-	p->addButton(iManager->addButton<Line>(Vector2D(x, y), 400, 200, text, Resources::FontId::HERMAN, color));
+	/*obj->addComponent<Rectangle>(color);
+	p->addButton(obj);*/
 
-	x = w / 2 - 75;
-	y += 75;
+	SDL_Panel pan = game_->relativePanel(0, 0, w, h, 5, 5, 20, 20);
+	SDL_Rect dest = RECT(
+		pan.fcx,
+		pan.fcy,
+		pan.cw,
+		pan.ch
+	);
+
+	
+
+	color = { 255,255,255,255 };
+	text = "Options";
+	p->addButton(iManager->addButton<Line>(Vector2D(dest.x + dest.w, dest.y), dest.w * 3, dest.h, text, Resources::FontId::Beaulieux, color));
+
 	text = "Volume"; //Volumen con 4 botones
-	p->addButton(iManager->addButton<Line>(Vector2D(x, y), 150, 40, text, Resources::FontId::HERMAN, color));
+	p->addButton(iManager->addButton<Line>(Vector2D(dest.x + dest.w, dest.y + dest.h * 2), dest.w * 3, dest.h, text, Resources::FontId::Beaulieux, color));
+
+	dest.x = pan.fcx + pan.cw * 3 / 2;
+	dest.y = pan.fcx + pan.ch * 3;
+	dest.w = dest.w / 5;
+	obj = iManager->addButton<SDL_Object>(dest, Resources::TextureId::Joker);
+	p->addButton(obj);
+
+	dest.w = pan.ch;
+	dest.y = pan.fcy + pan.ch * 3;
+	dest.x = pan.fcx + pan.cw / 2;
+	p->addButton(iManager->addButton<ButtonVolumen>(dest, Resources::TextureId::RotarI, -15, obj, pan.fcx + pan.cw / 2, pan.lcx + pan.cw - pan.cw / 2));
+	dest.x = pan.lcx + pan.cw - pan.cw / 2;
+	p->addButton(iManager->addButton<ButtonVolumen>(dest, Resources::TextureId::RotarD, 15, obj, pan.fcx + pan.cw / 2, pan.lcx + pan.cw - pan.cw / 2));
+
+
 	//
 	//p->addButton(iManager->addButton<ButtonOption>(Vector2D(w - 100, 36), 64, 64, src::close, accionOption::volumen, 1, this));
 	//p->addButton(iManager->addButton<ButtonOption>(Vector2D(w - 100, 36), 64, 64, src::close, accionOption::volumen, 2,this));
 	//p->addButton(iManager->addButton<ButtonOption>(Vector2D(w - 100, 36), 64, 64, src::close, accionOption::volumen, 3,this));
 	//p->addButton(iManager->addButton<ButtonOption>(Vector2D(w - 100, 36), 64, 64, src::close, accionOption::volumen, 4,this));
 
-	x = w / 2 - 100;
+	/*x = w / 2 - 100;
 	y += 50;
 	text = "Animation speed";
-	p->addButton(iManager->addButton<Line>(Vector2D(x, y), 200, 40, text, Resources::FontId::HERMAN, color));
+	p->addButton(iManager->addButton<Line>(Vector2D(x, y), 200, 40, text, Resources::FontId::HERMAN, color));*/
 	//x0.5 x1 x2 x4
 	//p->addButton(iManager->addButton<ButtonOption>(Vector2D(w - 100, 36), 64, 64, src::close, accionOption::velocidad,1 , this));
 	//p->addButton(iManager->addButton<ButtonOption>(Vector2D(w - 100, 36), 64, 64, src::close, accionOption::velocidad,2,this));
@@ -913,7 +938,7 @@ void Interfaz::createOptions()
 	//p->addButton(iManager->addButton<ButtonOption>(Vector2D(w - 100, 36), 64, 64, src::close, accionOption::velocidad,4,this));
 
 
-	p->addButton(iManager->addButton<ButtonMenu>(Vector2D(w - 100, 36), 64, 64, src::close, accionMenu::options, this));
+	p->addButton(iManager->addButton<ButtonMenu>(Vector2D(70, 70), 40, 40, src::close, accionMenu::options, this));
 
 }
 

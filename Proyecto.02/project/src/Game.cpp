@@ -9,7 +9,7 @@
 #include "Components/Interfaz.h"
 #include "Components/PlayerMotion.h"
 #include "Components/PlayerViewer.h"
-#include "GameObjects/Rectangle.h"
+#include "Components/Rectangle.h"
 #include "GameObjects/Cursor.h"
 #include "GameObjects/SDL_Objects.h"
 #include "ecs/ecs.h"

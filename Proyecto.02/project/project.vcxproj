@@ -62,7 +62,7 @@
     <ClCompile Include="src\Components\PlayerMotion.cpp" />
     <ClCompile Include="src\Components\PlayerViewer.cpp" />
     <ClCompile Include="src\Utilities\RandomNumberGenerator.cpp" />
-    <ClCompile Include="src\GameObjects\Rectangle.cpp" />
+    <ClCompile Include="src\Components\Rectangle.cpp" />
     <ClCompile Include="src\Templates\Resources.cpp" />
     <ClCompile Include="src\Templates\RPGLogic.cpp" />
     <ClCompile Include="src\Managers\SDL\SDLAudioManager.cpp" />
@@ -132,7 +132,7 @@
     <ClInclude Include="src\Components\PlayerMotion.h" />
     <ClInclude Include="src\Components\PlayerViewer.h" />
     <ClInclude Include="src\Utilities\RandomNumberGenerator.h" />
-    <ClInclude Include="src\GameObjects\Rectangle.h" />
+    <ClInclude Include="src\Components\Rectangle.h" />
     <ClInclude Include="src\Templates\Resources.h" />
     <ClInclude Include="src\Templates\RPGLogic.h" />
     <ClInclude Include="src\Managers\SDL\SDLAudioManager.h" />

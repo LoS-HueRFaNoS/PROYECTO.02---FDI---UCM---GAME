@@ -27,6 +27,50 @@ public:
 
 // ----------------------------------------------------
 
+class ButtonVolumen : public Button
+{
+private:
+	int min;
+	int max;
+	SDL_Object* obj;
+	int value;
+public:
+	ButtonVolumen(SDLGame* game, EntityManager* mngr) :
+		Button(game, mngr)
+	{};
+	virtual ~ButtonVolumen() {};
+
+	virtual void init(SDL_Rect dest, Resources::TextureId imagen, int val, SDL_Object* o, int mn, int mx)
+	{
+		min = mn;
+		max = mx;
+		obj = o;
+		value = val;
+		Button::init(dest, imagen);
+	};
+
+	virtual void click() {
+		//callbacks::volumen(value, obj, min, max);
+		Sprite* s_ = GETCMP2(this, Sprite);
+		s_->setHide(true);
+		s_->reset();
+
+		//SDLGame* game = Game::Instance()->getSDLGame();
+		Transform* tr = GETCMP2(obj, Transform);
+
+		int aux = tr->getPos().getX();
+		int change = aux + value;
+
+		if (change < max && change > min) {
+			tr->setPosX(change);
+			int value = (tr->getPos().getX() - min) / (max - min) * 100;
+			game_->getAudioMngr()->setMusicVolume(value);
+		}		
+	};
+};
+
+// ----------------------------------------------------
+
 class ButtonSettings : public Button
 {
 public:

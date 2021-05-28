@@ -495,6 +495,23 @@ void callbacks::closeMessage()
 	std::cout << "saliendo del mensaje del tutorial" << std::endl;
 }
 
+#include "../Managers/SDLGame.h"
+void callbacks::volumen(int val, SDL_Object* obj, int min, int max)
+{
+	/*SDLGame* game = Game::Instance()->getSDLGame();
+	Transform* tr = GETCMP2(obj, Transform);
+
+	int aux = tr->getPos().getX();
+	int change = aux + val;
+
+	if(change < max && change > min)
+		tr->setPosX(change);
+
+	int value = (tr->getPos().getX() - min) / (max - min) * 100;
+	
+	game->getAudioMngr()->setMusicVolume(value);*/
+}
+
 void callbacks::inventarioToLobby(Interfaz* app)
 {
 	if (app->getActivePan(DDPan)) app->removePanel(DDPan);

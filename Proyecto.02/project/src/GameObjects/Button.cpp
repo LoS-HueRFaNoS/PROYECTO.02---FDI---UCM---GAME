@@ -128,3 +128,4 @@ void ButtonWeaponAttack::click()
 {
 	callbacks::set_hability(attack_);
 }
+
