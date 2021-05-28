@@ -163,9 +163,9 @@ public:
 		app = app_;
 		Button::init(pos, ancho, alto, imagen);
 	};
-	virtual void init(SDL_Rect dest, Resources::TextureId imagen, accionMenu type) {
+	virtual void init(SDL_Rect dest, Resources::TextureId imagen, accionMenu type, Interfaz* app_ = nullptr) {
 		tipo = type;
-		app = nullptr;
+		app = app_;
 		Button::init(dest, imagen);
 	};
 
@@ -273,6 +273,11 @@ public:
 		app = app_;
 		Button::init(pos, ancho, alto, imagen);
 	};
+	virtual void init(SDL_Rect dest, Resources::TextureId imagen, int her, Interfaz* app_) {
+		heroeid = her;
+		app = app_;
+		Button::init(dest, imagen);
+	};
 
 	virtual void click()
 	{
@@ -367,6 +372,13 @@ public:
 		isWeapon = isWeapon_;
 		app = app_;
 		Button::init(pos, ancho, alto, imagen);
+	};
+	virtual void init(SDL_Rect dest, Resources::TextureId imagen, accionItem accion_item_ ,bool isWeapon_, int itemId_, Interfaz* app_) {
+		itemid = itemId_;
+		accion_item = accion_item_;
+		isWeapon = isWeapon_;
+		app = app_;
+		Button::init(dest, imagen);
 	};
 
 	virtual void click()
