@@ -300,14 +300,86 @@ Cada nivel es un laberinto pequeño donde el jugador irá encontrando enemigos y
 - ### 5.7.  Armaduras ###
 | ICONO | NOMBRE | NIVEL DE PROTECCIÓN |
 | -- | -- | -- | 
-| ![img - acolchada][acolchada] | **ACOLCHADA** |  |
-| ![img - placas][placas] | **PLACAS** |  |
-| ![img - semiplacas][semiplacas] | **SEMIPLACAS** |  |
-| ![img - cuero tachonado][cuero tachonado] | **CUERO TACHONADO** |  |
-| ![img - bandas][bandas] | **BANDAS** |  |
-| ![img - coraza][coraza] | **CORAZA** |  |
-| ![img - cota escamas][cota escamas] | **COTA DE ESCAMAS** |  |
-| ![img - cota mallas][cota mallas] | **COTA DE MALLAS** |  |
+| ![img - acolchada][acolchada] | **ACOLCHADA** |  Contundente: 0.1
+                                                   Perforante: 0.1
+                                                   Cortante: 0.1
+                                                   Fuego: 0
+                                                   Agua: 0
+                                                   Hielo: 0
+                                                   Tierra: 0
+                                                   Viento: 0
+                                                   Luz: 0
+                                                   Oscuridad: 0
+| ![img - placas][placas] | **PLACAS** | Contundente: 0.5
+                                         Perforante: 0.3
+                                         Cortante: 0.3
+                                         Fuego: 0
+                                         Agua: 0
+                                         Hielo: 0
+                                         Tierra: 0
+                                         Viento: 0
+                                         Luz: 0
+                                         Oscuridad: 0 |
+| ![img - semiplacas][semiplacas] | **SEMIPLACAS** | Contundente: 0.2
+                                                     Perforante: 0.2
+                                                     Cortante: 0.2
+                                                     Fuego: 0
+                                                     Agua: 0
+                                                     Hielo: 0
+                                                     Tierra: 0
+                                                     Viento: 0
+                                                     Luz: 0
+                                                     Oscuridad: 0 |
+| ![img - cuero tachonado][cuero tachonado] | **CUERO TACHONADO** | Contundente: 0.2
+                                                                    Perforante: 0
+                                                                    Cortante: 0.1
+                                                                    Fuego: 0
+                                                                    Agua: 0
+                                                                    Hielo: 0
+                                                                    Tierra: 0
+                                                                    Viento: 0
+                                                                    Luz: 0
+                                                                    Oscuridad: 0 |
+| ![img - bandas][bandas] | **BANDAS** | Contundente: 0.2
+                                         Perforante: 0.1
+                                         Cortante: 0.1
+                                         Fuego: 0
+                                         Agua: 0
+                                         Hielo: 0
+                                         Tierra: 0
+                                         Viento: 0
+                                         Luz: 0
+                                         Oscuridad: 0  |
+| ![img - coraza][coraza] | **CORAZA** | Contundente: 0.5
+                                         Perforante: 0.3
+                                         Cortante: 0.3
+                                         Fuego: 0
+                                         Agua: 0
+                                         Hielo: 0
+                                         Tierra: 0
+                                         Viento: 0
+                                         Luz: 0
+                                         Oscuridad: 0  |
+| ![img - cota escamas][cota escamas] | **COTA DE ESCAMAS** | Contundente: 0
+                                                              Perforante: 0.1
+                                                              Cortante: 0.4
+                                                              Fuego: 0
+                                                              Agua: 0
+                                                              Hielo: 0
+                                                              Tierra: 0
+                                                              Viento: 0
+                                                              Luz: 0
+                                                              Oscuridad: 0 |
+| ![img - cota mallas][cota mallas] | **COTA DE MALLAS** | Contundente: 0.1
+                                                           Perforante: 0.4
+                                                           Cortante: 0.3
+                                                           Fuego: 0
+                                                           Agua: 0
+                                                           Hielo: 0
+                                                           Tierra: 0
+                                                           Viento: 0
+                                                           Luz: 0
+                                                           Oscuridad: 0  |
 
  ### 5.8.  Habilidades ###
 | ICONO | NOMBRE | DESCRIPCIÓN |
