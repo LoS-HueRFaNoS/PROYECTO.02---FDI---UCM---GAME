@@ -21,8 +21,8 @@ SDL_Panel SDLGame::relativePanel(double x, double y, double w, double h, int r, 
 	panel.mh = setVerticalScale(mh);
 
 	// number of elements in a row or in a col
-	panel.r = r;
-	panel.c = c;
+	panel.r = r; // horizontal
+	panel.c = c; // vertical
 
 	// panel position respect window
 	panel.x = setHorizontalScale(x);

@@ -620,19 +620,19 @@ public:
 class ButtonPanel : public Button {
 protected:
 	bool activated;
-	idPanel pan_;
+	idPanel pan_; // Panel que va a ser activado o desactivado
 
 	void setActive(bool set);
 	void setHide(bool set);
 
 public:
-	ButtonPanel(SDLGame* game, EntityManager* mngr) : Button(game, mngr), activated(true), pan_(Fight) {};
+	ButtonPanel(SDLGame* game, EntityManager* mngr) : Button(game, mngr), activated(true), pan_() {};
 
 	~ButtonPanel() {};
 
 	virtual void init(Vector2D pos, uint ancho, uint alto, Resources::TextureId imagen, idPanel p, bool active) {
 		setActive(active);
-		pan_ = p;
+		pan_ = p; // asigna el panel
 		Button::init(pos, ancho, alto, imagen);
 		//addComponent<Sprite>(game_->getTextureMngr()->getTexture(Resources::Selected), 0, 0, true, true); // marco select
 	};
