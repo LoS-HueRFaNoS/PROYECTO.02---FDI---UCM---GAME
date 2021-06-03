@@ -9,6 +9,7 @@
 
 std::unique_ptr<ChatManager> ChatManager::instance_;
 
+// Elimina una linea y reordena las demas
 void ChatManager::removeLine(Line* e)
 {
 	std::string aux = "";
@@ -21,6 +22,7 @@ void ChatManager::removeLine(Line* e)
 	}
 }
 
+// Inicializa los valores para el panel del chat y los colores que se van a usar
 void ChatManager::init()
 {
 	SDL_Panel pan = game_->relativePanel(710,790,540,190,1,6,20,20,5,5);
@@ -36,18 +38,21 @@ void ChatManager::init()
 	lineTypesMap_[linCol::Blue] = hex2sdlcolor("#0055FFFF");
 }
 
+// Mueve una fila hacia arriba una linea
 void ChatManager::moveUp(Entity* e)
 {
 	Transform* tr_ = GETCMP2(e, Transform);
 	tr_->setPosY(tr_->getPos().getY() - firstLine.h);
 }
 
+// Mueve una fila hacia abajo una linea
 void ChatManager::moveDown(Entity* e)
 {
 	Transform* tr_ = GETCMP2(e, Transform);
 	tr_->setPosY(tr_->getPos().getY() + firstLine.h);
 }
 
+// Pinta una linea
 void ChatManager::drawLine(Entity* e)
 {
 	Transform* tr_ = GETCMP2(e, Transform);
@@ -58,6 +63,7 @@ void ChatManager::drawLine(Entity* e)
 	};
 }
 
+// Comprueba el tamanio de la linea, si supera el limite, la divide
 bool ChatManager::checkLineSize(std::string text, LineColor type)
 {
 	bool cut = false;
@@ -71,11 +77,13 @@ bool ChatManager::checkLineSize(std::string text, LineColor type)
 	return cut;
 }
 
+// Comprueba el tamaño del chat, si lo supera elimina la ultima linea (la primera en entrar)
 void ChatManager::checkChatSize()
 {
 	if (entities.size() > chatSize) entities.begin()->get()->disable();
 }
 
+// Comprueba que la primera linea no se sale de los limites del panel
 bool ChatManager::checkTopDownMax(int y)
 {
 	if (y >= marco.y + margin && y < double(marco.y) + marco.h - margin)
@@ -85,6 +93,7 @@ bool ChatManager::checkTopDownMax(int y)
 	else return false;
 }
 
+// Devuelve la posicion vertical de la primera linea (la de mas abajo)
 int ChatManager::getFirstLinePOS()
 {
 	double y = 0;
@@ -100,6 +109,7 @@ int ChatManager::getFirstLinePOS()
 	return y;
 }
 
+// Limpia los huecos en blanco (scroll hacia abajo completo)
 void ChatManager::clean()
 {
 	for (auto it = entities.rbegin(); it != entities.rend(); it++) {
@@ -110,6 +120,7 @@ void ChatManager::clean()
 	}
 }
 
+// Limpia TODO el chat
 void ChatManager::cleanALL()
 {
 	for (auto it = entities.rbegin(); it != entities.rend(); it++) {
@@ -121,6 +132,7 @@ void ChatManager::cleanALL()
 	entities.clear();
 }
 
+// Inicializa el Manager/Singleton
 void ChatManager::Init()
 {
 	assert(instance_.get() == nullptr);
@@ -128,12 +140,14 @@ void ChatManager::Init()
 	instance_->init();
 }
 
+// Limpia los huecos en blanco (scroll hacia abajo) y añade una linea nueva
 void ChatManager::add(std::string line, LineColor type)
 {
 	clean();
 	addLine(line, type);
 }
 
+// Añade una linea nueva, segmentadola en caso de que exceda el limite por linea
 void ChatManager::addLine(std::string line, LineColor type)
 {
 	if (!checkLineSize(line, type)) {
@@ -145,12 +159,14 @@ void ChatManager::addLine(std::string line, LineColor type)
 	}
 }
 
+// Limpia todo el chat y añade una linea nueva
 void ChatManager::clean_n_addLine(std::string line, LineColor type)
 {
 	cleanALL();
 	addLine(line, type);
 }
 
+// Hace el efecto de scroll si detecta MouseScrollEvent
 void ChatManager::update()
 {
 	checkChatSize();
