@@ -15,7 +15,7 @@ void CartelInfo::draw()
 void CartelInfo::drawCartelActual()
 {
 	// Fondo:
-	pan_->addButton(iManager_->addButton<SDL_Object>(marco, src::Pergamino));
+	pan_->addButton(iManager_->addButton<SDL_Object>(marco, src::Cartel));
 
 	// TITLE:
 	addTitleName();
