@@ -55,12 +55,17 @@ void ButtonHability::init(Vector2D pos, uint ancho, uint alto, Resources::Textur
 
 void ButtonHability::click() // <3
 {
-	callbacks::set_hability((int)hability_);	
+	callbacks::set_hability((int)hability_);
+	callbacks::createFichaDescPan(false);
 }
 void ButtonHability::pointerEntered() {
+	callbacks::createFichaDescPan(true);
+
 	callbacks::p2(app);
 };
 void ButtonHability::pointerExited() {
+	callbacks::createFichaDescPan(false);
+
 	callbacks::p1(app);
 };
 
@@ -135,10 +140,15 @@ void ButtonWeaponAttack::init(Vector2D pos, uint ancho, uint alto, Resources::Te
 void ButtonWeaponAttack::click() //<3
 {
 	callbacks::set_hability(attack_);
+	callbacks::createFichaDescPan(false);
 }
 void ButtonWeaponAttack::pointerEntered() {
+	callbacks::createFichaDescPan(true);
+
 	callbacks::p1(app);
 };
 void ButtonWeaponAttack::pointerExited() {
+	callbacks::createFichaDescPan(false);
+
 	callbacks::p2(app);
 };

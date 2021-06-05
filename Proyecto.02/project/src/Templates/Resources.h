@@ -215,6 +215,8 @@ public:
 
 		//Ficha DD
 		Pergamino,
+		//Panel Desc.
+		Cartelito,
 
 		//Habilidades
 		_firstSkillId_,

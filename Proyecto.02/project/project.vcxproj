@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\Components\Paneles\PanelDesc.cpp" />
     <ClCompile Include="src\Components\BorrarAlMorir.cpp" />
     <ClCompile Include="src\Components\ChatInfo.cpp" />
     <ClCompile Include="src\Components\GameStateManager.cpp" />
@@ -80,6 +81,7 @@
     <ClCompile Include="src\Utilities\textures_box.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Components\Paneles\PanelDesc.h" />
     <ClInclude Include="src\Components\BorrarAlMorir.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="src\Components\ChatInfo.h" />

@@ -58,8 +58,16 @@ void callbacks::createDDPan(bool active, uint numberHeroe) {
 	if (!active) i->createFichaDD(numberHeroe);
 	else if (active) i->removePanel(DDPan);
 }
-
 #pragma endregion
+
+// ----------------------------------------------------
+
+void callbacks::createFichaDescPan(bool active) {
+	Interfaz* i = GETCMP2(TheElementalMaze::instance(), Interfaz);
+
+	if (active) i->createFichaDesc();
+	else i->removePanel(DescPan);
+}
 
 // ----------------------------------------------------
 

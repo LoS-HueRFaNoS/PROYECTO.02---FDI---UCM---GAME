@@ -185,6 +185,8 @@ vector<Resources::ImageInfo> Resources::images_{
 
 	// Ficha DD
 	{Pergamino, "project/resources/sprites/iconos ficha/pergamino.png"},
+	// Panel Desc.
+	{Cartelito, "project/resources/images/interfaz/cartelito_long.png"},
 
 	//Habilidades
 	{Aligerar, "project/resources/sprites/iconos habilidades/ALIGERAR.PNG"},

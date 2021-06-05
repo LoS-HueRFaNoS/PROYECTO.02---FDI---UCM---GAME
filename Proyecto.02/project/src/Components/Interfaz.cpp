@@ -13,6 +13,7 @@
 #include "Rectangle.h"
 #include "Paneles/PanelTurns.h"
 #include "Paneles/PanelDnD.h"
+#include "Paneles/PanelDesc.h"
 #include "../Utilities/SDL_macros.h"
 #include "../Utilities/textures_box.h"
 #include "../Managers/SDLGame.h"
@@ -363,6 +364,21 @@ void Interfaz::createFichaDD(uint nCharacter)
 		p->addButton(iManager->addButton<ButtonHeroManagement>(dest, src::FireButton, accionHero::sendHeroToStash, nCharacter, this));
 	
 	TheElementalMaze::instance()->addComponent<PanelDnD>(game_, p, heroes[nCharacter], iManager);
+}
+
+void Interfaz::createFichaDesc()
+{
+	SDL_Panel pan = game_->relativePanel(1510, 70, 340, 190, 1, 1, 20, 20);
+	SDL_Rect dest = RECT(pan.fcx, pan.fcy, pan.cw, pan.ch);
+
+	Panel* p = new Panel(DescPan);
+	allPanels[DescPan] = p;
+
+	//if (TheElementalMaze::instance()->gameState() == GameState::DURING_LOBBY) {
+	//	p->addButton(iManager->addButton<ButtonHeroManagement>(dest, src::FireButton, accionHero::sendHeroToStash, nCharacter, this));
+	//}
+
+	TheElementalMaze::instance()->addComponent<PanelDesc>(game_, p, iManager);
 }
 
 void Interfaz::createChat()
@@ -1336,6 +1352,11 @@ void Interfaz::removePanel(idPanel panID)
 			break;
 		case interfaz::Settings:
 			break;*/
+	case interfaz::DescPan:
+		TheElementalMaze::instance()->removeComponent(ecs::PanelDesc);
+		delete allPanels[panID];
+		allPanels[panID] = nullptr;
+		break;
 	case interfaz::Chat:
 		TheElementalMaze::instance()->removeComponent(ecs::ChatInfo);
 		break;

@@ -86,6 +86,7 @@ public:
 	void checkActiveHeroButton(HeroNum nAct);
 	void checkHerosParty();
 	void createFichaDD(uint nCharacter);
+	void createFichaDesc();
 
 	void setNameItem(string name_) { nameItemTienda = name_; }
 	void setDescrItem(string descr_) { descrItemTienda = descr_; }

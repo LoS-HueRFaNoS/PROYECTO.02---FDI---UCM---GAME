@@ -18,6 +18,8 @@ public:
 	// acceso a heroes
 	static void heroType(uint numberHeroe);
 	static void createDDPan(bool activated, uint numberHeroe);
+	// descripciones
+	static void createFichaDescPan(bool active);
 	// acceso a movimiento
 	static void movCommand(int movType);
 	// acceso a informacion

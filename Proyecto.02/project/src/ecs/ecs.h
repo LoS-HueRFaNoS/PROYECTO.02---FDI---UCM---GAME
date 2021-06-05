@@ -28,6 +28,7 @@ enum CmpId : CmpIdType {
 	GameStateManager,
 	PanelTurns,
 	PanelDnD,
+	PanelDesc,
 	ChatInfo,
 	Cartel_Info,
 	Tutorial,
