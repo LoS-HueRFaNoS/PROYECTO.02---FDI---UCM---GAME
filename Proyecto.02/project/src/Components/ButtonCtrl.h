@@ -16,6 +16,7 @@ public:
 	void init() override {
 		ih_ = InputHandler::instance();
 		s_ = GETCMP1_(Sprite);
+		isMousePointerInRect_ = wasMousePointerInRect_ = false;
 	}
 
 	void update() override {
@@ -48,11 +49,23 @@ public:
 		{
 			if (SDL_PointInRect(&p_, &rect_))
 			{
+				isMousePointerInRect_ = true;
+				if (!wasMousePointerInRect_) button_->pointerEntered();
+
 				s_->setHide(false);
 			}
-			else if (s_->get()) {
-				s_->setHide(true);
+			else
+			{
+				isMousePointerInRect_ = false;
+				if (wasMousePointerInRect_) button_->pointerExited();
+
+				if (s_->get())
+				{
+					s_->setHide(true);
+				}
 			}
+
+			wasMousePointerInRect_ = isMousePointerInRect_;
 		}
 	}
 
@@ -60,4 +73,7 @@ private:
 	InputHandler* ih_;
 	Button* button_;
 	Sprite* s_;
+
+	bool wasMousePointerInRect_;
+	bool isMousePointerInRect_;
 };

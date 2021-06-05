@@ -20,6 +20,8 @@ public:
 	virtual void init(SDL_Rect dest, Resources::TextureId imagen);
 
 	virtual void click() = 0;
+	virtual void pointerEntered() {};
+	virtual void pointerExited() {};
 
 	void toggleImage(Resources::TextureId imagen);
 	Resources::TextureId getImageID() { return id_; };
@@ -686,7 +688,7 @@ public:
 class ButtonHability : public Button {
 private:
 	uint hability_;
-
+	Interfaz* app;
 public:
 	ButtonHability(SDLGame* game, EntityManager* mngr) : Button(game, mngr), hability_(0) {};
 
@@ -695,13 +697,15 @@ public:
 	virtual void init(Vector2D pos, uint ancho, uint alto, Resources::TextureId imagen, uint attack);
 
 	virtual void click();
+	virtual void pointerEntered();
+	virtual void pointerExited();
 	
 };
 
 class ButtonWeaponAttack : public Button {
 private:
 	uint attack_;
-
+	Interfaz* app;
 public:
 	ButtonWeaponAttack(SDLGame* game, EntityManager* mngr) : Button(game, mngr), attack_(0) {};
 
@@ -710,7 +714,8 @@ public:
 	virtual void init(Vector2D pos, uint ancho, uint alto, Resources::TextureId imagen, int attack);
 
 	virtual void click();
-
+	virtual void pointerEntered();
+	virtual void pointerExited();
 };
 
 #pragma endregion

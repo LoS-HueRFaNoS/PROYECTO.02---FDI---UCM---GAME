@@ -627,6 +627,15 @@ void callbacks::unequip(Interfaz* app, bool isWeapon, int heroid)
 #include"../GameObjects/Character.h"
 
 #pragma endregion
+
+void callbacks::p1(Interfaz* app) {
+	app->getEntity()->getSDLGame()->getAudioMngr()->haltMusic();
+}
+
+void callbacks::p2(Interfaz* app) {
+	app->getEntity()->getSDLGame()->getAudioMngr()->playMusic(Resources::Lobby);
+}
+
 //void callbacks::start(Game* app) // previo app->setLevel(lvl);
 //{
 //	/*app->getMachine()->setAction(goGame);

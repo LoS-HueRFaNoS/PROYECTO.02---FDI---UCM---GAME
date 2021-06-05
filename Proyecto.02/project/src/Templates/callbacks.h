@@ -36,7 +36,9 @@ public:
 	static void options(Interfaz* app);
 	static void howToPlay(Interfaz* app);
 	static void quit(Interfaz* app);
-
+	// info ataques
+	static void p1(Interfaz* app);
+	static void p2(Interfaz* app);
 	//boton de lobby
 	static void inventarioLobby(Interfaz* app);
 	static void stash(Interfaz* app);

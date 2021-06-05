@@ -30,7 +30,7 @@ void ButtonHero::click()
 {
 	Interfaz* i_ = TheElementalMaze::instance()->getComponent<Interfaz>(ecs::Interfaz);
 	i_->checkActiveHeroButton(heroType_);
-	callbacks::createDDPan(activated, (uint)heroType_);
+	callbacks::createDDPan(activated, (uint)heroType_); //<3
 	if (!activated) 
 		turnON();
 	else 
@@ -48,14 +48,21 @@ void ButtonHero::click()
 #include "../ecs/ecs_interfaz.h"
 void ButtonHability::init(Vector2D pos, uint ancho, uint alto, Resources::TextureId imagen, uint attack)
 {
+	app = TheElementalMaze::instance()->getComponent<Interfaz>(ecs::Interfaz);
 	hability_ = attack;
 	Button::init(pos, ancho, alto, imagen);
 }
 
-void ButtonHability::click()
+void ButtonHability::click() // <3
 {
 	callbacks::set_hability((int)hability_);	
 }
+void ButtonHability::pointerEntered() {
+	callbacks::p2(app);
+};
+void ButtonHability::pointerExited() {
+	callbacks::p1(app);
+};
 
 #pragma endregion
 
@@ -120,12 +127,18 @@ void ButtonSlott::init(Vector2D pos, uint ancho, uint alto, Item* item)
 
 void ButtonWeaponAttack::init(Vector2D pos, uint ancho, uint alto, Resources::TextureId imagen, int attack)
 {
+	app = TheElementalMaze::instance()->getComponent<Interfaz>(ecs::Interfaz);
 	attack_ = attack;
 	Button::init(pos, ancho, alto, imagen);
 }
 
-void ButtonWeaponAttack::click()
+void ButtonWeaponAttack::click() //<3
 {
 	callbacks::set_hability(attack_);
 }
-
+void ButtonWeaponAttack::pointerEntered() {
+	callbacks::p1(app);
+};
+void ButtonWeaponAttack::pointerExited() {
+	callbacks::p2(app);
+};
