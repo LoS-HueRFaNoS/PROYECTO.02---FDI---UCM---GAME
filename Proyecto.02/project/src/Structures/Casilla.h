@@ -33,7 +33,7 @@ public:
 	void setLook(int ang) { angulo = ang; }
 	void setDirs(Look dir) { direcciones[dir] = true; }
 	bool isExit() { return esSalida; }
-	void casillaRender(int x, int y);
+	void casillaRender(int x, int y, double w, double h);
 	void addEnemy(enemyTemplate e) {
 		enemyEnum.push_back(e);
 	}
