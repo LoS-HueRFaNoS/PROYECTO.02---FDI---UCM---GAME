@@ -12,11 +12,9 @@ void PanelDesc::init()
 	//...
 
 	// aspecto
-	SDL_Panel pan = game_->relativePanel(880, 790, (1410 - 880), (980 - 790), 1, 1, 10, 10, 5, 5); //pos,tam,elemMatr,marg,elemSep
+	SDL_Panel pan = game_->relativePanel(670, 750, 620, 272, 1, 1, 10, 10, 5, 5); //pos,tam,elemMatr,marg,elemSep
 	primElem = RECT(pan.fcx, pan.fcy, pan.cw, pan.ch);
-	uint mcw = game_->setHorizontalScale(50);
-	uint mch = game_->setVerticalScale(50);
-	marco = RECT(pan.x + mcw, pan.y + mch, pan.w - mcw * 2, pan.h - mch * 2);
+	marco = RECT(pan.x, pan.y, pan.w, pan.h);
 
 	drawPanel();
 }

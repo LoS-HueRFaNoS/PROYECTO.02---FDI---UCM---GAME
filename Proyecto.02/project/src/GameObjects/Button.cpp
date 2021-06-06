@@ -60,13 +60,9 @@ void ButtonHability::click() // <3
 }
 void ButtonHability::pointerEntered() {
 	callbacks::createFichaDescPan(true);
-
-	callbacks::p2(app);
 };
 void ButtonHability::pointerExited() {
 	callbacks::createFichaDescPan(false);
-
-	callbacks::p1(app);
 };
 
 #pragma endregion
@@ -144,11 +140,7 @@ void ButtonWeaponAttack::click() //<3
 }
 void ButtonWeaponAttack::pointerEntered() {
 	callbacks::createFichaDescPan(true);
-
-	callbacks::p1(app);
 };
 void ButtonWeaponAttack::pointerExited() {
 	callbacks::createFichaDescPan(false);
-
-	callbacks::p2(app);
 };
