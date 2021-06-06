@@ -1137,7 +1137,7 @@ void Interfaz::createUnequipPanel()
 }
 void Interfaz::toggleMinimap()
 {
-
+	TheElementalMaze::instance()->getLaberinto()->toggleMiniMap();
 }
 
 void Interfaz::checkAndDeletePanel(idPanel id)
@@ -1589,5 +1589,4 @@ void Interfaz::checkHerosParty()
 void Interfaz::enemyDead(int indice) {
 	Panel* p = allPanels[Enemies];
 	p->removeButton(indice);
-
 }

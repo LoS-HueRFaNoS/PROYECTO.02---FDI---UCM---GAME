@@ -261,13 +261,15 @@ void Laberinto::draw()
 	if (!drawMiniMap) return;
 	double _x = game_->setHorizontalScale(1510);
 	double _y = game_->setVerticalScale(70);
-	double _w = game_->setHorizontalScale(34); // 28
-	double _h = game_->setVerticalScale(19); // 20
+	//double _w = game_->setHorizontalScale(34); // 28
+	//double _h = game_->setVerticalScale(19); // 20
+	double _w = game_->setHorizontalScale(340 / w); //  / 10
+	double _h = game_->setVerticalScale(190 / h); //   / 10
 	for (int i = 0; i < h; ++i) // Por cada fila  = Y
 	{
 		for (int j = 0; j < w; ++j) // Por cada columna  = X
 		{
-			laberinto[j][i]->casillaRender(int(_x) + j * int(_w), int(_y) + i * int(_h));
+			laberinto[j][i]->casillaRender(int(_x) + j * int(_w), int(_y) + i * int(_h), _w, _h);
 		}
 	}
 }
