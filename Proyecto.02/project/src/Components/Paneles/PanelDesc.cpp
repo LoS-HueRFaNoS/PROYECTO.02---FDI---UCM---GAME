@@ -12,9 +12,33 @@ void PanelDesc::init()
 	//...
 
 	// aspecto
-	SDL_Panel pan = game_->relativePanel(670, 750, 620, 272, 1, 1, 10, 10, 5, 5); //pos,tam,elemMatr,marg,elemSep
-	primElem = RECT(pan.fcx, pan.fcy, pan.cw, pan.ch);
-	marco = RECT(pan.x, pan.y, pan.w, pan.h);
+	marco = RECT(
+				game_->setHorizontalScale(670), //posX
+				game_->setVerticalScale(750),	//posY
+				game_->setHorizontalScale(620),	//ancho
+				game_->setVerticalScale(272)	//alto
+				);
+
+	titulo = RECT(
+				marco.x + offsetMarcoX,
+				marco.y + offsetMarcoY,
+				tamTextoGrande_.first,
+				tamTextoGrande_.second
+				);
+
+	descripcion = RECT(
+				titulo.x,
+				titulo.y + titulo.h,
+				tamTextoPequenyo_.first,
+				tamTextoPequenyo_.second
+				);
+
+	mana = RECT(
+				marco.x + offsetMarcoX,
+				marco.y + marco.h - tamTextoGrande_.second - offsetMarcoY,
+				tamTextoGrande_.first,
+				tamTextoGrande_.second
+				);
 
 	drawPanel();
 }
@@ -25,6 +49,14 @@ void PanelDesc::drawPanel()
 {
 	// Fondo:
 	pan_->addButton(iManager_->addButton<SDL_Object>(marco, src::Cartelito));
+
+	//Texto:
+	string nom = "A" + (std::string)"mogus en pamplona"; //to_string()
+	pan_->addButton(iManager_->addButton<Line>(titulo, checkLineSize(nom), colorTextoTitulo_));
+	string des = "Ah, " + (std::string)"este es un ejemplo de descripcion muy larga pare el texto - Es porello que queda mal"; //to_string()
+	pan_->addButton(iManager_->addButton<Line>(descripcion, checkLineSize(des), colorTextoDescripcion_));
+	string man = "Mana: " + (std::string)"134"; //to_string()
+	pan_->addButton(iManager_->addButton<Line>(mana, checkLineSize(man), colorTextoMana_));
 }
 
 std::string PanelDesc::checkLineSize(std::string line)
