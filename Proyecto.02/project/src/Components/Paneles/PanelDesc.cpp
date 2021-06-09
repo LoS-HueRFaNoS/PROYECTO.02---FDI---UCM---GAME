@@ -9,33 +9,37 @@ using namespace textures_box;
 void PanelDesc::init()
 {
 	// info
-	//...
-
+	nombreHab_ = hab_->name();
+	descripcionHab_ = hab_->description();
+	manaHab_ = to_string(hab_->getMana());
+	// string tipoHab_ = hab_->getHabilityType();
+	// string modificadorHab_ = hab_->getMod();
+	
 	// aspecto
-	marco = RECT(
+	marco_ = RECT(
 				game_->setHorizontalScale(670), //posX
 				game_->setVerticalScale(750),	//posY
 				game_->setHorizontalScale(620),	//ancho
 				game_->setVerticalScale(272)	//alto
 				);
 
-	titulo = RECT(
-				marco.x + offsetMarcoX,
-				marco.y + offsetMarcoY,
+	titulo_ = RECT(
+				marco_.x + offsetMarcoX_,
+				marco_.y + offsetMarcoY_,
 				tamTextoGrande_.first,
 				tamTextoGrande_.second
 				);
 
-	descripcion = RECT(
-				titulo.x,
-				titulo.y + titulo.h,
+	descripcion_ = RECT(
+				titulo_.x,
+				titulo_.y + titulo_.h,
 				tamTextoPequenyo_.first,
 				tamTextoPequenyo_.second
 				);
 
-	mana = RECT(
-				marco.x + offsetMarcoX,
-				marco.y + marco.h - tamTextoGrande_.second - offsetMarcoY,
+	mana_ = RECT(
+				marco_.x + offsetMarcoX_,
+				marco_.y + marco_.h - tamTextoGrande_.second - offsetMarcoY_,
 				tamTextoGrande_.first,
 				tamTextoGrande_.second
 				);
@@ -48,15 +52,15 @@ void PanelDesc::draw() {}
 void PanelDesc::drawPanel()
 {
 	// Fondo:
-	pan_->addButton(iManager_->addButton<SDL_Object>(marco, src::Cartelito));
+	pan_->addButton(iManager_->addButton<SDL_Object>(marco_, src::Cartelito));
 
 	//Texto:
-	string nom = "A" + (std::string)"mogus en pamplona"; //to_string()
-	pan_->addButton(iManager_->addButton<Line>(titulo, checkLineSize(nom), colorTextoTitulo_));
-	string des = "Ah, " + (std::string)"este es un ejemplo de descripcion muy larga pare el texto - Es porello que queda mal"; //to_string()
-	pan_->addButton(iManager_->addButton<Line>(descripcion, checkLineSize(des), colorTextoDescripcion_));
-	string man = "Mana: " + (std::string)"134"; //to_string()
-	pan_->addButton(iManager_->addButton<Line>(mana, checkLineSize(man), colorTextoMana_));
+	//string nom = "A" + (std::string)"mogus en pamplona";
+	pan_->addButton(iManager_->addButton<Line>(titulo_, checkLineSize(nombreHab_), colorTextoTitulo_));
+	//string des = "Ah, " + (std::string)"este es un ejemplo de descripcion muy larga pare el texto - Es porello que queda mal";
+	pan_->addButton(iManager_->addButton<Line>(descripcion_, checkLineSize(descripcionHab_), colorTextoDescripcion_));
+	//string man = "Mana: " + (std::string)"134";
+	pan_->addButton(iManager_->addButton<Line>(mana_, checkLineSize(manaHab_), colorTextoMana_));
 }
 
 std::string PanelDesc::checkLineSize(std::string line)

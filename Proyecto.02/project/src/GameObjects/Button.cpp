@@ -56,13 +56,20 @@ void ButtonHability::init(Vector2D pos, uint ancho, uint alto, Resources::Textur
 void ButtonHability::click() // <3
 {
 	callbacks::set_hability((int)hability_);
-	callbacks::createFichaDescPan(false);
+
+	Hero* her = static_cast<Hero*>(GETCMP2(TheElementalMaze::instance(), CombatManager)->getCurrentCharacter());
+	Hability* hab = her->getHabilities()[(int)hability_];
+	callbacks::createFichaDescPan(false, hab);
 }
 void ButtonHability::pointerEntered() {
-	callbacks::createFichaDescPan(true);
+	Hero* her = static_cast<Hero*>(GETCMP2(TheElementalMaze::instance(), CombatManager)->getCurrentCharacter());
+	Hability* hab = her->getHabilities()[(int)hability_];
+	callbacks::createFichaDescPan(true, hab);
 };
 void ButtonHability::pointerExited() {
-	callbacks::createFichaDescPan(false);
+	Hero* her = static_cast<Hero*>(GETCMP2(TheElementalMaze::instance(), CombatManager)->getCurrentCharacter());
+	Hability* hab = her->getHabilities()[(int)hability_];
+	callbacks::createFichaDescPan(false, hab);
 };
 
 #pragma endregion
@@ -135,12 +142,58 @@ void ButtonWeaponAttack::init(Vector2D pos, uint ancho, uint alto, Resources::Te
 
 void ButtonWeaponAttack::click() //<3
 {
-	callbacks::set_hability(attack_);
-	callbacks::createFichaDescPan(false);
+	callbacks::set_hability((int)attack_);
+
+	Hero* her = static_cast<Hero*>(GETCMP2(TheElementalMaze::instance(), CombatManager)->getCurrentCharacter());
+	Hability* hab;
+	switch ((int)attack_)
+	{
+	case -2:
+		hab = her->getLightAttack();
+		break;
+	case -3:
+		hab = her->getHeavyAttack();
+		break;
+	default:
+		hab = nullptr;
+		break;
+	}
+	assert(hab != nullptr);
+	callbacks::createFichaDescPan(false, hab);
 }
 void ButtonWeaponAttack::pointerEntered() {
-	callbacks::createFichaDescPan(true);
+	Hero* her = static_cast<Hero*>(GETCMP2(TheElementalMaze::instance(), CombatManager)->getCurrentCharacter());
+	Hability* hab;
+	switch ((int)attack_)
+	{
+	case -2:
+		hab = her->getLightAttack();
+		break;
+	case -3:
+		hab = her->getHeavyAttack();
+		break;
+	default:
+		hab = nullptr;
+		break;
+	}
+	assert(hab != nullptr);
+	callbacks::createFichaDescPan(true, hab);
 };
 void ButtonWeaponAttack::pointerExited() {
-	callbacks::createFichaDescPan(false);
+	Hero* her = static_cast<Hero*>(GETCMP2(TheElementalMaze::instance(), CombatManager)->getCurrentCharacter());
+	Hability* hab;
+	switch ((int)attack_)
+	{
+	case -2:
+		hab = her->getLightAttack();
+		break;
+	case -3:
+		hab = her->getHeavyAttack();
+		break;
+	default:
+		hab = nullptr;
+		break;
+	}
+	assert(hab != nullptr);
+	callbacks::createFichaDescPan(false, hab);
 };

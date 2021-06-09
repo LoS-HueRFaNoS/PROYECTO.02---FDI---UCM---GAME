@@ -62,10 +62,10 @@ void callbacks::createDDPan(bool active, uint numberHeroe) {
 
 // ----------------------------------------------------
 
-void callbacks::createFichaDescPan(bool active) {
+void callbacks::createFichaDescPan(bool active, Hability* hab) {
 	Interfaz* i = GETCMP2(TheElementalMaze::instance(), Interfaz);
 
-	if (active) i->createFichaDesc();
+	if (active) i->createFichaDesc(hab);
 	else i->removePanel(DescPan);
 }
 

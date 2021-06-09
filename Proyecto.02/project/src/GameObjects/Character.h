@@ -153,6 +153,10 @@ public:
 		return _habilities;
 	}
 
+	Hability* getLightAttack() { return lightAttack_; }
+
+	Hability* getHeavyAttack() { return heavyAttack_; }
+
 	bool isDead() {
 		return !_sheet->hitPoints();
 	}

@@ -366,19 +366,14 @@ void Interfaz::createFichaDD(uint nCharacter)
 	TheElementalMaze::instance()->addComponent<PanelDnD>(game_, p, heroes[nCharacter], iManager);
 }
 
-void Interfaz::createFichaDesc()
-{
+void Interfaz::createFichaDesc(Hability* hab) {
 	SDL_Panel pan = game_->relativePanel(1510, 70, 340, 190, 1, 1, 20, 20);
 	SDL_Rect dest = RECT(pan.fcx, pan.fcy, pan.cw, pan.ch);
 
 	Panel* p = new Panel(DescPan);
 	allPanels[DescPan] = p;
 
-	//if (TheElementalMaze::instance()->gameState() == GameState::DURING_LOBBY) {
-	//	p->addButton(iManager->addButton<ButtonHeroManagement>(dest, src::FireButton, accionHero::sendHeroToStash, nCharacter, this));
-	//}
-
-	TheElementalMaze::instance()->addComponent<PanelDesc>(game_, p, iManager);
+	TheElementalMaze::instance()->addComponent<PanelDesc>(game_, p, iManager, hab);
 }
 
 void Interfaz::createChat()
