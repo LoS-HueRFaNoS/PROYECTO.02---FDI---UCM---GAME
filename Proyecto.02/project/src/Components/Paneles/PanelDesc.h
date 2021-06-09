@@ -27,22 +27,27 @@ private:
 	string nombreHab_;
 	string descripcionHab_;
 	string manaHab_;
-	// string tipoHab_;
-	// string modificadorHab_;
+	string tipoHab_;
+	string modificadorHab_;
 	//---
 	SDL_Rect marco_;
 	SDL_Rect titulo_;
 	SDL_Rect descripcion_;
 	SDL_Rect mana_;
+	SDL_Rect tipo_;
+	SDL_Rect modificador_;
 	//---
 	SDL_Color colorTextoTitulo_ = hex2sdlcolor("0xFFD700FF");
 	SDL_Color colorTextoDescripcion_ = hex2sdlcolor("0xFFFFFFFF");
 	SDL_Color colorTextoMana_ = hex2sdlcolor("0x0055FFFF");
+	SDL_Color colorTextoTipo_ = hex2sdlcolor("0xE20066FF");
+	SDL_Color colorTextoModificador_ = hex2sdlcolor("0x22B7ABFF");
 	//---
 	std::pair<int, int> tamTextoGrande_ = { NUM_LET * 10 + 1, 36 }; // { 2001, 36 } para NUM_LET = 200
 	std::pair<int, int> tamTextoPequenyo_ = { tamTextoGrande_.first/1.5, tamTextoGrande_.second /1.5 }; // { 1334, 24 } para NUM_LET = 200
 	//---
 	int offsetMarcoX_ = 15;
+	int offsetMarcoX2_ = offsetMarcoX_ + 285;
 	int	offsetMarcoY_ = 10;
 
 	void drawPanel();
