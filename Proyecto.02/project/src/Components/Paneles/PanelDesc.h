@@ -7,8 +7,6 @@
 #include "../../Structures/Panel.h"
 #include "../../Managers/game/InterfazManager.h"
 
-const int NUM_LET = 200;
-
 class PanelDesc : public Component {
 public:
 	PanelDesc(SDLGame* game, Panel* p, InterfazManager* iM, Hability* hab, bool aff)
@@ -26,7 +24,7 @@ private:
 	bool affordable_;
 
 	string nombreHab_;
-	string descripcionHab_;
+	vector<string> descripcionHab_;
 	string manaHab_;
 	string tipoHab_;
 	string modificadorHab_;
@@ -44,8 +42,9 @@ private:
 	SDL_Color colorTextoTipo_;
 	SDL_Color colorTextoModificador_;
 	//-----
-	int anchoTexto_ = NUM_LET * 10 + 1; // 2001 para NUM_LET = 200
-	int altoTexto_ = 36;
+	int numLet_ = 38;
+	int anchoTexto_ = 425; // 2001 para NUM_LET = 38
+	int altoTexto_ = 35;
 	//---
 	int offsetMarcoX_ = 15;
 	int offsetMarcoX2_ = offsetMarcoX_ + 285;

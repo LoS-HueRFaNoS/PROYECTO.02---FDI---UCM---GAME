@@ -9,9 +9,19 @@ using namespace textures_box;
 void PanelDesc::init()
 {
 	// info
+	//
 	nombreHab_ = hab_->name();
-	descripcionHab_ = hab_->description();
+	//
+	string d = hab_->description();
+	while (d.size() > 0) {
+		string aux = "";
+		aux.insert(0, d, 0, numLet_);
+		d.erase(0, numLet_);
+		descripcionHab_.push_back(aux);
+	}
+	//
 	manaHab_ = (std::string)"Coste: " + to_string(hab_->getMana());
+	//
 	tipoHab_ = (std::string)"Tipo: ";
 	switch (hab_->getHabilityType())
 	{
@@ -31,6 +41,7 @@ void PanelDesc::init()
 		tipoHab_ += (std::string)"Ataque";
 		break;
 	}
+	//
 	modificadorHab_ = (std::string)"Mod.: ";
 	switch (hab_->getMod())
 	{
@@ -122,7 +133,10 @@ void PanelDesc::drawPanel()
 
 	//Texto:
 	pan_->addButton(iManager_->addButton<Line>(titulo_, checkLineSize(nombreHab_), colorTextoTitulo_));
-	pan_->addButton(iManager_->addButton<Line>(descripcion_, checkLineSize(descripcionHab_), colorTextoDescripcion_));
+	for (int i = 0; i < descripcionHab_.size(); i++) {
+		pan_->addButton(iManager_->addButton<Line>(descripcion_, checkLineSize(descripcionHab_[i]), colorTextoDescripcion_));
+		descripcion_.y += descripcion_.h;
+	}
 	pan_->addButton(iManager_->addButton<Line>(mana_, checkLineSize(manaHab_), colorTextoMana_));
 	pan_->addButton(iManager_->addButton<Line>(tipo_, checkLineSize(tipoHab_), colorTextoTipo_));
 	pan_->addButton(iManager_->addButton<Line>(modificador_, checkLineSize(modificadorHab_), colorTextoModificador_));
@@ -130,6 +144,6 @@ void PanelDesc::drawPanel()
 
 std::string PanelDesc::checkLineSize(std::string line)
 {
-	if (line.size() < NUM_LET) line.resize(NUM_LET, ' ');
+	if (line.size() < numLet_) line.resize(numLet_, ' ');
 	return line;
 }
