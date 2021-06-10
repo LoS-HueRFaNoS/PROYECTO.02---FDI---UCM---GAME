@@ -37,7 +37,7 @@ public:
 	// load from image or text, in both cases we should provide a rendered
 	bool loadFromImg(SDL_Renderer *renderer, const string& fileName);
 	bool loadFromText(SDL_Renderer *renderer, const string& text, const Font *font,
-			const SDL_Color& color = { 0, 0, 0, 255 });
+			const SDL_Color& color = { 0, 0, 0, 255 }, bool isTitle = false);
 
 	// render the complete texture at position (x,y).
 	void render(int x, int y) const;

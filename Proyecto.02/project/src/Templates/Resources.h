@@ -282,7 +282,7 @@ public:
 	};
 
 	enum FontId : std::size_t {
-		ARIAL16, ARIAL24, HERMAN, Fornite64, Fornite14, Quake, KillerInst, Sega, Beaulieux, Triforce
+		ARIAL16, ARIAL24, HERMAN, Fornite64, Fornite14, Quake, KillerInst, Sega, Beaulieux, Triforce, Medieval, CooperLT, CooperMD, Console, ConsoleBO
 	};
 
 	enum JsonId : std::size_t {

@@ -51,8 +51,8 @@ bool Texture::loadFromImg(SDL_Renderer *renderer, const string& fileName) {
 }
 
 bool Texture::loadFromText(SDL_Renderer *renderer, const string& text, const Font *font,
-		const SDL_Color& color) {
-	SDL_Surface *textSurface = font->renderText(text, color);
+			const SDL_Color& color, bool isTitle) {
+	SDL_Surface *textSurface = font->renderText(text, color, isTitle);
 	if (textSurface != nullptr) {
 		close();
 		texture_ = SDL_CreateTextureFromSurface(renderer, textSurface);
@@ -61,7 +61,8 @@ bool Texture::loadFromText(SDL_Renderer *renderer, const string& text, const Fon
 			height_ = textSurface->h;
 		}
 		SDL_FreeSurface(textSurface);
-	} else {
+	}
+	else {
 		throw "Couldn't create text: " + text;
 	}
 	renderer_ = renderer;

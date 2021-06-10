@@ -1481,12 +1481,14 @@ void Interfaz::update()
 			createPanel(Heroes);
 			createPanel(Info);
 			createPanel(Chat);
-			string s = "Bienvenidos! Aqui comienza";
+			string s = "Bienvenidos! Aqui comienza vuestra aventura, mucha suerte mis muchachos!!";
+			ChatManager::instance()->clean_n_addLine(s, linCol::Yellow);
+			/*string s = "Bienvenidos! Aqui comienza";
 			ChatManager::instance()->clean_n_addLine(s, linCol::Yellow);
 			s = "vuestra aventura,";
 			ChatManager::instance()->add(s, linCol::Yellow);
 			s = "mucha suerte mis muchachos!!";
-			ChatManager::instance()->add(s, linCol::Yellow);
+			ChatManager::instance()->add(s, linCol::Yellow);*/
 		}
 		break;
 	case gameST::EXPLORING:

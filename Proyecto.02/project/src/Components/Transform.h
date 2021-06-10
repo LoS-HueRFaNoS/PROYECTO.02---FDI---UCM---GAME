@@ -5,6 +5,7 @@
 
 class Transform: public Component {
 public:
+	Transform(SDL_Rect dest, Vector2D vel = Vector2D(), double rotation = 0.0);
 	Transform(Vector2D pos, Vector2D vel, double width, double height, double rotation);
 	Transform();
 	virtual ~Transform();

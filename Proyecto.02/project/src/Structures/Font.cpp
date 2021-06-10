@@ -1,6 +1,7 @@
 #include "Font.h"
 
 #include <iostream>
+#include "../Utilities/SDL_macros.h"
 
 using namespace std;
 
@@ -31,9 +32,11 @@ void Font::close() {
 	}
 }
 
-SDL_Surface* Font::renderText(const string& text, SDL_Color color) const {
+SDL_Surface* Font::renderText(const string& text, SDL_Color color, bool isTitle) const {
 	if (font_) {
-		return TTF_RenderText_Solid(font_, text.c_str(), color);
+		if (isTitle) TTF_SetFontStyle(font_, TTF_STYLE_UNDERLINE);
+		else TTF_SetFontStyle(font_, TTF_STYLE_NORMAL);
+		return TTF_RenderUTF8_Blended(font_, text.c_str(), color/*, hex2sdlcolor("0x000000FF")*/);
 	} else {
 		return nullptr;
 	}

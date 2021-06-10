@@ -7,10 +7,6 @@
  * This file includes some SDL related macros
  */
 
-// the RECT macro is used to automatically cast the argument to integer (since in GameObject the
-// dimension, position, etc., are of type double
-#define RECT(x,y,w,h) {static_cast<int>(x),static_cast<int>(y),static_cast<int>(w),static_cast<int>(h)}
-
 // the COLOREXP macro is used to expand an SDL_Color variable into its components, so instead of writing
 //
 //    SDL_SetRenderDrawColor(game_->getRenderer(), color.r, color.g, color.b, color.a);
@@ -37,3 +33,8 @@ SDL_Color hex2sdlcolor(std::string input);
 
 //Returns el porcentaje (x/1.0 * 100)% when num <= 1.0
 #define PERCENTAGE(num) {to_string(int(num*100))  + "%"}
+
+// the RECT macro is used to automatically cast the argument to integer (since in GameObject the
+// dimension, position, etc., are of type double
+#define RECT(x,y,w,h) {static_cast<int>(x),static_cast<int>(y),static_cast<int>(w),static_cast<int>(h)}
+

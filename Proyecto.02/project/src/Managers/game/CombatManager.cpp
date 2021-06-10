@@ -149,7 +149,7 @@ void CombatManager::tryEscape()
 {
 	if (isABoss()) {
 		cout << "YOU CAN'T ESCAPE FROM THIS COMBAT\n";
-		ChatManager::instance()->addLine("YOU CAN'T ESCAPE FROM THIS COMBAT", linCol::Red);
+		ChatManager::instance()->add("YOU CAN'T ESCAPE FROM THIS COMBAT", linCol::Red);
 		return;
 	}
 
@@ -395,7 +395,7 @@ void CombatManager::onStateChanged()
 	case END_TURN:
 		currentCharacter->endTurn();
 		cout << "---------- PRESS ENTER TO END TURN ----------" << endl;
-		ChatManager::instance()->addLine("PRESS TO END TURN", linCol::White);
+		ChatManager::instance()->add("PRESS TO END TURN", linCol::White);
 		break;
 	case COMBAT_END:
 		endCombat();
@@ -423,7 +423,7 @@ void CombatManager::sendKeyEvent(int key)
 	case END_TURN:
 		if (key == -1) {
 			changeState(PASS_TURN);
-			ChatManager::instance()->clean_n_addLine("", linCol::White);
+			ChatManager::instance()->clean_n_addLine(" ", linCol::White);
 		}
 		break;
 	case ACTION_PHASE_SPELL:

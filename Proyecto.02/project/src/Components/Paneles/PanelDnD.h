@@ -29,6 +29,7 @@ public:
 	void draw() override;
 
 private:
+	SDL_Panel pan;
 	SDL_Rect marco, firstElement;
 	Character* character_;
 	CharacterSheet* character_sheet;

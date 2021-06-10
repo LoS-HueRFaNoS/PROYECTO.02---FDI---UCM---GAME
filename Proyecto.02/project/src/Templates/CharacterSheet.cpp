@@ -54,7 +54,7 @@ bool CharacterSheet::recieveDamage(int damage, rpgLogic::damageType type, bool e
 
 	std::string out = name + " recieves " + std::to_string(damageAfterRes) + getResName(type) + " damage" + "( " + std::to_string(damage) + " " + std::to_string((int)(res * 100)) + "% RES)";
 	std::cout << out << std::endl;
-	ChatManager::instance()->addLine(out, enemy ?  linCol::Green : linCol::Red);
+	ChatManager::instance()->add(out, enemy ?  linCol::Green : linCol::Red);
 
 	_hitPoints -= damageAfterRes;
 
@@ -70,7 +70,7 @@ void CharacterSheet::recieveHealing(int healing, bool enemy)
 
 	std::string out = name + " heals for " + std::to_string(healing) + " points";
 	std::cout << out << std::endl;
-	ChatManager::instance()->addLine(out, enemy ? linCol::Red : linCol::Green);
+	ChatManager::instance()->add(out, enemy ? linCol::Red : linCol::Green);
 
 	if (_hitPoints > _maxHitPoints)
 		_hitPoints = _maxHitPoints;
@@ -82,7 +82,7 @@ void CharacterSheet::recieveMana(int mana)
 
 	std::string out = name + " recovers " + std::to_string(mana) + " mana points";
 	std::cout << out << std::endl;
-	ChatManager::instance()->addLine(out, linCol::Blue);
+	ChatManager::instance()->add(out, linCol::Blue);
 
 	if (_manaPoints > _maxManaPoints)
 		_manaPoints = _maxManaPoints;

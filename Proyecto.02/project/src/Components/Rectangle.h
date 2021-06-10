@@ -5,11 +5,11 @@
 #include "../Utilities/SDL_macros.h"
 #include "../Components/Transform.h"
 
-class Rectangle: public Component {
+class Rectangle_cmpt: public Component {
 public:
-	Rectangle();
-	Rectangle(SDL_Color color);
-	virtual ~Rectangle();
+	Rectangle_cmpt();
+	Rectangle_cmpt(SDL_Color color);
+	virtual ~Rectangle_cmpt();
 	void init() override;
 	void draw() override;
 	void setColor(SDL_Color color);

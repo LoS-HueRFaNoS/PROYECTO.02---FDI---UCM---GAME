@@ -18,17 +18,10 @@ void EntityManager::update() {
 		if (entities[i]->isActive())
 			entities[i]->update();
 	}
-		
-	/*for (auto& e : entities)
-		e->update();*/
-	/*for (auto it = entities.begin(); it != entities.end();it++) {
-		(*it)->update();
-	}*/
-	refresh(); // sólo si todos los managers lo necesitan
+	refresh();
 }
 
 void EntityManager::refresh() {
-	// elimina todas las entidades dehabilitados
 	for (auto it = entities.begin(); it != entities.end();) {
 		if (!(*it).get()->isActive()) {
 			it = entities.erase(it);

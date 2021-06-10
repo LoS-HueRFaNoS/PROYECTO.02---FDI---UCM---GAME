@@ -11,7 +11,12 @@ vector<Resources::FontInfo> Resources::fonts_{
 	{KillerInst, "project/resources/fonts/kinifed_.ttf", 64},
 	{Sega, "project/resources/fonts/SEGA.ttf", 64},
 	{Beaulieux, "project/resources/fonts/t4cbeaulieux.ttf", 64},
-	{Triforce, "project/resources/fonts/Triforce.ttf", 64}	
+	{Triforce, "project/resources/fonts/Triforce.ttf", 64},	
+	{Medieval, "project/resources/fonts/MedievalSharp-Regular.ttf", 32},	
+	{CooperLT, "project/resources/fonts/cooperl.ttf", 32},
+	{CooperMD, "project/resources/fonts/cooperm.ttf", 32},
+	{Console, "project/resources/fonts/consola.ttf", 32},
+	{ConsoleBO, "project/resources/fonts/consolab.ttf", 32}
 };
 
 vector<Resources::ImageInfo> Resources::images_{

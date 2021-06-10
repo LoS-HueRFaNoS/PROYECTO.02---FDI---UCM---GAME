@@ -62,11 +62,11 @@ void Line::init(SDL_Rect size, string line, Resources::FontId font, const SDL_Co
 		delete text;
 }
 
-void Line::init(SDL_Rect size, string line, const SDL_Color& color)
+void Line::init(SDL_Rect size, string line, const SDL_Color& color, bool isTitle)
 {
 	texto = line;
 	Texture* text = new Texture();
-	if (text->loadFromText(game_->getRenderer(), line, game_->getFontMngr()->getFont(src::Beaulieux), color)) { //src::Beaulieux
+	if (text->loadFromText(game_->getRenderer(), line, game_->getFontMngr()->getFont(src::ConsoleBO), color, isTitle)) { //src::Beaulieux
 		tex_ = text;
 		SDL_Object::init(POS(size), size.w, size.h, text);
 	}

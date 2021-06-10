@@ -1,24 +1,24 @@
 #include "Rectangle.h"
 #include "../ecs/Entity.h"
 
-Rectangle::Rectangle() :
-		Rectangle( { COLOR(0xFFFFFFFF) }) {
+Rectangle_cmpt::Rectangle_cmpt() :
+		Rectangle_cmpt( { COLOR(0xFFFFFFFF) }) {
 }
 
-Rectangle::Rectangle(SDL_Color color) :
-		Component(ecs::Rectangle), //
+Rectangle_cmpt::Rectangle_cmpt(SDL_Color color) :
+		Component(ecs::Rectangle_cmpt), //
 		color_(color), //
 		tr_(nullptr) {
 }
 
-Rectangle::~Rectangle() {
+Rectangle_cmpt::~Rectangle_cmpt() {
 }
 
-void Rectangle::init() {
+void Rectangle_cmpt::init() {
 	tr_ = GETCMP1_(Transform);
 }
 
-void Rectangle::draw() {
+void Rectangle_cmpt::draw() {
 	SDL_Rect rect
 			RECT(tr_->getPos().getX(), tr_->getPos().getY(), tr_->getW(),
 					tr_->getH());
@@ -27,7 +27,7 @@ void Rectangle::draw() {
 	SDL_RenderFillRect(game_->getRenderer(), &rect);
 }
 
-void Rectangle::setColor(SDL_Color color)
+void Rectangle_cmpt::setColor(SDL_Color color)
 {
 	color_ = color;
 }

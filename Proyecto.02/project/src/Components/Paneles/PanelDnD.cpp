@@ -12,7 +12,7 @@ void PanelDnD::init()
 	character_sheet = character_->getCharacterSheet();
 
 	// panel divisions sizes
-	SDL_Panel pan = game_->relativePanel(70, 70, 1340, 620, 3, 3, 250, 100, 5, 5);
+	pan = game_->relativePanel(70, 70, 1340, 620, 3, 3, 250, 100, 5, 5);
 	firstElement = RECT(pan.fcx, pan.fcy, pan.cw, pan.ch);
 	uint mcw = game_->setHorizontalScale(50);
 	uint mch = game_->setHorizontalScale(50);
@@ -228,14 +228,14 @@ void PanelDnD::addTemplate()
 		firstElement.h
 	);	uint k = 3;
 
-	pan_->addButton(iManager_->addButton<SDL_Object>(marco, src::Pergamino));
+	pan_->addButton(iManager_->addButton<SDL_Object>(marco, src::Cartel));
 
 	for (uint f = 0; f < k; f++) {		
 		for (uint c = 0; c < k; c++) {
 			pan_->addButton(iManager_->addButton<SDL_Object>(slottSize, src::txtID::Joker));
-			slottSize.x += slottSize.w;
+			slottSize.x += slottSize.w + pan.ew;
 		}
-		slottSize.y += slottSize.h;
+		slottSize.y += slottSize.h + pan.eh;
 		slottSize.x = firstElement.x;
 	}
 	

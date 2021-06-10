@@ -157,7 +157,7 @@ void PartyManager::usePotion(int hero, bool mana)
 		}
 		else
 			cout << "Not enough mana potions\n";
-		ChatManager::instance()->addLine(std::to_string(manaPotions) + " mana potions left", linCol::White);
+		ChatManager::instance()->add(std::to_string(manaPotions) + " mana potions left", linCol::White);
 	}
 	else {
 		if (healthPotions > 0) {
@@ -166,7 +166,7 @@ void PartyManager::usePotion(int hero, bool mana)
 		}
 		else
 			cout << "Not enough health potions\n";
-		ChatManager::instance()->addLine(std::to_string(healthPotions) + " health potions left", linCol::White);
+		ChatManager::instance()->add(std::to_string(healthPotions) + " health potions left", linCol::White);
 	}
 }
 
