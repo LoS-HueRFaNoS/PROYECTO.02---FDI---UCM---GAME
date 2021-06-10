@@ -62,37 +62,53 @@ void PanelDesc::init()
 	titulo_ = RECT(
 		marco_.x + offsetMarcoX_,
 		marco_.y + offsetMarcoY_,
-		tamTextoGrande_.first,
-		tamTextoGrande_.second
+		anchoTexto_,
+		altoTexto_
 		);
 
 	descripcion_ = RECT(
 		titulo_.x,
 		titulo_.y + titulo_.h,
-		tamTextoPequenyo_.first,
-		tamTextoPequenyo_.second
+		anchoTexto_,
+		altoTexto_
 		);
 
 	mana_ = RECT(
 		marco_.x + offsetMarcoX2_,
 		marco_.y + offsetMarcoY_,
-		tamTextoGrande_.first,
-		tamTextoGrande_.second
+		anchoTexto_,
+		altoTexto_
 		);
 
 	tipo_ = RECT(
 		marco_.x + offsetMarcoX_,
-		marco_.y + marco_.h - tamTextoGrande_.second - offsetMarcoY_,
-		tamTextoGrande_.first,
-		tamTextoGrande_.second
+		marco_.y + marco_.h - altoTexto_ - offsetMarcoY_,
+		anchoTexto_,
+		altoTexto_
 		);
 
 	modificador_ = RECT(
 		marco_.x + offsetMarcoX2_,
-		marco_.y + marco_.h - tamTextoGrande_.second - offsetMarcoY_,
-		tamTextoGrande_.first,
-		tamTextoGrande_.second
+		marco_.y + marco_.h - altoTexto_ - offsetMarcoY_,
+		anchoTexto_,
+		altoTexto_
 		);
+
+	//colores
+	if (affordable_) {
+		colorTextoTitulo_ = hex2sdlcolor("0xFFD700FF");
+		colorTextoDescripcion_ = hex2sdlcolor("0xFFFFFFFF");
+		colorTextoMana_ = hex2sdlcolor("0x0055FFFF");
+		colorTextoTipo_ = hex2sdlcolor("0xE20066FF");
+		colorTextoModificador_ = hex2sdlcolor("0x22B7ABFF");
+	}
+	else {
+		colorTextoTitulo_ = hex2sdlcolor("0xCBCBCBFF");
+		colorTextoDescripcion_ = hex2sdlcolor("0x6F6F6FFF");
+		colorTextoMana_ = hex2sdlcolor("0xFF0F00FF");
+		colorTextoTipo_ = hex2sdlcolor("0x4F4F4FFF");
+		colorTextoModificador_ = hex2sdlcolor("0x898989FF");
+	}
 
 	drawPanel();
 }

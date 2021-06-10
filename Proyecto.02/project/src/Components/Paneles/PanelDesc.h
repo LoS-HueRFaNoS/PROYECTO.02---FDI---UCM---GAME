@@ -11,8 +11,8 @@ const int NUM_LET = 200;
 
 class PanelDesc : public Component {
 public:
-	PanelDesc(SDLGame* game, Panel* p, InterfazManager* iM, Hability* hab)
-		: Component(ecs::PanelDesc),pan_(p), iManager_(iM), hab_(hab) {};
+	PanelDesc(SDLGame* game, Panel* p, InterfazManager* iM, Hability* hab, bool aff)
+		: Component(ecs::PanelDesc),pan_(p), iManager_(iM), hab_(hab), affordable_(aff) {};
 	virtual ~PanelDesc() {};
 
 	void init() override;
@@ -23,6 +23,7 @@ private:
 	Panel* pan_;
 	InterfazManager* iManager_;
 	Hability* hab_;
+	bool affordable_;
 
 	string nombreHab_;
 	string descripcionHab_;
@@ -37,14 +38,14 @@ private:
 	SDL_Rect tipo_;
 	SDL_Rect modificador_;
 	//---
-	SDL_Color colorTextoTitulo_ = hex2sdlcolor("0xFFD700FF");
-	SDL_Color colorTextoDescripcion_ = hex2sdlcolor("0xFFFFFFFF");
-	SDL_Color colorTextoMana_ = hex2sdlcolor("0x0055FFFF");
-	SDL_Color colorTextoTipo_ = hex2sdlcolor("0xE20066FF");
-	SDL_Color colorTextoModificador_ = hex2sdlcolor("0x22B7ABFF");
-	//---
-	std::pair<int, int> tamTextoGrande_ = { NUM_LET * 10 + 1, 36 }; // { 2001, 36 } para NUM_LET = 200
-	std::pair<int, int> tamTextoPequenyo_ = { tamTextoGrande_.first/1.5, tamTextoGrande_.second /1.5 }; // { 1334, 24 } para NUM_LET = 200
+	SDL_Color colorTextoTitulo_;
+	SDL_Color colorTextoDescripcion_;
+	SDL_Color colorTextoMana_;
+	SDL_Color colorTextoTipo_;
+	SDL_Color colorTextoModificador_;
+	//-----
+	int anchoTexto_ = NUM_LET * 10 + 1; // 2001 para NUM_LET = 200
+	int altoTexto_ = 36;
 	//---
 	int offsetMarcoX_ = 15;
 	int offsetMarcoX2_ = offsetMarcoX_ + 285;

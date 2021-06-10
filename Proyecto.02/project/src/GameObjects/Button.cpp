@@ -59,17 +59,17 @@ void ButtonHability::click() // <3
 
 	Hero* her = static_cast<Hero*>(GETCMP2(TheElementalMaze::instance(), CombatManager)->getCurrentCharacter());
 	Hability* hab = her->getHabilities()[(int)hability_];
-	callbacks::createFichaDescPan(false, hab);
+	callbacks::createFichaDescPan(false, hab, her->getCharacterSheet()->manaPoints() >= hab->getMana());
 }
 void ButtonHability::pointerEntered() {
 	Hero* her = static_cast<Hero*>(GETCMP2(TheElementalMaze::instance(), CombatManager)->getCurrentCharacter());
 	Hability* hab = her->getHabilities()[(int)hability_];
-	callbacks::createFichaDescPan(true, hab);
+	callbacks::createFichaDescPan(true, hab, her->getCharacterSheet()->manaPoints() >= hab->getMana());
 };
 void ButtonHability::pointerExited() {
 	Hero* her = static_cast<Hero*>(GETCMP2(TheElementalMaze::instance(), CombatManager)->getCurrentCharacter());
 	Hability* hab = her->getHabilities()[(int)hability_];
-	callbacks::createFichaDescPan(false, hab);
+	callbacks::createFichaDescPan(false, hab, her->getCharacterSheet()->manaPoints() >= hab->getMana());
 };
 
 #pragma endregion
@@ -159,7 +159,7 @@ void ButtonWeaponAttack::click() //<3
 		break;
 	}
 	assert(hab != nullptr);
-	callbacks::createFichaDescPan(false, hab);
+	callbacks::createFichaDescPan(false, hab, her->getCharacterSheet()->manaPoints() >= hab->getMana());
 }
 void ButtonWeaponAttack::pointerEntered() {
 	Hero* her = static_cast<Hero*>(GETCMP2(TheElementalMaze::instance(), CombatManager)->getCurrentCharacter());
@@ -177,7 +177,7 @@ void ButtonWeaponAttack::pointerEntered() {
 		break;
 	}
 	assert(hab != nullptr);
-	callbacks::createFichaDescPan(true, hab);
+	callbacks::createFichaDescPan(true, hab, her->getCharacterSheet()->manaPoints() >= hab->getMana());
 };
 void ButtonWeaponAttack::pointerExited() {
 	Hero* her = static_cast<Hero*>(GETCMP2(TheElementalMaze::instance(), CombatManager)->getCurrentCharacter());
@@ -195,5 +195,5 @@ void ButtonWeaponAttack::pointerExited() {
 		break;
 	}
 	assert(hab != nullptr);
-	callbacks::createFichaDescPan(false, hab);
+	callbacks::createFichaDescPan(false, hab, her->getCharacterSheet()->manaPoints() >= hab->getMana());
 };

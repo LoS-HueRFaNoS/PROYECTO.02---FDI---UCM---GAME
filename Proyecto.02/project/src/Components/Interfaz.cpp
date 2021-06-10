@@ -366,14 +366,14 @@ void Interfaz::createFichaDD(uint nCharacter)
 	TheElementalMaze::instance()->addComponent<PanelDnD>(game_, p, heroes[nCharacter], iManager);
 }
 
-void Interfaz::createFichaDesc(Hability* hab) {
+void Interfaz::createFichaDesc(Hability* hab, bool aff) {
 	SDL_Panel pan = game_->relativePanel(1510, 70, 340, 190, 1, 1, 20, 20);
 	SDL_Rect dest = RECT(pan.fcx, pan.fcy, pan.cw, pan.ch);
 
 	Panel* p = new Panel(DescPan);
 	allPanels[DescPan] = p;
 
-	TheElementalMaze::instance()->addComponent<PanelDesc>(game_, p, iManager, hab);
+	TheElementalMaze::instance()->addComponent<PanelDesc>(game_, p, iManager, hab, aff);
 }
 
 void Interfaz::createChat()

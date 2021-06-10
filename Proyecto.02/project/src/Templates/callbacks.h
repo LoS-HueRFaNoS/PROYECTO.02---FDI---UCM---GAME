@@ -20,7 +20,7 @@ public:
 	static void heroType(uint numberHeroe);
 	static void createDDPan(bool activated, uint numberHeroe);
 	// descripciones
-	static void createFichaDescPan(bool active, Hability* hab);
+	static void createFichaDescPan(bool active, Hability* hab, bool aff);
 	// acceso a movimiento
 	static void movCommand(int movType);
 	// acceso a informacion
