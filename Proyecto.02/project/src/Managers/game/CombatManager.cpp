@@ -160,11 +160,20 @@ void CombatManager::tryEscape()
 
 	for (Hero* h : _heroes) {
 		if (!h->isDead())
-			tiradasH += h->throwStat(ms::DEX) + h->getMod(ms::DEX);
+		{
+			int huida = h->throwStat(ms::DEX);
+			if (tiradasH < huida)
+				tiradasH = huida;
+		}
 	}
+
 	for (Enemy* e : _enemies) {
 		if (!e->isDead())
-			tiradasE += e->throwStat(ms::DEX) + e->getMod(ms::DEX);
+		{
+			int huida = e->throwStat(ms::DEX);
+			if (tiradasE < huida)
+				tiradasE = huida;
+		}
 	}
 
 	cout << "Heroes: " << tiradasH << "\n";
