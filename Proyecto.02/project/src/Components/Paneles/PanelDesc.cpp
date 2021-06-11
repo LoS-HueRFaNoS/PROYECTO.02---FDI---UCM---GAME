@@ -20,25 +20,25 @@ void PanelDesc::init()
 		descripcionHab_.push_back(aux);
 	}
 	//
-	manaHab_ = (std::string)"Coste: " + to_string(hab_->getMana());
+	manaHab_ = (std::string)"Cost: " + to_string(hab_->getMana());
 	//
-	tipoHab_ = (std::string)"Tipo: ";
+	tipoHab_ = (std::string)"Type: ";
 	switch (hab_->getHabilityType())
 	{
 	case HabilityType::ATTACK:
-		tipoHab_ += (std::string)"Ataque";
+		tipoHab_ += (std::string)"Attack";
 		break;
 	case HabilityType::DEBUFF:
-		tipoHab_ += (std::string)"Malus";
+		tipoHab_ += (std::string)"Debuff";
 		break;
 	case HabilityType::HEAL:
-		tipoHab_ += (std::string)"Cura";
+		tipoHab_ += (std::string)"Cure";
 		break;
 	case HabilityType::BUFF:
-		tipoHab_ += (std::string)"Bonus";
+		tipoHab_ += (std::string)"Buff";
 		break;
 	default:
-		tipoHab_ += (std::string)"Ataque";
+		tipoHab_ += (std::string)"Attack";
 		break;
 	}
 	//
@@ -46,19 +46,19 @@ void PanelDesc::init()
 	switch (hab_->getMod())
 	{
 	case mainStat::STR:
-		modificadorHab_ += (std::string)"Fuerza";
+		modificadorHab_ += (std::string)"Strength";
 		break;
 	case mainStat::CON:
 		modificadorHab_ += (std::string)"Const.";
 		break;
 	case mainStat::DEX:
-		modificadorHab_ += (std::string)"Destr.";
+		modificadorHab_ += (std::string)"Dext.";
 		break;
 	case mainStat::INT:
 		modificadorHab_ += (std::string)"Intel.";
 		break;
 	default:
-		modificadorHab_ += (std::string)"Fuerza";
+		modificadorHab_ += (std::string)"Strength";
 		break;
 	}
 	

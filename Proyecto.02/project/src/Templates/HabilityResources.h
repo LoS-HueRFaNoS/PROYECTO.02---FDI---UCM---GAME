@@ -148,7 +148,7 @@ public:
 		level = 4;
 		_mana = 8;
 		_name = "Fireball";
-		_description = "Bola de fuego to guapa, a hace 8d6 a todos los enemigos frente a salvacion DEX";
+		_description = "A giant ball made of fire. If it hits, all the enemies suffer a 8d6 of damage with a DEX saving throw";
 
 		_id = habID::FIREBALL;
 		_damageType = damTy::FIRE;
@@ -171,7 +171,7 @@ public:
 		_mana = 0;
 		_name = "BloodyStrike";
 		//_description = "Esto es un ejemplo, hace 1d5 de daño";
-		_description = "Ataque que hace 1d5 de daño a un enemigo y aplica sangrado";
+		_description = "Attack that makes 1d5 of damage and inflicts bleeding";
 
 		_id = habID::BLOODYSTRIKE;
 		_damageType = damTy::SLASH;
@@ -193,7 +193,7 @@ public:
 		level = 0;
 		_mana = 4;
 		_name = "HealingWord";
-		_description = "Esto es un ejemplo, cura 1d8 de vida a un aliado";
+		_description = "Heals 1d8 in one ally";
 
 		_id = habID::HEALINGWORD;
 		_damageType = damTy::LIGHT;
@@ -215,7 +215,7 @@ public:
 		level = 0;
 		_mana = 4;
 		_name = "AllyTeamHealExample";
-		_description = "Esto es un ejemplo, cura a todo tu equipo 1d5";
+		_description = "Heals 1d5 in all the allies";
 
 		_id = habID::ALLYTEAMHEALEXAMPLE;
 		_damageType = damTy::LIGHT;
@@ -237,7 +237,7 @@ public:
 		level = 0;
 		_mana = 4;
 		_name = "SelfHealExample";
-		_description = "Esto es un ejemplo, te cura 1d8";
+		_description = "Heals yourself with a 1d8 throw";
 
 		_id = habID::SELFHEALEXAMPLE;
 		_damageType = damTy::LIGHT;
@@ -259,7 +259,7 @@ public:
 		level = 4;
 		_mana = 6;
 		_name = "WindBurst";
-		_description = "Sal a que te de el aire, hace 6d4 a todos los enemigos frente a salvacion DEX (reduce DEX)";
+		_description = "Wind attack that makes 6d4 to the enemy team against with DEX save throw. If it hits, it reduces the DEX value in the enemies";
 
 		_id = habID::WINDBURST;
 		_damageType = damTy::WIND;
@@ -280,7 +280,7 @@ public:
 		level = 2;
 		_mana = 4;
 		_name = "Wind Slash";
-		_description = "Menuda brisa, a hace 1d8 a un enemigo frente a salvacion DEX";
+		_description = "Wind attack that makes 1d8 to the enemy team against with DEX save throw";
 
 		_id = habID::WINDSLASH;
 		_damageType = damTy::WIND;
@@ -301,7 +301,7 @@ public:
 		level = 3;
 		_mana = 6;
 		_name = "Rock Pillar";
-		_description = "Mejorando la estructura, hace 1d8 a un enemigo frente a salvacion DEX (reduce CON)";
+		_description = "Rock attack that makes 1d8 to a single enemy against a DEX save throw. If it hits, it reduces the enemy's CON value";
 
 		_id = habID::ROCKPILLAR;
 		_damageType = damTy::EARTH;
@@ -322,10 +322,10 @@ public:
 		level = 3;
 		_mana = 6;
 		_name = "Toxic Shadow";
-		_description = "Sientes cosquillas, a hace 1d8 a un enemigo frente a salvacion DEX (puede causar envenenamiento)";
+		_description = "Water attack that makes 1d8 to a single enemy against a DEX save throw. If it hits, it can cause poisoning";
 
 		_id = habID::TOXICSHADOW;
-		_damageType = damTy::WIND;
+		_damageType = damTy::WATER;
 		_habilityType = habTy::ATTACK;
 		_mod = ms::INT;
 		_obj = objTy::SINGLEENEMY;
@@ -343,7 +343,7 @@ public:
 		level = 4;
 		_mana = 8;
 		_name = "Tsunami";
-		_description = "Avisaron de bandera roja, a hace 6d4 a todos los enemigos frente a salvacion DEX (y reduce STR)";
+		_description = "Attack attack that makes 6d4 to the enemy team against with DEX save throw. If it hits, it reduces the STR value in the enemies";
 
 		_id = habID::TSUNAMI;
 		_damageType = damTy::WATER;
@@ -364,7 +364,7 @@ public:
 		level = 3;
 		_mana = 4;
 		_name = "Divine protection";
-		_description = "Reduce el daño recibido en el proximo ataque";
+		_description = "Reduce the damage received in the next attack";
 
 		_id = habID::DIVINEPROTECTION;
 		_damageType = damTy::LIGHT;
@@ -385,7 +385,7 @@ public:
 		level = 2;
 		_mana = 4;
 		_name = "Flash";
-		_description = "Sonrie, a hace 1d8 a un enemigo frente a salvacion DEX(reduce DEX)";
+		_description = "Light attack that makes 1d8 to a single enemy against a DEX save throw. If it hits, it reduces the enemy's DEX value";
 
 		_id = habID::FLASH;
 		_damageType = damTy::LIGHT;
@@ -406,7 +406,7 @@ public:
 		level = 3;
 		_mana = 6;
 		_name = "Freeze";
-		_description = "Winter is coming FOR THEM, a hace 1d8 a un enemigo frente a salvacion DEX (y reduce DEX)";
+		_description = "Ice attack that makes 1d8 to a single enemy against a DEX save throw. If it hits, it reduces the enemy's DEX value";
 
 		_id = habID::FREEZE;
 		_damageType = damTy::ICE;
@@ -426,7 +426,7 @@ public:
 		level = 1;
 		_mana = 4;
 		_name = "Whirlpool";
-		_description = "Mas agua, a hace 1d8 a un enemigo frente a salvacion DEX (y reduce STR)";
+		_description = "Water attack that makes 1d8 to a single enemy against a DEX save throw. If it hits, it reduces the enemy's DEX value";
 
 		_id = habID::WHIRLPOOL;
 		_damageType = damTy::WATER;
@@ -446,7 +446,7 @@ public:
 		level = 3;
 		_mana = 6;
 		_name = "Light Beam";
-		_description = "Muy bonito, pero doloroso, a hace 1d8 a un enemigo frente a salvacion DEX (y reduce DEX)";
+		_description = "Light attack that makes 1d8 to a single enemy against a DEX save throw. If it hits, it reduces the enemy's DEX value";
 
 		_id = habID::LIGHTBEAM;
 		_damageType = damTy::LIGHT;
@@ -466,7 +466,7 @@ public:
 		level = 1;
 		_mana = 4;
 		_name = "Dark Vortex";
-		_description = "No veo, a hace 1d8 a un enemigo frente a salvacion DEX (y reduce DEX)";
+		_description = "Dark attack that makes 1d8 to a single enemy against a DEX save throw. If it hits, it reduces the enemy's DEX value";
 
 		_id = habID::DARKVORTEX;
 		_damageType = damTy::DARK;
@@ -487,7 +487,7 @@ public:
 		level = 1;
 		_mana = 6;
 		_name = "Fire Arrow";
-		_description = "Quema, a hace 1d8 a un enemigo frente a salvacion DEX (y reduce DEX)";
+		_description = "Fire attack that makes 1d8 to a single enemy against a DEX save throw. If it hits, it reduces the enemy's DEX value";
 
 		_id = habID::FIREARROW;
 		_damageType = damTy::FIRE;
@@ -509,7 +509,7 @@ public:
 		level = 1;
 		_mana = 2;
 		_name = "Lighten";
-		_description = "Aumenta la destreza";
+		_description = "Increases the dexterity (DEX)";
 
 		_id = habID::LIGHTEN;
 		_damageType = damTy::LIGHT;
@@ -529,7 +529,7 @@ public:
 		level = 1;
 		_mana = 2;
 		_name = "Strengthen";
-		_description = "Aumenta la fuerza";
+		_description = "Increases the strenght (STR)";
 
 		_id = habID::STRENGTHEN;
 		_damageType = damTy::LIGHT;
@@ -549,7 +549,7 @@ public:
 		level = 1;
 		_mana = 2;
 		_name = "Toughen";
-		_description = "Aumenta la constitucion";
+		_description = "Increases the constitucion (CON)";
 
 		_id = habID::TOUGHEN;
 		_damageType = damTy::LIGHT;
@@ -569,7 +569,7 @@ public:
 		level = 1;
 		_mana = 2;
 		_name = "Meditate";
-		_description = "Aumenta la inteligencia";
+		_description = "Increases the intelligence (INT)";
 
 		_id = habID::MEDITATE;
 		_damageType = damTy::LIGHT;
@@ -590,7 +590,7 @@ public:
 		level = 2;
 		_mana = 6;
 		_name = "Blood Thirst";
-		_description = "Dame tu vida, a hace 1d8 a un enemigo frente a salvacion DEX y cura al usuario";
+		_description = "Light attack that makes 1d8 to a single enemy against a DEX save throw. If it hits, it heals the players life ";
 
 		_id = habID::BLOODTHIRST;
 		_damageType = damTy::LIGHT;
@@ -611,7 +611,7 @@ public:
 		level = 2;
 		_mana = 4;
 		_name = "Sacrifice";
-		_description = "Dame tu vida, a hace 1d8 a un enemigo frente a salvacion DEX x1.5 ,pero recibe daño de retroceso";
+		_description = "Light attack that makes 1d8 x 1.5 to a single enemy against a DEX save throw. If it hits, the player suffers a little bit of damage";
 
 		_id = habID::SACRIFICE;
 		_damageType = damTy::LIGHT;
@@ -632,10 +632,10 @@ public:
 		level = 2;
 		_mana = 4;
 		_name = "Double Shot";
-		_description = "Dispara 2 flechas a la vez, la segunda flecha hace la mitad de daño de la primera";
+		_description = "Dark attack that makes two attacks, being the second half of the normal damage";
 
 		_id = habID::DOUBLESHOT;
-		_damageType = damTy::LIGHT;
+		_damageType = damTy::DARK;
 		_habilityType = habTy::ATTACK;
 		_mod = ms::DEX;
 		_obj = objTy::SINGLEENEMY;
@@ -653,10 +653,10 @@ public:
 		level = 4;
 		_mana = 6;
 		_name = "Throwing Axes";
-		_description = "Lanza 3 hachas";
+		_description = "Throw 3 earth attacks";
 
 		_id = habID::THROWINGAXES;
-		_damageType = damTy::LIGHT;
+		_damageType = damTy::EARTH;
 		_habilityType = habTy::ATTACK;
 		_mod = ms::DEX;
 		_obj = objTy::SINGLEENEMY;
@@ -676,7 +676,7 @@ public:
 		level = 3;
 		_mana = 6;
 		_name = "Heavy Strike";
-		_description = "El ataque hace el doble de daño con una gran probabilidad de fallar";
+		_description = "It makes the double amount of damage, but it can fail easily";
 
 		_id = habID::HEAVYSTRIKE;
 		_damageType = damTy::LIGHT;
@@ -697,7 +697,7 @@ public:
 		level = 2;
 		_mana = 4;
 		_name = "Smoke arrow";
-		_description = "Dispara una flecha de humo que desorienta a los enemigos y les reduce la destreza durante 3 turnos";
+		_description = "Reduce the enemy team DEX during 3 turns";
 
 		_id = habID::SMOKEARROW;
 		_damageType = damTy::DARK;
@@ -718,7 +718,7 @@ public:
 		level = 0;
 		_mana = 8;
 		_name = "Morph";
-		_description = "Conviertete en una bestia alterando las estadisticas";
+		_description = "Change your stats transforming into a beast";
 
 		_id = habID::MORPH;
 		_damageType = damTy::DARK;
@@ -738,7 +738,7 @@ public:
 		level = 0;
 		_mana = 0;
 		_name = "Reverse Morph";
-		_description = "Vuelve al estado anterior";
+		_description = "Change your stats transforming into a human";
 
 		_id = habID::REVERSEMORPH;
 		_damageType = damTy::DARK;
@@ -759,7 +759,7 @@ public:
 		level = 3;
 		_mana = 8;
 		_name = "Rain of Daggers";
-		_description = "Lanza un numero aleatorio de dagas entre 1 y 10 que hacen cada una un 20% del daño del personaje";
+		_description = "Throw 1d10 attacks that makes 20% of the characters health points in damage";
 
 		_id = habID::RAINOFDAGGERS;
 		_damageType = damTy::LIGHT;
@@ -780,7 +780,7 @@ public:
 		level = 3;
 		_mana = 6;
 		_name = "Rock Projectiles";
-		_description = "Dispara tres rocas que tiene cada una su propia probabilidad de fallar";
+		_description = "Throw 3 independent earth attacks";
 
 		_id = habID::ROCKPROJECTILES;
 		_damageType = damTy::EARTH;
@@ -801,7 +801,7 @@ public:
 		level = 4;
 		_mana = 9;
 		_name = "Trick Shot";
-		_description = "Dispara una flecha que hace el triple de daño";
+		_description = "Throw an attack with a triple amount of damage";
 
 		_id = habID::TRICKSHOT;
 		_damageType = damTy::LIGHT;
@@ -822,7 +822,7 @@ public:
 		level = 0;
 		_mana = 6;
 		_name = "Gladiator's Ballad";
-		_description = "Aumenta la fuerza del equipo durante 3 turnos";
+		_description = "Increase the teams strenght during 3 turns";
 
 		_id = habID::GLADIATORBALLAD;
 		_damageType = damTy::LIGHT;
@@ -843,7 +843,7 @@ public:
 		level = 0;
 		_mana = 6;
 		_name = "Wind Song";
-		_description = "Aumenta la velocidad del equipo durante 3 turnos";
+		_description = "Increase the teams dexterity during 3 turns";
 
 		_id = habID::WINDSONG;
 		_damageType = damTy::LIGHT;
@@ -864,7 +864,7 @@ public:
 		level = 3;
 		_mana = 4;
 		_name = "Determination";
-		_description = "El proximo golpe letal que reciba el personaje le dejara con 1 de vida en vez de matarle";
+		_description = "The next hit you suffer that could end with your life, would leave you with 1 HP";
 
 		_id = habID::DETERMINATION;
 		_damageType = damTy::LIGHT;
@@ -885,7 +885,7 @@ public:
 		level = 1;
 		_mana = 9;
 		_name = "Blessing";
-		_description = "Quita los efectos negativos a todos los miembros del equipo";
+		_description = "Remove the altered states for your party";
 
 		_id = habID::BLESSING;
 		_damageType = damTy::LIGHT;
@@ -906,7 +906,7 @@ public:
 		level = 1;
 		_mana = 6;
 		_name = "Thorns";
-		_description = "Haz crecer espinas en tu cuerpo que devuelven una parte del daño que recibes a tu atacante, pica un poco con ropas ajustadas.";
+		_description = "When you recieved the next attack, you'll return a little amount of damage to the enemy";
 
 		_id = habID::THORNS;
 		_damageType = damTy::EARTH;
@@ -986,8 +986,8 @@ public:
 class Bleeding : public Condition {
 public:
 	Bleeding(Character* objective, Character* caster) : Condition(objective, caster) {
-		_name = "Ejemplo de daño cada turno";
-		_description = "Hace 1d3 de daño cada turno, durante 3 turnos";
+		_name = "Damage example for turn";
+		_description = "Makes 1d3 during 3 turns";
 		_turns = 3;
 		_id = condID::BLEEDING;
 		resetTurns();
@@ -1005,8 +1005,8 @@ class EjemploCuracionFinalTurno : public Condition {
 public:
 
 	EjemploCuracionFinalTurno(Character* objective, Character* caster) : Condition(objective, caster) {
-		_name = "Ejemplo de daño cada turno";
-		_description = "Cura 1d3 cada final de turno, durante 3 turnos";
+		_name = "Heal example for turn";
+		_description = "Cures 1d3 during 3 turns";
 		_turns = 3;
 		_id = condID::EJEMPLOCURACIONFINALTURNO;
 		resetTurns();
@@ -1023,8 +1023,8 @@ class EjemploReduccionAtaque : public Condition {
 public:
 
 	EjemploReduccionAtaque(Character* objective, Character* caster) : Condition(objective, caster) {
-		_name = "Ejemplo de daño cada turno";
-		_description = "Reduce el daño el siguiente ataque a la mitad";
+		_name = "Debuff example for turns";
+		_description = "Reduce the amount of damage recieved in 50%";
 		_id = condID::EJEMPLOREDUCCIONATAQUE;
 		resetTurns();
 	}
@@ -1041,8 +1041,8 @@ class EjemploRevivirMuerte : public Condition {
 public:
 
 	EjemploRevivirMuerte(Character* objective, Character* caster) : Condition(objective, caster) {
-		_name = "Ejemplo de daño cada turno";
-		_description = "Revivira con 5 de vida al morir";
+		_name = "Resurrection example";
+		_description = "You revive with 5 HP after you die";
 		_id = condID::EJEMPLOREVIVIRMUERTE;
 		resetTurns();
 	}
@@ -1087,7 +1087,7 @@ public:
 
 	DeterminationCond(Character* objective, Character* caster) : Condition(objective, caster) {
 		_name = "Determination condition";
-		_description = "Cuando muera el personaje este revivira con 1 punto de vida";
+		_description = "When the character die, it would revive with 1 HP";
 		_id = condID::DETERMINATIONCOND;
 		resetTurns();
 	}
@@ -1104,7 +1104,7 @@ public:
 
 	ThornsCond(Character* objective, Character* caster) : Condition(objective, caster) {
 		_name = "Thorns condition";
-		_description = "Devuelve parte del daño que recibes al atacante";
+		_description = "It returns the damage recieved to the enemy";
 		_turns = 3;
 		_id = condID::THORNSCOND;
 		resetTurns();

@@ -246,7 +246,7 @@ private:
 
 	enemyTemplate template_;
 
-	string description = "Un enemigo muy chungo";
+	string description = "A pretty difficult enemy";
 
 	int exp = 0;
 

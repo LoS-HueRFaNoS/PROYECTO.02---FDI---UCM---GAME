@@ -2,7 +2,7 @@
   "Armas": [
 
     {
-      "Name": "Desarmado",
+      "Name": "Fists",
       "Hands": 0,
       "Ndice": 1,
       "Damage": 3,
@@ -53,7 +53,7 @@
     },
 
     {
-      "Name": "Baston",
+      "Name": "Staff",
       "Hands": 2,
       "Ndice": 1,
       "Damage": 8,
@@ -104,7 +104,7 @@
     },
 
     {
-      "Name": "Daga",
+      "Name": "Dagger",
       "Hands": 1,
       "Ndice": 1,
       "Damage": 4,
@@ -155,7 +155,7 @@
     },
 
     {
-      "Name": "Clava",
+      "Name": "Club",
       "Hands": 2,
       "Ndice": 1,
       "Damage": 8,
@@ -206,7 +206,7 @@
     },
 
     {
-      "Name": "Hacha pequena",
+      "Name": "Small Axe",
       "Hands": 1,
       "Ndice": 1,
       "Damage": 6,
@@ -257,7 +257,7 @@
     },
 
     {
-      "Name": "Hoz",
+      "Name": "Sickle",
       "Hands": 1,
       "Ndice": 1,
       "Damage": 4,
@@ -308,7 +308,7 @@
     },
 
     {
-      "Name": "Lanza",
+      "Name": "Spear",
       "Hands": 2,
       "Ndice": 1,
       "Damage": 12,
@@ -359,7 +359,7 @@
     },
 
     {
-      "Name": "Martillo Pequeno",
+      "Name": "Small Hammer",
       "Hands": 2,
       "Ndice": 1,
       "Damage": 4,
@@ -410,7 +410,7 @@
     },
 
     {
-      "Name": "Maza",
+      "Name": "Mace",
       "Hands": 2,
       "Ndice": 1,
       "Damage": 6,
@@ -461,7 +461,7 @@
     },
 
     {
-      "Name": "Arco pequeno",
+      "Name": "Small Bow",
       "Hands": 2,
       "Ndice": 1,
       "Damage": 6,
@@ -512,7 +512,7 @@
     },
 
     {
-      "Name": "Ballesta Ligera",
+      "Name": "Small Crossbow",
       "Hands": 2,
       "Ndice": 1,
       "Damage": 8,
@@ -563,7 +563,7 @@
     },
 
     {
-      "Name": "Alabarda",
+      "Name": "Halberd",
       "Hands": 2,
       "Ndice": 1,
       "Damage": 10,
@@ -614,7 +614,7 @@
     },
 
     {
-      "Name": "Atarraga",
+      "Name": "Giant Hammer",
       "Hands": 2,
       "Ndice": 2,
       "Damage": 6,
@@ -665,7 +665,7 @@
     },
 
     {
-      "Name": "Espada Corta",
+      "Name": "Shortsword",
       "Hands": 1,
       "Ndice": 1,
       "Damage": 6,
@@ -716,7 +716,7 @@
     },
 
     {
-      "Name": "Espada Larga",
+      "Name": "Longsword",
       "Hands": 1,
       "Ndice": 1,
       "Damage": 8,
@@ -767,7 +767,7 @@
     },
 
     {
-      "Name": "Espadon",
+      "Name": "Greatsword",
       "Hands": 2,
       "Ndice": 2,
       "Damage": 6,
@@ -818,7 +818,7 @@
     },
 
     {
-      "Name": "Espada Ropera",
+      "Name": "Rapier",
       "Hands": 1,
       "Ndice": 1,
       "Damage": 8,
@@ -869,7 +869,7 @@
     },
 
     {
-      "Name": "Hacha de batalla",
+      "Name": "Battle Axe",
       "Hands": 2,
       "Ndice": 1,
       "Damage": 12,
@@ -920,7 +920,7 @@
     },
 
     {
-      "Name": "Guja",
+      "Name": "Glaive",
       "Hands": 2,
       "Ndice": 1,
       "Damage": 10,
@@ -971,7 +971,7 @@
     },
 
     {
-      "Name": "Latigo",
+      "Name": "Whip",
       "Hands": 1,
       "Ndice": 1,
       "Damage": 4,
@@ -1022,7 +1022,7 @@
     },
 
     {
-      "Name": "Lucero del Alba",
+      "Name": "Morning Star",
       "Hands": 1,
       "Ndice": 1,
       "Damage": 8,
@@ -1073,7 +1073,7 @@
     },
 
     {
-      "Name": "Martillo de guerra",
+      "Name": "Warhammer",
       "Hands": 2,
       "Ndice": 1,
       "Damage": 10,
@@ -1175,7 +1175,7 @@
     },
 
     {
-      "Name": "Tridente",
+      "Name": "Trident",
       "Hands": 1,
       "Ndice": 1,
       "Damage": 6,
@@ -1226,7 +1226,7 @@
     },
 
     {
-      "Name": "Arco Largo",
+      "Name": "Long Bow",
       "Hands": 2,
       "Ndice": 1,
       "Damage": 8,
@@ -1277,7 +1277,7 @@
     },
 
     {
-      "Name": "Ballesta Pesada",
+      "Name": "Heavy Crossbow",
       "Hands": 2,
       "Ndice": 1,
       "Damage": 10,

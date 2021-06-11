@@ -23,7 +23,7 @@ void Item::elementalAfinity()
 void Weapon::loadWeaponTemplate(jute::jValue v, weaponId t)
 {
 	_name = v["Armas"][size_t(t)]["Name"].as_string();
-	_description = "Arma interesante";
+	_description = "An interesting weapon";
 
 	int _damType = v["Armas"][size_t(t)]["Type"].as_int();
 	_damageType = damageType(_damType);

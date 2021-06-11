@@ -541,7 +541,7 @@ void Interfaz::createLobby() // botones principales
 
 	// TITLE
 	color = { 205,105,0,255 };
-	text = "Tu equipo de combate";
+	text = "Your combat team";
 
 	SDL_Panel pan;
 	pan = game_->relativePanel(70, 70, 1340, 610, 11, 6, 20, 20);
@@ -635,7 +635,7 @@ void Interfaz::createShop() // tienda con heroes y objetos
 			pan.ch
 		);
 
-		text = "Tienda";
+		text = "Shop";
 		color = { 155,155,0,255 };
 		p->addButton(iManager->addButton<Line>(dest, text, Resources::FontId::HERMAN, color));
 
@@ -1481,7 +1481,7 @@ void Interfaz::update()
 			createPanel(Heroes);
 			createPanel(Info);
 			createPanel(Chat);
-			string s = "Bienvenidos! Aqui comienza vuestra aventura, mucha suerte mis muchachos!!";
+			string s = "Welcome! Here is where the adventure begins, dear friends";
 			ChatManager::instance()->clean_n_addLine(s, linCol::Yellow);
 			/*string s = "Bienvenidos! Aqui comienza";
 			ChatManager::instance()->clean_n_addLine(s, linCol::Yellow);

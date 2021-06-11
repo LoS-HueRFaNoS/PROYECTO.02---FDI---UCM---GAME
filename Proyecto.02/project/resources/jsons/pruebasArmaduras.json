@@ -2,8 +2,8 @@
   "Armaduras": [
 
     {
-      "Name": "Acolchada",
-      "Description": "Armadura rellena, que amortigua los golpes", 
+      "Name": "Padded",
+      "Description": "Standard armor, able to resist a few hits",
       "Weaknesses": [
         {
           "Key": "Blunt",
@@ -51,8 +51,8 @@
     },
 
     {
-      "Name": "Cuero tachonado",
-      "Description": "Armadura de cuero endurecido, dificil de romper",
+      "Name": "Studded Leather",
+      "Description": "A resistant armor, capable of protect against heavy attacks",
       "Weaknesses": [
         {
           "Key": "Blunt",
@@ -100,8 +100,8 @@
     },
 
     {
-      "Name": "Cota de escamas",
-      "Description": "Armadura de escamas, bastante resistente a los cortes",
+      "Name": "Scale Coat",
+      "Description": "Armor made of scales, pretty resistant against slashes",
       "Weaknesses": [
         {
           "Key": "Blunt",
@@ -149,8 +149,8 @@
     },
 
     {
-      "Name": "Coraza",
-      "Description": "Armadura acorazada, capaz de soportar fuertes impactos",
+      "Name": "Breastplate",
+      "Description": "Heavy armor, almost impenetrable with hits and slashes",
       "Weaknesses": [
         {
           "Key": "Blunt",
@@ -198,8 +198,8 @@
     },
 
     {
-      "Name": "Semiplacas",
-      "Description": "Armadura de placas sin completar, que ofrece resistencia y movilidad",
+      "Name": "Semi-plates",
+      "Description": "A really completed armor, resistant to all types of physical attacks",
       "Weaknesses": [
         {
           "Key": "Blunt",
@@ -247,8 +247,8 @@
     },
 
     {
-      "Name": "Cota de mallas",
-      "Description": "Armadura de cota, capaz de hacer rebotar ataques perforantes",
+      "Name": "Chain Mail",
+      "Description": "A light armor that makes pretty easy to survive against pierce attacks",
       "Weaknesses": [
         {
           "Key": "Blunt",
@@ -296,8 +296,8 @@
     },
 
     {
-      "Name": "Bandas",
-      "Description": "Armadura reforzada, capaz de tolerar ataques de diversos tipos",
+      "Name": "Bands",
+      "Description": "An extremely resistant armor, capable of survive all types of physical damages",
       "Weaknesses": [
         {
           "Key": "Blunt",
@@ -345,8 +345,8 @@
     },
 
     {
-      "Name": "Placas",
-      "Description": "Armadura de placas, quizás la más resistente y pesada que puedas encontrar",
+      "Name": "Plates",
+      "Description": "A metal armor, the most valuable armor you're going to find in the maze",
       "Weaknesses": [
         {
           "Key": "Blunt",
