@@ -133,7 +133,7 @@ void Interfaz::createEnemies()
 	}
 
 
-	SDL_Object* vibra_;
+	/*SDL_Object* vibra_;
 
 	double _x = game_->setHorizontalScale(70);
 	double _y = game_->setVerticalScale(70);
@@ -142,7 +142,7 @@ void Interfaz::createEnemies()
 	SDL_Rect dest = RECT(_x, _y, _w, _h);
 	vibra_ = iManager->addButton<SDL_Object>(Vector2D(-1, -1), 0.5, 0.5, src::whiterect);
 	vibra_->addComponent<AnimVibration>(dest, src::vibration);
-	p->addButton(vibra_);
+	p->addButton(vibra_);*/
 
 
 
