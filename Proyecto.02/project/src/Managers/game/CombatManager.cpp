@@ -116,10 +116,33 @@ void CombatManager::passTurn()
 		}
 		_turn = ++_turn % _turnQueue.size();
 		currentCharacter = _turnQueue[_turn];
+
+		if (_turnQueue.size()>1)
+			nextCharacter = _turnQueue[(_turn+1) % _turnQueue.size()];
+		if (currentCharacter->getType() == characterType::ENEMY)
+		{
+			animDanger = false;
+			drawDanger = true;
+		}
+		else if (nextCharacter->getType() == characterType::ENEMY)
+		{
+			animDanger = true;
+			startAnimTime = game_->getTime();
+		}
+		else
+		{
+			animDanger = false;
+			drawDanger = false;
+		}
 		changeState(START_TURN);
 	}
 	else
+	{
+		animDanger = false;
+		drawDanger = false;
 		changeState(COMBAT_END);
+		
+	}
 }
 
 bool CombatManager::checkEnd()
@@ -356,6 +379,24 @@ void CombatManager::calculateTurns()
 			_turnQueue.push_back(_heroes[i.pos]);
 	}
 	currentCharacter = _turnQueue[0];
+	if (_turnQueue.size()>1)
+		nextCharacter = _turnQueue[1];
+
+	if (currentCharacter->getType() == characterType::ENEMY)
+	{
+		animDanger = false;
+		drawDanger = true;
+	}
+	else if (nextCharacter!=nullptr && nextCharacter->getType() == characterType::ENEMY)
+	{
+		animDanger = true;
+		startAnimTime = game_->getTime();
+	}
+	else
+	{
+		animDanger = false;
+		drawDanger = false;
+	}
 }
 
 int CombatManager::calculateExp()
@@ -377,6 +418,7 @@ void CombatManager::onStateChanged()
 		_turn = 0;
 		_exp = 0;
 		currentCharacter = nullptr;
+		nextCharacter = nullptr;
 		calculateTurns();
 		calculateExp();
 		changeState(START_TURN);
@@ -475,6 +517,14 @@ void CombatManager::update()
 	if (stateChanged)
 		onStateChanged();
 
+	if (animDanger)
+	{
+		
+		Uint32 frameTime = game_->getTime() - startAnimTime;
+		if (frameTime > 10000)
+			drawDanger = !drawDanger;
+	}
+
 #if (defined _DEBUG)
 	InputHandler* ih = InputHandler::instance();
 
@@ -499,3 +549,5 @@ void CombatManager::update()
 	}
 #endif
 }
+
+

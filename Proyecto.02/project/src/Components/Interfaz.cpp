@@ -11,6 +11,7 @@
 #include "Laberinto.h"
 #include "Tutorial.h"
 #include "Rectangle.h"
+#include "AnimVibration.h"
 #include "Paneles/PanelTurns.h"
 #include "Paneles/PanelDnD.h"
 #include "Paneles/PanelDesc.h"
@@ -103,7 +104,8 @@ void Interfaz::createEnemies()
 	Panel* p = new Panel(Enemies);
 	allPanels[Enemies] = p;
 
-	
+
+
 	for (int i = 0; i < nEnemies; i++) {
 		Enemy* enemy = enemies[i];
 		enemyTemplate enTemp = enemy->getTemplate();
@@ -119,16 +121,32 @@ void Interfaz::createEnemies()
 				lado = w_;
 				margenBarra = espace - tamBar_w;
 			}
-			
+
 			b_ = iManager->addButton<SDL_Object>(Vector2D(x_ + i * espace + espace / 2.0 - lado / 2.0, y_ + h_ - lado), lado, lado, getEnemyTxt(i));
 		}
 
 		//BARRA DE VIDA
 		b_->addComponent<StateBar>(enemy, health, SDL_Rect(RECT((x_ + i * espace + margenBarra / 2.0), (y_ + h_ / 10.0), tamBar_w, tamBar_h)));
-		b_->addComponent<BorrarAlMorir>(this, i , enemy);
+		b_->addComponent<BorrarAlMorir>(this, i, enemy);
 		//b_->addComponent<StateBar>(enemies[i], mana, SDL_Rect(RECT((x_ + i * espace), (y_ + h_ * 2.5 / k), w_ * 2, h_ / k)));
 		p->addButton(b_);
 	}
+
+
+	SDL_Object* vibra_;
+
+	double _x = game_->setHorizontalScale(70);
+	double _y = game_->setVerticalScale(70);
+	double _w = game_->setHorizontalScale(1340);
+	double _h = game_->setVerticalScale(620);
+	SDL_Rect dest = RECT(_x, _y, _w, _h);
+	vibra_ = iManager->addButton<SDL_Object>(Vector2D(-1, -1), 0.5, 0.5, src::whiterect);
+	vibra_->addComponent<AnimVibration>(dest, src::vibration);
+	p->addButton(vibra_);
+
+
+
+
 }
 
 void Interfaz::createMovement()

@@ -91,6 +91,8 @@ public:
 		stash_button,
 		inventory_button,
 		take, 
+		vibration,
+		whiterect,
 
 		// carteles tutorial
 		_firstCartelId_,

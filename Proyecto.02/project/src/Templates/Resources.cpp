@@ -93,6 +93,8 @@ vector<Resources::ImageInfo> Resources::images_{
 	{inventory_button, "project/resources/images/interfaz/button icons/Tienda/InventoryButton.png"},
 	{stash_button, "project/resources/images/interfaz/button icons/Tienda/StashButton.png"},
 	{take, "project/resources/images/interfaz/button icons/Tienda/TakeButton.png"},
+	{vibration, "project/resources/images/interfaz/peligro.png"},
+	{whiterect, "project/resources/images/whiterect.png"},
 
 	// movimiento
 	{Avanzar, "project/resources/sprites/iconos movimiento/movimientoAvanzar.png"},

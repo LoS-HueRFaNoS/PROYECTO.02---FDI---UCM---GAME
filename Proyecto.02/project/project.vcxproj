@@ -81,6 +81,7 @@
     <ClCompile Include="src\Utilities\textures_box.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Components\AnimVibration.h" />
     <ClInclude Include="src\Components\Paneles\PanelDesc.h" />
     <ClInclude Include="src\Components\BorrarAlMorir.h" />
     <ClInclude Include="resource.h" />

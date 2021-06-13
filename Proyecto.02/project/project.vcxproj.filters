@@ -440,6 +440,9 @@
     <ClInclude Include="src\Components\Paneles\PanelDesc.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
+    <ClInclude Include="src\Components\AnimVibration.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="resources\jsons\pruebasArmaduras.json">

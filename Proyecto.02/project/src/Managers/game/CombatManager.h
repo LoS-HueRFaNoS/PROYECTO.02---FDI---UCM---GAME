@@ -25,6 +25,7 @@ private:
 	vector<Character*> _turnQueue; // lista ordenada de turnos
 
 	Character* currentCharacter; // personaje actual en combate
+	Character* nextCharacter; // personaje actual en combate
 
 	int _turn = 0;
 
@@ -35,6 +36,10 @@ private:
 	bool _win = true;
 
 	bool _boss = false;
+
+	bool animDanger = false;
+	bool drawDanger = false;
+	Uint32 startAnimTime = 0;
 
 	CombatState _state;
 
@@ -101,6 +106,7 @@ public:
 
 	void update() override;
 
+
 	Character* nextTurn() {
 		if (!_turnQueue.empty()) return _turnQueue[_turn];
 	}
@@ -166,6 +172,8 @@ public:
 		return _turnQueue;
 	}
 
+
+	bool getDrawDanger() { return drawDanger; }
 	// ----------------------------------------------------
 };
 
