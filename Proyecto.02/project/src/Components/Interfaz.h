@@ -54,6 +54,9 @@ private:
 	int selectedInventoryHero;
 	int selectedInventoryItem;
 	int selectedItem;
+	std::vector<Message> msgsQueue_;
+	MsgId activeMsg;
+	SDL_Object* f;
 public:
 	Interfaz(InterfazManager* i) :
 		Component(ecs::Interfaz),
@@ -62,7 +65,7 @@ public:
 		tutorial_active(true)
 	{};
 	virtual ~Interfaz();
-
+	void createPausePanel();
 	void createPanel(idPanel panelID);
 	void removePanel(idPanel panelID);
 	void removeChat();

@@ -524,7 +524,9 @@ void Interfaz::createMenuPrincipal()
 		pan.cw + pan.cw * 4 / 14,
 		pan.ch + pan.ch / 2
 	);	
+	if (!TheElementalMaze::instance()->wasInMaze)
 	p->addButton(iManager->addButton<ButtonMenu>(dest, src::start, accionMenu::lobby, this));
+	else p->addButton(iManager->addButton<ButtonMenu>(dest, src::start, accionMenu::backToMaze, this));
 
 	// resto de botones:
 	dest = RECT(
@@ -1233,7 +1235,49 @@ void Interfaz::createEquipPanel()
 		}
 	}
 }
+void Interfaz::createPausePanel()
+{
+	iManager->setPause();
+	Panel* p = new Panel(PausePanel);
+	allPanels[PausePanel] = p;
+	//iManager->setPause();
+	SDL_Rect a = RECT(0, 0, game_->getWindowWidth(),game_->getWindowHeight(), 0);
+	p->addButton(iManager->addButton<SDL_Object>(a, src::cinematica));
+	SDL_Panel pan;
+		pan = game_->relativePanel(0, 1050 / 2, 1920, 1050 / 2, 7, 4, 20, 20, 0, 10);
 
+	// START
+	SDL_Rect dest = RECT(
+		pan.fcx + pan.cw * 2 + pan.cw * 12 / 14,
+		pan.fcy - pan.ch * 3 / 2,
+		pan.cw + pan.cw * 4 / 14,
+		pan.ch + pan.ch / 2
+	);
+	dest.x += 100.0;
+	p->addButton(iManager->addButton<ButtonMenu>(dest, src::start, accionMenu::resume, this));
+
+	// resto de botones:
+	dest = RECT(
+		pan.fcx + pan.cw * 3,
+		pan.fcy + pan.ch / 4,
+		pan.cw,
+		pan.ch
+	);
+
+	// OPTIONS
+	dest.y = dest.y + pan.eh;
+	p->addButton(iManager->addButton<ButtonMenu>(dest, src::options, accionMenu::options, this));
+
+	// HOW TO PLAY
+	dest.y = dest.y + pan.ch + pan.eh;
+	//p->addButton(iManager->addButton<ButtonMenu>(dest, src::howToPlay, accionMenu::how_to_play, this));
+
+	// QUIT
+	dest.y = pan.lcy;
+	dest.x += 100.0;
+	p->addButton(iManager->addButton<ButtonMenu>(dest, src::quit, accionMenu::backToMenu, this));
+	TheElementalMaze::instance()->changeState(gameST::DURING_PAUSE);
+}
 
 void Interfaz::createPanel(idPanel panelID)
 {
@@ -1322,6 +1366,9 @@ void Interfaz::createPanel(idPanel panelID)
 		break;
 	case UnequipPanel:
 		createUnequipPanel();
+		break;
+	case PausePanel:
+		createPausePanel();
 		break;
 	default:
 		break;
@@ -1452,10 +1499,10 @@ void Interfaz::init()
 	//iManager->addButton<ButtonSlott>(Vector2D(), game_->getWindowWidth(), game_->getWindowHeight(), src::Fondo); 
 	createPanel(MenuPrincipal);
 	createPanel(HowToPlay);
-	createPanel(Options);
+
 
 	togglePanel(HowToPlay);
-	togglePanel(Options);
+
 
 	/*createPanel(Movement);
 	createPanel(Heroes);
@@ -1489,6 +1536,7 @@ void Interfaz::update()
 	case gameST::START_EXPLORING:
 		if (!getActivePan(Movement))
 		{
+			TheElementalMaze::instance()->wasInMaze = true;
 			Message m;
 			m.id_ = MsgId::_MOVIMIENTO_;
 			TheElementalMaze::instance()->sendMsg(m);
@@ -1499,14 +1547,14 @@ void Interfaz::update()
 			createPanel(Heroes);
 			createPanel(Info);
 			createPanel(Chat);
-			string s = "Welcome! Here is where the adventure begins, dear friends";
-			ChatManager::instance()->clean_n_addLine(s, linCol::Yellow);
-			/*string s = "Bienvenidos! Aqui comienza";
+			//string s = "Welcome! Here is where the adventure begins, dear friends";
+			//ChatManager::instance()->clean_n_addLine(s, linCol::Yellow);
+			string s = "Bienvenidos! Aqui comienza";
 			ChatManager::instance()->clean_n_addLine(s, linCol::Yellow);
 			s = "vuestra aventura,";
 			ChatManager::instance()->add(s, linCol::Yellow);
 			s = "mucha suerte mis muchachos!!";
-			ChatManager::instance()->add(s, linCol::Yellow);*/
+			ChatManager::instance()->add(s, linCol::Yellow);
 		}
 		break;
 	case gameST::EXPLORING:
@@ -1560,7 +1608,9 @@ void Interfaz::update()
 		removeChat();
 		// remove tutorial
 		break;
-
+	case gameST::PAUSA:
+		createPausePanel();
+		break;
 	default:
 		break;
 	}
@@ -1605,3 +1655,41 @@ void Interfaz::enemyDead(int indice) {
 	Panel* p = allPanels[Enemies];
 	p->removeButton(indice);
 }
+
+//// recibe mensajes de uno en uno:
+//void Interfaz::flushMsgsQueue() {
+//	// si tiene mensajes pendientes
+//	if (msgsQueue_.size() > 0) {
+//		// y si no está en mitad de uno
+//		if (!on_receive_message && index < msgsQueue_.size()) {
+//			// recibe el siguiente mensaje
+//			actionMsg();
+//		}
+//		// si ya ha leido todos, resetea
+//		if (index == msgsQueue_.size()) {
+//			msgsQueue_.clear();
+//			index = 0;
+//		}
+//	}
+//}
+//
+//// read message
+//void TutorialManager::actionMsg()
+//{
+//	auto& m = msgsQueue_[index];
+//	activeMsg = m.id_;
+//	setUIPause();
+//	show(m.id_);
+//	on_receive_message = true;
+//	index++;
+//}
+//
+//// exit message
+//void TutorialManager::exitMessage() {
+//	fondo->disable(); fondo = nullptr;
+//	cartel->disable(); cartel = nullptr;
+//	bt_exit->disable(); bt_exit = nullptr;
+//	on_receive_message = false;
+//	setUIContinue();
+//	achievementsMap_[activeMsg] = true;
+//}

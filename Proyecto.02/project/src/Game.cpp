@@ -140,9 +140,9 @@ void Game::handleInput()
 
 	if (ih->update()) {
 		if (ih->keyDownEvent()) {
-			if (ih->isKeyDown(SDLK_ESCAPE)) {
+			/*if (ih->isKeyDown(SDLK_ESCAPE)) {
 				exit_ = true;
-			}
+			}*/
 		}
 	}
 	else

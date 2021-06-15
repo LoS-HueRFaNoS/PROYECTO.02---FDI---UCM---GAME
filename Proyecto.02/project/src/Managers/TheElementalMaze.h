@@ -23,7 +23,9 @@ enum class GameState {
 	COMBAT,
 	END_COMBAT,
 	END_EXPLORING,
-	GAME_OVER
+	GAME_OVER,
+	PAUSA,
+	DURING_PAUSE
 };
 using gameST = GameState;
 
@@ -49,9 +51,10 @@ private:
 	TutorialManager* tutorial_; // compt
 	int level = -1;
 	uint floor;
-
+	
 	bool pause_ = false;
 	bool firstLobbyCreated = false;
+	GameState previousState; // Estado del juego antes de pausarlo
 public:
 	TheElementalMaze(SDLGame* game, EntityManager* mngr, CharacterManager* chMngr, InterfazManager* iMngr) :
 		characterManager_(chMngr),
@@ -118,4 +121,8 @@ public:
 	void changeState(GameState state);
 
 	void sendMsg(Message m);
+
+	GameState getPreviousState() { return previousState; };
+	void registerPreviousState() { previousState = gameState(); }
+	bool wasInMaze = false;
 };

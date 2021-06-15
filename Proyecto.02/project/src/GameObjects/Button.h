@@ -204,7 +204,9 @@ public:
 // ----------------------------------------------------
 
 enum class accionMenu { start, lobby, how_to_play, options, quit, shop, stash, shop_lobby,
-	stash_lobby, avanzarHeroes, avanzarItems, retrocederHeroes, retrocederItems, backToMenu, inventarioLobby, closeMessage, inventario_to_lobby};
+	stash_lobby, avanzarHeroes, avanzarItems, retrocederHeroes, retrocederItems, backToMenu, inventarioLobby, closeMessage, inventario_to_lobby,resume,
+	backToMaze,
+};
 
 class ButtonMenu : public Button {
 private:
@@ -281,6 +283,12 @@ public:
 		case accionMenu::inventario_to_lobby:
 			callbacks::inventarioToLobby(app);
 			break;
+		case accionMenu::resume:
+			callbacks::resumeGame(app);
+			break; 
+		case accionMenu::backToMaze:
+			callbacks::backToMaze(app);
+			break; 
 		default:
 			break;
 		}
