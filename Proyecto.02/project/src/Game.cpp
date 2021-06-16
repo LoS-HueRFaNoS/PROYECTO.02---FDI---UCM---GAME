@@ -67,6 +67,7 @@ void Game::initGame()
 
 	// PANTALLA COMPLETA
 	//game_->setFullScreen(true);
+	game_->setFullScreen(false);
 
 	Texture* tex_ = new Texture(game_->getRenderer(), "project/resources/images/cargando.png");
 	SDL_Rect dest = { 0, 0, int(game_->getWindowWidth()), int(game_->getWindowHeight()) };
