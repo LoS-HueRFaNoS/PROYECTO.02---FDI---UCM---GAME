@@ -374,9 +374,6 @@ void Interfaz::createFichaDD(uint nCharacter)
 }
 
 void Interfaz::createFichaDesc(Hability* hab, bool aff) {
-	//SDL_Panel pan = game_->relativePanel(1510, 70, 340, 190, 1, 1, 20, 20);
-	//SDL_Rect dest = RECT(pan.fcx, pan.fcy, pan.cw, pan.ch);
-
 	Panel* p = new Panel(DescPan);
 	allPanels[DescPan] = p;
 
@@ -384,9 +381,6 @@ void Interfaz::createFichaDesc(Hability* hab, bool aff) {
 }
 
 void Interfaz::createFichaDescObj(Item* ite) {
-	//SDL_Panel pan = game_->relativePanel(1510, 70, 340, 190, 1, 1, 20, 20);
-	//SDL_Rect dest = RECT(pan.fcx, pan.fcy, pan.cw, pan.ch);
-
 	Panel* p = new Panel(DescPanObj);
 	allPanels[DescPanObj] = p;
 
