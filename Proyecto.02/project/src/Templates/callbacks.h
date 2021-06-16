@@ -3,6 +3,7 @@
 #include "../GameObjects/SDL_Objects.h"
 class Interfaz;
 class Hability;
+class Item;
 
 // MENU
 using namespace std;
@@ -21,6 +22,7 @@ public:
 	static void createDDPan(bool activated, uint numberHeroe);
 	// descripciones
 	static void createFichaDescPan(bool active, Hability* hab, bool aff);
+	static void createFichaDescObjPan(bool active, Item* ite);
 	// acceso a movimiento
 	static void movCommand(int movType);
 	// acceso a informacion

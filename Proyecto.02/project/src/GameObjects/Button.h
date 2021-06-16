@@ -529,12 +529,8 @@ public:
 		s_->setHide(true);
 		s_->reset();
 	}
-	virtual void pointerEntered() {
-		game_->getAudioMngr()->haltMusic();
-	};
-	virtual void pointerExited() {
-		game_->getAudioMngr()->playMusic(Resources::Combate);
-	};
+	virtual void pointerEntered();
+	virtual void pointerExited();
 };
 
 enum class accionOption {volumen, velocidad  };
@@ -786,11 +782,7 @@ public:
 		s_->setHide(true);
 		s_->reset();
 	}
-	virtual void pointerEntered() {
-		game_->getAudioMngr()->haltMusic();
-	};
-	virtual void pointerExited() {
-		game_->getAudioMngr()->playMusic(Resources::Lobby);
-	};
+	virtual void pointerEntered();
+	virtual void pointerExited();
 };
 // ----------------------------------------------------

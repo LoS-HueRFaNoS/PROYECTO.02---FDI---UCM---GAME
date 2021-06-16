@@ -90,6 +90,7 @@ public:
 	void checkHerosParty();
 	void createFichaDD(uint nCharacter);
 	void createFichaDesc(Hability* hab, bool aff);
+	void createFichaDescObj(Item* ite);
 
 	void setNameItem(string name_) { nameItemTienda = name_; }
 	void setDescrItem(string descr_) { descrItemTienda = descr_; }

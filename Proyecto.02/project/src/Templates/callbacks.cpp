@@ -69,6 +69,13 @@ void callbacks::createFichaDescPan(bool active, Hability* hab, bool aff) {
 	else i->removePanel(DescPan);
 }
 
+void callbacks::createFichaDescObjPan(bool active, Item* ite) {
+	Interfaz* i = GETCMP2(TheElementalMaze::instance(), Interfaz);
+	
+	if (active) i->createFichaDescObj(ite);
+	else i->removePanel(DescPanObj);
+}
+
 // ----------------------------------------------------
 
 #pragma region PanelMovimiento

@@ -14,6 +14,7 @@
 #include "Paneles/PanelTurns.h"
 #include "Paneles/PanelDnD.h"
 #include "Paneles/PanelDesc.h"
+#include "Paneles/PanelDescObj.h"
 #include "../Utilities/SDL_macros.h"
 #include "../Utilities/textures_box.h"
 #include "../Managers/SDLGame.h"
@@ -373,13 +374,23 @@ void Interfaz::createFichaDD(uint nCharacter)
 }
 
 void Interfaz::createFichaDesc(Hability* hab, bool aff) {
-	SDL_Panel pan = game_->relativePanel(1510, 70, 340, 190, 1, 1, 20, 20);
-	SDL_Rect dest = RECT(pan.fcx, pan.fcy, pan.cw, pan.ch);
+	//SDL_Panel pan = game_->relativePanel(1510, 70, 340, 190, 1, 1, 20, 20);
+	//SDL_Rect dest = RECT(pan.fcx, pan.fcy, pan.cw, pan.ch);
 
 	Panel* p = new Panel(DescPan);
 	allPanels[DescPan] = p;
 
 	TheElementalMaze::instance()->addComponent<PanelDesc>(game_, p, iManager, hab, aff);
+}
+
+void Interfaz::createFichaDescObj(Item* ite) {
+	//SDL_Panel pan = game_->relativePanel(1510, 70, 340, 190, 1, 1, 20, 20);
+	//SDL_Rect dest = RECT(pan.fcx, pan.fcy, pan.cw, pan.ch);
+
+	Panel* p = new Panel(DescPanObj);
+	allPanels[DescPanObj] = p;
+
+	TheElementalMaze::instance()->addComponent<PanelDescObj>(game_, p, iManager, ite);
 }
 
 void Interfaz::createChat()
@@ -1402,6 +1413,11 @@ void Interfaz::removePanel(idPanel panID)
 			break;*/
 	case interfaz::DescPan:
 		TheElementalMaze::instance()->removeComponent(ecs::PanelDesc);
+		delete allPanels[panID];
+		allPanels[panID] = nullptr;
+		break;
+	case interfaz::DescPanObj:
+		TheElementalMaze::instance()->removeComponent(ecs::PanelDescObj);
 		delete allPanels[panID];
 		allPanels[panID] = nullptr;
 		break;

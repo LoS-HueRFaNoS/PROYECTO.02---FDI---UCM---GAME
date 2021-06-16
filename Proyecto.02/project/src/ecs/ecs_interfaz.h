@@ -20,6 +20,7 @@ namespace interfaz {
 		HeroesStats, 
 		DDPan,
 		DescPan,
+		DescPanObj,
 		BigMap, 
 		Settings, 
 		Chat,
