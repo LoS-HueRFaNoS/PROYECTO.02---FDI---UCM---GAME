@@ -1,4 +1,5 @@
 #include "PlayerMotion.h"
+#include "Interfaz.h"
 #include "../Utilities/InputHandler.h"
 #include "../Managers/game/CombatManager.h"
 #include "../Managers/game/CharacterManager.h"
@@ -7,7 +8,6 @@
 PlayerMotion::PlayerMotion(SDL_KeyCode avanzar, SDL_KeyCode izq, SDL_KeyCode der, Laberinto* lab_) :Component(ecs::PlayerMotion), //
 pos(nullptr), avance(avanzar), giraIzq(izq), giraDer(der), lab(lab_) //
 {
-
 }
 
 PlayerMotion::PlayerMotion() :Component(ecs::PlayerMotion), //
@@ -39,9 +39,19 @@ void PlayerMotion::update()
 	else if (ih->isKeyDown(SDLK_f) && lab->getCasillaInfo(x, y)->isExit()) { 
 		
 		TheElementalMaze::instance()->nextLevel();
+		TheElementalMaze::instance()->wasInMaze = false;
 		TheElementalMaze::instance()->onExitLaberinto();
 		TheElementalMaze::instance()->changeState(gameST::LOBBY);
 
+	}
+	else if (ih->isKeyDown(SDLK_ESCAPE))
+	{
+		//TheElementalMaze::instance()->registerPreviousState();
+		if (TheElementalMaze::instance()->gameState() != gameST::DURING_PAUSE)
+			TheElementalMaze::instance()->changeState(gameST::PAUSA);
+		else {
+			
+		}
 	}
 }
 

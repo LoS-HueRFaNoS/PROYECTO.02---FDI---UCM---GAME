@@ -1,8 +1,5 @@
 #pragma once
-#include <SDL.h>
-#include <cassert>
 #include "../ecs/Component.h"
-#include "../Components/Sprite.h"
 #include "../Managers/game/CombatManager.h"
 #include "../Managers/TheElementalMaze.h"
 class AnimVibration :   public Component

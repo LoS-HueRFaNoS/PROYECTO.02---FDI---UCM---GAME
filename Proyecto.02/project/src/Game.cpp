@@ -141,9 +141,9 @@ void Game::handleInput()
 
 	if (ih->update()) {
 		if (ih->keyDownEvent()) {
-			if (ih->isKeyDown(SDLK_ESCAPE)) {
+			/*if (ih->isKeyDown(SDLK_ESCAPE)) {
 				exit_ = true;
-			}
+			}*/
 		}
 	}
 	else
@@ -167,6 +167,7 @@ void Game::render()
 	entityManager_->draw();
 	interfazManager_->draw();
 	characterManager_->draw(); //
+
 	c_->draw();
 
 	SDL_RenderPresent(game_->getRenderer());
