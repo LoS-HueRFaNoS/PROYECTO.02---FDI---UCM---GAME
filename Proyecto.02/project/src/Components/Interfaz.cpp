@@ -1537,11 +1537,11 @@ void Interfaz::update()
 			createPanel(Chat);
 			//string s = "Welcome! Here is where the adventure begins, dear friends";
 			//ChatManager::instance()->clean_n_addLine(s, linCol::Yellow);
-			string s = "Bienvenidos! Aqui comienza";
+			string s = "Welcome! Your adventure";
 			ChatManager::instance()->clean_n_addLine(s, linCol::Yellow);
-			s = "vuestra aventura,";
+			s = "starts right here, right now,";
 			ChatManager::instance()->add(s, linCol::Yellow);
-			s = "mucha suerte mis muchachos!!";
+			s = "good luck dear adventures!";
 			ChatManager::instance()->add(s, linCol::Yellow);
 		}
 		break;
