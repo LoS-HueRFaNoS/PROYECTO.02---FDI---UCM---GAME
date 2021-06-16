@@ -29,6 +29,7 @@ enum CmpId : CmpIdType {
 	PanelTurns,
 	PanelDnD,
 	PanelDesc,
+	PanelDescObj,
 	ChatInfo,
 	Cartel_Info,
 	Tutorial,

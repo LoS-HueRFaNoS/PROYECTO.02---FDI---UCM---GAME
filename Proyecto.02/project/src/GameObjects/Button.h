@@ -103,7 +103,7 @@ public:
 
 // ----------------------------------------------------
 
-class ButtonSlott : public Button
+class ButtonSlott : public Button // <2
 {
 private:
 	Item* i_;
@@ -499,7 +499,7 @@ public:
 };
 // ----------------------------------------------------
 
-class ButtonInfoTienda : public Button {
+class ButtonInfoTienda : public Button { // <3
 private:
 	Interfaz* app;
 	int id;
@@ -529,6 +529,12 @@ public:
 		s_->setHide(true);
 		s_->reset();
 	}
+	virtual void pointerEntered() {
+		game_->getAudioMngr()->haltMusic();
+	};
+	virtual void pointerExited() {
+		game_->getAudioMngr()->playMusic(Resources::Combate);
+	};
 };
 
 enum class accionOption {volumen, velocidad  };
@@ -573,7 +579,7 @@ public:
 
 
 #include "../Components/Contador.h"
-class ButtonPotion : public Button {
+class ButtonPotion : public Button { // <2
 private:
 	PtnType potionType_;
 public:
@@ -734,7 +740,7 @@ public:
 
 // ----------------------------------------------------
 enum class accionHeroEquipment {showUnequip,Unequip, showEquip, Equip};
-class ButtonHeroEquipment : public Button {
+class ButtonHeroEquipment : public Button { // <3
 private:
 	bool isWeapon = false;
 	int heroid;
@@ -780,5 +786,11 @@ public:
 		s_->setHide(true);
 		s_->reset();
 	}
+	virtual void pointerEntered() {
+		game_->getAudioMngr()->haltMusic();
+	};
+	virtual void pointerExited() {
+		game_->getAudioMngr()->playMusic(Resources::Lobby);
+	};
 };
 // ----------------------------------------------------
