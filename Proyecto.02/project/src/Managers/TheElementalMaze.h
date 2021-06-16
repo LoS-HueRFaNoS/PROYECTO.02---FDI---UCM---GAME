@@ -12,6 +12,7 @@ class PartyManager;
 class LobbyManager;
 class GameStateManager;
 class TutorialManager;
+class AnimationManager;
 
 enum class GameState {
 	MainMenu,
@@ -49,6 +50,7 @@ private:
 	LobbyManager* lobbyManager_;
 	GameStateManager* stManager_; // compt
 	TutorialManager* tutorial_; // compt
+	AnimationManager* animManager_; //compt
 	int level = -1;
 	uint floor;
 	
@@ -111,6 +113,8 @@ public:
 	LobbyManager* getLobbyManager() { return lobbyManager_; }
 
 	TutorialManager* getTutorial() { return tutorial_; }
+
+	AnimationManager* getAnimManager() { return animManager_; }
 
 	GameState gameState();
 

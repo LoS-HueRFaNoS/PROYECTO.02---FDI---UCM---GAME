@@ -166,6 +166,7 @@ void Game::render()
 	entityManager_->draw();
 	interfazManager_->draw();
 	characterManager_->draw(); //
+
 	c_->draw();
 
 	SDL_RenderPresent(game_->getRenderer());

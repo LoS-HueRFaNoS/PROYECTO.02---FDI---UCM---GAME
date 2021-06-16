@@ -11,7 +11,6 @@
 #include "Laberinto.h"
 #include "Tutorial.h"
 #include "Rectangle.h"
-#include "AnimVibration.h"
 #include "Paneles/PanelTurns.h"
 #include "Paneles/PanelDnD.h"
 #include "Paneles/PanelDesc.h"
@@ -132,17 +131,6 @@ void Interfaz::createEnemies()
 		p->addButton(b_);
 	}
 
-
-	/*SDL_Object* vibra_;
-
-	double _x = game_->setHorizontalScale(70);
-	double _y = game_->setVerticalScale(70);
-	double _w = game_->setHorizontalScale(1340);
-	double _h = game_->setVerticalScale(620);
-	SDL_Rect dest = RECT(_x, _y, _w, _h);
-	vibra_ = iManager->addButton<SDL_Object>(Vector2D(-1, -1), 0.5, 0.5, src::whiterect);
-	vibra_->addComponent<AnimVibration>(dest, src::vibration);
-	p->addButton(vibra_);*/
 
 
 

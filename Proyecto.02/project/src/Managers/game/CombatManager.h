@@ -3,6 +3,7 @@
 #include "../../ecs/Component.h"
 #include "../../GameObjects/Character.h"
 #include "../../Utilities/checkML.h"
+
 #include <queue>
 
 enum CombatState {
@@ -37,10 +38,7 @@ private:
 
 	bool _boss = false;
 
-	bool animDanger = false;
-	bool drawDanger = false;
-	Uint32 startAnimTime = 0;
-
+	
 	CombatState _state;
 
 	bool stateChanged = false;
@@ -94,6 +92,8 @@ private:
 	void showTeams();
 
 	void showQ();
+
+	void animVib();
 
 	void showTargets();
 
@@ -172,8 +172,6 @@ public:
 		return _turnQueue;
 	}
 
-
-	bool getDrawDanger() { return drawDanger; }
 	// ----------------------------------------------------
 };
 
