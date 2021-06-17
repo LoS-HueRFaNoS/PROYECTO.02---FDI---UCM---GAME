@@ -34,11 +34,15 @@ void PanelDescObj::init()
 		break;
 	}
 	//
-	afinidadItem_ = (std::string)"Affinity: ";
+	vector<string> prefs = { "B", "P", "S", "F", "W", "I", "E", "A", "L", "D"}; // /!\ ojo al tamaño
+	afinidadItem_ = (std::string)"Aff.: ";
 	rpgLogic::Weaknesses wea = ite_->getElementalAfinity();
 	for (int i = 0; i < (int)damTy::_lastDamageTypeId_; i++) { // damTy::_lastDamageTypeId_ es el .size()
-		afinidadItem_ += to_string(wea.getWeakness((rpgLogic::damageType)i));
-		afinidadItem_ += (std::string)";";
+		int numWeak = wea.getWeakness((rpgLogic::damageType)i) * 100;
+		afinidadItem_ += (std::string)prefs[i];
+		afinidadItem_ += (std::string)":";
+		afinidadItem_ += to_string(numWeak);
+		afinidadItem_ += (std::string)"%;";
 	}
 	//
 	costeItem_ = (std::string)"Cost: " + to_string(ite_->getBuyValue());
@@ -76,13 +80,13 @@ void PanelDescObj::init()
 
 	afinidad_ = RECT(
 		marco_.x + offsetMarcoX_,
-		marco_.y + marco_.h - altoTexto_ - offsetMarcoY_,
+		marco_.y + marco_.h - altoTexto_ * 2 - offsetMarcoY_,
 		anchoTexto_,
 		altoTexto_
 	);
 
 	coste_ = RECT(
-		marco_.x + offsetMarcoX2_,
+		marco_.x + offsetMarcoX_,
 		marco_.y + marco_.h - altoTexto_ - offsetMarcoY_,
 		anchoTexto_,
 		altoTexto_
