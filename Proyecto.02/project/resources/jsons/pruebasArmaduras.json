@@ -52,7 +52,7 @@
 
     {
       "Name": "Studded Leather",
-      "Description": "A resistant armor, capable of protect against heavy attacks",
+      "Description": "A resistant armor, capable of protecting against heavy attacks",
       "Weaknesses": [
         {
           "Key": "Blunt",
@@ -248,7 +248,7 @@
 
     {
       "Name": "Chain Mail",
-      "Description": "A light armor that makes pretty easy to survive against pierce attacks",
+      "Description": "A light armor that makes it pretty easy to resist piercing attacks",
       "Weaknesses": [
         {
           "Key": "Blunt",
@@ -297,7 +297,7 @@
 
     {
       "Name": "Bands",
-      "Description": "An extremely resistant armor, capable of survive all types of physical damages",
+      "Description": "An extremely resistant armor, capable of protecting against all types of physical damage",
       "Weaknesses": [
         {
           "Key": "Blunt",
@@ -346,7 +346,7 @@
 
     {
       "Name": "Plates",
-      "Description": "A metal armor, the most valuable armor you're going to find in the maze",
+      "Description": "A metal armor, the most valuable armor you will find in the maze",
       "Weaknesses": [
         {
           "Key": "Blunt",
