@@ -10,7 +10,9 @@
 class PanelDesc : public Component {
 public:
 	PanelDesc(SDLGame* game, Panel* p, InterfazManager* iM, Hability* hab, bool aff)
-		: Component(ecs::PanelDesc),pan_(p), iManager_(iM), hab_(hab), affordable_(aff) {};
+		: Component(ecs::PanelDesc),pan_(p), iManager_(iM), hab_(hab), affordable_(aff) {
+		assert(hab_ != nullptr);
+	};
 	virtual ~PanelDesc() {};
 
 	void init() override;

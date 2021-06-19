@@ -10,7 +10,9 @@
 class PanelDescObj : public Component {
 public:
 	PanelDescObj(SDLGame* game, Panel* p, InterfazManager* iM, Item* ite)
-		: Component(ecs::PanelDescObj), pan_(p), iManager_(iM), ite_(ite) {};
+		: Component(ecs::PanelDescObj), pan_(p), iManager_(iM), ite_(ite) {
+		assert (ite_ != nullptr);
+	};
 	virtual ~PanelDescObj() {};
 
 	void init() override;
