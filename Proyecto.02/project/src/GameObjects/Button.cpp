@@ -219,10 +219,23 @@ void ButtonInfoTienda::pointerExited() {
 //---
 
 void ButtonHeroEquipment::pointerEntered() {
-	///Item* ite = TheElementalMaze::instance()->getPartyManager()->getItems()[itemid];
-	///callbacks::createFichaDescObjPan(true, ite);
+	if (accion == accionHeroEquipment::showUnequip)
+	{
+		Hero* her = TheElementalMaze::instance()->getPartyManager()->getHeroes()[heroid];
+		Item* ite;
+		if (isWeapon) ite = her->getWeapon();
+		else ite = her->getArmor();
+		callbacks::createFichaDescObjPan(true, ite);
+	}
+
 };
 void ButtonHeroEquipment::pointerExited() {
-	///Item* ite = TheElementalMaze::instance()->getPartyManager()->getItems()[itemid];
-	///callbacks::createFichaDescObjPan(false, ite);
+	if (accion == accionHeroEquipment::showUnequip)
+	{
+		Hero* her = TheElementalMaze::instance()->getPartyManager()->getHeroes()[heroid];
+		Item* ite;
+		if (isWeapon) ite = her->getWeapon();
+		else ite = her->getArmor();
+		callbacks::createFichaDescObjPan(false, ite);
+	}
 };
