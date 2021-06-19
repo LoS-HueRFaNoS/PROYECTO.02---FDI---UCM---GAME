@@ -97,7 +97,7 @@ void Game::initGame()
 
 	entityManager_->addEntity(gameManager_);
 
-	c_ = createCursor(Vector2D(game_->getWindowWidth() / 2, game_->getWindowHeight() / 2), 50, 50, Resources::Mouse);
+	c_ = createCursor(Vector2D(game_->getWindowWidth() / 2, game_->getWindowHeight() / 2), 75, 75, Resources::Mouse);
 
 	int endTime = 0;
 	delete tex_;
