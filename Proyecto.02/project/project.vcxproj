@@ -19,23 +19,26 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\Components\Paneles\ChestPanel.cpp" />
     <ClCompile Include="src\Components\Paneles\PanelDesc.cpp" />
     <ClCompile Include="src\Components\BorrarAlMorir.cpp" />
-    <ClCompile Include="src\Components\ChatInfo.cpp" />
+    <ClCompile Include="src\Components\Paneles\ChatInfo.cpp" />
     <ClCompile Include="src\Components\GameStateManager.cpp" />
-    <ClCompile Include="src\Components\Paneles\Cartel_Info.cpp" />
     <ClCompile Include="src\Components\Paneles\PanelDnD.cpp" />
     <ClCompile Include="src\Components\Paneles\PanelTurns.cpp" />
     <ClCompile Include="src\Components\Tutorial.cpp" />
+    <ClCompile Include="src\GameObjects\ObjectChest.cpp" />
     <ClCompile Include="src\Managers\game\ChatManager.cpp" />
     <ClCompile Include="src\Managers\SDL\AudioManager.cpp" />
     <ClCompile Include="src\GameObjects\Button.cpp" />
     <ClCompile Include="src\Components\ButtonCtrl.cpp" />
+    <ClCompile Include="src\Structures\TextBlock.cpp" />
     <ClCompile Include="src\Templates\callbacks.cpp" />
     <ClCompile Include="src\Structures\Casilla.cpp" />
     <ClCompile Include="src\GameObjects\Character.cpp" />
     <ClCompile Include="src\Managers\game\CharacterManager.cpp" />
     <ClCompile Include="src\Templates\CharacterSheet.cpp" />
+    <ClCompile Include="src\Templates\interfaz\ObjectPanel.cpp" />
     <ClCompile Include="src\Utilities\Collisions.cpp" />
     <ClCompile Include="src\Managers\game\CombatManager.cpp" />
     <ClCompile Include="src\ecs\Component.cpp" />
@@ -51,6 +54,10 @@
     <ClCompile Include="src\Structures\Item.cpp" />
     <ClCompile Include="src\Managers\game\ItemManager.cpp" />
     <ClCompile Include="src\Components\Interfaz.cpp" />
+    <ClCompile Include="src\Utilities\interfaz\ElementsResources.cpp" />
+    <ClCompile Include="src\Utilities\interfaz\MousePanelMecanics.cpp" />
+    <ClCompile Include="src\Utilities\interfaz\PanelResources.cpp" />
+    <ClCompile Include="src\Utilities\interfaz\TextBlockResources.cpp" />
     <ClCompile Include="src\Utilities\jute.cpp" />
     <ClCompile Include="src\Components\Laberinto.cpp" />
     <ClCompile Include="src\Managers\game\LobbyManager.cpp" />
@@ -82,27 +89,32 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Components\AnimVibration.h" />
+    <ClInclude Include="src\Components\Paneles\ChestPanel.h" />
     <ClInclude Include="src\Components\Paneles\PanelDesc.h" />
     <ClInclude Include="src\Components\BorrarAlMorir.h" />
     <ClInclude Include="resource.h" />
-    <ClInclude Include="src\Components\ChatInfo.h" />
+    <ClInclude Include="src\Components\Paneles\ChatInfo.h" />
     <ClInclude Include="src\Components\Contador.h" />
     <ClInclude Include="src\Components\GameStateManager.h" />
-    <ClInclude Include="src\Components\Paneles\Cartel_Info.h" />
     <ClInclude Include="src\Components\Paneles\PanelDnD.h" />
     <ClInclude Include="src\Components\Paneles\PanelTurns.h" />
     <ClInclude Include="src\Components\Tutorial.h" />
+    <ClInclude Include="src\GameObjects\ObjectChest.h" />
     <ClInclude Include="src\Managers\game\ChatManager.h" />
+    <ClInclude Include="src\Managers\game\TextBlockManager.h" />
     <ClInclude Include="src\Managers\SDL\AudioManager.h" />
     <ClInclude Include="src\GameObjects\Button.h" />
     <ClInclude Include="src\Components\ButtonCtrl.h" />
     <ClInclude Include="src\Structures\messages.h" />
+    <ClInclude Include="src\Structures\TextBlock.h" />
     <ClInclude Include="src\Templates\callbacks.h" />
     <ClInclude Include="src\Structures\Casilla.h" />
     <ClInclude Include="src\Components\CasillaRender.h" />
     <ClInclude Include="src\GameObjects\Character.h" />
     <ClInclude Include="src\Managers\game\CharacterManager.h" />
     <ClInclude Include="src\Templates\CharacterSheet.h" />
+    <ClInclude Include="src\Templates\interfaz\LineTypes.h" />
+    <ClInclude Include="src\Templates\interfaz\ObjectPanel.h" />
     <ClInclude Include="src\Utilities\checkML.h" />
     <ClInclude Include="src\Utilities\Collisions.h" />
     <ClInclude Include="src\Managers\game\CombatManager.h" />
@@ -123,6 +135,10 @@
     <ClInclude Include="src\Managers\game\ItemManager.h" />
     <ClInclude Include="src\Components\Interfaz.h" />
     <ClInclude Include="src\Managers\game\InterfazManager.h" />
+    <ClInclude Include="src\Utilities\interfaz\ElementsResources.h" />
+    <ClInclude Include="src\Utilities\interfaz\MousePanelMecanics.h" />
+    <ClInclude Include="src\Utilities\interfaz\PanelResources.h" />
+    <ClInclude Include="src\Utilities\interfaz\TextBlockResources.h" />
     <ClInclude Include="src\Utilities\jute.h" />
     <ClInclude Include="src\Components\Laberinto.h" />
     <ClInclude Include="src\Managers\game\LobbyManager.h" />

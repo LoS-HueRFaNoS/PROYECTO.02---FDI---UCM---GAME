@@ -13,6 +13,11 @@
 #include "../Components/PlayerMotion.h"
 #include "../Components/PlayerViewer.h"
 #include "../Components/Image.h"
+#include "../Components/Paneles/ChatInfo.h"
+#include "../Components/Paneles/ChestPanel.h"
+#include "../Components/Paneles/PanelDesc.h"
+#include "../Components/Paneles/PanelDnD.h"
+#include "../Components/Paneles/PanelTurns.h"
 
 TheElementalMaze* TheElementalMaze::instance_ = nullptr;
 
@@ -63,6 +68,23 @@ void TheElementalMaze::init()
 
 	// 6. Tutorial
 	tutorial_ = addComponent<TutorialManager>(iManager_);
+}
+
+void TheElementalMaze::draw()
+{
+	if (stManager_->gameState() == gameST::EXPLORING || stManager_->gameState() == gameST::COMBAT) {
+		if (lab_ != nullptr) lab_->draw();
+		if (player_ != nullptr) player_->draw();
+	}
+	Entity::draw();
+	uiManager_->draw();
+	/* Podria ser una opcion dibujarlos por separado, pero no hace falta tal cual esta ahora.
+	if (hasComponent(ecs::ChatInfo)) getComponent<ChatInfo>(ecs::ChatInfo)->draw();
+	if (hasComponent(ecs::ChestPanel)) getComponent<ChestPanel>(ecs::ChestPanel)->draw();
+	if (hasComponent(ecs::PanelDesc)) getComponent<PanelDesc>(ecs::PanelDesc)->draw();
+	if (hasComponent(ecs::PanelDnD)) getComponent<PanelDnD>(ecs::PanelDnD)->draw();
+	if (hasComponent(ecs::PanelTurns)) getComponent<PanelTurns>(ecs::PanelTurns)->draw();*/
+	tutorial_->drawTutorial();
 }
 
 //--------------------------------------------------------

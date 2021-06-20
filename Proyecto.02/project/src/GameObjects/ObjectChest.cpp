@@ -5,19 +5,13 @@
 
 void ObjectChest::Init()
 {
-	SDL_Panel pan = game_->relativePanel(1470, 320, 420, 410, 1, 4, 30, 30, 10, 10, 0, 5); // 1510, 360
+	SDL_Panel pan = game_->relativePanel(1470, 320, 420, 410, 1, 4, 30, 30, 10, 10, 0, 5);
 	MousePanelMecanics::Init(1, set_FE::UP);
 	ObjectPanel::Init(pan);
 	addTemplate();
 
 	// fondo de cofre
 	fondo_ = new Entity(game_, this);
-	/*SDL_Rect dest = RECT(
-		pan.x - pan.eh, 
-		pan.y - pan.eh, 
-		pan.w + pan.eh * 2, 
-		pan.h + pan.eh * 2
-	);*/
 	SDL_Rect dest = RECT(
 		pan.x,
 		pan.y,
@@ -27,9 +21,6 @@ void ObjectChest::Init()
 	fondo_->addComponent<Transform>(dest);
 	fondo_->addComponent<Image>(game_->getTextureMngr()->getTexture(src::Cofre));
 	//fondo_->addComponent<Rectangle_cmpt>(hex2sdlcolor("#000000FF"));
-
-	/*ElementsResources::setFE_way(set_FE::UP);
-	MousePanelMecanics::set_exceed(1);*/
 }
 
 void ObjectChest::update()
@@ -54,7 +45,6 @@ void ObjectChest::draw()
 
 void ObjectChest::addTemplate()
 {
-	//for (size_t i = 0; i < 7; i++)
 	for (int i = 6; i >= 0; i--)
 	{
 

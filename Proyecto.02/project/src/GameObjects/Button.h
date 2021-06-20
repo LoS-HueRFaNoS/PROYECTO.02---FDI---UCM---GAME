@@ -292,7 +292,22 @@ public:
 };
 // ----------------------------------------------------
 
+class ButtonCloseMessage : public Button {
+public:
+	ButtonCloseMessage(SDLGame* game, EntityManager* mngr) : Button(game, mngr) {};
+	~ButtonCloseMessage() {};
 
+	virtual void init(SDL_Rect dest, Resources::TextureId imagen) {
+		Button::init(dest, imagen);
+	};
+
+	virtual void click()
+	{
+		callbacks::closeMessage();
+	};
+};
+
+// ----------------------------------------------------
 
 class ButtonBuyHero : public Button {
 private:
