@@ -1,7 +1,7 @@
 #include "ChatInfo.h"
 #include <SDL.h>
 #include <cassert>
-#include "../Utilities/SDL_macros.h"
+#include "../../Utilities/SDL_macros.h"
 
 void ChatInfo::init()
 {
