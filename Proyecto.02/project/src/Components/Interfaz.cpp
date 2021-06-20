@@ -897,73 +897,86 @@ void Interfaz::createStash() // stash de objetos y heroes en tienda
 
 }
 
-void Interfaz::createOptions()
+void Interfaz::createOptions() // <3
 {
 	Panel* p = new Panel(Options);
 	allPanels[Options] = p;
 
 	uint w = game_->getWindowWidth();
 	uint h = game_->getWindowHeight();
-	SDL_Object* obj = iManager->addButton<SDL_Object>(Vector2D(0, 0), w, h, src::Cartel);
-	p->addButton(obj);
-
-	string text;
-	SDL_Color color;
-
-	color = { 0,0,0,255 };
-	/*obj->addComponent<Rectangle>(color);
-	p->addButton(obj);*/
-
-	SDL_Panel pan = game_->relativePanel(0, 0, w, h, 5, 5, 20, 20);
-	SDL_Rect dest = RECT(
-		pan.fcx,
-		pan.fcy,
-		pan.cw,
-		pan.ch
-	);
-
 	
+	// Argumentos
+	SDL_Rect dest;
+	string text;
+	SDL_Color color = { 255,255,255,255 };
 
-	color = { 255,255,255,255 };
+	// Objetos cambiantes
+	SDL_Object* objVolume;
+	SDL_Object* objSound;
+
+	// Fondo
+	dest.x = 0;
+	dest.y = 0;
+	dest.w = w;
+	dest.h = h;
+	p->addButton(iManager->addButton<SDL_Object>(dest, src::Cartel));
+	// Titulo
+	dest.x = w / 3; // + w/3
+	dest.y = 50; // + 50
+	dest.w = 400;
+	dest.h = 100;
 	text = "Options";
-	p->addButton(iManager->addButton<Line>(Vector2D(dest.x + dest.w, dest.y), dest.w * 3, dest.h, text, Resources::FontId::Beaulieux, color));
+	p->addButton(iManager->addButton<Line>(dest, text, Resources::FontId::Beaulieux, color));
+	// Volumen
+	dest.y = 250; // + 200
+	dest.w = 200;
+	dest.h = 50;
+	text = "Volume";
+	p->addButton(iManager->addButton<Line>(dest, text, Resources::FontId::Beaulieux, color));
+		// contenedor volumen
+		dest.y = 330; // +80
+		dest.w = VOLUME_BAR_MAX;
+		dest.h = VOLUME_BAR_HEIGHT;
+		p->addButton(iManager->addButton<SDL_Object>(dest, Resources::TextureId::VolumeBarBackground));
+		// deslizador volumen
+		dest.w = volumeW_;
+		objVolume = iManager->addButton<SDL_Object>(dest, Resources::TextureId::VolumeBar);
+		p->addButton(objVolume);
+		// audio volumen -10
+		dest.x = w / 3 - 50;
+		dest.w = 50;
+		dest.h = 50;
+		p->addButton(iManager->addButton<ButtonVolumen>(dest, Resources::TextureId::RotarI, -10, objVolume, VOLUME_BAR_MIN, VOLUME_BAR_MAX));
+		// audio volumen +10
+		dest.x = w / 3 + VOLUME_BAR_MAX;
+		p->addButton(iManager->addButton<ButtonVolumen>(dest, Resources::TextureId::RotarD, 10, objVolume, VOLUME_BAR_MIN, VOLUME_BAR_MAX));
+	// Sonido
+	dest.x = w / 3;
+	dest.y = 450; // +120
+	dest.w = 200;
+	dest.h = 50;
+	text = "Sound";
+	p->addButton(iManager->addButton<Line>(dest, text, Resources::FontId::Beaulieux, color));
+		// contenedor sonido
+		dest.y = 530; // +80
+		dest.w = VOLUME_BAR_MAX;
+		dest.h = VOLUME_BAR_HEIGHT;
+		p->addButton(iManager->addButton<SDL_Object>(dest, Resources::TextureId::VolumeBarBackground));
+		// deslizador sonido
+		dest.w = soundW_;
+		objSound = iManager->addButton<SDL_Object>(dest, Resources::TextureId::VolumeBar);
+		p->addButton(objSound);
+		// audio sonido -10
+		dest.x = w / 3 - 50;
+		dest.w = 50;
+		dest.h = 50;
+		p->addButton(iManager->addButton<ButtonVolumen>(dest, Resources::TextureId::RotarI, -10, objSound, VOLUME_BAR_MIN, VOLUME_BAR_MAX));
+		// audio sonido +10
+		dest.x = w / 3 + VOLUME_BAR_MAX;
+		p->addButton(iManager->addButton<ButtonVolumen>(dest, Resources::TextureId::RotarD, 10, objSound, VOLUME_BAR_MIN, VOLUME_BAR_MAX));
 
-	text = "Volume"; //Volumen con 4 botones
-	p->addButton(iManager->addButton<Line>(Vector2D(dest.x + dest.w, dest.y + dest.h * 2), dest.w * 3, dest.h, text, Resources::FontId::Beaulieux, color));
-
-	dest.x = pan.fcx + pan.cw * 3 / 2;
-	dest.y = pan.fcx + pan.ch * 3;
-	dest.w = dest.w / 5;
-	obj = iManager->addButton<SDL_Object>(dest, Resources::TextureId::Joker);
-	p->addButton(obj);
-
-	dest.w = pan.ch;
-	dest.y = pan.fcy + pan.ch * 3;
-	dest.x = pan.fcx + pan.cw / 2;
-	p->addButton(iManager->addButton<ButtonVolumen>(dest, Resources::TextureId::RotarI, -15, obj, pan.fcx + pan.cw / 2, pan.lcx + pan.cw - pan.cw / 2));
-	dest.x = pan.lcx + pan.cw - pan.cw / 2;
-	p->addButton(iManager->addButton<ButtonVolumen>(dest, Resources::TextureId::RotarD, 15, obj, pan.fcx + pan.cw / 2, pan.lcx + pan.cw - pan.cw / 2));
-
-
-	//
-	//p->addButton(iManager->addButton<ButtonOption>(Vector2D(w - 100, 36), 64, 64, src::close, accionOption::volumen, 1, this));
-	//p->addButton(iManager->addButton<ButtonOption>(Vector2D(w - 100, 36), 64, 64, src::close, accionOption::volumen, 2,this));
-	//p->addButton(iManager->addButton<ButtonOption>(Vector2D(w - 100, 36), 64, 64, src::close, accionOption::volumen, 3,this));
-	//p->addButton(iManager->addButton<ButtonOption>(Vector2D(w - 100, 36), 64, 64, src::close, accionOption::volumen, 4,this));
-
-	/*x = w / 2 - 100;
-	y += 50;
-	text = "Animation speed";
-	p->addButton(iManager->addButton<Line>(Vector2D(x, y), 200, 40, text, Resources::FontId::HERMAN, color));*/
-	//x0.5 x1 x2 x4
-	//p->addButton(iManager->addButton<ButtonOption>(Vector2D(w - 100, 36), 64, 64, src::close, accionOption::velocidad,1 , this));
-	//p->addButton(iManager->addButton<ButtonOption>(Vector2D(w - 100, 36), 64, 64, src::close, accionOption::velocidad,2,this));
-	//p->addButton(iManager->addButton<ButtonOption>(Vector2D(w - 100, 36), 64, 64, src::close, accionOption::velocidad,3, this));
-	//p->addButton(iManager->addButton<ButtonOption>(Vector2D(w - 100, 36), 64, 64, src::close, accionOption::velocidad,4,this));
-
-
-	p->addButton(iManager->addButton<ButtonMenu>(Vector2D(70, 70), 40, 40, src::close, accionMenu::options, this));
-
+	// Volver
+	p->addButton(iManager->addButton<ButtonMenu>(Vector2D(70, 70), 80, 80, src::close, accionMenu::options, this));
 }
 
 void Interfaz::createGuide()

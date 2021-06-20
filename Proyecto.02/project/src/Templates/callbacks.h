@@ -72,6 +72,4 @@ public:
 	static void closeMessage();
 	static void resumeGame(Interfaz* app);
 	static void backToMaze(Interfaz* app);
-
-	static void volumen(int val, SDL_Object* obj, int min, int max);
 };

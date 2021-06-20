@@ -81,6 +81,8 @@ public:
 		Selected,
 		Button_transition,
 		Cartel,
+		VolumeBar,
+		VolumeBarBackground,
 		BuyButton,
 		EquipButton,
 		FireButton,

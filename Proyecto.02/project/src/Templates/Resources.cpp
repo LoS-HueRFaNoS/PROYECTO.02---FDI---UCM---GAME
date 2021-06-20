@@ -80,6 +80,8 @@ vector<Resources::ImageInfo> Resources::images_{
 	{Fondo2, "project/resources/images/interfaz/Fondo_Interfaz_05.png"},
 	{Button_transition, "project/resources/images/interfaz/button_transition.png"},
 	{Cartel, "project/resources/images/interfaz/cartelito.png"},
+	{VolumeBar, "project/resources/images/interfaz/volBar.png"},
+	{VolumeBarBackground, "project/resources/images/interfaz/volBarBg.png"},
 	{Change, "project/resources/images/interfaz/change.png"},
 	{Change2, "project/resources/images/interfaz/change2.png"},
 	{Selected, "project/resources/images/interfaz/selected.png"},

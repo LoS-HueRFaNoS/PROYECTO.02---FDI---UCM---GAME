@@ -57,6 +57,11 @@ private:
 	std::vector<Message> msgsQueue_;
 	MsgId activeMsg;
 	SDL_Object* f;
+	const uint VOLUME_BAR_HEIGHT = 50;
+	const uint VOLUME_BAR_MAX = 400;
+	const uint VOLUME_BAR_MIN = 0;
+	uint volumeW_ = VOLUME_BAR_MAX;
+	uint soundW_ = VOLUME_BAR_MAX;
 public:
 	Interfaz(InterfazManager* i) :
 		Component(ecs::Interfaz),

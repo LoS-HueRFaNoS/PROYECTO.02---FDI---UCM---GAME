@@ -29,45 +29,48 @@ public:
 
 // ----------------------------------------------------
 
-class ButtonVolumen : public Button
+class ButtonVolumen : public Button // <3
 {
 private:
-	int min;
-	int max;
-	SDL_Object* obj;
-	int value;
+	uint min_;
+	uint max_;
+	uint barMin_;
+	uint barMax_;
+	SDL_Object* obj_;
+	int delta_;
 public:
-	ButtonVolumen(SDLGame* game, EntityManager* mngr) :
-		Button(game, mngr)
-	{};
+	ButtonVolumen(SDLGame* game, EntityManager* mngr) : Button(game, mngr) {};
 	virtual ~ButtonVolumen() {};
 
-	virtual void init(SDL_Rect dest, Resources::TextureId imagen, int val, SDL_Object* o, int mn, int mx)
-	{
-		min = mn;
-		max = mx;
-		obj = o;
-		value = val;
+	virtual void init(SDL_Rect dest, Resources::TextureId imagen, int delta, SDL_Object* obj, uint barMin, uint barMax) {
+		min_ = 0;
+		max_ = 100;
+		barMin_ = barMin;
+		barMax_ = barMax;
+		obj_ = obj;
+		delta_ = delta;
 		Button::init(dest, imagen);
 	};
 
 	virtual void click() {
-		//callbacks::volumen(value, obj, min, max);
+		// feedback sonoro
+		game_->getAudioMngr()->playChannel(Resources::AudioId::Boton2, 0, 0); ///Boton1
+		/*
 		Sprite* s_ = GETCMP2(this, Sprite);
 		s_->setHide(true);
 		s_->reset();
 
-		//SDLGame* game = Game::Instance()->getSDLGame();
-		Transform* tr = GETCMP2(obj, Transform);
+		Transform* tr = GETCMP2(obj_, Transform);
 
 		int aux = tr->getPos().getX();
-		int change = aux + value;
+		int change = aux + delta_;
 
-		if (change < max && change > min) {
+		if (change < max_ && change > min_) {
 			tr->setPosX(change);
-			int value = (tr->getPos().getX() - min) / (max - min) * 100;
+			int value = (tr->getPos().getX() - min_) / (max_ - min_) * 100;
 			game_->getAudioMngr()->setMusicVolume(value);
-		}		
+		}
+		*/
 	};
 };
 
