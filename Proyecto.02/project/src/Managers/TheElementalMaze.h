@@ -87,6 +87,8 @@ public:
 	~TheElementalMaze();
 
 	void init();
+	void draw() override;
+
 	void startExploring();
 	void createLaberinto();
 	void backFromDungeon();

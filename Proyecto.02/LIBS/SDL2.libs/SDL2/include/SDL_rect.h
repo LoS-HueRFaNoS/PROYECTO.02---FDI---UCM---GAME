@@ -98,7 +98,8 @@ typedef struct SDL_Panel
     double w, h;     // window size
     int r, c;        // number of elements in a row or col
     double mw, mh;   // margins size
-    double ew, eh;   // espace between elements
+    double ew, eh;   // espace between elements (padding)
+    double bw, bh;   // espace between elements (border)
     double fcx, fcy; // first element position 
     double lcx, lcy; // last element position 
     double cw, ch;   // elements size

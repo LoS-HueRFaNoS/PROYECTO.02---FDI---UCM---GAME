@@ -13,7 +13,7 @@ private:
 
 	SDL_Object* fondo;
 	SDL_Object* cartel;
-	ButtonMenu* bt_exit;
+	ButtonCloseMessage* bt_exit;
 
 	void show(MsgId mID);
 	void actionMsg();
@@ -31,8 +31,8 @@ public:
 	TutorialManager(InterfazManager* i);
 	virtual ~TutorialManager() {
 		if (cartel != nullptr) {
-			fondo->disable(); fondo = nullptr;
-			cartel->disable(); cartel = nullptr;
+			delete fondo; fondo = nullptr;
+			delete cartel; cartel = nullptr;
 			bt_exit->disable(); bt_exit = nullptr;
 		}
 		achievementsMap_.clear();
@@ -40,7 +40,8 @@ public:
 
 	void init() override;
 	void update() override;
-	void draw() override;
+	void draw() override {};
+	void drawTutorial();
 
 	void send(const Message& msg);
 	void flushMsgsQueue();

@@ -2,7 +2,7 @@
 
 #include <string>
 #include <SDL.h>
-#include "../Managers/SDLGame.h"
+#include "../Managers/SDLGame.h" // no pinta nada aqui...
 /*
  * This file includes some SDL related macros
  */

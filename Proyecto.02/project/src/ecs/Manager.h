@@ -17,6 +17,8 @@ public:
 	void addEntity(Entity* e);
 	void removeEntity(Entity* e);
 
+	const std::vector<std::unique_ptr<Entity>>& entities_() { return entities; };
+
 protected:
 	SDLGame* game_;
 	std::vector<std::unique_ptr<Entity>> entities;
