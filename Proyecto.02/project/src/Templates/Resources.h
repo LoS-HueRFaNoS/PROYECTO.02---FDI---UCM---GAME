@@ -126,6 +126,7 @@ public:
 
 		//Info
 		Inventario,
+		Cofre,
 		PocionVida,
 		PocionMana,
 		PocionRess,
