@@ -55,6 +55,9 @@ private:
 	int selectedInventoryHero;
 	int selectedInventoryItem;
 	int selectedItem;
+	std::vector<Message> msgsQueue_;
+	MsgId activeMsg;
+	SDL_Object* f;
 public:
 	Interfaz(InterfazManager* i) :
 		Component(ecs::Interfaz),
@@ -63,7 +66,7 @@ public:
 		tutorial_active(true)
 	{};
 	virtual ~Interfaz();
-
+	void createPausePanel();
 	void createPanel(idPanel panelID);
 	void removePanel(idPanel panelID);
 	void removeChat();
@@ -88,6 +91,7 @@ public:
 	void checkHerosParty();
 	void createFichaDD(uint nCharacter);
 	void createFichaDesc(Hability* hab, bool aff);
+	void createFichaDescObj(Item* ite);
 
 	void setNameItem(string name_) { nameItemTienda = name_; }
 	void setDescrItem(string descr_) { descrItemTienda = descr_; }

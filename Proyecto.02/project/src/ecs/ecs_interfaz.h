@@ -20,6 +20,7 @@ namespace interfaz {
 		HeroesStats, 
 		DDPan,
 		DescPan,
+		DescPanObj,
 		BigMap, 
 		Settings, 
 		Chat,
@@ -38,6 +39,7 @@ namespace interfaz {
 		EquipPanel,
 		UnequipPanel,
 		_ChestPanel_,
+		PausePanel,
 		//
 		// don't touch the rest of this enum, it is to identify the max
 		// number of components

@@ -3,7 +3,7 @@
 #include "../Utilities/checkML.h"
 #include "Laberinto.h"
 #include "MazePos.h"
-
+class Interfaz;
 class PlayerMotion : public Component
 {
 public:

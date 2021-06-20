@@ -7,13 +7,13 @@
 #include "../../Structures/Panel.h"
 #include "../../Managers/game/InterfazManager.h"
 
-class PanelDesc : public Component {
+class PanelDescObj : public Component {
 public:
-	PanelDesc(SDLGame* game, Panel* p, InterfazManager* iM, Hability* hab, bool aff)
-		: Component(ecs::PanelDesc),pan_(p), iManager_(iM), hab_(hab), affordable_(aff) {
-		assert(hab_ != nullptr);
+	PanelDescObj(SDLGame* game, Panel* p, InterfazManager* iM, Item* ite)
+		: Component(ecs::PanelDescObj), pan_(p), iManager_(iM), ite_(ite) {
+		assert (ite_ != nullptr);
 	};
-	virtual ~PanelDesc() {};
+	virtual ~PanelDescObj() {};
 
 	void init() override;
 	void update() override;
@@ -22,27 +22,29 @@ public:
 private:
 	Panel* pan_;
 	InterfazManager* iManager_;
-	Hability* hab_;
-	bool affordable_;
+	Item* ite_;
 
-	string nombreHab_;
-	vector<string> descripcionHab_;
-	string manaHab_;
-	string tipoHab_;
-	string modificadorHab_;
+	string nombreItem_;
+	vector<string> descripcionItem_;
+	string tipoItem_;
+	string afinidadItem_;
+	string costeItem_;
+	string valorItem_;
 	//---
 	SDL_Rect marco_;
 	SDL_Rect titulo_;
 	SDL_Rect descripcion_;
-	SDL_Rect mana_;
 	SDL_Rect tipo_;
-	SDL_Rect modificador_;
+	SDL_Rect afinidad_;
+	SDL_Rect coste_;
+	SDL_Rect valor_;
 	//---
 	SDL_Color colorTextoTitulo_;
 	SDL_Color colorTextoDescripcion_;
-	SDL_Color colorTextoMana_;
 	SDL_Color colorTextoTipo_;
-	SDL_Color colorTextoModificador_;
+	SDL_Color colorTextoAfinidad_;
+	SDL_Color colorTextoCoste_;
+	SDL_Color colorTextoValor_;
 	//-----
 	int numLet_ = 38;
 	int anchoTexto_ = 425; // 2001 para NUM_LET = 38

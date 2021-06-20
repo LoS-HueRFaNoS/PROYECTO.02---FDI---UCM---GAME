@@ -3,6 +3,7 @@
 #include "../GameObjects/SDL_Objects.h"
 class Interfaz;
 class Hability;
+class Item;
 
 // MENU
 using namespace std;
@@ -21,6 +22,7 @@ public:
 	static void createDDPan(bool activated, uint numberHeroe);
 	// descripciones
 	static void createFichaDescPan(bool active, Hability* hab, bool aff);
+	static void createFichaDescObjPan(bool active, Item* ite);
 	// acceso a movimiento
 	static void movCommand(int movType);
 	// acceso a informacion
@@ -68,6 +70,8 @@ public:
 	static void equip(Interfaz* app, bool isWeapon,int itemid, int heroid);
 	static void unequip(Interfaz* app, bool isWeapon, int heroid);
 	static void closeMessage();
+	static void resumeGame(Interfaz* app);
+	static void backToMaze(Interfaz* app);
 
 	static void volumen(int val, SDL_Object* obj, int min, int max);
 };

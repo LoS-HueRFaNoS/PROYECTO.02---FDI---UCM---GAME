@@ -2,6 +2,7 @@
 #include "CombatManager.h"
 #include "CharacterManager.h"
 #include "PartyManager.h"
+#include "AnimationManager.h"
 #include "../TheElementalMaze.h"
 #include "../../Components/Laberinto.h"
 #include "ChatManager.h"
@@ -59,6 +60,26 @@ void CombatManager::showQ()
 
 }
 
+void CombatManager::animVib()
+{
+	AnimationManager* anim = TheElementalMaze::instance()->getAnimManager();
+	if (currentCharacter->getType() == characterType::ENEMY)
+	{
+		anim->setVibAnimation(false);
+		anim->setVibration(true);
+	}
+	else if (nextCharacter != nullptr && nextCharacter->getType() == characterType::ENEMY)
+	{
+		anim->setVibAnimation(true);
+		anim->setVibStartTime(game_->getTime());
+	}
+	else
+	{
+		anim->setVibAnimation(false);
+		anim->setVibration(false);
+	}
+}
+
 void CombatManager::showTargets()
 {
 	cout << "TARGETS (Press enter to cancel spell): " << endl;
@@ -96,6 +117,7 @@ void CombatManager::startCombat(bool boss)
 
 void CombatManager::passTurn()
 {
+	AnimationManager* anim = TheElementalMaze::instance()->getAnimManager();
 	if (!checkEnd()) {
 		for (std::vector<Character*>::iterator it = _turnQueue.begin(); it != _turnQueue.end();) {
 			if ((*it)->isDead()) {
@@ -119,27 +141,13 @@ void CombatManager::passTurn()
 
 		if (_turnQueue.size()>1)
 			nextCharacter = _turnQueue[(_turn+1) % _turnQueue.size()];
-		if (currentCharacter->getType() == characterType::ENEMY)
-		{
-			animDanger = false;
-			drawDanger = true;
-		}
-		else if (nextCharacter->getType() == characterType::ENEMY)
-		{
-			animDanger = true;
-			startAnimTime = game_->getTime();
-		}
-		else
-		{
-			animDanger = false;
-			drawDanger = false;
-		}
+
+
 		changeState(START_TURN);
 	}
 	else
 	{
-		animDanger = false;
-		drawDanger = false;
+		
 		changeState(COMBAT_END);
 		
 	}
@@ -234,20 +242,26 @@ void CombatManager::endCombat()
 	if (_win) {
 		cout << "YOU WIN" << endl << _exp << " EXP SHARED" << endl;
 		ChatManager::instance()->clean_n_addLine("YOU WIN", LineColor::Green);
+		AnimationManager* anim = TheElementalMaze::instance()->getAnimManager();
+		anim->exp = _exp;
+		anim->setReward(true);
 		if (_gold > 0) {
 			cout << "You find " << _gold << " gold coins" << endl;
 			TheElementalMaze::instance()->getPartyManager()->gold += _gold;
+			anim->gold = _gold;
 			ChatManager::instance()->add("You find " + std::to_string(_gold) + " gold coins", LineColor::Yellow);
 			int manaPotions = throwDice(1, 4) - 1;
 			cout << "You find " << manaPotions << " mana potions" << endl;
 			if (manaPotions > 0)
 				ChatManager::instance()->add("You find " + std::to_string(manaPotions) + "  mana potions", LineColor::Blue);
 			TheElementalMaze::instance()->getPartyManager()->manaPotions += manaPotions;
+			anim->manaPotions = manaPotions;
 			manaPotions = throwDice(1, 4) - 1;
 			cout << "You find " << manaPotions << " health potions" << endl;
 			if (manaPotions > 0)
 				ChatManager::instance()->add("You find " + std::to_string(manaPotions) + " health potions", LineColor::Green);
 			TheElementalMaze::instance()->getPartyManager()->healthPotions += manaPotions;
+			anim->healthPotions = manaPotions;
 		}
 		ChatManager::instance()->add(std::to_string(_exp) + " exp", LineColor::Yellow);
 		for (Hero* h : _heroes) {
@@ -382,21 +396,7 @@ void CombatManager::calculateTurns()
 	if (_turnQueue.size()>1)
 		nextCharacter = _turnQueue[1];
 
-	if (currentCharacter->getType() == characterType::ENEMY)
-	{
-		animDanger = false;
-		drawDanger = true;
-	}
-	else if (nextCharacter!=nullptr && nextCharacter->getType() == characterType::ENEMY)
-	{
-		animDanger = true;
-		startAnimTime = game_->getTime();
-	}
-	else
-	{
-		animDanger = false;
-		drawDanger = false;
-	}
+	
 }
 
 int CombatManager::calculateExp()
@@ -432,6 +432,7 @@ void CombatManager::onStateChanged()
 #endif // DEBUG
 
 		showQ();
+		animVib();
 		cout << "---------- START TURN ----------" << endl;
 		changeState(ACTION_PHASE_SPELL);
 		currentCharacter->startTurn(this);
@@ -517,13 +518,7 @@ void CombatManager::update()
 	if (stateChanged)
 		onStateChanged();
 
-	if (animDanger)
-	{
-		
-		Uint32 frameTime = game_->getTime() - startAnimTime;
-		if (frameTime > 10000)
-			drawDanger = !drawDanger;
-	}
+	
 
 #if (defined _DEBUG)
 	InputHandler* ih = InputHandler::instance();

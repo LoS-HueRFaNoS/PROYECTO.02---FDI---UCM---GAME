@@ -11,12 +11,12 @@
 #include "Laberinto.h"
 #include "Tutorial.h"
 #include "Rectangle.h"
-#include "AnimVibration.h"
 #include "Paneles/PanelTurns.h"
 #include "Paneles/PanelDnD.h"
 #include "Paneles/PanelDesc.h"
 #include "Paneles/ChatInfo.h"
 #include "Paneles/ChestPanel.h"
+#include "Paneles/PanelDescObj.h"
 #include "../Utilities/SDL_macros.h"
 #include "../Utilities/textures_box.h"
 #include "../Managers/SDLGame.h"
@@ -133,17 +133,6 @@ void Interfaz::createEnemies()
 		p->addButton(b_);
 	}
 
-
-	/*SDL_Object* vibra_;
-
-	double _x = game_->setHorizontalScale(70);
-	double _y = game_->setVerticalScale(70);
-	double _w = game_->setHorizontalScale(1340);
-	double _h = game_->setVerticalScale(620);
-	SDL_Rect dest = RECT(_x, _y, _w, _h);
-	vibra_ = iManager->addButton<SDL_Object>(Vector2D(-1, -1), 0.5, 0.5, src::whiterect);
-	vibra_->addComponent<AnimVibration>(dest, src::vibration);
-	p->addButton(vibra_);*/
 
 
 
@@ -393,13 +382,17 @@ void Interfaz::createFichaDD(uint nCharacter)
 }
 
 void Interfaz::createFichaDesc(Hability* hab, bool aff) {
-	SDL_Panel pan = game_->relativePanel(1510, 70, 340, 190, 1, 1, 20, 20);
-	SDL_Rect dest = RECT(pan.fcx, pan.fcy, pan.cw, pan.ch);
-
 	Panel* p = new Panel(DescPan);
 	allPanels[DescPan] = p;
 
 	TheElementalMaze::instance()->addComponent<PanelDesc>(game_, p, iManager, hab, aff);
+}
+
+void Interfaz::createFichaDescObj(Item* ite) {
+	Panel* p = new Panel(DescPanObj);
+	allPanels[DescPanObj] = p;
+
+	TheElementalMaze::instance()->addComponent<PanelDescObj>(game_, p, iManager, ite);
 }
 
 void Interfaz::createChat()
@@ -532,7 +525,9 @@ void Interfaz::createMenuPrincipal()
 		pan.cw + pan.cw * 4 / 14,
 		pan.ch + pan.ch / 2
 	);	
+	if (!TheElementalMaze::instance()->wasInMaze)
 	p->addButton(iManager->addButton<ButtonMenu>(dest, src::start, accionMenu::lobby, this));
+	else p->addButton(iManager->addButton<ButtonMenu>(dest, src::start, accionMenu::backToMaze, this));
 
 	// resto de botones:
 	dest = RECT(
@@ -1241,7 +1236,47 @@ void Interfaz::createEquipPanel()
 		}
 	}
 }
+void Interfaz::createPausePanel()
+{
+	iManager->setPause();
+	Panel* p = new Panel(PausePanel);
+	allPanels[PausePanel] = p;
+	//iManager->setPause();
+	SDL_Rect a = RECT(0, 0, game_->getWindowWidth(),game_->getWindowHeight(), 0);
+	p->addButton(iManager->addButton<SDL_Object>(a, src::cinematica));
+	SDL_Panel pan;
+		pan = game_->relativePanel(0, 1050 / 2, 1920, 1050 / 2, 7, 4, 20, 20, 0, 10);
 
+	// START
+	SDL_Rect dest = RECT(
+		pan.fcx + pan.cw * 2 + pan.cw * 12 / 14,
+		pan.fcy - pan.ch * 3 / 2,
+		pan.cw + pan.cw * 4 / 14,
+		pan.ch + pan.ch / 2
+	);
+	p->addButton(iManager->addButton<ButtonMenu>(dest, src::start, accionMenu::resume, this));
+
+	// resto de botones:
+	dest = RECT(
+		pan.fcx + pan.cw * 3,
+		pan.fcy + pan.ch / 4,
+		pan.cw,
+		pan.ch
+	);
+
+	// OPTIONS
+	dest.y = dest.y + pan.eh;
+	p->addButton(iManager->addButton<ButtonMenu>(dest, src::options, accionMenu::options, this));
+
+	// HOW TO PLAY
+	dest.y = dest.y + pan.ch + pan.eh;
+	//p->addButton(iManager->addButton<ButtonMenu>(dest, src::howToPlay, accionMenu::how_to_play, this));
+
+	// QUIT
+	dest.y = pan.lcy;
+	p->addButton(iManager->addButton<ButtonMenu>(dest, src::quit, accionMenu::backToMenu, this));
+	TheElementalMaze::instance()->changeState(gameST::DURING_PAUSE);
+}
 
 void Interfaz::createPanel(idPanel panelID)
 {
@@ -1334,6 +1369,9 @@ void Interfaz::createPanel(idPanel panelID)
 	case UnequipPanel:
 		createUnequipPanel();
 		break;
+	case PausePanel:
+		createPausePanel();
+		break;
 	default:
 		break;
 	}
@@ -1378,6 +1416,11 @@ void Interfaz::removePanel(idPanel panID)
 			break;*/
 	case interfaz::DescPan:
 		TheElementalMaze::instance()->removeComponent(ecs::PanelDesc);
+		delete allPanels[panID];
+		allPanels[panID] = nullptr;
+		break;
+	case interfaz::DescPanObj:
+		TheElementalMaze::instance()->removeComponent(ecs::PanelDescObj);
 		delete allPanels[panID];
 		allPanels[panID] = nullptr;
 		break;
@@ -1466,10 +1509,10 @@ void Interfaz::init()
 	//iManager->addButton<ButtonSlott>(Vector2D(), game_->getWindowWidth(), game_->getWindowHeight(), src::Fondo); 
 	createPanel(MenuPrincipal);
 	createPanel(HowToPlay);
-	createPanel(Options);
+
 
 	togglePanel(HowToPlay);
-	togglePanel(Options);
+
 
 	/*createPanel(Movement);
 	createPanel(Heroes);
@@ -1503,6 +1546,7 @@ void Interfaz::update()
 	case gameST::START_EXPLORING:
 		if (!getActivePan(Movement))
 		{
+			TheElementalMaze::instance()->wasInMaze = true;
 			Message m;
 			m.id_ = MsgId::_MOVIMIENTO_;
 			TheElementalMaze::instance()->sendMsg(m);
@@ -1515,12 +1559,6 @@ void Interfaz::update()
 			createPanel(Chat); // CHAT/FEED
 			string s = "Welcome! Here is where the adventure begins, dear friends";
 			ChatManager::instance()->clean_n_addLine(s, linCol::Yellow);
-			/*string s = "Bienvenidos! Aqui comienza";
-			ChatManager::instance()->clean_n_addLine(s, linCol::Yellow);
-			s = "vuestra aventura,";
-			ChatManager::instance()->add(s, linCol::Yellow);
-			s = "mucha suerte mis muchachos!!";
-			ChatManager::instance()->add(s, linCol::Yellow);*/
 		}
 		break;
 	case gameST::EXPLORING:
@@ -1574,7 +1612,9 @@ void Interfaz::update()
 		removeChat();
 		// remove tutorial
 		break;
-
+	case gameST::PAUSA:
+		createPausePanel();
+		break;
 	default:
 		break;
 	}

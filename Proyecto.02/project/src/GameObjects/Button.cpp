@@ -7,9 +7,12 @@
 #include "../Components/ButtonCtrl.h"
 #include "../Utilities/textures_box.h"
 #include "../Utilities/SDL_macros.h"
-using namespace textures_box;
-// todo el juego se une mediante GameMngr(entity_)
 
+#include "../Managers/game/LobbyManager.h";
+
+using namespace textures_box;
+
+// todo el juego se une mediante GameMngr(entity_)
 
 // ----------------------------------------------------
 
@@ -196,4 +199,43 @@ void ButtonWeaponAttack::pointerExited() {
 	}
 	assert(hab != nullptr);
 	callbacks::createFichaDescPan(false, hab, her->getCharacterSheet()->manaPoints() >= hab->getMana());
+};
+
+//----
+
+void ButtonInfoTienda::pointerEntered() {
+	if (!isHero) {
+		Item* ite = TheElementalMaze::instance()->getLobbyManager()->getLobbyStore()->items[id]->item;
+		callbacks::createFichaDescObjPan(true, ite);
+	}
+};
+void ButtonInfoTienda::pointerExited() {
+	if (!isHero) {
+		Item* ite = TheElementalMaze::instance()->getLobbyManager()->getLobbyStore()->items[id]->item;
+		callbacks::createFichaDescObjPan(false, ite);
+	}
+};
+
+//---
+
+void ButtonHeroEquipment::pointerEntered() {
+	if (accion == accionHeroEquipment::showUnequip)
+	{
+		Hero* her = TheElementalMaze::instance()->getPartyManager()->getHeroes()[heroid];
+		Item* ite;
+		if (isWeapon) ite = her->getWeapon();
+		else ite = her->getArmor();
+		callbacks::createFichaDescObjPan(true, ite);
+	}
+
+};
+void ButtonHeroEquipment::pointerExited() {
+	if (accion == accionHeroEquipment::showUnequip)
+	{
+		Hero* her = TheElementalMaze::instance()->getPartyManager()->getHeroes()[heroid];
+		Item* ite;
+		if (isWeapon) ite = her->getWeapon();
+		else ite = her->getArmor();
+		callbacks::createFichaDescObjPan(false, ite);
+	}
 };

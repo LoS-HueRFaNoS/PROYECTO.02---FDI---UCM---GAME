@@ -246,6 +246,12 @@
     <ClCompile Include="src\GameObjects\ObjectChest.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
+    <ClCompile Include="src\Managers\game\AnimationManager.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Components\Paneles\PanelDescObj.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Managers\SDL\AudioManager.h">
@@ -489,6 +495,12 @@
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
     <ClInclude Include="src\GameObjects\ObjectChest.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Managers\game\AnimationManager.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Components\Paneles\PanelDescObj.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
   </ItemGroup>

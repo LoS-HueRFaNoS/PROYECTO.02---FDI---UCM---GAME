@@ -20,6 +20,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Components\Paneles\ChestPanel.cpp" />
+    <ClCompile Include="src\Components\Paneles\PanelDescObj.cpp" />
+    <ClCompile Include="src\Managers\game\AnimationManager.cpp" />
     <ClCompile Include="src\Components\Paneles\PanelDesc.cpp" />
     <ClCompile Include="src\Components\BorrarAlMorir.cpp" />
     <ClCompile Include="src\Components\Paneles\ChatInfo.cpp" />
@@ -88,6 +90,8 @@
     <ClCompile Include="src\Utilities\textures_box.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Components\Paneles\PanelDescObj.h" />
+    <ClInclude Include="src\Managers\game\AnimationManager.h" />
     <ClInclude Include="src\Components\AnimVibration.h" />
     <ClInclude Include="src\Components\Paneles\ChestPanel.h" />
     <ClInclude Include="src\Components\Paneles\PanelDesc.h" />

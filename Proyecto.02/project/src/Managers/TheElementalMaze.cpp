@@ -6,6 +6,7 @@
 #include "../Managers/game/ItemManager.h"
 #include "../Managers/game/HabilityManager.h"
 #include "../Managers/game/ChatManager.h"
+#include "../Managers/game/AnimationManager.h"
 #include "../Components/GameStateManager.h"
 #include "../Components/Tutorial.h"
 #include "../Components/Interfaz.h"
@@ -68,6 +69,10 @@ void TheElementalMaze::init()
 
 	// 6. Tutorial
 	tutorial_ = addComponent<TutorialManager>(iManager_);
+
+
+	animManager_ = addComponent<AnimationManager>();
+
 }
 
 void TheElementalMaze::draw()
@@ -112,6 +117,9 @@ void TheElementalMaze::createLaberinto()
 	player_->addComponent<MazePos>(Vector2D(0, 0));
 	player_->addComponent<PlayerViewer>(laberinto_);
 	player_->addComponent<PlayerMotion>(SDLK_UP, SDLK_LEFT, SDLK_RIGHT, laberinto_);
+
+
+
 }
 
 void TheElementalMaze::backFromDungeon()

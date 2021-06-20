@@ -103,7 +103,7 @@ public:
 
 // ----------------------------------------------------
 
-class ButtonSlott : public Button
+class ButtonSlott : public Button // <2
 {
 private:
 	Item* i_;
@@ -204,7 +204,9 @@ public:
 // ----------------------------------------------------
 
 enum class accionMenu { start, lobby, how_to_play, options, quit, shop, stash, shop_lobby,
-	stash_lobby, avanzarHeroes, avanzarItems, retrocederHeroes, retrocederItems, backToMenu, inventarioLobby, closeMessage, inventario_to_lobby};
+	stash_lobby, avanzarHeroes, avanzarItems, retrocederHeroes, retrocederItems, backToMenu, inventarioLobby, closeMessage, inventario_to_lobby,resume,
+	backToMaze,
+};
 
 class ButtonMenu : public Button {
 private:
@@ -281,6 +283,12 @@ public:
 		case accionMenu::inventario_to_lobby:
 			callbacks::inventarioToLobby(app);
 			break;
+		case accionMenu::resume:
+			callbacks::resumeGame(app);
+			break; 
+		case accionMenu::backToMaze:
+			callbacks::backToMaze(app);
+			break; 
 		default:
 			break;
 		}
@@ -506,7 +514,7 @@ public:
 };
 // ----------------------------------------------------
 
-class ButtonInfoTienda : public Button {
+class ButtonInfoTienda : public Button { // <3
 private:
 	Interfaz* app;
 	int id;
@@ -536,6 +544,8 @@ public:
 		s_->setHide(true);
 		s_->reset();
 	}
+	virtual void pointerEntered();
+	virtual void pointerExited();
 };
 
 enum class accionOption {volumen, velocidad  };
@@ -580,7 +590,7 @@ public:
 
 
 #include "../Components/Contador.h"
-class ButtonPotion : public Button {
+class ButtonPotion : public Button { // <2
 private:
 	PtnType potionType_;
 public:
@@ -741,7 +751,7 @@ public:
 
 // ----------------------------------------------------
 enum class accionHeroEquipment {showUnequip,Unequip, showEquip, Equip};
-class ButtonHeroEquipment : public Button {
+class ButtonHeroEquipment : public Button { // <3
 private:
 	bool isWeapon = false;
 	int heroid;
@@ -787,5 +797,7 @@ public:
 		s_->setHide(true);
 		s_->reset();
 	}
+	virtual void pointerEntered();
+	virtual void pointerExited();
 };
 // ----------------------------------------------------

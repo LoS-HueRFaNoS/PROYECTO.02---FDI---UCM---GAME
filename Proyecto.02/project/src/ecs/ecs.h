@@ -31,9 +31,11 @@ enum CmpId : CmpIdType {
 	PanelTurns,
 	PanelDnD,
 	PanelDesc,
+	PanelDescObj,
 	BorrarAlMorir,
 	AnimVibration,
 	Contador,
+  AnimationManager,
 	Tutorial,
 	//
 	// don't touch the rest of this enum, it is to identify the max

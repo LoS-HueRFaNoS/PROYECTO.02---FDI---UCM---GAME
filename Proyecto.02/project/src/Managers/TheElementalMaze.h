@@ -12,6 +12,7 @@ class PartyManager;
 class LobbyManager;
 class GameStateManager;
 class TutorialManager;
+class AnimationManager;
 
 enum class GameState {
 	MainMenu,
@@ -23,7 +24,9 @@ enum class GameState {
 	COMBAT,
 	END_COMBAT,
 	END_EXPLORING,
-	GAME_OVER
+	GAME_OVER,
+	PAUSA,
+	DURING_PAUSE
 };
 using gameST = GameState;
 
@@ -47,11 +50,13 @@ private:
 	LobbyManager* lobbyManager_;
 	GameStateManager* stManager_; // compt
 	TutorialManager* tutorial_; // compt
+	AnimationManager* animManager_; //compt
 	int level = -1;
 	uint floor;
-
+	
 	bool pause_ = false;
 	bool firstLobbyCreated = false;
+	GameState previousState; // Estado del juego antes de pausarlo
 public:
 	TheElementalMaze(SDLGame* game, EntityManager* mngr, CharacterManager* chMngr, InterfazManager* iMngr) :
 		characterManager_(chMngr),
@@ -111,6 +116,8 @@ public:
 
 	TutorialManager* getTutorial() { return tutorial_; }
 
+	AnimationManager* getAnimManager() { return animManager_; }
+
 	GameState gameState();
 
 	bool isPause() { return pause_; }
@@ -120,4 +127,8 @@ public:
 	void changeState(GameState state);
 
 	void sendMsg(Message m);
+
+	GameState getPreviousState() { return previousState; };
+	void registerPreviousState() { previousState = gameState(); }
+	bool wasInMaze = false;
 };

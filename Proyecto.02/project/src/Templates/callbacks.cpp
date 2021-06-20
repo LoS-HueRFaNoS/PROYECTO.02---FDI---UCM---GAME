@@ -69,6 +69,13 @@ void callbacks::createFichaDescPan(bool active, Hability* hab, bool aff) {
 	else i->removePanel(DescPan);
 }
 
+void callbacks::createFichaDescObjPan(bool active, Item* ite) {
+	Interfaz* i = GETCMP2(TheElementalMaze::instance(), Interfaz);
+	
+	if (active) i->createFichaDescObj(ite);
+	else i->removePanel(DescPanObj);
+}
+
 // ----------------------------------------------------
 
 #pragma region PanelMovimiento
@@ -308,13 +315,24 @@ void callbacks::startExp(Interfaz* app)
 }
 void callbacks::options(Interfaz* app)
 {
-	app->togglePanel(MenuPrincipal);
-	app->togglePanel(Options);
+	if (app->getActivePan(MenuPrincipal)) app->togglePanel(MenuPrincipal);
+	if (app->getActivePan(Options))
+	{
+		if (TheElementalMaze::instance()->gameState() == gameST::DURING_PAUSE)
+			app->createPanel(PausePanel);
+		app->removePanel(Options);
+	}
+	else
+	{
+		if (TheElementalMaze::instance()->gameState() == gameST::DURING_PAUSE)
+			app->removePanel(PausePanel);
+		app->createPanel(Options);
+	}
 	std::cout << "options se ha activado\n";
 }
 void callbacks::howToPlay(Interfaz* app)
 {
-	app->togglePanel(MenuPrincipal);
+	if (app->getActivePan(MenuPrincipal)) app->togglePanel(MenuPrincipal);
 	app->togglePanel(HowToPlay);
 }
 void callbacks::quit(Interfaz* app)
@@ -462,8 +480,9 @@ void callbacks::showHeroToParty(Interfaz* app, int heroid)
 void callbacks::backToMenu(Interfaz* app)
 {
 	if (app->getActivePan(DDPan)) app->removePanel(DDPan);
-	app->removePanel(Lobby);
-	app->removePanel(Heroes);
+	if (app->getActivePan(Lobby)) app->removePanel(Lobby);
+	if (app->getActivePan(Heroes)) app->removePanel(Heroes);
+	if (app->getActivePan(PausePanel)) app->removePanel(PausePanel);
 	app->createPanel(MenuPrincipal);
 	TheElementalMaze::instance()->changeState(gameST::MainMenu);
 	std::cout << "vamos al menu" << std::endl;
@@ -501,6 +520,19 @@ void callbacks::closeMessage()
 	TutorialManager* t = GETCMP3(TheElementalMaze::instance(), ecs::Tutorial, TutorialManager);
 	t->exitMessage();
 	std::cout << "saliendo del mensaje del tutorial" << std::endl;
+}
+
+void callbacks::resumeGame(Interfaz* app)
+{
+	app->removePanel(PausePanel);
+	TheElementalMaze::instance()->getUIManager()->setContinue();
+	TheElementalMaze::instance()->changeState(gameST::EXPLORING/*TheElementalMaze::instance()->getPreviousState()*/);
+}
+
+void callbacks::backToMaze(Interfaz* app)
+{
+		app->removePanel(MenuPrincipal);
+		TheElementalMaze::instance()->changeState(gameST::EXPLORING/*TheElementalMaze::instance()->getPreviousState()*/);
 }
 
 #include "../Managers/SDLGame.h"
