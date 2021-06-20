@@ -1,7 +1,6 @@
 #pragma once
 
 #include "../../ecs/Manager.h"
-#include "../../GameObjects/Button.h"
 
 class InterfazManager : public EntityManager {
 private:

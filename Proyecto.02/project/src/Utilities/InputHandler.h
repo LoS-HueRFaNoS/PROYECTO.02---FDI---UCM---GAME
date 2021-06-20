@@ -68,9 +68,7 @@ public:
 	}
 
 	inline bool mouseWheelEvent() {
-		bool e = isMouseWheelEvent_;
-		isMouseWheelEvent_ = false;
-		return e;
+		return isMouseWheelEvent_;
 	}
 
 	inline int getMouseWheelState(MOUSEWHEEL w) {
