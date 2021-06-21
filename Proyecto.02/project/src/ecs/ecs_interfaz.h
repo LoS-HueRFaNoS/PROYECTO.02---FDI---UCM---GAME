@@ -38,6 +38,7 @@ namespace interfaz {
 		sendToStashPanel,
 		EquipPanel,
 		UnequipPanel,
+		_ChestPanel_,
 		PausePanel,
 		//
 		// don't touch the rest of this enum, it is to identify the max

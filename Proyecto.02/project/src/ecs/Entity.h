@@ -63,7 +63,7 @@ public:
 		refresh();
 	}
 
-	void draw() {
+	virtual void draw() {
 		if (!enabled) return;
 		for (auto &c : components_) {
 			if (isActive())

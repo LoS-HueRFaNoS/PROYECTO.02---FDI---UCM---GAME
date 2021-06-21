@@ -14,6 +14,8 @@
 #include "Paneles/PanelTurns.h"
 #include "Paneles/PanelDnD.h"
 #include "Paneles/PanelDesc.h"
+#include "Paneles/ChatInfo.h"
+#include "Paneles/ChestPanel.h"
 #include "Paneles/PanelDescObj.h"
 #include "../Utilities/SDL_macros.h"
 #include "../Utilities/textures_box.h"
@@ -25,7 +27,6 @@
 #include "../Managers/game/ChatManager.h"
 #include "../Managers/game/LobbyManager.h"
 #include "../Managers/game/itemManager.h"
-#include "ChatInfo.h"
 
 using cb = callbacks;
 using src = Resources;
@@ -246,6 +247,9 @@ void Interfaz::createInfo()
 
 	// BOTONES: health, mana, resurrection
 	p->addButton(iManager->addButton<ButtonPanel>(Vector2D(x_, y_), w_ * 2, h_ * 2, src::Inventario, Inventory, false));
+	// duplicado para el cofre:
+	p->addButton(iManager->addButton<ButtonPanel>(Vector2D(x_, y_), w_ * 2, h_ * 2, src::Inventario, _ChestPanel_, false));
+	
 	ButtonPotion* bp1_ = iManager->addButton<ButtonPotion>(Vector2D(x_ + 2 * espace_H, y_ + 0 * espace_V), w_, h_, src::PocionVida, PtnType::health);
 	bp1_->addComponent<Contador>(PtnType::health);
 	p->addButton(bp1_);
@@ -351,6 +355,10 @@ void Interfaz::createInventory()
 
 		posY += slotTam * 1.33;
 	}
+}
+
+void Interfaz::createChest()
+{
 }
 
 void Interfaz::createFichaDD(uint nCharacter)
@@ -1325,7 +1333,10 @@ void Interfaz::createPanel(idPanel panelID)
 		createSettings();
 		break;
 	case Chat:
-		TheElementalMaze::instance()->addComponent<ChatInfo>(game_);
+		TheElementalMaze::instance()->addComponent<ChatInfo>();
+		break;
+	case _ChestPanel_:
+		TheElementalMaze::instance()->addComponent<ChestPanel>();
 		break;
 	case Targets:
 		createTargets();
@@ -1435,6 +1446,9 @@ void Interfaz::removePanel(idPanel panID)
 		break;
 	case interfaz::Chat:
 		TheElementalMaze::instance()->removeComponent(ecs::ChatInfo);
+		break;
+	case interfaz::_ChestPanel_:
+		TheElementalMaze::instance()->removeComponent(ecs::ChestPanel);
 		break;
 		/*case interfaz::MenuPrincipal:
 			break;
@@ -1562,15 +1576,9 @@ void Interfaz::update()
 			createPanel(Movement);
 			createPanel(Heroes);
 			createPanel(Info);
-			createPanel(Chat);
-			//string s = "Welcome! Here is where the adventure begins, dear friends";
-			//ChatManager::instance()->clean_n_addLine(s, linCol::Yellow);
-			string s = "Welcome! Your adventure";
+			createPanel(Chat); // CHAT/FEED
+			string s = "Welcome! Here is where the adventure begins, dear friends";
 			ChatManager::instance()->clean_n_addLine(s, linCol::Yellow);
-			s = "starts right here, right now,";
-			ChatManager::instance()->add(s, linCol::Yellow);
-			s = "good luck dear adventures!";
-			ChatManager::instance()->add(s, linCol::Yellow);
 		}
 		break;
 	case gameST::EXPLORING:
@@ -1671,41 +1679,3 @@ void Interfaz::enemyDead(int indice) {
 	Panel* p = allPanels[Enemies];
 	p->removeButton(indice);
 }
-
-//// recibe mensajes de uno en uno:
-//void Interfaz::flushMsgsQueue() {
-//	// si tiene mensajes pendientes
-//	if (msgsQueue_.size() > 0) {
-//		// y si no está en mitad de uno
-//		if (!on_receive_message && index < msgsQueue_.size()) {
-//			// recibe el siguiente mensaje
-//			actionMsg();
-//		}
-//		// si ya ha leido todos, resetea
-//		if (index == msgsQueue_.size()) {
-//			msgsQueue_.clear();
-//			index = 0;
-//		}
-//	}
-//}
-//
-//// read message
-//void TutorialManager::actionMsg()
-//{
-//	auto& m = msgsQueue_[index];
-//	activeMsg = m.id_;
-//	setUIPause();
-//	show(m.id_);
-//	on_receive_message = true;
-//	index++;
-//}
-//
-//// exit message
-//void TutorialManager::exitMessage() {
-//	fondo->disable(); fondo = nullptr;
-//	cartel->disable(); cartel = nullptr;
-//	bt_exit->disable(); bt_exit = nullptr;
-//	on_receive_message = false;
-//	setUIContinue();
-//	achievementsMap_[activeMsg] = true;
-//}

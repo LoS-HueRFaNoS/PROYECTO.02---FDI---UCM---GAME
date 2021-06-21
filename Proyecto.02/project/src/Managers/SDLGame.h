@@ -130,7 +130,8 @@ public:
 		double w, double h, 
 		int r= 0, int c = 0, 
 		double mw = 0, double mh = 0, 
-		double ew = 0, double eh = 0
+		double ew = 0, double eh = 0,
+		double bw = 0, double bh = 0
 	);
 	
 private:

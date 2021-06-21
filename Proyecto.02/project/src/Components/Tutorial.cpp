@@ -4,6 +4,7 @@
 #include "../Utilities/SDL_macros.h"
 #include "../Templates/Resources.h"
 #include "../GameObjects/SDL_Objects.h"
+#include "../Managers/TheElementalMaze.h"
 
 //-------------------------------------------------------------
 
@@ -86,8 +87,12 @@ void TutorialManager::show(MsgId mID)
 	bt_exit->init(dest, src::close, accionMenu::closeMessage);
 	manager_->addEntity(bt_exit);*/
 
-	fondo = manager_->addButton<SDL_Object>(fondo_dest, id_fondo);
-	cartel = manager_->addButton<SDL_Object>(cartel_dest, id_cartel);
+	fondo = new SDL_Object(game_, manager_);
+	fondo->init(fondo_dest, id_fondo);
+
+	cartel = new SDL_Object(game_, manager_);
+	cartel->init(cartel_dest, id_cartel);
+
 	uint size = 40;
 	SDL_Rect dest = RECT(
 		cartel_dest.x + cartel_dest.w - size * 3 / 2,
@@ -95,7 +100,8 @@ void TutorialManager::show(MsgId mID)
 		size,
 		size
 	);
-	bt_exit = manager_->addButton<ButtonMenu>(dest, src::close, accionMenu::closeMessage);
+
+	bt_exit = manager_->addButton<ButtonCloseMessage>(dest, src::close);
 }
 
 //-------------------------------------------------------------
@@ -105,7 +111,8 @@ TutorialManager::TutorialManager(InterfazManager* i) :
 	manager_(i),
 	on_receive_message(false),
 	fondo(nullptr),
-	cartel(nullptr),
+	cartel(nullptr), 
+	bt_exit(nullptr),
 	fondo_dest(),
 	cartel_dest(),
 	index(0),
@@ -141,8 +148,13 @@ void TutorialManager::update()
 	}
 }
 
-void TutorialManager::draw()
+void TutorialManager::drawTutorial()
 {
+	if (fondo != nullptr) {
+		fondo->draw();
+		cartel->draw();
+		bt_exit->draw();
+	}
 }
 
 //-------------------------------------------------------------
@@ -184,8 +196,8 @@ void TutorialManager::actionMsg()
 
 // exit message
 void TutorialManager::exitMessage() {
-	fondo->disable(); fondo = nullptr;
-	cartel->disable(); cartel = nullptr;
+	delete fondo; fondo = nullptr;
+	delete cartel; cartel = nullptr;
 	bt_exit->disable(); bt_exit = nullptr;
 	on_receive_message = false;
 	setUIContinue();
@@ -235,10 +247,10 @@ void TutorialManager::resetTutorial()
 
 void TutorialManager::setUIPause()
 {
-	manager_->setPause();
+	TheElementalMaze::instance()->getUIManager()->setPause();
 }
 
 void TutorialManager::setUIContinue()
 {
-	manager_->setContinue();
+	TheElementalMaze::instance()->getUIManager()->setContinue();
 }

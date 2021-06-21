@@ -109,6 +109,7 @@ vector<Resources::ImageInfo> Resources::images_{
 
 	// inventario e info
 	{Inventario, "project/resources/sprites/iconos info/infoInventario.png"},
+	{Cofre, "project/resources/images/chest images/cofre.png"},
 	{PocionVida, "project/resources/sprites/iconos info/infoPocionVida.png"},
 	{PocionMana, "project/resources/sprites/iconos info/infoPocionMana.png"},
 	{PocionRess, "project/resources/sprites/iconos info/infoPocionRess.png"},

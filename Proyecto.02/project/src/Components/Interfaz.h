@@ -24,6 +24,7 @@ private:
 	void createHeroes();
 	void createInfo();
 	void createInventory();
+	void createChest();
 	void createBigMap() {}; //
 	void createTurns(); //
 	void createSettings() {}; //
@@ -93,7 +94,7 @@ public:
 
 	virtual void init() override;
 	virtual void update() override;
-	virtual void draw() override {};
+	virtual void draw() override { iManager->draw(); };
 
 	Entity* getEntity();
 	bool getActivePan(idPanel pan) { return allPanels[pan] != nullptr; };

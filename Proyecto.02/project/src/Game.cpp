@@ -66,8 +66,8 @@ void Game::initGame()
 	game_ = SDLGame::init("THE ELEMENTAL MAZE", client_width * 0.75, client_height * 0.75);
 
 	// PANTALLA COMPLETA
-	//game_->setFullScreen(true);
-	game_->setFullScreen(false);
+	game_->setFullScreen(true);
+	//game_->setFullScreen(false);
 
 	Texture* tex_ = new Texture(game_->getRenderer(), "project/resources/images/cargando.png");
 	SDL_Rect dest = { 0, 0, int(game_->getWindowWidth()), int(game_->getWindowHeight()) };
@@ -83,7 +83,6 @@ void Game::initGame()
 
 	fondo = new Fondo(game_, entityManager_);
 	fondo->init(Vector2D(), game_->getWindowWidth(), game_->getWindowHeight());
-	entityManager_->addEntity(fondo);
 
 	characterManager_ = new CharacterManager(game_);
 
@@ -109,6 +108,8 @@ void Game::closeGame()
 	delete entityManager_; entityManager_ = nullptr;
 	delete characterManager_; characterManager_ = nullptr;
 	delete interfazManager_; interfazManager_ = nullptr;
+	delete fondo; fondo = nullptr;
+	delete c_; c_ = nullptr;
 }
 
 void Game::start()
@@ -157,6 +158,7 @@ void Game::update()
 	interfazManager_->update(); // interfaz
 	entityManager_->update(); // laberinto
 	characterManager_->update(); // characters
+	c_->update();
 }
 
 void Game::render()
@@ -165,10 +167,10 @@ void Game::render()
 	SDL_RenderClear(game_->getRenderer());
 
 	fondo->draw();
-	entityManager_->draw();
-	interfazManager_->draw();
-	characterManager_->draw(); //
-
+	//interfazManager_->draw();
+	gameManager_->draw();
+	//entityManager_->draw();
+	//characterManager_->draw(); //
 	c_->draw();
 
 	SDL_RenderPresent(game_->getRenderer());
@@ -176,7 +178,7 @@ void Game::render()
 
 Cursor* Game::createCursor(Vector2D pos, uint width, uint height, Resources::TextureId image)
 {
-	Cursor* c = static_cast<Cursor*>(entityManager_->addEntity());
+	Cursor* c = new Cursor(game_, entityManager_);
 	c->init(game_, pos, width, height, image);
 	return c;
 }

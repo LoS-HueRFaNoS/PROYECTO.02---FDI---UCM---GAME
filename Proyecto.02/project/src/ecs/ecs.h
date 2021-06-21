@@ -26,17 +26,17 @@ enum CmpId : CmpIdType {
 	Equipement,
 	StateBar,
 	GameStateManager,
+	ChatInfo,
+	ChestPanel,
 	PanelTurns,
 	PanelDnD,
 	PanelDesc,
 	PanelDescObj,
-	ChatInfo,
-	Cartel_Info,
-	Tutorial,
 	BorrarAlMorir,
-	Contador,
 	AnimVibration,
-	AnimationManager,
+	Contador,
+  AnimationManager,
+	Tutorial,
 	//
 	// don't touch the rest of this enum, it is to identify the max
 	// number of components
