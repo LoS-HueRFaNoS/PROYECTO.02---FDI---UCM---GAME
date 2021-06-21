@@ -55,7 +55,7 @@ void TheElementalMaze::init()
 	partyManager_->addHero(cleric);
 
 	// 4. Interfaz
-	uiManager_ = addComponent<Interfaz>(iManager_);
+	uiManager_ = addComponent<Interfaz>(iManager_, game_);
 
 	// 5. GameStateManager
 	stManager_ = addComponent<GameStateManager>();

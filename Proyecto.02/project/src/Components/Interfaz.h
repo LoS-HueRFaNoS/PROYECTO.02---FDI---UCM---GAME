@@ -57,18 +57,24 @@ private:
 	std::vector<Message> msgsQueue_;
 	MsgId activeMsg;
 	SDL_Object* f;
+
+	const int VOLUME_MAX = 100;
+	const int VOLUME_MIN = 0;
 	const uint VOLUME_BAR_HEIGHT = 50;
 	const uint VOLUME_BAR_MAX = 400;
-	const uint VOLUME_BAR_MIN = 0;
-	uint volumeW_ = VOLUME_BAR_MAX;
-	uint soundW_ = VOLUME_BAR_MAX;
+	int* gameVolume;
+	int* gameSound;
+
 public:
-	Interfaz(InterfazManager* i) :
-		Component(ecs::Interfaz),
+	Interfaz(InterfazManager* i, SDLGame* g) :
+		Component(ecs::Interfaz, g),
 		allPanels(std::vector<Panel*>(maxPanels, nullptr)),
 		iManager(i),
 		tutorial_active(true)
-	{};
+	{
+		gameVolume = new int(game_->getAudioMngr()->INITIAL_GAME_VOLUME);
+		gameSound = new int(game_->getAudioMngr()->INITIAL_GAME_SOUND);
+	};
 	virtual ~Interfaz();
 	void createPausePanel();
 	void createPanel(idPanel panelID);

@@ -31,5 +31,8 @@ public:
 	virtual void haltMusic() = 0;
 	virtual void pauseMusic() = 0;
 	virtual void resumeMusic() = 0;
+
+	const int INITIAL_GAME_VOLUME = 15;
+	const int INITIAL_GAME_SOUND = 75;
 };
 

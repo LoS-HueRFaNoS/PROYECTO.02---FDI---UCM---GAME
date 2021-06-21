@@ -6,6 +6,7 @@
 #include "../Managers/SDLGame.h"
 const enum Look { Norte, Este, Sur, Oeste };
 class Entity;
+class SDLGame;
 
 
 class Component {
@@ -16,6 +17,7 @@ protected:
 	bool active;
 public:
 	Component(ecs::CmpId id);
+	Component(ecs::CmpId id, SDLGame* g);
 	virtual ~Component();
 
 	void setEntity(Entity* entity) {

@@ -132,7 +132,7 @@ public:
 		double mw = 0, double mh = 0, 
 		double ew = 0, double eh = 0
 	);
-
+	
 private:
 	SDLGame(string windowTitle_, int width, int height);
 
@@ -141,7 +141,6 @@ private:
 	void closeResources(); // close the SDLResources object (frees all memory)
 
 protected:
-
 	FontsManager* fonts_;
 	TexturesManager* textures_;
 	AudioManager* audio_;
@@ -155,6 +154,4 @@ protected:
 	int height_; // window height
 
 	static unique_ptr<SDLGame> instance_;
-
 };
-

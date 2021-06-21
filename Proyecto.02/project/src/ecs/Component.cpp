@@ -8,5 +8,13 @@ Component::Component(ecs::CmpId id) :
 {
 }
 
+Component::Component(ecs::CmpId id, SDLGame* g) :
+		entity_(nullptr), //
+		game_(g), //
+		id_(id), //
+		active(true)
+{
+}
+
 Component::~Component() {
 }

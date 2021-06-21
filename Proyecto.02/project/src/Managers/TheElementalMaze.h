@@ -38,6 +38,8 @@ private:
 
 	static TheElementalMaze* instance_;
 
+	SDLGame* game_;
+
 	CombatManager* combatManager_; // compt
 	Laberinto* laberinto_; // 
 	Entity* player_; // 
@@ -59,6 +61,7 @@ private:
 	GameState previousState; // Estado del juego antes de pausarlo
 public:
 	TheElementalMaze(SDLGame* game, EntityManager* mngr, CharacterManager* chMngr, InterfazManager* iMngr) :
+		game_(game),
 		characterManager_(chMngr),
 		iManager_(iMngr),
 		Entity(game, mngr),

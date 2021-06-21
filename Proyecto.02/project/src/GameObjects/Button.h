@@ -32,45 +32,72 @@ public:
 class ButtonVolumen : public Button // <3
 {
 private:
-	uint min_;
-	uint max_;
-	uint barMin_;
-	uint barMax_;
-	SDL_Object* obj_;
-	int delta_;
+	SDL_Object* obj_; // objeto a modificar (barra que rellena)
+	int* volume_; // nivel de volumen actual
+	int* sound_; // nivel de sonido actual
+	int min_; // valor minimo de volumen/sonido
+	int max_; // valor maximo de volumen/sonido
+	int delta_; // incremento de este boton
+	uint barMax_; // valor maximo de la barra de volumen/sonido
+	bool music_; // ¿modifica el nivel de musica?
 public:
 	ButtonVolumen(SDLGame* game, EntityManager* mngr) : Button(game, mngr) {};
 	virtual ~ButtonVolumen() {};
 
-	virtual void init(SDL_Rect dest, Resources::TextureId imagen, int delta, SDL_Object* obj, uint barMin, uint barMax) {
-		min_ = 0;
-		max_ = 100;
-		barMin_ = barMin;
-		barMax_ = barMax;
+	virtual void init(SDL_Rect dest, Resources::TextureId imagen, SDL_Object* obj, int* volume, int* sound,
+		int min, int max, int delta, uint barMax, bool music) {
 		obj_ = obj;
+		volume_ = volume;
+		sound_ = sound;
+		min_ = min;
+		max_ = max;
 		delta_ = delta;
+		barMax_ = barMax;
+		music_ = music;
 		Button::init(dest, imagen);
 	};
 
 	virtual void click() {
-		// feedback sonoro
+		// feedback sonoro del boton
 		game_->getAudioMngr()->playChannel(Resources::AudioId::Boton2, 0, 0); ///Boton1
-		/*
-		Sprite* s_ = GETCMP2(this, Sprite);
-		s_->setHide(true);
-		s_->reset();
 
-		Transform* tr = GETCMP2(obj_, Transform);
+		if (music_) {
+			// aplicar delta y sus correcciones
+			int aux = *volume_ + delta_;
+			if (aux >= min_) {
+				if (aux <= max_) *volume_ = aux;
+				else *volume_ = max_;
+			}
+			else *volume_ = min_;
 
-		int aux = tr->getPos().getX();
-		int change = aux + delta_;
+			// reflejar cambios (feedback visual de la barra)
+			Transform* tr = GETCMP2(obj_, Transform);
+			////int trW = tr->getW();
+			int ancho = (*volume_ / (float)(max_ - min_)) * barMax_;
+			tr->setW(ancho);
 
-		if (change < max_ && change > min_) {
-			tr->setPosX(change);
-			int value = (tr->getPos().getX() - min_) / (max_ - min_) * 100;
-			game_->getAudioMngr()->setMusicVolume(value);
+			// aplicar cambios al sistema
+			game_->getAudioMngr()->setMusicVolume(*volume_);
 		}
-		*/
+		else {
+			// aplicar delta y sus correcciones
+			int aux = *sound_ + delta_;
+			if (aux >= min_) {
+				if (aux <= max_) *sound_ = aux;
+				else *sound_ = max_;
+			}
+			else *sound_ = min_;
+
+			// reflejar cambios (feedback visual de la barra)
+			Transform* tr = GETCMP2(obj_, Transform);
+			////int trW = tr->getW();
+			int ancho = (*sound_ / (float)(max_ - min_)) * barMax_;
+			tr->setW(ancho);
+
+			// aplicar cambios al sistema
+			game_->getAudioMngr()->setChannelVolume(*sound_);
+		}
+		std::cout << "vol.: " << *volume_ << endl << "son.: " << *sound_ << endl;
 	};
 };
 
@@ -139,7 +166,6 @@ public:
 	virtual void init(Vector2D pos, uint ancho, uint alto, Resources::TextureId imagen, MovType movement) {
 		movementType_ = movement;
 		Button::init(pos, ancho, alto, imagen);
-		game_->getAudioMngr()->setChannelVolume(15,-1);
 	};
 
 	virtual void click() 
