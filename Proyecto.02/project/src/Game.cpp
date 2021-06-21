@@ -66,8 +66,8 @@ void Game::initGame()
 	game_ = SDLGame::init("THE ELEMENTAL MAZE", client_width * 0.75, client_height * 0.75);
 
 	// PANTALLA COMPLETA
-	game_->setFullScreen(true);
-	//game_->setFullScreen(false);
+	//game_->setFullScreen(true);
+	game_->setFullScreen(false);
 
 	Texture* tex_ = new Texture(game_->getRenderer(), "project/resources/images/cargando.png");
 	SDL_Rect dest = { 0, 0, int(game_->getWindowWidth()), int(game_->getWindowHeight()) };
@@ -78,7 +78,8 @@ void Game::initGame()
 
 	game_->initResources();
 	entityManager_ = new EntityManager(game_);
-	game_->getAudioMngr()->setMusicVolume(15);
+	game_->getAudioMngr()->setMusicVolume(game_->getAudioMngr()->INITIAL_GAME_VOLUME);
+	game_->getAudioMngr()->setChannelVolume(game_->getAudioMngr()->INITIAL_GAME_SOUND);
 
 	fondo = new Fondo(game_, entityManager_);
 	fondo->init(Vector2D(), game_->getWindowWidth(), game_->getWindowHeight());
