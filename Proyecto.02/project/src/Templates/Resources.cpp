@@ -48,7 +48,6 @@ vector<Resources::ImageInfo> Resources::images_{
 	{options, "project/resources/images/interfaz/button icons/Menu/OptionsButton.png"},
 	{quit, "project/resources/images/interfaz/button icons/Menu/quit.png"},
 	{howToPlay, "project/resources/images/interfaz/button icons/Menu/HowToPlayButton.png"},
-	//{mFondo, "project/resources/images/Menu/menufondo.jpg"},
 	{mFondo, "project/resources/images/Menu/FondoMenuTituloFinal.png"},
 	{close, "project/resources/images/Menu/close.png"},
 
@@ -112,9 +111,6 @@ vector<Resources::ImageInfo> Resources::images_{
 	{AtaqueMagico, "project/resources/images/sprites/iconos combate/magic.png"},
 	{Enter, "project/resources/images/sprites/iconos combate/enter.png"},
 	{Huida, "project/resources/images/sprites/iconos combate/huir.png"},
-	{Marco, "project/resources/images/sprites/iconos combate/marco.png"},
-	{Target, "project/resources/images/sprites/iconos combate/target.png"},
-	{Hability, "project/resources/images/sprites/iconos combate/hability.png"},
 
 	//Inventario
 	{Slot, "project/resources/images/sprites/iconos inventario/inventorySlot.png"},
@@ -125,7 +121,7 @@ vector<Resources::ImageInfo> Resources::images_{
 	{inventory_slots, "project/resources/images/Menu/inventory_slots.png"},
 
 	// Armas clasicas
-	{Joker, "project/resources/images/sprites/iconos armas/joker.png"}, ///TODO
+	{Joker, "project/resources/images/sprites/iconos armas/joker.png"},
 	{Desarmado, "project/resources/images/sprites/iconos armas/desarmado.png"},
 	{Baston, "project/resources/images/sprites/iconos armas/baston.png"},
 	{Daga, "project/resources/images/sprites/iconos armas/daga.png"},

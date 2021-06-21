@@ -140,9 +140,6 @@ public:
 		AtaqueMagico,
 		Enter,
 		Huida,
-		Marco,
-		Target,
-		Hability,
 
 //Inventario
 		Slot,
