@@ -2,19 +2,10 @@
 #include "../Utilities/SDL_macros.h"
 
 vector<Resources::FontInfo> Resources::fonts_{
-	{ARIAL16, "project/resources/fonts/ARIAL.ttf", 16}, //
-	{ARIAL24, "project/resources/fonts/ARIAL.ttf", 24},	//
 	{HERMAN, "project/resources/fonts/ARHERMANN.ttf", 64},
 	{Fornite64, "project/resources/fonts/Fortnite.ttf", 64},
-	{Fornite14, "project/resources/fonts/Fortnite.ttf", 14},
-	{Quake, "project/resources/fonts/dpquake_.ttf", 64},
-	{KillerInst, "project/resources/fonts/kinifed_.ttf", 64},
-	{Sega, "project/resources/fonts/SEGA.ttf", 64},
 	{Beaulieux, "project/resources/fonts/t4cbeaulieux.ttf", 64},
-	{Triforce, "project/resources/fonts/Triforce.ttf", 64},	
 	{Medieval, "project/resources/fonts/MedievalSharp-Regular.ttf", 32},	
-	{CooperLT, "project/resources/fonts/cooperl.ttf", 32},
-	{CooperMD, "project/resources/fonts/cooperm.ttf", 32},
 	{Console, "project/resources/fonts/consola.ttf", 32},
 	{ConsoleBO, "project/resources/fonts/consolab.ttf", 32}
 };
@@ -109,7 +100,7 @@ vector<Resources::ImageInfo> Resources::images_{
 
 	// inventario e info
 	{Inventario, "project/resources/sprites/iconos info/infoInventario.png"},
-	{Cofre, "project/resources/images/chest images/cofre.png"},
+	{Cofre, "project/resources/images/interfaz/grids fondo/cofre.png"},
 	{PocionVida, "project/resources/sprites/iconos info/infoPocionVida.png"},
 	{PocionMana, "project/resources/sprites/iconos info/infoPocionMana.png"},
 	{PocionRess, "project/resources/sprites/iconos info/infoPocionRess.png"},
@@ -260,10 +251,6 @@ vector<Resources::ImageInfo> Resources::images_{
 
 vector<Resources::TextMsgInfo> Resources::messages_{
 	//
-	{HelloWorld, "Hello World", {COLOR(0xaaffffff)}, ARIAL16},			   //
-	{PressAnyKey, "Press Any Key to Start", {COLOR(0xaaffbbff)}, ARIAL24}, //
-	{GameOverWon, "Game Over! You Won!", {COLOR(0xffffbbff)}, ARIAL24},	   //
-	{GameOverLost, "Game Over! You Lost!", {COLOR(0xffffbbff)}, ARIAL24}   //
 };
 
 vector<Resources::MusicInfo> Resources::musics_{
