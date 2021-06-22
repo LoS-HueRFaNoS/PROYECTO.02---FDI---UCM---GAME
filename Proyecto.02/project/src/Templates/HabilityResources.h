@@ -12,7 +12,7 @@ class Character;
 #pragma region HABILITY
 
 enum class Hability_Id {
-	LIGHTATTACK, //0
+	LIGHTATTACK, //0 <---
 	FIREBALL, //1
 	BLOODYSTRIKE, //2
 	HEALINGWORD, //3
@@ -40,7 +40,7 @@ enum class Hability_Id {
 	THROWINGAXES, //25
 	MORPH, //26
 	REVERSEMORPH, //27
-	HEAVYSTRIKE, //28
+	HEAVYSTRIKE, //28 <---
 	SMOKEARROW,	//29
 	RAINOFDAGGERS,	//30
 	ROCKPROJECTILES, //31

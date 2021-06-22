@@ -429,6 +429,13 @@ void Interfaz::createTargets()
 	// tamano de los margenes
 	double n = 20;
 
+	SDL_Rect dest = RECT(
+		game_->setHorizontalScale(x_ + w_ - 40),
+		game_->setVerticalScale(y_),
+		game_->setHorizontalScale(40),
+		game_->setVerticalScale(40)
+	);
+
 	// posicion del panel respecto a la ventana
 	x_ = game_->setHorizontalScale(x_ + n);
 	y_ = game_->setVerticalScale(y_ + n);
@@ -447,6 +454,12 @@ void Interfaz::createTargets()
 		src::TextureId img = size_t(targets[i]->getType()) ? getEnemyTxt(i) : getHeroTxt(i);
 		p->addButton(iManager->addButton<ButtonTarget>(Vector2D(x_ + espace * i, y_), w_, h_, img, (target)i));
 	}
+
+	idPanel idRegreso;
+	if (c->isMagicAttack()) { idRegreso = Habilities; }
+	else { idRegreso = WeaponsAttacks; };
+	
+	p->addButton(iManager->addButton<ButtonReturn>(dest, src::close, Targets, idRegreso, false));
 }
 
 void Interfaz::createHabilities()
@@ -465,6 +478,13 @@ void Interfaz::createHabilities()
 	// tamano de los margenes
 	double n = 20;
 
+	SDL_Rect dest = RECT(
+		game_->setHorizontalScale(x_ + w_ - 40),
+		game_->setVerticalScale(y_),
+		game_->setHorizontalScale(40),
+		game_->setVerticalScale(40)
+	);
+
 	// posicion del panel respecto a la ventana
 	x_ = game_->setHorizontalScale(x_ + n);
 	y_ = game_->setVerticalScale(y_ + n);
@@ -482,6 +502,8 @@ void Interfaz::createHabilities()
 	for (int i = 0; i < nHabilities; i++) {
 		p->addButton(iManager->addButton<ButtonHability>(Vector2D(x_ + espace * i, y_), w_, h_, getHabilityTxt(hero, i), i));
 	}
+	
+	p->addButton(iManager->addButton<ButtonReturn>(dest, src::close, Habilities, Fight, false));
 }
 
 void Interfaz::createWeaponAttacks()
@@ -500,6 +522,13 @@ void Interfaz::createWeaponAttacks()
 	// tamano de los margenes
 	double n = 20;
 
+	SDL_Rect dest = RECT(
+		game_->setHorizontalScale(x_ + w_ - 40),
+		game_->setVerticalScale(y_),
+		game_->setHorizontalScale(40),
+		game_->setVerticalScale(40)
+	);
+
 	// posicion del panel respecto a la ventana
 	x_ = game_->setHorizontalScale(x_ + n);
 	y_ = game_->setVerticalScale(y_ + n);
@@ -515,6 +544,8 @@ void Interfaz::createWeaponAttacks()
 
 	p->addButton(iManager->addButton<ButtonWeaponAttack>(Vector2D(x_, y_), w_, h_, src::LightAttack, -2));
 	p->addButton(iManager->addButton<ButtonWeaponAttack>(Vector2D(x_ + espace, y_), w_, h_, src::GolpeDuro, -3));
+
+	p->addButton(iManager->addButton<ButtonReturn>(dest, src::close, WeaponsAttacks, Fight, false));
 }
 
 void Interfaz::createMenuPrincipal()

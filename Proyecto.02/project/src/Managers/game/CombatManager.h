@@ -172,6 +172,9 @@ public:
 		return _turnQueue;
 	}
 
+	bool isMagicAttack();
+	void resetHabilityToCast();
+
 	// ----------------------------------------------------
 };
 

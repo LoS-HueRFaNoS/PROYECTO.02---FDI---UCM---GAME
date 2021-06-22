@@ -691,7 +691,11 @@ public:
 		setActive(active);
 		pan_ = p; // asigna el panel
 		Button::init(pos, ancho, alto, imagen);
-		//addComponent<Sprite>(game_->getTextureMngr()->getTexture(Resources::Selected), 0, 0, true, true); // marco select
+	};
+	virtual void init(SDL_Rect dest, Resources::TextureId imagen, idPanel p, bool active) {
+		setActive(active);
+		pan_ = p; // asigna el panel
+		Button::init(dest, imagen);
 	};
 
 	virtual void click()
@@ -710,6 +714,28 @@ public:
 		setActive(false); setHide(true);
 	}
 
+};
+
+class ButtonReturn : public ButtonPanel {
+protected:
+	idPanel panActual_; // Panel al que pertenece el button
+
+public:
+	ButtonReturn(SDLGame* game, EntityManager* mngr) : ButtonPanel(game, mngr) {};
+
+	~ButtonReturn() {};
+
+	virtual void init(SDL_Rect dest, Resources::TextureId imagen, idPanel PanelActual, idPanel PanelRegreso, bool active) {
+		panActual_ = PanelActual; // asigna el panel
+		ButtonPanel::init(dest, imagen, PanelRegreso, active);
+	};
+
+	virtual void click()
+	{
+		callbacks::returnTo(panActual_, pan_);
+		if (!activated) turnON();
+		else turnOFF();
+	}
 };
 
 enum class HeroNum { hero1, hero2, hero3, hero4 };

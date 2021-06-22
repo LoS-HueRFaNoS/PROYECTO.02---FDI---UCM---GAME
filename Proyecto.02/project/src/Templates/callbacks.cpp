@@ -160,6 +160,7 @@ void callbacks::potionType(int potionType_)
 
 #pragma region PanelResources
 #include "../Managers/TheElementalMaze.h"
+#include "../Managers/game/CombatManager.h"
 #include "../Components/Interfaz.h"
 
 void callbacks::createPanel(bool active, int panelType)
@@ -172,6 +173,18 @@ void callbacks::createPanel(bool active, int panelType)
 		if (panelType == idPanel::Inventory && i_->getActivePan(idPanel::UnequipPanel)) i_->removePanel(idPanel::UnequipPanel);
 		if (panelType == idPanel::Inventory && i_->getActivePan(idPanel::EquipPanel)) i_->removePanel(idPanel::EquipPanel);
 		i_->removePanel((idPanel)panelType);
+	}
+}
+
+void callbacks::returnTo(int PanelActual, int PanelRegreso)
+{
+	Interfaz* i_ = GETCMP2(TheElementalMaze::instance(), Interfaz);
+	i_->removePanel((idPanel)PanelActual);
+	i_->createPanel((idPanel)PanelRegreso);
+
+	if (PanelActual == Targets) {
+		CombatManager* c = GETCMP2(TheElementalMaze::instance(), CombatManager);
+		c->resetHabilityToCast();
 	}
 }
 
