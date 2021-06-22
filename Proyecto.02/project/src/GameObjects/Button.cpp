@@ -63,12 +63,14 @@ void ButtonHability::click() // <3
 	Hero* her = static_cast<Hero*>(GETCMP2(TheElementalMaze::instance(), CombatManager)->getCurrentCharacter());
 	Hability* hab = her->getHabilities()[(int)hability_];
 	callbacks::createFichaDescPan(false, hab, her->getCharacterSheet()->manaPoints() >= hab->getMana());
-}
+};
+
 void ButtonHability::pointerEntered() {
 	Hero* her = static_cast<Hero*>(GETCMP2(TheElementalMaze::instance(), CombatManager)->getCurrentCharacter());
 	Hability* hab = her->getHabilities()[(int)hability_];
 	callbacks::createFichaDescPan(true, hab, her->getCharacterSheet()->manaPoints() >= hab->getMana());
 };
+
 void ButtonHability::pointerExited() {
 	Hero* her = static_cast<Hero*>(GETCMP2(TheElementalMaze::instance(), CombatManager)->getCurrentCharacter());
 	Hability* hab = her->getHabilities()[(int)hability_];

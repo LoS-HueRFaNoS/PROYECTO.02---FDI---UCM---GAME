@@ -474,7 +474,7 @@ void CombatManager::sendKeyEvent(int key)
 	{
 	case END_TURN:
 		if (key == -1) {
-			changeState(PASS_TURN);
+			changeState(PASS_TURN);		// terminar turno (para que continue el siguiente)
 			ChatManager::instance()->clean_n_addLine(" ", linCol::White);
 		}
 		break;
@@ -483,7 +483,7 @@ void CombatManager::sendKeyEvent(int key)
 		switch (key)
 		{
 		case -1:
-			changeState(END_TURN);
+			changeState(END_TURN);		// pasar turno (sin hacer nada)
 			break;
 		case -4:
 			tryEscape();

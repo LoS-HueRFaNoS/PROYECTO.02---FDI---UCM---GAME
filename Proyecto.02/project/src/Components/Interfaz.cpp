@@ -45,6 +45,8 @@ Interfaz::~Interfaz()
 
 void Interfaz::createFight()
 {
+	CombatManager* c = GETCMP2(TheElementalMaze::instance(), CombatManager); // falta paso intermedio para guardar la habilidad y seleccionar enemigos
+
 	// posicion en pixeles del 'fondo'
 	double x_ = 70;
 	double y_ = 790;
@@ -69,11 +71,19 @@ void Interfaz::createFight()
 	Panel* p = new Panel(Fight);
 	allPanels[Fight] = p;
 
-	// BOTONES: normal, magic, defend, escape
-	p->addButton(iManager->addButton<ButtonCombate>(Vector2D(x_ + 0, y_), w_, h_, src::AtaqueNormal, CmbtType::attack));
-	p->addButton(iManager->addButton<ButtonCombate>(Vector2D(x_ + espace, y_), w_, h_, src::AtaqueMagico, CmbtType::magic));
-	p->addButton(iManager->addButton<ButtonCombate>(Vector2D(x_ + espace * 2, y_), w_, h_, src::Huida, CmbtType::escape));
-	p->addButton(iManager->addButton<ButtonCombate>(Vector2D(x_ + espace * 3, y_), w_, h_, src::Enter, CmbtType::defend));
+	if (c->getState() != END_TURN)
+	{
+		// BOTONES: normal, magic, defend, escape
+		p->addButton(iManager->addButton<ButtonCombate>(Vector2D(x_ + 0, y_), w_, h_, src::AtaqueNormal, CmbtType::attack));
+		p->addButton(iManager->addButton<ButtonCombate>(Vector2D(x_ + espace, y_), w_, h_, src::AtaqueMagico, CmbtType::magic));
+		p->addButton(iManager->addButton<ButtonCombate>(Vector2D(x_ + espace * 2, y_), w_, h_, src::Huida, CmbtType::escape));
+		p->addButton(iManager->addButton<ButtonCombate>(Vector2D(x_ + espace * 3, y_), w_, h_, src::Enter, CmbtType::defend));
+	}
+	else
+	{
+		double width_ = espace * 4 - game_->setHorizontalScale(n);
+		p->addButton(iManager->addButton<ButtonCombate>(Vector2D(x_, y_), width_, h_, src::Enter, CmbtType::defend));
+	}
 }
 
 void Interfaz::createEnemies()
@@ -472,7 +482,6 @@ void Interfaz::createHabilities()
 	for (int i = 0; i < nHabilities; i++) {
 		p->addButton(iManager->addButton<ButtonHability>(Vector2D(x_ + espace * i, y_), w_, h_, getHabilityTxt(hero, i), i));
 	}
-	togglePanel(Fight); // oculta el panel fight
 }
 
 void Interfaz::createWeaponAttacks()
@@ -506,8 +515,6 @@ void Interfaz::createWeaponAttacks()
 
 	p->addButton(iManager->addButton<ButtonWeaponAttack>(Vector2D(x_, y_), w_, h_, src::LightAttack, -2));
 	p->addButton(iManager->addButton<ButtonWeaponAttack>(Vector2D(x_ + espace, y_), w_, h_, src::GolpeDuro, -3));
-
-	togglePanel(Fight); // oculta el panel fight
 }
 
 void Interfaz::createMenuPrincipal()
@@ -1493,6 +1500,12 @@ void Interfaz::removePanel(idPanel panID)
 	}
 }
 
+void Interfaz::resetPanel(idPanel panelID)
+{
+	removePanel(panelID);
+	createPanel(panelID);
+}
+
 void Interfaz::removeChat()
 {
 	TheElementalMaze::instance()->removeComponent(ecs::ChatInfo);
@@ -1614,7 +1627,7 @@ void Interfaz::update()
 			}
 		}
 		break;
-	case gameST::COMBAT:
+	case gameST::START_COMBAT:
 		if (!getActivePan(Fight))
 		{
 			Message m;

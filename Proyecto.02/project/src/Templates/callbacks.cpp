@@ -204,7 +204,7 @@ void callbacks::combatType(int combatType_)
 		if (c->getState() == ACTION_PHASE_SPELL) {
 			std::cout << "ataque cuerpo a cuerpo" << std::endl;
 			if (!i->getActivePan(WeaponsAttacks)) callbacks::createPanel(false, WeaponsAttacks);
-			if (i->getEnablePan(Fight)) i->togglePanel(Fight);
+			if (i->getActivePan(Fight)) i->removePanel(Fight);
 		}
 		else
 			std::cout << "ERROR: aun no has comenzado tu turno" << std::endl;
@@ -213,7 +213,8 @@ void callbacks::combatType(int combatType_)
 		if (c->getState() == ACTION_PHASE_SPELL) {
 			std::cout << "has seleccionado una habilidad" << std::endl;
 			if (!i->getActivePan(Habilities)) callbacks::createPanel(false, Habilities);
-			if (i->getEnablePan(Fight)) i->togglePanel(Fight);
+			if (i->getActivePan(Fight)) 
+				i->removePanel(Fight);
 		}
 		else
 			std::cout << "ERROR: aun no has comenzado tu turno" << std::endl;
@@ -221,6 +222,8 @@ void callbacks::combatType(int combatType_)
 	case 2:
 		c->sendKeyEvent(-1);
 		std::cout << "Pulsaste enter" << std::endl;
+		if (i->getActivePan(Fight))
+			i->resetPanel(Fight);
 		break;
 	case 3:
 		c->sendKeyEvent(-4);
@@ -238,7 +241,7 @@ void callbacks::addTarget(int objetive_) // -1 para volver atrás
 	Interfaz* i = GETCMP2(TheElementalMaze::instance(), Interfaz);
 	// cambia a combate
 	if (i->getActivePan(Targets)) i->removePanel(Targets);
-	if (!i->getEnablePan(Fight)) i->togglePanel(Fight);
+	if (!i->getActivePan(Fight)) i->createPanel(Fight);
 	std::cout << "has fijado tu objetivo" << std::endl;
 }
 
@@ -257,7 +260,7 @@ void callbacks::set_hability(int hability_)
 		callbacks::createPanel(false, Targets);
 	}
 	else {
-		if (!i->getEnablePan(Fight)) i->togglePanel(Fight);
+		if (!i->getActivePan(Fight)) i->createPanel(Fight);
 	}
 }
 

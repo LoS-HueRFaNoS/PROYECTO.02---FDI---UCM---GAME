@@ -557,6 +557,8 @@ void Enemy::loadFromJson(jute::jValue v, int t)
 	_weapon = TheElementalMaze::instance()->getItemManager()->getWeaponFromId(wID::DESARMADO);
 }
 
+#include "../Components/Interfaz.h"
+// Maneja el turno del enemigo completo y contempla: castHability y throwHability
 void Enemy::manageTurn(CombatManager* cm)
 {
 	int aux = game_->getRandGen()->nextInt(0, int(_habilities.size()));
@@ -604,6 +606,10 @@ void Enemy::manageTurn(CombatManager* cm)
 
 
 	cm->changeState(END_TURN);
+
+	Interfaz* i = GETCMP2(TheElementalMaze::instance(), Interfaz);
+	if (i->getActivePan(Fight))
+		i->resetPanel(Fight);
 }
 
 #pragma endregion

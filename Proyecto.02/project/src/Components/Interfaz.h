@@ -80,6 +80,7 @@ public:
 	void createPausePanel();
 	void createPanel(idPanel panelID);
 	void removePanel(idPanel panelID);
+	void resetPanel(idPanel panelID);
 	void removeChat();
 	void destroyPanel(idPanel panelID);
 
