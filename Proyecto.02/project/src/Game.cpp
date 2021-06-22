@@ -43,8 +43,7 @@ Game* Game::Instance()
 Game::Game() : game_(nullptr),			   //
 entityManager_(nullptr),	   //
 characterManager_(nullptr), //
-exit_(false),
-fullscr_(true)
+exit_(false)
 {
 	initGame();
 }
@@ -63,11 +62,11 @@ void Game::initGame()
 	int client_width = (rect.right - rect.left);
 	int client_height = (rect.bottom - rect.top);
 
-	//MODO VENTANA
+	// MODO VENTANA // _/!\ NO ALTERAR, POR FAVOR /!\_
 	game_ = SDLGame::init("THE ELEMENTAL MAZE", client_width * 0.75, client_height * 0.75);
 
 	// PANTALLA COMPLETA
-	game_->setFullScreen(fullscr_);
+	game_->setFullScreen(game_->fullscr_);
 
 	Texture* tex_ = new Texture(game_->getRenderer(), "project/resources/images/cargando.png");
 	SDL_Rect dest = { 0, 0, int(game_->getWindowWidth()), int(game_->getWindowHeight()) };
@@ -130,12 +129,6 @@ void Game::start()
 	}
 }
 
-void Game::stop()
-{
-	exit_ = true;
-}
-
-
 void Game::handleInput()
 {
 
@@ -148,9 +141,7 @@ void Game::handleInput()
 			}*/
 		}
 	}
-	else
-		exit_ = true;
-
+	else exit_ = true;
 }
 
 void Game::update()

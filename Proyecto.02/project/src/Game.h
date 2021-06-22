@@ -24,7 +24,6 @@ public:
 
 	// from SDLGame
 	void start();
-	void stop();
 	SDLGame* getSDLGame() { return game_; }
 	void exitGame() { exit_ = true; }
 
@@ -47,8 +46,6 @@ private:
 	Fondo* fondo;
 	Cursor* c_;
 	Cursor* createCursor(Vector2D pos, uint width, uint height, Resources::TextureId image);
-
-	bool fullscr_;
 
 	bool exit_;
 };

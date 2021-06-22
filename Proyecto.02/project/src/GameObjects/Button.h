@@ -97,7 +97,8 @@ public:
 			// aplicar cambios al sistema
 			game_->getAudioMngr()->setChannelVolume(*sound_);
 		}
-		std::cout << "vol.: " << *volume_ << endl << "son.: " << *sound_ << endl;
+		//DEBUG//
+		//std::cout << "vol.: " << *volume_ << endl << "son.: " << *sound_ << endl;
 	};
 };
 

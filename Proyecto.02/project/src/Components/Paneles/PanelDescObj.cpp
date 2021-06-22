@@ -8,6 +8,13 @@ using namespace textures_box;
 
 void PanelDescObj::init()
 {
+	// arreglo res.
+	if (game_->fullscr_) {
+		numLet_ += 15;
+		anchoTexto_ += 165;
+		offsetMarcoX2_ += 140;
+	}
+
 	// info
 	//
 	nombreItem_ = ite_->getName();
