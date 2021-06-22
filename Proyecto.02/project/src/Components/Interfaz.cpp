@@ -916,6 +916,14 @@ void Interfaz::createOptions() // <3
 
 	uint w = game_->getWindowWidth();
 	uint h = game_->getWindowHeight();
+
+	int centerXOffset = -200;
+	int columnX = w / 2 + centerXOffset;
+	int controlsSize = 50;
+	int titleW = 400;
+	int titleH = 100;
+	int subtitleW = 200;
+	int subtitleH = 50;
 	
 	// Argumentos
 	SDL_Rect dest;
@@ -933,16 +941,16 @@ void Interfaz::createOptions() // <3
 	dest.h = h;
 	p->addButton(iManager->addButton<SDL_Object>(dest, src::Cartel));
 	// Titulo
-	dest.x = w / 3; // + w/3
+	dest.x = columnX;
 	dest.y = 50; // + 50
-	dest.w = 400;
-	dest.h = 100;
+	dest.w = titleW;
+	dest.h = titleH;
 	text = "Options";
 	p->addButton(iManager->addButton<Line>(dest, text, Resources::FontId::Beaulieux, color));
 	// Volumen
 	dest.y = 250; // + 200
-	dest.w = 200;
-	dest.h = 50;
+	dest.w = subtitleW;
+	dest.h = subtitleH;
 	text = "Volume";
 	p->addButton(iManager->addButton<Line>(dest, text, Resources::FontId::Beaulieux, color));
 		// contenedor volumen
@@ -955,28 +963,28 @@ void Interfaz::createOptions() // <3
 		objVolume = iManager->addButton<SDL_Object>(dest, Resources::TextureId::VolumeBar);
 		p->addButton(objVolume);
 		// audio volumen -10
-		dest.x = w / 3 - 100;
-		dest.w = 50;
-		dest.h = 50;
+		dest.x = columnX - 2 * controlsSize;
+		dest.w = controlsSize;
+		dest.h = controlsSize;
 		p->addButton(iManager->addButton<ButtonVolumen>(dest, Resources::TextureId::RotarI, objVolume,
 			gameVolume, gameSound, VOLUME_MIN, VOLUME_MAX, -10, VOLUME_BAR_MAX, true));
 		// audio volumen -1
-		dest.x = w / 3 - 50;
+		dest.x = columnX - controlsSize;
 		p->addButton(iManager->addButton<ButtonVolumen>(dest, Resources::TextureId::RotarIAlt, objVolume,
 			gameVolume, gameSound, VOLUME_MIN, VOLUME_MAX, -1, VOLUME_BAR_MAX, true));
 		// audio volumen +1
-		dest.x = w / 3 + VOLUME_BAR_MAX;
+		dest.x = columnX + VOLUME_BAR_MAX;
 		p->addButton(iManager->addButton<ButtonVolumen>(dest, Resources::TextureId::RotarDAlt, objVolume,
 			gameVolume, gameSound, VOLUME_MIN, VOLUME_MAX, 1, VOLUME_BAR_MAX, true));
 		// audio volumen +10
-		dest.x = w / 3 + VOLUME_BAR_MAX + 50;
+		dest.x = columnX + VOLUME_BAR_MAX + controlsSize;
 		p->addButton(iManager->addButton<ButtonVolumen>(dest, Resources::TextureId::RotarD, objVolume,
 			gameVolume, gameSound, VOLUME_MIN, VOLUME_MAX, 10, VOLUME_BAR_MAX, true));
 	// Sonido
-	dest.x = w / 3;
+	dest.x = columnX;
 	dest.y = 450; // +120
-	dest.w = 200;
-	dest.h = 50;
+	dest.w = subtitleW;
+	dest.h = subtitleH;
 	text = "Sound";
 	p->addButton(iManager->addButton<Line>(dest, text, Resources::FontId::Beaulieux, color));
 		// contenedor sonido
@@ -989,21 +997,21 @@ void Interfaz::createOptions() // <3
 		objSound = iManager->addButton<SDL_Object>(dest, Resources::TextureId::VolumeBar);
 		p->addButton(objSound);
 		// audio sonido -10
-		dest.x = w / 3 - 100;
-		dest.w = 50;
-		dest.h = 50;
+		dest.x = columnX - 2 * controlsSize;
+		dest.w = controlsSize;
+		dest.h = controlsSize;
 		p->addButton(iManager->addButton<ButtonVolumen>(dest, Resources::TextureId::RotarI, objSound,
 			gameVolume, gameSound, VOLUME_MIN, VOLUME_MAX, -10, VOLUME_BAR_MAX, false));
 		// audio sonido -1
-		dest.x = w / 3 - 50;
+		dest.x = columnX - controlsSize;
 		p->addButton(iManager->addButton<ButtonVolumen>(dest, Resources::TextureId::RotarIAlt, objSound,
 			gameVolume, gameSound, VOLUME_MIN, VOLUME_MAX, -1, VOLUME_BAR_MAX, false));
 		// audio sonido +1
-		dest.x = w / 3 + VOLUME_BAR_MAX;
+		dest.x = columnX + VOLUME_BAR_MAX;
 		p->addButton(iManager->addButton<ButtonVolumen>(dest, Resources::TextureId::RotarDAlt, objSound,
 			gameVolume, gameSound, VOLUME_MIN, VOLUME_MAX, 1, VOLUME_BAR_MAX, false));
 		// audio sonido +10
-		dest.x = w / 3 + VOLUME_BAR_MAX + 50;
+		dest.x = columnX + VOLUME_BAR_MAX + controlsSize;
 		p->addButton(iManager->addButton<ButtonVolumen>(dest, Resources::TextureId::RotarD, objSound,
 			gameVolume, gameSound, VOLUME_MIN, VOLUME_MAX, 10, VOLUME_BAR_MAX, false));
 	// Volver
