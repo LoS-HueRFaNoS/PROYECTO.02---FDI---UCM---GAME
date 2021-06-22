@@ -955,13 +955,21 @@ void Interfaz::createOptions() // <3
 		objVolume = iManager->addButton<SDL_Object>(dest, Resources::TextureId::VolumeBar);
 		p->addButton(objVolume);
 		// audio volumen -10
-		dest.x = w / 3 - 50;
+		dest.x = w / 3 - 100;
 		dest.w = 50;
 		dest.h = 50;
 		p->addButton(iManager->addButton<ButtonVolumen>(dest, Resources::TextureId::RotarI, objVolume,
 			gameVolume, gameSound, VOLUME_MIN, VOLUME_MAX, -10, VOLUME_BAR_MAX, true));
-		// audio volumen +10
+		// audio volumen -1
+		dest.x = w / 3 - 50;
+		p->addButton(iManager->addButton<ButtonVolumen>(dest, Resources::TextureId::RotarIAlt, objVolume,
+			gameVolume, gameSound, VOLUME_MIN, VOLUME_MAX, -1, VOLUME_BAR_MAX, true));
+		// audio volumen +1
 		dest.x = w / 3 + VOLUME_BAR_MAX;
+		p->addButton(iManager->addButton<ButtonVolumen>(dest, Resources::TextureId::RotarDAlt, objVolume,
+			gameVolume, gameSound, VOLUME_MIN, VOLUME_MAX, 1, VOLUME_BAR_MAX, true));
+		// audio volumen +10
+		dest.x = w / 3 + VOLUME_BAR_MAX + 50;
 		p->addButton(iManager->addButton<ButtonVolumen>(dest, Resources::TextureId::RotarD, objVolume,
 			gameVolume, gameSound, VOLUME_MIN, VOLUME_MAX, 10, VOLUME_BAR_MAX, true));
 	// Sonido
@@ -981,13 +989,21 @@ void Interfaz::createOptions() // <3
 		objSound = iManager->addButton<SDL_Object>(dest, Resources::TextureId::VolumeBar);
 		p->addButton(objSound);
 		// audio sonido -10
-		dest.x = w / 3 - 50;
+		dest.x = w / 3 - 100;
 		dest.w = 50;
 		dest.h = 50;
 		p->addButton(iManager->addButton<ButtonVolumen>(dest, Resources::TextureId::RotarI, objSound,
 			gameVolume, gameSound, VOLUME_MIN, VOLUME_MAX, -10, VOLUME_BAR_MAX, false));
-		// audio sonido +10
+		// audio sonido -1
+		dest.x = w / 3 - 50;
+		p->addButton(iManager->addButton<ButtonVolumen>(dest, Resources::TextureId::RotarIAlt, objSound,
+			gameVolume, gameSound, VOLUME_MIN, VOLUME_MAX, -1, VOLUME_BAR_MAX, false));
+		// audio sonido +1
 		dest.x = w / 3 + VOLUME_BAR_MAX;
+		p->addButton(iManager->addButton<ButtonVolumen>(dest, Resources::TextureId::RotarDAlt, objSound,
+			gameVolume, gameSound, VOLUME_MIN, VOLUME_MAX, 1, VOLUME_BAR_MAX, false));
+		// audio sonido +10
+		dest.x = w / 3 + VOLUME_BAR_MAX + 50;
 		p->addButton(iManager->addButton<ButtonVolumen>(dest, Resources::TextureId::RotarD, objSound,
 			gameVolume, gameSound, VOLUME_MIN, VOLUME_MAX, 10, VOLUME_BAR_MAX, false));
 	// Volver

@@ -121,6 +121,8 @@ public:
 		Avanzar,
 		RotarD,
 		RotarI,
+		RotarDAlt,
+		RotarIAlt,
 		Interactuar,
 		Retroceder,
 		AvanzarBloqueado,

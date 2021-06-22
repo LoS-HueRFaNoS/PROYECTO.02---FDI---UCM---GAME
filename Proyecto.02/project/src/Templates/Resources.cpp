@@ -92,6 +92,8 @@ vector<Resources::ImageInfo> Resources::images_{
 	{Avanzar, "project/resources/images/sprites/iconos movimiento/movimientoAvanzar.png"},
 	{RotarD, "project/resources/images/sprites/iconos movimiento/movimientoRotarDerecha.png"},
 	{RotarI, "project/resources/images/sprites/iconos movimiento/movimientoRotarIzquierda.png"},
+	{RotarDAlt, "project/resources/images/sprites/iconos movimiento/movimientoRotarDerechaAlt.png"},
+	{RotarIAlt, "project/resources/images/sprites/iconos movimiento/movimientoRotarIzquierdaAlt.png"},
 	{Interactuar, "project/resources/images/sprites/iconos movimiento/movimientoInteractuar.png"},
 	{Retroceder, "project/resources/images/sprites/iconos movimiento/movimientoRetroceder.png"},
 	{AvanzarBloqueado, "project/resources/images/sprites/iconos movimiento/movimientoAvanzarBloqueado.png"},
