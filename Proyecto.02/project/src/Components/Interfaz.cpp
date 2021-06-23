@@ -430,10 +430,10 @@ void Interfaz::createTargets()
 	double n = 20;
 
 	SDL_Rect dest = RECT(
-		game_->setHorizontalScale(x_ + w_ - 40),
-		game_->setVerticalScale(y_),
-		game_->setHorizontalScale(40),
-		game_->setVerticalScale(40)
+		game_->setHorizontalScale(x_ + w_ - n * 2 + 30),
+		game_->setVerticalScale(y_ - 30),
+		game_->setHorizontalScale(n * 2),
+		game_->setVerticalScale(n * 2)
 	);
 
 	// posicion del panel respecto a la ventana
@@ -479,10 +479,10 @@ void Interfaz::createHabilities()
 	double n = 20;
 
 	SDL_Rect dest = RECT(
-		game_->setHorizontalScale(x_ + w_ - 40),
-		game_->setVerticalScale(y_),
-		game_->setHorizontalScale(40),
-		game_->setVerticalScale(40)
+		game_->setHorizontalScale(x_ + w_ - n * 2 + 30),
+		game_->setVerticalScale(y_ - 30),
+		game_->setHorizontalScale(n * 2),
+		game_->setVerticalScale(n * 2)
 	);
 
 	// posicion del panel respecto a la ventana
@@ -523,10 +523,10 @@ void Interfaz::createWeaponAttacks()
 	double n = 20;
 
 	SDL_Rect dest = RECT(
-		game_->setHorizontalScale(x_ + w_ - 40),
-		game_->setVerticalScale(y_),
-		game_->setHorizontalScale(40),
-		game_->setVerticalScale(40)
+		game_->setHorizontalScale(x_ + w_ - n * 2 + 30),
+		game_->setVerticalScale(y_ - 30),
+		game_->setHorizontalScale(n * 2),
+		game_->setVerticalScale(n * 2)
 	);
 
 	// posicion del panel respecto a la ventana
