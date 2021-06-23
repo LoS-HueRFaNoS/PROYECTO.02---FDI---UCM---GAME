@@ -47,7 +47,6 @@ vector<Resources::ImageInfo> Resources::images_{
 	{start, "project/resources/images/interfaz/button icons/Menu/PlayButton.png"},
 	{options, "project/resources/images/interfaz/button icons/Menu/OptionsButton.png"},
 	{quit, "project/resources/images/interfaz/button icons/Menu/quit.png"},
-	{howToPlay, "project/resources/images/interfaz/button icons/Menu/HowToPlayButton.png"},
 	{mFondo, "project/resources/images/Menu/FondoMenuTituloFinal.png"},
 	{close, "project/resources/images/Menu/close.png"},
 
@@ -74,7 +73,6 @@ vector<Resources::ImageInfo> Resources::images_{
 	{VolumeBarBackground, "project/resources/images/interfaz/volBarBg.png"},
 	{Change, "project/resources/images/interfaz/change.png"},
 	{Change2, "project/resources/images/interfaz/change2.png"},
-	{Selected, "project/resources/images/interfaz/selected.png"},
 	{BuyButton, "project/resources/images/interfaz/button icons/Tienda/BuyButton.png"},
 	{EquipButton, "project/resources/images/interfaz/button icons/Tienda/EquipButton.png"},
 	{FireButton, "project/resources/images/interfaz/button icons/Tienda/FireButton.png"},
@@ -86,7 +84,6 @@ vector<Resources::ImageInfo> Resources::images_{
 	{stash_button, "project/resources/images/interfaz/button icons/Tienda/StashButton.png"},
 	{take, "project/resources/images/interfaz/button icons/Tienda/TakeButton.png"},
 	{vibration, "project/resources/images/interfaz/peligro.png"},
-	{whiterect, "project/resources/images/whiterect.png"},
 
 	// movimiento
 	{Avanzar, "project/resources/images/sprites/iconos movimiento/movimientoAvanzar.png"},
@@ -94,7 +91,6 @@ vector<Resources::ImageInfo> Resources::images_{
 	{RotarI, "project/resources/images/sprites/iconos movimiento/movimientoRotarIzquierda.png"},
 	{RotarDAlt, "project/resources/images/sprites/iconos movimiento/movimientoRotarDerechaAlt.png"},
 	{RotarIAlt, "project/resources/images/sprites/iconos movimiento/movimientoRotarIzquierdaAlt.png"},
-	{Interactuar, "project/resources/images/sprites/iconos movimiento/movimientoInteractuar.png"},
 	{Retroceder, "project/resources/images/sprites/iconos movimiento/movimientoRetroceder.png"},
 	{AvanzarBloqueado, "project/resources/images/sprites/iconos movimiento/movimientoAvanzarBloqueado.png"},
 	{RetrocederBloqueado, "project/resources/images/sprites/iconos movimiento/movimientoRetrocederBloqueado.png"},
@@ -104,8 +100,6 @@ vector<Resources::ImageInfo> Resources::images_{
 	{Cofre, "project/resources/images/interfaz/grids fondo/cofre.png"},
 	{PocionVida, "project/resources/images/sprites/iconos info/infoPocionVida.png"},
 	{PocionMana, "project/resources/images/sprites/iconos info/infoPocionMana.png"},
-	{PocionRess, "project/resources/images/sprites/iconos info/infoPocionRess.png"},
-	{Chat, "project/resources/images/sprites/iconos info/infoChat.png"},
 	{Configuracion, "project/resources/images/sprites/iconos info/infoConfiguracionAyuda.png"},
 
 	// combate
@@ -116,14 +110,11 @@ vector<Resources::ImageInfo> Resources::images_{
 
 	//Inventario
 	{Slot, "project/resources/images/sprites/iconos inventario/inventorySlot.png"},
-	{EmptySword, "project/resources/images/sprites/iconos inventario/inventorySword.png"},
-	{EmptyArmor, "project/resources/images/sprites/iconos inventario/inventoryArmor.png"},
 	{WeaponSlot, "project/resources/images/sprites/iconos inventario/weapon_slot.png"},
 	{ArmorSlot, "project/resources/images/sprites/iconos inventario/armor_slot.png"},
 	{inventory_slots, "project/resources/images/Menu/inventory_slots.png"},
 
 	// Armas clasicas
-	{Joker, "project/resources/images/sprites/iconos armas/joker.png"},
 	{Desarmado, "project/resources/images/sprites/iconos armas/desarmado.png"},
 	{Baston, "project/resources/images/sprites/iconos armas/baston.png"},
 	{Daga, "project/resources/images/sprites/iconos armas/daga.png"},
@@ -135,6 +126,7 @@ vector<Resources::ImageInfo> Resources::images_{
 	{Maza, "project/resources/images/sprites/iconos armas/maza.png"},
 	{ArcoPequeno, "project/resources/images/sprites/iconos armas/arco_ligero.png"},
 	{BallestaLigera, "project/resources/images/sprites/iconos armas/ballesta_ligera.png"},
+
 
 	// Armas marciales
 	{Alabarda, "project/resources/images/sprites/iconos armas/alabarda.png"},
@@ -152,6 +144,9 @@ vector<Resources::ImageInfo> Resources::images_{
 	{Tridente, "project/resources/images/sprites/iconos armas/tridente.png"},
 	{ArcoLargo, "project/resources/images/sprites/iconos armas/arco_largo.png"},
 	{BallestaPesada, "project/resources/images/sprites/iconos armas/ballesta_pesada.png"},
+	
+	/// TODO: BORRAR
+	{Joker, "project/resources/images/sprites/iconos armas/joker.png"},
 
 	// Armaduras
 	{Acolchada, "project/resources/images/sprites/iconos armaduras/acolchadaC.png"},
@@ -178,9 +173,6 @@ vector<Resources::ImageInfo> Resources::images_{
 	{GiantWorm, "project/resources/images/sprites/enemigos/giantworm.png" },
 	{Banshee, "project/resources/images/sprites/enemigos/banshee.png" },
 	{Lich, "project/resources/images/sprites/enemigos/lich.PNG"},
-	{Necrofago, "project/resources/images/sprites/iconos personajes/necrofago.png" },
-	//{ Monster, "project/resources/images/monster.png" },
-	//{ Desconocido, "project/resources/images/desconocido.png" },
 
 	// Ficha DD
 	{Pergamino, "project/resources/images/sprites/iconos ficha/pergamino.png"},
@@ -253,23 +245,23 @@ vector<Resources::TextMsgInfo> Resources::messages_{
 
 vector<Resources::MusicInfo> Resources::musics_{
 	//
-	{MenuInicial, "project/resources/sound/Musica/Menu principal.mp3"}, //
-	{Lobby, "project/resources/sound/Musica/Lobby.wav"}, //
-	{Exploracion, "project/resources/sound/Musica/Exploracion.mp3"}, //
-	{Combate, "project/resources/sound/Musica/Combate.mp3"}, //
-	{Derrota, "project/resources/sound/Musica/Derrota.mp3"}, //
-	{Creditos, "project/resources/sound/Musica/Creditos.mp3"}, //
-	{CombateBoss, "project/resources/sound/Musica/CombateBoss.mp3"} //
+	{MenuInicial, "project/resources/music/Menu principal.mp3"}, //
+	{Lobby, "project/resources/music/Lobby.wav"}, //
+	{Exploracion, "project/resources/music/Exploracion.mp3"}, //
+	{Combate, "project/resources/music/Combate.mp3"}, //
+	{Derrota, "project/resources/music/Derrota.mp3"}, //
+	{Creditos, "project/resources/music/Creditos.mp3"}, //
+	{CombateBoss, "project/resources/music/CombateBoss.mp3"} //
 };
 
 vector<Resources::SoundInfo> Resources::sounds_{
 	//
-	{AtaqueAgua, "project/resources/sound/Sonidos/ataque agua.mp3"}, //
-	{AtaqueFuego, "project/resources/sound/Sonidos/ataque fuego.mp3"}, //
-	{AtaqueLuz, "project/resources/sound/Sonidos/ataque luz.mp3"}, //
-	{AtaqueViento, "project/resources/sound/Sonidos/ataque viento.mp3"}, //
-	{Boton1, "project/resources/sound/Sonidos/boton 1.mp3"}, //
-	{Boton2, "project/resources/sound/Sonidos/boton 2.mp3"}, //
+	{AtaqueAgua, "project/resources/sound/ataque agua.mp3"}, //
+	{AtaqueFuego, "project/resources/sound/ataque fuego.mp3"}, //
+	{AtaqueLuz, "project/resources/sound/ataque luz.mp3"}, //
+	{AtaqueViento, "project/resources/sound/ataque viento.mp3"}, //
+	{Boton1, "project/resources/sound/boton 1.mp3"}, //
+	{Boton2, "project/resources/sound/boton 2.mp3"}, //
 };
 
 vector<Resources::JsonInfo> Resources::jsons_{
