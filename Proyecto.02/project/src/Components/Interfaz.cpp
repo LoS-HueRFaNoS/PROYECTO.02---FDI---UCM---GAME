@@ -128,7 +128,7 @@ void Interfaz::createEnemies()
 		double lado;
 		double margenBarra = w_ - tamBar_w;
 		if (enTemp == enemyTemplate::DRACOLICH || enTemp == enemyTemplate::HELLHOUND || enTemp == enemyTemplate::GIANTWORM) {
-			b_ = iManager->addButton<SDL_Object>(Vector2D(x_ + i * espace, y_), w_, h_, getEnemyTxt(i));
+			b_ = iManager->addButton<SDL_Object>(Vector2D(x_ + i * espace, y_), w_, h_, getEnemyTxt(i),true);
 		}
 		else {
 			if (nEnemies == 1) lado = h_;
@@ -137,7 +137,7 @@ void Interfaz::createEnemies()
 				margenBarra = espace - tamBar_w;
 			}
 
-			b_ = iManager->addButton<SDL_Object>(Vector2D(x_ + i * espace + espace / 2.0 - lado / 2.0, y_ + h_ - lado), lado, lado, getEnemyTxt(i));
+			b_ = iManager->addButton<SDL_Object>(Vector2D(x_ + i * espace + espace / 2.0 - lado / 2.0, y_ + h_ - lado), lado, lado, getEnemyTxt(i),true);
 		}
 
 		//BARRA DE VIDA
