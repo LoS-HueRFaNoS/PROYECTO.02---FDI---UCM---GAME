@@ -12,14 +12,14 @@ public:
 	SDL_Object(SDLGame* game, EntityManager* mngr) : Entity(game, mngr) {};
 	virtual ~SDL_Object() {};
 
-	virtual void init(SDL_Rect dest, Resources::TextureId imagen) {
-		initComponents(POS(dest), dest.w, dest.h, imagen);
+	virtual void init(SDL_Rect dest, Resources::TextureId imagen, bool animation = false) {
+		initComponents(POS(dest), dest.w, dest.h, imagen, animation);
 	};
-	
+
 	virtual void init(SDL_Rect dest, Texture* image);
 
-	virtual void init(Vector2D pos, uint ancho, uint alto, Resources::TextureId imagen) {
-		initComponents(pos, ancho, alto, imagen);
+	virtual void init(Vector2D pos, uint ancho, uint alto, Resources::TextureId imagen, bool animation = false) {
+		initComponents(pos, ancho, alto, imagen, animation);
 	};
 
 	virtual void init(Vector2D pos, uint ancho, uint alto, Texture* imagen) {
@@ -27,7 +27,7 @@ public:
 	};
 
 protected:
-	void initComponents(Vector2D pos, uint ancho, uint alto, Resources::TextureId imagen);
+	void initComponents(Vector2D pos, uint ancho, uint alto, Resources::TextureId imagen, bool animation = false);
 	void initComponents(Vector2D pos, uint ancho, uint alto, Texture* imagen);
 
 };
