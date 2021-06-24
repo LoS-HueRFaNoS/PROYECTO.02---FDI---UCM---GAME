@@ -3,15 +3,18 @@
 
     {
       "Name": "Fists",
+      "Description": "Bare hands",
       "Hands": 0,
       "Ndice": 1,
       "Damage": 3,
+      "Sell": 0,
+      "Buy": 0,
       "Type": 0,
       "Marcial": false,
       "DamageElement": [
         {
           "Key": "Blunt",
-          "Value": 0.0
+          "Value": 0.1
         },
         {
           "Key": "Pierce",
@@ -54,6 +57,9 @@
 
     {
       "Name": "Staff",
+      "Description": "A long stick that can cause 1d8 of blunt damage",
+      "Buy": 120,
+      "Sell": 90,
       "Hands": 2,
       "Ndice": 1,
       "Damage": 8,
@@ -62,7 +68,7 @@
       "DamageElement": [
         {
           "Key": "Blunt",
-          "Value": 0.0
+          "Value": 0.2
         },
         {
           "Key": "Pierce",
@@ -105,6 +111,9 @@
 
     {
       "Name": "Dagger",
+      "Description": "A small knife with a rusty blade that can cause 1d4 of pierce and slash damage",
+      "Buy": 120,
+      "Sell": 90,
       "Hands": 1,
       "Ndice": 1,
       "Damage": 4,
@@ -117,11 +126,11 @@
         },
         {
           "Key": "Pierce",
-          "Value": 0.0
+          "Value": 0.1
         },
         {
           "Key": "Slash",
-          "Value": 0.0
+          "Value": 0.1
         },
         {
           "Key": "Fire",
@@ -156,6 +165,9 @@
 
     {
       "Name": "Club",
+      "Description": "A short staff with spikes that can cause 1d8 of blunt and pierce damage",
+      "Buy": 130,
+      "Sell": 100,
       "Hands": 2,
       "Ndice": 1,
       "Damage": 8,
@@ -164,11 +176,11 @@
       "DamageElement": [
         {
           "Key": "Blunt",
-          "Value": 0.0
+          "Value": 0.2
         },
         {
           "Key": "Pierce",
-          "Value": 0.0
+          "Value": 0.1
         },
         {
           "Key": "Slash",
@@ -207,6 +219,9 @@
 
     {
       "Name": "Small Axe",
+      "Description": "A one-handed axe that can cause 1d6 of slash damage",
+      "Buy": 120,
+      "Sell": 90,
       "Hands": 1,
       "Ndice": 1,
       "Damage": 6,
@@ -223,7 +238,7 @@
         },
         {
           "Key": "Slash",
-          "Value": 0.0
+          "Value": 0.2
         },
         {
           "Key": "Fire",
@@ -258,6 +273,9 @@
 
     {
       "Name": "Sickle",
+      "Description": "A one-handed scythe that can cause 1d4 of slash damage",
+      "Buy": 120,
+      "Sell": 90,
       "Hands": 1,
       "Ndice": 1,
       "Damage": 4,
@@ -274,7 +292,7 @@
         },
         {
           "Key": "Slash",
-          "Value": 0.0
+          "Value": 0.2
         },
         {
           "Key": "Fire",
@@ -309,6 +327,9 @@
 
     {
       "Name": "Spear",
+      "Description": "A long staff with a pointed metal head that can cause 1d12 of pierce damage",
+      "Buy": 140,
+      "Sell": 110,
       "Hands": 2,
       "Ndice": 1,
       "Damage": 12,
@@ -321,7 +342,7 @@
         },
         {
           "Key": "Pierce",
-          "Value": 0.0
+          "Value": 0.4
         },
         {
           "Key": "Slash",
@@ -360,6 +381,9 @@
 
     {
       "Name": "Small Hammer",
+      "Description": "A one-handed hammer that can cause 1d4 of blunt damage",
+      "Buy": 120,
+      "Sell": 90,
       "Hands": 2,
       "Ndice": 1,
       "Damage": 4,
@@ -368,7 +392,7 @@
       "DamageElement": [
         {
           "Key": "Blunt",
-          "Value": 0.0
+          "Value": 0.2
         },
         {
           "Key": "Pierce",
@@ -411,6 +435,9 @@
 
     {
       "Name": "Mace",
+      "Description": "A club with a big metal head that can cause 1d6 of blunt damage",
+      "Buy": 140,
+      "Sell": 110,
       "Hands": 2,
       "Ndice": 1,
       "Damage": 6,
@@ -419,7 +446,7 @@
       "DamageElement": [
         {
           "Key": "Blunt",
-          "Value": 0.0
+          "Value": 0.4
         },
         {
           "Key": "Pierce",
@@ -462,6 +489,9 @@
 
     {
       "Name": "Small Bow",
+      "Description": "A simple bow made of wood that can cause 1d6 of pierce damage",
+      "Buy": 150,
+      "Sell": 120,
       "Hands": 2,
       "Ndice": 1,
       "Damage": 6,
@@ -474,7 +504,7 @@
         },
         {
           "Key": "Pierce",
-          "Value": 0.0
+          "Value": 0.5
         },
         {
           "Key": "Slash",
@@ -513,6 +543,9 @@
 
     {
       "Name": "Small Crossbow",
+      "Description": "A small crossbow made of wood that can cause 1d8 of pierce damage",
+      "Buy": 160,
+      "Sell": 130,
       "Hands": 2,
       "Ndice": 1,
       "Damage": 8,
@@ -525,7 +558,7 @@
         },
         {
           "Key": "Pierce",
-          "Value": 0.0
+          "Value": 0.6
         },
         {
           "Key": "Slash",
@@ -564,6 +597,9 @@
 
     {
       "Name": "Halberd",
+      "Description": "A poled-weapon with an axe head that can cause 1d10 of slash and pierce damage",
+      "Buy": 170,
+      "Sell": 140,
       "Hands": 2,
       "Ndice": 1,
       "Damage": 10,
@@ -576,11 +612,11 @@
         },
         {
           "Key": "Pierce",
-          "Value": 0.0
+          "Value": 0.2
         },
         {
           "Key": "Slash",
-          "Value": 0.0
+          "Value": 0.5
         },
         {
           "Key": "Fire",
@@ -615,6 +651,9 @@
 
     {
       "Name": "Giant Hammer",
+      "Description": "A huge hammer that can cause 2d6 of blunt damage",
+      "Buy": 150,
+      "Sell": 120,
       "Hands": 2,
       "Ndice": 2,
       "Damage": 6,
@@ -623,7 +662,7 @@
       "DamageElement": [
         {
           "Key": "Blunt",
-          "Value": 0.0
+          "Value": 0.5
         },
         {
           "Key": "Pierce",
@@ -666,6 +705,9 @@
 
     {
       "Name": "Shortsword",
+      "Description": "A small one-handed sword that can cause 1d6 of slash and pierce damage",
+      "Buy": 160,
+      "Sell": 130,
       "Hands": 1,
       "Ndice": 1,
       "Damage": 6,
@@ -678,11 +720,11 @@
         },
         {
           "Key": "Pierce",
-          "Value": 0.0
+          "Value": 0.3
         },
         {
           "Key": "Slash",
-          "Value": 0.0
+          "Value": 0.3
         },
         {
           "Key": "Fire",
@@ -717,6 +759,9 @@
 
     {
       "Name": "Longsword",
+      "Description": "A big one-handed sword that can cause 1d8 of slash and pierce damage",
+      "Buy": 150,
+      "Sell": 120,
       "Hands": 1,
       "Ndice": 1,
       "Damage": 8,
@@ -729,11 +774,11 @@
         },
         {
           "Key": "Pierce",
-          "Value": 0.0
+          "Value": 0.2
         },
         {
           "Key": "Slash",
-          "Value": 0.0
+          "Value": 0.3
         },
         {
           "Key": "Fire",
@@ -768,6 +813,9 @@
 
     {
       "Name": "Greatsword",
+      "Description": "A two-handed sword that can cause 2d6 of slash and pierce damage",
+      "Buy": 160,
+      "Sell": 130,
       "Hands": 2,
       "Ndice": 2,
       "Damage": 6,
@@ -780,11 +828,11 @@
         },
         {
           "Key": "Pierce",
-          "Value": 0.0
+          "Value": 0.3
         },
         {
           "Key": "Slash",
-          "Value": 0.0
+          "Value": 0.3
         },
         {
           "Key": "Fire",
@@ -819,6 +867,9 @@
 
     {
       "Name": "Rapier",
+      "Description": "An elegant one-handed sword that can cause 1d8 of slash and pierce damage",
+      "Buy": 180,
+      "Sell": 150,
       "Hands": 1,
       "Ndice": 1,
       "Damage": 8,
@@ -831,11 +882,11 @@
         },
         {
           "Key": "Pierce",
-          "Value": 0.0
+          "Value": 0.6
         },
         {
           "Key": "Slash",
-          "Value": 0.0
+          "Value": 0.2
         },
         {
           "Key": "Fire",
@@ -870,6 +921,9 @@
 
     {
       "Name": "Battle Axe",
+      "Description": "A huge axe with two blades that can cause 1d12 of slash and blunt damage",
+      "Buy": 180,
+      "Sell": 150,
       "Hands": 2,
       "Ndice": 1,
       "Damage": 12,
@@ -878,7 +932,7 @@
       "DamageElement": [
         {
           "Key": "Blunt",
-          "Value": 0.0
+          "Value": 0.2
         },
         {
           "Key": "Pierce",
@@ -886,7 +940,7 @@
         },
         {
           "Key": "Slash",
-          "Value": 0.0
+          "Value": 0.6
         },
         {
           "Key": "Fire",
@@ -921,6 +975,9 @@
 
     {
       "Name": "Glaive",
+      "Description": "A pole-weapon with a blade that can cause 1d10 of slash and pierce damage",
+      "Buy": 170,
+      "Sell": 140,
       "Hands": 2,
       "Ndice": 1,
       "Damage": 10,
@@ -933,11 +990,11 @@
         },
         {
           "Key": "Pierce",
-          "Value": 0.0
+          "Value": 0.4
         },
         {
           "Key": "Slash",
-          "Value": 0.0
+          "Value": 0.3
         },
         {
           "Key": "Fire",
@@ -972,6 +1029,9 @@
 
     {
       "Name": "Whip",
+      "Description": "A leather whip that can cause 1d4 of slash and blunt damage",
+      "Buy": 170,
+      "Sell": 140,
       "Hands": 1,
       "Ndice": 1,
       "Damage": 4,
@@ -980,7 +1040,7 @@
       "DamageElement": [
         {
           "Key": "Blunt",
-          "Value": 0.0
+          "Value": 0.2
         },
         {
           "Key": "Pierce",
@@ -988,7 +1048,7 @@
         },
         {
           "Key": "Slash",
-          "Value": 0.0
+          "Value": 0.5
         },
         {
           "Key": "Fire",
@@ -1023,6 +1083,9 @@
 
     {
       "Name": "Morning Star",
+      "Description": "A club with a metal head with spikes that can cause 1d8 of blunt and pierce damage",
+      "Buy": 160,
+      "Sell": 130,
       "Hands": 1,
       "Ndice": 1,
       "Damage": 8,
@@ -1031,11 +1094,11 @@
       "DamageElement": [
         {
           "Key": "Blunt",
-          "Value": 0.0
+          "Value": 0.3
         },
         {
           "Key": "Pierce",
-          "Value": 0.0
+          "Value": 0.3
         },
         {
           "Key": "Slash",
@@ -1074,6 +1137,9 @@
 
     {
       "Name": "Warhammer",
+      "Description": "A huge metal hammer that can cause 1d10 of blunt damage",
+      "Buy": 160,
+      "Sell": 130,
       "Hands": 2,
       "Ndice": 1,
       "Damage": 10,
@@ -1082,7 +1148,7 @@
       "DamageElement": [
         {
           "Key": "Blunt",
-          "Value": 0.0
+          "Value": 0.6
         },
         {
           "Key": "Pierce",
@@ -1124,7 +1190,10 @@
     },
 
     {
-      "Name": "Pica",
+      "Name": "Pike",
+      "Description": "A long thrusting spear that can cause 1d10 of pierce damage",
+      "Buy": 160,
+      "Sell": 130,
       "Hands": 2,
       "Ndice": 1,
       "Damage": 10,
@@ -1137,7 +1206,7 @@
         },
         {
           "Key": "Pierce",
-          "Value": 0.0
+          "Value": 0.6
         },
         {
           "Key": "Slash",
@@ -1176,6 +1245,9 @@
 
     {
       "Name": "Trident",
+      "Description": "A polearm with three spikes that can cause 1d6 of pierce and slash damage",
+      "Buy": 180,
+      "Sell": 150,
       "Hands": 1,
       "Ndice": 1,
       "Damage": 6,
@@ -1188,11 +1260,11 @@
         },
         {
           "Key": "Pierce",
-          "Value": 0.0
+          "Value": 0.4
         },
         {
           "Key": "Slash",
-          "Value": 0.0
+          "Value": 0.4
         },
         {
           "Key": "Fire",
@@ -1227,6 +1299,9 @@
 
     {
       "Name": "Long Bow",
+      "Description": "A big metal bow that can cause 1d8 of pierce and slash damage",
+      "Buy": 170,
+      "Sell": 140,
       "Hands": 2,
       "Ndice": 1,
       "Damage": 8,
@@ -1239,7 +1314,7 @@
         },
         {
           "Key": "Pierce",
-          "Value": 0.0
+          "Value": 0.7
         },
         {
           "Key": "Slash",
@@ -1278,6 +1353,9 @@
 
     {
       "Name": "Heavy Crossbow",
+      "Description": "A big metal crossbow that can cause 1d10 of pierce and slash damage",
+      "Buy": 170,
+      "Sell": 140,
       "Hands": 2,
       "Ndice": 1,
       "Damage": 10,
@@ -1290,7 +1368,7 @@
         },
         {
           "Key": "Pierce",
-          "Value": 0.0
+          "Value": 0.7
         },
         {
           "Key": "Slash",

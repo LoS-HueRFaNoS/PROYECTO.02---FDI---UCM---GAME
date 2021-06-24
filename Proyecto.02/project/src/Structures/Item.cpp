@@ -23,7 +23,7 @@ void Item::elementalAfinity()
 void Weapon::loadWeaponTemplate(jute::jValue v, weaponId t)
 {
 	_name = v["Armas"][size_t(t)]["Name"].as_string();
-	_description = "An interesting weapon";
+	_description = v["Armas"][size_t(t)]["Description"].as_string();
 
 	int _damType = v["Armas"][size_t(t)]["Type"].as_int();
 	_damageType = damageType(_damType);
@@ -31,6 +31,9 @@ void Weapon::loadWeaponTemplate(jute::jValue v, weaponId t)
 	marcial = v["Armas"][size_t(t)]["Marcial"].as_bool();
 
 	damage = v["Armas"][size_t(t)]["Damage"].as_int();
+
+	sellValue = v["Armas"][size_t(t)]["Sell"].as_int();
+	buyValue = v["Armas"][size_t(t)]["Buy"].as_int();
 
 	diceNumber = v["Armas"][size_t(t)]["Ndice"].as_int();
 
@@ -52,6 +55,9 @@ void Armor::loadArmorTemplate(jute::jValue v, armorId t)
 {
 	_name = v["Armaduras"][size_t(t)]["Name"].as_string();
 	_description = v["Armaduras"][size_t(t)]["Description"].as_string();
+
+	sellValue = v["Armaduras"][size_t(t)]["Sell"].as_int();
+	buyValue = v["Armaduras"][size_t(t)]["Buy"].as_int();
 
 	// Guardamos las debilidades en un vector para luego inicializarlas
 	vector<float> weak = vector<float>();
