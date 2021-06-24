@@ -63,3 +63,11 @@ void EntityManager::removeEntity(Entity* e)
 	}
 }
 
+void EntityManager::removeEntities()
+{
+	for (auto it = entities.begin(); it != entities.end();)
+	{
+		it = entities.erase(it);
+	}
+}
+

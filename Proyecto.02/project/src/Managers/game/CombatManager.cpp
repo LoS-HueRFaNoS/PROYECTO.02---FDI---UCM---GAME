@@ -325,10 +325,12 @@ void CombatManager::castHability(Hability* hability)
 
 bool CombatManager::isMagicAttack()
 {
-	if (_habilityToCast->getID() == habID::LIGHTATTACK || _habilityToCast->getID() == habID::HEAVYSTRIKE)
-		return false;
-	else
-		return true;
+	if (_habilityToCast != nullptr) {
+		if (_habilityToCast->getID() == habID::LIGHTATTACK || _habilityToCast->getID() == habID::HEAVYSTRIKE)
+			return false;
+		else
+			return true;
+	}
 }
 
 void CombatManager::resetHabilityToCast()

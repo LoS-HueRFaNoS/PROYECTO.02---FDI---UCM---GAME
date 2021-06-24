@@ -5,7 +5,6 @@
 
 void ObjectChest::Init()
 {
-	SDL_Panel pan = game_->relativePanel(1470, 320, 420, 410, 1, 4, 30, 30, 10, 10, 0, 5);
 	MousePanelMecanics::Init(1, set_FE::UP);
 	ObjectPanel::Init(pan);
 	addTemplate();
