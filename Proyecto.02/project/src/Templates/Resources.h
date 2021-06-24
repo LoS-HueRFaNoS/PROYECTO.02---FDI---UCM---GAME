@@ -41,22 +41,11 @@ public:
 		salidaMiniMap,
 		texto_salida,
 
-		lobFondo,
-		mFondo,
-		close,
-
 		start,
 		options,
-		howToPlay,
 		quit,
-
-		cargando,
-
-		// text
-		HelloWorld,
-		PressAnyKey,
-		GameOverWon,
-		GameOverLost,
+		mFondo,
+		close,
 
 		// heroes
 		_firstHeroRId_,
@@ -78,7 +67,6 @@ public:
 		Fondo2,
 		Change,
 		Change2,
-		Selected,
 		Button_transition,
 		Cartel,
 		VolumeBar,
@@ -94,7 +82,6 @@ public:
 		inventory_button,
 		take, 
 		vibration,
-		whiterect,
 
 		// carteles tutorial
 		_firstCartelId_,
@@ -123,18 +110,15 @@ public:
 		RotarI,
 		RotarDAlt,
 		RotarIAlt,
-		Interactuar,
 		Retroceder,
 		AvanzarBloqueado,
 		RetrocederBloqueado,
-
+		
 		//Info
 		Inventario,
 		Cofre,
 		PocionVida,
 		PocionMana,
-		PocionRess,
-		Chat,
 		Configuracion,
 
 		//Combate
@@ -143,14 +127,13 @@ public:
 		Enter,
 		Huida,
 
-//Inventario
+		//Inventario
 		Slot,
-		EmptySword,
-		EmptyArmor,
 		WeaponSlot,
 		ArmorSlot,
 		inventory_slots,
-//Objetos
+
+		//Objetos
 		_firstWeaponId_,
 		Desarmado,
 		Baston,
@@ -164,7 +147,7 @@ public:
 		ArcoPequeno,
 		BallestaLigera,
 
-//Armas Marciales
+		//Armas Marciales
 		Alabarda,
 		Atarraga,
 		EspadaCorta,
@@ -180,10 +163,10 @@ public:
 		Tridente,
 		ArcoLargo,
 		BallestaPesada,
-
+		
 		// Comodin
 		Joker,
-
+		
 		//Armaduras
 		_firstArmorId_,
 		Acolchada,
@@ -210,12 +193,7 @@ public:
 		Banshee,
 		DeathKnight,
 		Dracolich,
-		
-		
 		Lich,
-		Necrofago,
-		//Monster,
-		//Desconocido,
 
 		//Ficha DD
 		Pergamino,
@@ -260,10 +238,8 @@ public:
 		OdaDeLosGladiadores,
 		OdaDeViento,
 		Determinacion,
-
-
-		Bendicion,		
-		Espinas,		
+		Bendicion,
+		Espinas,
 	}; using txtID = TextureId;
 
 	enum AudioId : std::size_t {

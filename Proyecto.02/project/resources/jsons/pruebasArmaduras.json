@@ -4,6 +4,8 @@
     {
       "Name": "Padded",
       "Description": "Standard armor, able to resist a few hits",
+      "Buy": 130,
+      "Sell": 100,
       "Weaknesses": [
         {
           "Key": "Blunt",
@@ -53,6 +55,8 @@
     {
       "Name": "Studded Leather",
       "Description": "A resistant armor, capable of protecting against heavy attacks",
+      "Buy": 130,
+      "Sell": 100,
       "Weaknesses": [
         {
           "Key": "Blunt",
@@ -102,6 +106,8 @@
     {
       "Name": "Scale Coat",
       "Description": "Armor made of scales, pretty resistant against slashes",
+      "Buy": 150,
+      "Sell": 120,
       "Weaknesses": [
         {
           "Key": "Blunt",
@@ -151,6 +157,8 @@
     {
       "Name": "Breastplate",
       "Description": "Heavy armor, almost impenetrable with hits and slashes",
+      "Buy": 200,
+      "Sell": 170,
       "Weaknesses": [
         {
           "Key": "Blunt",
@@ -200,6 +208,8 @@
     {
       "Name": "Semi-plates",
       "Description": "A really completed armor, resistant to all types of physical attacks",
+      "Buy": 160,
+      "Sell": 130,
       "Weaknesses": [
         {
           "Key": "Blunt",
@@ -249,6 +259,8 @@
     {
       "Name": "Chain Mail",
       "Description": "A light armor that makes it pretty easy to resist piercing attacks",
+      "Buy": 160,
+      "Sell": 130,
       "Weaknesses": [
         {
           "Key": "Blunt",
@@ -298,6 +310,8 @@
     {
       "Name": "Bands",
       "Description": "An extremely resistant armor, capable of protecting against all types of physical damage",
+      "Buy": 190,
+      "Sell": 160,
       "Weaknesses": [
         {
           "Key": "Blunt",
@@ -347,6 +361,8 @@
     {
       "Name": "Plates",
       "Description": "A metal armor, the most valuable armor you will find in the maze",
+      "Buy": 210,
+      "Sell": 180,
       "Weaknesses": [
         {
           "Key": "Blunt",

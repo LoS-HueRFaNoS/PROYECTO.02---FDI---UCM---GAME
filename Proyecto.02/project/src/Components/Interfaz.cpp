@@ -128,7 +128,7 @@ void Interfaz::createEnemies()
 		double lado;
 		double margenBarra = w_ - tamBar_w;
 		if (enTemp == enemyTemplate::DRACOLICH || enTemp == enemyTemplate::HELLHOUND || enTemp == enemyTemplate::GIANTWORM) {
-			b_ = iManager->addButton<SDL_Object>(Vector2D(x_ + i * espace, y_), w_, h_, getEnemyTxt(i));
+			b_ = iManager->addButton<SDL_Object>(Vector2D(x_ + i * espace, y_), w_, h_, getEnemyTxt(i),true);
 		}
 		else {
 			if (nEnemies == 1) lado = h_;
@@ -137,7 +137,7 @@ void Interfaz::createEnemies()
 				margenBarra = espace - tamBar_w;
 			}
 
-			b_ = iManager->addButton<SDL_Object>(Vector2D(x_ + i * espace + espace / 2.0 - lado / 2.0, y_ + h_ - lado), lado, lado, getEnemyTxt(i));
+			b_ = iManager->addButton<SDL_Object>(Vector2D(x_ + i * espace + espace / 2.0 - lado / 2.0, y_ + h_ - lado), lado, lado, getEnemyTxt(i),true);
 		}
 
 		//BARRA DE VIDA
@@ -182,7 +182,6 @@ void Interfaz::createMovement()
 	p->addButton(iManager->addButton<ButtonMovimiento>(Vector2D(x_ + 0, y_), w_, h_, src::RotarI, MovType::rotL));
 	p->addButton(iManager->addButton<ButtonMovimiento>(Vector2D(x_ + espace, y_), w_, h_, src::Avanzar, MovType::forward));
 	p->addButton(iManager->addButton<ButtonMovimiento>(Vector2D(x_ + espace * 2, y_), w_, h_, src::RotarD, MovType::rotR));
-	//p->addButton(iManager->addButton<ButtonMovimiento>(Vector2D(x_ + espace * 3, y_), w_, h_, src::Interactuar, MovType::touch));
 }
 
 void Interfaz::createHeroes()
@@ -267,9 +266,7 @@ void Interfaz::createInfo()
 	ButtonPotion* bp2_ = iManager->addButton<ButtonPotion>(Vector2D(x_ + 2 * espace_H, y_ + 1 * espace_V), w_, h_, src::PocionMana, PtnType::mana);
 	bp2_->addComponent<Contador>(PtnType::mana);
 	p->addButton(bp2_);
-	//p->addButton(iManager->addButton<ButtonPotion>(Vector2D(width * 5 / 7, height * 5 / 6 + space), tamBoton * 0.8, tamBoton * 0.8, src::PocionRess, PtnType::resurrection));
 
-	//p->addButton(iManager->addButton<ButtonPanel>(Vector2D(x_ + 3 * espace_H, y_ + 0 * espace_V), w_, h_, src::Chat, Chat, false));
 	p->addButton(iManager->addButton<ButtonSettings>(Vector2D(x_ + 3 * espace_H, y_ + 0 * espace_V), w_, h_, src::Change));
 	p->addButton(iManager->addButton<ButtonPanel>(Vector2D(x_ + 3 * espace_H, y_ + 1 * espace_V), w_, h_, src::Configuracion, Settings, false));
 

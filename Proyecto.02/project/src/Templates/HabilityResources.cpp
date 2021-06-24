@@ -1,5 +1,6 @@
 #include "HabilityResources.h"
 #include "../GameObjects/Character.h"
+#include "../Managers/game/ChatManager.h"
 #include "RPGLogic.h"
 
 
@@ -22,30 +23,41 @@ void LightAttack::throwHability(Character* obj, bool critical) const
 	int damage = throwDice(w->getNDice(), w->getDamage(), true);
 
 	obj->recieveDamage(damage, w->getDamageType(), _caster);
+
 	int elementalDamage = 0;
 	for (int i = 0; i < (int)damageType::_lastDamageTypeId_; i++) {
 		elementalDamage = damage * w->getElementalAfinity().getWeakness((damageType)i);
 		if (elementalDamage >= 1)
 			obj->recieveDamage(elementalDamage, (damageType)i);
-	}
+	}		
 }
 
 void HeavyStrike::throwHability(Character* obj, bool critical) const
 {
 	Weapon* w = _caster->getWeapon();
 
-	int damage = throwDice(w->getNDice(), w->getDamage(), true) * 2;
+	if (critical || throwDice(1, 20, true) > 13)
+	{
+		std::string out = obj->name() + " recives a heavy strike";
+		cout << out << endl;
+		ChatManager::instance()->add(out, obj->getType() == characterType::HERO ? LineColor::Red : LineColor::Green);
 
-	if (obj->savingThrow(5 + _caster->getMod(_mod), ms::DEX))
-		cout << "You missed your heavy hit" << endl;
-	else {
-		obj->recieveDamage(damage, _damageType, _caster);
 		int elementalDamage = 0;
+		int damage = throwDice(w->getNDice(), w->getDamage(), true);
+		obj->recieveDamage(damage * 2, w->getDamageType(), _caster);
+
 		for (int i = 0; i < (int)damageType::_lastDamageTypeId_; i++) {
 			elementalDamage = damage * w->getElementalAfinity().getWeakness((damageType)i);
 			if (elementalDamage >= 1)
 				obj->recieveDamage(elementalDamage, (damageType)i);
 		}
+	}
+
+	else
+	{
+		std::string out = obj->name() +  " blocks the heavy strike (The throw is less than 14)";
+		cout << out << endl;
+		ChatManager::instance()->add(out, obj->getType() == characterType::HERO ? LineColor::Green : LineColor::Red);
 	}
 }
 
@@ -91,6 +103,7 @@ void WindBurst::throwHability(Character* obj, bool critical) const
 	damage = obj->savingThrow(10 + _caster->getMod(_mod), ms::DEX) ? damage / 2 : damage;
 
 	obj->recieveDamage(damage, _damageType, _caster);
+
 	obj->addCondition<BuffStats>(_caster, -2, ms::CON, _name, _description);
 }
 
