@@ -59,4 +59,5 @@ public:
 	virtual void init(SDL_Rect size, string line, Resources::FontId font, const SDL_Color& color);
 
 	std::string getLine() { return texto; };
+	void setLine(string line, Resources::FontId font, const SDL_Color& color);
 };

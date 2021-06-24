@@ -141,7 +141,7 @@ void Interfaz::createEnemies()
 		}
 
 		//BARRA DE VIDA
-		b_->addComponent<StateBar>(enemy, health, SDL_Rect(RECT((x_ + i * espace + margenBarra / 2.0), (y_ + h_ / 10.0), tamBar_w, tamBar_h)));
+		b_->addComponent<StateBar>(enemy, BarType::health, SDL_Rect(RECT((x_ + i * espace + margenBarra / 2.0), (y_ + h_ / 10.0), tamBar_w, tamBar_h)));
 		b_->addComponent<BorrarAlMorir>(this, i, enemy);
 		//b_->addComponent<StateBar>(enemies[i], mana, SDL_Rect(RECT((x_ + i * espace), (y_ + h_ * 2.5 / k), w_ * 2, h_ / k)));
 		p->addButton(b_);
@@ -219,9 +219,9 @@ void Interfaz::createHeroes()
 		{
 			ButtonHero* b_ = iManager->addButton<ButtonHero>(Vector2D(x_, y_ + i * espace), w_, h_, getHeroTxt(i), (HeroNum)i, DDPan, false);
 			uint k = 6;
-			b_->addComponent<StateBar>(heroes[i], health, SDL_Rect(RECT((x_ + w_ + n), (y_ + i * espace + h_ * 1 / k), w_ * 2, h_ / k)));
-			b_->addComponent<StateBar>(heroes[i], mana, SDL_Rect(RECT((x_ + w_ + n), (y_ + i * espace + h_ * 2.5 / k), w_ * 2, h_ / k)));
-			b_->addComponent<StateBar>(heroes[i], experience, SDL_Rect(RECT((x_ + w_ + n), (y_ + i * espace + h_ * 4 / k), w_ * 2, h_ / k)));
+			b_->addComponent<StateBar>(heroes[i], BarType::health, SDL_Rect(RECT((x_ + w_ + n), (y_ + i * espace + h_ * 1 / k), w_ * 2, h_ / k)));
+			b_->addComponent<StateBar>(heroes[i], BarType::mana, SDL_Rect(RECT((x_ + w_ + n), (y_ + i * espace + h_ * 2.5 / k), w_ * 2, h_ / k)));
+			b_->addComponent<StateBar>(heroes[i], BarType::experience, SDL_Rect(RECT((x_ + w_ + n), (y_ + i * espace + h_ * 4 / k), w_ * 2, h_ / k)));
 			p->addButton(b_);
 		}
 	}
@@ -1111,11 +1111,7 @@ void Interfaz::createGuide()
 
 void Interfaz::createTurns()
 {
-	// construccion y asignacion del panel:
-	Panel* p = new Panel(Turns);
-	allPanels[Turns] = p;
-
-	TheElementalMaze::instance()->addComponent<PanelTurns>(game_, p, iManager);
+	TheElementalMaze::instance()->addComponent<PanelTurns>(game_);
 }
 
 void Interfaz::createInventoryLobby()
@@ -1667,7 +1663,7 @@ void Interfaz::update()
 			togglePanel(Movement);
 			createPanel(Fight);
 			createPanel(Enemies);
-			//createPanel(Turns);
+			createPanel(Turns);
 			toggleMinimap();
 		}
 		break;
