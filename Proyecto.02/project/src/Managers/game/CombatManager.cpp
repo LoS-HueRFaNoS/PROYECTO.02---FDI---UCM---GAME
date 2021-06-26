@@ -325,10 +325,12 @@ void CombatManager::castHability(Hability* hability)
 
 bool CombatManager::isMagicAttack()
 {
-	if (_habilityToCast->id() != LightAttack::id() || _habilityToCast->id() != HeavyStrike::id())
-		return true;
-	else
-		return false;
+	if (_habilityToCast != nullptr) {
+		if (_habilityToCast->getID() == habID::LIGHTATTACK || _habilityToCast->getID() == habID::HEAVYSTRIKE)
+			return false;
+		else
+			return true;
+	}
 }
 
 void CombatManager::resetHabilityToCast()
@@ -336,7 +338,6 @@ void CombatManager::resetHabilityToCast()
 	_habilityToCast = nullptr;
 	_state = ACTION_PHASE_SPELL;
 }
-
 
 void CombatManager::castToTeam()
 {

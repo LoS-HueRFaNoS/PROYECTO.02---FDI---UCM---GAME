@@ -10,11 +10,12 @@
 
 class Image: public Component {
 public:
-	Image(Texture* tex) :
+	Image(Texture* tex, bool animation = false) :
 		Component(ecs::Image),
 		tr_(nullptr), //
 		tex_(tex), //
-		hide(false)
+		hide(false),
+		animation(animation)
 	{}
 	virtual ~Image() {
 		tex_ = nullptr;
@@ -27,10 +28,46 @@ public:
 
 	void draw() override {
 		if (!hide) {
-			SDL_Rect dest = { int(tr_->getPos().getX()), int(tr_->getPos().getY()), int(tr_->getW()), int(tr_->getH()) };
+		if (animation) {
+			renderIdle(dest);
+			}
+
+
+		else {
+			dest = { int(tr_->getPos().getX()), int(tr_->getPos().getY()), int(tr_->getW()), int(tr_->getH()) };
 			tex_->render(dest, tr_->getRot());
 		}
+		}
 	}
+
+	bool Limite(bool& avanza, int rectX, int textW) {
+
+		if (rectX >= textW * 3 / 4 || rectX <= 0) {
+
+			avanza = !avanza;
+		}
+
+		return avanza;
+	}
+
+	void renderIdle(SDL_Rect& dest) {
+
+		SDL_Rect clip;
+
+		dest = { int(tr_->getPos().getX()), int(tr_->getPos().getY()), int(tr_->getW()), int(tr_->getH()) };
+		clip = { int(division), int(0), tex_->getWidth() / 4, tex_->getHeight() };
+		tex_->render(dest, clip);
+
+
+		if (!limite) {
+			division += tex_->getWidth() / 4;
+		}
+		else
+			division -= tex_->getWidth() / 4;
+
+		limite = Limite(limite, division, tex_->getWidth());
+	}
+
 
 	void setHide(bool set) { hide = set; };
 
@@ -41,4 +78,10 @@ private:
 	Transform *tr_;
 	Texture *tex_;
 	bool hide;
+
+	bool animation = true;
+	SDL_Rect dest;
+	bool limite = false;
+	int cont = 0;
+	int division = 0;
 };

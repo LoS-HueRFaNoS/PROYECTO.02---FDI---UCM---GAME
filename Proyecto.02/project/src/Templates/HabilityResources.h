@@ -128,7 +128,7 @@ public:
 		_mana = 0;
 		_name = "Light Attack";
 		//_description = "Golpe to guapo con el arma, a terminar";
-		_description = "Light attack with weapons. Easy to make damage, but is a really weak attack";
+		_description = "Light attack with weapons. Easy to deal damage, but is a really weak attack";
 
 		_id = habID::LIGHTATTACK;
 		_habilityType = habTy::ATTACK;
@@ -171,7 +171,7 @@ public:
 		_mana = 0;
 		_name = "BloodyStrike";
 		//_description = "Esto es un ejemplo, hace 1d5 de daño";
-		_description = "Attack that makes 1d5 of damage and inflicts bleeding";
+		_description = "Attack that deals 1d5 of damage and inflicts bleeding";
 
 		_id = habID::BLOODYSTRIKE;
 		_damageType = damTy::SLASH;
@@ -259,7 +259,7 @@ public:
 		level = 4;
 		_mana = 6;
 		_name = "WindBurst";
-		_description = "Wind attack that makes 6d4 to the enemy team against with DEX save throw. If it hits, it reduces the DEX value in the enemies";
+		_description = "Wind attack that deals 6d4 to the enemy team against with DEX save throw. If it hits, it reduces the DEX value in the enemies";
 
 		_id = habID::WINDBURST;
 		_damageType = damTy::WIND;
@@ -280,7 +280,7 @@ public:
 		level = 2;
 		_mana = 4;
 		_name = "Wind Slash";
-		_description = "Wind attack that makes 1d8 to the enemy team against with DEX save throw";
+		_description = "Wind attack that deals 1d8 to the enemy team against with DEX save throw";
 
 		_id = habID::WINDSLASH;
 		_damageType = damTy::WIND;
@@ -301,7 +301,7 @@ public:
 		level = 3;
 		_mana = 6;
 		_name = "Rock Pillar";
-		_description = "Rock attack that makes 1d8 to a single enemy against a DEX save throw. If it hits, it reduces the enemy's CON value";
+		_description = "Rock attack that deals 1d8 to a single enemy against a DEX save throw. If it hits, it reduces the enemy's CON value";
 
 		_id = habID::ROCKPILLAR;
 		_damageType = damTy::EARTH;
@@ -322,7 +322,7 @@ public:
 		level = 3;
 		_mana = 6;
 		_name = "Toxic Shadow";
-		_description = "Water attack that makes 1d8 to a single enemy against a DEX save throw. If it hits, it can cause poisoning";
+		_description = "Water attack that deals 1d8 to a single enemy against a DEX save throw. If it hits, it can cause poisoning";
 
 		_id = habID::TOXICSHADOW;
 		_damageType = damTy::WATER;
@@ -343,7 +343,7 @@ public:
 		level = 4;
 		_mana = 8;
 		_name = "Tsunami";
-		_description = "Attack attack that makes 6d4 to the enemy team against with DEX save throw. If it hits, it reduces the STR value in the enemies";
+		_description = "Attack attack that deals 6d4 to the enemy team against with DEX save throw. If it hits, it reduces the STR value in the enemies";
 
 		_id = habID::TSUNAMI;
 		_damageType = damTy::WATER;
@@ -385,7 +385,7 @@ public:
 		level = 2;
 		_mana = 4;
 		_name = "Flash";
-		_description = "Light attack that makes 1d8 to a single enemy against a DEX save throw. If it hits, it reduces the enemy's DEX value";
+		_description = "Light attack that deals 1d8 to a single enemy against a DEX save throw. If it hits, it reduces the enemy's DEX value";
 
 		_id = habID::FLASH;
 		_damageType = damTy::LIGHT;
@@ -426,7 +426,7 @@ public:
 		level = 1;
 		_mana = 4;
 		_name = "Whirlpool";
-		_description = "Water attack that makes 1d8 to a single enemy against a DEX save throw. If it hits, it reduces the enemy's DEX value";
+		_description = "Water attack that deals 1d8 to a single enemy against a DEX save throw. If it hits, it reduces the enemy's DEX value";
 
 		_id = habID::WHIRLPOOL;
 		_damageType = damTy::WATER;
@@ -446,7 +446,7 @@ public:
 		level = 3;
 		_mana = 6;
 		_name = "Light Beam";
-		_description = "Light attack that makes 1d8 to a single enemy against a DEX save throw. If it hits, it reduces the enemy's DEX value";
+		_description = "Light attack that deals 1d8 to a single enemy against a DEX save throw. If it hits, it reduces the enemy's DEX value";
 
 		_id = habID::LIGHTBEAM;
 		_damageType = damTy::LIGHT;
@@ -466,7 +466,7 @@ public:
 		level = 1;
 		_mana = 4;
 		_name = "Dark Vortex";
-		_description = "Dark attack that makes 1d8 to a single enemy against a DEX save throw. If it hits, it reduces the enemy's DEX value";
+		_description = "Dark attack that deals 1d8 to a single enemy against a DEX save throw. If it hits, it reduces the enemy's DEX value";
 
 		_id = habID::DARKVORTEX;
 		_damageType = damTy::DARK;
@@ -487,7 +487,7 @@ public:
 		level = 1;
 		_mana = 6;
 		_name = "Fire Arrow";
-		_description = "Fire attack that makes 1d8 to a single enemy against a DEX save throw. If it hits, it reduces the enemy's DEX value";
+		_description = "Fire attack that deals 1d8 to a single enemy against a DEX save throw. If it hits, it reduces the enemy's DEX value";
 
 		_id = habID::FIREARROW;
 		_damageType = damTy::FIRE;
@@ -590,7 +590,7 @@ public:
 		level = 2;
 		_mana = 6;
 		_name = "Blood Thirst";
-		_description = "Light attack that makes 1d8 to a single enemy against a DEX save throw. If it hits, it heals the players life ";
+		_description = "Light attack that deals 1d8 to a single enemy against a DEX save throw. If it hits, it heals the players life ";
 
 		_id = habID::BLOODTHIRST;
 		_damageType = damTy::LIGHT;
@@ -611,7 +611,7 @@ public:
 		level = 2;
 		_mana = 4;
 		_name = "Sacrifice";
-		_description = "Light attack that makes 1d8 x 1.5 to a single enemy against a DEX save throw. If it hits, the player suffers a little bit of damage";
+		_description = "Light attack that deals 1d8 x 1.5 to a single enemy against a DEX save throw. If it hits, the player suffers a little bit of damage";
 
 		_id = habID::SACRIFICE;
 		_damageType = damTy::LIGHT;
@@ -632,7 +632,7 @@ public:
 		level = 2;
 		_mana = 4;
 		_name = "Double Shot";
-		_description = "Dark attack that makes two attacks, being the second half of the normal damage";
+		_description = "Dark attack that deals two attacks, being the second half of the normal damage";
 
 		_id = habID::DOUBLESHOT;
 		_damageType = damTy::DARK;
@@ -676,7 +676,7 @@ public:
 		level = 3;
 		_mana = 6;
 		_name = "Heavy Strike";
-		_description = "It makes the double amount of damage, but it can fail easily";
+		_description = "It deals weapon damage x 2, but it can fail easily";
 
 		_id = habID::HEAVYSTRIKE;
 		_damageType = damTy::LIGHT;
@@ -759,7 +759,7 @@ public:
 		level = 3;
 		_mana = 8;
 		_name = "Rain of Daggers";
-		_description = "Throw 1d10 attacks that makes 20% of the characters health points in damage";
+		_description = "Throw 1d10 attacks that deals 20% of the characters health points in damage";
 
 		_id = habID::RAINOFDAGGERS;
 		_damageType = damTy::LIGHT;
@@ -801,7 +801,7 @@ public:
 		level = 4;
 		_mana = 9;
 		_name = "Trick Shot";
-		_description = "Throw an attack with a triple amount of damage";
+		_description = "Throw an attack with triple amount of damage";
 
 		_id = habID::TRICKSHOT;
 		_damageType = damTy::LIGHT;
@@ -987,7 +987,7 @@ class Bleeding : public Condition {
 public:
 	Bleeding(Character* objective, Character* caster) : Condition(objective, caster) {
 		_name = "Damage example for turn";
-		_description = "Makes 1d3 during 3 turns";
+		_description = "Deals 1d3 during 3 turns";
 		_turns = 3;
 		_id = condID::BLEEDING;
 		resetTurns();

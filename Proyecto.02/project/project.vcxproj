@@ -21,6 +21,7 @@
   <ItemGroup>
     <ClCompile Include="src\Components\Paneles\ChestPanel.cpp" />
     <ClCompile Include="src\Components\Paneles\PanelDescObj.cpp" />
+    <ClCompile Include="src\GameObjects\PanelTurnos.cpp" />
     <ClCompile Include="src\Managers\game\AnimationManager.cpp" />
     <ClCompile Include="src\Components\Paneles\PanelDesc.cpp" />
     <ClCompile Include="src\Components\BorrarAlMorir.cpp" />
@@ -91,6 +92,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Components\Paneles\PanelDescObj.h" />
+    <ClInclude Include="src\GameObjects\PanelTurnos.h" />
     <ClInclude Include="src\Managers\game\AnimationManager.h" />
     <ClInclude Include="src\Components\AnimVibration.h" />
     <ClInclude Include="src\Components\Paneles\ChestPanel.h" />
@@ -105,6 +107,7 @@
     <ClInclude Include="src\Components\Tutorial.h" />
     <ClInclude Include="src\GameObjects\ObjectChest.h" />
     <ClInclude Include="src\Managers\game\ChatManager.h" />
+    <ClInclude Include="src\Managers\game\ElementManager.h" />
     <ClInclude Include="src\Managers\game\TextBlockManager.h" />
     <ClInclude Include="src\Managers\SDL\AudioManager.h" />
     <ClInclude Include="src\GameObjects\Button.h" />

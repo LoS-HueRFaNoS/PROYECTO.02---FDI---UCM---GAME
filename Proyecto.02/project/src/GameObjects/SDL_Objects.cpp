@@ -11,10 +11,10 @@ void SDL_Object::init(SDL_Rect dest, Texture* image)
 	addComponent<Image>(image);
 }
 
-void SDL_Object::initComponents(Vector2D pos, uint ancho, uint alto, Resources::TextureId imagen)
+void SDL_Object::initComponents(Vector2D pos, uint ancho, uint alto, Resources::TextureId imagen,bool animation)
 {
 	addComponent<Transform>(pos, Vector2D(), ancho, alto, 0);
-	addComponent<Image>(game_->getTextureMngr()->getTexture(imagen));
+	addComponent<Image>(game_->getTextureMngr()->getTexture(imagen),animation);
 }
 
 void SDL_Object::initComponents(Vector2D pos, uint ancho, uint alto, Texture* imagen)
@@ -54,9 +54,21 @@ void Line::init(SDL_Rect size, string line, Resources::FontId font, const SDL_Co
 {
 	texto = line;
 	Texture* text = new Texture();
-	if (text->loadFromText(game_->getRenderer(), line, game_->getFontMngr()->getFont(src::Beaulieux), color)) { //src::Beaulieux
+	if (text->loadFromText(game_->getRenderer(), line, game_->getFontMngr()->getFont(font), color)) { //src::Beaulieux
 		tex_ = text;
 		SDL_Object::init(size, text);
+	}
+	else
+		delete text;
+}
+
+void Line::setLine(string line, Resources::FontId font, const SDL_Color& color)
+{	
+	texto = line;
+	Texture* text = new Texture();
+	if (text->loadFromText(game_->getRenderer(), line, game_->getFontMngr()->getFont(font), color)) { //src::Beaulieux
+		tex_ = text;
+		getComponent<Image>(ecs::Image)->setTexture(tex_);
 	}
 	else
 		delete text;

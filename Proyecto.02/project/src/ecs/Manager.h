@@ -16,6 +16,7 @@ public:
 	Entity* addEntity();
 	void addEntity(Entity* e);
 	void removeEntity(Entity* e);
+	void removeEntities();
 
 	const std::vector<std::unique_ptr<Entity>>& entities_() { return entities; };
 

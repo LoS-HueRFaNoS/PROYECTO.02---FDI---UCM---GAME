@@ -35,4 +35,3 @@ public:
 	const int INITIAL_GAME_VOLUME = 15;
 	const int INITIAL_GAME_SOUND = 75;
 };
-

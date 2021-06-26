@@ -1,26 +1,22 @@
 #pragma once
 #include <string>
 #include "../../ecs/Component.h"
-#include "../../GameObjects/Character.h"
-#include "../../Structures/Panel.h"
-#include "../../Managers/game/InterfazManager.h"
+#include "../../GameObjects/PanelTurnos.h"
 
-class PanelTurns : public Component {
+class PanelTurns : public Component 
+{
 private:
-	Panel* pan_;
-	InterfazManager* iManager_;
+	PanelTurnos* pan_;
+
 public:
-	PanelTurns(SDLGame* game, Panel* p, InterfazManager* iM) : Component(ecs::PanelTurns), pan_(p), iManager_(iM), marco(), firstElement() {};
+	PanelTurns(SDLGame* game) : Component(ecs::PanelTurns) {
+		pan_ = new PanelTurnos(game);
+		pan_->Init();
+	};
 	virtual ~PanelTurns() {};
 
-	void init() override;
-	void update() override;
-	void draw() override;
+	void update() override { pan_->update(); };
+	void draw() override { 
+		pan_->draw(); };
 
-private:
-	SDL_Rect marco, firstElement;
-	Character* character_;
-	std::vector<Character*> turnsList_;
-
-	void drawCharacterActual();
 };

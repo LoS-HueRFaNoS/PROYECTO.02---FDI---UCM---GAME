@@ -52,6 +52,9 @@ bool CharacterSheet::recieveDamage(int damage, rpgLogic::damageType type, bool e
 
 	int damageAfterRes = int(damage - (damage * res));
 
+	if (damageAfterRes <= 0 && res < 1.0)
+		damageAfterRes = 1;
+
 	std::string out = name + " recieves " + std::to_string(damageAfterRes) + getResName(type) + " damage" + "( " + std::to_string(damage) + " " + std::to_string((int)(res * 100)) + "% RES)";
 	std::cout << out << std::endl;
 	ChatManager::instance()->add(out, enemy ?  linCol::Green : linCol::Red);

@@ -3,13 +3,14 @@
 #include <cassert>
 #include "../ecs/Component.h"
 #include "../Utilities/SDL_macros.h"
+#include "../GameObjects/SDL_Objects.h"
 #include "../Managers/game/CombatManager.h"
 #include "../Managers/game/PartyManager.h"
 #include "../Managers/TheElementalMaze.h"
 
 typedef unsigned int uint;
 
-enum BarType {
+enum class BarType {
     health,
     mana,
     experience
@@ -18,26 +19,31 @@ enum BarType {
 class StateBar : public Component
 {
 public:
-    StateBar(Character* c, BarType ty, SDL_Rect rct) :
-        Component(ecs::StateBar), character_(c), type_(ty), rect(rct), width_(rct.w), maxStat_(), stAct_(), color_() {};
+    StateBar(Character* c, BarType ty, SDL_Rect rct, bool num = false) :
+        Component(ecs::StateBar), character_(c), type_(ty), rect(rct), width_(rct.w), maxStat_(), stAct_(), color_(), isNumber(num) {};
     virtual ~StateBar() {
+        if (number_ != nullptr) { delete number_; number_ = nullptr; };
     }
 
     void init() override {
         assert(character_ != nullptr);
         switch (type_)
         {
-        case health:
+        case BarType::health:
             color_ = hex2sdlcolor("#DD0000FF");
             break;
-        case mana:
+        case BarType::mana:
             color_ = hex2sdlcolor("#0055FFFF");
             break;
-        case experience:
+        case BarType::experience:
             color_ = hex2sdlcolor("#BBBB00FF");
             break;
         default:
             break;
+        }
+        if (isNumber) {
+            number_ = new Line(game_, nullptr);
+            number_->init(rect, to_string(character_->getCharacterSheet()->hitPoints()), src::Beaulieux, color_);
         }
     }
 
@@ -45,15 +51,15 @@ public:
         Hero* h_ = nullptr;
         switch (type_)
         {
-        case health:
+        case BarType::health:
             maxStat_ = character_->getCharacterSheet()->maxHitPoints();
             stAct_ = character_->getCharacterSheet()->hitPoints();
             break;
-        case mana:
+        case BarType::mana:
             maxStat_ = character_->getCharacterSheet()->maxManaPoints();
             stAct_ = character_->getCharacterSheet()->manaPoints();
             break;
-        case experience:
+        case BarType::experience:
             h_ = dynamic_cast<Hero*>(character_);
             if (h_ != nullptr) {
                 maxStat_ = h_->getExpMax();
@@ -64,13 +70,23 @@ public:
             break;
         }
 
-        double fill = stAct_ * 100.0 / maxStat_;    // porcentaje actual
-        rect.w = int(fill * width_ / 100);          // ancho visible
+        if (!isNumber) {
+            double fill = stAct_ * 100.0 / maxStat_;    // porcentaje actual
+            rect.w = int(fill * width_ / 100);          // ancho visible
+        }
+        else {
+            number_->setLine(to_string(stAct_), src::Beaulieux, color_);
+        }
     }
 
     void draw() override {
-        SDL_SetRenderDrawColor(game_->getRenderer(), COLOREXP(color_));
-        SDL_RenderFillRect(game_->getRenderer(), &rect);
+        if (!isNumber) {
+            SDL_SetRenderDrawColor(game_->getRenderer(), COLOREXP(color_));
+            SDL_RenderFillRect(game_->getRenderer(), &rect);
+        }
+        else {            
+            number_->draw();
+        }
     }
 
 private:
@@ -82,4 +98,8 @@ private:
     uint maxStat_;      // much amount of data
     uint stAct_;        // actual amount of data
     SDL_Color color_;   // data type color
+
+    bool isNumber;
+    Line* number_ = nullptr;
+
 };

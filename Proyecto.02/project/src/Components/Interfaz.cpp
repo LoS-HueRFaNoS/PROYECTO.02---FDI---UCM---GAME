@@ -128,7 +128,7 @@ void Interfaz::createEnemies()
 		double lado;
 		double margenBarra = w_ - tamBar_w;
 		if (enTemp == enemyTemplate::DRACOLICH || enTemp == enemyTemplate::HELLHOUND || enTemp == enemyTemplate::GIANTWORM) {
-			b_ = iManager->addButton<SDL_Object>(Vector2D(x_ + i * espace, y_), w_, h_, getEnemyTxt(i));
+			b_ = iManager->addButton<SDL_Object>(Vector2D(x_ + i * espace, y_), w_, h_, getEnemyTxt(i),true);
 		}
 		else {
 			if (nEnemies == 1) lado = h_;
@@ -137,11 +137,11 @@ void Interfaz::createEnemies()
 				margenBarra = espace - tamBar_w;
 			}
 
-			b_ = iManager->addButton<SDL_Object>(Vector2D(x_ + i * espace + espace / 2.0 - lado / 2.0, y_ + h_ - lado), lado, lado, getEnemyTxt(i));
+			b_ = iManager->addButton<SDL_Object>(Vector2D(x_ + i * espace + espace / 2.0 - lado / 2.0, y_ + h_ - lado), lado, lado, getEnemyTxt(i),true);
 		}
 
 		//BARRA DE VIDA
-		b_->addComponent<StateBar>(enemy, health, SDL_Rect(RECT((x_ + i * espace + margenBarra / 2.0), (y_ + h_ / 10.0), tamBar_w, tamBar_h)));
+		b_->addComponent<StateBar>(enemy, BarType::health, SDL_Rect(RECT((x_ + i * espace + margenBarra / 2.0), (y_ + h_ / 10.0), tamBar_w, tamBar_h)));
 		b_->addComponent<BorrarAlMorir>(this, i, enemy);
 		//b_->addComponent<StateBar>(enemies[i], mana, SDL_Rect(RECT((x_ + i * espace), (y_ + h_ * 2.5 / k), w_ * 2, h_ / k)));
 		p->addButton(b_);
@@ -182,7 +182,6 @@ void Interfaz::createMovement()
 	p->addButton(iManager->addButton<ButtonMovimiento>(Vector2D(x_ + 0, y_), w_, h_, src::RotarI, MovType::rotL));
 	p->addButton(iManager->addButton<ButtonMovimiento>(Vector2D(x_ + espace, y_), w_, h_, src::Avanzar, MovType::forward));
 	p->addButton(iManager->addButton<ButtonMovimiento>(Vector2D(x_ + espace * 2, y_), w_, h_, src::RotarD, MovType::rotR));
-	//p->addButton(iManager->addButton<ButtonMovimiento>(Vector2D(x_ + espace * 3, y_), w_, h_, src::Interactuar, MovType::touch));
 }
 
 void Interfaz::createHeroes()
@@ -219,9 +218,9 @@ void Interfaz::createHeroes()
 		{
 			ButtonHero* b_ = iManager->addButton<ButtonHero>(Vector2D(x_, y_ + i * espace), w_, h_, getHeroTxt(i), (HeroNum)i, DDPan, false);
 			uint k = 6;
-			b_->addComponent<StateBar>(heroes[i], health, SDL_Rect(RECT((x_ + w_ + n), (y_ + i * espace + h_ * 1 / k), w_ * 2, h_ / k)));
-			b_->addComponent<StateBar>(heroes[i], mana, SDL_Rect(RECT((x_ + w_ + n), (y_ + i * espace + h_ * 2.5 / k), w_ * 2, h_ / k)));
-			b_->addComponent<StateBar>(heroes[i], experience, SDL_Rect(RECT((x_ + w_ + n), (y_ + i * espace + h_ * 4 / k), w_ * 2, h_ / k)));
+			b_->addComponent<StateBar>(heroes[i], BarType::health, SDL_Rect(RECT((x_ + w_ + n), (y_ + i * espace + h_ * 1 / k), w_ * 2, h_ / k)));
+			b_->addComponent<StateBar>(heroes[i], BarType::mana, SDL_Rect(RECT((x_ + w_ + n), (y_ + i * espace + h_ * 2.5 / k), w_ * 2, h_ / k)));
+			b_->addComponent<StateBar>(heroes[i], BarType::experience, SDL_Rect(RECT((x_ + w_ + n), (y_ + i * espace + h_ * 4 / k), w_ * 2, h_ / k)));
 			p->addButton(b_);
 		}
 	}
@@ -267,9 +266,7 @@ void Interfaz::createInfo()
 	ButtonPotion* bp2_ = iManager->addButton<ButtonPotion>(Vector2D(x_ + 2 * espace_H, y_ + 1 * espace_V), w_, h_, src::PocionMana, PtnType::mana);
 	bp2_->addComponent<Contador>(PtnType::mana);
 	p->addButton(bp2_);
-	//p->addButton(iManager->addButton<ButtonPotion>(Vector2D(width * 5 / 7, height * 5 / 6 + space), tamBoton * 0.8, tamBoton * 0.8, src::PocionRess, PtnType::resurrection));
 
-	//p->addButton(iManager->addButton<ButtonPanel>(Vector2D(x_ + 3 * espace_H, y_ + 0 * espace_V), w_, h_, src::Chat, Chat, false));
 	p->addButton(iManager->addButton<ButtonSettings>(Vector2D(x_ + 3 * espace_H, y_ + 0 * espace_V), w_, h_, src::Change));
 	p->addButton(iManager->addButton<ButtonPanel>(Vector2D(x_ + 3 * espace_H, y_ + 1 * espace_V), w_, h_, src::Configuracion, Settings, false));
 
@@ -430,10 +427,10 @@ void Interfaz::createTargets()
 	double n = 20;
 
 	SDL_Rect dest = RECT(
-		game_->setHorizontalScale(x_ + w_ - 40),
-		game_->setVerticalScale(y_),
-		game_->setHorizontalScale(40),
-		game_->setVerticalScale(40)
+		game_->setHorizontalScale(x_ + w_ - n * 2 + 30),
+		game_->setVerticalScale(y_ - 30),
+		game_->setHorizontalScale(n * 2),
+		game_->setVerticalScale(n * 2)
 	);
 
 	// posicion del panel respecto a la ventana
@@ -479,10 +476,10 @@ void Interfaz::createHabilities()
 	double n = 20;
 
 	SDL_Rect dest = RECT(
-		game_->setHorizontalScale(x_ + w_ - 40),
-		game_->setVerticalScale(y_),
-		game_->setHorizontalScale(40),
-		game_->setVerticalScale(40)
+		game_->setHorizontalScale(x_ + w_ - n * 2 + 30),
+		game_->setVerticalScale(y_ - 30),
+		game_->setHorizontalScale(n * 2),
+		game_->setVerticalScale(n * 2)
 	);
 
 	// posicion del panel respecto a la ventana
@@ -523,10 +520,10 @@ void Interfaz::createWeaponAttacks()
 	double n = 20;
 
 	SDL_Rect dest = RECT(
-		game_->setHorizontalScale(x_ + w_ - 40),
-		game_->setVerticalScale(y_),
-		game_->setHorizontalScale(40),
-		game_->setVerticalScale(40)
+		game_->setHorizontalScale(x_ + w_ - n * 2 + 30),
+		game_->setVerticalScale(y_ - 30),
+		game_->setHorizontalScale(n * 2),
+		game_->setVerticalScale(n * 2)
 	);
 
 	// posicion del panel respecto a la ventana
@@ -1111,11 +1108,7 @@ void Interfaz::createGuide()
 
 void Interfaz::createTurns()
 {
-	// construccion y asignacion del panel:
-	Panel* p = new Panel(Turns);
-	allPanels[Turns] = p;
-
-	TheElementalMaze::instance()->addComponent<PanelTurns>(game_, p, iManager);
+	TheElementalMaze::instance()->addComponent<PanelTurns>(game_);
 }
 
 void Interfaz::createInventoryLobby()
@@ -1667,7 +1660,7 @@ void Interfaz::update()
 			togglePanel(Movement);
 			createPanel(Fight);
 			createPanel(Enemies);
-			//createPanel(Turns);
+			createPanel(Turns);
 			toggleMinimap();
 		}
 		break;
