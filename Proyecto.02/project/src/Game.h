@@ -7,6 +7,7 @@
 
 class InterfazManager;
 class CharacterManager;
+class AnimationManager;
 class TheElementalMaze;
 class EntityManager;
 class Cursor;
@@ -42,6 +43,7 @@ private:
 	CharacterManager* characterManager_;
 	TheElementalMaze* gameManager_;
 	InterfazManager* interfazManager_;
+	AnimationManager* animManager_;
 
 	Fondo* fondo;
 	Cursor* c_;

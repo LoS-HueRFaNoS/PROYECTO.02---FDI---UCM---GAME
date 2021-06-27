@@ -71,7 +71,6 @@ void TheElementalMaze::init()
 	tutorial_ = addComponent<TutorialManager>(iManager_);
 
 
-	animManager_ = addComponent<AnimationManager>();
 
 }
 
@@ -83,6 +82,7 @@ void TheElementalMaze::draw()
 	}
 	Entity::draw();
 	uiManager_->draw();
+	animManager_->draw();
 	/* Podria ser una opcion dibujarlos por separado, pero no hace falta tal cual esta ahora.
 	if (hasComponent(ecs::ChatInfo)) getComponent<ChatInfo>(ecs::ChatInfo)->draw();
 	if (hasComponent(ecs::ChestPanel)) getComponent<ChestPanel>(ecs::ChestPanel)->draw();

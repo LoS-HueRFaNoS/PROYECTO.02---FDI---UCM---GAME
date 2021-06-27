@@ -95,6 +95,8 @@ private:
 
 	void animVib();
 
+	
+
 	void showTargets();
 
 #pragma endregion

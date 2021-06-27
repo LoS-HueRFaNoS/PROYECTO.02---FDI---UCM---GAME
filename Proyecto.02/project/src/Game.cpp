@@ -19,6 +19,7 @@
 #include "Managers/game/CharacterManager.h"
 #include "Managers/game/CombatManager.h"
 #include "Managers/game/InterfazManager.h"
+#include "Managers/game/AnimationManager.h"
 #include "Managers/TheElementalMaze.h"
 #include "Managers/SDLGame.h"
 //
@@ -87,12 +88,14 @@ void Game::initGame()
 
 	interfazManager_ = new InterfazManager(game_);
 
+	animManager_ = new AnimationManager(game_);
+
 #ifdef DEBUG
 	system("cls");
 #endif // DEBUG
 
 
-	gameManager_ = TheElementalMaze::initInstace(game_, entityManager_, characterManager_, interfazManager_);
+	gameManager_ = TheElementalMaze::initInstace(game_, entityManager_, characterManager_, interfazManager_,animManager_);
 
 	entityManager_->addEntity(gameManager_);
 
@@ -107,6 +110,7 @@ void Game::closeGame()
 	delete entityManager_; entityManager_ = nullptr;
 	delete characterManager_; characterManager_ = nullptr;
 	delete interfazManager_; interfazManager_ = nullptr;
+	delete animManager_; animManager_ = nullptr;
 	delete fondo; fondo = nullptr;
 	delete c_; c_ = nullptr;
 }
@@ -149,6 +153,7 @@ void Game::update()
 	interfazManager_->update(); // interfaz
 	entityManager_->update(); // laberinto
 	characterManager_->update(); // characters
+	animManager_->update(); //animacion
 	c_->update();
 }
 
@@ -162,6 +167,7 @@ void Game::render()
 	gameManager_->draw();
 	//entityManager_->draw();
 	//characterManager_->draw(); //
+	
 	c_->draw();
 
 	SDL_RenderPresent(game_->getRenderer());

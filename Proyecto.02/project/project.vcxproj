@@ -94,7 +94,6 @@
     <ClInclude Include="src\Components\Paneles\PanelDescObj.h" />
     <ClInclude Include="src\GameObjects\PanelTurnos.h" />
     <ClInclude Include="src\Managers\game\AnimationManager.h" />
-    <ClInclude Include="src\Components\AnimVibration.h" />
     <ClInclude Include="src\Components\Paneles\ChestPanel.h" />
     <ClInclude Include="src\Components\Paneles\PanelDesc.h" />
     <ClInclude Include="src\Components\BorrarAlMorir.h" />

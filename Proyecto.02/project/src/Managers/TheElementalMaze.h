@@ -52,7 +52,7 @@ private:
 	LobbyManager* lobbyManager_;
 	GameStateManager* stManager_; // compt
 	TutorialManager* tutorial_; // compt
-	AnimationManager* animManager_; //compt
+	AnimationManager* animManager_;
 	int level = -1;
 	uint floor;
 	
@@ -60,10 +60,11 @@ private:
 	bool firstLobbyCreated = false;
 	GameState previousState; // Estado del juego antes de pausarlo
 public:
-	TheElementalMaze(SDLGame* game, EntityManager* mngr, CharacterManager* chMngr, InterfazManager* iMngr) :
+	TheElementalMaze(SDLGame* game, EntityManager* mngr, CharacterManager* chMngr, InterfazManager* iMngr,AnimationManager* anim) :
 		game_(game),
 		characterManager_(chMngr),
 		iManager_(iMngr),
+		animManager_(anim),
 		Entity(game, mngr),
 		player_(nullptr),
 		laberinto_(nullptr)
@@ -71,9 +72,9 @@ public:
 
 public:
 
-	inline static TheElementalMaze* initInstace(SDLGame* game, EntityManager* mngr, CharacterManager* chMngr,InterfazManager* iMngr) {
+	inline static TheElementalMaze* initInstace(SDLGame* game, EntityManager* mngr, CharacterManager* chMngr,InterfazManager* iMngr, AnimationManager* anim) {
 		assert(instance_ == nullptr);
-		instance_ = new TheElementalMaze(game, mngr, chMngr, iMngr);
+		instance_ = new TheElementalMaze(game, mngr, chMngr, iMngr, anim);
 		instance_->init();
 		return instance_;
 	}
