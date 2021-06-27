@@ -120,6 +120,8 @@ void PanelTurnos::update()
 			character_ = cm_->getCurrentCharacter();
 			turnsList_ = cm_->getCurrentTurnsList();
 
+			
+
 			drawCurrentCharacter();
 			drawCurrentTurnList();
 
@@ -139,7 +141,9 @@ void PanelTurnos::draw()
 void PanelTurnos::drawCurrentCharacter()
 {
 	// ICONO:
-	addElement<SDL_Object>(icono, getCharacterTxt(character_));
+
+	addElement<SDL_Object>(icono, getCharacterTxt(character_), character_->getType() == rpgLogic::characterType::ENEMY);
+
 
 	// VIDA y MANA:
 	SDL_Rect number_aux = number;
@@ -185,7 +189,7 @@ void PanelTurnos::drawCurrentTurnList()
 		uint k = offset + i;
 		if (k >= size) { k = k - size; };
 
-		SDL_Object* obj_ = addElement<SDL_Object>(dest_icon, getCharacterTxt(turnsList_[k]));		
+		SDL_Object* obj_ = addElement<SDL_Object>(dest_icon, getCharacterTxt(turnsList_[k]), turnsList_[k]->getType() == rpgLogic::characterType::ENEMY);
 		obj_->addComponent<StateBar>(turnsList_[k], BarType::health, dest_bar);
 
 		dest_icon.x -= (pan.cw + (2 * pan.ew));

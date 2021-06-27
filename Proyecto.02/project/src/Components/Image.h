@@ -28,15 +28,14 @@ public:
 
 	void draw() override {
 		if (!hide) {
-		if (animation) {
-			renderIdle(dest);
+			if (animation) 
+				renderIdle(dest);
+			
+
+			else {
+				dest = { int(tr_->getPos().getX()), int(tr_->getPos().getY()), int(tr_->getW()), int(tr_->getH()) };
+				tex_->render(dest, tr_->getRot());
 			}
-
-
-		else {
-			dest = { int(tr_->getPos().getX()), int(tr_->getPos().getY()), int(tr_->getW()), int(tr_->getH()) };
-			tex_->render(dest, tr_->getRot());
-		}
 		}
 	}
 
@@ -58,14 +57,18 @@ public:
 		clip = { int(division), int(0), tex_->getWidth() / 4, tex_->getHeight() };
 		tex_->render(dest, clip);
 
+		if (timer > 35) {
+			if (!limite) {
+				division += tex_->getWidth() / 4;
+			}
+			else
+				division -= tex_->getWidth() / 4;
 
-		if (!limite) {
-			division += tex_->getWidth() / 4;
+			limite = Limite(limite, division, tex_->getWidth());
+
+			timer = 0;
 		}
-		else
-			division -= tex_->getWidth() / 4;
-
-		limite = Limite(limite, division, tex_->getWidth());
+		else timer++;
 	}
 
 
@@ -84,4 +87,5 @@ private:
 	bool limite = false;
 	int cont = 0;
 	int division = 0;
+	int timer = 0;
 };

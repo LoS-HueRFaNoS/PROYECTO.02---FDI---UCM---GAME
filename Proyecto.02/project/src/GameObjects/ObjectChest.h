@@ -14,11 +14,13 @@ private:
 	Entity* fondo_ = nullptr;
 	int numItems_ = NUM_ITEMS_IN_CHEST;
 	void addTemplate();
+	void example();
 
 public:
 	ObjectChest(SDLGame* game) : EntityManager(game) {
 		pan = game_->relativePanel(1470, 320, 420, 410, 1, 4, 30, 30, 10, 10, 0, 5);
 	};
+
 	virtual ~ObjectChest() { 
 		delete fondo_;
 		fondo_ = nullptr;

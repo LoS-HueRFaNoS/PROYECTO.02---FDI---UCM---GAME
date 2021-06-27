@@ -17,6 +17,7 @@ public:
 	{};
 	virtual ~Button() {};
 	virtual void init(Vector2D pos, uint ancho, uint alto, Resources::TextureId imagen);
+	virtual void init(Vector2D pos, uint ancho, uint alto, Resources::TextureId imagen, bool animation);
 	virtual void init(SDL_Rect dest, Resources::TextureId imagen);
 
 	virtual void click() = 0;
@@ -220,7 +221,7 @@ public:
 
 	virtual void init(Vector2D pos, uint ancho, uint alto, Resources::TextureId imagen, target objetive) {
 		target_ = objetive;
-		Button::init(pos, ancho, alto, imagen);
+		Button::init(pos, ancho, alto, imagen, true);
 	};
 
 	virtual void click()
