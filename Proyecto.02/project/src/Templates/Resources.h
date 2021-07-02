@@ -240,6 +240,45 @@ public:
 		Determinacion,
 		Bendicion,
 		Espinas,
+			//
+		LightAttack_,
+		Bola_fuego_,
+		Bloody_strike_,
+		Curacion_,
+		Curacion_en_masa_,
+		SelfHeal_,
+		RafagaDeViento_,
+		Cuchilla_aerea_,
+		PilarDeTierra_,
+		Sombra_toxica_,
+		Tsunami_,
+		Proteccion_divina_,
+		Destello_,
+		Congelar_,
+		TorrenteAcuatico_,
+		RayoLuminoso_,
+		VorticeDeOscuridad_,
+		FlechaDeFuego_,
+		Meditacion_,
+		Aligerar_,
+		Fortalecer_,
+		Endurecer_,
+		SedDeSangre_,
+		Sacrificio_,
+		DisparoDoble_,
+		HachaArrojadiza_,
+		Morph_,
+		ReverseMorph_,
+		GolpeDuro_,
+		FlechaDeHumo_,
+		LluviaDeDagas_,
+		ProyectilesDeRoca_,
+		Trickshot_,
+		OdaDeLosGladiadores_,
+		OdaDeViento_,
+		Determinacion_,
+		Bendicion_,
+		Espinas_,
 	}; using txtID = TextureId;
 
 	enum AudioId : std::size_t {
@@ -258,7 +297,8 @@ public:
 		AtaqueLuz, 
 		AtaqueViento,
 		Boton1,
-		Boton2
+		Boton2,
+		Error
 	};
 
 	enum FontId : std::size_t {

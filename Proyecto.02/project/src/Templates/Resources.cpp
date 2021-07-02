@@ -218,6 +218,45 @@ vector<Resources::ImageInfo> Resources::images_{
 	{VorticeDeOscuridad, "project/resources/images/sprites/iconos habilidades/VORTICE DE OSCURIDAD.PNG"},
 	{Morph, "project/resources/images/sprites/iconos habilidades/MORPH.png"},
 	{ReverseMorph, "project/resources/images/sprites/iconos habilidades/REVERSEMORPH.png"},
+		//
+	{ Aligerar_, "project/resources/images/sprites/iconos habilidades/ALIGERAR_.PNG" },
+	{ Bendicion_, "project/resources/images/sprites/iconos habilidades/BENDICION_.png" },
+	{ Bloody_strike_, "project/resources/images/sprites/iconos habilidades/BLODDY_STRIKE_.PNG" },
+	{ Bola_fuego_, "project/resources/images/sprites/iconos habilidades/BOLA_DE_FUEGO_.PNG" },
+	{ Congelar_, "project/resources/images/sprites/iconos habilidades/CONGELAR_.PNG" },
+	{ Cuchilla_aerea_, "project/resources/images/sprites/iconos habilidades/CUCHILLA AEREA_.png" },
+	{ Curacion_en_masa_, "project/resources/images/sprites/iconos habilidades/CURACION EN MASA_.png" },
+	{ Curacion_, "project/resources/images/sprites/iconos habilidades/CURACION_.PNG" },
+	{ Destello_, "project/resources/images/sprites/iconos habilidades/DESTELLO_.png" },
+	{ Determinacion_, "project/resources/images/sprites/iconos habilidades/DETERMINACION_.png" },
+	{ DisparoDoble_, "project/resources/images/sprites/iconos habilidades/DISPARO DOBLE_.PNG" },
+	{ Endurecer_, "project/resources/images/sprites/iconos habilidades/ENDURECER_.png" },
+	{ Espinas_, "project/resources/images/sprites/iconos habilidades/ESPINAS_.png" },
+	{ FlechaDeFuego_, "project/resources/images/sprites/iconos habilidades/FLECHA DE FUEGO_.png" },
+	{ FlechaDeHumo_, "project/resources/images/sprites/iconos habilidades/FLECHA DE HUMO_.png" },
+	{ Fortalecer_, "project/resources/images/sprites/iconos habilidades/FORTALECER_.png" },
+	{ GolpeDuro_, "project/resources/images/sprites/iconos habilidades/GOLPE DURO_.png" },
+	{ HachaArrojadiza_, "project/resources/images/sprites/iconos habilidades/HACHA ARROJADIZA_.PNG" },
+	{ LightAttack_, "project/resources/images/sprites/iconos habilidades/LightAttack_.PNG" },
+	{ LluviaDeDagas_, "project/resources/images/sprites/iconos habilidades/LLUVIA DE DAGAS_.png" },
+	{ Meditacion_, "project/resources/images/sprites/iconos habilidades/MEDITACION_.png" },
+	{ OdaDeLosGladiadores_, "project/resources/images/sprites/iconos habilidades/ODA DE LOS GLADIADORES_.png" },
+	{ OdaDeViento_, "project/resources/images/sprites/iconos habilidades/ODA DE VIENTO_.png" },
+	{ PilarDeTierra_, "project/resources/images/sprites/iconos habilidades/PILAR DE TIERRA_.png" },
+	{ ProyectilesDeRoca_, "project/resources/images/sprites/iconos habilidades/PROYECTILES DE ROCA_.png" },
+	{ RafagaDeViento_, "project/resources/images/sprites/iconos habilidades/RAFAGA DE VIENTO_.png" },
+	{ RayoLuminoso_, "project/resources/images/sprites/iconos habilidades/RAYO LUMINOSO_.PNG" },
+	{ Sacrificio_, "project/resources/images/sprites/iconos habilidades/SACRIFICIO_.PNG" },
+	{ SedDeSangre_, "project/resources/images/sprites/iconos habilidades/SED DE SANGRE_.png" },
+	{ SelfHeal_, "project/resources/images/sprites/iconos habilidades/SELF HEAL_.png" },
+	{ Sombra_toxica_, "project/resources/images/sprites/iconos habilidades/SOMBRA TOXICA_.png" },
+	{ Proteccion_divina_, "project/resources/images/sprites/iconos habilidades/PROTECCION DIVINA_.png" },
+	{ TorrenteAcuatico_, "project/resources/images/sprites/iconos habilidades/TORRENTE ACUATICO_.PNG" },
+	{ Trickshot_, "project/resources/images/sprites/iconos habilidades/TRICKSHOT_.png" },
+	{ Tsunami_, "project/resources/images/sprites/iconos habilidades/TSUNAMI_.png" },
+	{ VorticeDeOscuridad_, "project/resources/images/sprites/iconos habilidades/VORTICE DE OSCURIDAD_.PNG" },
+	{ Morph_, "project/resources/images/sprites/iconos habilidades/MORPH_.png" },
+	{ ReverseMorph_, "project/resources/images/sprites/iconos habilidades/REVERSEMORPH_.png" },
 
 	// carteles tutorial
 	{ cartel_combate, "project/resources/images/interfaz/carteles/cartel_combate.png" },
@@ -262,6 +301,7 @@ vector<Resources::SoundInfo> Resources::sounds_{
 	{AtaqueViento, "project/resources/sound/ataque viento.mp3"}, //
 	{Boton1, "project/resources/sound/boton 1.mp3"}, //
 	{Boton2, "project/resources/sound/boton 2.mp3"}, //
+	{Error, "project/resources/sound/error.mp3"}, //
 };
 
 vector<Resources::JsonInfo> Resources::jsons_{
