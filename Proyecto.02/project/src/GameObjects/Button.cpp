@@ -58,11 +58,14 @@ void ButtonHability::init(Vector2D pos, uint ancho, uint alto, Resources::Textur
 
 void ButtonHability::click() // <3
 {
-	callbacks::set_hability((int)hability_);
-
 	Hero* her = static_cast<Hero*>(GETCMP2(TheElementalMaze::instance(), CombatManager)->getCurrentCharacter());
 	Hability* hab = her->getHabilities()[(int)hability_];
-	callbacks::createFichaDescPan(false, hab, her->getCharacterSheet()->manaPoints() >= hab->getMana());
+
+	bool affordable = her->getCharacterSheet()->manaPoints() >= hab->getMana();
+	callbacks::createFichaDescPan(false, hab, affordable);
+
+	if (affordable) callbacks::set_hability((int)hability_);
+	else game_->getAudioMngr()->playChannel(Resources::Error, 0, 0);
 };
 
 void ButtonHability::pointerEntered() {
@@ -156,8 +159,6 @@ void ButtonWeaponAttack::init(Vector2D pos, uint ancho, uint alto, Resources::Te
 
 void ButtonWeaponAttack::click() //<3
 {
-	callbacks::set_hability((int)attack_);
-
 	Hero* her = static_cast<Hero*>(GETCMP2(TheElementalMaze::instance(), CombatManager)->getCurrentCharacter());
 	Hability* hab;
 	switch ((int)attack_)
@@ -173,7 +174,11 @@ void ButtonWeaponAttack::click() //<3
 		break;
 	}
 	assert(hab != nullptr);
-	callbacks::createFichaDescPan(false, hab, her->getCharacterSheet()->manaPoints() >= hab->getMana());
+	bool affordable = her->getCharacterSheet()->manaPoints() >= hab->getMana();
+	callbacks::createFichaDescPan(false, hab, affordable);
+
+	if (affordable) callbacks::set_hability((int)attack_);
+	else game_->getAudioMngr()->playChannel(Resources::Error, 0, 0);
 }
 void ButtonWeaponAttack::pointerEntered() {
 	Hero* her = static_cast<Hero*>(GETCMP2(TheElementalMaze::instance(), CombatManager)->getCurrentCharacter());
