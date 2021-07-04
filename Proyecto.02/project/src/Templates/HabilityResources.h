@@ -674,7 +674,7 @@ public:
 	HeavyStrike(Character* caster = nullptr) : Hability(caster) {
 
 		level = 3;
-		_mana = 6;
+		_mana = 0;
 		_name = "Heavy Strike";
 		_description = "It deals weapon damage x 2, but it can fail easily";
 
