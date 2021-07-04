@@ -27,8 +27,13 @@ private:
 	Texture* manaNumTex = nullptr;
 	Texture* healthTex = nullptr;
 	Texture* healthNumTex = nullptr;
+	Texture* transiTex = nullptr;
 
 
+	bool transicion = false;
+	Uint32 totalTransitTime = 0;
+	Uint32 startTransitTime = 0;
+	int frame = 0;
 	void init();
 
 public:
@@ -48,6 +53,10 @@ public:
 	void showReward(int exp, int gold, int manaPotions, int healthPotions) ;
 	void renderVibration();
 	void renderReward();
+
+	void addtransicion(Uint32 transTime);
+	void renderTransicion();
+	bool getTransition() { return transicion; };
 
 	
 

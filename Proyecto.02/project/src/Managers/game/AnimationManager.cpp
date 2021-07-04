@@ -19,6 +19,7 @@ void AnimationManager::init()
 	healthTex = new Texture();
 	healthTex = game_->instance()->getTextureMngr()->getTexture(Resources::PocionVida);
 	healthNumTex = new Texture();
+	transiTex = game_->instance()->getTextureMngr()->getTexture(Resources::fade);
 }
 
 void AnimationManager::update()
@@ -43,6 +44,19 @@ void AnimationManager::update()
 			startVibTime = game_->getTime();
 		}
 	}
+	if (transicion)
+	{
+		Uint32 frameTime = game_->getTime() - startTransitTime;
+		if (frameTime > totalTransitTime)
+		{
+			frame++;
+			startTransitTime = game_->getTime();
+		}
+		if (frame ==12)
+		{
+			transicion = false;
+		}
+	}
 	
 
 }
@@ -53,6 +67,8 @@ void AnimationManager::draw()
 	if (vibracion)		
 		renderVibration();
 	if (reward)			renderReward();
+	if (transicion)  
+		renderTransicion();
 }
 
 void AnimationManager::animVib(rpgLogic::characterType current, rpgLogic::characterType next)
@@ -151,5 +167,28 @@ void AnimationManager::renderReward()
 	}
 
 
+}
+
+
+void AnimationManager::addtransicion(Uint32 transTime)
+{
+	transicion = true;
+	totalTransitTime = transTime/12;
+	startTransitTime = game_->getTime();
+	frame = 0;
+
+}
+
+void AnimationManager::renderTransicion()
+{
+	double _w = game_->getWindowWidth();
+	double _h = game_->getWindowHeight();
+	SDL_Rect dest,clip;
+	dest = RECT(0, 0, _w, _h);
+	double clipw = transiTex->getWidth() / 12;
+	double cliph = transiTex->getHeight();
+	clip = RECT(frame * clipw, 0, clipw, cliph);
+	transiTex->render(dest, clip);
+	
 }
 

@@ -7,6 +7,7 @@
 #include "../Game.h"
 #include "../Managers/game/LobbyManager.h"
 #include "../Managers/game/ItemManager.h"
+#include "../Managers/game/AnimationManager.h"
 
 // ----------------------------------------------------
 
@@ -284,6 +285,7 @@ void callbacks::set_hability(int hability_)
 void callbacks::startLobby(Interfaz* app)
 {
 	std::cout << "startLobby se ha activado\n";
+	TheElementalMaze::instance()->getAnimManager()->addtransicion(1200);
 	if (app->getActivePan(MenuPrincipal)) 	app->removePanel(MenuPrincipal);
 	if (app->getActivePan(Fight)) 			app->removePanel(Fight);
 	if (app->getActivePan(Turns)) 			app->removePanel(Turns);
@@ -300,7 +302,7 @@ void callbacks::startLobby(Interfaz* app)
 		TheElementalMaze::instance()->firstLobby();
 
 	}
-
+	
 	TheElementalMaze::instance()->changeState(gameST::DURING_LOBBY);
 	cout << "LOBBY REACHED" << endl;
 
@@ -324,6 +326,7 @@ void callbacks::startExp(Interfaz* app)
 		app->removePanel(Lobby);
 		//app->removePanel(Heroes);
 		TheElementalMaze::instance()->changeState(gameST::START_EXPLORING);
+		TheElementalMaze::instance()->getAnimManager()->addtransicion(1200);
 
 
 		std::cout << "startExploration se ha activado\n";

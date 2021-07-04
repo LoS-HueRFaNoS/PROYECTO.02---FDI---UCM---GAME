@@ -82,6 +82,7 @@ public:
 		inventory_button,
 		take, 
 		vibration,
+		fade,
 
 		// carteles tutorial
 		_firstCartelId_,
