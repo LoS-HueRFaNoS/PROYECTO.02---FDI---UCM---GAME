@@ -771,6 +771,11 @@ class ButtonHability : public Button {
 private:
 	uint hability_;
 	Interfaz* app;
+
+	Hero* her;
+	Hability* hab;
+	bool affordable;
+
 public:
 	ButtonHability(SDLGame* game, EntityManager* mngr) : Button(game, mngr), hability_(0) {};
 
@@ -788,6 +793,11 @@ class ButtonWeaponAttack : public Button {
 private:
 	uint attack_;
 	Interfaz* app;
+
+	Hero* her;
+	Hability* hab;
+	bool affordable;
+
 public:
 	ButtonWeaponAttack(SDLGame* game, EntityManager* mngr) : Button(game, mngr), attack_(0) {};
 

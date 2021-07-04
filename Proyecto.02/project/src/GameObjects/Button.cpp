@@ -49,19 +49,21 @@ void ButtonHero::click()
 #include "../Managers/game/CombatManager.h"
 #include "../ecs/ecs.h"
 #include "../ecs/ecs_interfaz.h"
-void ButtonHability::init(Vector2D pos, uint ancho, uint alto, Resources::TextureId imagen, uint attack)
+void ButtonHability::init(Vector2D pos, uint ancho, uint alto, Resources::TextureId imagen, uint attack) //¡
 {
 	app = TheElementalMaze::instance()->getComponent<Interfaz>(ecs::Interfaz);
 	hability_ = attack;
+
+	her = static_cast<Hero*>(GETCMP2(TheElementalMaze::instance(), CombatManager)->getCurrentCharacter());
+	hab = her->getHabilities()[(int)hability_];
+	affordable = her->getCharacterSheet()->manaPoints() >= hab->getMana();
+	
+	if (!affordable) imagen = (Resources::TextureId)((int)imagen + 38);
 	Button::init(pos, ancho, alto, imagen);
 }
 
 void ButtonHability::click() // <3
 {
-	Hero* her = static_cast<Hero*>(GETCMP2(TheElementalMaze::instance(), CombatManager)->getCurrentCharacter());
-	Hability* hab = her->getHabilities()[(int)hability_];
-
-	bool affordable = her->getCharacterSheet()->manaPoints() >= hab->getMana();
 	callbacks::createFichaDescPan(false, hab, affordable);
 
 	if (affordable) callbacks::set_hability((int)hability_);
@@ -69,15 +71,11 @@ void ButtonHability::click() // <3
 };
 
 void ButtonHability::pointerEntered() {
-	Hero* her = static_cast<Hero*>(GETCMP2(TheElementalMaze::instance(), CombatManager)->getCurrentCharacter());
-	Hability* hab = her->getHabilities()[(int)hability_];
-	callbacks::createFichaDescPan(true, hab, her->getCharacterSheet()->manaPoints() >= hab->getMana());
+	callbacks::createFichaDescPan(true, hab, affordable);
 };
 
 void ButtonHability::pointerExited() {
-	Hero* her = static_cast<Hero*>(GETCMP2(TheElementalMaze::instance(), CombatManager)->getCurrentCharacter());
-	Hability* hab = her->getHabilities()[(int)hability_];
-	callbacks::createFichaDescPan(false, hab, her->getCharacterSheet()->manaPoints() >= hab->getMana());
+	callbacks::createFichaDescPan(false, hab, affordable);
 };
 
 #pragma endregion
@@ -122,7 +120,7 @@ void Button::init(SDL_Rect dest, Resources::TextureId imagen)
 	s->setHide(true);
 	addComponent<ButtonCtrl>(this);
 }
-void Button::toggleImage(Resources::TextureId imagen)
+void Button::toggleImage(Resources::TextureId imagen) //!
 {
 	id_ = imagen;
 	Image* img = GETCMP2(this, Image);
@@ -150,70 +148,44 @@ void ButtonSlott::init(Vector2D pos, uint ancho, uint alto, Item* item)
 
 //----------------------------------------------------------------------------
 
-void ButtonWeaponAttack::init(Vector2D pos, uint ancho, uint alto, Resources::TextureId imagen, int attack)
+void ButtonWeaponAttack::init(Vector2D pos, uint ancho, uint alto, Resources::TextureId imagen, int attack) //¡
 {
 	app = TheElementalMaze::instance()->getComponent<Interfaz>(ecs::Interfaz);
 	attack_ = attack;
+
+	her = static_cast<Hero*>(GETCMP2(TheElementalMaze::instance(), CombatManager)->getCurrentCharacter());
+	switch ((int)attack_)
+	{
+	case -2:
+		hab = her->getLightAttack();
+		break;
+	case -3:
+		hab = her->getHeavyAttack();
+		break;
+	default:
+		hab = nullptr;
+		break;
+	}
+	assert(hab != nullptr);
+	affordable = her->getCharacterSheet()->manaPoints() >= hab->getMana();
+	
+	if (!affordable) imagen = (Resources::TextureId)((int)imagen + 38);
 	Button::init(pos, ancho, alto, imagen);
 }
 
 void ButtonWeaponAttack::click() //<3
 {
-	Hero* her = static_cast<Hero*>(GETCMP2(TheElementalMaze::instance(), CombatManager)->getCurrentCharacter());
-	Hability* hab;
-	switch ((int)attack_)
-	{
-	case -2:
-		hab = her->getLightAttack();
-		break;
-	case -3:
-		hab = her->getHeavyAttack();
-		break;
-	default:
-		hab = nullptr;
-		break;
-	}
-	assert(hab != nullptr);
-	bool affordable = her->getCharacterSheet()->manaPoints() >= hab->getMana();
 	callbacks::createFichaDescPan(false, hab, affordable);
 
 	if (affordable) callbacks::set_hability((int)attack_);
 	else game_->getAudioMngr()->playChannel(Resources::Error, 0, 0);
 }
+
 void ButtonWeaponAttack::pointerEntered() {
-	Hero* her = static_cast<Hero*>(GETCMP2(TheElementalMaze::instance(), CombatManager)->getCurrentCharacter());
-	Hability* hab;
-	switch ((int)attack_)
-	{
-	case -2:
-		hab = her->getLightAttack();
-		break;
-	case -3:
-		hab = her->getHeavyAttack();
-		break;
-	default:
-		hab = nullptr;
-		break;
-	}
-	assert(hab != nullptr);
 	callbacks::createFichaDescPan(true, hab, her->getCharacterSheet()->manaPoints() >= hab->getMana());
 };
+
 void ButtonWeaponAttack::pointerExited() {
-	Hero* her = static_cast<Hero*>(GETCMP2(TheElementalMaze::instance(), CombatManager)->getCurrentCharacter());
-	Hability* hab;
-	switch ((int)attack_)
-	{
-	case -2:
-		hab = her->getLightAttack();
-		break;
-	case -3:
-		hab = her->getHeavyAttack();
-		break;
-	default:
-		hab = nullptr;
-		break;
-	}
-	assert(hab != nullptr);
 	callbacks::createFichaDescPan(false, hab, her->getCharacterSheet()->manaPoints() >= hab->getMana());
 };
 

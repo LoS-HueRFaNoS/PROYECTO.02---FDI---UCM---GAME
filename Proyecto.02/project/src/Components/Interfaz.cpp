@@ -495,7 +495,7 @@ void Interfaz::createHabilities()
 	Panel* p = new Panel(Habilities);
 	allPanels[Habilities] = p;
 
-	// BOTONES:
+	// BOTONES: //¡
 	for (int i = 0; i < nHabilities; i++) {
 		p->addButton(iManager->addButton<ButtonHability>(Vector2D(x_ + espace * i, y_), w_, h_, getHabilityTxt(hero, i), i));
 	}
