@@ -3,6 +3,7 @@
 #include "../Utilities/InputHandler.h"
 #include "../Managers/game/CombatManager.h"
 #include "../Managers/game/CharacterManager.h"
+#include "../Managers/game/AnimationManager.h"
 #include "../Managers/TheElementalMaze.h"
 
 PlayerMotion::PlayerMotion(SDL_KeyCode avanzar, SDL_KeyCode izq, SDL_KeyCode der, Laberinto* lab_) :Component(ecs::PlayerMotion), //
@@ -33,11 +34,12 @@ void PlayerMotion::update()
 	else if (ih->isKeyDown(giraIzq)) { rotarIzquierda(); }
 	else if (ih->isKeyDown(giraDer)) { rotarDerecha(); }
 	else if (ih->isKeyDown(SDLK_e) && lab->getCasillaInfo(x, y)->isExit()) { 
+		TheElementalMaze::instance()->getAnimManager()->addtransicion(1200);
 		TheElementalMaze::instance()->changeState(gameST::END_EXPLORING);
 		TheElementalMaze::instance()->onExitLaberinto();
 	}
 	else if (ih->isKeyDown(SDLK_f) && lab->getCasillaInfo(x, y)->isExit()) { 
-		
+		TheElementalMaze::instance()->getAnimManager()->addtransicion(1200);
 		TheElementalMaze::instance()->nextLevel();
 		TheElementalMaze::instance()->wasInMaze = false;
 		TheElementalMaze::instance()->onExitLaberinto();

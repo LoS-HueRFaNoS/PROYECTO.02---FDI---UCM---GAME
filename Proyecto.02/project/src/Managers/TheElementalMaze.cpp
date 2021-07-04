@@ -89,7 +89,8 @@ void TheElementalMaze::draw()
 	if (hasComponent(ecs::PanelDesc)) getComponent<PanelDesc>(ecs::PanelDesc)->draw();
 	if (hasComponent(ecs::PanelDnD)) getComponent<PanelDnD>(ecs::PanelDnD)->draw();
 	if (hasComponent(ecs::PanelTurns)) getComponent<PanelTurns>(ecs::PanelTurns)->draw();*/
-	tutorial_->drawTutorial();
+	if(!animManager_->getTransition())
+		tutorial_->drawTutorial();
 }
 
 //--------------------------------------------------------
