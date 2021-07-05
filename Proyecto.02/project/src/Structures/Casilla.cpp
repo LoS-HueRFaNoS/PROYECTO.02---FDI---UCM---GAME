@@ -96,9 +96,20 @@ void Casilla::casillaRender(int x, int y, double w, double h)
 		texturaPosActual->render(dest,angulo);
 
 	}
+}
 
-	
-
-	
-
+void Casilla::setSalida()
+{
+	esSalida = true;
+	vector<Look> paredes;
+	for (int i = 0; i < 4; i++)
+	{
+		if (!direcciones[i]) paredes.push_back((Look)i);
+	}
+	if (paredes.size() == 0) direccionSalida = (Look)-1;
+	else
+	{
+		int dir = game_->getRandGen()->nextInt(0, paredes.size());
+		direccionSalida = paredes[dir];
+	}
 }
