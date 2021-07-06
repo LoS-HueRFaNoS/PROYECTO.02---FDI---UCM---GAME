@@ -10,7 +10,7 @@ enum  Visibilidad { noVisitado, noEntrado,visitado };
 class Casilla
 {
 private:
-	//int look;
+	Look direccionSalida;
 	vector<bool> direcciones;
 	bool esSalida;
 	bool esPosActual = false;
@@ -28,7 +28,7 @@ public:
 	//vector<Enemys*>* checkenemigos();		//devuelve el puntero del vector de los enemigos.
 	Visibilidad getVisibilidad() {return visib; }
 	void setVisibilidad(Visibilidad vi) { visib = vi; }
-	void setSalida() { esSalida = true; }
+	void setSalida();
 	void setPosActual(bool value) { esPosActual = value; }
 	void setLook(int ang) { angulo = ang; }
 	void setDirs(Look dir) { direcciones[dir] = true; }
@@ -38,5 +38,6 @@ public:
 		enemyEnum.push_back(e);
 	}
 	vector<enemyTemplate>* getEnemy() { return &enemyEnum; }
+	Look getDirSalida() { return direccionSalida; }
 };
 

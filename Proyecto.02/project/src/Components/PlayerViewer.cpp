@@ -112,10 +112,16 @@ void PlayerViewer::draw()
 	}
 	else manager->getTexture(Resources::muro_del)->render(dest);
 	//renderEnemyActual();
-	if (cas->isExit()) {
+	if (cas->isExit() && cas->getDirSalida() !=-1 && sentido == cas->getDirSalida()) {
 			dest = RECT(_x+_w/2-300, _y+50, 600, 300);
 			if (cas->getEnemy()->size() == 0)
-			manager->getTexture(Resources::texto_salida)->render(dest);
+			manager->getTexture(Resources::texto_salida)->render(dest); // Cambiar a puerta
+	}
+	else if (cas->isExit() && cas->getDirSalida() == -1)
+	{
+		dest = RECT(_x + _w / 2 - 300, _y + 50, 600, 300);
+		if (cas->getEnemy()->size() == 0)
+			manager->getTexture(Resources::texto_salida)->render(dest); // Cambiar a escalera
 	}
 	//manager->getTexture(Resources::guiaSalida)->render(SDL_Rect{game_->getWindowWidth()/2-50, 100, 100,50});
 }

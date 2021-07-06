@@ -190,7 +190,6 @@ void Laberinto::createRandomMaze(Vector2D entrada)
 
 				}
 
-				laberinto[x][y]->setSalida();
 			}
 
 			if (TheElementalMaze::instance()->getLevel() != -1)
@@ -242,7 +241,7 @@ void Laberinto::createRandomMaze(Vector2D entrada)
 		}
 		neighbours.clear();
 	}
-
+	laberinto[salida.getX()][salida.getY()]->setSalida();
 	if (TheElementalMaze::instance()->getLevel() == -1)
 	{
 		generaObjeto(0, int(enemyTemplate::GOBLIN), laberinto[3][2], 1, 0);
