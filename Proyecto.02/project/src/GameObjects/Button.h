@@ -21,6 +21,9 @@ public:
 	virtual void init(SDL_Rect dest, Resources::TextureId imagen);
 
 	virtual void click() = 0;
+	virtual void update() override {
+		SDL_Object::update();
+	}
 	virtual void pointerEntered() {};
 	virtual void pointerExited() {};
 
@@ -706,6 +709,10 @@ public:
 		else turnOFF();
 	}
 
+	virtual void update() override {
+		Button::update();
+	}
+
 	virtual bool getActive() { return activated; };
 	virtual void turnON() { setActive(true); setHide(false); }
 	virtual void turnOFF() { 
@@ -744,6 +751,19 @@ enum class HeroNum { hero1, hero2, hero3, hero4 };
 class ButtonHero : public ButtonPanel {
 private:
 	HeroNum heroType_;
+	Hero* her_;
+
+	Resources::TextureId originalImg_;
+
+	enum textureState
+	{
+		zero,
+		dead,
+		dying,
+		alive
+	};
+	textureState texState = textureState::zero;
+
 public:
 	ButtonHero(SDLGame* game, EntityManager* mngr) : ButtonPanel(game, mngr), heroType_(HeroNum::hero1) {};
 
@@ -751,12 +771,18 @@ public:
 
 	virtual void init(Vector2D pos, uint ancho, uint alto, Resources::TextureId imagen, HeroNum hero, idPanel p, bool active) {
 		heroType_ = hero;
+		originalImg_ = imagen;
 		ButtonPanel::init(pos, ancho, alto, imagen, p, active);
+		her_ = TheElementalMaze::instance()->getPartyManager()->getHeroes()[(int)heroType_];
 	};
 
 	virtual void click();
 
+	virtual void update() override;
+
 	HeroNum getNumHero() { return heroType_; };
+
+	Hero* getHero() { return her_; };
 
 };
 #pragma endregion

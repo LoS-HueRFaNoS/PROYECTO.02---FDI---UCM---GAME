@@ -26,6 +26,10 @@ public:
 		initComponents(pos, ancho, alto, imagen);
 	};
 
+	virtual void update() override {
+		Entity::update();
+	}
+
 protected:
 	void initComponents(Vector2D pos, uint ancho, uint alto, Resources::TextureId imagen, bool animation = false);
 	void initComponents(Vector2D pos, uint ancho, uint alto, Texture* imagen);

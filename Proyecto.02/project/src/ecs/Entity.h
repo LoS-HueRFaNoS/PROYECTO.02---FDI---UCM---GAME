@@ -52,7 +52,7 @@ public:
 		return componentsArray_[id] != nullptr;
 	}
 
-	void update() {
+	virtual void update() {
 		if (!enabled || !active || pause) return;
 		auto n = components_.size();
 		for (auto i = 0u; i < n; i++)

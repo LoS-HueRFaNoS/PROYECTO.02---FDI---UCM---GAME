@@ -40,6 +40,30 @@ void ButtonHero::click()
 		turnOFF();
 }
 
+#include "Character.h"
+void ButtonHero::update() {
+	// muerto?
+	if (her_->getDeathGate() && texState != textureState::dead)
+	{
+		textureState texState = textureState::dead;
+		toggleImage((Resources::TextureId)((int)originalImg_ + (11 * 2)));
+	}
+	// en tiradas de salvacion?
+	else if (her_->isDead() && texState != textureState::dying)
+	{
+		textureState texState = textureState::dying;
+		toggleImage((Resources::TextureId)((int)originalImg_ + (11 * 1)));
+	}
+	// vivo
+	else if (texState != textureState::alive)
+	{
+		textureState texState = textureState::alive;
+		toggleImage((Resources::TextureId)((int)originalImg_ + (11 * 0)));
+	}
+
+	ButtonPanel::update();
+}
+
 #pragma endregion
 
 //----------------------------------------------------------------------------
@@ -126,7 +150,6 @@ void Button::toggleImage(Resources::TextureId imagen) //!
 	Image* img = GETCMP2(this, Image);
 	img->setTexture(game_->getTextureMngr()->getTexture(imagen));
 }
-;
 
 //----------------------------------------------------------------------------
 

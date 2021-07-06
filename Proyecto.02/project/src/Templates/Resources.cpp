@@ -62,6 +62,30 @@ vector<Resources::ImageInfo> Resources::images_{
 	{Druida, "project/resources/images/sprites/iconos personajes/druida.png"},
 	{Bestia, "project/resources/images/sprites/iconos personajes/bestia.png"},
 	{GranArchimago, "project/resources/images/sprites/iconos personajes/heroe-mago.png"},
+		//
+	{Bardo_, "project/resources/images/sprites/iconos personajes/bardo_.png"},
+	{Brujo_, "project/resources/images/sprites/iconos personajes/brujo_.png"},
+	{Clerigo_, "project/resources/images/sprites/iconos personajes/clerigo_.png"},
+	{Guerrero_, "project/resources/images/sprites/iconos personajes/guerrero_.png"},
+	{Paladin_, "project/resources/images/sprites/iconos personajes/paladin_.png"},
+	{Barbaro_, "project/resources/images/sprites/iconos personajes/barbaro_.png"},
+	{Explorador_, "project/resources/images/sprites/iconos personajes/explorador_.png"},
+	{Picaro_, "project/resources/images/sprites/iconos personajes/picaro_.png"},
+	{Druida_, "project/resources/images/sprites/iconos personajes/druida_.png"},
+	{Bestia_, "project/resources/images/sprites/iconos personajes/bestia_.png"},
+	{GranArchimago_, "project/resources/images/sprites/iconos personajes/heroe-mago_.png"},
+		//
+	{Bardo__, "project/resources/images/sprites/iconos personajes/bardo__.png"},
+	{Brujo__, "project/resources/images/sprites/iconos personajes/brujo__.png"},
+	{Clerigo__, "project/resources/images/sprites/iconos personajes/clerigo__.png"},
+	{Guerrero__, "project/resources/images/sprites/iconos personajes/guerrero__.png"},
+	{Paladin__, "project/resources/images/sprites/iconos personajes/paladin__.png"},
+	{Barbaro__, "project/resources/images/sprites/iconos personajes/barbaro__.png"},
+	{Explorador__, "project/resources/images/sprites/iconos personajes/explorador__.png"},
+	{Picaro__, "project/resources/images/sprites/iconos personajes/picaro__.png"},
+	{Druida__, "project/resources/images/sprites/iconos personajes/druida__.png"},
+	{Bestia__, "project/resources/images/sprites/iconos personajes/bestia__.png"},
+	{GranArchimago__, "project/resources/images/sprites/iconos personajes/heroe-mago__.png"},
 
 	// interfaz
 	{Mouse, "project/resources/images/interfaz/cursor+sombras.png"},
@@ -127,7 +151,6 @@ vector<Resources::ImageInfo> Resources::images_{
 	{Maza, "project/resources/images/sprites/iconos armas/maza.png"},
 	{ArcoPequeno, "project/resources/images/sprites/iconos armas/arco_ligero.png"},
 	{BallestaLigera, "project/resources/images/sprites/iconos armas/ballesta_ligera.png"},
-
 
 	// Armas marciales
 	{Alabarda, "project/resources/images/sprites/iconos armas/alabarda.png"},

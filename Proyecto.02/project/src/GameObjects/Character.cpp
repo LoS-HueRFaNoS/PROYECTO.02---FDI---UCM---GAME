@@ -319,7 +319,7 @@ void Hero::showSpellList()
     cout << "Choose a spell to cast (Enter to skip turn): \n";
 }
 
-void Hero::killHero()
+void Hero::killHero() //h
 {
     _deathGate = true;
 }
@@ -337,7 +337,7 @@ void Hero::manageTurn(CombatManager* cm)
 }
 
 
-void Hero::savingDeathThrow()
+void Hero::savingDeathThrow() //h
 {
     if (getSavingFailures() < 3)
     {
