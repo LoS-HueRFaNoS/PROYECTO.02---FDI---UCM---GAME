@@ -134,7 +134,7 @@ public:
 		double bw = 0, double bh = 0
 	);
 
-	bool fullscr_ = false;
+	bool fullscr_ = true;
 	
 private:
 	SDLGame(string windowTitle_, int width, int height);
