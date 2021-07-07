@@ -1391,6 +1391,7 @@ void Interfaz::createPanel(idPanel panelID)
 		TheElementalMaze::instance()->addComponent<ChatInfo>();
 		break;
 	case _ChestPanel_:
+		togglePanel(Heroes);
 		TheElementalMaze::instance()->addComponent<ChestPanel>();
 		break;
 	case Targets:
@@ -1504,6 +1505,7 @@ void Interfaz::removePanel(idPanel panID)
 		break;
 	case interfaz::_ChestPanel_:
 		TheElementalMaze::instance()->removeComponent(ecs::ChestPanel);
+		togglePanel(Heroes);
 		break;
 		/*case interfaz::MenuPrincipal:
 			break;
