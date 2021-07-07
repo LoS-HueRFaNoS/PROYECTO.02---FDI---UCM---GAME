@@ -22,6 +22,7 @@ public:
 	};
 
 	virtual ~ObjectChest() { 
+
 		delete fondo_;
 		fondo_ = nullptr;
 		//entities.clear();

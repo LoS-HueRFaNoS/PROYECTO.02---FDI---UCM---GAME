@@ -79,9 +79,9 @@ void ObjectChest::example()
 			// IMAGEN
 				//Transform
 			SDL_Rect imgOfItem;
-			imgOfItem.x = topElement().x + topElement().w * 0.125;
-			imgOfItem.y = topElement().y + topElement().h * 0.025;
-			imgOfItem.h = topElement().h * 0.95;
+			imgOfItem.x = topElement().x + topElement().w * 0.05;
+			imgOfItem.y = topElement().y + topElement().h * 0.005;
+			imgOfItem.h = topElement().h * 0.99;
 			imgOfItem.w = imgOfItem.h;
 			e->addComponent<Transform>(imgOfItem);
 
@@ -118,10 +118,17 @@ void ObjectChest::example()
 
 			//TEXTO
 			SDL_Color color = { 0,0,0,255 };
-			string line = items[i]->getName();
-			Line* li = new Line(game_, this);
-			li->init(topElement(), line, color);
-			addEntity(li);
+			string name = items[i]->getName();
+			Line* line = new Line(game_, this);
+
+			SDL_Rect lineRect;
+			lineRect.x = topElement().x + topElement().w * 0.35;
+			lineRect.y = topElement().y + topElement().h * 0.005;
+			lineRect.w = topElement().w * 0.6;
+			lineRect.h = topElement().h * 0.99;
+			
+			line->init(lineRect, name, color);
+			addEntity(line);
 		}
 	}
 }
