@@ -6,6 +6,7 @@
 #include "../TheElementalMaze.h"
 #include "../../Components/Laberinto.h"
 #include "ChatManager.h"
+#include "../../Components/Paneles/PanelTurns.h"
 
 #pragma region CombatePorConsola
 
@@ -14,7 +15,7 @@
 
 void CombatManager::showTeams()
 {
-    system("CLS");
+    system("cls");
     cout << "---------- HEROES ----------" << endl;
     for (Hero* h : _heroes) {
         CharacterSheet* s = h->getCharacterSheet();
@@ -188,16 +189,18 @@ void CombatManager::tryEscape()
     for (Enemy* e : _enemies) {
         if (!e->isDead())
         {
-            int huida = e->throwStat(ms::DEX);
+            int huida = e->throw20PlusMod(ms::DEX, false);
             if (tiradasE < huida)
                 tiradasE = huida;
         }
     }
 
     cout << "Heroes: " << tiradasH << "\n";
-    cout << "Enemies: " << tiradasE << "\n";
+    ChatManager::instance()->add("Heroes: " + to_string(tiradasH), LineColor::Green);
+    cout << "Enemies(+5): " << tiradasE + 5 << "\n";
+    ChatManager::instance()->add("Enemies(+5): " + to_string(tiradasE + 5), LineColor::Green);
 
-    if (tiradasH > tiradasE) {
+    if (false) {
         cout << "YOU ESCAPED \n";
         ChatManager::instance()->add("YOU ESCAPED", LineColor::Green);
         bool leftBehind = false;
@@ -221,6 +224,9 @@ void CombatManager::tryEscape()
     else {
         cout << "YOU FAILED TO ESCAPE \n";
         ChatManager::instance()->add("YOU FAILED TO ESCAPE", LineColor::Red);
+        sort(_turnQueue.begin(), _turnQueue.end(), escape_failed());
+        _turn = -1;
+        changeState(END_TURN);
     }
 }
 
@@ -270,7 +276,6 @@ void CombatManager::endCombat()
     }
     _enemies.clear();
     TheElementalMaze::instance()->checkOutNoInitialEnemy();
-
     _turnQueue.clear();
 }
 

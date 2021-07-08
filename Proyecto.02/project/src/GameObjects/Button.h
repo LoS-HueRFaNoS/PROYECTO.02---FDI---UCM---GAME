@@ -10,25 +10,25 @@
 class Button : public SDL_Object
 {
 protected:
-	Resources::TextureId id_;
+    Resources::TextureId id_;
 public:
-	Button(SDLGame* game, EntityManager* mngr) :
-		SDL_Object(game, mngr)
-	{};
-	virtual ~Button() {};
-	virtual void init(Vector2D pos, uint ancho, uint alto, Resources::TextureId imagen);
-	virtual void init(Vector2D pos, uint ancho, uint alto, Resources::TextureId imagen, bool animation);
-	virtual void init(SDL_Rect dest, Resources::TextureId imagen);
+    Button(SDLGame* game, EntityManager* mngr) :
+        SDL_Object(game, mngr)
+    {};
+    virtual ~Button() {};
+    virtual void init(Vector2D pos, uint ancho, uint alto, Resources::TextureId imagen);
+    virtual void init(Vector2D pos, uint ancho, uint alto, Resources::TextureId imagen, bool animation);
+    virtual void init(SDL_Rect dest, Resources::TextureId imagen);
 
-	virtual void click() = 0;
-	virtual void update() override {
-		SDL_Object::update();
-	}
-	virtual void pointerEntered() {};
-	virtual void pointerExited() {};
+    virtual void click() = 0;
+    virtual void update() override {
+        SDL_Object::update();
+    }
+    virtual void pointerEntered() {};
+    virtual void pointerExited() {};
 
-	void toggleImage(Resources::TextureId imagen);
-	Resources::TextureId getImageID() { return id_; };
+    void toggleImage(Resources::TextureId imagen);
+    Resources::TextureId getImageID() { return id_; };
 };
 
 // ----------------------------------------------------
@@ -36,74 +36,74 @@ public:
 class ButtonVolumen : public Button // <3
 {
 private:
-	SDL_Object* obj_; // objeto a modificar (barra que rellena)
-	int* volume_; // nivel de volumen actual
-	int* sound_; // nivel de sonido actual
-	int min_; // valor minimo de volumen/sonido
-	int max_; // valor maximo de volumen/sonido
-	int delta_; // incremento de este boton
-	uint barMax_; // valor maximo de la barra de volumen/sonido
-	bool music_; // ¿modifica el nivel de musica?
+    SDL_Object* obj_; // objeto a modificar (barra que rellena)
+    int* volume_; // nivel de volumen actual
+    int* sound_; // nivel de sonido actual
+    int min_; // valor minimo de volumen/sonido
+    int max_; // valor maximo de volumen/sonido
+    int delta_; // incremento de este boton
+    uint barMax_; // valor maximo de la barra de volumen/sonido
+    bool music_; // ¿modifica el nivel de musica?
 public:
-	ButtonVolumen(SDLGame* game, EntityManager* mngr) : Button(game, mngr) {};
-	virtual ~ButtonVolumen() {};
+    ButtonVolumen(SDLGame* game, EntityManager* mngr) : Button(game, mngr) {};
+    virtual ~ButtonVolumen() {};
 
-	virtual void init(SDL_Rect dest, Resources::TextureId imagen, SDL_Object* obj, int* volume, int* sound,
-		int min, int max, int delta, uint barMax, bool music) {
-		obj_ = obj;
-		volume_ = volume;
-		sound_ = sound;
-		min_ = min;
-		max_ = max;
-		delta_ = delta;
-		barMax_ = barMax;
-		music_ = music;
-		Button::init(dest, imagen);
-	};
+    virtual void init(SDL_Rect dest, Resources::TextureId imagen, SDL_Object* obj, int* volume, int* sound,
+        int min, int max, int delta, uint barMax, bool music) {
+        obj_ = obj;
+        volume_ = volume;
+        sound_ = sound;
+        min_ = min;
+        max_ = max;
+        delta_ = delta;
+        barMax_ = barMax;
+        music_ = music;
+        Button::init(dest, imagen);
+    };
 
-	virtual void click() {
-		// feedback sonoro del boton
-		game_->getAudioMngr()->playChannel(Resources::AudioId::Boton2, 0, 0); ///Boton1
+    virtual void click() {
+        // feedback sonoro del boton
+        game_->getAudioMngr()->playChannel(Resources::AudioId::Boton2, 0, 0); ///Boton1
 
-		if (music_) {
-			// aplicar delta y sus correcciones
-			int aux = *volume_ + delta_;
-			if (aux >= min_) {
-				if (aux <= max_) *volume_ = aux;
-				else *volume_ = max_;
-			}
-			else *volume_ = min_;
+        if (music_) {
+            // aplicar delta y sus correcciones
+            int aux = *volume_ + delta_;
+            if (aux >= min_) {
+                if (aux <= max_) *volume_ = aux;
+                else *volume_ = max_;
+            }
+            else *volume_ = min_;
 
-			// reflejar cambios (feedback visual de la barra)
-			Transform* tr = GETCMP2(obj_, Transform);
-			////int trW = tr->getW();
-			int ancho = (*volume_ / (float)(max_ - min_)) * barMax_;
-			tr->setW(ancho);
+            // reflejar cambios (feedback visual de la barra)
+            Transform* tr = GETCMP2(obj_, Transform);
+            ////int trW = tr->getW();
+            int ancho = (*volume_ / (float)(max_ - min_)) * barMax_;
+            tr->setW(ancho);
 
-			// aplicar cambios al sistema
-			game_->getAudioMngr()->setMusicVolume(*volume_);
-		}
-		else {
-			// aplicar delta y sus correcciones
-			int aux = *sound_ + delta_;
-			if (aux >= min_) {
-				if (aux <= max_) *sound_ = aux;
-				else *sound_ = max_;
-			}
-			else *sound_ = min_;
+            // aplicar cambios al sistema
+            game_->getAudioMngr()->setMusicVolume(*volume_);
+        }
+        else {
+            // aplicar delta y sus correcciones
+            int aux = *sound_ + delta_;
+            if (aux >= min_) {
+                if (aux <= max_) *sound_ = aux;
+                else *sound_ = max_;
+            }
+            else *sound_ = min_;
 
-			// reflejar cambios (feedback visual de la barra)
-			Transform* tr = GETCMP2(obj_, Transform);
-			////int trW = tr->getW();
-			int ancho = (*sound_ / (float)(max_ - min_)) * barMax_;
-			tr->setW(ancho);
+            // reflejar cambios (feedback visual de la barra)
+            Transform* tr = GETCMP2(obj_, Transform);
+            ////int trW = tr->getW();
+            int ancho = (*sound_ / (float)(max_ - min_)) * barMax_;
+            tr->setW(ancho);
 
-			// aplicar cambios al sistema
-			game_->getAudioMngr()->setChannelVolume(*sound_);
-		}
-		//DEBUG//
-		//std::cout << "vol.: " << *volume_ << endl << "son.: " << *sound_ << endl;
-	};
+            // aplicar cambios al sistema
+            game_->getAudioMngr()->setChannelVolume(*sound_);
+        }
+        //DEBUG//
+        //std::cout << "vol.: " << *volume_ << endl << "son.: " << *sound_ << endl;
+    };
 };
 
 // ----------------------------------------------------
@@ -111,29 +111,29 @@ public:
 class ButtonSettings : public Button
 {
 public:
-	ButtonSettings(SDLGame* game, EntityManager* mngr) :
-		Button(game, mngr)
-	{};
-	virtual ~ButtonSettings() {};
-	virtual void init(Vector2D pos, uint ancho, uint alto, Resources::TextureId imagen) {
-		Button::init(pos, ancho, alto, imagen);
-	};
-	virtual void init(SDL_Rect dest, Resources::TextureId imagen) {
-		Button::init(dest, imagen);
-	};
+    ButtonSettings(SDLGame* game, EntityManager* mngr) :
+        Button(game, mngr)
+    {};
+    virtual ~ButtonSettings() {};
+    virtual void init(Vector2D pos, uint ancho, uint alto, Resources::TextureId imagen) {
+        Button::init(pos, ancho, alto, imagen);
+    };
+    virtual void init(SDL_Rect dest, Resources::TextureId imagen) {
+        Button::init(dest, imagen);
+    };
 
-	virtual void click() { 
-		if (id_ == src::Change) 
-			toggleImage(src::Change2);
-		else 
-			toggleImage(src::Change);
-		callbacks::toggleThemeFondo(); 		
-		Sprite* s_ = GETCMP2(this, Sprite);
-		s_->setHide(true);
-		s_->reset();
-	};
+    virtual void click() {
+        if (id_ == src::Change)
+            toggleImage(src::Change2);
+        else
+            toggleImage(src::Change);
+        callbacks::toggleThemeFondo();
+        Sprite* s_ = GETCMP2(this, Sprite);
+        s_->setHide(true);
+        s_->reset();
+    };
 
-	
+
 };
 
 // ----------------------------------------------------
@@ -141,19 +141,19 @@ public:
 class ButtonSlott : public Button // <2
 {
 private:
-	Item* i_;
+    Item* i_;
 public:
-	ButtonSlott(SDLGame* game, EntityManager* mngr) : Button(game, mngr) {};
-	~ButtonSlott() {};
-	virtual void init(SDL_Rect dest, Item* item);
-	virtual void init(Vector2D pos, uint ancho, uint alto, Item* item);
+    ButtonSlott(SDLGame* game, EntityManager* mngr) : Button(game, mngr) {};
+    ~ButtonSlott() {};
+    virtual void init(SDL_Rect dest, Item* item);
+    virtual void init(Vector2D pos, uint ancho, uint alto, Item* item);
 
-	virtual void click() {
-		// if(i_ != nulptr) i_->use();
-		Sprite* s_ = GETCMP2(this, Sprite);
-		s_->setHide(true);
-		s_->reset();
-	};
+    virtual void click() {
+        // if(i_ != nulptr) i_->use();
+        Sprite* s_ = GETCMP2(this, Sprite);
+        s_->setHide(true);
+        s_->reset();
+    };
 };
 
 // ----------------------------------------------------
@@ -162,25 +162,25 @@ enum class MovType { rotR, rotL, forward, touch };
 
 class ButtonMovimiento : public Button {
 private:
-	MovType movementType_;
+    MovType movementType_;
 public:
-	ButtonMovimiento(SDLGame* game, EntityManager* mngr) : Button(game, mngr), movementType_(MovType::touch){};
+    ButtonMovimiento(SDLGame* game, EntityManager* mngr) : Button(game, mngr), movementType_(MovType::touch) {};
 
-	~ButtonMovimiento() {};
+    ~ButtonMovimiento() {};
 
-	virtual void init(Vector2D pos, uint ancho, uint alto, Resources::TextureId imagen, MovType movement) {
-		movementType_ = movement;
-		Button::init(pos, ancho, alto, imagen);
-	};
+    virtual void init(Vector2D pos, uint ancho, uint alto, Resources::TextureId imagen, MovType movement) {
+        movementType_ = movement;
+        Button::init(pos, ancho, alto, imagen);
+    };
 
-	virtual void click() 
-	{
-		game_->getAudioMngr()->playChannel(Resources::AudioId::Boton1, 0, 0);
-		callbacks::movCommand((int)movementType_);
-		Sprite* s_ = GETCMP2(this, Sprite);
-		s_->setHide(true);
-		s_->reset();
-	}
+    virtual void click()
+    {
+        game_->getAudioMngr()->playChannel(Resources::AudioId::Boton1, 0, 0);
+        callbacks::movCommand((int)movementType_);
+        Sprite* s_ = GETCMP2(this, Sprite);
+        s_->setHide(true);
+        s_->reset();
+    }
 };
 
 // ----------------------------------------------------
@@ -192,432 +192,433 @@ enum class CmbtType { attack, magic, defend, escape };
 
 class ButtonCombate : public Button {
 private:
-	CmbtType combatType_;
+    CmbtType combatType_;
 public:
-	ButtonCombate(SDLGame* game, EntityManager* mngr) : Button(game, mngr), combatType_(CmbtType::attack) {};
+    ButtonCombate(SDLGame* game, EntityManager* mngr) : Button(game, mngr), combatType_(CmbtType::attack) {};
 
-	~ButtonCombate() {};
+    ~ButtonCombate() {};
 
-	virtual void init(Vector2D pos, uint ancho, uint alto, Resources::TextureId imagen, CmbtType combate) {
-		combatType_ = combate;
-		Button::init(pos, ancho, alto, imagen);
-	};
+    virtual void init(Vector2D pos, uint ancho, uint alto, Resources::TextureId imagen, CmbtType combate) {
+        combatType_ = combate;
+        Button::init(pos, ancho, alto, imagen);
+    };
 
-	virtual void click()
-	{
-		callbacks::combatType((int)combatType_);
-		Sprite* s_ = GETCMP2(this, Sprite);
-		s_->setHide(true);
-		s_->reset();
-	}
+    virtual void click()
+    {
+        callbacks::combatType((int)combatType_);
+        Sprite* s_ = GETCMP2(this, Sprite);
+        s_->setHide(true);
+        s_->reset();
+    }
 };
 
 enum class target { target01, target02, target03, target04, target05 };
 
 class ButtonTarget : public Button {
 private:
-	target target_;
+    target target_;
 public:
-	ButtonTarget(SDLGame* game, EntityManager* mngr) : Button(game, mngr), target_(target::target01) {};
+    ButtonTarget(SDLGame* game, EntityManager* mngr) : Button(game, mngr), target_(target::target01) {};
 
-	~ButtonTarget() {};
+    ~ButtonTarget() {};
 
-	virtual void init(Vector2D pos, uint ancho, uint alto, Resources::TextureId imagen, target objetive) {
-		target_ = objetive;
-		Button::init(pos, ancho, alto, imagen, true);
-	};
+    virtual void init(Vector2D pos, uint ancho, uint alto, Resources::TextureId imagen, target objetive) {
+        target_ = objetive;
+        Button::init(pos, ancho, alto, imagen, true);
+    };
 
-	virtual void click()
-	{
-		callbacks::addTarget((int)target_);
-		Sprite* s_ = GETCMP2(this, Sprite);
-		s_->setHide(true);
-		s_->reset();
-	}
+    virtual void click()
+    {
+        callbacks::addTarget((int)target_);
+        Sprite* s_ = GETCMP2(this, Sprite);
+        s_->setHide(true);
+        s_->reset();
+    }
 };
 // ----------------------------------------------------
 
-enum class accionMenu { start, lobby, how_to_play, options, quit, shop, stash, shop_lobby,
-	stash_lobby, avanzarHeroes, avanzarItems, retrocederHeroes, retrocederItems, backToMenu, inventarioLobby, closeMessage, inventario_to_lobby,resume,
-	backToMaze,
+enum class accionMenu {
+    start, lobby, how_to_play, options, quit, shop, stash, shop_lobby,
+    stash_lobby, avanzarHeroes, avanzarItems, retrocederHeroes, retrocederItems, backToMenu, inventarioLobby, closeMessage, inventario_to_lobby, resume,
+    backToMaze,
 };
 
 class ButtonMenu : public Button {
 private:
-	accionMenu tipo;
-	Interfaz* app;
+    accionMenu tipo;
+    Interfaz* app;
 public:
-	ButtonMenu(SDLGame* game, EntityManager* mngr) : Button(game, mngr) {};
+    ButtonMenu(SDLGame* game, EntityManager* mngr) : Button(game, mngr) {};
 
-	~ButtonMenu() {};
+    ~ButtonMenu() {};
 
-	virtual void init(Vector2D pos, uint ancho, uint alto, Resources::TextureId imagen, accionMenu type, Interfaz* app_) {
-		tipo = type;
-		app = app_;
-		Button::init(pos, ancho, alto, imagen);
-	};
-	virtual void init(SDL_Rect dest, Resources::TextureId imagen, accionMenu type, Interfaz* app_ = nullptr) {
-		tipo = type;
-		app = app_;
-		Button::init(dest, imagen);
-	};
+    virtual void init(Vector2D pos, uint ancho, uint alto, Resources::TextureId imagen, accionMenu type, Interfaz* app_) {
+        tipo = type;
+        app = app_;
+        Button::init(pos, ancho, alto, imagen);
+    };
+    virtual void init(SDL_Rect dest, Resources::TextureId imagen, accionMenu type, Interfaz* app_ = nullptr) {
+        tipo = type;
+        app = app_;
+        Button::init(dest, imagen);
+    };
 
-	virtual void click()
-	{
-		switch (tipo)
-		{
-		case accionMenu::start:
-			callbacks::startExp(app);
-			break;
-		case accionMenu::lobby:
-			callbacks::startLobby(app);
-			break;
-		case accionMenu::how_to_play:
-			callbacks::howToPlay(app);
-			break;
-		case accionMenu::options:
-			callbacks::options(app);
-			break;
-		case accionMenu::quit:
-			callbacks::quit(app);
-			break;
-		case accionMenu::shop:
-			callbacks::shop(app);
-			break;
-		case accionMenu::stash:
-			callbacks::stash(app);
-			break;
-		case accionMenu::stash_lobby:
-			callbacks::stash_lobby(app);
-			break;
-		case accionMenu::shop_lobby:
-			callbacks::shop_lobby(app);
-			break;
-		case accionMenu::avanzarHeroes:
-			callbacks::avanzarHeroes(app);
-			break;
-		case accionMenu::avanzarItems:
-			callbacks::avanzarItems(app);
-			break;
-		case accionMenu::retrocederHeroes:
-			callbacks::retrocederHeroes(app);
-			break;
-		case accionMenu::retrocederItems:
-			callbacks::retrocederItems(app);
-			break;
-		case accionMenu::backToMenu:
-			callbacks::backToMenu(app);
-			break;
-		case accionMenu::inventarioLobby:
-			callbacks::inventarioLobby(app);
-			break;
-		case accionMenu::closeMessage:
-			callbacks::closeMessage();
-			break;
-		case accionMenu::inventario_to_lobby:
-			callbacks::inventarioToLobby(app);
-			break;
-		case accionMenu::resume:
-			callbacks::resumeGame(app);
-			break; 
-		case accionMenu::backToMaze:
-			callbacks::backToMaze(app);
-			break; 
-		default:
-			break;
-		}
-		Sprite* s_ = GETCMP2(this, Sprite);
-		s_->setHide(true);
-		s_->reset();
-		
-	}
+    virtual void click()
+    {
+        switch (tipo)
+        {
+        case accionMenu::start:
+            callbacks::startExp(app);
+            break;
+        case accionMenu::lobby:
+            callbacks::startLobby(app);
+            break;
+        case accionMenu::how_to_play:
+            callbacks::howToPlay(app);
+            break;
+        case accionMenu::options:
+            callbacks::options(app);
+            break;
+        case accionMenu::quit:
+            callbacks::quit(app);
+            break;
+        case accionMenu::shop:
+            callbacks::shop(app);
+            break;
+        case accionMenu::stash:
+            callbacks::stash(app);
+            break;
+        case accionMenu::stash_lobby:
+            callbacks::stash_lobby(app);
+            break;
+        case accionMenu::shop_lobby:
+            callbacks::shop_lobby(app);
+            break;
+        case accionMenu::avanzarHeroes:
+            callbacks::avanzarHeroes(app);
+            break;
+        case accionMenu::avanzarItems:
+            callbacks::avanzarItems(app);
+            break;
+        case accionMenu::retrocederHeroes:
+            callbacks::retrocederHeroes(app);
+            break;
+        case accionMenu::retrocederItems:
+            callbacks::retrocederItems(app);
+            break;
+        case accionMenu::backToMenu:
+            callbacks::backToMenu(app);
+            break;
+        case accionMenu::inventarioLobby:
+            callbacks::inventarioLobby(app);
+            break;
+        case accionMenu::closeMessage:
+            callbacks::closeMessage();
+            break;
+        case accionMenu::inventario_to_lobby:
+            callbacks::inventarioToLobby(app);
+            break;
+        case accionMenu::resume:
+            callbacks::resumeGame(app);
+            break;
+        case accionMenu::backToMaze:
+            callbacks::backToMaze(app);
+            break;
+        default:
+            break;
+        }
+        Sprite* s_ = GETCMP2(this, Sprite);
+        s_->setHide(true);
+        s_->reset();
+
+    }
 };
 // ----------------------------------------------------
 
 class ButtonCloseMessage : public Button {
 public:
-	ButtonCloseMessage(SDLGame* game, EntityManager* mngr) : Button(game, mngr) {};
-	~ButtonCloseMessage() {};
+    ButtonCloseMessage(SDLGame* game, EntityManager* mngr) : Button(game, mngr) {};
+    ~ButtonCloseMessage() {};
 
-	virtual void init(SDL_Rect dest, Resources::TextureId imagen) {
-		Button::init(dest, imagen);
-	};
+    virtual void init(SDL_Rect dest, Resources::TextureId imagen) {
+        Button::init(dest, imagen);
+    };
 
-	virtual void click()
-	{
-		callbacks::closeMessage();
-	};
+    virtual void click()
+    {
+        callbacks::closeMessage();
+    };
 };
 
 // ----------------------------------------------------
 
 class ButtonBuyHero : public Button {
 private:
-	int heroeid;
-	Interfaz* app;
+    int heroeid;
+    Interfaz* app;
 public:
-	ButtonBuyHero(SDLGame* game, EntityManager* mngr) : Button(game, mngr) {};
+    ButtonBuyHero(SDLGame* game, EntityManager* mngr) : Button(game, mngr) {};
 
-	~ButtonBuyHero() {};
+    ~ButtonBuyHero() {};
 
-	virtual void init(Vector2D pos, uint ancho, uint alto, Resources::TextureId imagen, int her, Interfaz* app_) {
-		heroeid = her;
-		app = app_;
-		Button::init(pos, ancho, alto, imagen);
-	};
-	virtual void init(SDL_Rect dest, Resources::TextureId imagen, int her, Interfaz* app_) {
-		heroeid = her;
-		app = app_;
-		Button::init(dest, imagen);
-	};
+    virtual void init(Vector2D pos, uint ancho, uint alto, Resources::TextureId imagen, int her, Interfaz* app_) {
+        heroeid = her;
+        app = app_;
+        Button::init(pos, ancho, alto, imagen);
+    };
+    virtual void init(SDL_Rect dest, Resources::TextureId imagen, int her, Interfaz* app_) {
+        heroeid = her;
+        app = app_;
+        Button::init(dest, imagen);
+    };
 
-	virtual void click()
-	{
-		callbacks::shoppingHero(app, heroeid);
+    virtual void click()
+    {
+        callbacks::shoppingHero(app, heroeid);
 
-	}
+    }
 };
 
 class ButtonShowHeroToParty : public Button {
 private:
-	int heroeid;
-	Interfaz* app;
+    int heroeid;
+    Interfaz* app;
 public:
-	ButtonShowHeroToParty(SDLGame* game, EntityManager* mngr) : Button(game, mngr) {};
+    ButtonShowHeroToParty(SDLGame* game, EntityManager* mngr) : Button(game, mngr) {};
 
-	~ButtonShowHeroToParty() {};
+    ~ButtonShowHeroToParty() {};
 
-	virtual void init(Vector2D pos, uint ancho, uint alto, Resources::TextureId imagen, int her, Interfaz* app_) {
-		heroeid = her;
-		app = app_;
-		Button::init(pos, ancho, alto, imagen);
-	};
-	virtual void init(SDL_Rect dest, Resources::TextureId imagen, int her, Interfaz* app_) {
-		heroeid = her;
-		app = app_;
-		Button::init(dest, imagen);
-	};
+    virtual void init(Vector2D pos, uint ancho, uint alto, Resources::TextureId imagen, int her, Interfaz* app_) {
+        heroeid = her;
+        app = app_;
+        Button::init(pos, ancho, alto, imagen);
+    };
+    virtual void init(SDL_Rect dest, Resources::TextureId imagen, int her, Interfaz* app_) {
+        heroeid = her;
+        app = app_;
+        Button::init(dest, imagen);
+    };
 
-	virtual void click()
-	{
-		callbacks::showHeroToParty(app, heroeid);
+    virtual void click()
+    {
+        callbacks::showHeroToParty(app, heroeid);
 
-	}
+    }
 };
 
 enum class accionHero {
-	sendHeroToStash, sendHeroToParty
+    sendHeroToStash, sendHeroToParty
 };
 class ButtonHeroManagement : public Button {
 private:
-	int heroeid;
-	accionHero accion;
-	Interfaz* app;
+    int heroeid;
+    accionHero accion;
+    Interfaz* app;
 public:
-	ButtonHeroManagement(SDLGame* game, EntityManager* mngr) : Button(game, mngr) {};
+    ButtonHeroManagement(SDLGame* game, EntityManager* mngr) : Button(game, mngr) {};
 
-	~ButtonHeroManagement() {};
+    ~ButtonHeroManagement() {};
 
-	virtual void init(Vector2D pos, uint ancho, uint alto, Resources::TextureId imagen,accionHero accion_, int her, Interfaz* app_) {
-		heroeid = her;
-		app = app_;
-		accion = accion_;
-		Button::init(pos, ancho, alto, imagen);
-	};
-	virtual void init(SDL_Rect dest, Resources::TextureId imagen,accionHero accion_, int her, Interfaz* app_) {
-		heroeid = her;
-		app = app_;
-		accion = accion_;
-		Button::init(dest, imagen);
-	};
+    virtual void init(Vector2D pos, uint ancho, uint alto, Resources::TextureId imagen, accionHero accion_, int her, Interfaz* app_) {
+        heroeid = her;
+        app = app_;
+        accion = accion_;
+        Button::init(pos, ancho, alto, imagen);
+    };
+    virtual void init(SDL_Rect dest, Resources::TextureId imagen, accionHero accion_, int her, Interfaz* app_) {
+        heroeid = her;
+        app = app_;
+        accion = accion_;
+        Button::init(dest, imagen);
+    };
 
-	virtual void click()
-	{
-		switch (accion)
-		{
-		case accionHero::sendHeroToStash:
-				callbacks::sendHeroToStash(app, heroeid);
-				break;
-		case accionHero::sendHeroToParty:
-			callbacks::sendHeroToParty(app, heroeid);
-			break;
-		}
-		Sprite* s_ = GETCMP2(this, Sprite);
-		s_->setHide(true);
-		s_->reset();
-	}
+    virtual void click()
+    {
+        switch (accion)
+        {
+        case accionHero::sendHeroToStash:
+            callbacks::sendHeroToStash(app, heroeid);
+            break;
+        case accionHero::sendHeroToParty:
+            callbacks::sendHeroToParty(app, heroeid);
+            break;
+        }
+        Sprite* s_ = GETCMP2(this, Sprite);
+        s_->setHide(true);
+        s_->reset();
+    }
 };
 // ----------------------------------------------------
 
 class ButtonBuyItem : public Button {
 private:
-	int itemid;
-	int itemType;
-	Interfaz* app;
+    int itemid;
+    int itemType;
+    Interfaz* app;
 public:
-	ButtonBuyItem(SDLGame* game, EntityManager* mngr) : Button(game, mngr) {};
+    ButtonBuyItem(SDLGame* game, EntityManager* mngr) : Button(game, mngr) {};
 
-	~ButtonBuyItem() {};
+    ~ButtonBuyItem() {};
 
-	virtual void init(Vector2D pos, uint ancho, uint alto, Resources::TextureId imagen,int itemId_, int itemType_, Interfaz* app_) {
-		itemid = itemId_;
-		itemType = itemType_;
-		app = app_;
-		Button::init(pos, ancho, alto, imagen);
-	};
-	virtual void init(SDL_Rect dest, Resources::TextureId imagen,int itemId_, int itemType_, Interfaz* app_) {
-		itemid = itemId_;
-		itemType = itemType_;
-		app = app_;
-		Button::init(dest, imagen);
-	};
+    virtual void init(Vector2D pos, uint ancho, uint alto, Resources::TextureId imagen, int itemId_, int itemType_, Interfaz* app_) {
+        itemid = itemId_;
+        itemType = itemType_;
+        app = app_;
+        Button::init(pos, ancho, alto, imagen);
+    };
+    virtual void init(SDL_Rect dest, Resources::TextureId imagen, int itemId_, int itemType_, Interfaz* app_) {
+        itemid = itemId_;
+        itemType = itemType_;
+        app = app_;
+        Button::init(dest, imagen);
+    };
 
-	virtual void click()
-	{
-		callbacks::shopping(app, itemType, itemid);
-		Sprite* s_ = GETCMP2(this, Sprite);
-		s_->setHide(true);
-		s_->reset();
-	}
+    virtual void click()
+    {
+        callbacks::shopping(app, itemType, itemid);
+        Sprite* s_ = GETCMP2(this, Sprite);
+        s_->setHide(true);
+        s_->reset();
+    }
 };
 // ----------------------------------------------------
 
 // ----------------------------------------------------
 enum class accionItem {
-	sellItem, showSellButton, showSendToStash, sendToStash, showSendToInventory, sendToInventory, showEquipButton
+    sellItem, showSellButton, showSendToStash, sendToStash, showSendToInventory, sendToInventory, showEquipButton
 };
 class ButtonItemManagement : public Button {
 private:
-	int itemid;
-	accionItem accion_item;
-	bool isWeapon;
-	Interfaz* app;
+    int itemid;
+    accionItem accion_item;
+    bool isWeapon;
+    Interfaz* app;
 public:
-	ButtonItemManagement(SDLGame* game, EntityManager* mngr) : Button(game, mngr) {};
+    ButtonItemManagement(SDLGame* game, EntityManager* mngr) : Button(game, mngr) {};
 
-	~ButtonItemManagement() {};
+    ~ButtonItemManagement() {};
 
-	virtual void init(Vector2D pos, uint ancho, uint alto, Resources::TextureId imagen, accionItem accion_item_ ,bool isWeapon_, int itemId_, Interfaz* app_) {
-		itemid = itemId_;
-		accion_item = accion_item_;
-		isWeapon = isWeapon_;
-		app = app_;
-		Button::init(pos, ancho, alto, imagen);
-	};
-	virtual void init(SDL_Rect dest, Resources::TextureId imagen, accionItem accion_item_ ,bool isWeapon_, int itemId_, Interfaz* app_) {
-		itemid = itemId_;
-		accion_item = accion_item_;
-		isWeapon = isWeapon_;
-		app = app_;
-		Button::init(dest, imagen);
-	};
+    virtual void init(Vector2D pos, uint ancho, uint alto, Resources::TextureId imagen, accionItem accion_item_, bool isWeapon_, int itemId_, Interfaz* app_) {
+        itemid = itemId_;
+        accion_item = accion_item_;
+        isWeapon = isWeapon_;
+        app = app_;
+        Button::init(pos, ancho, alto, imagen);
+    };
+    virtual void init(SDL_Rect dest, Resources::TextureId imagen, accionItem accion_item_, bool isWeapon_, int itemId_, Interfaz* app_) {
+        itemid = itemId_;
+        accion_item = accion_item_;
+        isWeapon = isWeapon_;
+        app = app_;
+        Button::init(dest, imagen);
+    };
 
-	virtual void click()
-	{
-		switch (accion_item)
-		{
-		case accionItem::showSellButton:
-			callbacks::showSellButton(app, itemid);
-			break;
-		case accionItem::sellItem:
-			callbacks::sellStashItem(app,itemid);
-			break;
-		case accionItem::showSendToStash:
-			callbacks::showSendToStash(app, itemid);
-			callbacks::showEquipButton(app,isWeapon, itemid);
-			break;
-		case accionItem::sendToStash:
-			callbacks::sendToStash(app, itemid);
-			break;
-		case accionItem::showSendToInventory:
-			callbacks::showSellButton(app, itemid);
-			break;
-		case accionItem::sendToInventory:
-			callbacks::sendToInventory(app, itemid);
-			break;
-		case accionItem::showEquipButton:
-			callbacks::showEquipButton(app,isWeapon, itemid);
-			break;
-		}
-		
-		
-		Sprite* s_ = GETCMP2(this, Sprite);
-		s_->setHide(true);
-		s_->reset();
-	}
+    virtual void click()
+    {
+        switch (accion_item)
+        {
+        case accionItem::showSellButton:
+            callbacks::showSellButton(app, itemid);
+            break;
+        case accionItem::sellItem:
+            callbacks::sellStashItem(app, itemid);
+            break;
+        case accionItem::showSendToStash:
+            callbacks::showSendToStash(app, itemid);
+            callbacks::showEquipButton(app, isWeapon, itemid);
+            break;
+        case accionItem::sendToStash:
+            callbacks::sendToStash(app, itemid);
+            break;
+        case accionItem::showSendToInventory:
+            callbacks::showSellButton(app, itemid);
+            break;
+        case accionItem::sendToInventory:
+            callbacks::sendToInventory(app, itemid);
+            break;
+        case accionItem::showEquipButton:
+            callbacks::showEquipButton(app, isWeapon, itemid);
+            break;
+        }
+
+
+        Sprite* s_ = GETCMP2(this, Sprite);
+        s_->setHide(true);
+        s_->reset();
+    }
 };
 // ----------------------------------------------------
 
 class ButtonInfoTienda : public Button { // <3
 private:
-	Interfaz* app;
-	int id;
-	bool isHero = false;
+    Interfaz* app;
+    int id;
+    bool isHero = false;
 public:
-	ButtonInfoTienda(SDLGame* game, EntityManager* mngr) : Button(game, mngr) {};
+    ButtonInfoTienda(SDLGame* game, EntityManager* mngr) : Button(game, mngr) {};
 
-	~ButtonInfoTienda() {};
+    ~ButtonInfoTienda() {};
 
-	virtual void init(Vector2D pos, uint ancho, uint alto, Resources::TextureId imagen,bool isHero_, int id_, Interfaz* app_) {
-		app = app_;
-		id = id_;
-		isHero = isHero_;
-		Button::init(pos, ancho, alto, imagen);
-	};
-	virtual void init(SDL_Rect dest, Resources::TextureId imagen,bool isHero_, int id_, Interfaz* app_) {
-		app = app_;
-		id = id_;
-		isHero = isHero_;
-		Button::init(dest, imagen);
-	};
+    virtual void init(Vector2D pos, uint ancho, uint alto, Resources::TextureId imagen, bool isHero_, int id_, Interfaz* app_) {
+        app = app_;
+        id = id_;
+        isHero = isHero_;
+        Button::init(pos, ancho, alto, imagen);
+    };
+    virtual void init(SDL_Rect dest, Resources::TextureId imagen, bool isHero_, int id_, Interfaz* app_) {
+        app = app_;
+        id = id_;
+        isHero = isHero_;
+        Button::init(dest, imagen);
+    };
 
-	virtual void click()
-	{
-		callbacks::infoTienda(app,isHero,id);
-		Sprite* s_ = GETCMP2(this, Sprite);
-		s_->setHide(true);
-		s_->reset();
-	}
-	virtual void pointerEntered();
-	virtual void pointerExited();
+    virtual void click()
+    {
+        callbacks::infoTienda(app, isHero, id);
+        Sprite* s_ = GETCMP2(this, Sprite);
+        s_->setHide(true);
+        s_->reset();
+    }
+    virtual void pointerEntered();
+    virtual void pointerExited();
 };
 
-enum class accionOption {volumen, velocidad  };
+enum class accionOption { volumen, velocidad };
 
 
 class ButtonOption : public Button {
 private:
-	accionOption tipo;
-	Interfaz* app;
-	int value;
+    accionOption tipo;
+    Interfaz* app;
+    int value;
 public:
-	ButtonOption(SDLGame* game, EntityManager* mngr) : Button(game, mngr) {};
+    ButtonOption(SDLGame* game, EntityManager* mngr) : Button(game, mngr) {};
 
-	~ButtonOption() {};
+    ~ButtonOption() {};
 
-	virtual void init(Vector2D pos, uint ancho, uint alto, Resources::TextureId imagen, accionOption type, Interfaz* app_) {
-		tipo = type;
-		app = app_;
-		Button::init(pos, ancho, alto, imagen);
-	};
+    virtual void init(Vector2D pos, uint ancho, uint alto, Resources::TextureId imagen, accionOption type, Interfaz* app_) {
+        tipo = type;
+        app = app_;
+        Button::init(pos, ancho, alto, imagen);
+    };
 
-	virtual void click()
-	{
-		switch (tipo)
-		{
-		case accionOption::volumen:
+    virtual void click()
+    {
+        switch (tipo)
+        {
+        case accionOption::volumen:
 
-			break;
-		case accionOption::velocidad:
+            break;
+        case accionOption::velocidad:
 
-			break;
-		default:
-			break;
-		}
-		Sprite* s_ = GETCMP2(this, Sprite);
-		s_->setHide(true);
-		s_->reset();
-	}
+            break;
+        default:
+            break;
+        }
+        Sprite* s_ = GETCMP2(this, Sprite);
+        s_->setHide(true);
+        s_->reset();
+    }
 
 };
 // ----------------------------------------------------
@@ -626,25 +627,25 @@ public:
 #include "../Components/Contador.h"
 class ButtonPotion : public Button { // <2
 private:
-	PtnType potionType_;
+    PtnType potionType_;
 public:
-	ButtonPotion(SDLGame* game, EntityManager* mngr) : Button(game, mngr), potionType_(PtnType::health) {};
+    ButtonPotion(SDLGame* game, EntityManager* mngr) : Button(game, mngr), potionType_(PtnType::health) {};
 
-	~ButtonPotion() {};
+    ~ButtonPotion() {};
 
-	virtual void init(Vector2D pos, uint ancho, uint alto, Resources::TextureId imagen, PtnType potion) {
-		potionType_ = potion;
-		Button::init(pos, ancho, alto, imagen);
-	};
+    virtual void init(Vector2D pos, uint ancho, uint alto, Resources::TextureId imagen, PtnType potion) {
+        potionType_ = potion;
+        Button::init(pos, ancho, alto, imagen);
+    };
 
-	virtual void click()
-	{
-		//game_->getAudioMngr()->haltChannel(0);
-		callbacks::potionType((int)potionType_);
-		Sprite* s_ = GETCMP2(this, Sprite);
-		s_->setHide(true);
-		s_->reset();
-	}
+    virtual void click()
+    {
+        //game_->getAudioMngr()->haltChannel(0);
+        callbacks::potionType((int)potionType_);
+        Sprite* s_ = GETCMP2(this, Sprite);
+        s_->setHide(true);
+        s_->reset();
+    }
 };
 
 // ----------------------------------------------------
@@ -663,126 +664,126 @@ using namespace interfaz;
 // activa / desactiva los botones de un panel concreto
 class ButtonPanelCte : public Button {
 private:
-	Panel* pan_;
+    Panel* pan_;
 public:
-	ButtonPanelCte(SDLGame* game, EntityManager* mngr) : Button(game, mngr), pan_(nullptr) {};
+    ButtonPanelCte(SDLGame* game, EntityManager* mngr) : Button(game, mngr), pan_(nullptr) {};
 
-	~ButtonPanelCte() {};
+    ~ButtonPanelCte() {};
 
-	virtual void init(Vector2D pos, uint ancho, uint alto, Resources::TextureId imagen, Panel* p) {
-		pan_ = p;
-		Button::init(pos, ancho, alto, imagen);
-	};
+    virtual void init(Vector2D pos, uint ancho, uint alto, Resources::TextureId imagen, Panel* p) {
+        pan_ = p;
+        Button::init(pos, ancho, alto, imagen);
+    };
 
-	virtual void click();
+    virtual void click();
 };
 
 // crear / destruye en tiempo de ejecuci�n los botones de un panel concreto
 class ButtonPanel : public Button {
 protected:
-	bool activated;
-	idPanel pan_; // Panel que va a ser activado o desactivado
+    bool activated;
+    idPanel pan_; // Panel que va a ser activado o desactivado
 
-	void setActive(bool set);
-	void setHide(bool set);
+    void setActive(bool set);
+    void setHide(bool set);
 
 public:
-	ButtonPanel(SDLGame* game, EntityManager* mngr) : Button(game, mngr), activated(true), pan_() {};
+    ButtonPanel(SDLGame* game, EntityManager* mngr) : Button(game, mngr), activated(true), pan_() {};
 
-	~ButtonPanel() {};
+    ~ButtonPanel() {};
 
-	virtual void init(Vector2D pos, uint ancho, uint alto, Resources::TextureId imagen, idPanel p, bool active) {
-		setActive(active);
-		pan_ = p; // asigna el panel
-		Button::init(pos, ancho, alto, imagen);
-	};
-	virtual void init(SDL_Rect dest, Resources::TextureId imagen, idPanel p, bool active) {
-		setActive(active);
-		pan_ = p; // asigna el panel
-		Button::init(dest, imagen);
-	};
+    virtual void init(Vector2D pos, uint ancho, uint alto, Resources::TextureId imagen, idPanel p, bool active) {
+        setActive(active);
+        pan_ = p; // asigna el panel
+        Button::init(pos, ancho, alto, imagen);
+    };
+    virtual void init(SDL_Rect dest, Resources::TextureId imagen, idPanel p, bool active) {
+        setActive(active);
+        pan_ = p; // asigna el panel
+        Button::init(dest, imagen);
+    };
 
-	virtual void click()
-	{
-		callbacks::createPanel(activated, pan_);
-		if (!activated) turnON();
-		else turnOFF();
-	}
+    virtual void click()
+    {
+        callbacks::createPanel(activated, pan_);
+        if (!activated) turnON();
+        else turnOFF();
+    }
 
-	virtual void update() override {
-		Button::update();
-	}
+    virtual void update() override {
+        Button::update();
+    }
 
-	virtual bool getActive() { return activated; };
-	virtual void turnON() { setActive(true); setHide(false); }
-	virtual void turnOFF() { 
-		Sprite* s_ = GETCMP2(this, Sprite);
-		s_->setHide(true);
-		s_->reset();
-		setActive(false); setHide(true);
-	}
+    virtual bool getActive() { return activated; };
+    virtual void turnON() { setActive(true); setHide(false); }
+    virtual void turnOFF() {
+        Sprite* s_ = GETCMP2(this, Sprite);
+        s_->setHide(true);
+        s_->reset();
+        setActive(false); setHide(true);
+    }
 
 };
 
 class ButtonReturn : public ButtonPanel {
 protected:
-	idPanel panActual_; // Panel al que pertenece el button
+    idPanel panActual_; // Panel al que pertenece el button
 
 public:
-	ButtonReturn(SDLGame* game, EntityManager* mngr) : ButtonPanel(game, mngr) {};
+    ButtonReturn(SDLGame* game, EntityManager* mngr) : ButtonPanel(game, mngr) {};
 
-	~ButtonReturn() {};
+    ~ButtonReturn() {};
 
-	virtual void init(SDL_Rect dest, Resources::TextureId imagen, idPanel PanelActual, idPanel PanelRegreso, bool active) {
-		panActual_ = PanelActual; // asigna el panel
-		ButtonPanel::init(dest, imagen, PanelRegreso, active);
-	};
+    virtual void init(SDL_Rect dest, Resources::TextureId imagen, idPanel PanelActual, idPanel PanelRegreso, bool active) {
+        panActual_ = PanelActual; // asigna el panel
+        ButtonPanel::init(dest, imagen, PanelRegreso, active);
+    };
 
-	virtual void click()
-	{
-		callbacks::returnTo(panActual_, pan_);
-		if (!activated) turnON();
-		else turnOFF();
-	}
+    virtual void click()
+    {
+        callbacks::returnTo(panActual_, pan_);
+        if (!activated) turnON();
+        else turnOFF();
+    }
 };
 
 enum class HeroNum { hero1, hero2, hero3, hero4 };
 
 class ButtonHero : public ButtonPanel {
 private:
-	HeroNum heroType_;
-	Hero* her_;
+    HeroNum heroType_;
+    Hero* her_;
 
-	Resources::TextureId originalImg_;
+    Resources::TextureId originalImg_;
 
-	enum textureState
-	{
-		zero,
-		dead,
-		dying,
-		alive
-	};
-	textureState texState = textureState::zero;
+    enum textureState
+    {
+        zero,
+        dead,
+        dying,
+        alive
+    };
+    textureState texState = textureState::zero;
 
 public:
-	ButtonHero(SDLGame* game, EntityManager* mngr) : ButtonPanel(game, mngr), heroType_(HeroNum::hero1) {};
+    ButtonHero(SDLGame* game, EntityManager* mngr) : ButtonPanel(game, mngr), heroType_(HeroNum::hero1) {};
 
-	~ButtonHero() {};
+    ~ButtonHero() {};
 
-	virtual void init(Vector2D pos, uint ancho, uint alto, Resources::TextureId imagen, HeroNum hero, idPanel p, bool active) {
-		heroType_ = hero;
-		originalImg_ = imagen;
-		ButtonPanel::init(pos, ancho, alto, imagen, p, active);
-		her_ = TheElementalMaze::instance()->getPartyManager()->getHeroes()[(int)heroType_];
-	};
+    virtual void init(Vector2D pos, uint ancho, uint alto, Resources::TextureId imagen, HeroNum hero, idPanel p, bool active) {
+        heroType_ = hero;
+        originalImg_ = imagen;
+        ButtonPanel::init(pos, ancho, alto, imagen, p, active);
+        her_ = TheElementalMaze::instance()->getPartyManager()->getHeroes()[(int)heroType_];
+    };
 
-	virtual void click();
+    virtual void click();
 
-	virtual void update() override;
+    virtual void update() override;
 
-	HeroNum getNumHero() { return heroType_; };
+    HeroNum getNumHero() { return heroType_; };
 
-	Hero* getHero() { return her_; };
+    Hero* getHero() { return her_; };
 
 };
 #pragma endregion
@@ -795,45 +796,45 @@ public:
 
 class ButtonHability : public Button {
 private:
-	uint hability_;
-	Interfaz* app;
+    uint hability_;
+    Interfaz* app;
 
-	Hero* her;
-	Hability* hab;
-	bool affordable;
+    Hero* her;
+    Hability* hab;
+    bool affordable;
 
 public:
-	ButtonHability(SDLGame* game, EntityManager* mngr) : Button(game, mngr), hability_(0) {};
+    ButtonHability(SDLGame* game, EntityManager* mngr) : Button(game, mngr), hability_(0) {};
 
-	~ButtonHability() {};
+    ~ButtonHability() {};
 
-	virtual void init(Vector2D pos, uint ancho, uint alto, Resources::TextureId imagen, uint attack);
+    virtual void init(Vector2D pos, uint ancho, uint alto, Resources::TextureId imagen, uint attack);
 
-	virtual void click();
-	virtual void pointerEntered();
-	virtual void pointerExited();
-	
+    virtual void click();
+    virtual void pointerEntered();
+    virtual void pointerExited();
+
 };
 
 class ButtonWeaponAttack : public Button {
 private:
-	uint attack_;
-	Interfaz* app;
+    uint attack_;
+    Interfaz* app;
 
-	Hero* her;
-	Hability* hab;
-	bool affordable;
+    Hero* her;
+    Hability* hab;
+    bool affordable;
 
 public:
-	ButtonWeaponAttack(SDLGame* game, EntityManager* mngr) : Button(game, mngr), attack_(0) {};
+    ButtonWeaponAttack(SDLGame* game, EntityManager* mngr) : Button(game, mngr), attack_(0) {};
 
-	~ButtonWeaponAttack() {};
+    ~ButtonWeaponAttack() {};
 
-	virtual void init(Vector2D pos, uint ancho, uint alto, Resources::TextureId imagen, int attack);
+    virtual void init(Vector2D pos, uint ancho, uint alto, Resources::TextureId imagen, int attack);
 
-	virtual void click();
-	virtual void pointerEntered();
-	virtual void pointerExited();
+    virtual void click();
+    virtual void pointerEntered();
+    virtual void pointerExited();
 };
 
 #pragma endregion
@@ -843,54 +844,54 @@ public:
 // ----------------------------------------------------
 
 // ----------------------------------------------------
-enum class accionHeroEquipment {showUnequip,Unequip, showEquip, Equip};
+enum class accionHeroEquipment { showUnequip, Unequip, showEquip, Equip };
 class ButtonHeroEquipment : public Button { // <3
 private:
-	bool isWeapon = false;
-	int heroid;
-	int itemid;
-	Interfaz* app;
-	accionHeroEquipment accion;
+    bool isWeapon = false;
+    int heroid;
+    int itemid;
+    Interfaz* app;
+    accionHeroEquipment accion;
 public:
-	ButtonHeroEquipment(SDLGame* game, EntityManager* mngr) : Button(game, mngr) {};
+    ButtonHeroEquipment(SDLGame* game, EntityManager* mngr) : Button(game, mngr) {};
 
-	~ButtonHeroEquipment() {};
+    ~ButtonHeroEquipment() {};
 
-	virtual void init(Vector2D pos, uint ancho, uint alto, Resources::TextureId imagen, accionHeroEquipment accion_, bool isWeapon_,int itemId_,int heroId_, Interfaz* app_) {
-		isWeapon = isWeapon_;
-		heroid = heroId_;
-		itemid = itemId_;
+    virtual void init(Vector2D pos, uint ancho, uint alto, Resources::TextureId imagen, accionHeroEquipment accion_, bool isWeapon_, int itemId_, int heroId_, Interfaz* app_) {
+        isWeapon = isWeapon_;
+        heroid = heroId_;
+        itemid = itemId_;
 
-		app = app_;
-		accion = accion_;
-		Button::init(pos, ancho, alto, imagen);
-	};
+        app = app_;
+        accion = accion_;
+        Button::init(pos, ancho, alto, imagen);
+    };
 
-	virtual void click()
-	{
-		switch (accion)
-		{
-		case accionHeroEquipment::showUnequip:
-			callbacks::showUnequipButton(app, isWeapon, heroid);
-			break;
-		case accionHeroEquipment::Unequip:
-			callbacks::unequip(app, isWeapon, heroid);
-			break;
-		case accionHeroEquipment::Equip:
-			callbacks::equip(app, isWeapon, itemid, heroid);
-			break;
+    virtual void click()
+    {
+        switch (accion)
+        {
+        case accionHeroEquipment::showUnequip:
+            callbacks::showUnequipButton(app, isWeapon, heroid);
+            break;
+        case accionHeroEquipment::Unequip:
+            callbacks::unequip(app, isWeapon, heroid);
+            break;
+        case accionHeroEquipment::Equip:
+            callbacks::equip(app, isWeapon, itemid, heroid);
+            break;
 
-		case accionHeroEquipment::showEquip:
-			callbacks::showEquipButton(app, isWeapon, itemid);
-			break;
-		}
-	
-		
-		Sprite* s_ = GETCMP2(this, Sprite);
-		s_->setHide(true);
-		s_->reset();
-	}
-	virtual void pointerEntered();
-	virtual void pointerExited();
+        case accionHeroEquipment::showEquip:
+            callbacks::showEquipButton(app, isWeapon, itemid);
+            break;
+        }
+
+
+        Sprite* s_ = GETCMP2(this, Sprite);
+        s_->setHide(true);
+        s_->reset();
+    }
+    virtual void pointerEntered();
+    virtual void pointerExited();
 };
 // ----------------------------------------------------
