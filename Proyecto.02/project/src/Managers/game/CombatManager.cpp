@@ -200,7 +200,7 @@ void CombatManager::tryEscape()
     cout << "Enemies(+5): " << tiradasE + 5 << "\n";
     ChatManager::instance()->add("Enemies(+5): " + to_string(tiradasE + 5), LineColor::Green);
 
-    if (false) {
+    if (tiradasH > tiradasE + 5) {
         cout << "YOU ESCAPED \n";
         ChatManager::instance()->add("YOU ESCAPED", LineColor::Green);
         bool leftBehind = false;
