@@ -640,11 +640,18 @@ public:
 
     virtual void click()
     {
-        //game_->getAudioMngr()->haltChannel(0);
-        callbacks::potionType((int)potionType_);
-        Sprite* s_ = GETCMP2(this, Sprite);
-        s_->setHide(true);
-        s_->reset();
+        if (TheElementalMaze::instance()->gameState() == gameST::COMBAT)
+        {
+            //game_->getAudioMngr()->haltChannel(0);
+            callbacks::potionType((int)potionType_);
+            Sprite* s_ = GETCMP2(this, Sprite);
+            s_->setHide(true);
+            s_->reset();
+        }
+        else
+        {
+            game_->getAudioMngr()->playChannel(Resources::Error, 0);
+        }
     }
 };
 
