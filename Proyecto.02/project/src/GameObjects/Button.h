@@ -628,6 +628,9 @@ public:
 class ButtonPotion : public Button { // <2
 private:
     PtnType potionType_;
+    bool isPlayerInCombat_ = false;
+    Resources::TextureId imagenOriginal_;
+
 public:
     ButtonPotion(SDLGame* game, EntityManager* mngr) : Button(game, mngr), potionType_(PtnType::health) {};
 
@@ -635,12 +638,13 @@ public:
 
     virtual void init(Vector2D pos, uint ancho, uint alto, Resources::TextureId imagen, PtnType potion) {
         potionType_ = potion;
+        imagenOriginal_ = imagen;
         Button::init(pos, ancho, alto, imagen);
     };
 
     virtual void click()
     {
-        if (TheElementalMaze::instance()->gameState() == gameST::COMBAT)
+        if (isPlayerInCombat_)
         {
             //game_->getAudioMngr()->haltChannel(0);
             callbacks::potionType((int)potionType_);
@@ -653,6 +657,22 @@ public:
             game_->getAudioMngr()->playChannel(Resources::Error, 0);
         }
     }
+
+    virtual void update() override
+    {
+        isPlayerInCombat_ = (TheElementalMaze::instance()->gameState() == gameST::COMBAT);
+
+        if (isPlayerInCombat_)
+        {
+            toggleImage(imagenOriginal_);
+        }
+        else
+        {
+            toggleImage((Resources::TextureId)((int)imagenOriginal_ + 1));
+        }
+
+        Button::update();
+    };
 };
 
 // ----------------------------------------------------
@@ -690,6 +710,8 @@ class ButtonPanel : public Button {
 protected:
     bool activated;
     bool isConfig_;
+    bool isPlayerNotExploring_;
+    Resources::TextureId imagenOriginal_;
     idPanel pan_; // Panel que va a ser activado o desactivado
 
     void setActive(bool set);
@@ -706,6 +728,7 @@ public:
         setActive(active);
         pan_ = p; // asigna el panel
         isConfig_ = isConfig;
+        imagenOriginal_ = imagen;
         Button::init(pos, ancho, alto, imagen);
     };
     virtual void init(SDL_Rect dest, Resources::TextureId imagen, idPanel p,
@@ -719,7 +742,7 @@ public:
 
     virtual void click()
     {
-        if (isConfig_ && TheElementalMaze::instance()->gameState() != gameST::EXPLORING)
+        if (isConfig_ && isPlayerNotExploring_)
         {
             game_->getAudioMngr()->playChannel(Resources::Error, 0);
         }
@@ -731,7 +754,22 @@ public:
         }
     }
 
-    virtual void update() override {
+    virtual void update() override
+    {
+        isPlayerNotExploring_ = (TheElementalMaze::instance()->gameState() != gameST::EXPLORING);
+
+        if (isConfig_)
+        {
+            if (isPlayerNotExploring_)
+            {
+                toggleImage((Resources::TextureId)((int)imagenOriginal_ + 1));
+            }
+            else
+            {
+                toggleImage(imagenOriginal_);
+            }
+        }
+
         Button::update();
     }
 

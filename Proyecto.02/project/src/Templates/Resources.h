@@ -143,8 +143,11 @@ public:
 		Inventario,
 		Cofre,
 		PocionVida,
+		PocionVida_,
 		PocionMana,
+		PocionMana_,
 		Configuracion,
+		Configuracion_,
 
 		//Combate
 		AtaqueNormal,

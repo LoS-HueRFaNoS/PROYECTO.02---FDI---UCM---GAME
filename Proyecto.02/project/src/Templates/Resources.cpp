@@ -124,8 +124,11 @@ vector<Resources::ImageInfo> Resources::images_{
 	{Inventario, "project/resources/images/sprites/iconos info/infoInventario.png"},
 	{Cofre, "project/resources/images/interfaz/grids fondo/cofre.png"},
 	{PocionVida, "project/resources/images/sprites/iconos info/infoPocionVida.png"},
+	{PocionVida_, "project/resources/images/sprites/iconos info/infoPocionVida_.png"},
 	{PocionMana, "project/resources/images/sprites/iconos info/infoPocionMana.png"},
+	{PocionMana_, "project/resources/images/sprites/iconos info/infoPocionMana_.png"},
 	{Configuracion, "project/resources/images/sprites/iconos info/infoConfiguracionAyuda.png"},
+	{Configuracion_, "project/resources/images/sprites/iconos info/infoConfiguracionAyuda_.png"},
 
 	// combate
 	{AtaqueNormal, "project/resources/images/sprites/iconos combate/ataque.png"},
