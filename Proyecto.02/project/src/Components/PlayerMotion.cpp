@@ -26,8 +26,12 @@ void PlayerMotion::init()
 
 void PlayerMotion::update()
 {
-    if (TheElementalMaze::instance()->gameState() != gameST::EXPLORING) return;
     InputHandler* ih = InputHandler::instance();
+    if (TheElementalMaze::instance()->gameState() != gameST::EXPLORING)
+    {
+        if (ih->isKeyDown(SDLK_ESCAPE)) game_->getAudioMngr()->playChannel(Resources::Error, 0);
+        return;
+    }
     x = int(pos->getPos().getX());
     y = int(pos->getPos().getY());
     if (ih->isKeyDown(avance)) { avanzar(); }
@@ -51,9 +55,6 @@ void PlayerMotion::update()
         //TheElementalMaze::instance()->registerPreviousState();
         if (TheElementalMaze::instance()->gameState() != gameST::DURING_PAUSE)
             TheElementalMaze::instance()->changeState(gameST::PAUSA);
-        else {
-
-        }
     }
 }
 

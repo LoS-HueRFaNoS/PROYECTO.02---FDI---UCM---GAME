@@ -135,17 +135,9 @@ void Game::start()
 
 void Game::handleInput()
 {
-
 	InputHandler* ih = InputHandler::instance();
 
-	if (ih->update()) {
-		if (ih->keyDownEvent()) {
-			/*if (ih->isKeyDown(SDLK_ESCAPE)) {
-				exit_ = true;
-			}*/
-		}
-	}
-	else exit_ = true;
+	if (!ih->update()) exit_ = true;
 }
 
 void Game::update()
