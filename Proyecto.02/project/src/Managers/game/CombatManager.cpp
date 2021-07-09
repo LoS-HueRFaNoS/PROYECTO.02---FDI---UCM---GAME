@@ -200,27 +200,41 @@ void CombatManager::tryEscape()
     cout << "Enemies(+5): " << tiradasE + 5 << "\n";
     ChatManager::instance()->add("Enemies(+5): " + to_string(tiradasE + 5), LineColor::Green);
 
-    if (tiradasH > tiradasE + 5) {
-        cout << "YOU ESCAPED \n";
-        ChatManager::instance()->add("YOU ESCAPED", LineColor::Green);
-        bool leftBehind = false;
-        _exp = 0;
-        _gold = 0;
+    if (tiradasH > tiradasE + 5) 
+    {
+        savingRunningThrows++;
 
-        for (Hero* h : _heroes)
-            if (h->isDead()) {
-                h->killHero();
-                leftBehind = true;
-                cout << "You just left " << h->name() << " behind !!! \n";
-                ChatManager::instance()->add("You just left " + h->name() + " behind !!!", LineColor::Red);
+        if (savingRunningThrows > 2)
+        {
+            cout << "YOU ESCAPED \n";
+            ChatManager::instance()->add("YOU ESCAPED", LineColor::Green);
+            bool leftBehind = false;
+            savingRunningThrows = 0;
+            _exp = 0;
+            _gold = 0;
+
+            for (Hero* h : _heroes)
+                if (h->isDead()) {
+                    h->killHero();
+                    leftBehind = true;
+                    cout << "You just left " << h->name() << " behind !!! \n";
+                    ChatManager::instance()->add("You just left " + h->name() + " behind !!!", LineColor::Red);
+                }
+            if (!leftBehind) {
+                cout << "No one was left behind\n";
+                ChatManager::instance()->add("No one was left behind", LineColor::White);
             }
-        if (!leftBehind) {
-            cout << "No one was left behind\n";
-            ChatManager::instance()->add("No one was left behind", LineColor::White);
+            changeState(COMBAT_END);
+            _win = true;
         }
-        changeState(COMBAT_END);
-        _win = true;
+
+        else
+        {
+            cout << "YOU NEED " << (3 - savingRunningThrows) << " TO ESCAPE FROM THE COMBAT\n";
+            ChatManager::instance()->add("YOU NEED MORE THROWS: " + to_string(3 - savingRunningThrows), LineColor::Green);
+        }
     }
+
     else {
         cout << "YOU FAILED TO ESCAPE \n";
         ChatManager::instance()->add("YOU FAILED TO ESCAPE", LineColor::Red);

@@ -38,6 +38,8 @@ private:
 
     bool _boss = false;
 
+    int savingRunningThrows = 0;
+
 
     CombatState _state;
 
