@@ -254,7 +254,7 @@ void Interfaz::createInfo()
     Panel* p = new Panel(Info);
     allPanels[Info] = p;
 
-    // BOTONES: health, mana, resurrection
+    // BOTONES: health, mana
     p->addButton(iManager->addButton<ButtonPanel>(Vector2D(x_, y_), w_ * 2, h_ * 2, src::Inventario, Inventory, false));
     // duplicado para el cofre:
     p->addButton(iManager->addButton<ButtonPanel>(Vector2D(x_, y_), w_ * 2, h_ * 2, src::Inventario, _ChestPanel_, false));
@@ -268,7 +268,7 @@ void Interfaz::createInfo()
     p->addButton(bp2_);
 
     p->addButton(iManager->addButton<ButtonSettings>(Vector2D(x_ + 3 * espace_H, y_ + 0 * espace_V), w_, h_, src::Change));
-    p->addButton(iManager->addButton<ButtonPanel>(Vector2D(x_ + 3 * espace_H, y_ + 1 * espace_V), w_, h_, src::Configuracion, PausePanel, false));
+    p->addButton(iManager->addButton<ButtonPanel>(Vector2D(x_ + 3 * espace_H, y_ + 1 * espace_V), w_, h_, src::Configuracion, PausePanel, false, true));
 
 } // 
 

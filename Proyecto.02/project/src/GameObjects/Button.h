@@ -682,6 +682,7 @@ public:
 class ButtonPanel : public Button {
 protected:
     bool activated;
+    bool isConfig_;
     idPanel pan_; // Panel que va a ser activado o desactivado
 
     void setActive(bool set);
@@ -692,22 +693,35 @@ public:
 
     ~ButtonPanel() {};
 
-    virtual void init(Vector2D pos, uint ancho, uint alto, Resources::TextureId imagen, idPanel p, bool active) {
+    virtual void init(Vector2D pos, uint ancho, uint alto, Resources::TextureId imagen, idPanel p,
+        bool active, bool isConfig = false)
+    {
         setActive(active);
         pan_ = p; // asigna el panel
+        isConfig_ = isConfig;
         Button::init(pos, ancho, alto, imagen);
     };
-    virtual void init(SDL_Rect dest, Resources::TextureId imagen, idPanel p, bool active) {
+    virtual void init(SDL_Rect dest, Resources::TextureId imagen, idPanel p,
+        bool active, bool isConfig = false)
+    {
         setActive(active);
         pan_ = p; // asigna el panel
+        isConfig_ = isConfig;
         Button::init(dest, imagen);
     };
 
     virtual void click()
     {
-        callbacks::createPanel(activated, pan_);
-        if (!activated) turnON();
-        else turnOFF();
+        if (isConfig_ && TheElementalMaze::instance()->gameState() != gameST::EXPLORING)
+        {
+            game_->getAudioMngr()->playChannel(Resources::Error, 0);
+        }
+        else // comportamiento normal
+        {
+            callbacks::createPanel(activated, pan_);
+            if (!activated) turnON();
+            else turnOFF();
+        }
     }
 
     virtual void update() override {
