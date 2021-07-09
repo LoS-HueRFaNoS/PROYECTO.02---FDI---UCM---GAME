@@ -207,7 +207,7 @@ void Laberinto::createRandomMaze(Vector2D entrada)
 						random = throwDice(1, 3);
 						for (int i = 0; i < random; i++)
 						{
-							enemyType = game_->getRandGen()->nextInt(0, int(enemyTemplate::ZOMBIE));
+							enemyType = game_->getRandGen()->nextInt(0, int(enemyTemplate::SKELETON));
 							generaObjeto(0, enemyType, laberinto[x][y], 1, 0);
 						}
 						break;
