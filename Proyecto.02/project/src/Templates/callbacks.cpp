@@ -402,7 +402,6 @@ void callbacks::shop_lobby(Interfaz* app)
 {
 	app->togglePanel(Shop);
 	app->createPanel(Lobby);
-	app->togglePanel(infoTiendaPanel);
 	std::cout << "volvemos al lobby desde la tienda" << std::endl;
 }
 void callbacks::stash_lobby(Interfaz* app)
@@ -455,8 +454,6 @@ void callbacks::infoTienda(Interfaz* app, bool isHero, int id)
 	{
 		app->setNameItem(lo->getLobbyStore()->items[id]->item->getName());
 		app->setDescrItem(lo->getLobbyStore()->items[id]->item->getDescription());
-		app->togglePanel(infoTiendaPanel);
-		app->createPanel(infoTiendaPanel);
 	}
 	std::cout << "Descripción de la tienda actualizada" << std::endl;
 

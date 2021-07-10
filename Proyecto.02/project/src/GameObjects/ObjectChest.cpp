@@ -19,7 +19,7 @@ void ObjectChest::Init()
 		pan.h
 	);
 	fondo_->addComponent<Transform>(dest);
-	fondo_->addComponent<Image>(game_->getTextureMngr()->getTexture(src::Cofre));
+	fondo_->addComponent<Image>(game_->getTextureMngr()->getTexture(src::CofreMenu));
 	//fondo_->addComponent<Rectangle_cmpt>(hex2sdlcolor("#000000FF"));
 }
 

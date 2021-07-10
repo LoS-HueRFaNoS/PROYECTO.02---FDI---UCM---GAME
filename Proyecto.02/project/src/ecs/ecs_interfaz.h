@@ -31,7 +31,6 @@ namespace interfaz {
         Enemies,
         Shop,
         StashPanel,
-        infoTiendaPanel,
         ButtonHeroToPartyPanel,
         SellButtonPanel,
         InventoryLobby,

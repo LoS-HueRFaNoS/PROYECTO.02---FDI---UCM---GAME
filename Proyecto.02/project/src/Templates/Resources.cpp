@@ -41,6 +41,7 @@ vector<Resources::ImageInfo> Resources::images_{
 	{pared_S, "project/resources/images/pasillos/pared_sur.png"},				//
 	{pared_O, "project/resources/images/pasillos/pared_oeste.png"},				//
 	{salidaMiniMap, "project/resources/images/pasillos/salida.png"},			//
+	{cofreMiniMap, "project/resources/images/pasillos/cofre.png"},			//
 	{texto_salida, "project/resources/images/texto_salida.jpg"},				//
 
 	// menu principal
@@ -122,7 +123,7 @@ vector<Resources::ImageInfo> Resources::images_{
 
 	// inventario e info
 	{Inventario, "project/resources/images/sprites/iconos info/infoInventario.png"},
-	{Cofre, "project/resources/images/interfaz/grids fondo/cofre.png"},
+	{CofreMenu, "project/resources/images/interfaz/grids fondo/cofre.png"},
 	{PocionVida, "project/resources/images/sprites/iconos info/infoPocionVida.png"},
 	{PocionVida_, "project/resources/images/sprites/iconos info/infoPocionVida_.png"},
 	{PocionMana, "project/resources/images/sprites/iconos info/infoPocionMana.png"},
@@ -200,7 +201,10 @@ vector<Resources::ImageInfo> Resources::images_{
 	{GiantWorm, "project/resources/images/sprites/enemigos/spritesheets/idle/giantwormIdle.png" },
 	{Banshee, "project/resources/images/sprites/enemigos/spritesheets/idle/bansheeIdle.png" },
 	{Lich, "project/resources/images/sprites/enemigos/spritesheets/idle/lichIdle.PNG"},
-
+	// Cofre
+	{CofreCerrado, "project/resources/images/sprites/cofre/cofreCerrado.PNG" },
+	{CofreVacio, "project/resources/images/sprites/cofre/cofreAbierto.PNG" },
+	{CofreLleno, "project/resources/images/sprites/cofre/cofreLuz.PNG" },
 	// Ficha DD
 	{Pergamino, "project/resources/images/sprites/iconos ficha/pergamino.png"},
 	// Panel Desc.
@@ -329,6 +333,7 @@ vector<Resources::SoundInfo> Resources::sounds_{
 	{Boton1, "project/resources/sound/boton 1.mp3"}, //
 	{Boton2, "project/resources/sound/boton 2.mp3"}, //
 	{Error, "project/resources/sound/error.mp3"}, //
+	//{CofreSound, "project/resources/sound/cofre.mp3"}, //
 };
 
 vector<Resources::JsonInfo> Resources::jsons_{
