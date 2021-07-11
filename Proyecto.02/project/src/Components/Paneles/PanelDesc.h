@@ -44,8 +44,8 @@ private:
 	SDL_Color colorTextoTipo_;
 	SDL_Color colorTextoModificador_;
 	//-----
-	int numLet_ = 38;
-	int anchoTexto_ = 425; // 425 para NUM_LET = 38
+	int numLet_ = 53; // 38; // 38 + 15
+	int anchoTexto_ = 11.2; // game_->setHorizontalScale(590); // 425; // 425 para NUM_LET = 38
 	int altoTexto_ = 35;
 	//---
 	int offsetMarcoX_ = 15;
