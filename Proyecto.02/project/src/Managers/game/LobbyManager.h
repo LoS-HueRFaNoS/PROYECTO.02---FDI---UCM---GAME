@@ -41,7 +41,6 @@ public:
 	Store() :
 		heroes(std::vector<HeroContract*>()),
 		items(std::vector<ItemToBuy*>())
-
 	{
 	}
 	~Store() {

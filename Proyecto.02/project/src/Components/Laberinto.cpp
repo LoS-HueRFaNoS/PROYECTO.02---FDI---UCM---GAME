@@ -1,5 +1,6 @@
 #include "Laberinto.h"
 #include "../Managers/TheElementalMaze.h"
+#include "../Managers/game/ItemManager.h"
 #include <string>
 #include <iostream>
 #include <fstream>
@@ -191,20 +192,12 @@ void Laberinto::createRandomMaze(Vector2D entrada)
 				}
 
 			}
-			int itemType = game_->getRandGen()->nextInt(1, 3);
+			
 			int chestChance = game_->getRandGen()->nextInt(0, 7);
 			if (chestChance == 0)
 			{
-				if (itemType == 1)
-				{
-					auto armor = game_->getRandGen()->nextInt(int(armorId::ACOLCHADA), int(armorId::_lastArmorId_));
-					generaObjeto(itemType, armor, laberinto[x][y], 1, 0);
-				}
-				if (itemType == 2)
-				{
-					auto weapon = game_->getRandGen()->nextInt(int(weaponId::ALABARDA), int(weaponId::_lastWeaponId_));
-					generaObjeto(itemType, weapon, laberinto[x][y], 1, 0);
-				}
+				int cant = game_->getRandGen()->nextInt(0, 5);
+				generaObjeto(1,0, laberinto[x][y], cant, cant);
 			}
 			if (TheElementalMaze::instance()->getLevel() != -1)
 			{
@@ -296,24 +289,23 @@ void Laberinto::generaObjeto(int object, int type, Casilla* casilla, int maxObje
 	}
 	else if (object == 1 && !casilla->hasChest())
 	{
-		casilla->addChest(Chest(ARMOR,type, game_->getRandGen()->nextInt(100,300),game_));
-	}
-	else if (object == 2 && !casilla->hasChest())
-	{
-		casilla->addChest(Chest(WEAPON,type, game_->getRandGen()->nextInt(100,300),game_));
-	}
-	cant++;
-
-	/*int generaOtro = game_->getRandGen()->nextInt(0, 10);
-	if (cant < maxObject && generaOtro)
-	{
-		if (object == 0)
+		vector<Item*> items;
+		for (int i = 0; i < cant; i++)
 		{
-			type = game_->getRandGen()->nextInt(0, int(enemyTemplate::_lastEnemyTemplateId_));
+			int itemType = rand() % 2;
+			if (itemType == 0)
+			{
+				ItemManager* itemMngr_ = TheElementalMaze::instance()->getItemManager();
+				auto armor = itemMngr_->getRandomArmor();
+				items.push_back(static_cast<Item*>(armor));
+			}
+			if (itemType == 1)
+			{
+				ItemManager* itemMngr_ = TheElementalMaze::instance()->getItemManager();
+				auto weapon = itemMngr_->getRandomWeapon();
+				items.push_back(static_cast<Item*>(weapon));
+			}
 		}
-		generaObjeto(object, type, casilla, maxObject, cant);
-	}*/
-
-
-
+		casilla->addChest(Chest(game_->getRandGen()->nextInt(100,300),items));
+	}
 }

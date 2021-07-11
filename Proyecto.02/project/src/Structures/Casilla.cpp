@@ -1,7 +1,7 @@
 #include "Casilla.h"
 #include "../Utilities/SDL_macros.h"
 
-Casilla::Casilla(SDLGame* game):esSalida(false)
+Casilla::Casilla(SDLGame* game):esSalida(false), chest(ObjectChest(game))
 {
 	game_ = game;
 	direcciones.resize(4);
@@ -10,9 +10,10 @@ Casilla::Casilla(SDLGame* game):esSalida(false)
 	direcciones[Sur] = 0;
 	direcciones[Oeste] = 0;
 	visib = noVisitado;
+	
 }
 
-Casilla::Casilla(SDLGame* game, bool _N, bool _E, bool _S, bool _O ) :esSalida(false)
+Casilla::Casilla(SDLGame* game, bool _N, bool _E, bool _S, bool _O ) :esSalida(false), chest(ObjectChest(game))
 {
 	game_= game;
 	direcciones.resize(4);
@@ -58,7 +59,7 @@ void Casilla::casillaRender(int x, int y, double w, double h)
 		{
 			texturaSuelo = manager->getTexture(Resources::salidaMiniMap);
 		}
-		else if (cofres.size() != 0) texturaSuelo = manager->getTexture(Resources::cofreMiniMap);
+		else if (hasChest()) texturaSuelo = manager->getTexture(Resources::cofreMiniMap);
 		else texturaSuelo = manager->getTexture(Resources::visitado);
 		texturaSuelo->render(dest);
 		
@@ -115,7 +116,8 @@ void Casilla::setSalida()
 }
 void Casilla::addChest(Chest cofre)
 {
-	cofres.push_back(cofre);
+	hayCofre = true;
+	// meter en chest el cofre
 	vector<Look> paredes;
 	for (int i = 0; i < 4; i++)
 	{
