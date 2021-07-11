@@ -14,6 +14,7 @@ class Interfaz : public Component {
 
 private:
     bool tutorial_active;
+    bool playerSelectingTarget;
     InterfazManager* iManager;
     std::vector<Panel*> allPanels;
     uint pagHeroes = 0;
@@ -71,7 +72,8 @@ public:
         Component(ecs::Interfaz, g),
         allPanels(std::vector<Panel*>(maxPanels, nullptr)),
         iManager(i),
-        tutorial_active(true)
+        tutorial_active(true),
+        playerSelectingTarget(false)
     {
         gameVolume = new int(game_->getAudioMngr()->INITIAL_GAME_VOLUME);
         gameSound = new int(game_->getAudioMngr()->INITIAL_GAME_SOUND);

@@ -173,7 +173,7 @@ vector<Resources::ImageInfo> Resources::images_{
 	{BallestaPesada, "project/resources/images/sprites/iconos armas/ballesta_pesada.png"},
 	
 	/// TODO: BORRAR
-	{Joker, "project/resources/images/sprites/iconos armas/joker.png"},
+	{Joker, "project/resources/images/sprites/joker.png"},
 
 	// Armaduras
 	{Acolchada, "project/resources/images/sprites/iconos armaduras/acolchadaC.png"},

@@ -217,22 +217,33 @@ enum class target { target01, target02, target03, target04, target05 };
 class ButtonTarget : public Button {
 private:
     target target_;
+    bool* isSelectingTarget_;
+
 public:
     ButtonTarget(SDLGame* game, EntityManager* mngr) : Button(game, mngr), target_(target::target01) {};
 
     ~ButtonTarget() {};
 
-    virtual void init(Vector2D pos, uint ancho, uint alto, Resources::TextureId imagen, target objetive) {
+    virtual void init(Vector2D pos, uint ancho, uint alto, Resources::TextureId imagen, target objetive, bool* isSelTar) {
+        isSelectingTarget_ = isSelTar;
         target_ = objetive;
         Button::init(pos, ancho, alto, imagen, true);
     };
 
     virtual void click()
     {
-        callbacks::addTarget((int)target_);
-        Sprite* s_ = GETCMP2(this, Sprite);
-        s_->setHide(true);
-        s_->reset();
+        if (*isSelectingTarget_)
+        {
+            *isSelectingTarget_ = false;
+            callbacks::addTarget((int)target_);
+            Sprite* s_ = GETCMP2(this, Sprite);
+            s_->setHide(true);
+            s_->reset();
+        }
+        else
+        {
+            game_->getAudioMngr()->playChannel(Resources::Error, 0);
+        }
     }
 };
 // ----------------------------------------------------

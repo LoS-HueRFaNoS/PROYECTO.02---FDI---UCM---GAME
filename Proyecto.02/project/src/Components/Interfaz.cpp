@@ -86,10 +86,10 @@ void Interfaz::createFight()
     }
 }
 
-void Interfaz::createEnemies()
+void Interfaz::createEnemies() //:-)
 {
     CombatManager* c = GETCMP2(TheElementalMaze::instance(), CombatManager);
-    std::vector<Enemy*> enemies = c->getEnemiesTeam();
+    std::vector<Enemy*> enemies = c->getEnemiesTeam(); //:-)
     size_t nEnemies = c->getEnemysTam();
 
     // posicion en pixeles del 'fondo'
@@ -114,12 +114,9 @@ void Interfaz::createEnemies()
     w_ = espace - game_->setHorizontalScale(n);
     h_ = game_->setVerticalScale(h_ - n * 2);
 
-
     // construccion y asignacion del panel:
     Panel* p = new Panel(Enemies);
     allPanels[Enemies] = p;
-
-
 
     for (int i = 0; i < nEnemies; i++) {
         Enemy* enemy = enemies[i];
@@ -129,6 +126,7 @@ void Interfaz::createEnemies()
         double margenBarra = w_ - tamBar_w;
         if (enTemp == enemyTemplate::DRACOLICH || enTemp == enemyTemplate::HELLHOUND || enTemp == enemyTemplate::GIANTWORM) {
             b_ = iManager->addButton<SDL_Object>(Vector2D(x_ + i * espace, y_), w_, h_, getEnemyTxt(i), true);
+            ///p->addButton(iManager->addButton<ButtonTarget>(Vector2D(x_ + i * espace, y_), w_, h_, Resources::Joker, (target)i, &playerSelectingTarget));
         }
         else {
             if (nEnemies == 1) lado = h_;
@@ -138,6 +136,7 @@ void Interfaz::createEnemies()
             }
 
             b_ = iManager->addButton<SDL_Object>(Vector2D(x_ + i * espace + espace / 2.0 - lado / 2.0, y_ + h_ - lado), lado, lado, getEnemyTxt(i), true);
+            ///p->addButton(iManager->addButton<ButtonTarget>(Vector2D(x_ + i * espace + espace / 2.0 - lado / 2.0, y_ + h_ - lado), lado, lado, Resources::Joker, (target)i, &playerSelectingTarget));
         }
 
         //BARRA DE VIDA
@@ -146,11 +145,6 @@ void Interfaz::createEnemies()
         //b_->addComponent<StateBar>(enemies[i], mana, SDL_Rect(RECT((x_ + i * espace), (y_ + h_ * 2.5 / k), w_ * 2, h_ / k)));
         p->addButton(b_);
     }
-
-
-
-
-
 }
 
 void Interfaz::createMovement()
@@ -406,25 +400,68 @@ void Interfaz::createFichaDescObj(Item* ite) {
     TheElementalMaze::instance()->addComponent<PanelDescObj>(game_, p, iManager, ite);
 }
 
-void Interfaz::createChat()
-{
-
-}
+void Interfaz::createChat() {}
 
 void Interfaz::createTargets()
 {
     CombatManager* c = GETCMP2(TheElementalMaze::instance(), CombatManager);
-    std::vector<Character*> targets = c->getCurrentTargetList();
+    std::vector<Character*> targets = c->getCurrentTargetList(); //:-)
     size_t nTargets = targets.size();
+
+    // construccion y asignacion del panel:
+    Panel* p = new Panel(Targets);
+    allPanels[Targets] = p;
 
     // posicion en pixeles del 'fondo'
     double x_ = 70;
-    double y_ = 790;
+    double y_ = 70;
     // tamano en pixeles del 'fondo'
-    double w_ = 540;
-    double h_ = 190;
+    double w_ = 1340;
+    double h_ = 620;
     // tamano de los margenes
-    double n = 20;
+    double n = 0;
+    // posicion del panel respecto a la ventana
+    x_ = game_->setHorizontalScale(x_ + n);
+    y_ = game_->setVerticalScale(y_ + n);
+    // espacios entre objetos
+    double tamBar_w = game_->setHorizontalScale((w_ - n) / 5);
+    double tamBar_h = game_->setHorizontalScale((h_ - n) / 10 / 3);
+    double espace = game_->setHorizontalScale((w_ - n) / c->getEnemysTam());
+    // ancho y alto de cada objeto
+    w_ = espace - game_->setHorizontalScale(n);
+    h_ = game_->setVerticalScale(h_ - n * 2);
+
+    // NUEVOS BOTONES:
+    for (int i = 0; i < c->getEnemysTam(); i++)
+    {
+        enemyTemplate enTemp = c->getEnemiesTeam()[i]->getTemplate();
+        double lado;
+
+        if (enTemp == enemyTemplate::DRACOLICH ||
+            enTemp == enemyTemplate::HELLHOUND ||
+            enTemp == enemyTemplate::GIANTWORM)
+        {
+            p->addButton(iManager->addButton<ButtonTarget>
+                (Vector2D(x_ + i * espace, y_), w_, h_, Resources::Joker, (target)i, &playerSelectingTarget));
+        }
+        else
+        {
+            if (c->getEnemysTam() == 1) lado = h_;
+            else lado = w_;
+
+            p->addButton(iManager->addButton<ButtonTarget>
+                (Vector2D(x_ + i * espace + espace / 2.0 - lado / 2.0, y_ + h_ - lado), lado, lado, Resources::Joker, (target)i, &playerSelectingTarget));
+        }
+    }
+
+    // posicion en pixeles del 'fondo'
+    x_ = 70;
+    y_ = 790;
+    // tamano en pixeles del 'fondo'
+    w_ = 540;
+    h_ = 190;
+    // tamano de los margenes
+    n = 20;
 
     SDL_Rect dest = RECT(
         game_->setHorizontalScale(x_ + w_ - n * 2 + 30),
@@ -437,19 +474,16 @@ void Interfaz::createTargets()
     x_ = game_->setHorizontalScale(x_ + n);
     y_ = game_->setVerticalScale(y_ + n);
 
-    double espace = game_->setHorizontalScale((w_ - n) / 4);
+    espace = game_->setHorizontalScale((w_ - n) / 4);
 
     w_ = espace - game_->setHorizontalScale(n);
     h_ = game_->setVerticalScale(h_ - n * 2);
 
-    // construccion y asignacion del panel:
-    Panel* p = new Panel(Targets);
-    allPanels[Targets] = p;
-
     // BOTONES:
+    playerSelectingTarget = true;
     for (int i = 0; i < nTargets; i++) {
         src::TextureId img = size_t(targets[i]->getType()) ? getEnemyTxt(i) : getHeroTxt(i);
-        p->addButton(iManager->addButton<ButtonTarget>(Vector2D(x_ + espace * i, y_), w_, h_, img, (target)i));
+        p->addButton(iManager->addButton<ButtonTarget>(Vector2D(x_ + espace * i, y_), w_, h_, img, (target)i, &playerSelectingTarget));
     }
 
     idPanel idRegreso;
@@ -720,7 +754,6 @@ void Interfaz::createShop() // tienda con heroes y objetos
         //p->addButton(iManager->addButton<SDL_Object>(dest, src::inventory_slots));
         //dest.y = pan.fcy + pan.ch * 4;
         //p->addButton(iManager->addButton<SDL_Object>(dest, src::inventory_slots));
-
 
         // Se generan 10 héroes a la venta
         for (int i = 0; i < 10; i++)
