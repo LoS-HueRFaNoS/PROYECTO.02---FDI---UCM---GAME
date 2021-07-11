@@ -69,9 +69,12 @@ void ObjectChest::addTemplate()
 
 void ObjectChest::example()
 {
-
 	vector<Item*> items = TheElementalMaze::instance()->getPartyManager()->getItems();
+	itemChest(items);
+}
 
+void ObjectChest::itemChest(vector<Item*> items)
+{
 	for (int i = items.size() - 1; i >= 0; i--)
 	{
 		if (items[i] != nullptr) {
@@ -85,23 +88,23 @@ void ObjectChest::example()
 			imgOfItem.w = imgOfItem.h;
 			e->addComponent<Transform>(imgOfItem);
 
-				//Image
+			//Image
 			uint pivot, auxId;
 			Resources::TextureId id;
-		
-				ItemType itemType = items[i]->getItemType();
 
-				if (itemType == ItemType::ARMOR) {
-					pivot = src::_firstArmorId_;
-					auxId = (int) static_cast<Armor*>(items[i])->getArmorId();
-				}
-				else {
-					pivot = src::_firstWeaponId_;
-					auxId = (int) static_cast<Weapon*>(items[i])->getWeaponId();
-				}
-				id = (Resources::TextureId)(pivot + auxId + 1);
-			
-		
+			ItemType itemType = items[i]->getItemType();
+
+			if (itemType == ItemType::ARMOR) {
+				pivot = src::_firstArmorId_;
+				auxId = (int) static_cast<Armor*>(items[i])->getArmorId();
+			}
+			else {
+				pivot = src::_firstWeaponId_;
+				auxId = (int) static_cast<Weapon*>(items[i])->getWeaponId();
+			}
+			id = (Resources::TextureId)(pivot + auxId + 1);
+
+
 			items[i]->getItemType();
 			e->addComponent<Image>(game_->getTextureMngr()->getTexture(id));
 
@@ -109,7 +112,7 @@ void ObjectChest::example()
 			Entity* itemBackground = new SDL_Object(game_, this);
 			itemBackground->addComponent<Transform>(imgOfItem);
 			itemBackground->addComponent<Image>(game_->getTextureMngr()->getTexture(src::Slot));
-			
+
 
 			add_element(itemBackground, topElement(), tuppleEspaces().getRight() + tuppleBorders().getRight(), this);
 
@@ -126,12 +129,13 @@ void ObjectChest::example()
 			lineRect.y = topElement().y + topElement().h * 0.005;
 			lineRect.w = topElement().w * 0.6;
 			lineRect.h = topElement().h * 0.99;
-			
+
 			line->init(lineRect, name, color);
 			addEntity(line);
 		}
 	}
 }
+
 
 //--------------------------------------------------------------------------------------
 

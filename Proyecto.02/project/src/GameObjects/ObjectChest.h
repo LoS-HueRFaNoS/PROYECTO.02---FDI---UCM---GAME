@@ -4,6 +4,7 @@
 #include "../Utilities/interfaz/MousePanelMecanics.h"
 #include "../ecs/Manager.h"
 
+class Item;
 
 const int NUM_ITEMS_IN_CHEST = 20;
 
@@ -15,6 +16,7 @@ private:
 	int numItems_ = NUM_ITEMS_IN_CHEST;
 	void addTemplate();
 	void example();
+	void itemChest(vector<Item*> items);
 
 public:
 	ObjectChest(SDLGame* game) : EntityManager(game) {
