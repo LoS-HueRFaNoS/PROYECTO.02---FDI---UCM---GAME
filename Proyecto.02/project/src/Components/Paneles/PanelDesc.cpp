@@ -27,13 +27,7 @@ void PanelDesc::init()
 	//
 	nombreHab_ = hab_->name();
 	//
-	string d = hab_->description();
-	while (d.size() > 0) {
-		string aux = "";
-		aux.insert(0, d, 0, numLet_);
-		d.erase(0, numLet_);
-		descripcionHab_.push_back(aux);
-	}
+	generateDescriptionArray();
 	//
 	manaHab_ = (std::string)"Cost: " + to_string(hab_->getMana());
 	//
@@ -90,28 +84,28 @@ void PanelDesc::init()
 		marco_.y + offsetMarcoY_,
 		nombreHab_.size() * anchoTexto_, // anchoTexto_,
 		altoTexto_
-		);
+	);
 
 	descripcion_ = RECT(
 		titulo_.x,
 		titulo_.y + titulo_.h,
 		numLet_ * anchoTexto_,
 		altoTexto_
-		);
+	);
 
 	mana_ = RECT(
 		marco_.x + marco_.w - (manaHab_.size() * anchoTexto_) - offsetMarcoX_, // marco_.x + offsetMarcoX2_,
 		marco_.y + offsetMarcoY_,
 		manaHab_.size() * anchoTexto_,// anchoTexto_,
 		altoTexto_
-		);
+	);
 
 	tipo_ = RECT(
 		marco_.x + offsetMarcoX_,
 		marco_.y + marco_.h - altoTexto_ - offsetMarcoY_,
 		tipoHab_.size() * anchoTexto_, // anchoTexto_,
 		altoTexto_
-		);
+	);
 
 	modificador_ = RECT(
 		marco_.x + marco_.w - (modificadorHab_.size() * anchoTexto_) - offsetMarcoX_, // marco_.x + offsetMarcoX2_,
@@ -162,4 +156,28 @@ std::string PanelDesc::checkLineSize(std::string line)
 	if (line.size() < numLet_) line.resize(numLet_, ' ');
 	if (line.front() == ' ') line.erase(line.begin());
 	return line;
+}
+
+void PanelDesc::generateDescriptionArray()
+{
+	string line = hab_->description();
+	while (line.size() > 0) {
+		string cut = "";
+		size_t n = numLet_;
+
+		if (line.size() > numLet_) {
+			if (line.at(numLet_ - 2.0) != ' ' && line.at(numLet_ - 1.0) != ' ' || line.at(numLet_ - 1.0) != ' ' && line.at(numLet_) != ' ') {
+				string aux = line.substr(0, numLet_);
+				n = aux.rfind(' ', numLet_ - 1.0);
+				cut = aux.substr(0, n);
+			}
+		}
+		if (cut == "") {
+			//cut.insert(0, d, 0, numLet_); es lo mismo
+			cut = line.substr(0, numLet_);
+		}
+
+		line.erase(0, n);
+		descripcionHab_.push_back(cut);
+	}
 }
