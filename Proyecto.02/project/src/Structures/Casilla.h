@@ -11,6 +11,7 @@ class Casilla
 {
 private:
 	Look direccionSalida;
+	Look direccionCofre;
 	vector<bool> direcciones;
 	bool esSalida;
 	bool esPosActual = false;
@@ -37,7 +38,17 @@ public:
 	void addEnemy(enemyTemplate e) {
 		enemyEnum.push_back(e);
 	}
+	void addChest(Chest e);
+	Chest getChest()
+	{
+		return cofres.front();
+	}
+	bool hasChest()
+	{
+		return cofres.size();
+	}
 	vector<enemyTemplate>* getEnemy() { return &enemyEnum; }
 	Look getDirSalida() { return direccionSalida; }
+	Look getDirCofre() { return direccionCofre; }
 };
 

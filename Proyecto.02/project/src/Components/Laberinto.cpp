@@ -191,7 +191,21 @@ void Laberinto::createRandomMaze(Vector2D entrada)
 				}
 
 			}
-
+			int itemType = game_->getRandGen()->nextInt(1, 3);
+			int chestChance = game_->getRandGen()->nextInt(0, 7);
+			if (chestChance == 0)
+			{
+				if (itemType == 1)
+				{
+					auto armor = game_->getRandGen()->nextInt(int(armorId::ACOLCHADA), int(armorId::_lastArmorId_));
+					generaObjeto(itemType, armor, laberinto[x][y], 1, 0);
+				}
+				if (itemType == 2)
+				{
+					auto weapon = game_->getRandGen()->nextInt(int(weaponId::ALABARDA), int(weaponId::_lastWeaponId_));
+					generaObjeto(itemType, weapon, laberinto[x][y], 1, 0);
+				}
+			}
 			if (TheElementalMaze::instance()->getLevel() != -1)
 			{
 				int hayEnemy = game_->getRandGen()->nextInt(0, 10);
@@ -207,7 +221,7 @@ void Laberinto::createRandomMaze(Vector2D entrada)
 						random = throwDice(1, 3);
 						for (int i = 0; i < random; i++)
 						{
-							enemyType = game_->getRandGen()->nextInt(0, int(enemyTemplate::ZOMBIE));
+							enemyType = game_->getRandGen()->nextInt(0, int(enemyTemplate::SKELETON));
 							generaObjeto(0, enemyType, laberinto[x][y], 1, 0);
 						}
 						break;
@@ -280,9 +294,17 @@ void Laberinto::generaObjeto(int object, int type, Casilla* casilla, int maxObje
 		casilla->addEnemy((static_cast<enemyTemplate>(type)));
 		//cout << "generado " << (cant+1) << " enemigo"<<endl;
 	}
+	else if (object == 1 && !casilla->hasChest())
+	{
+		casilla->addChest(Chest(ARMOR,type, game_->getRandGen()->nextInt(100,300),game_));
+	}
+	else if (object == 2 && !casilla->hasChest())
+	{
+		casilla->addChest(Chest(WEAPON,type, game_->getRandGen()->nextInt(100,300),game_));
+	}
 	cant++;
 
-	int generaOtro = game_->getRandGen()->nextInt(0, 10);
+	/*int generaOtro = game_->getRandGen()->nextInt(0, 10);
 	if (cant < maxObject && generaOtro)
 	{
 		if (object == 0)
@@ -290,7 +312,7 @@ void Laberinto::generaObjeto(int object, int type, Casilla* casilla, int maxObje
 			type = game_->getRandGen()->nextInt(0, int(enemyTemplate::_lastEnemyTemplateId_));
 		}
 		generaObjeto(object, type, casilla, maxObject, cant);
-	}
+	}*/
 
 
 

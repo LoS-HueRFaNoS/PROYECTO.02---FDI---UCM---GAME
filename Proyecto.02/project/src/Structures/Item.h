@@ -1,6 +1,7 @@
 #include "../ecs/Component.h"
 #include "../Utilities/jute.h"
 #include "../Templates/RPGLogic.h"
+#include "../GameObjects/ObjectChest.h"
 #pragma once
 
 const int PRICE_OF_POTION = 5;
@@ -103,10 +104,13 @@ private:
 	ItemType item;
 	int itemId;
 	int gold;
+	bool abierto = false;
+	//ObjectChest cofre;
 public:
-	Chest(ItemType it, int value, int gold) : item(it), itemId(value), gold(gold) {}
+	Chest(ItemType it, int value, int gold, SDLGame* game) : item(it), itemId(value), gold(gold)/*, cofre(game)*/ {};
 	ItemType getType() { return item; }
 	int getIdValue() { return itemId; }
 	int getGold() { return gold; }
-
+	bool isOpen() { return abierto; }
+	//ObjectChest getObjetos() { return objetos; }
 };

@@ -56,6 +56,7 @@ void PlayerMotion::update()
         if (TheElementalMaze::instance()->gameState() != gameST::DURING_PAUSE)
             TheElementalMaze::instance()->changeState(gameST::PAUSA);
     }
+    
 }
 
 void PlayerMotion::rotarDerecha()

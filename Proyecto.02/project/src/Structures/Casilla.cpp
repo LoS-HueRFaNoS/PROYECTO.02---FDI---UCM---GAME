@@ -58,10 +58,10 @@ void Casilla::casillaRender(int x, int y, double w, double h)
 		{
 			texturaSuelo = manager->getTexture(Resources::salidaMiniMap);
 		}
-		else
-			texturaSuelo = manager->getTexture(Resources::visitado);
+		else if (cofres.size() != 0) texturaSuelo = manager->getTexture(Resources::cofreMiniMap);
+		else texturaSuelo = manager->getTexture(Resources::visitado);
 		texturaSuelo->render(dest);
-
+		
 		for (int i = 0; i < direcciones.size(); ++i)
 		{
 			if (!direcciones[i])
@@ -112,4 +112,15 @@ void Casilla::setSalida()
 		int dir = game_->getRandGen()->nextInt(0, paredes.size());
 		direccionSalida = paredes[dir];
 	}
+}
+void Casilla::addChest(Chest cofre)
+{
+	cofres.push_back(cofre);
+	vector<Look> paredes;
+	for (int i = 0; i < 4; i++)
+	{
+		paredes.push_back((Look)i);
+	}
+	int dir = game_->getRandGen()->nextInt(0, paredes.size());
+	direccionCofre = paredes[dir];
 }

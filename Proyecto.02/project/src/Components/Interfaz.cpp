@@ -698,7 +698,6 @@ void Interfaz::createShop() // tienda con heroes y objetos
     Panel* p = new Panel(Shop);
     nameItemTienda = " ";
     descrItemTienda = " ";
-    createPanel(infoTiendaPanel);
     allPanels[Shop] = p;
     int w, h;
     SDL_Color color;
@@ -841,17 +840,6 @@ void Interfaz::createShop() // tienda con heroes y objetos
     }
 }
 
-void Interfaz::createInfoTienda()
-{
-    int w, h;
-    w = game_->getWindowWidth();
-    h = game_->getWindowHeight();
-    Panel* p = new Panel(infoTiendaPanel);
-    allPanels[infoTiendaPanel] = p;
-    SDL_Color color = { 0.0,0.0,0.0 };
-    p->addButton(iManager->addButton<Line>(Vector2D(w / 6 - 150, 2 * h / 3 + 100), nameItemTienda.size() * 15, 50, nameItemTienda, Resources::FontId::HERMAN, color));
-    p->addButton(iManager->addButton<Line>(Vector2D(w / 2 - 150, 2 * h / 3 + 100), descrItemTienda.size() * 15, 50, descrItemTienda, Resources::FontId::HERMAN, color));
-}
 
 void Interfaz::createStash() // stash de objetos y heroes en tienda
 {
@@ -1458,9 +1446,6 @@ void Interfaz::createPanel(idPanel panelID)
         break;
     case Shop:
         createShop();
-        break;
-    case infoTiendaPanel:
-        createInfoTienda();
         break;
     case ButtonHeroToPartyPanel:
         createHeroToPartyPanel();

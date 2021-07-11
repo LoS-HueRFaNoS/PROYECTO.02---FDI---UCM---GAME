@@ -39,6 +39,7 @@ public:
 		pared_S, // Pared sur minimapa
 		pared_O, // Pared oeste minimapa
 		salidaMiniMap,
+		cofreMiniMap,
 		texto_salida,
 
 		start,
@@ -141,7 +142,7 @@ public:
 		
 		//Info
 		Inventario,
-		Cofre,
+		CofreMenu,
 		PocionVida,
 		PocionVida_,
 		PocionMana,
@@ -222,6 +223,11 @@ public:
 		DeathKnight,
 		Dracolich,
 		Lich,
+
+		//Cofre
+		CofreCerrado,
+		CofreVacio,
+		CofreLleno,
 
 		//Ficha DD
 		Pergamino,
@@ -326,7 +332,8 @@ public:
 		AtaqueViento,
 		Boton1,
 		Boton2,
-		Error
+		Error,
+		//CofreSound,
 	};
 
 	enum FontId : std::size_t {
