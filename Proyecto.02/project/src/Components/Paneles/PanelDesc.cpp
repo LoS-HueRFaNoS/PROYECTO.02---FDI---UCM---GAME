@@ -77,7 +77,7 @@ void PanelDesc::init()
 		game_->setVerticalScale(750),	//posY
 		game_->setHorizontalScale(620),	//ancho
 		game_->setVerticalScale(272)	//alto
-		);
+	);
 
 	titulo_ = RECT(
 		marco_.x + offsetMarcoX_,
