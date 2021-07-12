@@ -164,7 +164,7 @@ void callbacks::potionType(int potionType_)
 #include "../Managers/game/CombatManager.h"
 #include "../Components/Interfaz.h"
 
-void callbacks::createPanel(bool active, int panelType)
+void callbacks::createPanel(bool active, int panelType) //:-o
 {
 	Interfaz* i_ = GETCMP2(TheElementalMaze::instance(), Interfaz);
 

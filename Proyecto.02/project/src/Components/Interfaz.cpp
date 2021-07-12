@@ -402,7 +402,7 @@ void Interfaz::createFichaDescObj(Item* ite) {
 
 void Interfaz::createChat() {}
 
-void Interfaz::createTargets()
+void Interfaz::createTargets() //:-)
 {
     CombatManager* c = GETCMP2(TheElementalMaze::instance(), CombatManager);
     std::vector<Character*> targets = c->getCurrentTargetList(); //:-)
@@ -450,7 +450,8 @@ void Interfaz::createTargets()
             else lado = w_;
 
             p->addButton(iManager->addButton<ButtonTarget>
-                (Vector2D(x_ + i * espace + espace / 2.0 - lado / 2.0, y_ + h_ - lado), lado, lado, Resources::Joker, (target)i, &playerSelectingTarget));
+                (Vector2D(x_ + i * espace + espace / 2.0 - lado / 2.0, y_ + h_ - lado), lado, lado,
+                    Resources::Joker, (target)i, &playerSelectingTarget));
         }
     }
 
