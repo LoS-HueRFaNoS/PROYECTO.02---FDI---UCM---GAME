@@ -96,7 +96,7 @@
         },
         {
           "Key": "Dexterity",
-          "Value": 13
+          "Value": 10
         },
         {
           "Key": "Intelligence",
@@ -125,11 +125,11 @@
         },
         {
           "Key": "Fire",
-          "Value": 1.0
+          "Value": 0.5
         },
         {
           "Key": "Water",
-          "Value": 1.0
+          "Value": 0.5
         },
         {
           "Key": "Ice",
@@ -137,11 +137,11 @@
         },
         {
           "Key": "Earth",
-          "Value": 1.0
+          "Value": 0.5
         },
         {
           "Key": "Wind",
-          "Value": 1.0
+          "Value": 0.5
         },
         {
           "Key": "Light",
@@ -154,7 +154,7 @@
       ],
 
       "ListHabilities": [
-        1,
+        17,
         3,
         7,
         8,
@@ -903,7 +903,7 @@
         }
       ],
 
-      "HitPoints": 90,
+      "HitPoints": 60,
       "ManaPoints": 24,
       "Experience": 500,
       "Coins": 500,
@@ -983,7 +983,7 @@
         }
       ],
 
-      "HitPoints": 112,
+      "HitPoints": 92,
       "ManaPoints": 32,
       "Experience": 500,
       "Coins": 500,
@@ -1063,7 +1063,7 @@
         }
       ],
 
-      "HitPoints": 300,
+      "HitPoints": 120,
       "ManaPoints": 60,
       "Experience": 3000,
       "Coins": 1000,

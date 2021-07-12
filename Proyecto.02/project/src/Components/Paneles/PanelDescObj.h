@@ -57,4 +57,5 @@ private:
 	void drawPanel();
 
 	std::string checkLineSize(std::string line);
+	void generateDescriptionArray();
 };

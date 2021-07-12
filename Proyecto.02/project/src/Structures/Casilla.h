@@ -18,7 +18,8 @@ private:
 	int angulo = 0;
 	Visibilidad visib;
 	vector<enemyTemplate> enemyEnum;
-	vector< Chest> cofres;
+	ObjectChest chest;
+	bool hayCofre = false;
 	SDLGame* game_;
 public:
 	Casilla(SDLGame* game);
@@ -39,13 +40,13 @@ public:
 		enemyEnum.push_back(e);
 	}
 	void addChest(Chest e);
-	Chest getChest()
+	/*ObjectChest getChest()
 	{
 		return cofres.front();
-	}
+	}*/
 	bool hasChest()
 	{
-		return cofres.size();
+		return hayCofre;
 	}
 	vector<enemyTemplate>* getEnemy() { return &enemyEnum; }
 	Look getDirSalida() { return direccionSalida; }

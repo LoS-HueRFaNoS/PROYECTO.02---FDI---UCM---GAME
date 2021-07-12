@@ -2,6 +2,7 @@
 #include "../Utilities/jute.h"
 #include "../Templates/RPGLogic.h"
 #include "../GameObjects/ObjectChest.h"
+class ItemManager;
 #pragma once
 
 const int PRICE_OF_POTION = 5;
@@ -60,7 +61,7 @@ private:
 public:
 
 	Weapon() {
-		_ItemType = WEAPON;
+		_ItemType = ItemType::WEAPON;
 	}
 
 	int getDamage() { return damage; }
@@ -87,7 +88,7 @@ private:
 public:
 
 	Armor() {
-		_ItemType = ARMOR;
+		_ItemType = ItemType::ARMOR;
 	}
 	rpgLogic::mainStat getStatNeeded() { return _statNeeded; }
 
@@ -101,16 +102,13 @@ public:
 class Chest
 {
 private:
-	ItemType item;
-	int itemId;
 	int gold;
-	bool abierto = false;
-	//ObjectChest cofre;
+	vector<Item*> items;
 public:
-	Chest(ItemType it, int value, int gold, SDLGame* game) : item(it), itemId(value), gold(gold)/*, cofre(game)*/ {};
-	ItemType getType() { return item; }
-	int getIdValue() { return itemId; }
+	Chest(int gold_, std::vector<Item*> items_) : gold(gold_), items(items_) {
+		
+
+	};
+	vector<Item*> getItems() { return items; }
 	int getGold() { return gold; }
-	bool isOpen() { return abierto; }
-	//ObjectChest getObjetos() { return objetos; }
 };
