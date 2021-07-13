@@ -194,11 +194,12 @@ void Laberinto::createRandomMaze(Vector2D entrada)
 			}
 			
 			int chestChance = game_->getRandGen()->nextInt(0, 7);
-			if (chestChance == 0)
+			if (chestChance == 0 && TheElementalMaze::instance()->getLevel() != -1)
 			{
 				int cant = game_->getRandGen()->nextInt(0, 5);
 				generaObjeto(1,0, laberinto[x][y], cant, cant);
 			}
+
 			if (TheElementalMaze::instance()->getLevel() != -1)
 			{
 				int hayEnemy = game_->getRandGen()->nextInt(0, 10);
@@ -248,12 +249,17 @@ void Laberinto::createRandomMaze(Vector2D entrada)
 		}
 		neighbours.clear();
 	}
-	laberinto[salida.getX()][salida.getY()]->setSalida();
+
 	if (TheElementalMaze::instance()->getLevel() == -1)
 	{
 		generaObjeto(0, int(enemyTemplate::GOBLIN), laberinto[3][2], 1, 0);
 		generaObjeto(0, int(enemyTemplate::GOBLIN), laberinto[2][3], 1, 0);
+
+		generaObjeto(1, 0, laberinto[0][1], 2, 2);
+		generaObjeto(1, 0, laberinto[1][0], 2, 2);
 	}
+
+	laberinto[salida.getX()][salida.getY()]->setSalida();
 }
 
 
