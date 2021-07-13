@@ -3,6 +3,7 @@
 #include "../ecs/Entity.h"
 #include "../Templates/RPGLogic.h"
 #include "../GameObjects/Character.h"
+#include "../GameObjects/ObjectChest.h"
 using namespace std;
 
 
@@ -18,7 +19,7 @@ private:
 	int angulo = 0;
 	Visibilidad visib;
 	vector<enemyTemplate> enemyEnum;
-	ObjectChest chest;
+	ObjectChest* chest;
 	bool hayCofre = false;
 	SDLGame* game_;
 public:
@@ -39,11 +40,8 @@ public:
 	void addEnemy(enemyTemplate e) {
 		enemyEnum.push_back(e);
 	}
-	void addChest(Chest e);
-	/*ObjectChest getChest()
-	{
-		return cofres.front();
-	}*/
+	void addChest(Chest* e);
+	ObjectChest* getChest() { return chest; }
 	bool hasChest()
 	{
 		return hayCofre;

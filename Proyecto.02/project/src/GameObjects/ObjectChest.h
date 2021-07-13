@@ -3,6 +3,7 @@
 #include "../Templates/interfaz/ObjectPanel.h"
 #include "../Utilities/interfaz/MousePanelMecanics.h"
 #include "../ecs/Manager.h"
+#include "../Structures/Item.h"
 
 class Item;
 
@@ -17,10 +18,15 @@ private:
 	void addTemplate();
 	void example();
 	void itemChest(vector<Item*> items);
-
+	Chest* interiorCofre;
 public:
 	ObjectChest(SDLGame* game) : EntityManager(game) {
 		pan = game_->relativePanel(1470, 320, 420, 410, 1, 4, 30, 30, 10, 10, 0, 5);
+	};
+
+	ObjectChest(SDLGame* game, Chest* ch) : EntityManager(game) {
+		pan = game_->relativePanel(1470, 320, 420, 410, 1, 4, 30, 30, 10, 10, 0, 5);
+		interiorCofre = ch;
 	};
 
 	virtual ~ObjectChest() { 

@@ -1,7 +1,7 @@
 #include "Casilla.h"
 #include "../Utilities/SDL_macros.h"
 
-Casilla::Casilla(SDLGame* game):esSalida(false), chest(ObjectChest(game))
+Casilla::Casilla(SDLGame* game):esSalida(false)
 {
 	game_ = game;
 	direcciones.resize(4);
@@ -13,7 +13,7 @@ Casilla::Casilla(SDLGame* game):esSalida(false), chest(ObjectChest(game))
 	
 }
 
-Casilla::Casilla(SDLGame* game, bool _N, bool _E, bool _S, bool _O ) :esSalida(false), chest(ObjectChest(game))
+Casilla::Casilla(SDLGame* game, bool _N, bool _E, bool _S, bool _O ) :esSalida(false)
 {
 	game_= game;
 	direcciones.resize(4);
@@ -114,10 +114,11 @@ void Casilla::setSalida()
 		direccionSalida = paredes[dir];
 	}
 }
-void Casilla::addChest(Chest cofre)
+void Casilla::addChest(Chest* cofre)
 {
 	hayCofre = true;
 	// meter en chest el cofre
+	chest = new ObjectChest(game_, cofre);
 	vector<Look> paredes;
 	for (int i = 0; i < 4; i++)
 	{

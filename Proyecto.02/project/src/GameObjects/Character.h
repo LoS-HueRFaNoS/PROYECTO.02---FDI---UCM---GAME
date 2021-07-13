@@ -14,6 +14,8 @@ class Character : public Entity
 {
 protected:
 
+    bool damaged = false;
+
     Weapon* _weapon;
 
     characterType _type;
@@ -160,6 +162,15 @@ public:
     bool isDead() {
         return !_sheet->hitPoints();
     }
+
+    bool isDamaged() {
+        if (damaged) {
+            damaged = false;
+            return true;
+        }
+        return false;
+    }
+
 };
 
 #pragma endregion

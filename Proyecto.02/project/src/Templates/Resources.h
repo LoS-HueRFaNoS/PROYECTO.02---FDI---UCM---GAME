@@ -41,6 +41,7 @@ public:
 		salidaMiniMap,
 		cofreMiniMap,
 		texto_salida,
+		puerta,
 
 		start,
 		options,
@@ -315,6 +316,8 @@ public:
 		Determinacion_,
 		Bendicion_,
 		Espinas_,
+		//Danyo
+		slash,
 	}; using txtID = TextureId;
 
 	enum AudioId : std::size_t {

@@ -306,6 +306,6 @@ void Laberinto::generaObjeto(int object, int type, Casilla* casilla, int maxObje
 				items.push_back(static_cast<Item*>(weapon));
 			}
 		}
-		casilla->addChest(Chest(game_->getRandGen()->nextInt(100,300),items));
+		casilla->addChest(new Chest(game_->getRandGen()->nextInt(100,300),items));
 	}
 }

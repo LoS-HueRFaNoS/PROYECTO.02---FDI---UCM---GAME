@@ -5,10 +5,12 @@
 class ChestPanel : public Component 
 {
 private:
-	ObjectChest* chest_ = nullptr;
+	ObjectChest* objChest_ = nullptr;
+	Chest* chest_;
 
 public:
 	ChestPanel() : Component(ecs::ChestPanel) {};
+	ChestPanel(ObjectChest* ch) : Component(ecs::ChestPanel) { objChest_ = ch; };
 	virtual ~ChestPanel() { delete chest_; chest_ = nullptr; };
 
 	void init() override;

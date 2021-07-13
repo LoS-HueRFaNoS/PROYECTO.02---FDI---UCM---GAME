@@ -7,8 +7,11 @@ void ObjectChest::Init()
 {
 	MousePanelMecanics::Init(1, set_FE::UP);
 	ObjectPanel::Init(pan);
-	//addTemplate();
-	example();
+
+		//addTemplate();
+		//example();
+
+	itemChest(interiorCofre->getItems());
 
 	// fondo de cofre
 	fondo_ = new Entity(game_, this);

@@ -132,6 +132,7 @@ void Character::recieveDamage(int damage, rpgLogic::damageType type, Character* 
         }
         removeConditions();
     }
+    damaged = true;
 }
 
 void Character::recieveHealing(int healing)
