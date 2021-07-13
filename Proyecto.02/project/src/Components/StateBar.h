@@ -38,7 +38,7 @@ public:
             number_ = new Line(game_, nullptr);
             number_->init(rect, to_string(character_->getCharacterSheet()->hitPoints()), src::Beaulieux, color_);
         }
-        aux_ = 0;
+        aux_ = aux2_ = 0.0;
     }
 
     void update() override {
@@ -64,8 +64,16 @@ public:
             break;
         }
 
-        if (aux_ < stAct_) aux_++;
-        else if (aux_ > stAct_) aux_--;
+        if (aux_ < stAct_) {
+            aux_ = aux_ + 0.125;
+            parpadeo();
+        }
+        else if (aux_ > stAct_) {
+            aux_ = aux_ - 0.125;
+            parpadeo();
+        }
+
+        if (aux_ == stAct_) color_.a = 255;
 
         if (!isNumber) {
             double fill = aux_ * 100.0 / maxStat_;    // porcentaje actual
@@ -95,7 +103,8 @@ private:
 
     uint maxStat_;      // much amount of data
     uint stAct_;        // actual amount of data
-    uint aux_;          // auxiliar for animation and progresive decrement
+    double aux_;        // auxiliar for animation and progresive decrement
+    double aux2_;         // auxiliar for wink animation
     SDL_Color color_;   // data type color
     SDL_Color color2_;  // data backgorund type color
 
@@ -142,8 +151,18 @@ private:
         SDL_RenderFillRect(game_->getRenderer(), &background);
         SDL_SetRenderDrawColor(game_->getRenderer(), COLOREXP(color2_));        
         SDL_RenderFillRect(game_->getRenderer(), &spaceToFill);
+        SDL_SetRenderDrawBlendMode(game_->getRenderer(), SDL_BLENDMODE_BLEND);
         SDL_SetRenderDrawColor(game_->getRenderer(), COLOREXP(color_));
         SDL_RenderFillRect(game_->getRenderer(), &rect);
+    }
+
+    void parpadeo() {
+        aux2_ = aux2_ + 0.125;
+        if (aux2_ == 2.25) {
+            if (color_.a == 255) color_.a = 75;
+            else color_.a = 255;
+            aux2_ = 0;
+        }
     }
 
 };
