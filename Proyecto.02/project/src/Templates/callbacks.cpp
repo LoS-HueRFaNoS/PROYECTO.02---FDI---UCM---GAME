@@ -681,13 +681,6 @@ void callbacks::unequip(Interfaz* app, bool isWeapon, int heroid)
 
 #pragma endregion
 
-void callbacks::createPanelDados(bool active) {
-	Interfaz* i = GETCMP2(TheElementalMaze::instance(), Interfaz);
-
-	if (active) i->createDados();
-	else if (!active) i->removePanel(DadosPan);
-}
-
 //void callbacks::start(Game* app) // previo app->setLevel(lvl);
 //{
 //	/*app->getMachine()->setAction(goGame);

@@ -1697,7 +1697,6 @@ void Interfaz::update()
         if (!getActivePan(Fight))
         {
             //ponerPanelDados
-            //callbacks::createPanelDados(true);
             createDados();
 
             Message m;
@@ -1714,7 +1713,6 @@ void Interfaz::update()
         if (getActivePan(Enemies))
         {
             //quitarPanelDados
-            //callbacks::createPanelDados(false);
             removePanel(DadosPan);
 
             Message m;

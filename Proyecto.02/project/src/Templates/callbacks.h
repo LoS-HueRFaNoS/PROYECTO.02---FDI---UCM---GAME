@@ -20,8 +20,6 @@ public:
 	// acceso a heroes
 	static void heroType(uint numberHeroe);
 	static void createDDPan(bool activated, uint numberHeroe);
-	// tiradas salvacion
-	static void createPanelDados(bool active);
 	// descripciones
 	static void createFichaDescPan(bool active, Hability* hab, bool aff);
 	static void createFichaDescObjPan(bool active, Item* ite);

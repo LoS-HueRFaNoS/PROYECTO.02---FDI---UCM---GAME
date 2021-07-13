@@ -11,7 +11,6 @@ DadosP::DadosP(SDLGame* game, Panel* pan, InterfazManager* iM,
 
 DadosP::~DadosP()
 {
-
 }
 
 void DadosP::init()
@@ -113,40 +112,3 @@ void DadosP::update()
 		}
 	}
 }
-
-/*
-void DadosP::init()
-{
-	int hs = heroes_->size();
-	for (int i = 0; i < hs; i++)
-	{
-		Hero* h = heroes_->at(i);
-		// si no esta ya muerto y aun no ha muerto en este combate...
-		if (h != nullptr) //* && !h->getDeathGate()
-		{
-		for (int j = 0; j < 3; j++) // el 3 depende del límite (que no se recoge en constante)
-		{
-			SDL_Rect rect =
-			{
-				pos_.getX() + offset_.getX() * i + SIZE * j,
-				pos_.getY() + offset_.getY() * i,
-				SIZE, SIZE
-			};
-			SDL_Object* buttonG = iM_->addButton<SDL_Object>(rect, src::DiceGreen);
-			pan_->addButton(buttonG);
-		}
-		for (int j = 0; j < 3; j++) // el 3 depende del límite (que no se recoge en constante)
-		{
-			SDL_Rect rect =
-			{
-				pos_.getX() + offset_.getX() * i + SIZE * j,
-				pos_.getY() + offset_.getY() * i + SIZE,
-				SIZE, SIZE
-			};
-			SDL_Object* buttonR = iM_->addButton<SDL_Object>(rect, src::DiceRed);
-			pan_->addButton(buttonR);
-		}
-		}
-	}
-}
-*/
