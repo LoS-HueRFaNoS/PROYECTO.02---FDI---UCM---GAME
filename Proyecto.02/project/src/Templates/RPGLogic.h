@@ -97,8 +97,8 @@ namespace rpgLogic {
 		//Nivel 0
 		GOBLIN,
 		PIXIE,
-		//Nivel 1
 		ZOMBIE,
+		//Nivel 1
 		SKELETON,
 		SPECTER,
 		TROLL,

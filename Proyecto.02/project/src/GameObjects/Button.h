@@ -203,13 +203,7 @@ public:
         Button::init(pos, ancho, alto, imagen);
     };
 
-    virtual void click()
-    {
-        callbacks::combatType((int)combatType_);
-        Sprite* s_ = GETCMP2(this, Sprite);
-        s_->setHide(true);
-        s_->reset();
-    }
+    virtual void click();
 };
 
 enum class target { target01, target02, target03, target04, target05 };

@@ -16,7 +16,7 @@ public:
 	void init() override {
 		ih_ = InputHandler::instance();
 		s_ = GETCMP1_(Sprite);
-		isMousePointerInRect_ = wasMousePointerInRect_ = false;
+		isMousePointerInRect_ = false; wasMousePointerInRect_ = false;
 	}
 
 	void update() override {
@@ -49,21 +49,28 @@ public:
 		{
 			if (SDL_PointInRect(&p_, &rect_))
 			{
-				isMousePointerInRect_ = true;
-				if (!wasMousePointerInRect_) button_->pointerEntered();
+				if (!wasMousePointerInRect_) {
+					isMousePointerInRect_ = true;
+					button_->pointerEntered();
+				}
 
 				s_->setHide(false);
 			}
 			else
 			{
-				isMousePointerInRect_ = false;
-				if (wasMousePointerInRect_) button_->pointerExited();
+				if (wasMousePointerInRect_) {
+					isMousePointerInRect_ = false;
+					button_->pointerExited();
+				}
 
 				if (s_->get())
 				{
 					s_->setHide(true);
 				}
 			}
+
+			/*if (isMousePointerInRect_) button_->pointerEntered();
+			else button_->pointerExited();*/
 
 			wasMousePointerInRect_ = isMousePointerInRect_;
 		}

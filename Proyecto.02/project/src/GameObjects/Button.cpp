@@ -250,3 +250,18 @@ void ButtonHeroEquipment::pointerExited() {
         callbacks::createFichaDescObjPan(false, ite);
     }
 };
+
+//*
+
+void ButtonCombate::click()
+{
+    callbacks::combatType((int)combatType_);
+    Sprite* s_ = GETCMP2(this, Sprite);
+    s_->setHide(true);
+    s_->reset();
+    if (combatType_ == CmbtType::defend) //:-)
+    {
+        TheElementalMaze::instance()->getComponent<Interfaz>(ecs::Interfaz)->createPanel(Enemies);
+    };
+
+}

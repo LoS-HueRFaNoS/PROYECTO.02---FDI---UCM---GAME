@@ -64,17 +64,31 @@ void callbacks::createDDPan(bool active, uint numberHeroe) {
 // ----------------------------------------------------
 
 void callbacks::createFichaDescPan(bool active, Hability* hab, bool aff) {
+	/*TheElementalMaze* tem_ = TheElementalMaze::instance();
+	tem_->hasComponent(ecs::PanelDesc);*/
 	Interfaz* i = GETCMP2(TheElementalMaze::instance(), Interfaz);
 
-	if (active) i->createFichaDesc(hab, aff);
-	else i->removePanel(DescPan);
+	if (active) {
+		if (i->getActivePan(DescPan)) i->removePanel(DescPan);
+		i->createFichaDesc(hab, aff);
+	}
+	else {
+		if (i->getActivePan(DescPan)) i->removePanel(DescPan);
+	}
 }
 
 void callbacks::createFichaDescObjPan(bool active, Item* ite) {
+	/*TheElementalMaze* tem_ = TheElementalMaze::instance();
+	tem_->hasComponent(ecs::PanelDescObj);*/
 	Interfaz* i = GETCMP2(TheElementalMaze::instance(), Interfaz);
 	
-	if (active) i->createFichaDescObj(ite);
-	else i->removePanel(DescPanObj);
+	if (active) {
+		if (i->getActivePan(DescPanObj)) i->removePanel(DescPanObj);
+		i->createFichaDescObj(ite);
+	}
+	else {
+		if (i->getActivePan(DescPanObj)) i->removePanel(DescPanObj);
+	}
 }
 
 // ----------------------------------------------------
@@ -164,7 +178,7 @@ void callbacks::potionType(int potionType_)
 #include "../Managers/game/CombatManager.h"
 #include "../Components/Interfaz.h"
 
-void callbacks::createPanel(bool active, int panelType)
+void callbacks::createPanel(bool active, int panelType) //:-o
 {
 	Interfaz* i_ = GETCMP2(TheElementalMaze::instance(), Interfaz);
 
