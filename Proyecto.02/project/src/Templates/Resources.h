@@ -108,6 +108,8 @@ public:
 		take, 
 		vibration,
 		fade,
+		DiceRed,
+		DiceGreen,
 
 		// carteles tutorial
 		_firstCartelId_,

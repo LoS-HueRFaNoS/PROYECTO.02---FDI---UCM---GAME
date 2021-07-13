@@ -110,6 +110,8 @@ vector<Resources::ImageInfo> Resources::images_{
 	{take, "project/resources/images/interfaz/button icons/Tienda/TakeButton.png"},
 	{vibration, "project/resources/images/interfaz/peligro.png"},
 	{fade, "project/resources/images/interfaz/FadeOutNegro.png"},
+	{DiceRed, "project/resources/images/interfaz/dadoRojo.png"},
+	{DiceGreen, "project/resources/images/interfaz/dadoVerde.png" },
 
 	// movimiento
 	{Avanzar, "project/resources/images/sprites/iconos movimiento/movimientoAvanzar.png"},
