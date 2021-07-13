@@ -17,6 +17,7 @@
 #include "Paneles/ChatInfo.h"
 #include "Paneles/ChestPanel.h"
 #include "Paneles/PanelDescObj.h"
+#include "Paneles/DadosP.h"
 #include "../Utilities/SDL_macros.h"
 #include "../Utilities/textures_box.h"
 #include "../Managers/SDLGame.h"
@@ -1248,6 +1249,24 @@ void Interfaz::createUnequipPanel()
     if (getActivePan(EquipPanel)) removePanel(EquipPanel);
     p->addButton(iManager->addButton<ButtonHeroEquipment>(Vector2D(w / 2 - 150, 2 * h / 3 + 100), 300, 100, src::StoreItemButton, accionHeroEquipment::Unequip, isWeapon, -1, selectedInventoryHero, this));
 }
+
+void Interfaz::createDados()
+{
+    Panel* p = new Panel(DadosPan);
+    allPanels[DadosPan] = p;
+
+    std::vector<Hero*> heroes = TheElementalMaze::instance()->getPartyManager()->getHeroes();
+
+    /*TheElementalMaze::instance()->addComponent<DadosP>
+        (game_, p, iManager, Vector2D(1500, 390), Vector2D(0, 80), &heroes);*/
+
+    double x_ = game_->setHorizontalScale(1755);
+    double y_ = game_->setVerticalScale(370);
+    double space_ = game_->setVerticalScale(80);
+    TheElementalMaze::instance()->addComponent<DadosP>
+        (game_, p, iManager, Vector2D(x_, y_), Vector2D(0, space_), &heroes);
+}
+
 void Interfaz::toggleMinimap()
 {
     TheElementalMaze::instance()->getLaberinto()->toggleMiniMap();
@@ -1511,8 +1530,8 @@ void Interfaz::removePanel(idPanel panID)
          break;
         case interfaz::Settings:
          break;*/
-    case interfaz::DescPan:
-        TheElementalMaze::instance()->removeComponent(ecs::PanelDesc);
+    case interfaz::DadosPan:
+        TheElementalMaze::instance()->removeComponent(ecs::DadosP);
         delete allPanels[panID];
         allPanels[panID] = nullptr;
         break;
@@ -1677,6 +1696,10 @@ void Interfaz::update()
     case gameST::START_COMBAT:
         if (!getActivePan(Fight))
         {
+            //ponerPanelDados
+            //callbacks::createPanelDados(true);
+            createDados();
+
             Message m;
             m.id_ = MsgId::_COMBATE_;
             TheElementalMaze::instance()->sendMsg(m);
@@ -1690,6 +1713,10 @@ void Interfaz::update()
     case gameST::END_COMBAT:
         if (getActivePan(Enemies))
         {
+            //quitarPanelDados
+            //callbacks::createPanelDados(false);
+            removePanel(DadosPan);
+
             Message m;
             m.id_ = MsgId::_INVENTARIO_;
             TheElementalMaze::instance()->sendMsg(m);

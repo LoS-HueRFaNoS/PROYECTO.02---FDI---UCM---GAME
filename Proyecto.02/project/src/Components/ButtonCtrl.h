@@ -4,7 +4,6 @@
 #include "../Utilities/InputHandler.h"
 #include "Transform.h"
 
-
 class ButtonCtrl : public Component
 {
 public:
