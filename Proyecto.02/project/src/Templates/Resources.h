@@ -41,6 +41,7 @@ public:
 		salidaMiniMap,
 		cofreMiniMap,
 		texto_salida,
+		puerta,
 
 		start,
 		options,

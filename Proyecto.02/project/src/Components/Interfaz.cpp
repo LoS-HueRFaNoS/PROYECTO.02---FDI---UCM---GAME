@@ -361,7 +361,7 @@ void Interfaz::createInventory()
 
 void Interfaz::createChest()
 {
-    if (getActivePan(EquipPanel)) return;
+    if (getActivePan(ActivateChest)) return;
     // posicion en pixeles del 'fondo'
     double x_ = 335;
     double y_ = 350;
@@ -370,6 +370,7 @@ void Interfaz::createChest()
     double h_ = 185;
     Panel* p = new Panel(ActivateChest);
     allPanels[ActivateChest] = p;
+    togglePanel(ActivateChest);
     p->addButton(iManager->addButton<ButtonPanel>(Vector2D(x_, y_), w_, h_, src::Inventario, _ChestPanel_, false));
 }
 
@@ -1430,8 +1431,12 @@ void Interfaz::createPanel(idPanel panelID)
         break;
     case _ChestPanel_:
         togglePanel(Heroes);
-        
-        TheElementalMaze::instance()->addComponent<ChestPanel>(TheElementalMaze::instance()->getLaberinto()->getCasillaInfo(GETCMP2(TheElementalMaze::instance()->getPlayer(), MazePos)->getPos().getX(), GETCMP2(TheElementalMaze::instance()->getPlayer(), MazePos)->getPos().getY())->getChest());
+        if (GETCMP2(TheElementalMaze::instance(),ChestPanel) == NULL)
+        {
+            Panel* p = new Panel(_ChestPanel_);
+            allPanels[_ChestPanel_] = p;
+            TheElementalMaze::instance()->addComponent<ChestPanel>(TheElementalMaze::instance()->getLaberinto()->getCasillaInfo(GETCMP2(TheElementalMaze::instance()->getPlayer(), MazePos)->getPos().getX(), GETCMP2(TheElementalMaze::instance()->getPlayer(), MazePos)->getPos().getY())->getChest());
+        }
         break;
     case Targets:
         createTargets();
