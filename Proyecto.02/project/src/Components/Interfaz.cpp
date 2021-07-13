@@ -216,9 +216,9 @@ void Interfaz::createHeroes()
         {
             ButtonHero* b_ = iManager->addButton<ButtonHero>(Vector2D(x_, y_ + i * espace), w_, h_, getHeroTxt(i), (HeroNum)i, DDPan, false);
             uint k = 6;
-            b_->addComponent<StateBar>(heroes[i], BarType::health, SDL_Rect(RECT((x_ + w_ + n), (y_ + i * espace + h_ * 1 / k), w_ * 3/*2*/, h_ / k)));
-            b_->addComponent<StateBar>(heroes[i], BarType::mana, SDL_Rect(RECT((x_ + w_ + n), (y_ + i * espace + h_ * 2.5 / k), w_ * 3/*2*/, h_ / k)));
-            b_->addComponent<StateBar>(heroes[i], BarType::experience, SDL_Rect(RECT((x_ + w_ + n), (y_ + i * espace + h_ * 4 / k), w_ * 3/*2*/, h_ / k)));
+            b_->addComponent<StateBar>(heroes[i], BarType::health, SDL_Rect(RECT((x_ + w_ + n), (y_ + i * espace + h_ * 1 / k), w_ * 2, h_ / k)));
+            b_->addComponent<StateBar>(heroes[i], BarType::mana, SDL_Rect(RECT((x_ + w_ + n), (y_ + i * espace + h_ * 2.5 / k), w_ * 2, h_ / k)));
+            b_->addComponent<StateBar>(heroes[i], BarType::experience, SDL_Rect(RECT((x_ + w_ + n), (y_ + i * espace + h_ * 4 / k), w_ * 2, h_ / k)));
             p->addButton(b_);
         }
     }
