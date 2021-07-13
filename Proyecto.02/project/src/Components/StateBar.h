@@ -20,27 +20,20 @@ class StateBar : public Component
 {
 public:
     StateBar(Character* c, BarType ty, SDL_Rect rct, bool num = false) :
-        Component(ecs::StateBar), character_(c), type_(ty), rect(rct), width_(rct.w), maxStat_(), stAct_(), color_(), isNumber(num) {};
+        Component(ecs::StateBar), character_(c), type_(ty), rect(rct), background(rct), width_(rct.w), maxStat_(0), stAct_(0), aux_(0), color_(), color2_(), isNumber(num) {};
     virtual ~StateBar() {
         if (number_ != nullptr) { delete number_; number_ = nullptr; };
     }
 
     void init() override {
         assert(character_ != nullptr);
-        switch (type_)
-        {
-        case BarType::health:
-            color_ = hex2sdlcolor("#DD0000FF");
-            break;
-        case BarType::mana:
-            color_ = hex2sdlcolor("#0055FFFF");
-            break;
-        case BarType::experience:
-            color_ = hex2sdlcolor("#BBBB00FF");
-            break;
-        default:
-            break;
-        }
+        setColors();
+        spaceToFill = RECT(
+            background.x + game_->setHorizontalScale(2),
+            background.y + game_->setVerticalScale(2),
+            background.w - game_->setHorizontalScale(2),
+            background.h - game_->setVerticalScale(2)
+        );
         if (isNumber) {
             number_ = new Line(game_, nullptr);
             number_->init(rect, to_string(character_->getCharacterSheet()->hitPoints()), src::Beaulieux, color_);
@@ -85,8 +78,7 @@ public:
 
     void draw() override {
         if (!isNumber) {
-            SDL_SetRenderDrawColor(game_->getRenderer(), COLOREXP(color_));
-            SDL_RenderFillRect(game_->getRenderer(), &rect);
+            renderRects();
         }
         else {            
             number_->draw();
@@ -94,7 +86,9 @@ public:
     }
 
 private:
-    SDL_Rect rect;          // general position and size
+    SDL_Rect rect;          // rectangle for actual stat data
+    SDL_Rect background;    // rectangle for background edge data
+    SDL_Rect spaceToFill;   // rectangle for background data
     uint width_;            // max width size
     Character* character_;  // character reference
     BarType type_;          // type of data
@@ -103,8 +97,53 @@ private:
     uint stAct_;        // actual amount of data
     uint aux_;          // auxiliar for animation and progresive decrement
     SDL_Color color_;   // data type color
+    SDL_Color color2_;  // data backgorund type color
 
     bool isNumber;
     Line* number_ = nullptr;
+
+private:
+    void setColors() {
+        // actual data color
+        switch (type_)
+        {
+        case BarType::health:
+            color_ = hex2sdlcolor("#DD0000FF");
+            break;
+        case BarType::mana:
+            color_ = hex2sdlcolor("#0055FFFF");
+            break;
+        case BarType::experience:
+            color_ = hex2sdlcolor("#BBBB00FF");
+            break;
+        default:
+            break;
+        }
+
+        // background data color
+        switch (type_)
+        {
+        case BarType::health:
+            color2_ = hex2sdlcolor("#5E0000FF");
+            break;
+        case BarType::mana:
+            color2_ = hex2sdlcolor("#001540FF");
+            break;
+        case BarType::experience:
+            color2_ = hex2sdlcolor("#3B3B00FF");
+            break;
+        default:
+            break;
+        }
+    }
+
+    void renderRects() {
+        SDL_SetRenderDrawColor(game_->getRenderer(), COLOREXP(color_));
+        SDL_RenderFillRect(game_->getRenderer(), &background);
+        SDL_SetRenderDrawColor(game_->getRenderer(), COLOREXP(color2_));        
+        SDL_RenderFillRect(game_->getRenderer(), &spaceToFill);
+        SDL_SetRenderDrawColor(game_->getRenderer(), COLOREXP(color_));
+        SDL_RenderFillRect(game_->getRenderer(), &rect);
+    }
 
 };
