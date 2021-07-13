@@ -307,7 +307,9 @@ vector<Resources::ImageInfo> Resources::images_{
 	{ foco_support, "project/resources/images/interfaz/focos/foco_support.png" },
 	{ foco_heroes, "project/resources/images/interfaz/focos/foco_heroes.png" },
 	{ foco_minimapa, "project/resources/images/interfaz/focos/foco_minimapa.png" },
-	{ cinematica, "project/resources/images/interfaz/focos/cinematica.png" }
+	{ cinematica, "project/resources/images/interfaz/focos/cinematica.png" },
+	//Danyo
+	{ slash, "project/resources/images/sprites/animaciones/heroes danyo/slashSheet.png" }
 };
 
 vector<Resources::TextMsgInfo> Resources::messages_{
