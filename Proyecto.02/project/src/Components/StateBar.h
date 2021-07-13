@@ -45,6 +45,7 @@ public:
             number_ = new Line(game_, nullptr);
             number_->init(rect, to_string(character_->getCharacterSheet()->hitPoints()), src::Beaulieux, color_);
         }
+        aux_ = 0;
     }
 
     void update() override {
@@ -70,12 +71,15 @@ public:
             break;
         }
 
+        if (aux_ < stAct_) aux_++;
+        else if (aux_ > stAct_) aux_--;
+
         if (!isNumber) {
-            double fill = stAct_ * 100.0 / maxStat_;    // porcentaje actual
+            double fill = aux_ * 100.0 / maxStat_;    // porcentaje actual
             rect.w = int(fill * width_ / 100);          // ancho visible
         }
         else {
-            number_->setLine(to_string(stAct_), src::Beaulieux, color_);
+            number_->setLine(to_string(aux_), src::Beaulieux, color_);
         }
     }
 
@@ -97,6 +101,7 @@ private:
 
     uint maxStat_;      // much amount of data
     uint stAct_;        // actual amount of data
+    uint aux_;          // auxiliar for animation and progresive decrement
     SDL_Color color_;   // data type color
 
     bool isNumber;
