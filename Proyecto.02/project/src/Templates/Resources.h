@@ -229,6 +229,11 @@ public:
 		CofreVacio,
 		CofreLleno,
 
+		//Llaves
+		LlaveCofre,
+		LlaveNivel,
+		LlaveVacia,
+
 		//Ficha DD
 		Pergamino,
 		//Panel Desc.

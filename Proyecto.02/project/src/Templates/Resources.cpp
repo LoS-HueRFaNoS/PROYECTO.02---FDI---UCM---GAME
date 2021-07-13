@@ -205,6 +205,12 @@ vector<Resources::ImageInfo> Resources::images_{
 	{CofreCerrado, "project/resources/images/sprites/cofre/cofreCerrado.PNG" },
 	{CofreVacio, "project/resources/images/sprites/cofre/cofreAbierto.PNG" },
 	{CofreLleno, "project/resources/images/sprites/cofre/cofreLuz.PNG" },
+
+	//Llaves
+	{LlaveCofre, "project/resources/images/sprites/llaves/chestKey.png" },
+	{LlaveNivel, "project/resources/images/sprites/llaves/levelKey.png" },
+	{LlaveVacia, "project/resources/images/sprites/llaves/emptykey.png" },
+
 	// Ficha DD
 	{Pergamino, "project/resources/images/sprites/iconos ficha/pergamino.png"},
 	// Panel Desc.
