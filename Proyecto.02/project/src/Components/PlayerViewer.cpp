@@ -1,5 +1,7 @@
 #include "PlayerViewer.h"
 #include "StateBar.h"
+#include "../Templates/callbacks.h"
+#include "../ecs/ecs_interfaz.h"
 
 void PlayerViewer::update()
 {
@@ -66,9 +68,10 @@ void PlayerViewer::draw()
 	else derecha = sentido + 1;
 
 	auto manager = game_->getTextureMngr(); // Manager de texturas
-
+	cofreVisible = false;
 	if (casillaActual[sentido]) // <-^-> Si delante hay un camino, dibujaremos la informacion de la casilla siguiente
 	{
+		
 		manager->getTexture(Resources::camino_fondo_fr)->render(dest);
 		manager->getTexture(Resources::fondo_vacio)->render(dest);
 		if (!casillaSigSig[sentido])
@@ -123,13 +126,14 @@ void PlayerViewer::draw()
 		if (cas->getEnemy()->size() == 0)
 			manager->getTexture(Resources::texto_salida)->render(dest); // Cambiar a escalera
 	}
-	/*if (cas->hasChest() && cas->getDirCofre() == sentido)
+	if (cas->hasChest() && cas->getDirCofre() == sentido)
 	{
+		cofreVisible = true;
 		dest = RECT(_x + _w / 2 - 300, _y + 240, 600, 300);
-		if (!cas->getChest().isOpen())
 		manager->getTexture(Resources::CofreCerrado)->render(dest);
-		else manager->getTexture(Resources::CofreLleno)->render(dest);
-	}*/
+		callbacks::createPanel(false, interfaz::idPanel::ActivateChest);
+	}
+	if (!cofreVisible) callbacks::createPanel(true,interfaz::idPanel::ActivateChest);
 	//manager->getTexture(Resources::guiaSalida)->render(SDL_Rect{game_->getWindowWidth()/2-50, 100, 100,50});
 }
 

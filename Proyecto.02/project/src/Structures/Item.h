@@ -1,7 +1,6 @@
 #include "../ecs/Component.h"
 #include "../Utilities/jute.h"
 #include "../Templates/RPGLogic.h"
-#include "../GameObjects/ObjectChest.h"
 class ItemManager;
 #pragma once
 
@@ -105,6 +104,10 @@ private:
 	int gold;
 	vector<Item*> items;
 public:
+	Chest()
+	{
+		gold = 100;
+	}
 	Chest(int gold_, std::vector<Item*> items_) : gold(gold_), items(items_) {
 		
 

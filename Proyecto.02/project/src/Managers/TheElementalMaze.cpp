@@ -119,8 +119,6 @@ void TheElementalMaze::createLaberinto()
 	player_->addComponent<PlayerViewer>(laberinto_);
 	player_->addComponent<PlayerMotion>(SDLK_UP, SDLK_LEFT, SDLK_RIGHT, laberinto_);
 
-
-
 }
 
 void TheElementalMaze::backFromDungeon()

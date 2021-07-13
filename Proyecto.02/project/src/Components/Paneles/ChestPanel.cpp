@@ -2,16 +2,16 @@
 
 void ChestPanel::init()
 {
-	chest_ = new ObjectChest(game_);
-	chest_->Init();
+	//objChest_ = new ObjectChest(game_, chest_);
+	objChest_->Init();
 }
 
 void ChestPanel::update()
 {
-	chest_->update();
+	objChest_->update();
 }
 
 void ChestPanel::draw()
 {
-	chest_->draw();
+	objChest_->draw();
 }

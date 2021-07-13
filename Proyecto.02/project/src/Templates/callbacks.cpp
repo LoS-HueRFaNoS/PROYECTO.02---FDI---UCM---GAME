@@ -176,7 +176,6 @@ void callbacks::createPanel(bool active, int panelType)
 		i_->removePanel((idPanel)panelType);
 	}
 }
-
 void callbacks::returnTo(int PanelActual, int PanelRegreso)
 {
 	Interfaz* i_ = GETCMP2(TheElementalMaze::instance(), Interfaz);

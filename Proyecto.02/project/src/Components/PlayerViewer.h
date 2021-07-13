@@ -41,7 +41,7 @@ private:
 	Casilla* casSig;
 	Casilla* casSigSig;
 	TexturesManager* manager;
-
+	bool cofreVisible = false;
 	/*void renderEnemyActual();		
 	void enemyViewer(enemyTemplate temp, int x, int y, int w, int h);*/	
 };

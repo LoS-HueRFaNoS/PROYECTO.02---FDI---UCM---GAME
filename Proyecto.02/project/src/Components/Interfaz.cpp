@@ -27,6 +27,8 @@
 #include "../Managers/game/ChatManager.h"
 #include "../Managers/game/LobbyManager.h"
 #include "../Managers/game/itemManager.h"
+#include "../Components/PlayerMotion.h"
+#include "../Components/MazePos.h"
 
 using cb = callbacks;
 using src = Resources;
@@ -250,8 +252,7 @@ void Interfaz::createInfo()
 
     // BOTONES: health, mana
     p->addButton(iManager->addButton<ButtonPanel>(Vector2D(x_, y_), w_ * 2, h_ * 2, src::Inventario, Inventory, false));
-    // duplicado para el cofre:
-    p->addButton(iManager->addButton<ButtonPanel>(Vector2D(x_, y_), w_ * 2, h_ * 2, src::Inventario, _ChestPanel_, false));
+   
 
     ButtonPotion* bp1_ = iManager->addButton<ButtonPotion>(Vector2D(x_ + 2 * espace_H, y_ + 0 * espace_V), w_, h_, src::PocionVida, PtnType::health);
     bp1_->addComponent<Contador>(PtnType::health);
@@ -360,6 +361,16 @@ void Interfaz::createInventory()
 
 void Interfaz::createChest()
 {
+    if (getActivePan(EquipPanel)) return;
+    // posicion en pixeles del 'fondo'
+    double x_ = 335;
+    double y_ = 350;
+    // tamano en pixeles del 'fondo'
+    double w_ = 450;
+    double h_ = 185;
+    Panel* p = new Panel(ActivateChest);
+    allPanels[ActivateChest] = p;
+    p->addButton(iManager->addButton<ButtonPanel>(Vector2D(x_, y_), w_, h_, src::Inventario, _ChestPanel_, false));
 }
 
 void Interfaz::createFichaDD(uint nCharacter)
@@ -1413,9 +1424,13 @@ void Interfaz::createPanel(idPanel panelID)
     case Chat:
         TheElementalMaze::instance()->addComponent<ChatInfo>();
         break;
+    case ActivateChest:
+        createChest();
+        break;
     case _ChestPanel_:
         togglePanel(Heroes);
-        TheElementalMaze::instance()->addComponent<ChestPanel>();
+        
+        TheElementalMaze::instance()->addComponent<ChestPanel>(TheElementalMaze::instance()->getLaberinto()->getCasillaInfo(GETCMP2(TheElementalMaze::instance()->getPlayer(), MazePos)->getPos().getX(), GETCMP2(TheElementalMaze::instance()->getPlayer(), MazePos)->getPos().getY())->getChest());
         break;
     case Targets:
         createTargets();
