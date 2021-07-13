@@ -33,6 +33,15 @@ public:
 
 // ----------------------------------------------------
 
+class VoidButton : public Button
+{
+public:
+    VoidButton(SDLGame* game, EntityManager* mngr) : Button(game, mngr) {};
+    virtual void click() {};
+};
+
+// ----------------------------------------------------
+
 class ButtonVolumen : public Button // <3
 {
 private:

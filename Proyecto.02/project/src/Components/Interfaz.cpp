@@ -1264,7 +1264,7 @@ void Interfaz::createDados()
     double y_ = game_->setVerticalScale(370);
     double space_ = game_->setVerticalScale(80);
     TheElementalMaze::instance()->addComponent<DadosP>
-        (game_, p, iManager, Vector2D(x_, y_), Vector2D(0, space_), &heroes);
+        (game_, p, iManager, Vector2D(x_, y_), Vector2D(0, space_), heroes);
 }
 
 void Interfaz::toggleMinimap()
