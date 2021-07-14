@@ -16,6 +16,7 @@ private:
 	vector<bool> direcciones;
 	bool esSalida;
 	bool esPosActual = false;
+	bool tieneLlaveNivel = false;
 	int angulo = 0;
 	Visibilidad visib;
 	vector<enemyTemplate> enemyEnum;
@@ -49,5 +50,9 @@ public:
 	vector<enemyTemplate>* getEnemy() { return &enemyEnum; }
 	Look getDirSalida() { return direccionSalida; }
 	/*Look getDirCofre() { return direccionCofre; }*/
+	bool getTieneLlaveNivel() { return tieneLlaveNivel; }
+	void setTieneLlaveNivel(bool aux) { tieneLlaveNivel = aux; }
+
+
 };
 

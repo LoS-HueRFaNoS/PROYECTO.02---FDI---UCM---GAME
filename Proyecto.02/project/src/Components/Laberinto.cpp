@@ -71,56 +71,64 @@ Vector2D Laberinto::getSalida()
 
 void Laberinto::createRandomMaze(Vector2D entrada)
 {
-	int x, y;
+	int salidaX, salidaY, llaveX, llaveY;
 
 	if (TheElementalMaze::instance()->getLevel() == -1)
 	{
 		w = 4;
 		h = 4;
-		x = 3;
-		y = 3;
+		salidaX = 3;
+		salidaY = 3;
+		llaveX = 2;
+		llaveY = 2;
 	}
 
 	else
 	{
 		w = 10;
 		h = 10;
-		x = game_->getRandGen()->nextInt((w / 2), w);
-		y = game_->getRandGen()->nextInt((h / 2), h);
+		salidaX = game_->getRandGen()->nextInt((w / 2), w);
+		salidaY = game_->getRandGen()->nextInt((h / 2), h);
+		llaveX = game_->getRandGen()->nextInt(2, h);
+		llaveY = game_->getRandGen()->nextInt(2, h);
 	}
 
 
-	salida = Vector2D(x, y);
+	salida = Vector2D(salidaX, salidaY);
+	llaveNivel = Vector2D(llaveX, llaveY);
+
 	//salida = Vector2D(0, 1);
 	laberinto.resize(h);
 	for (int i = 0; i < h; ++i)
 		laberinto[i].resize(w);
 	maze1D.resize(w * h);
-	x = int(entrada.getX());
-	y = int(entrada.getY());
+	salidaX = int(entrada.getX());
+	salidaY = int(entrada.getY());
 
-	maze1D[y * w + x] = true;
-	m_stack.push_back(Vector2D(x, y));
-	laberinto[x][y] = new Casilla(game_);
+	maze1D[salidaY * w + salidaX] = true;
+	m_stack.push_back(Vector2D(salidaX, salidaY));
+	laberinto[salidaX][salidaY] = new Casilla(game_);
 	cellsCreated = 1;
+
+	
 
 	// Create a set of unvisted neighbours
 	vector<Look> neighbours;
 	while (cellsCreated < w * h)
 	{
-		x = int(m_stack.back().getX());
-		y = int(m_stack.back().getY());
+		salidaX = int(m_stack.back().getX());
+		salidaY = int(m_stack.back().getY());
 		// North neighbour
-		if (y > 0 && !maze1D[(int)((y - 1) * w + x)])
+		if (salidaY > 0 && !maze1D[(int)((salidaY - 1) * w + salidaX)])
 			neighbours.push_back(Norte);
 		// East neighbour
-		if (x < w - 1 && !maze1D[(int)(y * w + (x + 1))])
+		if (salidaX < w - 1 && !maze1D[(int)(salidaY * w + (salidaX + 1))])
 			neighbours.push_back(Este);
 		// South neighbour
-		if (y < h - 1 && !maze1D[(int)((y + 1) * w + x)])
+		if (salidaY < h - 1 && !maze1D[(int)((salidaY + 1) * w + salidaX)])
 			neighbours.push_back(Sur);
 		// West neighbour
-		if (x > 0 && !maze1D[(int)(y * w + (x - 1))])
+		if (salidaX > 0 && !maze1D[(int)(salidaY * w + (salidaX - 1))])
 			neighbours.push_back(Oeste);
 
 		// Are there any neighbours available?
@@ -133,38 +141,38 @@ void Laberinto::createRandomMaze(Vector2D entrada)
 			switch (next_cell_dir)
 			{
 			case 0: // North
-				laberinto[x][y]->setDirs(Norte);
-				y--;
-				laberinto[x][y] = new Casilla(game_);
-				laberinto[x][y]->setDirs(Sur);
+				laberinto[salidaX][salidaY]->setDirs(Norte);
+				salidaY--;
+				laberinto[salidaX][salidaY] = new Casilla(game_);
+				laberinto[salidaX][salidaY]->setDirs(Sur);
 				break;
 
 			case 1: // East
-				laberinto[x][y]->setDirs(Este);
-				x++;
-				laberinto[x][y] = new Casilla(game_);
-				laberinto[x][y]->setDirs(Oeste);
+				laberinto[salidaX][salidaY]->setDirs(Este);
+				salidaX++;
+				laberinto[salidaX][salidaY] = new Casilla(game_);
+				laberinto[salidaX][salidaY]->setDirs(Oeste);
 				break;
 
 			case 2: // South
-				laberinto[x][y]->setDirs(Sur);
-				y++;
-				laberinto[x][y] = new Casilla(game_);
-				laberinto[x][y]->setDirs(Norte);
+				laberinto[salidaX][salidaY]->setDirs(Sur);
+				salidaY++;
+				laberinto[salidaX][salidaY] = new Casilla(game_);
+				laberinto[salidaX][salidaY]->setDirs(Norte);
 				break;
 
 			case 3: // West
-				laberinto[x][y]->setDirs(Oeste);
-				x--;
-				laberinto[x][y] = new Casilla(game_);
-				laberinto[x][y]->setDirs(Este);
+				laberinto[salidaX][salidaY]->setDirs(Oeste);
+				salidaX--;
+				laberinto[salidaX][salidaY] = new Casilla(game_);
+				laberinto[salidaX][salidaY]->setDirs(Este);
 				break;
 			}
-			maze1D[y * w + x] = true;
-			m_stack.push_back(Vector2D(x, y));
+			maze1D[salidaY * w + salidaX] = true;
+			m_stack.push_back(Vector2D(salidaX, salidaY));
 			cellsCreated++;
 
-			if (x == salida.getX() && y == salida.getY())
+			if (salidaX == salida.getX() && salidaY == salida.getY())
 			{
 				shortestWay = vector<Vector2D>(m_stack);
 
@@ -187,7 +195,7 @@ void Laberinto::createRandomMaze(Vector2D entrada)
 						break;
 					}
 
-					generaObjeto(0, enemyType, laberinto[x][y], 1, 0);
+					generaObjeto(0, enemyType, laberinto[salidaX][salidaY], 1, 0);
 
 				}
 
@@ -197,7 +205,7 @@ void Laberinto::createRandomMaze(Vector2D entrada)
 			if (chestChance == 0 && TheElementalMaze::instance()->getLevel() != -1)
 			{
 				int cant = game_->getRandGen()->nextInt(0, 5);
-				generaObjeto(1,0, laberinto[x][y], cant, cant);
+				generaObjeto(1,0, laberinto[salidaX][salidaY], cant, cant);
 			}
 
 			if (TheElementalMaze::instance()->getLevel() != -1)
@@ -216,7 +224,7 @@ void Laberinto::createRandomMaze(Vector2D entrada)
 						for (int i = 0; i < random; i++)
 						{
 							enemyType = game_->getRandGen()->nextInt(0, int(enemyTemplate::SKELETON));
-							generaObjeto(0, enemyType, laberinto[x][y], 1, 0);
+							generaObjeto(0, enemyType, laberinto[salidaX][salidaY], 1, 0);
 						}
 						break;
 					case 1:
@@ -224,7 +232,7 @@ void Laberinto::createRandomMaze(Vector2D entrada)
 						for (int i = 0; i < random; i++)
 						{
 							enemyType = game_->getRandGen()->nextInt(0, int(enemyTemplate::HELLHOUND));
-							generaObjeto(0, enemyType, laberinto[x][y], 1, 0);
+							generaObjeto(0, enemyType, laberinto[salidaX][salidaY], 1, 0);
 						}
 						break;
 					case 2:
@@ -232,7 +240,7 @@ void Laberinto::createRandomMaze(Vector2D entrada)
 						for (int i = 0; i < random; i++)
 						{
 							enemyType = game_->getRandGen()->nextInt(0, int(enemyTemplate::DEATHKNIGHT));
-							generaObjeto(0, enemyType, laberinto[x][y], 1, 0);
+							generaObjeto(0, enemyType, laberinto[salidaX][salidaY], 1, 0);
 						}
 						break;
 					default:
@@ -260,6 +268,7 @@ void Laberinto::createRandomMaze(Vector2D entrada)
 	}
 
 	laberinto[salida.getX()][salida.getY()]->setSalida();
+	laberinto[llaveX][llaveY]->setTieneLlaveNivel(true);
 }
 
 

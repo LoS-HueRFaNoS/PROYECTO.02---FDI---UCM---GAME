@@ -12,7 +12,7 @@ private:
 	//EntityManager* entityManager;
 	vector<vector<Casilla*>> laberinto;
 	Vector2D salida;
-
+	Vector2D llaveNivel;
 	vector<Vector2D> shortestWay;
 	vector<bool> maze1D;
 	vector<Vector2D> m_stack;	// (x, y) coordinate pairs
@@ -34,4 +34,6 @@ public:
 	void toggleMiniMap() { drawMiniMap = !drawMiniMap; };
 
 	void generaObjeto(int object, int type, Casilla* casilla, int maxObject, int cant);
+
+	Vector2D getLlaveNivel() { return llaveNivel; }
 };

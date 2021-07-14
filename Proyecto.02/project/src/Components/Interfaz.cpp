@@ -23,6 +23,7 @@
 #include "../Managers/SDLGame.h"
 #include "../Managers/TheElementalMaze.h"
 #include "../Managers/game/PartyManager.h"
+#include "../Managers/game/AnimationManager.h"
 #include "../Managers/game/InterfazManager.h"
 #include "../Managers/game/CombatManager.h"
 #include "../Managers/game/ChatManager.h"
@@ -1493,11 +1494,14 @@ void Interfaz::createPanel(idPanel panelID)
             }
             else closeChest();
         }
-        else if (TheElementalMaze::instance()->getPartyManager()->hasChestKeys()) {
-            TheElementalMaze::instance()->getLaberinto()->getCasillaInfo(GETCMP2(TheElementalMaze::instance()->getPlayer(), MazePos)->getPos().getX(), GETCMP2(TheElementalMaze::instance()->getPlayer(), MazePos)->getPos().getY())->getChest()->setAlreadyOpen(true);
-            TheElementalMaze::instance()->getPartyManager()->useChestKey();
+        else {
+            if (TheElementalMaze::instance()->getPartyManager()->hasChestKeys()) {
+                TheElementalMaze::instance()->getLaberinto()->getCasillaInfo(GETCMP2(TheElementalMaze::instance()->getPlayer(), MazePos)->getPos().getX(), GETCMP2(TheElementalMaze::instance()->getPlayer(), MazePos)->getPos().getY())->getChest()->setAlreadyOpen(true);
+                TheElementalMaze::instance()->getPartyManager()->useChestKey();
+            }
+            else TheElementalMaze::instance()->getAnimManager()->showNoKeys();
         }
-            
+  
         break;
     case Targets:
         createTargets();

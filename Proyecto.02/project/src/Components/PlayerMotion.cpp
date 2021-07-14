@@ -39,9 +39,14 @@ void PlayerMotion::update()
     else if (ih->isKeyDown(giraIzq)) { rotarIzquierda(); }
     else if (ih->isKeyDown(giraDer)) { rotarDerecha(); }
     else if (ih->isKeyDown(SDLK_e) && lab->getCasillaInfo(x, y)->isExit() && lab->getCasillaInfo(x, y)->getDirSalida() == sent) {
-        TheElementalMaze::instance()->getAnimManager()->addtransicion(1200);
-        TheElementalMaze::instance()->changeState(gameST::END_EXPLORING);
-        TheElementalMaze::instance()->onExitLaberinto();
+        if (TheElementalMaze::instance()->getPartyManager()->hasLevelKey()) {
+            TheElementalMaze::instance()->getAnimManager()->addtransicion(1200);
+            TheElementalMaze::instance()->changeState(gameST::END_EXPLORING);
+            TheElementalMaze::instance()->getPartyManager()->useLevelKey();
+            TheElementalMaze::instance()->onExitLaberinto();
+
+        }
+        else TheElementalMaze::instance()->getAnimManager()->showNoKeys();
     }
     else if (ih->isKeyDown(SDLK_f) && lab->getCasillaInfo(x, y)->isExit() && lab->getCasillaInfo(x, y)->getDirSalida() == sent) {
         TheElementalMaze::instance()->getAnimManager()->addtransicion(1200);
@@ -159,24 +164,28 @@ void PlayerMotion::avanzar()
             //{
 
             pos->setPos(Vector2D(x, y - 1));
+            cas = lab->getCasillaInfo(x, y - 1);
             //}
             break;
         case Este:
             //if (x + 1 < lab->mazeWidth())
             //{
             pos->setPos(Vector2D(x + 1, y));
+            cas = lab->getCasillaInfo(x + 1, y);
             //}
             break;
         case Sur:
             //if (y + 1 < lab->mazeHeigh())
             //{
             pos->setPos(Vector2D(x, y + 1));
+            cas = lab->getCasillaInfo(x, y + 1);
             //}
             break;
         case Oeste:
             //if (x - 1 >= 0)
             //{
             pos->setPos(Vector2D(x - 1, y));
+            cas = lab->getCasillaInfo(x - 1, y);
             //}
             break;
         }
@@ -190,6 +199,11 @@ void PlayerMotion::avanzar()
         }*/
         debugear();
 
+    }
+    if (cas->getTieneLlaveNivel()) {
+        TheElementalMaze::instance()->getPartyManager()->takeLevelKey();
+        TheElementalMaze::instance()->getAnimManager()->showLevelKey();
+        cas->setTieneLlaveNivel(false);
     }
 }
 

@@ -22,7 +22,11 @@ void AnimationManager::init()
 	transiTex = game_->instance()->getTextureMngr()->getTexture(Resources::fade);
 	keyTex = new Texture();
 	keyTex = game_->instance()->getTextureMngr()->getTexture(Resources::LlaveCofre);
+	keyLevelTex = new Texture();
+	keyLevelTex = game_->instance()->getTextureMngr()->getTexture(Resources::LlaveNivel);
 	keyNumTex = new Texture();
+	noKeysTex = new Texture();
+	noKeysTex = game_->instance()->getTextureMngr()->getTexture(Resources::LlaveVacia);
 }
 
 void AnimationManager::update()
@@ -93,13 +97,15 @@ void AnimationManager::animVib(rpgLogic::characterType current, rpgLogic::charac
 	}
 }
 
-void AnimationManager::showReward(int exp_, int gold_, int mana_, int health_, bool key_)
+void AnimationManager::showReward(int exp_, int gold_, int mana_, int health_, bool chestKey_)
 {
 	exp = exp_;
 	gold = gold_;
 	manaPotions = mana_;
 	healthPotions = health_;
-	key = key_;
+	chestKey = chestKey_;
+	levelKey = false;
+	noKeys = false;
 
 	reward = true;
 	rewardPosY = game_->setVerticalScale(500);
@@ -123,13 +129,56 @@ void AnimationManager::showReward(int exp_, int gold_, int mana_, int health_, b
 	color = { 0,255,0,225 };
 	healthNumTex->loadFromText(game_->getRenderer(), text, game_->getFontMngr()->getFont(Resources::FontId::Beaulieux), color);
 
-	if (key) {
+	if (chestKey) {
 		text = "x1";
 		color = { 255,255,255,225 };
 		keyNumTex->loadFromText(game_->getRenderer(), text, game_->getFontMngr()->getFont(Resources::FontId::Beaulieux), color);
 	}
+
+
 }
 
+void AnimationManager::showLevelKey()
+{
+	exp = 0;
+	gold = 0;
+	manaPotions = 0;
+	healthPotions = 0;
+	chestKey = false;
+	levelKey = true;
+	noKeys = false;
+
+	reward = true;
+	rewardPosY = game_->setVerticalScale(500);
+
+	string text;
+	SDL_Color color;
+
+	text = "x1";
+	color = { 255,255,255,225 };
+	keyNumTex->loadFromText(game_->getRenderer(), text, game_->getFontMngr()->getFont(Resources::FontId::Beaulieux), color);
+}
+
+void AnimationManager::showNoKeys()
+{
+	exp = 0;
+	gold = 0;
+	manaPotions = 0;
+	healthPotions = 0;
+	chestKey = false;
+	levelKey = false;
+	noKeys = true;
+
+	reward = true;
+	rewardPosY = game_->setVerticalScale(500);
+
+	string text;
+	SDL_Color color;
+
+	text = "x0";
+	color = { 0,0,0,225 };
+	keyNumTex->loadFromText(game_->getRenderer(), text, game_->getFontMngr()->getFont(Resources::FontId::Beaulieux), color);
+}
 
 
 void AnimationManager::renderVibration()
@@ -152,14 +201,15 @@ void AnimationManager::renderReward()
 		width = 110;
 
 	//Experiencia
-	dest = RECT(pos,rewardPosY, width,50);  	expTex->render(dest);		pos += width+20;
+	if (exp > 0) { dest = RECT(pos, rewardPosY, width, 50);  	expTex->render(dest);		pos += width + 20; }
+	
 	
 	width = 120;
 	if (gold > 99)
 		width = 130;
 
 	//Coins
-	dest = RECT(pos, rewardPosY, width, 50);	goldTex->render(dest);		pos += width+20;
+	if (gold > 0) { dest = RECT(pos, rewardPosY, width, 50);	goldTex->render(dest);		pos += width + 20; }
 
 	width = 50;
 
@@ -175,9 +225,19 @@ void AnimationManager::renderReward()
 		dest = RECT(pos, rewardPosY, width, 50);	healthNumTex->render(dest);		pos += width+20;
 	}
 
-	//Key
-	if (key) {
-		dest = RECT(pos, rewardPosY, width, 50);	keyTex->render(dest);		pos += width + 20;
+	//Keys
+	if (chestKey) {
+		dest = RECT(pos, rewardPosY, width, 50);	keyTex->render(dest);			pos += width + 20;
+		dest = RECT(pos, rewardPosY, width, 50);	keyNumTex->render(dest);		pos += width + 20;
+	}
+
+	if (levelKey) {
+		dest = RECT(pos, rewardPosY, width, 50);	keyLevelTex->render(dest);		pos += width + 20;
+		dest = RECT(pos, rewardPosY, width, 50);	keyNumTex->render(dest);		pos += width + 20;
+	}
+
+	if (noKeys) {
+		dest = RECT(pos, rewardPosY, width, 50);	noKeysTex->render(dest);		pos += width + 20;
 		dest = RECT(pos, rewardPosY, width, 50);	keyNumTex->render(dest);		pos += width + 20;
 	}
 }
