@@ -20,6 +20,9 @@ void AnimationManager::init()
 	healthTex = game_->instance()->getTextureMngr()->getTexture(Resources::PocionVida);
 	healthNumTex = new Texture();
 	transiTex = game_->instance()->getTextureMngr()->getTexture(Resources::fade);
+	keyTex = new Texture();
+	keyTex = game_->instance()->getTextureMngr()->getTexture(Resources::LlaveCofre);
+	keyNumTex = new Texture();
 }
 
 void AnimationManager::update()
@@ -90,12 +93,13 @@ void AnimationManager::animVib(rpgLogic::characterType current, rpgLogic::charac
 	}
 }
 
-void AnimationManager::showReward(int exp_, int gold_, int mana_, int health_)
+void AnimationManager::showReward(int exp_, int gold_, int mana_, int health_, bool key_)
 {
 	exp = exp_;
 	gold = gold_;
 	manaPotions = mana_;
 	healthPotions = health_;
+	key = key_;
 
 	reward = true;
 	rewardPosY = game_->setVerticalScale(500);
@@ -119,6 +123,11 @@ void AnimationManager::showReward(int exp_, int gold_, int mana_, int health_)
 	color = { 0,255,0,225 };
 	healthNumTex->loadFromText(game_->getRenderer(), text, game_->getFontMngr()->getFont(Resources::FontId::Beaulieux), color);
 
+	if (key) {
+		text = "x1";
+		color = { 255,255,255,225 };
+		keyNumTex->loadFromText(game_->getRenderer(), text, game_->getFontMngr()->getFont(Resources::FontId::Beaulieux), color);
+	}
 }
 
 
@@ -166,7 +175,11 @@ void AnimationManager::renderReward()
 		dest = RECT(pos, rewardPosY, width, 50);	healthNumTex->render(dest);		pos += width+20;
 	}
 
-
+	//Key
+	if (key) {
+		dest = RECT(pos, rewardPosY, width, 50);	keyTex->render(dest);		pos += width + 20;
+		dest = RECT(pos, rewardPosY, width, 50);	keyNumTex->render(dest);		pos += width + 20;
+	}
 }
 
 

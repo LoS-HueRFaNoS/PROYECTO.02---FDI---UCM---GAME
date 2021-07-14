@@ -20,6 +20,7 @@ private:
 	int gold = 0;
 	int manaPotions = 0;
 	int healthPotions = 0;
+	bool key = false;
 
 	Texture* expTex = nullptr;
 	Texture* goldTex = nullptr;
@@ -28,6 +29,8 @@ private:
 	Texture* healthTex = nullptr;
 	Texture* healthNumTex = nullptr;
 	Texture* transiTex = nullptr;
+	Texture* keyTex = nullptr;
+	Texture* keyNumTex = nullptr;
 
 
 	bool transicion = false;
@@ -50,7 +53,7 @@ public:
 	void draw() override;
 
 	void animVib(rpgLogic::characterType current, rpgLogic::characterType next);
-	void showReward(int exp, int gold, int manaPotions, int healthPotions) ;
+	void showReward(int exp, int gold, int manaPotions, int healthPotions, bool key) ;
 	void renderVibration();
 	void renderReward();
 

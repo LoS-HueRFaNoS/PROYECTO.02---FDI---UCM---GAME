@@ -264,7 +264,11 @@ void CombatManager::endCombat()
             if (healthPotions > 0)
                 ChatManager::instance()->add("You find " + std::to_string(healthPotions) + " health potions", LineColor::Green);
             TheElementalMaze::instance()->getPartyManager()->healthPotions += healthPotions;
-            TheElementalMaze::instance()->getAnimManager()->showReward(_exp, _gold, manaPotions, healthPotions);
+
+            int randomKey = rand() % 10; //Numero aleatorio entre 0 y 9
+            bool dropKey = randomKey > 0; //Solo si randomKey es 8 o 9 dropea llave (20%)
+            if (dropKey) TheElementalMaze::instance()->getPartyManager()->takeChestKey();
+            TheElementalMaze::instance()->getAnimManager()->showReward(_exp, _gold, manaPotions, healthPotions, dropKey);
 
         }
         ChatManager::instance()->add(std::to_string(_exp) + " exp", LineColor::Yellow);
