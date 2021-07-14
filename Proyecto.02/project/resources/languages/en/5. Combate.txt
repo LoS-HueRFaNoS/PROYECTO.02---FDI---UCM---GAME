@@ -1,0 +1,7 @@
+Combat:
+
+Watch out, an enemy!
+
+Okay, keep calm. The most important thing is to attack with head, using your weapons to perform physical attacks or using magic spells. Remember that spells need your magic essence to be able to be used, so try not to use them too much. Another option you have is to flee or let another attack, although be careful because the enemy could be the next to attack.
+
+Taking into account that you would have to fight, I cast a spell that allows you to visualize your state of health and magical essence, in addition to those of the enemy. Nor let us ignore your levels of learning, which will indicate what you have left to improve. 

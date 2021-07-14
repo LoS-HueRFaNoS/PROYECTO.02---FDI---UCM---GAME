@@ -1,0 +1,7 @@
+Post-combat:
+
+I have to admit, it was a good fight.
+
+Perhaps you should check your health and magic essence levels, and restore them with potions if any are low.
+
+Oh, didn't I mention it to you? You have two different types of potions at your disposal: the red one is used to heal your health, and the blue one to heal your essence. But remember: they are limited and only serve one person. Try not to waste them on nonsense. 

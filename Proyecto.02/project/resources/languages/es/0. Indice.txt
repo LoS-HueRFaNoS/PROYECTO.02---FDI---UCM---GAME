@@ -1,0 +1,11 @@
+Indice:
+1. Bienvenida
+2. Intro tutorial
+3. Entrada laberinto
+4. Movimiento
+5. Combate
+6. Despues del primer combate
+7. Cofre
+8. Dracolich
+9. Death knight
+10. Final del juego

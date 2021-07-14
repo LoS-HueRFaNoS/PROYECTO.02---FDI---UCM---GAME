@@ -1,0 +1,9 @@
+Movimiento:
+
+En fin, tendremos que comenzar con lo básico ¿Sois capaz de ver ese panel con  un punto luminoso verde? 
+
+Ese es el Ojo del Patrón, un poderoso artefacto que os permitirá ver las zonas que habéis explorado del laberinto y vuestra posición actual. En el pasado también servía para detectar a los enemigos, pero uno de nuestros aprendices tiró el Ojo por las escaleras y, bueno, podéis imaginar el resto.
+
+En cuanto a cómo desplazarse por el laberinto… Bueno, son pasillos bastante extremos. Tendréis que avanzar hacia adelante y, en el caso de querer cambiar de dirección, tendréis que girar hacia la derecha o izquierda.
+
+Bueno ¿A qué estáis esperando? No tenemos todo el día, adelante
