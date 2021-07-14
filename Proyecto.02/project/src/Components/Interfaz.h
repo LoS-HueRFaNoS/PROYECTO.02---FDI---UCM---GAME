@@ -66,7 +66,7 @@ private:
     const uint VOLUME_BAR_MAX = 400;
     int* gameVolume;
     int* gameSound;
-
+    
 public:
     Interfaz(InterfazManager* i, SDLGame* g) :
         Component(ecs::Interfaz, g),
@@ -117,4 +117,5 @@ public:
     void setSelectedInventoryItem(int selectedItem_) { selectedInventoryItem = selectedItem_; }
     void setIsItemToEquipAWeapon(bool isItemToEquipAWeapon_) { isItemToEquipAWeapon = isItemToEquipAWeapon_; }
     void enemyDead(int indice);
+    void closeChest();
 };

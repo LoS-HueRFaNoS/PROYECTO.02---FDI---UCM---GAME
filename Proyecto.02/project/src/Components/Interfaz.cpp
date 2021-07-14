@@ -1483,13 +1483,15 @@ void Interfaz::createPanel(idPanel panelID)
         createChest();
         break;
     case _ChestPanel_:
-        togglePanel(Heroes);
-        if (GETCMP2(TheElementalMaze::instance(),ChestPanel) == NULL)
+        
+        if (GETCMP2(TheElementalMaze::instance(), ChestPanel) == NULL)
         {
+            togglePanel(Heroes);
             Panel* p = new Panel(_ChestPanel_);
             allPanels[_ChestPanel_] = p;
             TheElementalMaze::instance()->addComponent<ChestPanel>(TheElementalMaze::instance()->getLaberinto()->getCasillaInfo(GETCMP2(TheElementalMaze::instance()->getPlayer(), MazePos)->getPos().getX(), GETCMP2(TheElementalMaze::instance()->getPlayer(), MazePos)->getPos().getY())->getChest());
         }
+        else closeChest();
         break;
     case Targets:
         createTargets();
@@ -1841,4 +1843,12 @@ void Interfaz::checkHerosParty()
 void Interfaz::enemyDead(int indice) {
     Panel* p = allPanels[Enemies];
     p->removeButton(indice);
+}
+
+void Interfaz::closeChest()
+{
+    if (getActivePan(_ChestPanel_))
+        removePanel(_ChestPanel_);
+    togglePanel(Heroes);
+    TheElementalMaze::instance()->removeComponent(ecs::CmpId::ChestPanel);
 }

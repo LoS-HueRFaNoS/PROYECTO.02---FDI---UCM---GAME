@@ -122,6 +122,8 @@ public:
 
 	AnimationManager* getAnimManager() { return animManager_; }
 
+	Interfaz* getInterfaz() { return uiManager_; }
+
 	GameState gameState();
 
 	bool isPause() { return pause_; }

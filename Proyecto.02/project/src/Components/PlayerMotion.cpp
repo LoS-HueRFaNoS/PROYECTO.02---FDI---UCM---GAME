@@ -5,6 +5,7 @@
 #include "../Managers/game/CharacterManager.h"
 #include "../Managers/game/AnimationManager.h"
 #include "../Managers/TheElementalMaze.h"
+#include "Paneles/ChestPanel.h"
 
 PlayerMotion::PlayerMotion(SDL_KeyCode avanzar, SDL_KeyCode izq, SDL_KeyCode der, Laberinto* lab_) :Component(ecs::PlayerMotion), //
 pos(nullptr), avance(avanzar), giraIzq(izq), giraDer(der), lab(lab_) //
@@ -63,7 +64,11 @@ void PlayerMotion::rotarDerecha()
 {
     if (TheElementalMaze::instance()->gameState() != gameST::EXPLORING)
         return;
-
+    /*if (GETCMP2(TheElementalMaze::instance(), ChestPanel) != NULL)
+    {
+        TheElementalMaze::instance()->getInterfaz()->togglePanel(Heroes);
+        TheElementalMaze::instance()->getInterfaz()->closeChest();
+    }*/
     Casilla* cas = lab->getCasillaInfo(x, y);
     casillaActual = cas->checkCell();
 
@@ -96,6 +101,11 @@ void PlayerMotion::rotarIzquierda()
 {
     if (TheElementalMaze::instance()->gameState() != gameST::EXPLORING)
         return;
+    /*if (GETCMP2(TheElementalMaze::instance(), ChestPanel) != NULL)
+    {
+        TheElementalMaze::instance()->getInterfaz()->togglePanel(Heroes);
+        TheElementalMaze::instance()->getInterfaz()->closeChest();
+    }*/
     /*x = int(pos->getPos().getX());
     y = int(pos->getPos().getY());*/
     Casilla* cas = lab->getCasillaInfo(x, y);
@@ -129,6 +139,11 @@ void PlayerMotion::avanzar()
 {
     if (TheElementalMaze::instance()->gameState() != gameST::EXPLORING)
         return;
+    if (GETCMP2(TheElementalMaze::instance(), ChestPanel) != NULL)
+    {
+        TheElementalMaze::instance()->getInterfaz()->togglePanel(Heroes);
+        TheElementalMaze::instance()->getInterfaz()->closeChest();
+    }
     /*x = int(pos->getPos().getX());
     y = int(pos->getPos().getY());*/
     Casilla* cas = lab->getCasillaInfo(x, y);

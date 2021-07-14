@@ -126,7 +126,7 @@ void PlayerViewer::draw()
 		if (cas->getEnemy()->size() == 0)
 			manager->getTexture(Resources::texto_salida)->render(dest); // Cambiar a escalera
 	}
-	if (cas->hasChest() && cas->getDirCofre() == sentido)
+	if (cas->hasChest())
 	{
 		cofreVisible = true;
 		dest = RECT(_x + _w / 2 - 300, _y + 240, 600, 300);
