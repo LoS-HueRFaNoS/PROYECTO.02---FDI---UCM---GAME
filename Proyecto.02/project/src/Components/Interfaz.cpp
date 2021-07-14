@@ -679,16 +679,18 @@ void Interfaz::createLobby() // botones principales
     allPanels[Lobby] = p;
 
     string text;
+    string text2;
     SDL_Color color;
 
     createPanel(Heroes);
 
     // TITLE
-    color = { 205,105,0,255 };
-    text = "Your combat team";
+    color = { 205,105,225,255 };
+    text = "Bienvenido a la taberna";
+    text2 = "¿Una copa?¿";
 
     SDL_Panel pan;
-    pan = game_->relativePanel(70, 70, 1340, 610, 11, 6, 20, 20);
+    pan = game_->relativePanel(70, 70, 1370, 650, 11, 6, 20, 20);
     SDL_Rect dest = RECT(
         pan.fcx + (pan.fcx + 20) * 3,
         pan.fcy,
@@ -696,7 +698,11 @@ void Interfaz::createLobby() // botones principales
         pan.ch
     );
 
+    p->addButton(iManager->addButton<SDL_Object>(Vector2D(40, 40), pan.w, pan.h, src::tabernaLobby));
     p->addButton(iManager->addButton<Line>(dest, text, Resources::FontId::Beaulieux, color));
+
+    p->addButton(iManager->addButton<Line>(Vector2D(pan.fcx + (pan.fcx + 20) * 3, pan.fcy + 100), pan.cw * 3, pan.ch, text2, Resources::FontId::Beaulieux, color));
+    p->addButton(iManager->addButton<SDL_Object>(Vector2D(650, 100), 250, pan.h - 55, src::bartender, true));
 
     //p->addButton(iManager->addButton<SDL_Object>(dest, src::mFondo));
 
@@ -770,7 +776,7 @@ void Interfaz::createShop() // tienda con heroes y objetos
     LobbyManager* loManager = TheElementalMaze::instance()->getLobbyManager();
     if (loManager->getLobbyStore() != nullptr)
     {
-        pan = game_->relativePanel(70, 70, 1340, 610, 11, 6, 20, 20);
+        pan = game_->relativePanel(70, 70, 1370, 650, 11, 5, 20, 20);
         dest = RECT(
             pan.fcx + (pan.fcx + 20) * 3,
             pan.fcy,
@@ -779,7 +785,8 @@ void Interfaz::createShop() // tienda con heroes y objetos
         );
 
         text = "Shop";
-        color = { 155,155,0,255 };
+        color = { 155,155,155,255 };
+        p->addButton(iManager->addButton<SDL_Object>(Vector2D(40, 40), pan.w, pan.h, src::tabernaShop));
         p->addButton(iManager->addButton<Line>(dest, text, Resources::FontId::HERMAN, color));
 
         dest.x = pan.lcx;
@@ -787,7 +794,7 @@ void Interfaz::createShop() // tienda con heroes y objetos
         dest.h = pan.ch / 2;
         // Dinero del jugador
         text = to_string(loManager->getPlayerStash()->gold);
-        color = { 155,155,0,255 };
+        color = { 155,155,255,255 };
         p->addButton(iManager->addButton<Line>(dest, text, Resources::FontId::HERMAN, color));
 
         dest = RECT(
@@ -913,14 +920,14 @@ void Interfaz::createStash() // stash de objetos y heroes en tienda
     // Botón para volver al lobby (LOBBY)
     p->addButton(iManager->addButton<ButtonMenu>(dest, src::lobby_button, accionMenu::stash_lobby, this));
 
-    pan = game_->relativePanel(70, 70, 1340, 610, 11, 5, 20, 20);
+    pan = game_->relativePanel(70, 70, 1370, 650, 11, 5, 20, 20);
     dest = RECT(
         pan.fcx,
         pan.fcy,
         pan.cw * 10,
         pan.ch
     );
-
+    p->addButton(iManager->addButton<SDL_Object>(Vector2D(40, 40), pan.w, pan.h, src::tabernaStash));
     // Slots del stash de héroes: filas de slots conjuntas
     p->addButton(iManager->addButton<SDL_Object>(dest, src::inventory_slots));
     dest.y = dest.y + dest.h;
