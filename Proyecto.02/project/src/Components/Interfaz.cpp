@@ -365,18 +365,30 @@ void Interfaz::createInventory()
     //Llaves
     bool levelKey = party->getLevelKey();
     uint chestKeys = party->getChestKeys();
+    slotTam = slotTam * 0.6;
 
         //Llaves de cofres
-    posX = slotTam * 0.75; //Se resetea la coordenada X
-    posY = slotTam;
+    posX = slotTam * 1.1; //Se resetea la coordenada X
+    posY = slotTam / 0.6;
 
-    p->addButton(iManager->addButton<SDL_Object>(Vector2D(posX, posY), slotTam * 0.6, slotTam * 0.6, src::LlaveCofre));
+    SDL_Color color = { 255,255,255,255 };
+    string text = "x" + to_string(chestKeys);
+    SDL_Rect dest;
+    dest.x = posX * 1.1 + slotTam;
+    dest.y = posY;
+    dest.h = slotTam;
+    dest.w = slotTam;
+
+    if (chestKeys > 0) p->addButton(iManager->addButton<SDL_Object>(Vector2D(posX, posY), slotTam, slotTam, src::LlaveCofre));
+    else               p->addButton(iManager->addButton<SDL_Object>(Vector2D(posX, posY), slotTam, slotTam, src::LlaveVacia));
+
+    p->addButton(iManager->addButton<Line>(dest, text, Resources::FontId::HERMAN, color));
 
         //Llaves de puerta
-    posY += slotTam;
+    posY += slotTam * 1.5;
 
-    if (levelKey)   p->addButton(iManager->addButton<SDL_Object>(Vector2D(posX, posY), slotTam * 0.6, slotTam * 0.6, src::LlaveNivel));
-    else            p->addButton(iManager->addButton<SDL_Object>(Vector2D(posX, posY), slotTam * 0.6, slotTam * 0.6, src::LlaveVacia));
+    if (levelKey)   p->addButton(iManager->addButton<SDL_Object>(Vector2D(posX, posY), slotTam, slotTam, src::LlaveNivel));
+    else            p->addButton(iManager->addButton<SDL_Object>(Vector2D(posX, posY), slotTam, slotTam, src::LlaveVacia));
     
 }
 
