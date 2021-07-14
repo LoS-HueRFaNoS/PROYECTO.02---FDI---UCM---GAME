@@ -131,7 +131,10 @@ void PlayerViewer::draw()
 		cofreVisible = true;
 		dest = RECT(_x + _w / 2 - 300, _y + 240, 600, 300);
 		auto imag = Resources::CofreCerrado;
-
+		game_->setHorizontalScale(_x);
+		game_->setHorizontalScale(_w);
+		game_->setVerticalScale(_y);
+		game_->setVerticalScale(_h);
 		if (cas->getChest()->getAlreadyOpen()) {
 			if (cas->getChest()->getChest()->getItems().size() > 0) imag = Resources::CofreLleno;
 			else imag = Resources::CofreVacio;

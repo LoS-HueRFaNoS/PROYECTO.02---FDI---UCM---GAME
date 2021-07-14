@@ -405,7 +405,9 @@ void Interfaz::createChest()
     allPanels[ActivateChest] = p;
     togglePanel(ActivateChest);
     game_->setHorizontalScale(x_);
+    game_->setHorizontalScale(w_);
     game_->setVerticalScale(y_);
+    game_->setVerticalScale(h_);
     p->addButton(iManager->addButton<ButtonPanel>(Vector2D(x_, y_), w_, h_, src::Joker, _ChestPanel_, false));
 }
 
