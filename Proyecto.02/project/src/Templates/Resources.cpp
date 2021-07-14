@@ -111,6 +111,9 @@ vector<Resources::ImageInfo> Resources::images_{
 	{take, "project/resources/images/interfaz/button icons/Tienda/TakeButton.png"},
 	{vibration, "project/resources/images/interfaz/peligro.png"},
 	{fade, "project/resources/images/interfaz/FadeOutNegro.png"},
+	{DiceRed, "project/resources/images/interfaz/dadoRojo.png"},
+	{DiceGreen, "project/resources/images/interfaz/dadoVerde.png" },
+	{marco_hero, "project/resources/images/interfaz/grids fondo/marco_heroe.png"},
 
 	// movimiento
 	{Avanzar, "project/resources/images/sprites/iconos movimiento/movimientoAvanzar.png"},
@@ -313,7 +316,9 @@ vector<Resources::ImageInfo> Resources::images_{
 	{ foco_support, "project/resources/images/interfaz/focos/foco_support.png" },
 	{ foco_heroes, "project/resources/images/interfaz/focos/foco_heroes.png" },
 	{ foco_minimapa, "project/resources/images/interfaz/focos/foco_minimapa.png" },
-	{ cinematica, "project/resources/images/interfaz/focos/cinematica.png" }
+	{ cinematica, "project/resources/images/interfaz/focos/cinematica.png" },
+	//Danyo
+	{ slash, "project/resources/images/sprites/animaciones/heroes danyo/slashSheet.png" }
 };
 
 vector<Resources::TextMsgInfo> Resources::messages_{

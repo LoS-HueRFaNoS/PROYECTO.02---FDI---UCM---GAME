@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\Components\Paneles\DadosP.cpp" />
     <ClCompile Include="src\Components\Paneles\ChestPanel.cpp" />
     <ClCompile Include="src\Components\Paneles\PanelDescObj.cpp" />
     <ClCompile Include="src\GameObjects\PanelTurnos.cpp" />
@@ -91,6 +92,7 @@
     <ClCompile Include="src\Utilities\textures_box.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Components\Paneles\DadosP.h" />
     <ClInclude Include="src\Components\Paneles\PanelDescObj.h" />
     <ClInclude Include="src\GameObjects\PanelTurnos.h" />
     <ClInclude Include="src\Managers\game\AnimationManager.h" />

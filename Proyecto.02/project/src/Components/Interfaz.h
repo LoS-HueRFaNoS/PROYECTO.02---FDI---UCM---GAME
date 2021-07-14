@@ -104,6 +104,7 @@ public:
     void checkActiveHeroButton(HeroNum nAct);
     void checkHerosParty();
     void createFichaDD(uint nCharacter);
+    void createDados();
     void createFichaDesc(Hability* hab, bool aff);
     void createFichaDescObj(Item* ite);
 

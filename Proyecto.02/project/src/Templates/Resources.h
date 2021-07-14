@@ -109,6 +109,9 @@ public:
 		take, 
 		vibration,
 		fade,
+		DiceRed,
+		DiceGreen,
+		marco_hero,
 
 		// carteles tutorial
 		_firstCartelId_,
@@ -319,6 +322,8 @@ public:
 		Determinacion_,
 		Bendicion_,
 		Espinas_,
+		//Danyo
+		slash,
 	}; using txtID = TextureId;
 
 	enum AudioId : std::size_t {

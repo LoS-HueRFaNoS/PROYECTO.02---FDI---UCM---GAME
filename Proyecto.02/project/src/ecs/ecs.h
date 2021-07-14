@@ -35,8 +35,9 @@ enum CmpId : CmpIdType {
 	BorrarAlMorir,
 	AnimVibration,
 	Contador,
-  AnimationManager,
+	AnimationManager,
 	Tutorial,
+	DadosP,
 	//
 	// don't touch the rest of this enum, it is to identify the max
 	// number of components

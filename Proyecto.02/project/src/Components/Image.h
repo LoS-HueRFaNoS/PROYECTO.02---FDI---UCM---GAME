@@ -5,17 +5,21 @@
 #include "../ecs/Entity.h"
 #include "../ecs/Component.h"
 #include "../Structures/Texture.h"
+#include "../Templates/Resources.h"
+#include "../Managers/game/CombatManager.h"
+#include "../Managers/TheElementalMaze.h"
 
 #include "Transform.h"
 
 class Image: public Component {
 public:
-	Image(Texture* tex, bool animation = false) :
+	Image(Texture* tex, bool animation = false,bool damage=false) :
 		Component(ecs::Image),
 		tr_(nullptr), //
 		tex_(tex), //
 		hide(false),
-		animation(animation)
+		animation(animation),
+		damaged(damage)
 	{}
 	virtual ~Image() {
 		tex_ = nullptr;
@@ -69,6 +73,43 @@ public:
 			timer = 0;
 		}
 		else timer++;
+
+		if (!enemyInd) {
+			return;
+		}
+
+		if (damaged || enemyInd->isDamaged()) {
+			damaged = true;
+			renderDamage(Resources::slash);
+		}
+
+	}
+
+	void renderDamage(Resources::TextureId image) {
+
+		SDL_Rect clip;
+		Texture* textureSlash = game_->getTextureMngr()->getTexture(image);
+
+
+		dest = { int(tr_->getPos().getX()), int(tr_->getPos().getY()), int(tr_->getW()), int(tr_->getH()) };
+		clip = { int(divisionSlash), int(0), textureSlash->getWidth() / 6, textureSlash->getHeight() };
+
+		textureSlash->render(dest, clip);
+
+		if (timerSlash > 15) {
+			if (divisionSlash < textureSlash->getWidth() * 5 / 6) {
+				divisionSlash += textureSlash->getWidth() / 6;
+
+			}
+			else {
+				divisionSlash = 0;
+				damaged = false;
+			}
+			timerSlash = 0;
+
+		}
+		else timerSlash++;
+
 	}
 
 
@@ -77,15 +118,23 @@ public:
 	Texture* getTexture() { return tex_; };
 	void setTexture(Texture* txt) { tex_ = txt; };
 
+	void setEnemy(Enemy* enemyN) {
+		enemyInd = enemyN;
+	};
+
 private:
 	Transform *tr_;
 	Texture *tex_;
 	bool hide;
 
 	bool animation = true;
+	bool damaged = false;
 	SDL_Rect dest;
 	bool limite = false;
 	int cont = 0;
 	int division = 0;
+	int divisionSlash = 0;
 	int timer = 0;
+	int timerSlash = 0;
+	Enemy* enemyInd = nullptr;
 };

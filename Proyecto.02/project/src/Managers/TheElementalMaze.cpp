@@ -35,8 +35,6 @@ TheElementalMaze::~TheElementalMaze()
 
 void TheElementalMaze::init()
 {
-	
-
 	// 3. Personajes
 	
 	itemManager_ = new ItemManager();
@@ -69,9 +67,6 @@ void TheElementalMaze::init()
 
 	// 6. Tutorial
 	tutorial_ = addComponent<TutorialManager>(iManager_);
-
-
-
 }
 
 void TheElementalMaze::draw()
@@ -118,7 +113,6 @@ void TheElementalMaze::createLaberinto()
 	player_->addComponent<MazePos>(Vector2D(0, 0));
 	player_->addComponent<PlayerViewer>(laberinto_);
 	player_->addComponent<PlayerMotion>(SDLK_UP, SDLK_LEFT, SDLK_RIGHT, laberinto_);
-
 }
 
 void TheElementalMaze::backFromDungeon()

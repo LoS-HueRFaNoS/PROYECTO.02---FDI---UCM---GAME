@@ -24,6 +24,10 @@ private:
 	SDL_Rect nextTurn_rect;
 	SDL_Rect turns_rect;
 
+	SDL_Rect heroe_turn;
+	uint offsetY;
+	double espaceH;
+
 	bool refresh_done = false;
 	uint last_state = 2;
 
@@ -49,5 +53,7 @@ private:
 	void drawCurrentCharacter();
 	void drawCurrentTurnList();
 	void drawFondo();
+
+	void drawCurrentInPanelHeroes();
 
 };
