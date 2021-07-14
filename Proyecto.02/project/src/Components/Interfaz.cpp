@@ -373,7 +373,9 @@ void Interfaz::createChest()
     Panel* p = new Panel(ActivateChest);
     allPanels[ActivateChest] = p;
     togglePanel(ActivateChest);
-    p->addButton(iManager->addButton<ButtonPanel>(Vector2D(x_, y_), w_, h_, src::Inventario, _ChestPanel_, false));
+    game_->setHorizontalScale(x_);
+    game_->setVerticalScale(y_);
+    p->addButton(iManager->addButton<ButtonPanel>(Vector2D(x_, y_), w_, h_, src::Joker, _ChestPanel_, false));
 }
 
 void Interfaz::createFichaDD(uint nCharacter)
