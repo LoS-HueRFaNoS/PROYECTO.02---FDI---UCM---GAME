@@ -38,31 +38,14 @@ public:
             number_ = new Line(game_, nullptr);
             number_->init(rect, to_string(character_->getCharacterSheet()->hitPoints()), src::Beaulieux, color_);
         }
-        aux_ = aux2_ = 0.0;
+        // initial values
+        setValues();  
+        setInitHPBar();
+        aux2_ = 0.0;
     }
 
     void update() override {
-        Hero* h_ = nullptr;
-        switch (type_)
-        {
-        case BarType::health:
-            maxStat_ = character_->getCharacterSheet()->maxHitPoints();
-            stAct_ = character_->getCharacterSheet()->hitPoints();
-            break;
-        case BarType::mana:
-            maxStat_ = character_->getCharacterSheet()->maxManaPoints();
-            stAct_ = character_->getCharacterSheet()->manaPoints();
-            break;
-        case BarType::experience:
-            h_ = dynamic_cast<Hero*>(character_);
-            if (h_ != nullptr) {
-                maxStat_ = h_->getExpMax();
-                stAct_ = h_->getExp();
-            }            
-            break;
-        default:
-            break;
-        }
+        setValues();
 
         if (aux_ < stAct_) {
             aux_ = aux_ + 0.125;
@@ -93,6 +76,8 @@ public:
         }
     }
 
+    bool equalHP_pair() { return aux_ == stAct_; }
+
 private:
     SDL_Rect rect;          // rectangle for actual stat data
     SDL_Rect background;    // rectangle for background edge data
@@ -112,6 +97,39 @@ private:
     Line* number_ = nullptr;
 
 private:
+    void setInitHPBar() {
+        TheElementalMaze* tem_ = TheElementalMaze::instance();
+        CombatManager* cm_ = tem_->getCombatManager();
+
+        Hero* h_ = dynamic_cast<Hero*>(character_);
+        if (h_ == nullptr && cm_->getState() != ACTION_PHASE_SPELL && cm_->getState() != ACTION_PHASE_TARGET) { aux_ = stAct_; }
+        else if (h_ != nullptr) { aux_ = 0.0; };
+    }
+
+    void setValues() {
+        Hero* h_ = nullptr;
+        switch (type_)
+        {
+        case BarType::health:
+            maxStat_ = character_->getCharacterSheet()->maxHitPoints();
+            stAct_ = character_->getCharacterSheet()->hitPoints();
+            break;
+        case BarType::mana:
+            maxStat_ = character_->getCharacterSheet()->maxManaPoints();
+            stAct_ = character_->getCharacterSheet()->manaPoints();
+            break;
+        case BarType::experience:
+            h_ = dynamic_cast<Hero*>(character_);
+            if (h_ != nullptr) {
+                maxStat_ = h_->getExpMax();
+                stAct_ = h_->getExp();
+            }
+            break;
+        default:
+            break;
+        }        
+    }
+
     void setColors() {
         // actual data color
         switch (type_)

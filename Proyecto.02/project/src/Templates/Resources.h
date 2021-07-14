@@ -324,6 +324,11 @@ public:
 		Espinas_,
 		//Danyo
 		slash,
+		//Taberna
+		tabernaLobby,
+		tabernaShop,
+		tabernaStash,
+		bartender,
 	}; using txtID = TextureId;
 
 	enum AudioId : std::size_t {

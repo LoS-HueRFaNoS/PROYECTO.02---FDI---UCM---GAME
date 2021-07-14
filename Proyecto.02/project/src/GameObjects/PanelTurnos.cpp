@@ -213,16 +213,21 @@ void PanelTurnos::drawCurrentInPanelHeroes()
     PartyManager* pm_ = tem_->getPartyManager();
 
     std::vector<Hero*> heroes = pm_->getHeroes();
-    Character* ch = nullptr;
-    int n = 0;
 
-    while (ch != character_ && n != 4) {
-        ch = heroes[n]; 
-        n++;
-    };
+    Hero* h_ = dynamic_cast<Hero*>(character_);
+    if (h_ != nullptr) {
+        rpgLogic::heroTemplate hero_template = h_->getTemplate();
+        int n = -1;
 
-    if (n != 4) {
-        heroe_turn.y = offsetY + n * espaceH;
-        addElement<SDL_Object>(heroe_turn, src::marco_hero);
-    };
+        bool found = false;
+        while (!found && n != 4) {
+            n++;
+            found = (hero_template == heroes[n]->getTemplate());            
+        };
+
+        if (found) {
+            heroe_turn.y = offsetY + n * espaceH;
+            addElement<SDL_Object>(heroe_turn, src::marco_hero);
+        };
+    }
 }
