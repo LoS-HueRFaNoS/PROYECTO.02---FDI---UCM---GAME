@@ -266,7 +266,7 @@ void CombatManager::endCombat()
             TheElementalMaze::instance()->getPartyManager()->healthPotions += healthPotions;
 
             int randomKey = rand() % 10; //Numero aleatorio entre 0 y 9
-            bool dropKey = randomKey > 0; //Solo si randomKey es 8 o 9 dropea llave (20%)
+            bool dropKey = randomKey > 6; //Solo si randomKey es 7, 8 o 9 dropea llave (30%)
             if (dropKey) TheElementalMaze::instance()->getPartyManager()->takeChestKey();
             TheElementalMaze::instance()->getAnimManager()->showReward(_exp, _gold, manaPotions, healthPotions, dropKey);
 
