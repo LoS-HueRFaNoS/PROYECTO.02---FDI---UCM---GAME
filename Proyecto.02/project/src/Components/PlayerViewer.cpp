@@ -130,7 +130,14 @@ void PlayerViewer::draw()
 	{
 		cofreVisible = true;
 		dest = RECT(_x + _w / 2 - 300, _y + 240, 600, 300);
-		manager->getTexture(Resources::CofreCerrado)->render(dest);
+		auto imag = Resources::CofreCerrado;
+
+		if (cas->getChest()->getAlreadyOpen()) {
+			if (cas->getChest()->getChest()->getItems().size() > 0) imag = Resources::CofreLleno;
+			else imag = Resources::CofreVacio;
+		}
+		
+		manager->getTexture(imag)->render(dest);
 		callbacks::createPanel(false, interfaz::idPanel::ActivateChest);
 	}
 	if (!cofreVisible) callbacks::createPanel(true,interfaz::idPanel::ActivateChest);

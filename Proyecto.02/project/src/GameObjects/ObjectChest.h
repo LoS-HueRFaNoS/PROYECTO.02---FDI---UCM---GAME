@@ -20,6 +20,7 @@ private:
 	void itemChest(vector<Item*> items);
 	Chest* interiorCofre;
 	bool generated = false;
+	bool alreadyOpen = false;
 public:
 	ObjectChest(SDLGame* game) : EntityManager(game) {
 		pan = game_->relativePanel(1470, 320, 420, 410, 1, 4, 30, 30, 10, 10, 0, 5);
@@ -40,5 +41,10 @@ public:
 	void Init();
 	void update();
 	void draw();
+
+	bool getAlreadyOpen() { return alreadyOpen; }
+	void setAlreadyOpen(bool aO) { alreadyOpen = aO; }
+
+	Chest* getChest() { return interiorCofre; }
 
 };
