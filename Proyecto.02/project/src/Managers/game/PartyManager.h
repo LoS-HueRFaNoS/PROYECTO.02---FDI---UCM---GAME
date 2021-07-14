@@ -8,6 +8,8 @@ class Hero;
 class Item;
 const int NUM_ITEMS = 25;
 
+using uint = unsigned int;
+
 class PartyManager
 {
 private:
@@ -15,6 +17,10 @@ private:
 	std::vector<Hero*> heroes_;
 
 	std::vector<Item*> items_;
+
+	bool levelKey = false;
+
+	uint chestKeys = 0;
 
 public:
 
@@ -60,6 +66,26 @@ public:
 	void itemFromInventoryToStash(int itemIndex);
 
 	void giveWeaponFromInventory(bool isWeapon, int itemid,int heroid);
+
+
+	//Llaves
+	void takeChestKey() { chestKeys++; }
+
+	void takeLevelKey() { levelKey = true; }
+
+	void useChestKey() { chestKeys--; }
+
+	void useLevelKey() { levelKey = false; }
+
+	bool hasChestKeys() { return chestKeys > 0; }
+
+	bool hasLevelKey() { return levelKey; }
+
+	void resetKeys() { levelKey = false; chestKeys = 0; }
+
+	bool getLevelKey() { return levelKey; }
+
+	uint getChestKeys() { return chestKeys; }
 };
 
 #endif // !_PARTY_MANAGER_
