@@ -113,6 +113,7 @@ vector<Resources::ImageInfo> Resources::images_{
 	{fade, "project/resources/images/interfaz/FadeOutNegro.png"},
 	{DiceRed, "project/resources/images/interfaz/dadoRojo.png"},
 	{DiceGreen, "project/resources/images/interfaz/dadoVerde.png" },
+	{marco_hero, "project/resources/images/interfaz/grids fondo/marco_heroe.png"},
 
 	// movimiento
 	{Avanzar, "project/resources/images/sprites/iconos movimiento/movimientoAvanzar.png"},

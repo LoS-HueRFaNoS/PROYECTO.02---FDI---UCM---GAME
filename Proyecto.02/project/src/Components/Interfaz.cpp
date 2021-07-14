@@ -196,7 +196,7 @@ void Interfaz::createHeroes()
     double h_ = 330;
     // tamano de los margenes
     double n = 5.0 + 5.0;
-
+    
     // posicion del panel respecto a la ventana
     x_ = game_->setHorizontalScale(x_ + n);
     y_ = game_->setVerticalScale(y_ + n);

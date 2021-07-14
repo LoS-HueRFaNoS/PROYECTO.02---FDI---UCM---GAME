@@ -8,6 +8,7 @@
 #include "../Components/Rectangle.h"
 #include "../Components/StateBar.h"
 #include "../Managers/game/CombatManager.h"
+#include "../Managers/game/PartyManager.h"
 #include "../Managers/TheElementalMaze.h"
 
 using namespace textures_box;
@@ -96,6 +97,16 @@ void PanelTurnos::Init()
         nextTurn_rect.h + 2 * pan.eh / 2
     );
 
+    // Panel Heroes: Primer Heroe
+    heroe_turn = RECT(
+        game_->setHorizontalScale(1513),
+        game_->setVerticalScale(363),
+        game_->setHorizontalScale(334),
+        game_->setVerticalScale(84)
+    );
+    offsetY = heroe_turn.y;
+    espaceH = game_->setVerticalScale(80);
+
 }
 
 void PanelTurnos::update()
@@ -120,10 +131,9 @@ void PanelTurnos::update()
             character_ = cm_->getCurrentCharacter();
             turnsList_ = cm_->getCurrentTurnsList();
 
-
-
             drawCurrentCharacter();
             drawCurrentTurnList();
+            drawCurrentInPanelHeroes();
 
             refresh_done = true;
             last_state = cm_->getState();
@@ -195,4 +205,24 @@ void PanelTurnos::drawCurrentTurnList()
         dest_bar.x -= (pan.cw + (2 * pan.ew));
     }
 
+}
+
+void PanelTurnos::drawCurrentInPanelHeroes()
+{
+    TheElementalMaze* tem_ = TheElementalMaze::instance();
+    PartyManager* pm_ = tem_->getPartyManager();
+
+    std::vector<Hero*> heroes = pm_->getHeroes();
+    Character* ch = nullptr;
+    int n = -1;
+
+    while (ch != character_ && n != 4) {
+        n++;
+        ch = heroes[n]; 
+    };
+
+    if (n != 4) {
+        heroe_turn.y = offsetY + n * espaceH;
+        addElement<SDL_Object>(heroe_turn, src::marco_hero);
+    };
 }

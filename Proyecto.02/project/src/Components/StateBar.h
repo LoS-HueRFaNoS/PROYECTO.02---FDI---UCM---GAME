@@ -80,7 +80,7 @@ public:
             rect.w = int(fill * width_ / 100);          // ancho visible
         }
         else {
-            number_->setLine(to_string(aux_), src::Beaulieux, color_);
+            number_->setLine(to_string(int(aux_)), src::Beaulieux, color_);
         }
     }
 
@@ -154,6 +154,7 @@ private:
         SDL_SetRenderDrawBlendMode(game_->getRenderer(), SDL_BLENDMODE_BLEND);
         SDL_SetRenderDrawColor(game_->getRenderer(), COLOREXP(color_));
         SDL_RenderFillRect(game_->getRenderer(), &rect);
+        SDL_SetRenderDrawBlendMode(game_->getRenderer(), SDL_BLENDMODE_NONE);
     }
 
     void parpadeo() {

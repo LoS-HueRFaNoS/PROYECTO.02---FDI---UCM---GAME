@@ -111,6 +111,7 @@ public:
 		fade,
 		DiceRed,
 		DiceGreen,
+		marco_hero,
 
 		// carteles tutorial
 		_firstCartelId_,
