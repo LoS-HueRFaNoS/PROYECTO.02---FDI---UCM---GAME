@@ -119,11 +119,11 @@ void Casilla::addChest(Chest* cofre)
 	hayCofre = true;
 	// meter en chest el cofre
 	chest = new ObjectChest(game_, cofre);
-	vector<Look> paredes;
+	/*vector<Look> paredes;
 	for (int i = 0; i < 4; i++)
 	{
 		paredes.push_back((Look)i);
 	}
 	int dir = game_->getRandGen()->nextInt(0, paredes.size());
-	direccionCofre = paredes[dir];
+	direccionCofre = paredes[dir];*/
 }

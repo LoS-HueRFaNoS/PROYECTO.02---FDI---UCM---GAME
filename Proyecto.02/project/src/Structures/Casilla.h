@@ -12,7 +12,7 @@ class Casilla
 {
 private:
 	Look direccionSalida;
-	Look direccionCofre;
+	/*Look direccionCofre;*/
 	vector<bool> direcciones;
 	bool esSalida;
 	bool esPosActual = false;
@@ -48,6 +48,6 @@ public:
 	}
 	vector<enemyTemplate>* getEnemy() { return &enemyEnum; }
 	Look getDirSalida() { return direccionSalida; }
-	Look getDirCofre() { return direccionCofre; }
+	/*Look getDirCofre() { return direccionCofre; }*/
 };
 

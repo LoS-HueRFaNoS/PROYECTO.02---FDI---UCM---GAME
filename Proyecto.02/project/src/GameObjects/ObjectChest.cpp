@@ -5,6 +5,7 @@
 
 void ObjectChest::Init()
 {
+	if (generated) return;
 	MousePanelMecanics::Init(1, set_FE::UP);
 	ObjectPanel::Init(pan);
 
@@ -24,6 +25,7 @@ void ObjectChest::Init()
 	fondo_->addComponent<Transform>(dest);
 	fondo_->addComponent<Image>(game_->getTextureMngr()->getTexture(src::CofreMenu));
 	//fondo_->addComponent<Rectangle_cmpt>(hex2sdlcolor("#000000FF"));
+	generated = true;
 }
 
 void ObjectChest::update()

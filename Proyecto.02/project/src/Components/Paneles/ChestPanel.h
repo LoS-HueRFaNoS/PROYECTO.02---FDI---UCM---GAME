@@ -11,7 +11,7 @@ private:
 public:
 	ChestPanel() : Component(ecs::ChestPanel) {};
 	ChestPanel(ObjectChest* ch) : Component(ecs::ChestPanel) { objChest_ = ch; };
-	virtual ~ChestPanel() { delete chest_; chest_ = nullptr; };
+	virtual ~ChestPanel() { /*delete objChest_; objChest_ = nullptr;*/ };
 
 	void init() override;
 	void update() override;
