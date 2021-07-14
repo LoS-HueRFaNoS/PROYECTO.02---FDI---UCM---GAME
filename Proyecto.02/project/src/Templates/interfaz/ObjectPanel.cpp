@@ -3,8 +3,8 @@
 void ObjectPanel::Init(SDL_Panel pan)
 {
 	marco_ = RECT(
-		TheElementalMaze::instance()->getSDLGame()->setHorizontalScale(pan.x),
-		TheElementalMaze::instance()->getSDLGame()->setVerticalScale(pan.y),
+		pan.x,
+		pan.y,
 		pan.w,
 		pan.h
 	);

@@ -1,6 +1,5 @@
 #pragma once
 #include "../../Utilities/SDL_macros.h"
-#include "../../Managers/TheElementalMaze.h"
 
 class ObjectPanel {
 protected:
