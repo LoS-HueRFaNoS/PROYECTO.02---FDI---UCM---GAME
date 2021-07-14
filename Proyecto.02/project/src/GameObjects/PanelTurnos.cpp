@@ -214,11 +214,11 @@ void PanelTurnos::drawCurrentInPanelHeroes()
 
     std::vector<Hero*> heroes = pm_->getHeroes();
     Character* ch = nullptr;
-    int n = -1;
+    int n = 0;
 
     while (ch != character_ && n != 4) {
-        n++;
         ch = heroes[n]; 
+        n++;
     };
 
     if (n != 4) {
