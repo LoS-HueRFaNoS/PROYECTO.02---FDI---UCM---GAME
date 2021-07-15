@@ -21,6 +21,7 @@ void GameStateManager::update()
 	{
 	case gameST::MainMenu:
 		TheElementalMaze::instance()->getSDLGame()->getAudioMngr()->playMusic(Resources::AudioId::MenuInicial, -1);
+		TheElementalMaze::instance()->reset();
 		break;
 	case gameST::LOBBY: case gameST::DURING_LOBBY:
 		TheElementalMaze::instance()->getSDLGame()->getAudioMngr()->playMusic(Resources::AudioId::Lobby, -1);

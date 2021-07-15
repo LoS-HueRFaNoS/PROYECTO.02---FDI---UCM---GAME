@@ -59,7 +59,7 @@ void Casilla::casillaRender(int x, int y, double w, double h)
 		{
 			texturaSuelo = manager->getTexture(Resources::salidaMiniMap);
 		}
-		else if (hasChest()) texturaSuelo = manager->getTexture(Resources::cofreMiniMap);
+		else if (hasChest() && getChest()->getChest()->getItems().size() != 0) texturaSuelo = manager->getTexture(Resources::cofreMiniMap);
 		else texturaSuelo = manager->getTexture(Resources::visitado);
 		texturaSuelo->render(dest);
 		

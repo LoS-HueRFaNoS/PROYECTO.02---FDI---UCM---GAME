@@ -661,9 +661,9 @@ void Interfaz::createMenuPrincipal()
         pan.cw + pan.cw * 4 / 14,
         pan.ch + pan.ch / 2
     );
-    if (!TheElementalMaze::instance()->wasInMaze)
+    //if (!TheElementalMaze::instance()->wasInMaze)
         p->addButton(iManager->addButton<ButtonMenu>(dest, src::start, accionMenu::lobby, this));
-    else p->addButton(iManager->addButton<ButtonMenu>(dest, src::start, accionMenu::backToMaze, this));
+   // else p->addButton(iManager->addButton<ButtonMenu>(dest, src::start, accionMenu::backToMaze, this));
 
     // resto de botones:
     dest = RECT(

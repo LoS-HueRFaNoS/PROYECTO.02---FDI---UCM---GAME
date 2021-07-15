@@ -122,7 +122,6 @@ void TheElementalMaze::backFromDungeon()
 void TheElementalMaze::firstLobby()
 {
 	lobbyManager_->firstLobby();
-	firstLobbyCreated = true;
 }
 void TheElementalMaze::checkOutNoInitialEnemy()
 {
@@ -166,4 +165,26 @@ void TheElementalMaze::changeState(GameState state)
 void TheElementalMaze::sendMsg(Message m)
 {
 	tutorial_->send(m);
+}
+
+void TheElementalMaze::reset()
+{
+	// 3. Personajes
+	delete itemManager_;
+	delete partyManager_;
+	delete lobbyManager_;
+	itemManager_ = new ItemManager();
+	partyManager_ = new PartyManager();
+	lobbyManager_ = new LobbyManager(partyManager_);
+
+	Hero* wizard = characterManager_->addHeroFromTemplate(heroTem::WIZARD);
+	Hero* warrior = characterManager_->addHeroFromTemplate(heroTem::WARRIOR);
+	Hero* rogue = characterManager_->addHeroFromTemplate(heroTem::ROGUE);
+	Hero* cleric = characterManager_->addHeroFromTemplate(heroTem::CLERIC);
+
+	partyManager_->addHero(wizard);
+	partyManager_->addHero(warrior);
+	partyManager_->addHero(rogue);
+	partyManager_->addHero(cleric);
+	level = -1;
 }

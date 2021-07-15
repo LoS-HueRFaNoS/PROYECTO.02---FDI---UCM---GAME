@@ -54,7 +54,6 @@ private:
 	TutorialManager* tutorial_; // compt
 	AnimationManager* animManager_;
 	int level = -1;
-	uint floor;
 	
 	bool pause_ = false;
 	bool firstLobbyCreated = false;
@@ -138,6 +137,6 @@ public:
 	GameState getPreviousState() { return previousState; };
 	void registerPreviousState() { previousState = gameState(); }
 	bool wasInMaze = false;
-
+	void reset();
 
 };

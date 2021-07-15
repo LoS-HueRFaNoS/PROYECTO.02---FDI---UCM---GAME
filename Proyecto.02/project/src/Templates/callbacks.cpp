@@ -322,7 +322,7 @@ void callbacks::startLobby(Interfaz* app)
 	{
 		TheElementalMaze::instance()->backFromDungeon();
 	}
-	else if (!TheElementalMaze::instance()->isFirstLobbyCreated())
+	else
 	{
 		TheElementalMaze::instance()->firstLobby();
 
