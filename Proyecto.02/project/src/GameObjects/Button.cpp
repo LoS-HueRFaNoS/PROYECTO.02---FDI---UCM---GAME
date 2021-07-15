@@ -60,7 +60,7 @@ void ButtonHero::update() {
         textureState texState = textureState::alive;
         toggleImage((Resources::TextureId)((int)originalImg_ + (11 * 0)));
     }
-
+    if (her_ != nullptr)
     ButtonPanel::update();
 }
 

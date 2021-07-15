@@ -93,7 +93,9 @@ void PartyManager::partyLost()
 	for (Hero* h : heroes_)
 	{
 		if (h != nullptr)
-		h->disable();
+		{
+			h->disable();
+		}
 	}
 	heroes_.clear();
 	for (Item* i : items_)

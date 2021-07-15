@@ -25,6 +25,7 @@ void GameStateManager::update()
 		break;
 	case gameST::LOBBY: case gameST::DURING_LOBBY:
 		TheElementalMaze::instance()->getSDLGame()->getAudioMngr()->playMusic(Resources::AudioId::Lobby, -1);
+		TheElementalMaze::instance()->level0();
 		break;
 	case gameST::START_EXPLORING:
 		tem_->startExploring();

@@ -138,5 +138,5 @@ public:
 	void registerPreviousState() { previousState = gameState(); }
 	bool wasInMaze = false;
 	void reset();
-
+	void level0() { level = -1; }
 };
