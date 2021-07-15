@@ -692,15 +692,13 @@ void Interfaz::createLobby() // botones principales
     allPanels[Lobby] = p;
 
     string text;
-    string text2;
     SDL_Color color;
 
     createPanel(Heroes);
 
     // TITLE
     color = { 205,105,225,255 };
-    text = "Bienvenido a la taberna";
-    text2 = "¿Una copa?¿";
+    text = "Welcome, traveller";
 
     SDL_Panel pan;
     pan = game_->relativePanel(70, 70, 1370, 650, 11, 6, 20, 20);
@@ -714,7 +712,6 @@ void Interfaz::createLobby() // botones principales
     p->addButton(iManager->addButton<SDL_Object>(Vector2D(pan.fcx / 2 + 5, pan.fcy / 2 + 5), pan.w, pan.h, src::tabernaLobby));
     p->addButton(iManager->addButton<Line>(dest, text, Resources::FontId::Beaulieux, color));
 
-    p->addButton(iManager->addButton<Line>(Vector2D(pan.fcx + (pan.fcx + 20) * 3, pan.fcy + 100), pan.cw * 3, pan.ch, text2, Resources::FontId::Beaulieux, color));
     p->addButton(iManager->addButton<SDL_Object>(Vector2D(pan.fcx + (pan.fcx + 20) * 7, pan.fcy + 30), pan.cw * 2 + 50, pan.h - 55, src::bartender, true));
 
     //p->addButton(iManager->addButton<SDL_Object>(dest, src::mFondo));
@@ -1224,6 +1221,8 @@ void Interfaz::createInventoryLobby()
         pan.ch
     );
 
+    p->addButton(iManager->addButton<SDL_Object>(Vector2D(40, 40), 720, 340, src::tabernaStash));
+
     // Botón para volver al lobby
     p->addButton(iManager->addButton<ButtonMenu>(dest, src::lobby_button, accionMenu::inventario_to_lobby, this));
 
@@ -1502,6 +1501,9 @@ void Interfaz::createPanel(idPanel panelID)
         TheElementalMaze::instance()->addComponent<ChatInfo>();
         break;
     case ActivateChest:
+        //Message m;
+//m.id_ = MsgId::_COFRE_;
+//TheElementalMaze::instance()->sendMsg(m);
         createChest();
         break;
     case _ChestPanel_:

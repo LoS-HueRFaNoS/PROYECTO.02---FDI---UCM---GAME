@@ -32,8 +32,8 @@ void TutorialManager::show(MsgId mID)
 		id_cartel = src::cartel_movimiento;
 		break;
 	case MsgId::_COFRE_:
-		/*id_fondo = src::fondo_cofre;
-		id_cartel = src::cartel_cofre;*/
+		id_fondo = src::cinematica;
+		id_cartel = src::cartel_cofre;
 		break;
 	case MsgId::_COMBATE_:
 		id_fondo = src::foco_combate;
@@ -212,7 +212,7 @@ void TutorialManager::initAchievements()
 	achievementsMap_[MsgId::_BIENVENIDA_pt2_] = false;
 	achievementsMap_[MsgId::_INTRO_] = false;
 	achievementsMap_[MsgId::_MOVIMIENTO_] = false;
-	achievementsMap_[MsgId::_COFRE_] = true; //
+	achievementsMap_[MsgId::_COFRE_] = false; //
 	achievementsMap_[MsgId::_COMBATE_] = false;
 	achievementsMap_[MsgId::_INVENTARIO_] = false;
 	achievementsMap_[MsgId::_CONFIG_] = false;
@@ -239,7 +239,6 @@ void TutorialManager::resetTutorial()
 {
 	for (uint j = 0; j < achievementsMap_.size(); j++)
 		achievementsMap_[MsgId(j)] = false;
-	achievementsMap_[MsgId::_COFRE_] = true; //
 	achievementsMap_[MsgId::_LOBBY_] = true; //
 }
 

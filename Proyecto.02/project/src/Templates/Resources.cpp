@@ -310,6 +310,7 @@ vector<Resources::ImageInfo> Resources::images_{
 	{ cartel_configuracion, "project/resources/images/interfaz/carteles/cartel_configuracion.png" },
 	{ cartel_bienvenida_pt1, "project/resources/images/interfaz/carteles/cartel_bienvenida_pt1.png" },
 	{ cartel_bienvenida_pt2, "project/resources/images/interfaz/carteles/cartel_bienvenida_pt2.png" },
+	{ cartel_cofre, "project/resources/images/interfaz/carteles/cartel_cofre.png" },
 
 	// paneles focalizados
 	{ foco_combate, "project/resources/images/interfaz/focos/foco_combate.png" },
