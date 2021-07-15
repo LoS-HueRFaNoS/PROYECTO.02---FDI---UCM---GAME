@@ -789,7 +789,7 @@ void Interfaz::createShop() // tienda con heroes y objetos
     LobbyManager* loManager = TheElementalMaze::instance()->getLobbyManager();
     if (loManager->getLobbyStore() != nullptr)
     {
-        pan = game_->relativePanel(70, 70, 1370, 650, 11, 5, 20, 20);
+        pan = game_->relativePanel(70, 70, 1370, 650, 11, 6, 20, 20);
         dest = RECT(
             pan.fcx + (pan.fcx + 20) * 3,
             pan.fcy,
