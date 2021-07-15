@@ -17,6 +17,38 @@ src::txtID textures_box::getCharacterTxt(Character* character)
 	return id;
 }
 
+src::txtID textures_box::getCharacterTxt(string name)
+{
+	src::txtID id = src::txtID();
+	if  (name =="Warrior")	id = Resources::TextureId::Guerrero;
+	else if (name == "Wizard") id = Resources::TextureId::Brujo;
+	else if (name == "Ranger") id = Resources::TextureId::Explorador;
+	else if (name == "Bard") id = Resources::TextureId::Bardo;
+	else if (name == "Cleric") id = Resources::TextureId::Clerigo;
+	else if (name == "Paladin") id = Resources::TextureId::Paladin;
+	else if (name == "Barbarian") id = Resources::TextureId::Barbaro;
+	else if (name == "Rogue") id = Resources::TextureId::Picaro;
+	else if (name == "Druid") id = Resources::TextureId::Druida;
+	else if (name == "Bestia") id = Resources::TextureId::Bestia;
+	else if (name == "GranArchimago") id = Resources::TextureId::GranArchimago;
+	else if (name == "Goblin") id = Resources::TextureId::Goblin;
+	else if (name == "Pixie") id = Resources::TextureId::Pixie;
+	else if (name == "Zombie") id = Resources::TextureId::Zombie;
+	else if (name == "Skeleton") id = Resources::TextureId::Skeleton;
+	else if (name == "Specter") id = Resources::TextureId::Specter;
+	else if (name == "Troll") id = Resources::TextureId::Troll;
+	else if (name == "Hellhound") id = Resources::TextureId::Hellhound;
+	else if (name == "Mimic") id = Resources::TextureId::Mimic;
+	else if (name == "Ghoul") id = Resources::TextureId::Ghoul;
+	else if (name == "Giant worm") id = Resources::TextureId::GiantWorm;
+	else if (name == "Banshee") id = Resources::TextureId::Banshee;
+	else if (name == "DeathKnight") id = Resources::TextureId::DeathKnight;
+	else if (name == "Dracolich") id = Resources::TextureId::Dracolich;
+	else if (name == "Lich") id = Resources::TextureId::Lich;
+
+	return id;
+}
+
 //----------------------------------------------------------------------------
 
 src::txtID textures_box::getHeroTxt(Hero* hero)

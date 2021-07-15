@@ -8,6 +8,7 @@ typedef unsigned int uint;
 namespace textures_box {
 	// characters
 	src::txtID getCharacterTxt(Character* character);
+	src::txtID getCharacterTxt(string name);
 	// heroes
 	src::txtID getHeroTxt(Hero* hero);
 	src::txtID getHeroTxt(uint number, bool combat = false);

@@ -4,6 +4,7 @@
 
 #include "../../ecs/Manager.h"
 #include "../../Templates/RPGLogic.h"
+#include <SDL_messagebox.h>
 
 class TheElementalMaze;
 
@@ -15,6 +16,21 @@ private:
 
 	bool reward = false;
 	int rewardPosY = 0;
+
+	bool receiveDamage = false;
+	Uint32 startDamageTime = 0;
+	int texSize = 0;
+
+	bool miss = false;
+	int misspos = 2;
+	Uint32 startMissTime = 0;
+
+	bool vs = false;
+	bool win = false;
+	Uint32 startVsTime = 0;
+	bool vsR = false;
+	int killPosX = 0;
+	int frameKill = 0;
 	
 	int exp = 0;
 	int gold = 0;
@@ -23,6 +39,7 @@ private:
 	bool chestKey = false;
 	bool levelKey = false;
 	bool noKeys = false;
+
 
 	Texture* expTex = nullptr;
 	Texture* goldTex = nullptr;
@@ -35,6 +52,13 @@ private:
 	Texture* keyLevelTex = nullptr;
 	Texture* noKeysTex = nullptr;
 	Texture* keyNumTex = nullptr;
+	Texture* heroTex = nullptr;
+	Texture* damageTex = nullptr;
+	Texture* missTex = nullptr;
+	Texture* vsTex = nullptr;
+	Texture* heroVsTex = nullptr;
+	Texture* EnemyVsTex = nullptr;
+	Texture* KillTex = nullptr;
 
 
 	bool transicion = false;
@@ -57,15 +81,21 @@ public:
 	void draw() override;
 
 	void animVib(rpgLogic::characterType current, rpgLogic::characterType next);
+	void showDamage(int damage, Resources::TextureId hero);
+	void showMiss(bool enemy);
+	void showKillEnemy(Resources::TextureId hero, Resources::TextureId enemy, bool win);
 	void showReward(int exp, int gold, int manaPotions, int healthPotions, bool chestKey);
 	void showLevelKey();
 	void showNoKeys();
 	void renderVibration();
 	void renderReward();
-
+	void renderDamage();
+	void renderMiss();
+	void renderKillEnemy();
 	void addtransicion(Uint32 transTime);
 	void renderTransicion();
 	bool getTransition() { return transicion; };
+
 
 	
 

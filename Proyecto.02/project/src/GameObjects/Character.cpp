@@ -5,8 +5,11 @@
 #include "../Managers/game/ItemManager.h"
 #include "../Managers/TheElementalMaze.h"
 #include "../Managers/game/ChatManager.h"
+#include "../Managers/game/AnimationManager.h"
+#include "../Utilities/textures_box.h"
 
 using namespace rpgLogic;
+using namespace textures_box;
 
 #pragma region CHARACTER
 
@@ -116,6 +119,17 @@ void Character::recieveDamage(int damage, rpgLogic::damageType type, Character* 
         std::string out = name() + " has fainted";
         cout << out << endl;
         ChatManager::instance()->add(out, _type == characterType::HERO ? LineColor::Red : LineColor::Green);
+
+
+        std::string nam = TheElementalMaze::instance()->getCombatManager()->getCurrentCharacter()->getCharacterSheet() ->name;
+        if (_type == characterType::HERO)
+        {
+            TheElementalMaze::instance()->getAnimManager()->showKillEnemy(getCharacterTxt(name()), getCharacterTxt(nam), false);
+        }
+        else
+        {
+            TheElementalMaze::instance()->getAnimManager()->showKillEnemy( getCharacterTxt(nam), getCharacterTxt(name()), true);
+        }
         for (std::vector<Condition*>::iterator it = _conditions.begin(); it != _conditions.end();)
         {
             if (!(*it)->onDeath(attacker))

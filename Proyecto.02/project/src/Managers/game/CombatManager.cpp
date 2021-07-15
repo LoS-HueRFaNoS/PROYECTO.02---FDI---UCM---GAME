@@ -393,6 +393,8 @@ void CombatManager::throwHability(Character* objective, Hability* hability)
         }
         cout << "No Hit" << endl;
         ChatManager::instance()->add("No hit", LineColor::White);
+        TheElementalMaze::instance()->getAnimManager()->showMiss(currentCharacter->getType() == characterType::ENEMY);
+
 
 
     }
