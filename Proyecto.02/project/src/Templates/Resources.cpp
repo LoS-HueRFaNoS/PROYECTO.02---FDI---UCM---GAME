@@ -110,6 +110,7 @@ vector<Resources::ImageInfo> Resources::images_{
 	{stash_button, "project/resources/images/interfaz/button icons/Tienda/StashButton.png"},
 	{take, "project/resources/images/interfaz/button icons/Tienda/TakeButton.png"},
 	{vibration, "project/resources/images/interfaz/peligro.png"},
+	{kill, "project/resources/images/interfaz/KillSlice.png"},
 	{fade, "project/resources/images/interfaz/FadeOutNegro.png"},
 	{DiceRed, "project/resources/images/interfaz/dadoRojo.png"},
 	{DiceGreen, "project/resources/images/interfaz/dadoVerde.png" },

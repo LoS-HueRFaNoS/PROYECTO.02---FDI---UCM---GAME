@@ -1,6 +1,11 @@
 #include "CharacterSheet.h"
 #include "../Managers/game/ChatManager.h"
+#include "../Managers/TheElementalMaze.h"
+#include "../Managers/game/AnimationManager.h"
+#include "../Utilities/textures_box.h"
 #include <iostream>
+
+using namespace textures_box;
 
 
 std::string CharacterSheet::getResName(rpgLogic::damageType type)
@@ -58,11 +63,16 @@ bool CharacterSheet::recieveDamage(int damage, rpgLogic::damageType type, bool e
     std::string out = name + " recieves " + std::to_string(damageAfterRes) + getResName(type) + " damage" + "( " + std::to_string(damage) + " " + std::to_string((int)(res * 100)) + "% RES)";
     std::cout << out << std::endl;
     ChatManager::instance()->add(out, enemy ? linCol::Green : linCol::Red);
-
+    if (!enemy)
+    {
+        TheElementalMaze::instance()->getAnimManager()->showDamage(damageAfterRes, getCharacterTxt(name));
+    }
     _hitPoints -= damageAfterRes;
 
     if (_hitPoints < 0)
+    {
         _hitPoints = 0;
+    }
 
     return !_hitPoints;
 }

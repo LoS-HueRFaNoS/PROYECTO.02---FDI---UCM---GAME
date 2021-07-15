@@ -109,6 +109,7 @@ public:
 		take, 
 		vibration,
 		fade,
+		kill,
 		DiceRed,
 		DiceGreen,
 		marco_hero,
