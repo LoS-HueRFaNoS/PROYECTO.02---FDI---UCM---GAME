@@ -39,5 +39,6 @@ public:
 	ButtonPanel* getButtonActive();
 	idPanel GetID() { return id; };
 	bool getEnable() { return enable; };
+	void setEnable(bool enable_) { enable = enable_; }
 };
 

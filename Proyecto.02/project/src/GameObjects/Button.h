@@ -968,3 +968,52 @@ public:
     virtual void pointerExited();
 };
 // ----------------------------------------------------
+
+
+enum class accionChest {
+    info,creaTake,take
+};
+
+class ButtonItemChest : public Button {
+private:
+    accionChest accion;
+    Interfaz* app;
+    Item* item;
+public:
+    ButtonItemChest(SDLGame* game, EntityManager* mngr) : Button(game, mngr) {};
+
+    ~ButtonItemChest() {};
+
+    virtual void init(Vector2D pos, uint ancho, uint alto, Resources::TextureId imagen, accionChest type, Interfaz* app_, Item* item_) {
+        accion = type;
+        app = app_;
+        item = item_;
+        Button::init(pos, ancho, alto, imagen);
+    };
+    virtual void init(SDL_Rect dest, Resources::TextureId imagen, accionChest type, Item* item_, Interfaz* app_ = nullptr) {
+        accion = type;
+        app = app_;
+        item = item_;
+        Button::init(dest, imagen);
+    };
+
+    virtual void click()
+    {
+        switch (accion)
+        {
+        case accionChest::creaTake:
+            //callbacks::creaTake(app,item);
+            break;
+        case accionChest::take:
+            callbacks::takeFromChest(app,item);
+            break;
+        default:
+            break;
+        }
+        Sprite* s_ = GETCMP2(this, Sprite);
+        s_->setHide(true);
+        s_->reset();
+    }
+    virtual void pointerEntered();
+    virtual void pointerExited();
+};

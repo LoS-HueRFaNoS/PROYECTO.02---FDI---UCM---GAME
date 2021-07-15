@@ -67,6 +67,7 @@ void Game::initGame()
 	game_ = SDLGame::init("THE ELEMENTAL MAZE", client_width * 0.75, client_height * 0.75);
 
 	// PANTALLA COMPLETA
+	//game_->fullscr_ = true;
 	game_->setFullScreen(game_->fullscr_);
 
 	Texture* tex_ = new Texture(game_->getRenderer(), "project/resources/images/cargando.png");

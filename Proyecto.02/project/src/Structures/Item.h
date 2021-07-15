@@ -1,6 +1,7 @@
 #include "../ecs/Component.h"
 #include "../Utilities/jute.h"
 #include "../Templates/RPGLogic.h"
+#include <list>
 class ItemManager;
 #pragma once
 
@@ -102,17 +103,27 @@ class Chest
 {
 private:
 	int gold;
-	vector<Item*> items;
+	list<Item*> items;
 public:
 	Chest()
 	{
 		gold = 100;
 	}
-	Chest(int gold_, std::vector<Item*> items_) : gold(gold_), items(items_) {
+	Chest(int gold_, std::list<Item*> items_) : gold(gold_), items(items_) {
 		
-
 	};
-	vector<Item*> getItems() { return items; }
+	list<Item*> getItems() { return items; }
 	int getGold() { return gold; }
 	void oroRecogido() { gold = 0; }
+	void takeItem(Item* item)
+	{
+		list<Item*>::iterator it = items.begin();
+		bool encontrado = false;
+		while (it != items.end() && !encontrado)
+		{
+			if (it._Ptr->_Myval == item) encontrado = true;
+			else it++;
+		}
+		items.erase(it);
+	}
 };

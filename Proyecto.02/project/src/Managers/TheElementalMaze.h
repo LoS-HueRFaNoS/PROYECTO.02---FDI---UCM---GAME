@@ -105,6 +105,7 @@ public:
 	int getLevel() { return level; }
 	void nextLevel() { level++; if (level > 2) level = 0; }
 	Entity* getPlayer() { return player_; };
+	Entity* getLab() { return lab_; };
 
 	CharacterManager* getCharacterManager() { return characterManager_; }
 
@@ -137,4 +138,6 @@ public:
 	GameState getPreviousState() { return previousState; };
 	void registerPreviousState() { previousState = gameState(); }
 	bool wasInMaze = false;
+
+
 };

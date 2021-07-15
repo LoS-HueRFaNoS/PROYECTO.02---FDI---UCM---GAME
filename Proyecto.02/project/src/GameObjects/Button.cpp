@@ -265,3 +265,19 @@ void ButtonCombate::click()
     };
 
 }
+
+
+
+void ButtonItemChest::pointerEntered() {
+    if (accion == accionChest::info)
+    {
+        callbacks::createFichaDescObjPan(true, item);
+    }
+
+};
+void ButtonItemChest::pointerExited() {
+    if (accion == accionChest::info)
+    {
+        callbacks::createFichaDescObjPan(false, item);
+    }
+};

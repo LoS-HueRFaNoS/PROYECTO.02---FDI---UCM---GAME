@@ -23,5 +23,6 @@ private:
 	vector<bool> casillaActual;
 	Laberinto* lab;
 	int sent=0 ,x=0,y=0;
+	bool cofreEncontrado = false;
 };
 

@@ -3,10 +3,11 @@
 #include "../Components/Image.h"
 #include "../Components/Rectangle.h"
 #include "../Managers/game/AnimationManager.h"
+#include "../Components/Interfaz.h"
 
 void ObjectChest::Init()
 {
-	if (generated) return;
+	entities.clear();
 	MousePanelMecanics::Init(1, set_FE::UP);
 	ObjectPanel::Init(pan);
 
@@ -26,7 +27,6 @@ void ObjectChest::Init()
 	fondo_->addComponent<Transform>(dest);
 	fondo_->addComponent<Image>(game_->getTextureMngr()->getTexture(src::CofreMenu));
 	//fondo_->addComponent<Rectangle_cmpt>(hex2sdlcolor("#000000FF"));
-	generated = true;
 }
 
 void ObjectChest::update()
@@ -72,18 +72,31 @@ void ObjectChest::addTemplate()
 #include "../Structures/Item.h"
 #include "../Managers/TheElementalMaze.h"
 #include "../Managers/game/PartyManager.h"
+#include "../Structures/Panel.h"
+#include "../GameObjects/Button.h"
+#include <stack>
 
-void ObjectChest::example()
+//void ObjectChest::example()
+//{
+//	list<Item*> items = TheElementalMaze::instance()->getPartyManager()->getItems();
+//	itemChest(items);
+//}
+struct param
 {
-	vector<Item*> items = TheElementalMaze::instance()->getPartyManager()->getItems();
-	itemChest(items);
-}
-
-void ObjectChest::itemChest(vector<Item*> items)
+	SDL_Rect rect;
+	Item* item;
+	int offset;
+	Resources::TextureId tex;
+};
+void ObjectChest::itemChest(list<Item*> items)
 {
-	for (int i = items.size() - 1; i >= 0; i--)
+	list<Item*>::iterator it = items.begin();
+	int num = 0;
+	int offset = 0;
+	stack<param> pila;
+	for (int i = 0; i < items.size(); i++)
 	{
-		if (items[i] != nullptr) {
+		if (it._Ptr->_Myval != nullptr) {
 			Entity* e = new SDL_Object(game_, this);
 			// IMAGEN
 				//Transform
@@ -98,28 +111,30 @@ void ObjectChest::itemChest(vector<Item*> items)
 			uint pivot, auxId;
 			Resources::TextureId id;
 
-			ItemType itemType = items[i]->getItemType();
+			ItemType itemType = it._Ptr->_Myval->getItemType();
 
 			if (itemType == ItemType::ARMOR) {
 				pivot = src::_firstArmorId_;
-				auxId = (int) static_cast<Armor*>(items[i])->getArmorId();
+				auxId = (int) static_cast<Armor*>(it._Ptr->_Myval)->getArmorId();
 			}
 			else {
 				pivot = src::_firstWeaponId_;
-				auxId = (int) static_cast<Weapon*>(items[i])->getWeaponId();
+				auxId = (int) static_cast<Weapon*>(it._Ptr->_Myval)->getWeaponId();
 			}
 			id = (Resources::TextureId)(pivot + auxId + 1);
 
 
-			items[i]->getItemType();
+			it._Ptr->_Myval->getItemType();
 			e->addComponent<Image>(game_->getTextureMngr()->getTexture(id));
 
 
 			Entity* itemBackground = new SDL_Object(game_, this);
 			itemBackground->addComponent<Transform>(imgOfItem);
 			itemBackground->addComponent<Image>(game_->getTextureMngr()->getTexture(src::Slot));
-
-
+			
+			
+			param parametros{ imgOfItem,it._Ptr->_Myval,offset,id };
+			pila.push(parametros);
 			add_element(itemBackground, topElement(), tuppleEspaces().getRight() + tuppleBorders().getRight(), this);
 
 			addEntity(e);
@@ -127,7 +142,7 @@ void ObjectChest::itemChest(vector<Item*> items)
 
 			//TEXTO
 			SDL_Color color = { 0,0,0,255 };
-			string name = items[i]->getName();
+			string name = it._Ptr->_Myval->getName();
 			Line* line = new Line(game_, this);
 
 			SDL_Rect lineRect;
@@ -139,6 +154,13 @@ void ObjectChest::itemChest(vector<Item*> items)
 			line->init(lineRect, name, color);
 			addEntity(line);
 		}
+		it++;
+	}
+	while (!pila.empty())
+	{
+		TheElementalMaze::instance()->getInterfaz()->botonChest(pila.top().rect, pila.top().item, offset, pila.top().tex);
+		offset += (tuppleEspaces().getRight() + tuppleBorders().getRight()) * 2 + pila.top().rect.h;
+		pila.pop();
 	}
 }
 
@@ -150,5 +172,9 @@ void ObjectChest::recogerOro()
 }
 
 //--------------------------------------------------------------------------------------
-
+void ObjectChest::restart()
+{
+	entities.clear();
+	itemChest(interiorCofre->getItems());
+}
 #pragma endregion

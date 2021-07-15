@@ -118,4 +118,6 @@ public:
     void setIsItemToEquipAWeapon(bool isItemToEquipAWeapon_) { isItemToEquipAWeapon = isItemToEquipAWeapon_; }
     void enemyDead(int indice);
     void closeChest();
+    void botonChest(SDL_Rect dim,Item* item,int a,Resources::TextureId id);
+    Panel* getPanel(idPanel pan) { return allPanels[pan]; }
 };

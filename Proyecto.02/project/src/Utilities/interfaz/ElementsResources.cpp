@@ -101,11 +101,12 @@ void ElementsResources::checkBlockSize(std::vector<std::unique_ptr<Entity>>& ent
 // espace must have in mind the padding and the borders
 void ElementsResources::add_element(Entity* e, SDL_Rect reference, double espace, EntityManager* mngr)
 {
-	if (way_ == set_FE::UP) {
-		addTop_element(e, reference, espace * 2, mngr);
-	}
-	else if (way_ == set_FE::DOWN) {
+	
+	if (way_ == set_FE::DOWN) {
 		addBottom_element(e, reference, espace * 2, mngr);
+	}
+	else if (way_ == set_FE::UP) {
+		addTop_element(e, reference, espace * 2, mngr);
 	}
 }
 

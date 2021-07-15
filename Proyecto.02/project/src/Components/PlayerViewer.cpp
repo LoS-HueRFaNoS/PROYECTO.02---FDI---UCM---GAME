@@ -1,7 +1,6 @@
 #include "PlayerViewer.h"
 #include "StateBar.h"
-#include "../Templates/callbacks.h"
-#include "../ecs/ecs_interfaz.h"
+
 
 void PlayerViewer::update()
 {
@@ -68,7 +67,6 @@ void PlayerViewer::draw()
 	else derecha = sentido + 1;
 
 	auto manager = game_->getTextureMngr(); // Manager de texturas
-	cofreVisible = false;
 	if (casillaActual[sentido]) // <-^-> Si delante hay un camino, dibujaremos la informacion de la casilla siguiente
 	{
 		
@@ -128,7 +126,6 @@ void PlayerViewer::draw()
 	}
 	if (cas->hasChest() && cas->getEnemy()->size() == 0)
 	{
-		cofreVisible = true;
 		dest = RECT(_x + _w / 2 - 300, _y + 240, 600, 300);
 		auto imag = Resources::CofreCerrado;
 		game_->setHorizontalScale(_x);
@@ -141,9 +138,8 @@ void PlayerViewer::draw()
 		}
 		
 		manager->getTexture(imag)->render(dest);
-		callbacks::createPanel(false, interfaz::idPanel::ActivateChest);
+
 	}
-	if (!cofreVisible) callbacks::createPanel(true,interfaz::idPanel::ActivateChest);
 	//manager->getTexture(Resources::guiaSalida)->render(SDL_Rect{game_->getWindowWidth()/2-50, 100, 100,50});
 }
 

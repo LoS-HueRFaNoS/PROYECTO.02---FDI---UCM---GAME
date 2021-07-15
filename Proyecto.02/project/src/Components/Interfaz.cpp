@@ -1508,13 +1508,19 @@ void Interfaz::createPanel(idPanel panelID)
         if (TheElementalMaze::instance()->getLaberinto()->getCasillaInfo(GETCMP2(TheElementalMaze::instance()->getPlayer(), MazePos)->getPos().getX(), GETCMP2(TheElementalMaze::instance()->getPlayer(), MazePos)->getPos().getY())->getChest()->getAlreadyOpen()) {
             if (GETCMP2(TheElementalMaze::instance(), ChestPanel) == NULL)
             {
-                togglePanel(Heroes);
+                removePanel(Heroes);
                 Panel* p = new Panel(_ChestPanel_);
                 allPanels[_ChestPanel_] = p;
-                TheElementalMaze::instance()->addComponent<ChestPanel>(TheElementalMaze::instance()->getLaberinto()->getCasillaInfo(GETCMP2(TheElementalMaze::instance()->getPlayer(), MazePos)->getPos().getX(), GETCMP2(TheElementalMaze::instance()->getPlayer(), MazePos)->getPos().getY())->getChest());
-                TheElementalMaze::instance()->getLaberinto()->getCasillaInfo(GETCMP2(TheElementalMaze::instance()->getPlayer(), MazePos)->getPos().getX(), GETCMP2(TheElementalMaze::instance()->getPlayer(), MazePos)->getPos().getY())->getChest()->recogerOro();
+                auto player = TheElementalMaze::instance()->getPlayer();
+                auto chest = TheElementalMaze::instance()->getLaberinto()->getCasillaInfo(GETCMP2(player, MazePos)->getPos().getX(), GETCMP2(player, MazePos)->getPos().getY())->getChest();
+                TheElementalMaze::instance()->addComponent<ChestPanel>(chest);
+                
+                TheElementalMaze::instance()->getLaberinto()->getCasillaInfo(GETCMP2(player, MazePos)->getPos().getX(), GETCMP2(player, MazePos)->getPos().getY())->getChest()->recogerOro();
             }
-            else closeChest();
+            else
+            {
+                closeChest();
+            }
         }
         else {
             if (TheElementalMaze::instance()->getPartyManager()->hasChestKeys()) {
@@ -1632,8 +1638,9 @@ void Interfaz::removePanel(idPanel panID)
         TheElementalMaze::instance()->removeComponent(ecs::ChatInfo);
         break;
     case interfaz::_ChestPanel_:
+        delete allPanels[panID];
+        allPanels[panID] = nullptr;
         TheElementalMaze::instance()->removeComponent(ecs::ChestPanel);
-        togglePanel(Heroes);
         break;
         /*case interfaz::MenuPrincipal:
          break;
@@ -1881,8 +1888,13 @@ void Interfaz::enemyDead(int indice) {
 
 void Interfaz::closeChest()
 {
-    if (getActivePan(_ChestPanel_))
-        removePanel(_ChestPanel_);
-    togglePanel(Heroes);
-    TheElementalMaze::instance()->removeComponent(ecs::CmpId::ChestPanel);
+    removePanel(_ChestPanel_);
+    createPanel(Heroes);
+}
+
+void Interfaz::botonChest(SDL_Rect dim,Item* item,int a, Resources::TextureId id)
+{
+    auto p = allPanels[_ChestPanel_];
+    p->addButton(iManager->addButton<ButtonItemChest>(Vector2D(dim.x, dim.y+a), dim.w, dim.h, id, accionChest::info, this, item));
+    p->addButton(iManager->addButton<ButtonItemChest>(Vector2D(dim.x+50, dim.y+a), dim.w*4, dim.h, src::Joker, accionChest::take, this, item));
 }

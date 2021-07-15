@@ -74,4 +74,5 @@ public:
 	static void backToMaze(Interfaz* app);
 	// retroceder panel
 	static void returnTo(int PanelActual, int PanelRegreso);
+	static void takeFromChest(Interfaz* app, Item* item);
 };

@@ -176,7 +176,6 @@ void callbacks::potionType(int potionType_)
 #pragma region PanelResources
 #include "../Managers/TheElementalMaze.h"
 #include "../Managers/game/CombatManager.h"
-#include "../Components/Interfaz.h"
 
 void callbacks::createPanel(bool active, int panelType) //:-o
 {
@@ -187,6 +186,7 @@ void callbacks::createPanel(bool active, int panelType) //:-o
 	{
 		if (panelType == idPanel::Inventory && i_->getActivePan(idPanel::UnequipPanel)) i_->removePanel(idPanel::UnequipPanel);
 		if (panelType == idPanel::Inventory && i_->getActivePan(idPanel::EquipPanel)) i_->removePanel(idPanel::EquipPanel);
+		if (panelType == idPanel::_ChestPanel_) i_->createPanel(Heroes);
 		i_->removePanel((idPanel)panelType);
 	}
 }
@@ -200,6 +200,18 @@ void callbacks::returnTo(int PanelActual, int PanelRegreso)
 		CombatManager* c = GETCMP2(TheElementalMaze::instance(), CombatManager);
 		c->resetHabilityToCast();
 	}
+}
+
+void callbacks::takeFromChest(Interfaz* app, Item* item)
+{
+	TheElementalMaze::instance()->getPartyManager()->addItem(item);
+	auto pos = GETCMP2(TheElementalMaze::instance()->getPlayer(), MazePos)->getPos();
+	GETCMP2(TheElementalMaze::instance()->getLab(), Laberinto)->getCasillaInfo(pos.getX(), pos.getY())->getChest()->getChest()->takeItem(item);
+	Interfaz* i_ = GETCMP2(TheElementalMaze::instance(), Interfaz);
+	//i_->removePanel(idPanel::_ChestPanel_);
+	i_->createPanel(idPanel::_ChestPanel_);
+	//TheElementalMaze::instance()->removeComponent(ecs::CmpId::ChestPanel);
+	//GETCMP2(TheElementalMaze::instance()->getLab(), Laberinto)->getCasillaInfo(pos.getX(), pos.getY())->getChest()->restart();
 }
 
 #pragma endregion

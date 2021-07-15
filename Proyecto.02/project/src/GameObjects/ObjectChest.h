@@ -16,8 +16,8 @@ private:
 	Entity* fondo_ = nullptr;
 	int numItems_ = NUM_ITEMS_IN_CHEST;
 	void addTemplate();
-	void example();
-	void itemChest(vector<Item*> items);
+	//void example();
+	void itemChest(list<Item*> items);
 	Chest* interiorCofre;
 	bool generated = false;
 	bool alreadyOpen = false;
@@ -29,6 +29,7 @@ public:
 	ObjectChest(SDLGame* game, Chest* ch) : EntityManager(game) {
 		pan = game_->relativePanel(1470, 320, 420, 410, 1, 4, 30, 30, 10, 10, 0, 5);
 		interiorCofre = ch;
+		numItems_ = interiorCofre->getItems().size();
 	};
 
 	virtual ~ObjectChest() { 
@@ -47,4 +48,5 @@ public:
 
 	Chest* getChest() { return interiorCofre; }
 	void recogerOro();
+	void restart();
 };

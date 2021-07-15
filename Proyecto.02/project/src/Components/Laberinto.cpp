@@ -204,7 +204,7 @@ void Laberinto::createRandomMaze(Vector2D entrada)
 			int chestChance = game_->getRandGen()->nextInt(0, 7);
 			if (chestChance == 0 && TheElementalMaze::instance()->getLevel() != -1)
 			{
-				int cant = game_->getRandGen()->nextInt(0, 5);
+				int cant = game_->getRandGen()->nextInt(1, 4);
 				generaObjeto(1,0, laberinto[salidaX][salidaY], cant, cant);
 			}
 
@@ -304,7 +304,7 @@ void Laberinto::generaObjeto(int object, int type, Casilla* casilla, int maxObje
 	}
 	else if (object == 1 && !casilla->hasChest())
 	{
-		vector<Item*> items;
+		list<Item*> items;
 		for (int i = 0; i < cant; i++)
 		{
 			int itemType = rand() % 2;
