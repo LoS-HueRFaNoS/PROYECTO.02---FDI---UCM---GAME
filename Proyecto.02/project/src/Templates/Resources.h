@@ -125,6 +125,7 @@ public:
 		cartel_configuracion,
 		cartel_bienvenida_pt1,
 		cartel_bienvenida_pt2,
+		cartel_cofre,
 
 		// paneles focalizados
 		_firstFocoId_,
