@@ -108,26 +108,29 @@ private:
 
     void setValues() {
         Hero* h_ = nullptr;
-        switch (type_)
+        if (character_ != nullptr)
         {
-        case BarType::health:
-            maxStat_ = character_->getCharacterSheet()->maxHitPoints();
-            stAct_ = character_->getCharacterSheet()->hitPoints();
-            break;
-        case BarType::mana:
-            maxStat_ = character_->getCharacterSheet()->maxManaPoints();
-            stAct_ = character_->getCharacterSheet()->manaPoints();
-            break;
-        case BarType::experience:
-            h_ = dynamic_cast<Hero*>(character_);
-            if (h_ != nullptr) {
-                maxStat_ = h_->getExpMax();
-                stAct_ = h_->getExp();
+            switch (type_)
+            {
+            case BarType::health:
+                maxStat_ = character_->getCharacterSheet()->maxHitPoints();
+                stAct_ = character_->getCharacterSheet()->hitPoints();
+                break;
+            case BarType::mana:
+                maxStat_ = character_->getCharacterSheet()->maxManaPoints();
+                stAct_ = character_->getCharacterSheet()->manaPoints();
+                break;
+            case BarType::experience:
+                h_ = dynamic_cast<Hero*>(character_);
+                if (h_ != nullptr) {
+                    maxStat_ = h_->getExpMax();
+                    stAct_ = h_->getExp();
+                }
+                break;
+            default:
+                break;
             }
-            break;
-        default:
-            break;
-        }        
+        }
     }
 
     void setColors() {

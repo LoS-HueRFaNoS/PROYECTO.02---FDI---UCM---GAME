@@ -114,4 +114,5 @@ public:
 	};
 	vector<Item*> getItems() { return items; }
 	int getGold() { return gold; }
+	void oroRecogido() { gold = 0; }
 };

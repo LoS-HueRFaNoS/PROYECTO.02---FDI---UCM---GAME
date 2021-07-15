@@ -2,6 +2,7 @@
 #include "../Components/Transform.h"
 #include "../Components/Image.h"
 #include "../Components/Rectangle.h"
+#include "../Managers/game/AnimationManager.h"
 
 void ObjectChest::Init()
 {
@@ -141,6 +142,12 @@ void ObjectChest::itemChest(vector<Item*> items)
 	}
 }
 
+void ObjectChest::recogerOro()
+{
+	TheElementalMaze::instance()->getPartyManager()->gold += interiorCofre->getGold();
+	if (interiorCofre->getGold() > 0) TheElementalMaze::instance()->getAnimManager()->showReward(0, interiorCofre->getGold(),0,0,0);
+	interiorCofre->oroRecogido();
+}
 
 //--------------------------------------------------------------------------------------
 

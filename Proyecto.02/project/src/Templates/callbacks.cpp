@@ -326,10 +326,10 @@ void callbacks::startLobby(Interfaz* app)
 void callbacks::startExp(Interfaz* app)
 {
 	PartyManager* paManager = TheElementalMaze::instance()->getPartyManager();
-	bool partyCompleta = true;
+	bool partyCompleta = false;
 	for (int i = 0; i < 4; ++i)
 	{
-		if (paManager->getHeroes()[i] == nullptr) partyCompleta = false;
+		if (paManager->getHeroes()[i] != nullptr) partyCompleta = true;
 	}
 	if (partyCompleta)
 	{

@@ -46,5 +46,5 @@ public:
 	void setAlreadyOpen(bool aO) { alreadyOpen = aO; }
 
 	Chest* getChest() { return interiorCofre; }
-
+	void recogerOro();
 };

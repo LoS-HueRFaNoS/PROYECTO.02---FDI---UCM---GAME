@@ -91,7 +91,10 @@ void PartyManager::swapHeroes(int first, int second)
 void PartyManager::partyLost()
 {
 	for (Hero* h : heroes_)
+	{
+		if (h != nullptr)
 		h->disable();
+	}
 	heroes_.clear();
 	for (Item* i : items_)
 		delete i;

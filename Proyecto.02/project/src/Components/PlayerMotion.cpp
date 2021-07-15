@@ -116,7 +116,7 @@ void PlayerMotion::rotarIzquierda()
     Casilla* cas = lab->getCasillaInfo(x, y);
     casillaActual = cas->checkCell();
 
-    auto sent = pos->getLook();
+    sent = pos->getLook();
     if (sent == Norte)
         sent = Oeste;
     else
@@ -149,8 +149,6 @@ void PlayerMotion::avanzar()
         TheElementalMaze::instance()->getInterfaz()->togglePanel(Heroes);
         TheElementalMaze::instance()->getInterfaz()->closeChest();
     }
-    /*x = int(pos->getPos().getX());
-    y = int(pos->getPos().getY());*/
     Casilla* cas = lab->getCasillaInfo(x, y);
     casillaActual = cas->checkCell();
 

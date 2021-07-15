@@ -220,8 +220,9 @@ void PanelTurnos::drawCurrentInPanelHeroes()
         int n = -1;
 
         bool found = false;
-        while (!found && n != 4) {
+        while (!found && n != tem_->getPartyManager()->getHeroes().size()) {
             n++;
+            if (heroes[n] != NULL)
             found = (hero_template == heroes[n]->getTemplate());            
         };
 

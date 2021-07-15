@@ -532,9 +532,21 @@ void Interfaz::createTargets() //:-)
 
     // BOTONES:
     playerSelectingTarget = true;
+    int targetHero = 0;
+    src::TextureId img;
     for (int i = 0; i < nTargets; i++) {
-        src::TextureId img = size_t(targets[i]->getType()) ? getEnemyTxt(i) : getHeroTxt(i);
-        p->addButton(iManager->addButton<ButtonTarget>(Vector2D(x_ + espace * i, y_), w_, h_, img, (target)i, &playerSelectingTarget));
+        if (size_t(targets[i]->getType()))
+        {
+            img = getEnemyTxt(i);
+        }
+        else
+        {
+            while (targetHero != 4 && (!TheElementalMaze::instance()->getPartyManager()->getHeroes()[targetHero] || TheElementalMaze::instance()->getPartyManager()->getHeroes()[targetHero]->isDead())) targetHero++;
+            if (targetHero != 4)
+                img = getHeroTxt(targetHero);
+            targetHero++;
+        }
+            p->addButton(iManager->addButton<ButtonTarget>(Vector2D(x_ + espace * i, y_), w_, h_, img, (target)i, &playerSelectingTarget));
     }
 
     idPanel idRegreso;
@@ -1500,6 +1512,7 @@ void Interfaz::createPanel(idPanel panelID)
                 Panel* p = new Panel(_ChestPanel_);
                 allPanels[_ChestPanel_] = p;
                 TheElementalMaze::instance()->addComponent<ChestPanel>(TheElementalMaze::instance()->getLaberinto()->getCasillaInfo(GETCMP2(TheElementalMaze::instance()->getPlayer(), MazePos)->getPos().getX(), GETCMP2(TheElementalMaze::instance()->getPlayer(), MazePos)->getPos().getY())->getChest());
+                TheElementalMaze::instance()->getLaberinto()->getCasillaInfo(GETCMP2(TheElementalMaze::instance()->getPlayer(), MazePos)->getPos().getX(), GETCMP2(TheElementalMaze::instance()->getPlayer(), MazePos)->getPos().getY())->getChest()->recogerOro();
             }
             else closeChest();
         }
@@ -1848,15 +1861,17 @@ void Interfaz::checkHerosParty()
     PartyManager* c = TheElementalMaze::instance()->getPartyManager();
     std::vector<Hero*> heroes = c->getHeroes();
     auto n = heroes.size(); // max number of heros
-    for (auto i = 0u; i < n; i++)
+    int heroe = 0;
+    /*for (auto i = 0u; i < n; i++)
         if (!heroes[i]) {
             allPanels[Heroes]->removeButton(i);
             changed = true;
         }
         else {
-            savedHeroes.push_back(allPanels[Heroes]->getButton(i));
-        }
-    if (changed) allPanels[Heroes]->swapButtonList(savedHeroes);
+            savedHeroes.push_back(allPanels[Heroes]->getButton(heroe));
+            heroe++;
+        }*/
+    /*if (changed) allPanels[Heroes]->swapButtonList(savedHeroes);*/
 }
 
 void Interfaz::enemyDead(int indice) {
