@@ -4,6 +4,9 @@
 #include "../Structures/Item.h"
 #include "../Components/Sprite.h"
 #include <cassert>
+#include "../Managers/TheElementalMaze.h"
+#include "../Managers/game/PartyManager.h"
+#include "../Managers/game/LobbyManager.h"
 
 // ----------------------------------------------------
 
@@ -560,6 +563,30 @@ public:
         s_->setHide(true);
         s_->reset();
     }
+    virtual void pointerEntered() {
+        if (accion_item == accionItem::showSendToStash)
+        {
+           auto items = TheElementalMaze::instance()->getPartyManager()->getItems();
+           callbacks::createFichaDescObjPan(true, items[itemid]);
+        }
+        else if (accion_item == accionItem::showSellButton)
+        {
+            auto items = TheElementalMaze::instance()->getLobbyManager()->getPlayerStash()->items;
+            callbacks::createFichaDescObjPan(true, items[itemid]);
+        }
+    };
+    virtual void pointerExited() {
+        if (accion_item == accionItem::showSendToStash)
+        {
+            auto items = TheElementalMaze::instance()->getPartyManager()->getItems();
+            callbacks::createFichaDescObjPan(false, items[itemid]);
+        }
+        else if (accion_item == accionItem::showSellButton)
+        {
+            auto items = TheElementalMaze::instance()->getLobbyManager()->getPlayerStash()->items;
+            callbacks::createFichaDescObjPan(false, items[itemid]);
+        }
+    };
 };
 // ----------------------------------------------------
 

@@ -32,7 +32,7 @@ void ObjectChest::Init()
 void ObjectChest::update()
 {
 	ElementsResources::checkBlockSize(entities, numItems_);
-	scroll(marco(), tuppleLimits(), entities, topElement().h, tuppleEspaces().getRight() + tuppleBorders().getRight());
+	//scroll(marco(), tuppleLimits(), entities, topElement().h, tuppleEspaces().getRight() + tuppleBorders().getRight());
 	//EntityManager::update();
 	//move();
 }
