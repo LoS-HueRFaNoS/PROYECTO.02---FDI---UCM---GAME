@@ -113,16 +113,17 @@ void PlayerViewer::draw()
 	}
 	else manager->getTexture(Resources::muro_del)->render(dest);
 	//renderEnemyActual();
-	if (cas->isExit() && cas->getDirSalida() !=-1 && sentido == cas->getDirSalida()) {
+	if (cas->isExit() && cas->getDirSalida() !=-1 && sentido == cas->getDirSalida() && !cas->getEscalera()) {
 		dest = RECT(_x + _w / 2 - 300, _y , 600, 480);
 		if (cas->getEnemy()->size() == 0)
-			manager->getTexture(Resources::puerta)->render(dest); // Cambiar a puerta
+			manager->getTexture(Resources::puerta)->render(dest);
 	}
-	else if (cas->isExit() && cas->getDirSalida() == -1)
+	
+	else if (cas->isExit() && cas->getEscalera())
 	{
-		dest = RECT(_x + _w / 2 - 300, _y + 200, 0, 0);
+		dest = RECT(_x + _w / 2 - 300, _y, 600, 480);
 		if (cas->getEnemy()->size() == 0)
-			manager->getTexture(Resources::texto_salida)->render(dest); // Cambiar a escalera
+			manager->getTexture(Resources::escalera)->render(dest);
 	}
 	if (cas->hasChest() && cas->getEnemy()->size() == 0)
 	{
@@ -136,7 +137,6 @@ void PlayerViewer::draw()
 			if (cas->getChest()->getChest()->getItems().size() > 0) imag = Resources::CofreLleno;
 			else imag = Resources::CofreVacio;
 		}
-		
 		manager->getTexture(imag)->render(dest);
 
 	}

@@ -50,12 +50,14 @@ void PlayerMotion::update()
         else TheElementalMaze::instance()->getAnimManager()->showNoKeys();
     }
     else if (ih->isKeyDown(SDLK_f) && lab->getCasillaInfo(x, y)->isExit() && lab->getCasillaInfo(x, y)->getDirSalida() == sent) {
-        TheElementalMaze::instance()->getAnimManager()->addtransicion(1200);
-        TheElementalMaze::instance()->nextLevel();
-        TheElementalMaze::instance()->wasInMaze = false;
-        TheElementalMaze::instance()->onExitLaberinto();
-        TheElementalMaze::instance()->changeState(gameST::LOBBY);
-
+        if (TheElementalMaze::instance()->getPartyManager()->hasLevelKey()) {
+            TheElementalMaze::instance()->getAnimManager()->addtransicion(1200);
+            TheElementalMaze::instance()->nextLevel();
+            TheElementalMaze::instance()->wasInMaze = false;
+            TheElementalMaze::instance()->onExitLaberinto();
+            TheElementalMaze::instance()->changeState(gameST::LOBBY);
+        }
+        else TheElementalMaze::instance()->getAnimManager()->showNoKeys();
     }
     else if (ih->isKeyDown(SDLK_ESCAPE))
     {

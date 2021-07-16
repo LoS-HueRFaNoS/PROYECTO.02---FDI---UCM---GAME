@@ -44,6 +44,7 @@ vector<Resources::ImageInfo> Resources::images_{
 	{cofreMiniMap, "project/resources/images/pasillos/cofre.png"},			//
 	{texto_salida, "project/resources/images/texto_salida.jpg"},				//
 	{puerta, "project/resources/images/sprites/animaciones/door1finish.png"},				//
+	{escalera, "project/resources/images/sprites/animaciones/escalera.png"},				//
 
 	// menu principal
 	{start, "project/resources/images/interfaz/button icons/Menu/PlayButton.png"},

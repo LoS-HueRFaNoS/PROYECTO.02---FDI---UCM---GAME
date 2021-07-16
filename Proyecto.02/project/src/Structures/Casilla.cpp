@@ -107,7 +107,10 @@ void Casilla::setSalida()
 	{
 		if (!direcciones[i]) paredes.push_back((Look)i);
 	}
-	if (paredes.size() == 0) direccionSalida = (Look)-1;
+	if (paredes.size() == 0) {
+		direccionSalida = (Look)-1;
+		escalera = true;
+	}
 	else
 	{
 		int dir = game_->getRandGen()->nextInt(0, paredes.size());

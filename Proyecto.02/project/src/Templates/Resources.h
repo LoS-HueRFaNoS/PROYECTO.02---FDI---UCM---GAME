@@ -42,6 +42,7 @@ public:
 		cofreMiniMap,
 		texto_salida,
 		puerta,
+		escalera,
 
 		start,
 		options,

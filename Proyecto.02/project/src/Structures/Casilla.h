@@ -12,7 +12,7 @@ class Casilla
 {
 private:
 	Look direccionSalida;
-	/*Look direccionCofre;*/
+	bool escalera = false;
 	vector<bool> direcciones;
 	bool esSalida;
 	bool esPosActual = false;
@@ -52,7 +52,7 @@ public:
 	/*Look getDirCofre() { return direccionCofre; }*/
 	bool getTieneLlaveNivel() { return tieneLlaveNivel; }
 	void setTieneLlaveNivel(bool aux) { tieneLlaveNivel = aux; }
-
+	bool getEscalera() { return escalera; }
 
 };
 
