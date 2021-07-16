@@ -1,5 +1,6 @@
 #include "PlayerViewer.h"
 #include "StateBar.h"
+#include "../Managers/game/ChatManager.h"
 
 
 void PlayerViewer::update()
@@ -115,8 +116,12 @@ void PlayerViewer::draw()
     //renderEnemyActual();
     if (cas->isExit() && cas->getDirSalida() != -1 && sentido == cas->getDirSalida() && !cas->getEscalera()) {
         dest = RECT(_x + _w / 2 - 300, _y, 600, 480);
-        if (cas->getEnemy()->size() == 0)
+        if (cas->getEnemy()->size() == 0) {
             manager->getTexture(Resources::puerta)->render(dest);
+            ChatManager::instance()->clean_n_addLine("Has llegado al final del nivel", LineColor::White, true);
+            ChatManager::instance()->add("Pulsa E para avanzar al siguiente nivel", LineColor::White);
+            ChatManager::instance()->add("Pulsa F para volver a la taberna", LineColor::White);
+        }
     }
 
     else if (cas->isExit() && cas->getEscalera())
