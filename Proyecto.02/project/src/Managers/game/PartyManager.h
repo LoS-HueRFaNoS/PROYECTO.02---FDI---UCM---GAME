@@ -14,78 +14,80 @@ class PartyManager
 {
 private:
 
-	std::vector<Hero*> heroes_;
+    std::vector<Hero*> heroes_;
 
-	std::vector<Item*> items_;
+    std::vector<Item*> items_;
 
-	bool levelKey = false;
+    bool levelKey = false;
 
-	uint chestKeys = 0;
+    uint chestKeys = 0;
 
 public:
 
-	PartyManager();
+    PartyManager();
 
-	PartyManager(std::vector<Hero*> heroes, std::vector<Item*> items, int gold, int manaP, int healthP);
+    PartyManager(std::vector<Hero*> heroes, std::vector<Item*> items, int gold, int manaP, int healthP);
 
-	~PartyManager();
+    ~PartyManager();
 
-	int gold;
+    int gold;
 
-	int manaPotions;
+    int manaPotions;
 
-	int healthPotions;
+    int healthPotions;
 
-	// Añade un heroe en la posición que pides y devuelve el que ya se encontraba en esa posición
-	Hero* addHero(Hero* h, int pos);
+    // Añade un heroe en la posición que pides y devuelve el que ya se encontraba en esa posición
+    Hero* addHero(Hero* h, int pos);
 
-	bool addHero(Hero* h);
-	
-	void removeHero(Hero* h);
+    bool addHero(Hero* h);
 
-	void removeHero(int h);
+    void removeHero(Hero* h);
 
-	void swapHeroes(int first, int second);
+    void removeHero(int h);
 
-	void partyLost();
+    void swapHeroes(int first, int second);
 
-	void clearItems();
+    void partyLost();
 
-	bool addItem(Item* i);
+    void clearItems();
 
-	void changeItemWithHero(int index, int hero);
+    bool isReady();
 
-	std::vector<Hero*> getHeroes() { return heroes_; }
+    bool addItem(Item* i);
 
-	std::vector<Item*> getItems() { return items_; }
+    void changeItemWithHero(int index, int hero);
 
-	void usePotion(int hero, bool mana);
+    std::vector<Hero*> getHeroes() { return heroes_; }
 
-	void usePotion(Hero* hero, bool mana);
+    std::vector<Item*> getItems() { return items_; }
 
-	void itemFromInventoryToStash(int itemIndex);
+    void usePotion(int hero, bool mana);
 
-	void giveWeaponFromInventory(bool isWeapon, int itemid,int heroid);
+    void usePotion(Hero* hero, bool mana);
+
+    void itemFromInventoryToStash(int itemIndex);
+
+    void giveWeaponFromInventory(bool isWeapon, int itemid, int heroid);
 
 
-	//Llaves
-	void takeChestKey() { chestKeys++; }
+    //Llaves
+    void takeChestKey() { chestKeys++; }
 
-	void takeLevelKey() { levelKey = true; }
+    void takeLevelKey() { levelKey = true; }
 
-	void useChestKey() { chestKeys--; }
+    void useChestKey() { chestKeys--; }
 
-	void useLevelKey() { levelKey = false; }
+    void useLevelKey() { levelKey = false; }
 
-	bool hasChestKeys() { return chestKeys > 0; }
+    bool hasChestKeys() { return chestKeys > 0; }
 
-	bool hasLevelKey() { return levelKey; }
+    bool hasLevelKey() { return levelKey; }
 
-	void resetKeys() { levelKey = false; chestKeys = 0; }
+    void resetKeys() { levelKey = false; chestKeys = 0; }
 
-	bool getLevelKey() { return levelKey; }
+    bool getLevelKey() { return levelKey; }
 
-	uint getChestKeys() { return chestKeys; }
+    uint getChestKeys() { return chestKeys; }
 };
 
 #endif // !_PARTY_MANAGER_

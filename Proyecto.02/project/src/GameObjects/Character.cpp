@@ -358,7 +358,7 @@ void Hero::savingDeathThrow() //h
     {
         bool saveThrow = 10 < throwDice(1, 20, false);
 
-        if (saveThrow)
+        if (false)
             savingSuccess++;
 
         else

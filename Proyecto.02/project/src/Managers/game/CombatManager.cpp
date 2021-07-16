@@ -100,6 +100,7 @@ void CombatManager::startCombat(bool boss)
         _gold = 50;
         game_->getAudioMngr()->playMusic(Resources::AudioId::Combate, -1);
     }
+    _win = true;
     changeState(COMBAT_START);
 }
 
@@ -112,8 +113,9 @@ void CombatManager::passTurn()
                 if ((bool)((*it)->getType()) || (!(bool)((*it)->getType()) && static_cast<Hero*>(*it)->getDeathGate())) {
                     if ((bool)((*it)->getType()))
                         _enemies.erase(std::find(_enemies.begin(), _enemies.end(), (*it)));
-                    else
+                    else {
                         _heroes.erase(std::find(_heroes.begin(), _heroes.end(), (*it)));
+                    }
 
                     it = _turnQueue.erase(it);
                 }
@@ -200,7 +202,7 @@ void CombatManager::tryEscape()
     cout << "Enemies(+5): " << tiradasE + 5 << "\n";
     ChatManager::instance()->add("Enemies(+5): " + to_string(tiradasE + 5), LineColor::Green);
 
-    if (tiradasH > tiradasE + 5) 
+    if (tiradasH > tiradasE + 5)
     {
         savingRunningThrows++;
 
@@ -568,7 +570,7 @@ void CombatManager::update()
         else if (ih->isKeyDown(SDLK_x)) sendKeyEvent(-4);			// Intentar Huir
         else if (ih->isKeyDown(SDLK_q)) sendKeyEvent(-5);			// Poción de mana
         else if (ih->isKeyDown(SDLK_e)) sendKeyEvent(-6);			// Poción de vida
-    }
+}
 #endif
 }
 

@@ -852,7 +852,7 @@ enum class HeroNum { hero1, hero2, hero3, hero4 };
 class ButtonHero : public ButtonPanel {
 private:
     HeroNum heroType_;
-    Hero* her_;
+    Hero* her_ = nullptr;
 
     Resources::TextureId originalImg_;
 

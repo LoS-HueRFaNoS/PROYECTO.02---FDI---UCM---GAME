@@ -42,6 +42,8 @@ void ButtonHero::click()
 
 #include "Character.h"
 void ButtonHero::update() {
+    if (her_->getArmor() == NULL)
+        return;
     // muerto?
     if (her_->getDeathGate() && texState != textureState::dead)
     {
@@ -61,7 +63,7 @@ void ButtonHero::update() {
         toggleImage((Resources::TextureId)((int)originalImg_ + (11 * 0)));
     }
     if (her_ != nullptr)
-    ButtonPanel::update();
+        ButtonPanel::update();
 }
 
 #pragma endregion

@@ -197,7 +197,7 @@ void Interfaz::createHeroes()
     double h_ = 330;
     // tamano de los margenes
     double n = 5.0 + 5.0;
-    
+
     // posicion del panel respecto a la ventana
     x_ = game_->setHorizontalScale(x_ + n);
     y_ = game_->setVerticalScale(y_ + n);
@@ -256,7 +256,7 @@ void Interfaz::createInfo()
 
     // BOTONES: health, mana
     p->addButton(iManager->addButton<ButtonPanel>(Vector2D(x_, y_), w_ * 2, h_ * 2, src::Inventario, Inventory, false));
-   
+
 
     ButtonPotion* bp1_ = iManager->addButton<ButtonPotion>(Vector2D(x_ + 2 * espace_H, y_ + 0 * espace_V), w_, h_, src::PocionVida, PtnType::health);
     bp1_->addComponent<Contador>(PtnType::health);
@@ -369,7 +369,7 @@ void Interfaz::createInventory()
     uint chestKeys = party->getChestKeys();
     slotTam = slotTam * 0.6;
 
-        //Llaves de cofres
+    //Llaves de cofres
     posX = slotTam * 1.1; //Se resetea la coordenada X
     posY = slotTam / 0.6;
 
@@ -386,12 +386,12 @@ void Interfaz::createInventory()
 
     p->addButton(iManager->addButton<Line>(dest, text, Resources::FontId::HERMAN, color));
 
-        //Llaves de puerta
+    //Llaves de puerta
     posY += slotTam * 1.5;
 
     if (levelKey)   p->addButton(iManager->addButton<SDL_Object>(Vector2D(posX, posY), slotTam, slotTam, src::LlaveNivel));
     else            p->addButton(iManager->addButton<SDL_Object>(Vector2D(posX, posY), slotTam, slotTam, src::LlaveVacia));
-    
+
 }
 
 void Interfaz::createChest()
@@ -547,7 +547,7 @@ void Interfaz::createTargets() //:-)
                 img = getHeroTxt(targetHero);
             targetHero++;
         }
-            p->addButton(iManager->addButton<ButtonTarget>(Vector2D(x_ + espace * i, y_), w_, h_, img, (target)i, &playerSelectingTarget));
+        p->addButton(iManager->addButton<ButtonTarget>(Vector2D(x_ + espace * i, y_), w_, h_, img, (target)i, &playerSelectingTarget));
     }
 
     idPanel idRegreso;
@@ -663,10 +663,10 @@ void Interfaz::createMenuPrincipal()
         pan.ch + pan.ch / 2
     );
     //if (!TheElementalMaze::instance()->wasInMaze)
-        p->addButton(iManager->addButton<ButtonMenu>(dest, src::start, accionMenu::lobby, this));
-   // else p->addButton(iManager->addButton<ButtonMenu>(dest, src::start, accionMenu::backToMaze, this));
+    p->addButton(iManager->addButton<ButtonMenu>(dest, src::start, accionMenu::lobby, this));
+    // else p->addButton(iManager->addButton<ButtonMenu>(dest, src::start, accionMenu::backToMaze, this));
 
-    // resto de botones:
+     // resto de botones:
     dest = RECT(
         pan.fcx + pan.cw * 3,
         pan.fcy + pan.ch / 4,
@@ -689,6 +689,7 @@ void Interfaz::createMenuPrincipal()
 
 void Interfaz::createLobby() // botones principales
 {
+
     Panel* p = new Panel(Lobby);
     allPanels[Lobby] = p;
 
@@ -1222,7 +1223,7 @@ void Interfaz::createInventoryLobby()
         pan.ch
     );
 
-    p->addButton(iManager->addButton<SDL_Object>(Vector2D(40, 40), 720, 340, src::tabernaStash));
+    p->addButton(iManager->addButton<SDL_Object>(Vector2D(pan.fcx / 2 + 5, pan.fcy / 2 + 5), pan.w, pan.h, src::tabernaStash));
 
     // Botón para volver al lobby
     p->addButton(iManager->addButton<ButtonMenu>(dest, src::lobby_button, accionMenu::inventario_to_lobby, this));
@@ -1517,7 +1518,7 @@ void Interfaz::createPanel(idPanel panelID)
                 auto player = TheElementalMaze::instance()->getPlayer();
                 auto chest = TheElementalMaze::instance()->getLaberinto()->getCasillaInfo(GETCMP2(player, MazePos)->getPos().getX(), GETCMP2(player, MazePos)->getPos().getY())->getChest();
                 TheElementalMaze::instance()->addComponent<ChestPanel>(chest);
-                
+
                 TheElementalMaze::instance()->getLaberinto()->getCasillaInfo(GETCMP2(player, MazePos)->getPos().getX(), GETCMP2(player, MazePos)->getPos().getY())->getChest()->recogerOro();
             }
             else
@@ -1532,7 +1533,7 @@ void Interfaz::createPanel(idPanel panelID)
             }
             else TheElementalMaze::instance()->getAnimManager()->showNoKeys();
         }
-  
+
         break;
     case Targets:
         createTargets();
@@ -1761,6 +1762,7 @@ void Interfaz::update()
         if (getActivePan(Inventory)) removePanel(Inventory);
         if (getActivePan(UnequipPanel)) removePanel(UnequipPanel);
         if (getActivePan(EquipPanel)) removePanel(EquipPanel);
+        removeChat();
         ChatManager::instance()->clean_n_addLine(" ", LineColor::White);
         callbacks::startLobby(this);
         break;
@@ -1881,7 +1883,7 @@ void Interfaz::checkHerosParty()
             savedHeroes.push_back(allPanels[Heroes]->getButton(heroe));
             heroe++;
         }*/
-    /*if (changed) allPanels[Heroes]->swapButtonList(savedHeroes);*/
+        /*if (changed) allPanels[Heroes]->swapButtonList(savedHeroes);*/
 }
 
 void Interfaz::enemyDead(int indice) {
@@ -1895,9 +1897,9 @@ void Interfaz::closeChest()
     createPanel(Heroes);
 }
 
-void Interfaz::botonChest(SDL_Rect dim,Item* item,int a, Resources::TextureId id)
+void Interfaz::botonChest(SDL_Rect dim, Item* item, int a, Resources::TextureId id)
 {
     auto p = allPanels[_ChestPanel_];
-    p->addButton(iManager->addButton<ButtonItemChest>(Vector2D(dim.x, dim.y+a), dim.w, dim.h, id, accionChest::info, this, item));
-    p->addButton(iManager->addButton<ButtonItemChest>(Vector2D(dim.x+50, dim.y+a), dim.w*4, dim.h, src::Joker, accionChest::take, this, item));
+    p->addButton(iManager->addButton<ButtonItemChest>(Vector2D(dim.x, dim.y + a), dim.w, dim.h, id, accionChest::info, this, item));
+    p->addButton(iManager->addButton<ButtonItemChest>(Vector2D(dim.x + 50, dim.y + a), dim.w * 4, dim.h, src::Joker, accionChest::take, this, item));
 }
