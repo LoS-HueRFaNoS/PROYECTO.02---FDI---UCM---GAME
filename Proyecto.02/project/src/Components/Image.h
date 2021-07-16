@@ -39,6 +39,11 @@ public:
 			else {
 				dest = { int(tr_->getPos().getX()), int(tr_->getPos().getY()), int(tr_->getW()), int(tr_->getH()) };
 				tex_->render(dest, tr_->getRot());
+				if (heroptr)
+				{
+					showHeroUpdate();
+				}
+
 			}
 		}
 	}
@@ -74,14 +79,87 @@ public:
 		}
 		else timer++;
 
+
 		if (!enemyInd) {
 			return;
 		}
-
 		if (damaged || enemyInd->isDamaged()) {
 			damaged = true;
 			renderDamage(Resources::slash);
 		}
+	}
+	void showHeroUpdate()
+	{
+		if (heroptr->isDamaged())
+		{
+			renderHeroD = true;
+			frame = 0;
+			startDamageTime = game_->getTime();
+		}
+		else if (heroptr->isLevelUp())
+		{
+			renderHeroL = true;
+			startLevelUpTime= game_->getTime();
+		}
+		if (renderHeroD)
+		{
+
+			Uint32 frameTime = game_->getTime() - startDamageTime;
+			if (frameTime > 100)
+			{
+				frame++;
+				startDamageTime = game_->getTime();
+			}
+			if (frame == 6)
+			{
+				renderHeroD = false;
+			}
+			else
+			{
+				renderHeroDamage();
+			}
+		}
+		if (renderHeroL)
+		{
+			Uint32 frameTime = game_->getTime() - startLevelUpTime;
+			if (frameTime > 1000) renderHeroL = false;
+			else {
+				string text="";
+				int w = int(tr_->getH() / 10);
+				int tim = frameTime / 100;
+				if (tim == 0){ text = "Level";}
+				else if (tim == 1 || tim == 2){ text = "Level +    ";}
+				else if (tim == 3 || tim == 4){ text = "Level ++  ";}
+				else if (tim == 5 || tim == 6){ text = "Level +++";}
+				else if (tim == 7 || tim == 8 || tim == 9){ text = "Level " + to_string( heroptr->getLevel())+"   " ; }
+				renderLevel(text, tim*w);
+			}
+		}
+	}
+	void renderLevel(string text, int posY)
+	{
+		if (textLevelUp == nullptr) 
+			textLevelUp = new Texture();
+		SDL_Color color;
+		color = { 255, 255, 0, 255 };
+
+		textLevelUp->loadFromText(game_->getRenderer(), text, game_->getFontMngr()->getFont(Resources::FontId::Beaulieux), color);
+
+		dest = { int(tr_->getPos().getX()) , int(tr_->getPos().getY()) + int(tr_->getH()) - posY, int(tr_->getW()), int(tr_->getH()/3) };
+
+		textLevelUp->render(dest);
+
+	}
+	void renderHeroDamage()
+	{
+		SDL_Rect clip;
+		Texture* textureSlash = game_->getTextureMngr()->getTexture(Resources::slashHero);
+
+		dest = RECT(int(tr_->getPos().getX()), int(tr_->getPos().getY()), int(tr_->getW()), int(tr_->getH()));
+		double clipw = textureSlash->getWidth() / 6;
+		double cliph = textureSlash->getHeight();
+		clip = RECT(frame * clipw, 0, clipw, cliph);
+		textureSlash->render(dest, clip);
 
 	}
 
@@ -122,9 +200,15 @@ public:
 		enemyInd = enemyN;
 	};
 
+	void setHero(Hero* her)
+	{
+		heroptr = her;
+	}
+
 private:
 	Transform *tr_;
 	Texture *tex_;
+	Texture* textLevelUp = nullptr;
 	bool hide;
 
 	bool animation = true;
@@ -137,4 +221,11 @@ private:
 	int timer = 0;
 	int timerSlash = 0;
 	Enemy* enemyInd = nullptr;
+	Hero* heroptr = nullptr;
+	Uint32 startDamageTime = 0;
+	Uint32 startLevelUpTime = 0;
+	int frame = 0;
+	bool renderHeroD = false;
+	bool renderHeroL = false;
+
 };

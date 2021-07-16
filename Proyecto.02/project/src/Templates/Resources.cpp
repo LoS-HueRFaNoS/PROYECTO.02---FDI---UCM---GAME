@@ -322,6 +322,7 @@ vector<Resources::ImageInfo> Resources::images_{
 	{ cinematica, "project/resources/images/interfaz/focos/cinematica.png" },
 	//Danyo
 	{ slash, "project/resources/images/sprites/animaciones/heroes danyo/slashSheet.png" },
+	{ slashHero, "project/resources/images/sprites/animaciones/heroes danyo/slashSheetColor.png" },
 	//Taberna
 	{ tabernaLobby, "project/resources/images/interfaz/lobby/TabernaLobby.jpg" },
 	{ tabernaShop, "project/resources/images/interfaz/lobby/TabernaShop.jpg" },

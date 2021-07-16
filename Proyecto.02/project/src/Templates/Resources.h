@@ -327,6 +327,7 @@ public:
 		Espinas_,
 		//Danyo
 		slash,
+		slashHero,
 		//Taberna
 		tabernaLobby,
 		tabernaShop,

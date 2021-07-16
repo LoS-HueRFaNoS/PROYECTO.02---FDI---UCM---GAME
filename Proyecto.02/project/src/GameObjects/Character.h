@@ -193,6 +193,7 @@ private:
     int expNeed = 100, expMax = 100;
 
     int level = 0, pointsPerLevel = 0;
+    bool levelUped = false;
 
     bool _deathGate = false;
 
@@ -228,6 +229,11 @@ public:
     void resetThrows();
 
     void levelUp(int exp);
+    bool isLevelUp() {
+        if (levelUped) { levelUped = false; return true; }
+        else return false;
+    }
+    int getLevel() { return level; }
 
     void AddHabilityWithLevel(int level);
 

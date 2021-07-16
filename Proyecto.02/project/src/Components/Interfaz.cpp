@@ -220,6 +220,7 @@ void Interfaz::createHeroes()
             b_->addComponent<StateBar>(heroes[i], BarType::health, SDL_Rect(RECT((x_ + w_ + n), (y_ + i * espace + h_ * 1 / k), w_ * 2, h_ / k)));
             b_->addComponent<StateBar>(heroes[i], BarType::mana, SDL_Rect(RECT((x_ + w_ + n), (y_ + i * espace + h_ * 2.5 / k), w_ * 2, h_ / k)));
             b_->addComponent<StateBar>(heroes[i], BarType::experience, SDL_Rect(RECT((x_ + w_ + n), (y_ + i * espace + h_ * 4 / k), w_ * 2, h_ / k)));
+            b_->getComponent<Image>(ecs::Image)->setHero(heroes[i]);
             p->addButton(b_);
         }
     }
