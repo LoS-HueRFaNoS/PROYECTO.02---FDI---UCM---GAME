@@ -12,41 +12,41 @@ const int NUM_ITEMS_IN_CHEST = 20;
 class ObjectChest : public EntityManager, public ObjectPanel, public MousePanelMecanics
 {
 private:
-	SDL_Panel pan;
-	Entity* fondo_ = nullptr;
-	int numItems_ = NUM_ITEMS_IN_CHEST;
-	void addTemplate();
-	//void example();
-	void itemChest(list<Item*> items);
-	Chest* interiorCofre;
-	bool generated = false;
-	bool alreadyOpen = false;
+    SDL_Panel pan;
+    Entity* fondo_ = nullptr;
+    int numItems_ = NUM_ITEMS_IN_CHEST;
+    void addTemplate();
+    //void example();
+    void itemChest(list<Item*> items);
+    Chest* interiorCofre;
+    bool generated = false;
+    bool alreadyOpen = false;
 public:
-	ObjectChest(SDLGame* game) : EntityManager(game) {
-		pan = game_->relativePanel(1470, 320, 420, 410, 1, 4, 30, 30, 10, 10, 0, 5);
-	};
+    ObjectChest(SDLGame* game) : EntityManager(game) {
+        pan = game_->relativePanel(1470, 320, 420, 410, 1, 4, 30, 30, 10, 10, 0, 5);
+    };
 
-	ObjectChest(SDLGame* game, Chest* ch) : EntityManager(game) {
-		pan = game_->relativePanel(1470, 320, 420, 410, 1, 4, 30, 30, 10, 10, 0, 5);
-		interiorCofre = ch;
-		numItems_ = interiorCofre->getItems().size();
-	};
+    ObjectChest(SDLGame* game, Chest* ch) : EntityManager(game) {
+        pan = game_->relativePanel(1470, 320, 420, 410, 1, 4, 30, 30, 10, 10, 0, 5);
+        interiorCofre = ch;
+        numItems_ = interiorCofre->getItems().size();
+    };
 
-	virtual ~ObjectChest() { 
+    virtual ~ObjectChest() {
 
-		delete fondo_;
-		fondo_ = nullptr;
-		entities.clear();
-	};
+        delete fondo_;
+        fondo_ = nullptr;
+        entities.clear();
+    };
 
-	void Init();
-	void update();
-	void draw();
+    void Init();
+    void update();
+    void draw();
 
-	bool getAlreadyOpen() { return alreadyOpen; }
-	void setAlreadyOpen(bool aO) { alreadyOpen = aO; }
+    bool getAlreadyOpen() { return alreadyOpen; }
+    void setAlreadyOpen(bool aO) { alreadyOpen = aO; }
 
-	Chest* getChest() { return interiorCofre; }
-	void recogerOro();
-	void restart();
+    Chest* getChest() { return interiorCofre; }
+    void recogerOro();
+    void restart();
 };

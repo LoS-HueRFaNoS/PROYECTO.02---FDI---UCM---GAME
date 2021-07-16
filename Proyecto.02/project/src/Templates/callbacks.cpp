@@ -15,7 +15,7 @@
 #include "../Game.h"
 
 void callbacks::toggleThemeFondo() {
-	Game::Instance()->getFondo()->changeTheme();
+    Game::Instance()->getFondo()->changeTheme();
 }
 
 #pragma endregion
@@ -26,16 +26,16 @@ void callbacks::toggleThemeFondo() {
 
 
 void callbacks::pruebaGame0(Interfaz* app) {
-	std::cout << "pruebaGame0" << std::endl;
+    std::cout << "pruebaGame0" << std::endl;
 }
 void callbacks::pruebaGame1(Interfaz* app) {
-	std::cout << "pruebaGame1" << std::endl;
+    std::cout << "pruebaGame1" << std::endl;
 }
 void callbacks::pruebaGame2(Interfaz* app) {
-	std::cout << "pruebaGame2" << std::endl;
+    std::cout << "pruebaGame2" << std::endl;
 }
 void callbacks::pruebaGame3(Interfaz* app) {
-	std::cout << "pruebaGame3" << std::endl;
+    std::cout << "pruebaGame3" << std::endl;
 }
 
 #pragma endregion
@@ -48,47 +48,47 @@ void callbacks::pruebaGame3(Interfaz* app) {
 #include "../Components/Interfaz.h"
 
 void callbacks::heroType(uint numberHeroe) {
-	CombatManager* c = GETCMP2(TheElementalMaze::instance(), CombatManager);
-	string name = c->getCharacter(numberHeroe, charTy::HERO)->name();
-	std::cout << "heroe " << numberHeroe << ": " << name << std::endl;
+    CombatManager* c = GETCMP2(TheElementalMaze::instance(), CombatManager);
+    string name = c->getCharacter(numberHeroe, charTy::HERO)->name();
+    std::cout << "heroe " << numberHeroe << ": " << name << std::endl;
 }
 
 void callbacks::createDDPan(bool active, uint numberHeroe) {
-	Interfaz* i = GETCMP2(TheElementalMaze::instance(), Interfaz);
+    Interfaz* i = GETCMP2(TheElementalMaze::instance(), Interfaz);
 
-	if (!active) i->createFichaDD(numberHeroe);
-	else if (active) i->removePanel(DDPan);
+    if (!active) i->createFichaDD(numberHeroe);
+    else if (active) i->removePanel(DDPan);
 }
 #pragma endregion
 
 // ----------------------------------------------------
 
 void callbacks::createFichaDescPan(bool active, Hability* hab, bool aff) {
-	/*TheElementalMaze* tem_ = TheElementalMaze::instance();
-	tem_->hasComponent(ecs::PanelDesc);*/
-	Interfaz* i = GETCMP2(TheElementalMaze::instance(), Interfaz);
+    /*TheElementalMaze* tem_ = TheElementalMaze::instance();
+    tem_->hasComponent(ecs::PanelDesc);*/
+    Interfaz* i = GETCMP2(TheElementalMaze::instance(), Interfaz);
 
-	if (active) {
-		if (i->getActivePan(DescPan)) i->removePanel(DescPan);
-		i->createFichaDesc(hab, aff);
-	}
-	else {
-		if (i->getActivePan(DescPan)) i->removePanel(DescPan);
-	}
+    if (active) {
+        if (i->getActivePan(DescPan)) i->removePanel(DescPan);
+        i->createFichaDesc(hab, aff);
+    }
+    else {
+        if (i->getActivePan(DescPan)) i->removePanel(DescPan);
+    }
 }
 
 void callbacks::createFichaDescObjPan(bool active, Item* ite) {
-	/*TheElementalMaze* tem_ = TheElementalMaze::instance();
-	tem_->hasComponent(ecs::PanelDescObj);*/
-	Interfaz* i = GETCMP2(TheElementalMaze::instance(), Interfaz);
-	
-	if (active) {
-		if (i->getActivePan(DescPanObj)) i->removePanel(DescPanObj);
-		i->createFichaDescObj(ite);
-	}
-	else {
-		if (i->getActivePan(DescPanObj)) i->removePanel(DescPanObj);
-	}
+    /*TheElementalMaze* tem_ = TheElementalMaze::instance();
+    tem_->hasComponent(ecs::PanelDescObj);*/
+    Interfaz* i = GETCMP2(TheElementalMaze::instance(), Interfaz);
+
+    if (active) {
+        if (i->getActivePan(DescPanObj)) i->removePanel(DescPanObj);
+        i->createFichaDescObj(ite);
+    }
+    else {
+        if (i->getActivePan(DescPanObj)) i->removePanel(DescPanObj);
+    }
 }
 
 // ----------------------------------------------------
@@ -99,28 +99,28 @@ void callbacks::createFichaDescObjPan(bool active, Item* ite) {
 
 void callbacks::movCommand(int movType)
 {
-	PlayerMotion* p = GETCMP2(TheElementalMaze::instance()->getPlayer(), PlayerMotion);
+    PlayerMotion* p = GETCMP2(TheElementalMaze::instance()->getPlayer(), PlayerMotion);
 
-	switch (movType)
-	{
-	case 0:
-		std::cout << "has girado a la derecha" << std::endl;
-		p->rotarDerecha();
-		break;
-	case 1:
-		std::cout << "has girado a la izquierda" << std::endl;
-		p->rotarIzquierda();
-		break;
-	case 2:
-		std::cout << "has avanzado" << std::endl;
-		p->avanzar();
-		break;
-	case 3:
-		std::cout << "has interactuado" << std::endl;
-		break;
-	default:
-		break;
-	}
+    switch (movType)
+    {
+    case 0:
+        std::cout << "has girado a la derecha" << std::endl;
+        p->rotarDerecha();
+        break;
+    case 1:
+        std::cout << "has girado a la izquierda" << std::endl;
+        p->rotarIzquierda();
+        break;
+    case 2:
+        std::cout << "has avanzado" << std::endl;
+        p->avanzar();
+        break;
+    case 3:
+        std::cout << "has interactuado" << std::endl;
+        break;
+    default:
+        break;
+    }
 }
 
 #pragma endregion
@@ -134,39 +134,39 @@ void callbacks::movCommand(int movType)
 
 void callbacks::inventario(Interfaz* app)
 {
-	//app->createPanel(Inventory);
-	std::cout << "has abierto el inventario" << std::endl;
+    //app->createPanel(Inventory);
+    std::cout << "has abierto el inventario" << std::endl;
 }
 
 void callbacks::configuracion(Interfaz* app)
 {
-	//app->createPanel(Settings);
-	std::cout << "has abierto la configuración" << std::endl;
+    //app->createPanel(Settings);
+    std::cout << "has abierto la configuración" << std::endl;
 }
 
 void callbacks::potionType(int potionType_)
 {
-	CombatManager* c = GETCMP2(TheElementalMaze::instance(), CombatManager); // falta paso intermedio para guardar la habilidad y seleccionar enemigos
-	GameState gameST = TheElementalMaze::instance()->gameState();
-	switch (potionType_)
-	{
-	case 0:
-		std::cout << "has usado la pocion de vida" << std::endl;
-		if (gameST == gameST::COMBAT) c->sendKeyEvent(-6); //indice de la habilidad
-		else if (gameST == gameST::EXPLORING) callbacks::set_hability(-6);
-		break;
-	case 1:
-		std::cout << "has usado la pocion de mana" << std::endl;
-		if (gameST == gameST::COMBAT) c->sendKeyEvent(-5); //indice de la habilidad
-		else if (gameST == gameST::EXPLORING) callbacks::set_hability(-5);
-		break;
-	case 2:
-		std::cout << "has usado la pocion de resurreccion" << std::endl;
-		//c->sendKeyEvent(-7); //indice de la habilidad
-		break;
-	default:
-		break;
-	}
+    CombatManager* c = GETCMP2(TheElementalMaze::instance(), CombatManager); // falta paso intermedio para guardar la habilidad y seleccionar enemigos
+    GameState gameST = TheElementalMaze::instance()->gameState();
+    switch (potionType_)
+    {
+    case 0:
+        std::cout << "has usado la pocion de vida" << std::endl;
+        if (gameST == gameST::COMBAT) c->sendKeyEvent(-6); //indice de la habilidad
+        else if (gameST == gameST::EXPLORING) callbacks::set_hability(-6);
+        break;
+    case 1:
+        std::cout << "has usado la pocion de mana" << std::endl;
+        if (gameST == gameST::COMBAT) c->sendKeyEvent(-5); //indice de la habilidad
+        else if (gameST == gameST::EXPLORING) callbacks::set_hability(-5);
+        break;
+    case 2:
+        std::cout << "has usado la pocion de resurreccion" << std::endl;
+        //c->sendKeyEvent(-7); //indice de la habilidad
+        break;
+    default:
+        break;
+    }
 }
 
 #pragma endregion
@@ -179,39 +179,39 @@ void callbacks::potionType(int potionType_)
 
 void callbacks::createPanel(bool active, int panelType) //:-o
 {
-	Interfaz* i_ = GETCMP2(TheElementalMaze::instance(), Interfaz);
+    Interfaz* i_ = GETCMP2(TheElementalMaze::instance(), Interfaz);
 
-	if (!active) i_->createPanel((idPanel)panelType);
-	else if (active)
-	{
-		if (panelType == idPanel::Inventory && i_->getActivePan(idPanel::UnequipPanel)) i_->removePanel(idPanel::UnequipPanel);
-		if (panelType == idPanel::Inventory && i_->getActivePan(idPanel::EquipPanel)) i_->removePanel(idPanel::EquipPanel);
-		if (panelType == idPanel::_ChestPanel_) i_->createPanel(Heroes);
-		i_->removePanel((idPanel)panelType);
-	}
+    if (!active) i_->createPanel((idPanel)panelType);
+    else if (active)
+    {
+        if (panelType == idPanel::Inventory && i_->getActivePan(idPanel::UnequipPanel)) i_->removePanel(idPanel::UnequipPanel);
+        if (panelType == idPanel::Inventory && i_->getActivePan(idPanel::EquipPanel)) i_->removePanel(idPanel::EquipPanel);
+        if (panelType == idPanel::_ChestPanel_) i_->createPanel(Heroes);
+        i_->removePanel((idPanel)panelType);
+    }
 }
 void callbacks::returnTo(int PanelActual, int PanelRegreso)
 {
-	Interfaz* i_ = GETCMP2(TheElementalMaze::instance(), Interfaz);
-	i_->removePanel((idPanel)PanelActual);
-	i_->createPanel((idPanel)PanelRegreso);
+    Interfaz* i_ = GETCMP2(TheElementalMaze::instance(), Interfaz);
+    i_->removePanel((idPanel)PanelActual);
+    i_->createPanel((idPanel)PanelRegreso);
 
-	if (PanelActual == Targets) {
-		CombatManager* c = GETCMP2(TheElementalMaze::instance(), CombatManager);
-		c->resetHabilityToCast();
-	}
+    if (PanelActual == Targets) {
+        CombatManager* c = GETCMP2(TheElementalMaze::instance(), CombatManager);
+        c->resetHabilityToCast();
+    }
 }
 
 void callbacks::takeFromChest(Interfaz* app, Item* item)
 {
-	TheElementalMaze::instance()->getPartyManager()->addItem(item);
-	auto pos = GETCMP2(TheElementalMaze::instance()->getPlayer(), MazePos)->getPos();
-	GETCMP2(TheElementalMaze::instance()->getLab(), Laberinto)->getCasillaInfo(pos.getX(), pos.getY())->getChest()->getChest()->takeItem(item);
-	Interfaz* i_ = GETCMP2(TheElementalMaze::instance(), Interfaz);
-	//i_->removePanel(idPanel::_ChestPanel_);
-	i_->createPanel(idPanel::_ChestPanel_);
-	//TheElementalMaze::instance()->removeComponent(ecs::CmpId::ChestPanel);
-	//GETCMP2(TheElementalMaze::instance()->getLab(), Laberinto)->getCasillaInfo(pos.getX(), pos.getY())->getChest()->restart();
+    TheElementalMaze::instance()->getPartyManager()->addItem(item);
+    auto pos = GETCMP2(TheElementalMaze::instance()->getPlayer(), MazePos)->getPos();
+    GETCMP2(TheElementalMaze::instance()->getLab(), Laberinto)->getCasillaInfo(pos.getX(), pos.getY())->getChest()->getChest()->takeItem(item);
+    Interfaz* i_ = GETCMP2(TheElementalMaze::instance(), Interfaz);
+    //i_->removePanel(idPanel::_ChestPanel_);
+    i_->createPanel(idPanel::_ChestPanel_);
+    //TheElementalMaze::instance()->removeComponent(ecs::CmpId::ChestPanel);
+    //GETCMP2(TheElementalMaze::instance()->getLab(), Laberinto)->getCasillaInfo(pos.getX(), pos.getY())->getChest()->restart();
 }
 
 #pragma endregion
@@ -222,7 +222,7 @@ void callbacks::takeFromChest(Interfaz* app, Item* item)
 
 void callbacks::chat(Interfaz* app)
 {
-	std::cout << "has usado el boton de chat" << std::endl;
+    std::cout << "has usado el boton de chat" << std::endl;
 }
 
 #pragma endregion
@@ -235,72 +235,72 @@ void callbacks::chat(Interfaz* app)
 
 void callbacks::combatType(int combatType_)
 {
-	Interfaz* i = GETCMP2(TheElementalMaze::instance(), Interfaz);
-	CombatManager* c = GETCMP2(TheElementalMaze::instance(), CombatManager);
-	switch (combatType_)
-	{
-	case 0:
-		if (c->getState() == ACTION_PHASE_SPELL) {
-			std::cout << "ataque cuerpo a cuerpo" << std::endl;
-			if (!i->getActivePan(WeaponsAttacks)) callbacks::createPanel(false, WeaponsAttacks);
-			if (i->getActivePan(Fight)) i->removePanel(Fight);
-		}
-		else
-			std::cout << "ERROR: aun no has comenzado tu turno" << std::endl;
-		break;
-	case 1:
-		if (c->getState() == ACTION_PHASE_SPELL) {
-			std::cout << "has seleccionado una habilidad" << std::endl;
-			if (!i->getActivePan(Habilities)) callbacks::createPanel(false, Habilities);
-			if (i->getActivePan(Fight)) 
-				i->removePanel(Fight);
-		}
-		else
-			std::cout << "ERROR: aun no has comenzado tu turno" << std::endl;
-		break;
-	case 2:
-		c->sendKeyEvent(-1);
-		std::cout << "Pulsaste enter" << std::endl;
-		if (i->getActivePan(Fight))
-			i->resetPanel(Fight);
-		break;
-	case 3:
-		c->sendKeyEvent(-4);
-		std::cout << "huir del combate" << std::endl;
-		break;
-	default:
-		break;
-	}
+    Interfaz* i = GETCMP2(TheElementalMaze::instance(), Interfaz);
+    CombatManager* c = GETCMP2(TheElementalMaze::instance(), CombatManager);
+    switch (combatType_)
+    {
+    case 0:
+        if (c->getState() == ACTION_PHASE_SPELL) {
+            std::cout << "ataque cuerpo a cuerpo" << std::endl;
+            if (!i->getActivePan(WeaponsAttacks)) callbacks::createPanel(false, WeaponsAttacks);
+            if (i->getActivePan(Fight)) i->removePanel(Fight);
+        }
+        else
+            std::cout << "ERROR: aun no has comenzado tu turno" << std::endl;
+        break;
+    case 1:
+        if (c->getState() == ACTION_PHASE_SPELL) {
+            std::cout << "has seleccionado una habilidad" << std::endl;
+            if (!i->getActivePan(Habilities)) callbacks::createPanel(false, Habilities);
+            if (i->getActivePan(Fight))
+                i->removePanel(Fight);
+        }
+        else
+            std::cout << "ERROR: aun no has comenzado tu turno" << std::endl;
+        break;
+    case 2:
+        c->sendKeyEvent(-1);
+        std::cout << "Pulsaste enter" << std::endl;
+        if (i->getActivePan(Fight))
+            i->resetPanel(Fight);
+        break;
+    case 3:
+        c->sendKeyEvent(-4);
+        std::cout << "huir del combate" << std::endl;
+        break;
+    default:
+        break;
+    }
 }
 
 void callbacks::addTarget(int objetive_) // -1 para volver atrás
 {
-	CombatManager* c = GETCMP2(TheElementalMaze::instance(), CombatManager);
-	c->sendKeyEvent(objetive_); // sólo uno
-	Interfaz* i = GETCMP2(TheElementalMaze::instance(), Interfaz);
-	// cambia a combate
-	if (i->getActivePan(Targets)) i->removePanel(Targets);
-	if (!i->getActivePan(Fight)) i->createPanel(Fight);
-	std::cout << "has fijado tu objetivo" << std::endl;
+    CombatManager* c = GETCMP2(TheElementalMaze::instance(), CombatManager);
+    c->sendKeyEvent(objetive_); // sólo uno
+    Interfaz* i = GETCMP2(TheElementalMaze::instance(), Interfaz);
+    // cambia a combate
+    if (i->getActivePan(Targets)) i->removePanel(Targets);
+    if (!i->getActivePan(Fight)) i->createPanel(Fight);
+    std::cout << "has fijado tu objetivo" << std::endl;
 }
 
 void callbacks::set_hability(int hability_)
 {
-	CombatManager* c = GETCMP2(TheElementalMaze::instance(), CombatManager); // falta paso intermedio para guardar la habilidad y seleccionar enemigos
-	c->sendKeyEvent(hability_); //indice de la habilidad
+    CombatManager* c = GETCMP2(TheElementalMaze::instance(), CombatManager); // falta paso intermedio para guardar la habilidad y seleccionar enemigos
+    c->sendKeyEvent(hability_); //indice de la habilidad
 
-	Interfaz* i = GETCMP2(TheElementalMaze::instance(), Interfaz);
-	if (i->getActivePan(Habilities)) i->removePanel(Habilities);
-	if (i->getActivePan(WeaponsAttacks)) i->removePanel(WeaponsAttacks);
+    Interfaz* i = GETCMP2(TheElementalMaze::instance(), Interfaz);
+    if (i->getActivePan(Habilities)) i->removePanel(Habilities);
+    if (i->getActivePan(WeaponsAttacks)) i->removePanel(WeaponsAttacks);
 
-	// team or single target
-	if (c->getState() != END_TURN) {
-		// abre panel selecionar objetivo
-		callbacks::createPanel(false, Targets);
-	}
-	else {
-		if (!i->getActivePan(Fight)) i->createPanel(Fight);
-	}
+    // team or single target
+    if (c->getState() != END_TURN) {
+        // abre panel selecionar objetivo
+        callbacks::createPanel(false, Targets);
+    }
+    else {
+        if (!i->getActivePan(Fight)) i->createPanel(Fight);
+    }
 }
 
 #pragma endregion
@@ -309,383 +309,383 @@ void callbacks::set_hability(int hability_)
 #pragma region MenuPrincipal
 void callbacks::startLobby(Interfaz* app)
 {
-	std::cout << "startLobby se ha activado\n";
-	TheElementalMaze::instance()->getAnimManager()->addtransicion(1200);
-	if (app->getActivePan(MenuPrincipal)) 	app->removePanel(MenuPrincipal);
-	if (app->getActivePan(Fight)) 			app->removePanel(Fight);
-	if (app->getActivePan(Turns)) 			app->removePanel(Turns);
-	if (app->getActivePan(Info)) 			app->removePanel(Info);
-	if (app->getActivePan(Movement))		app->removePanel(Movement);
-	if (app->getActivePan(Minimap))			app->removePanel(Minimap);
-	if (app->getActivePan(BigMap))			app->removePanel(BigMap);
-	if (TheElementalMaze::instance()->gameState() != gameST::MainMenu)
-	{
-		TheElementalMaze::instance()->backFromDungeon();
-	}
-	else
-	{
-		TheElementalMaze::instance()->firstLobby();
+    std::cout << "startLobby se ha activado\n";
+    TheElementalMaze::instance()->getAnimManager()->addtransicion(1200);
+    if (app->getActivePan(MenuPrincipal)) 	app->removePanel(MenuPrincipal);
+    if (app->getActivePan(Fight)) 			app->removePanel(Fight);
+    if (app->getActivePan(Turns)) 			app->removePanel(Turns);
+    if (app->getActivePan(Info)) 			app->removePanel(Info);
+    if (app->getActivePan(Movement))		app->removePanel(Movement);
+    if (app->getActivePan(Minimap))			app->removePanel(Minimap);
+    if (app->getActivePan(BigMap))			app->removePanel(BigMap);
+    if (TheElementalMaze::instance()->gameState() != gameST::MainMenu)
+    {
+        TheElementalMaze::instance()->backFromDungeon();
+    }
+    else
+    {
+        TheElementalMaze::instance()->firstLobby();
 
-	}
-	
-	TheElementalMaze::instance()->changeState(gameST::DURING_LOBBY);
-	cout << "LOBBY REACHED" << endl;
+    }
 
-	app->createPanel(Lobby);
+    TheElementalMaze::instance()->changeState(gameST::DURING_LOBBY);
+    cout << "LOBBY REACHED" << endl;
+
+    app->createPanel(Lobby);
 
 
 }
 void callbacks::startExp(Interfaz* app)
 {
-	PartyManager* paManager = TheElementalMaze::instance()->getPartyManager();
-	bool partyCompleta = false;
-	for (int i = 0; i < 4; ++i)
-	{
-		if (paManager->getHeroes()[i] != nullptr) partyCompleta = true;
-	}
-	if (partyCompleta)
-	{
-		if (app->getActivePan(DDPan))
-			app->removePanel(DDPan);
+    PartyManager* paManager = TheElementalMaze::instance()->getPartyManager();
+    bool partyCompleta = false;
+    for (int i = 0; i < 4; ++i)
+    {
+        if (paManager->getHeroes()[i] != nullptr) partyCompleta = true;
+    }
+    if (partyCompleta)
+    {
+        if (app->getActivePan(DDPan))
+            app->removePanel(DDPan);
 
-		app->removePanel(Lobby);
-		//app->removePanel(Heroes);
-		TheElementalMaze::instance()->changeState(gameST::START_EXPLORING);
-		TheElementalMaze::instance()->getAnimManager()->addtransicion(1200);
+        app->removePanel(Lobby);
+        //app->removePanel(Heroes);
+        TheElementalMaze::instance()->changeState(gameST::START_EXPLORING);
+        TheElementalMaze::instance()->getAnimManager()->addtransicion(1200);
 
 
-		std::cout << "startExploration se ha activado\n";
-	}
+        std::cout << "startExploration se ha activado\n";
+    }
 }
 void callbacks::options(Interfaz* app)
 {
-	if (app->getActivePan(MenuPrincipal)) app->togglePanel(MenuPrincipal);
-	if (app->getActivePan(Options))
-	{
-		if (TheElementalMaze::instance()->gameState() == gameST::DURING_PAUSE)
-			app->createPanel(PausePanel);
-		app->removePanel(Options);
-	}
-	else
-	{
-		if (TheElementalMaze::instance()->gameState() == gameST::DURING_PAUSE)
-			app->removePanel(PausePanel);
-		app->createPanel(Options);
-	}
-	std::cout << "options se ha activado\n";
+    if (app->getActivePan(MenuPrincipal)) app->togglePanel(MenuPrincipal);
+    if (app->getActivePan(Options))
+    {
+        if (TheElementalMaze::instance()->gameState() == gameST::DURING_PAUSE)
+            app->createPanel(PausePanel);
+        app->removePanel(Options);
+    }
+    else
+    {
+        if (TheElementalMaze::instance()->gameState() == gameST::DURING_PAUSE)
+            app->removePanel(PausePanel);
+        app->createPanel(Options);
+    }
+    std::cout << "options se ha activado\n";
 }
 void callbacks::howToPlay(Interfaz* app)
 {
-	if (app->getActivePan(MenuPrincipal)) app->togglePanel(MenuPrincipal);
-	app->togglePanel(HowToPlay);
+    if (app->getActivePan(MenuPrincipal)) app->togglePanel(MenuPrincipal);
+    app->togglePanel(HowToPlay);
 }
 void callbacks::quit(Interfaz* app)
 {
-	Game::Instance()->exitGame();
-	std::cout << "quit se ha activado\n";
+    Game::Instance()->exitGame();
+    std::cout << "quit se ha activado\n";
 }
 
 void callbacks::shoppingHero(Interfaz* app, int her)
 {
-	LobbyManager* lo = TheElementalMaze::instance()->getLobbyManager();
-	lo->buyHero(her);
-	std::cout << "Heroe comprado" << std::endl;
-	app->togglePanel(Shop);
-	app->createPanel(Shop);
+    LobbyManager* lo = TheElementalMaze::instance()->getLobbyManager();
+    lo->buyHero(her);
+    std::cout << "Heroe comprado" << std::endl;
+    app->togglePanel(Shop);
+    app->createPanel(Shop);
 }
 void callbacks::shopping(Interfaz* app, int itemType, int itemid)
 {
-	LobbyManager* lo = TheElementalMaze::instance()->getLobbyManager();
-	lo->buyItem(itemid);
-	std::cout << "Objeto comprado" << std::endl;
-	app->togglePanel(Shop);
-	app->createPanel(Shop);
+    LobbyManager* lo = TheElementalMaze::instance()->getLobbyManager();
+    lo->buyItem(itemid);
+    std::cout << "Objeto comprado" << std::endl;
+    app->togglePanel(Shop);
+    app->createPanel(Shop);
 }
 
 void callbacks::stash(Interfaz* app)
 {
-	if (app->getActivePan(DDPan))
-		app->removePanel(DDPan);
-	app->removePanel(Lobby);
-	app->removePanel(Heroes);
-	app->createPanel(StashPanel);
-	app->createPanel(ButtonHeroToPartyPanel);
-	app->togglePanel(ButtonHeroToPartyPanel);
-	std::cout << " vamos al stash" << std::endl;
+    if (app->getActivePan(DDPan))
+        app->removePanel(DDPan);
+    app->removePanel(Lobby);
+    app->removePanel(Heroes);
+    app->createPanel(StashPanel);
+    app->createPanel(ButtonHeroToPartyPanel);
+    app->togglePanel(ButtonHeroToPartyPanel);
+    std::cout << " vamos al stash" << std::endl;
 }
 void callbacks::shop(Interfaz* app)
 {
-	if (app->getActivePan(DDPan))
-		app->removePanel(DDPan);
-	app->removePanel(Lobby);
-	app->removePanel(Heroes);
-	app->createPanel(Shop);
-	std::cout << "vamos a la tienda" << std::endl;
+    if (app->getActivePan(DDPan))
+        app->removePanel(DDPan);
+    app->removePanel(Lobby);
+    app->removePanel(Heroes);
+    app->createPanel(Shop);
+    std::cout << "vamos a la tienda" << std::endl;
 }
 
 void callbacks::shop_lobby(Interfaz* app)
 {
-	app->togglePanel(Shop);
-	app->createPanel(Lobby);
-	std::cout << "volvemos al lobby desde la tienda" << std::endl;
+    app->togglePanel(Shop);
+    app->createPanel(Lobby);
+    std::cout << "volvemos al lobby desde la tienda" << std::endl;
 }
 void callbacks::stash_lobby(Interfaz* app)
 {
-	if (app->getActivePan(ButtonHeroToPartyPanel))
-		app->removePanel(ButtonHeroToPartyPanel);
-	if (app->getActivePan(SellButtonPanel))
-		app->removePanel(SellButtonPanel);
-	app->removePanel(StashPanel);
-	app->createPanel(Lobby);
-	std::cout << "volvemos al lobby desde el stash" << std::endl;
+    if (app->getActivePan(ButtonHeroToPartyPanel))
+        app->removePanel(ButtonHeroToPartyPanel);
+    if (app->getActivePan(SellButtonPanel))
+        app->removePanel(SellButtonPanel);
+    app->removePanel(StashPanel);
+    app->createPanel(Lobby);
+    std::cout << "volvemos al lobby desde el stash" << std::endl;
 }
 void callbacks::avanzarHeroes(Interfaz* app)
 {
-	app->avPagHeroes();
-	app->togglePanel(StashPanel);
-	app->createPanel(StashPanel);
+    app->avPagHeroes();
+    app->togglePanel(StashPanel);
+    app->createPanel(StashPanel);
 
-	std::cout << "mostramos más héroes" << std::endl;
+    std::cout << "mostramos más héroes" << std::endl;
 }
 void callbacks::avanzarItems(Interfaz* app)
 {
-	app->avPagItems();
-	app->togglePanel(StashPanel);
-	app->createPanel(StashPanel);
+    app->avPagItems();
+    app->togglePanel(StashPanel);
+    app->createPanel(StashPanel);
 
-	std::cout << "mostramos más items" << std::endl;
+    std::cout << "mostramos más items" << std::endl;
 }
 void callbacks::retrocederHeroes(Interfaz* app)
 {
-	app->rePagHeroes();
-	app->togglePanel(StashPanel);
-	app->createPanel(StashPanel);
+    app->rePagHeroes();
+    app->togglePanel(StashPanel);
+    app->createPanel(StashPanel);
 
-	std::cout << "retrocedemos en la página de héroes" << std::endl;
+    std::cout << "retrocedemos en la página de héroes" << std::endl;
 }
 void callbacks::retrocederItems(Interfaz* app)
 {
-	app->rePagItems();
-	app->togglePanel(StashPanel);
-	app->createPanel(StashPanel);
+    app->rePagItems();
+    app->togglePanel(StashPanel);
+    app->createPanel(StashPanel);
 
-	std::cout << "retrocedemos en la página de items" << std::endl;
+    std::cout << "retrocedemos en la página de items" << std::endl;
 }
 
 void callbacks::infoTienda(Interfaz* app, bool isHero, int id)
 {
-	LobbyManager* lo = TheElementalMaze::instance()->getLobbyManager();
-	if (!isHero)
-	{
-		app->setNameItem(lo->getLobbyStore()->items[id]->item->getName());
-		app->setDescrItem(lo->getLobbyStore()->items[id]->item->getDescription());
-	}
-	std::cout << "Descripción de la tienda actualizada" << std::endl;
+    LobbyManager* lo = TheElementalMaze::instance()->getLobbyManager();
+    if (!isHero)
+    {
+        app->setNameItem(lo->getLobbyStore()->items[id]->item->getName());
+        app->setDescrItem(lo->getLobbyStore()->items[id]->item->getDescription());
+    }
+    std::cout << "Descripción de la tienda actualizada" << std::endl;
 
 }
 void callbacks::sendHeroToStash(Interfaz* app, int heroid)
 {
-	app->removePanel(DDPan);
-	app->removePanel(Heroes);
-	LobbyManager* lo = TheElementalMaze::instance()->getLobbyManager();
-	//PartyManager* pa = TheElementalMaze::instance()->getPartyManager();
-	//EntityManager* en = TheElementalMaze::instance()->getEntityMangr();
-	//SDLGame* game = TheElementalMaze::instance()->getSDLGame();
-	lo->heroFromPartyToStash(heroid);
-	app->createPanel(Heroes);
+    app->removePanel(DDPan);
+    app->removePanel(Heroes);
+    LobbyManager* lo = TheElementalMaze::instance()->getLobbyManager();
+    //PartyManager* pa = TheElementalMaze::instance()->getPartyManager();
+    //EntityManager* en = TheElementalMaze::instance()->getEntityMangr();
+    //SDLGame* game = TheElementalMaze::instance()->getSDLGame();
+    lo->heroFromPartyToStash(heroid);
+    app->createPanel(Heroes);
 }
 void callbacks::sendHeroToParty(Interfaz* app, int heroid)
 {
-	app->removePanel(StashPanel);
-	app->removePanel(ButtonHeroToPartyPanel);
-	PartyManager* paManager = TheElementalMaze::instance()->getPartyManager();
-	int hueco = -1;
-	for (int i = 0; i < 4; ++i)
-	{
-		if (paManager->getHeroes()[i] == nullptr) hueco = i;
-	}
-	if (hueco != -1)
-	{
-		LobbyManager* lo = TheElementalMaze::instance()->getLobbyManager();
-		lo->addHeroToParty(heroid, hueco);
-	}
-	app->createPanel(StashPanel);
+    app->removePanel(StashPanel);
+    app->removePanel(ButtonHeroToPartyPanel);
+    PartyManager* paManager = TheElementalMaze::instance()->getPartyManager();
+    int hueco = -1;
+    for (int i = 0; i < 4; ++i)
+    {
+        if (paManager->getHeroes()[i] == nullptr) hueco = i;
+    }
+    if (hueco != -1)
+    {
+        LobbyManager* lo = TheElementalMaze::instance()->getLobbyManager();
+        lo->addHeroToParty(heroid, hueco);
+    }
+    app->createPanel(StashPanel);
 }
 void callbacks::showHeroToParty(Interfaz* app, int heroid)
 {
-	if (app->getActivePan(ButtonHeroToPartyPanel)) app->removePanel(ButtonHeroToPartyPanel);
-	app->setSelectedHeroToParty(heroid);
-	app->createPanel(ButtonHeroToPartyPanel);
+    if (app->getActivePan(ButtonHeroToPartyPanel)) app->removePanel(ButtonHeroToPartyPanel);
+    app->setSelectedHeroToParty(heroid);
+    app->createPanel(ButtonHeroToPartyPanel);
 }
 
 void callbacks::backToMenu(Interfaz* app)
 {
-	if (app->getActivePan(DDPan)) app->removePanel(DDPan);
-	if (app->getActivePan(Lobby)) app->removePanel(Lobby);
-	if (app->getActivePan(Heroes)) app->removePanel(Heroes);
-	if (app->getActivePan(PausePanel)) app->removePanel(PausePanel);
-	app->createPanel(MenuPrincipal);
-	TheElementalMaze::instance()->changeState(gameST::MainMenu);
-	std::cout << "vamos al menu" << std::endl;
+    if (app->getActivePan(DDPan)) app->removePanel(DDPan);
+    if (app->getActivePan(Lobby)) app->removePanel(Lobby);
+    if (app->getActivePan(Heroes)) app->removePanel(Heroes);
+    if (app->getActivePan(PausePanel)) app->removePanel(PausePanel);
+    app->createPanel(MenuPrincipal);
+    TheElementalMaze::instance()->changeState(gameST::MainMenu);
+    std::cout << "vamos al menu" << std::endl;
 }
 
 void callbacks::inventarioLobby(Interfaz* app)
 {
-	if (app->getActivePan(DDPan)) app->removePanel(DDPan);
-	app->removePanel(Lobby);
-	app->removePanel(Heroes);
-	app->createPanel(InventoryLobby);
-	if (app->getActivePan(UnequipPanel)) app->removePanel(UnequipPanel);
-	std::cout << "vamos al inventario" << std::endl;
+    if (app->getActivePan(DDPan)) app->removePanel(DDPan);
+    app->removePanel(Lobby);
+    app->removePanel(Heroes);
+    app->createPanel(InventoryLobby);
+    if (app->getActivePan(UnequipPanel)) app->removePanel(UnequipPanel);
+    std::cout << "vamos al inventario" << std::endl;
 }
 void callbacks::sellStashItem(Interfaz* app, int itemid)
 {
-	LobbyManager* lo = TheElementalMaze::instance()->getLobbyManager();
-	lo->sellItemFromStash(itemid);
-	std::cout << "Objeto vendido" << std::endl;
-	app->removePanel(StashPanel);
-	app->createPanel(StashPanel);
-	app->removePanel(SellButtonPanel);
+    LobbyManager* lo = TheElementalMaze::instance()->getLobbyManager();
+    lo->sellItemFromStash(itemid);
+    std::cout << "Objeto vendido" << std::endl;
+    app->removePanel(StashPanel);
+    app->createPanel(StashPanel);
+    app->removePanel(SellButtonPanel);
 }
 void callbacks::showSellButton(Interfaz* app, int itemid)
 {
-	if (app->getActivePan(SellButtonPanel))
-		app->removePanel(SellButtonPanel);
-	app->setSelectedItem(itemid);
-	app->createPanel(SellButtonPanel);
-	if (app->getActivePan(UnequipPanel)) app->removePanel(UnequipPanel);
+    if (app->getActivePan(SellButtonPanel))
+        app->removePanel(SellButtonPanel);
+    app->setSelectedItem(itemid);
+    app->createPanel(SellButtonPanel);
+    if (app->getActivePan(UnequipPanel)) app->removePanel(UnequipPanel);
 }
 #include "../Components/Tutorial.h"
 void callbacks::closeMessage()
 {
-	TutorialManager* t = GETCMP3(TheElementalMaze::instance(), ecs::Tutorial, TutorialManager);
-	t->exitMessage();
-	std::cout << "saliendo del mensaje del tutorial" << std::endl;
+    TutorialManager* t = GETCMP3(TheElementalMaze::instance(), ecs::Tutorial, TutorialManager);
+    t->exitMessage();
+    std::cout << "saliendo del mensaje del tutorial" << std::endl;
 }
 
 void callbacks::resumeGame(Interfaz* app)
 {
-	app->removePanel(PausePanel);
-	TheElementalMaze::instance()->getUIManager()->setContinue();
-	TheElementalMaze::instance()->changeState(gameST::EXPLORING/*TheElementalMaze::instance()->getPreviousState()*/);
+    app->removePanel(PausePanel);
+    TheElementalMaze::instance()->getUIManager()->setContinue();
+    TheElementalMaze::instance()->changeState(gameST::EXPLORING/*TheElementalMaze::instance()->getPreviousState()*/);
 }
 
 void callbacks::backToMaze(Interfaz* app)
 {
-		app->removePanel(MenuPrincipal);
-		TheElementalMaze::instance()->changeState(gameST::EXPLORING/*TheElementalMaze::instance()->getPreviousState()*/);
+    app->removePanel(MenuPrincipal);
+    TheElementalMaze::instance()->changeState(gameST::EXPLORING/*TheElementalMaze::instance()->getPreviousState()*/);
 }
 
 void callbacks::inventarioToLobby(Interfaz* app)
 {
-	if (app->getActivePan(DDPan)) app->removePanel(DDPan);
-	if (app->getActivePan(sendToStashPanel)) app->removePanel(sendToStashPanel);
-	if (app->getActivePan(UnequipPanel)) app->removePanel(UnequipPanel);
-	if (app->getActivePan(EquipPanel)) app->removePanel(EquipPanel);
-	app->removePanel(InventoryLobby);
-	app->removePanel(Heroes);
-	app->createPanel(Lobby);
-	std::cout << "vamos al lobby" << std::endl;
+    if (app->getActivePan(DDPan)) app->removePanel(DDPan);
+    if (app->getActivePan(sendToStashPanel)) app->removePanel(sendToStashPanel);
+    if (app->getActivePan(UnequipPanel)) app->removePanel(UnequipPanel);
+    if (app->getActivePan(EquipPanel)) app->removePanel(EquipPanel);
+    app->removePanel(InventoryLobby);
+    app->removePanel(Heroes);
+    app->createPanel(Lobby);
+    std::cout << "vamos al lobby" << std::endl;
 }
 
 void callbacks::showSendToStash(Interfaz* app, int itemid) {
-	if (TheElementalMaze::instance()->gameState() != gameST::DURING_LOBBY)
-		return;
-	if (app->getActivePan(sendToStashPanel)) app->removePanel(sendToStashPanel);
-	app->setSelectedInventoryItem(itemid);
-	app->createPanel(sendToStashPanel);
+    if (TheElementalMaze::instance()->gameState() != gameST::DURING_LOBBY)
+        return;
+    if (app->getActivePan(sendToStashPanel)) app->removePanel(sendToStashPanel);
+    app->setSelectedInventoryItem(itemid);
+    app->createPanel(sendToStashPanel);
 }
 
 void callbacks::sendToStash(Interfaz* app, int itemid)
 {
-	PartyManager* pa = TheElementalMaze::instance()->getPartyManager();
-	LobbyManager* lo = TheElementalMaze::instance()->getLobbyManager();
-	pa->itemFromInventoryToStash(itemid);
-	app->removePanel(sendToStashPanel);
-	app->removePanel(InventoryLobby);
-	app->createPanel(InventoryLobby);
-	std::cout << "Enviar objeto al stash" << std::endl;
+    PartyManager* pa = TheElementalMaze::instance()->getPartyManager();
+    LobbyManager* lo = TheElementalMaze::instance()->getLobbyManager();
+    pa->itemFromInventoryToStash(itemid);
+    app->removePanel(sendToStashPanel);
+    app->removePanel(InventoryLobby);
+    app->createPanel(InventoryLobby);
+    std::cout << "Enviar objeto al stash" << std::endl;
 }
 
 void callbacks::sendToInventory(Interfaz* app, int itemid)
 {
-	PartyManager* pa = TheElementalMaze::instance()->getPartyManager();
-	LobbyManager* lo = TheElementalMaze::instance()->getLobbyManager();
-	lo->itemFromStashToInventory(itemid);
-	app->removePanel(StashPanel);
-	app->createPanel(StashPanel);
-	app->removePanel(SellButtonPanel);
-	std::cout << "Enviar objeto al stash" << std::endl;
+    PartyManager* pa = TheElementalMaze::instance()->getPartyManager();
+    LobbyManager* lo = TheElementalMaze::instance()->getLobbyManager();
+    lo->itemFromStashToInventory(itemid);
+    app->removePanel(StashPanel);
+    app->createPanel(StashPanel);
+    app->removePanel(SellButtonPanel);
+    std::cout << "Enviar objeto al stash" << std::endl;
 }
 void callbacks::showUnequipButton(Interfaz* app, bool isWeapon_, int heroid)
 {
-	PartyManager* pa = TheElementalMaze::instance()->getPartyManager();
-	LobbyManager* lo = TheElementalMaze::instance()->getLobbyManager();
-	app->removePanel(UnequipPanel);
-	if (app->getActivePan(sendToStashPanel)) app->removePanel(sendToStashPanel);
-	if (app->getActivePan(EquipPanel)) app->removePanel(EquipPanel);
-	if (isWeapon_ && pa->getHeroes()[heroid]->getWeapon()->getWeaponId() == wID::DESARMADO) return;
-	app->setSelectedInventoryHero(heroid);
-	app->setIsWeapon(isWeapon_);
-	app->createPanel(UnequipPanel);
+    PartyManager* pa = TheElementalMaze::instance()->getPartyManager();
+    LobbyManager* lo = TheElementalMaze::instance()->getLobbyManager();
+    app->removePanel(UnequipPanel);
+    if (app->getActivePan(sendToStashPanel)) app->removePanel(sendToStashPanel);
+    if (app->getActivePan(EquipPanel)) app->removePanel(EquipPanel);
+    if (isWeapon_ && pa->getHeroes()[heroid]->getWeapon()->getWeaponId() == wID::DESARMADO) return;
+    app->setSelectedInventoryHero(heroid);
+    app->setIsWeapon(isWeapon_);
+    app->createPanel(UnequipPanel);
 }
 void callbacks::showEquipButton(Interfaz* app, bool isWeapon_, int itemid)
 {
-	if (app->getActivePan(UnequipPanel)) app->removePanel(UnequipPanel);
-	app->removePanel(EquipPanel);
-	app->setIsItemToEquipAWeapon(isWeapon_);
-	app->setSelectedInventoryItem(itemid);
-	app->createPanel(EquipPanel);
+    if (app->getActivePan(UnequipPanel)) app->removePanel(UnequipPanel);
+    app->removePanel(EquipPanel);
+    app->setIsItemToEquipAWeapon(isWeapon_);
+    app->setSelectedInventoryItem(itemid);
+    app->createPanel(EquipPanel);
 }
 
 void callbacks::equip(Interfaz* app, bool isWeapon, int itemid, int heroid)
 {
-	PartyManager* pa = TheElementalMaze::instance()->getPartyManager();
-	pa->giveWeaponFromInventory(isWeapon, itemid, heroid);
+    PartyManager* pa = TheElementalMaze::instance()->getPartyManager();
+    pa->giveWeaponFromInventory(isWeapon, itemid, heroid);
 
-	app->removePanel(EquipPanel);
-	app->removePanel(SellButtonPanel);
-	app->removePanel(sendToStashPanel);
-	if (app->getActivePan(InventoryLobby))
-	{
-		app->removePanel(InventoryLobby);
-		app->createPanel(InventoryLobby);
-	}
-	else if (app->getActivePan(Inventory))
-	{
-		app->removePanel(Inventory);
-		app->createPanel(Inventory);
-	}
-	if (app->getActivePan(SellButtonPanel)) app->removePanel(SellButtonPanel);
+    app->removePanel(EquipPanel);
+    app->removePanel(SellButtonPanel);
+    app->removePanel(sendToStashPanel);
+    if (app->getActivePan(InventoryLobby))
+    {
+        app->removePanel(InventoryLobby);
+        app->createPanel(InventoryLobby);
+    }
+    else if (app->getActivePan(Inventory))
+    {
+        app->removePanel(Inventory);
+        app->createPanel(Inventory);
+    }
+    if (app->getActivePan(SellButtonPanel)) app->removePanel(SellButtonPanel);
 }
 void callbacks::unequip(Interfaz* app, bool isWeapon, int heroid)
 {
-	PartyManager* pa = TheElementalMaze::instance()->getPartyManager();
-	LobbyManager* lo = TheElementalMaze::instance()->getLobbyManager();
-	ItemManager* itemManager_ = TheElementalMaze::instance()->getItemManager();
-	Item* item = nullptr;
-	bool espacio = false;
-	if (isWeapon)
-		item = pa->getHeroes()[heroid]->getWeapon();
-	else
-		item = pa->getHeroes()[heroid]->getArmor();
-	espacio = pa->addItem(item);
-	if (espacio)
-	{
-		if (isWeapon) pa->getHeroes()[heroid]->giveWeapon(itemManager_->getWeaponFromId(wID::DESARMADO));
-		else pa->getHeroes()[heroid]->removeArmor(); //giveArmor(itemManager_->getArmorFromId(aID::);
-	}
-	app->removePanel(UnequipPanel);
-	if (app->getActivePan(InventoryLobby))
-	{
-		app->removePanel(InventoryLobby);
-		app->createPanel(InventoryLobby);
-	}
-	else if (app->getActivePan(Inventory))
-	{
-		app->removePanel(Inventory);
-		app->createPanel(Inventory);
-	}
+    PartyManager* pa = TheElementalMaze::instance()->getPartyManager();
+    LobbyManager* lo = TheElementalMaze::instance()->getLobbyManager();
+    ItemManager* itemManager_ = TheElementalMaze::instance()->getItemManager();
+    Item* item = nullptr;
+    bool espacio = false;
+    if (isWeapon)
+        item = pa->getHeroes()[heroid]->getWeapon();
+    else
+        item = pa->getHeroes()[heroid]->getArmor();
+    espacio = pa->addItem(item);
+    if (espacio)
+    {
+        if (isWeapon) pa->getHeroes()[heroid]->giveWeapon(itemManager_->getWeaponFromId(wID::DESARMADO));
+        else pa->getHeroes()[heroid]->removeArmor(); //giveArmor(itemManager_->getArmorFromId(aID::);
+    }
+    app->removePanel(UnequipPanel);
+    if (app->getActivePan(InventoryLobby))
+    {
+        app->removePanel(InventoryLobby);
+        app->createPanel(InventoryLobby);
+    }
+    else if (app->getActivePan(Inventory))
+    {
+        app->removePanel(Inventory);
+        app->createPanel(Inventory);
+    }
 }
 #include "../Managers/game/LobbyManager.h"
 #include"../GameObjects/Character.h"

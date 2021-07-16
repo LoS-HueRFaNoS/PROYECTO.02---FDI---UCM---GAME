@@ -398,19 +398,26 @@ void Interfaz::createChest()
 {
     if (getActivePan(ActivateChest)) return;
     // posicion en pixeles del 'fondo'
-    double x_ = 335;
-    double y_ = 350;
+    double x_ = 740;
+    double y_ = 380;
     // tamano en pixeles del 'fondo'
     double w_ = 450;
     double h_ = 185;
     Panel* p = new Panel(ActivateChest);
     allPanels[ActivateChest] = p;
     togglePanel(ActivateChest);
-    game_->setHorizontalScale(x_);
-    game_->setHorizontalScale(w_);
-    game_->setVerticalScale(y_);
-    game_->setVerticalScale(h_);
-    p->addButton(iManager->addButton<ButtonPanel>(Vector2D(x_, y_), w_, h_, src::Joker, _ChestPanel_, false));
+
+    SDL_Rect dest = RECT(
+        game_->setHorizontalScale(x_),
+        game_->setVerticalScale(y_),
+        game_->setHorizontalScale(w_),
+        game_->setVerticalScale(h_)
+    );
+
+    dest.x -= dest.w / 2;
+    dest.y -= dest.h / 2;
+
+    p->addButton(iManager->addButton<ButtonPanel>(dest, src::Joker, _ChestPanel_, false));
 }
 
 void Interfaz::createFichaDD(uint nCharacter)
@@ -1223,7 +1230,14 @@ void Interfaz::createInventoryLobby()
         pan.ch
     );
 
-    p->addButton(iManager->addButton<SDL_Object>(Vector2D(pan.fcx / 2 + 5, pan.fcy / 2 + 5), pan.w, pan.h, src::tabernaStash));
+    SDL_Rect fondo = RECT(
+        game_->setHorizontalScale(70),
+        game_->setVerticalScale(70),
+        game_->setHorizontalScale(1340),
+        game_->setVerticalScale(620)
+    );
+
+    p->addButton(iManager->addButton<SDL_Object>(fondo, src::tabernaStash));
 
     // Botón para volver al lobby
     p->addButton(iManager->addButton<ButtonMenu>(dest, src::lobby_button, accionMenu::inventario_to_lobby, this));

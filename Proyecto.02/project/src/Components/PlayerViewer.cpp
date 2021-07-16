@@ -4,143 +4,155 @@
 
 void PlayerViewer::update()
 {
-	int x = int(pos->getPos().getX());
-	int y = int(pos->getPos().getY());
-	sentido = pos->getLook();
-	cas = lab->getCasillaInfo(x, y);
+    int x = int(pos->getPos().getX());
+    int y = int(pos->getPos().getY());
+    sentido = pos->getLook();
+    cas = lab->getCasillaInfo(x, y);
 
-	casillaActual = cas->checkCell();
-	casillaSig = cas->checkCell();
-	if (casillaActual[sentido])
-	{
-		switch (sentido)
-		{
-		case Norte:
-			y -= 1;
-			if (y != 0)
-				casSigSig = lab->getCasillaInfo(x, y - 1);
-			break;
-		case Este:
-			x += 1;
-			if (x != lab->mazeWidth() - 1)
-				casSigSig = lab->getCasillaInfo(x + 1, y);
-			break;
-		case Sur:
-			y += 1;
-			if (y != lab->mazeHeigh() - 1)
-				casSigSig = lab->getCasillaInfo(x, y + 1);
-			break;
-		case Oeste:
-			x -= 1;
-			if (x != 0)
-				casSigSig = lab->getCasillaInfo(x - 1, y);
-			break;
-		}
-		casSig = lab->getCasillaInfo(x, y);
-		casillaSig = casSig->checkCell();
-		casillaSigSig = casSigSig->checkCell();
-	}
-	else casillaSigSig = cas->checkCell();
+    casillaActual = cas->checkCell();
+    casillaSig = cas->checkCell();
+    if (casillaActual[sentido])
+    {
+        switch (sentido)
+        {
+        case Norte:
+            y -= 1;
+            if (y != 0)
+                casSigSig = lab->getCasillaInfo(x, y - 1);
+            break;
+        case Este:
+            x += 1;
+            if (x != lab->mazeWidth() - 1)
+                casSigSig = lab->getCasillaInfo(x + 1, y);
+            break;
+        case Sur:
+            y += 1;
+            if (y != lab->mazeHeigh() - 1)
+                casSigSig = lab->getCasillaInfo(x, y + 1);
+            break;
+        case Oeste:
+            x -= 1;
+            if (x != 0)
+                casSigSig = lab->getCasillaInfo(x - 1, y);
+            break;
+        }
+        casSig = lab->getCasillaInfo(x, y);
+        casillaSig = casSig->checkCell();
+        casillaSigSig = casSigSig->checkCell();
+    }
+    else casillaSigSig = cas->checkCell();
 }
 
 void PlayerViewer::draw()
 {
-	if (cas == nullptr) return;
-	double _x = game_->setHorizontalScale(70);
-	double _y = game_->setVerticalScale(70);
-	double _w = game_->setHorizontalScale(1340);
-	double _h = game_->setVerticalScale(620);
-	SDL_Rect dest = RECT( _x, _y, _w, _h );
-	/*Texture* texturaCasilla;
-	Texture* texturaIzquierda;
-	Texture* texturaDerecha;
-	Texture* texturaSigFr;
-	Texture* texturaSigIzq;
-	Texture* texturaSigDer;*/
+    if (cas == nullptr) return;
+    double _x = game_->setHorizontalScale(70);
+    double _y = game_->setVerticalScale(70);
+    double _w = game_->setHorizontalScale(1340);
+    double _h = game_->setVerticalScale(620);
+    SDL_Rect dest = RECT(_x, _y, _w, _h);
+    /*Texture* texturaCasilla;
+    Texture* texturaIzquierda;
+    Texture* texturaDerecha;
+    Texture* texturaSigFr;
+    Texture* texturaSigIzq;
+    Texture* texturaSigDer;*/
 
-	int izquierda; // Variable que guarda que direccion hay a la izquierda
-	if (sentido == Norte) izquierda = Oeste;
-	else izquierda = sentido - 1;
+    int izquierda; // Variable que guarda que direccion hay a la izquierda
+    if (sentido == Norte) izquierda = Oeste;
+    else izquierda = sentido - 1;
 
-	int derecha; // Variable que guarda que direccion hay a la derecha
-	if (sentido == Oeste) derecha = Norte;
-	else derecha = sentido + 1;
+    int derecha; // Variable que guarda que direccion hay a la derecha
+    if (sentido == Oeste) derecha = Norte;
+    else derecha = sentido + 1;
 
-	auto manager = game_->getTextureMngr(); // Manager de texturas
-	if (casillaActual[sentido]) // <-^-> Si delante hay un camino, dibujaremos la informacion de la casilla siguiente
-	{
-		
-		manager->getTexture(Resources::camino_fondo_fr)->render(dest);
-		manager->getTexture(Resources::fondo_vacio)->render(dest);
-		if (!casillaSigSig[sentido])
-		{
-			manager->getTexture(Resources::muro_fondo_fr)->render(dest);
-		}
-		if (casillaSigSig[izquierda])
-		{
-			manager->getTexture(Resources::camino_fondo_izq)->render(dest);
-			manager->getTexture(Resources::muro_fondo_fr_izq)->render(dest);
-		}
-		else manager->getTexture(Resources::muro_fondo_izq)->render(dest);
+    auto manager = game_->getTextureMngr(); // Manager de texturas
+    if (casillaActual[sentido]) // <-^-> Si delante hay un camino, dibujaremos la informacion de la casilla siguiente
+    {
 
-		if (casillaSigSig[derecha]) // <-
-		{
-			manager->getTexture(Resources::camino_fondo_der)->render(dest);
-			manager->getTexture(Resources::muro_fondo_fr_der)->render(dest);
-		}
-		else manager->getTexture(Resources::muro_fondo_der)->render(dest);
-		manager->getTexture(Resources::camino_fr)->render(dest);
-		if (casillaSig[izquierda]) // <- Si hay un camino a la izquierda
-		{
-			manager->getTexture(Resources::camino_izq)->render(dest);
-			manager->getTexture(Resources::muro_fr_izq)->render(dest);
-		}
+        manager->getTexture(Resources::camino_fondo_fr)->render(dest);
+        manager->getTexture(Resources::fondo_vacio)->render(dest);
+        if (!casillaSigSig[sentido])
+        {
+            manager->getTexture(Resources::muro_fondo_fr)->render(dest);
+        }
+        if (casillaSigSig[izquierda])
+        {
+            manager->getTexture(Resources::camino_fondo_izq)->render(dest);
+            manager->getTexture(Resources::muro_fondo_fr_izq)->render(dest);
+        }
+        else manager->getTexture(Resources::muro_fondo_izq)->render(dest);
 
-		else manager->getTexture(Resources::muro_izq)->render(dest);
+        if (casillaSigSig[derecha]) // <-
+        {
+            manager->getTexture(Resources::camino_fondo_der)->render(dest);
+            manager->getTexture(Resources::muro_fondo_fr_der)->render(dest);
+        }
+        else manager->getTexture(Resources::muro_fondo_der)->render(dest);
+        manager->getTexture(Resources::camino_fr)->render(dest);
+        if (casillaSig[izquierda]) // <- Si hay un camino a la izquierda
+        {
+            manager->getTexture(Resources::camino_izq)->render(dest);
+            manager->getTexture(Resources::muro_fr_izq)->render(dest);
+        }
 
-		if (casillaSig[derecha]) // -> Si hay un camino a la derecha
-		{
-			manager->getTexture(Resources::camino_der)->render(dest);
-			manager->getTexture(Resources::muro_fr_der)->render(dest);
-		}
-		else manager->getTexture(Resources::muro_der)->render(dest);
+        else manager->getTexture(Resources::muro_izq)->render(dest);
 
-		if (casillaSig[sentido])
-		{
-			manager->getTexture(Resources::camino_fr)->render(dest);
-		}
-		else manager->getTexture(Resources::muro_fr)->render(dest);
-	}
-	else manager->getTexture(Resources::muro_del)->render(dest);
-	//renderEnemyActual();
-	if (cas->isExit() && cas->getDirSalida() !=-1 && sentido == cas->getDirSalida() && !cas->getEscalera()) {
-		dest = RECT(_x + _w / 2 - 300, _y , 600, 480);
-		if (cas->getEnemy()->size() == 0)
-			manager->getTexture(Resources::puerta)->render(dest);
-	}
-	
-	else if (cas->isExit() && cas->getEscalera())
-	{
-		dest = RECT(_x + _w / 2 - 300, _y, 600, 480);
-		if (cas->getEnemy()->size() == 0)
-			manager->getTexture(Resources::escalera)->render(dest);
-	}
-	if (cas->hasChest() && cas->getEnemy()->size() == 0)
-	{
-		dest = RECT(_x + _w / 2 - 300, _y + 240, 600, 300);
-		auto imag = Resources::CofreCerrado;
-		game_->setHorizontalScale(_x);
-		game_->setHorizontalScale(_w);
-		game_->setVerticalScale(_y);
-		game_->setVerticalScale(_h);
-		if (cas->getChest()->getAlreadyOpen()) {
-			if (cas->getChest()->getChest()->getItems().size() > 0) imag = Resources::CofreLleno;
-			else imag = Resources::CofreVacio;
-		}
-		manager->getTexture(imag)->render(dest);
+        if (casillaSig[derecha]) // -> Si hay un camino a la derecha
+        {
+            manager->getTexture(Resources::camino_der)->render(dest);
+            manager->getTexture(Resources::muro_fr_der)->render(dest);
+        }
+        else manager->getTexture(Resources::muro_der)->render(dest);
 
-	}
-	//manager->getTexture(Resources::guiaSalida)->render(SDL_Rect{game_->getWindowWidth()/2-50, 100, 100,50});
+        if (casillaSig[sentido])
+        {
+            manager->getTexture(Resources::camino_fr)->render(dest);
+        }
+        else manager->getTexture(Resources::muro_fr)->render(dest);
+    }
+    else manager->getTexture(Resources::muro_del)->render(dest);
+    //renderEnemyActual();
+    if (cas->isExit() && cas->getDirSalida() != -1 && sentido == cas->getDirSalida() && !cas->getEscalera()) {
+        dest = RECT(_x + _w / 2 - 300, _y, 600, 480);
+        if (cas->getEnemy()->size() == 0)
+            manager->getTexture(Resources::puerta)->render(dest);
+    }
+
+    else if (cas->isExit() && cas->getEscalera())
+    {
+        dest = RECT(_x + _w / 2 - 300, _y, 600, 480);
+        if (cas->getEnemy()->size() == 0)
+            manager->getTexture(Resources::escalera)->render(dest);
+    }
+    if (cas->hasChest() && cas->getEnemy()->size() == 0)
+    {
+        auto imag = Resources::CofreCerrado;
+
+        // posicion en pixeles del 'fondo'
+        double x_ = 740;
+        double y_ = 380;
+        // tamano en pixeles del 'fondo'
+        double w_ = 650;
+        double h_ = 278;
+        SDL_Rect dest = RECT(
+            game_->setHorizontalScale(x_),
+            game_->setVerticalScale(y_),
+            game_->setHorizontalScale(w_),
+            game_->setVerticalScale(h_)
+        );
+
+        dest.x -= dest.w / 2;
+        dest.y -= dest.h / 2;
+
+        if (cas->getChest()->getAlreadyOpen()) {
+            if (cas->getChest()->getChest()->getItems().size() > 0) imag = Resources::CofreLleno;
+            else imag = Resources::CofreVacio;
+        }
+        manager->getTexture(imag)->render(dest);
+
+    }
+    //manager->getTexture(Resources::guiaSalida)->render(SDL_Rect{game_->getWindowWidth()/2-50, 100, 100,50});
 }
 
 //void PlayerViewer::renderEnemyActual()
